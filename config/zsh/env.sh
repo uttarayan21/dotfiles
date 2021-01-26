@@ -1,0 +1,21 @@
+export GTK_RC_FILES="$XDG_CONFIG_HOME"/gtk-1.0/gtkrc
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME"/notmuch/notmuchrc
+export NMBGIT="$XDG_DATA_HOME"/notmuch/nmbug
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+export ADB_VENDOR_KEY="$XDG_CONFIG_HOME"/android
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export GRADLE_USER_HOME="$XDG_DATA_HOME"/gradle
+export PYLINTHOME="$XDG_CACHE_HOME"/pylint
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+# export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+export npm_config_prefix=$XDG_DATA_HOME/node_modules
+export gnome_user_dir="$XDG_CONFIG_HOME"/gnome/apps
+export ANDROID_PREFS_ROOT="$XDG_CONFIG_HOME"/android
+export ANDROID_EMULATOR_HOME="$XDG_DATA_HOME"/android/emulator

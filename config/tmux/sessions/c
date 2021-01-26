@@ -1,0 +1,3 @@
+tmux new-session -d -s 'c' -n 'neovim' -c ~/Projects/c
+tmux new-window -t c -n shell 
+tmux select-window -t c:0

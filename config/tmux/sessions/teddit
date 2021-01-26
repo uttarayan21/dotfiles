@@ -1,0 +1,3 @@
+tmux new-session -d -s 'teddit' -n 'neovim' -c ~/Projects/rust/teddit
+tmux new-window -t teddit -n shell -c ~/Projects/rust/teddit
+tmux select-window -t teddit:0

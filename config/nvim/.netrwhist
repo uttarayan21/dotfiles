@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =9
+let g:netrw_dirhist_9='/home/fs0c131y/Projects/rust/snake/.git'
+let g:netrw_dirhist_8='/home/fs0c131y/Projects/rust/snake/src'
+let g:netrw_dirhist_7='/home/fs0c131y/Projects/rust/snake/src/settings'
+let g:netrw_dirhist_6='/home/fs0c131y/Projects/rust/snake/src'
+let g:netrw_dirhist_5='/home/fs0c131y/Projects/rust/snake'
+let g:netrw_dirhist_4='/home/fs0c131y/Projects/rust/ascii/src'
+let g:netrw_dirhist_3='/home/fs0c131y/.config/ncmpcpp'
+let g:netrw_dirhist_2='/home/fs0c131y/.config/tmux'
+let g:netrw_dirhist_1='/home/fs0c131y/.config'

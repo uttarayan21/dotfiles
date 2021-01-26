@@ -1,0 +1,11 @@
+setxkbmap -option "ctrl:nocaps" 
+xwallpaper --zoom ~/Pictures/wallpaper.jpg &
+picom --config ~/.config/picom/picom.conf &
+# libinput-gestures &
+#discord --start-minimized &
+conky &
+unclutter &
+twmnd &
+aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec bspwm
