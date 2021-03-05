@@ -1,0 +1,17 @@
+alias ll='exa -al'
+alias arduino-cli='arduino-cli --config-file $XDG_CONFIG_HOME/arduino15/arduino-cli.yaml'
+alias gdb='gdb -nh -x "$XDG_CONFIG_HOME"/gdb/init'
+alias nv=nvim
+alias v=nvim
+alias m=neomutt
+alias n=notmuch
+alias dotfiles='/usr/bin/git --git-dir=$XDG_DATA_HOME/dotfiles/ --work-tree=$HOME'
+alias yarn="yarn --use-yarnrc $XDG_CONFIG_HOME/yarn/yarnrc"
+
+man() {
+    page=$(/usr/bin/man "$@" | \
+        col -b)
+    if ! [ -z "$page" ];then 
+        echo $page | nvim -R -c 'set ft=man nomod nolist' -
+    fi
+}

@@ -62,12 +62,13 @@ DISABLE_AUTO_UPDATE="true"
 ZSH_CUSTOM=~/.config/zsh
 HISTFILE="$XDG_CACHE_HOME"/zsh/history
 ZSH_COMPDUMP=$XDG_CACHE_HOME/zsh/zshcomdump
+setopt HIST_IGNORE_SPACE
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=( git virtualenv zsh-autosuggestions zsh-syntax-highlighting zsh-abbr )
+plugins=(zsh-autosuggestions zsh-syntax-highlighting zsh-vim-mode zsh-abbr histblock)
 
 
 # User configuration
@@ -96,7 +97,7 @@ fi
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-export PATH="$PATH:~/.local/bin"
+export PATH="$PATH:/home/fs0c131y/.local/bin:/home/fs0c131y/.local/share/gem/bin:/home/fs0c131y/.local/share/node_modules/bin:/home/fs0c131y/.local/share/cargo/bin"
 
 #if ! pgrep -u "$USER" ssh-agent > /dev/null; then
 #    ssh-agent > ~/.ssh-agent-thing
@@ -115,11 +116,8 @@ export PATH="$PATH:~/.local/bin"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias ll='exa -al'
-alias nv=nvim
-alias v=nvim +PlugUpdate 
-alias dotfiles='/usr/bin/git --git-dir=$XDG_DATA_HOME/dotfiles/ --work-tree=$HOME'
 #alias tmux='tmux -f ~/.config/tmux/tmux.conf'
-source $ZSH_CUSTOM/env.sh 
+source $ZSH_CUSTOM/env
 # zoxide
 eval "$(zoxide init zsh)"
 
@@ -145,24 +143,24 @@ topp() (
   kill "$pid"
 )
 
-function cd() {
-  builtin cd "$@"
+# function cd() {
+#   builtin cd "$@"
 
-  if [[ -z "$VIRTUAL_ENV" ]] ; then
-    ## If env folder is found then activate the vitualenv
-      if [[ -d ./venv ]] ; then
-        source ./venv/bin/activate
-      fi
-  else
-    ## check the current folder belong to earlier VIRTUAL_ENV folder
-    # if yes then do nothing
-    # else deactivate
-      parentdir="$(dirname "$VIRTUAL_ENV")"
-      if [[ "$PWD"/ != "$parentdir"/* ]] ; then
-        deactivate
-      fi
-  fi
-}
+#   if [[ -z "$VIRTUAL_ENV" ]] ; then
+#     ## If env folder is found then activate the vitualenv
+#       if [[ -d ./venv ]] ; then
+#         source ./venv/bin/activate
+#       fi
+#   else
+#     ## check the current folder belong to earlier VIRTUAL_ENV folder
+#     # if yes then do nothing
+#     # else deactivate
+#       parentdir="$(dirname "$VIRTUAL_ENV")"
+#       if [[ "$PWD"/ != "$parentdir"/* ]] ; then
+#         deactivate
+#       fi
+#   fi
+# }
 
 function fmpc() {
   local song_position
@@ -183,4 +181,10 @@ source $ZSH/oh-my-zsh.sh
 #     ~/.config/tmux/start-tmux
 # fi
 #
-source $ZSH_CUSTOM/alias.zshrc
+source $ZSH_CUSTOM/aliases
+
+PATH="/home/fs0c131y/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/fs0c131y/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/fs0c131y/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/fs0c131y/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/fs0c131y/perl5"; export PERL_MM_OPT;
