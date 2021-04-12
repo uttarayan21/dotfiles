@@ -1,0 +1,3 @@
+[submodule "config/neomutt/dracula"]
+	path = config/neomutt/dracula
+	url = https://github.com/dracula/mutt

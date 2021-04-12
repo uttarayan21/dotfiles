@@ -1,5 +1,6 @@
 #!/bin/sh
 
+export SXHKD_SHELL="/bin/sh"
 sxhkd &
 xsetroot -cursor_name left_ptr &
 
@@ -15,8 +16,7 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config border_width         0
 
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a Chromium desktop='^3'
+bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
@@ -24,8 +24,8 @@ bspc rule -a qutebrowser desktop='^3'
 bspc rule -a Steam state=tiled
 bspc rule -a steam_app_230410 desktop='^4' state=fullscreen
 bspc rule -a vlc desktop='^5'
+bspc rule -a mpv desktop='^5'
 bspc rule -a spotify desktop='^10'
-bspc rule -a youtube-music-desktop-app desktop='^10' state=floating
 
 # To help with the java applications
 #wmname LG3D

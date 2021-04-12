@@ -40,7 +40,7 @@ super + shift + r ; {h,j,k,l}
 Print
     gnome-screenshot
 shift + Print
-    gnome-screenshot -a
+    gnome-screenshot -i
 
 super + a
     kill -s USR1 $(pidof deadd-notification-center)
@@ -51,10 +51,12 @@ super + shift + a
 # MPC media keys
 
 XF86Audio{Play,Pause}
-    mpc -q toggle   
+    #mpc -q toggle   
+    xf86keys toggle
 
 XF86Audio{Prev,Stop,Next}
-    mpc -q {prev,stop,next}
+    #mpc -q {prev,stop,next}
+    xf86keys {prev,stop,next}
 
 # Pulseaudio
 

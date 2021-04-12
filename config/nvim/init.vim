@@ -4,7 +4,6 @@
 call plug#begin()
 " QOL
     Plug 'airblade/vim-rooter'
-    Plug 'w0rp/ale'
     Plug 'yuttie/comfortable-motion.vim'
     Plug 'tpope/vim-surround'
     Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
@@ -12,33 +11,37 @@ call plug#begin()
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
 " Git plugin
-    Plug 'tpope/vim-fugitive'
+    " Plug 'tpope/vim-fugitive'
 
 " GUI Stuff
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
-    " Plug 'edkolev/tmuxline.vim'
-	Plug 'tpope/vim-commentary'
     Plug 'uttarayan21/minimalist'  " Plug 'dikiaap/minimalist'
     Plug 'dracula/vim'
     Plug 'tpope/vim-vinegar'
     Plug 'mhinz/vim-crates'
+    Plug 'onsails/lspkind-nvim'
 " Intellisense
     Plug 'neoclide/coc.nvim', {'branch': 'release'}    
 " Ctags
     Plug 'ludovicchabant/vim-gutentags'
-    Plug 'majutsushi/tagbar'
+    " Plug 'majutsushi/tagbar'
 " Syntax Highlighting
     Plug 'rust-lang/rust.vim'
-    Plug 'sudar/vim-arduino-syntax'
     Plug 'cespare/vim-toml'
-    Plug 'chaimleib/vim-renpy'
-    Plug 'udalov/kotlin-vim'
-    Plug 'meain/vim-package-info'
 " Devicons
-    Plug 'ryanoasis/vim-devicons'
+    " Plug 'ryanoasis/vim-devicons' " No color
+    Plug 'kyazdani42/nvim-web-devicons' 
 " Text Objects
+	Plug 'tpope/vim-commentary'
     Plug 'wellle/targets.vim'
+" Dictionary
+    Plug 'reedes/vim-wordy'
+" Debug
+    Plug 'epheien/termdbg'
+" Mail
+    Plug 'soywod/himalaya', {'rtp': 'vim'}
+
 call plug#end()
 
 "##################################################
@@ -63,12 +66,12 @@ nnoremap <leader>n        :bnext <CR>
 nnoremap <leader>p        :bprev <CR>
 " Fzf
 nnoremap <Leader>f :Files <CR>
-nnoremap <Leader>b :Buffers <CR>
-nnoremap <Leader>w :W <CR>
+nnoremap <Leader>; :Buffers <CR>
 nnoremap <Leader>g :Rg <CR>
 nnoremap <Leader>t :Tags <CR>
 
-nnoremap <F8> :TagbarToggle <CR>
+nnoremap <Leader>r :registers <CR>
+" nnoremap <F8> :TagbarToggle <CR>
 
 
 " Vim hardmode
@@ -99,10 +102,8 @@ nnoremap <C-k> <C-]>
 nnoremap <C-l> <C-t>
 
 " Markdown Preview
-
-" let g:mkdp_auto_start = 1
+let g:mkdp_auto_start = 1
 let g:mkdp_filetypes = ['markdown']
-" let g:mkdp_broswer = 'qutebrowser'
 
 
 " Numbers and tabs
@@ -117,6 +118,7 @@ set signcolumn=yes
 set hidden
 set ignorecase
 set smartcase
+" set foldmethod=indent
 "set cmdheight=2
 
 nnoremap <F2> :set number! relativenumber! <CR>
@@ -143,19 +145,19 @@ nnoremap <Leader>l :CocCommand <CR>
 
 
 " Clipboard
-set clipboard=unnamedplus
-let g:clipboard = {
-    \'name': 'PrimaryClipboard',
-    \'copy': {
-    \   '+': 'xclip -selection clipboard',
-    \   '*': 'xclip -selection clipboard',
-    \   },
-    \'paste': {
-    \   '+': 'xclip -selection clipboard -out',
-    \   '*': 'xclip -selection clipboard -out',
-    \   },
-    \'cache_enabled': 1,
-    \}
+" set clipboard=unnamedplus
+" let g:clipboard = {
+"     \'name': 'PrimaryClipboard',
+"     \'copy': {
+"     \   '+': 'xclip -selection clipboard',
+"     \   '*': 'xclip -selection clipboard',
+"     \   },
+"     \'paste': {
+"     \   '+': 'xclip -selection clipboard -out',
+"     \   '*': 'xclip -selection clipboard -out',
+"     \   },
+"     \'cache_enabled': 1,
+"     \}
 
 
 augroup linenumbers 
@@ -174,6 +176,8 @@ let g:netrw_fastbrowse = 0
 " Toggle crates plugin on opening cargo.toml file
 autocmd BufRead Cargo.toml call crates#toggle()
 
+" Lspkind-nvim
+lua require'lspkind'.init()
 
 " Set python global file
 let g:python3_host_prog = "/usr/bin/python"
@@ -196,6 +200,7 @@ if exists('+termguicolors')
   let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 endif
 " set termguicolors
+
 
 " Airline
 let g:airline_theme='dracula'
@@ -263,3 +268,4 @@ function CurrentSong()
     let s = execute("!mpc | head -1")
     return s
 endfunction
+

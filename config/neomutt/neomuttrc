@@ -1,0 +1,53 @@
+# Disroot
+source ~/.config/neomutt/disroot/uttarayan21
+folder-hook 'disroot' 'source ~/.config/neomutt/disroot/uttarayan21'
+
+# Gmail
+source ~/.config/neomutt/gmail/uttarayan21
+folder-hook 'gmail' 'source ~/.config/neomutt/gmail/uttarayan21'
+
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.config/neomutt/gmail/uttarayan21<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.config/neomutt/disroot/uttarayan21<enter><change-folder>!<enter>'
+
+# Sign with gpgme
+set crypt_use_gpgme=yes
+set postpone_encrypt = yes
+set pgp_self_encrypt = yes
+set crypt_use_pka = no
+set crypt_autoencrypt = no
+set crypt_autopgp = yes 
+set crypt_autosign = yes
+set crypt_verify_sig = yes
+set pgp_sign_as=0xAAB106209B043AD6
+
+# Sidebar
+set sidebar_visible
+# set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_format = "%D%* [%N]%*"
+set mail_check_stats
+
+# Activate caching, as it can greatly improve speed
+set header_cache = "~/.cache/neomutt/headers"
+set message_cachedir = "~/.cache/neomutt/bodies"
+
+# Disable saving outgoing mail since Gmail saves them by default.
+# set record = ""
+# set editor
+set editor = "nvim"
+
+# Sort by threads
+set sort = threads
+# Sort threads by last date recieved - newest first
+set sort_aux = reverse-last-date-received
+# Show date in year/month/day hour:minute format
+set date_format="%d/%m/%y %I:%M%p"
+
+# mailcap and auto_view
+set mailcap_path = "~/.config/neomutt/mailcap"
+auto_view text/html
+
+set alias_file = "~/.config/neomutt/aliases"
+source ~/.config/neomutt/vimkeys.muttrc
+source ~/.config/neomutt/dracula/dracula.muttrc

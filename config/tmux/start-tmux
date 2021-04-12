@@ -17,6 +17,10 @@ for live_session in $live_sessions;do
     live_session_name=$(echo $live_session | cut -d: -f1)
     if [ -z "${all_sessions##*$live_session_name*}" ];then # see https://stackoverflow.com/questions/229551/how-to-check-if-a-string-contains-a-substring-in-bash
         all_sessions="$(echo "$all_sessions" | sed "s/$live_session_name/$live_session/g")"
+    else
+        all_sessions="$all_sessions
+$live_session"
+# Okay I know this is ugly it is 5:13 my brain is not working
     fi
 done
 
