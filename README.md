@@ -8,10 +8,12 @@ Includes the dotfiles for
 - [bspwm](#bspwm)
 - [conky](#conky)
 - [neovim](#neovim)
+- [neomutt](#neomutt)
 - [picom](#picom)
 - [rofi](#rofi)
 - [sxhkd](#sxhkd)
 - [tmux](#tmux)
+- [fish](#fish)
 - [zsh](#zsh)
 
 ### alacritty
@@ -30,6 +32,10 @@ Includes the dotfiles for
 
 ![neovim](images/neovim.png)
 
+### neomutt
+
+![neomutt](images/neomutt.png)
+
 ### picom
 
 [picom](https://github.com/yshui/picom)
@@ -45,6 +51,10 @@ Includes the dotfiles for
 ### tmux
 
 ![tmux](images/tmux.png)
+
+### fish
+
+![fish](images/fish.png)
 
 ### zsh
 
