@@ -19,12 +19,12 @@ return require('packer').startup(function()
         requires = { 'kyazdani42/nvim-web-devicons' }
     }
 
-    use { 
+    use {
         'sainnhe/sonokai',
         config = function() require('colorscheme') end,
     }
 
-    use { 
+    use {
         'folke/which-key.nvim',
         config = function() require("which-key").setup() end,
     }
@@ -46,9 +46,28 @@ return require('packer').startup(function()
     }
     use { 'norcalli/nvim-colorizer.lua', config = function() require'colorizer'.setup() end, }
 
+    -- lsp
     use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
     use { 'folke/lsp-trouble.nvim', config = function() require("trouble").setup {} end, }
     use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
     use { 'nvim-lua/completion-nvim' }
+    use { 'nvim-lua/lsp-status.nvim' }
+    use {
+        'nvim-lua/lsp_extensions.nvim',
+        config =
+            function()
+                vim.api.nvim_command([[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints{}]])
+            end
+    }
 
+
+    use { 'airblade/vim-rooter' }
+
+    -- rust {{{
+    use {
+        'rust-lang/rust.vim',
+        'mhinz/vim-crates',
+        'cespare/vim-toml',
+    }
+    -- }}}
 end)

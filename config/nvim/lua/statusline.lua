@@ -2,17 +2,19 @@ local vim = vim
 local gl = require('galaxyline')
 
 local condition = require('galaxyline.condition')
-local diagnostic = require('galaxyline.provider_diagnostic')
+-- local diagnostic = require('galaxyline.provider_diagnostic')
+local diagnostics = require('lsp-status.diagnostics')
 local vcs = require('galaxyline.provider_vcs')
 local fileinfo = require('galaxyline.provider_fileinfo')
-local extension = require('galaxyline.provider_extensions')
+-- local extension = require('galaxyline.provider_extensions')
 -- local colors = require('galaxyline.colors')
-local buffer = require('galaxyline.provider_buffer')
-local whitespace = require('galaxyline.provider_whitespace')
-local lspclient = require('galaxyline.provider_lsp')
+-- local buffer = require('galaxyline.provider_buffer')
+-- local whitespace = require('galaxyline.provider_whitespace')
+-- local lspclient = require('galaxyline.provider_lsp')
+local lspstatus = require('lsp-status')
 
 
-local gls = gl.section
+-- local gls = gl.section
 gl.short_line_list = { 'defx' }
 
 -- from sonokai theme (https://github.com/sainnhe/sonokai/blob/master/autoload/sonokai.vim)
@@ -60,7 +62,7 @@ local mode_color = function()
     }
 
     local color = mode_colors[vim.fn.mode()]
-    
+
     if color == nil then
         color = colors.red
     end
@@ -69,11 +71,7 @@ local mode_color = function()
 end
 
 
--- "
--- "
-
 local gls = gl.section
-local glsp = gl.provider_lsp
 
 gls.left[1] = {
     ViMode = {
@@ -96,36 +94,53 @@ gls.left[1] = {
         end,
         highlight = { colors.fg , colors.bg2 },
         separator = '',
-        separator_highlight = { colors.bg2 , 
+        separator_highlight = { colors.bg2 ,
                 function()
-                    if condition.check_git_workspace() then 
+                    if condition.check_git_workspace() then
                         return colors.bg1
-                    else 
+                    else
                         return colors.dark_black
-                    end 
+                    end
                 end
         },
 
     }
 }
 
-gls.left[2] = {
-    GitIcon = {
-        provider = function() return '  ' end,
-        condition = condition.check_git_workspace,
-        highlight = { colors.purple , colors.bg1 },
-    }
-}
+-- gls.left[2] = {
+--     GitIcon = {
+--         provider = function() return '  ' end,
+--         condition = condition.check_git_workspace,
+--         highlight = { colors.purple , colors.bg1 },
+--     }
+-- }
 
-gls.left[3] = {
+gls.left[2] = {
     GitBranch = {
         provider = function() return vcs.get_git_branch()..' ' end,
         condition = condition.check_git_workspace,
         highlight = { colors.purple , colors.bg1 },
+        icon = '  ',
         separator = '',
         separator_highlight = { colors.bg1 , colors.dark_black },
     }
 }
+
+gls.left[3] = {
+  ShowLspStatus = {
+    provider = lspstatus.status,
+    -- condition = function ()
+    --   local tbl = {['dashboard'] = true,['']=true}
+    --   if tbl[vim.bo.filetype] then
+    --     return false
+    --   end
+    --       return true
+    -- end,
+    -- icon = '  LSP:',
+    highlight = { colors.diff_yellow , colors.dark_black, 'bold' }
+  }
+}
+
 
 -- Right Side
 gls.right[1]= {

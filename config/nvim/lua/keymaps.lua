@@ -2,10 +2,11 @@ vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-
 local options = { noremap = true, silent = true }
-
 local normal_mode_maps = {
+    -- toggles
+    { key = '<F2>', map = [[<cmd>set number! relativenumber!<cr>]] },
+
     -- navigation
     { key = '<leader><leader>', map = [[<c-^>]] },
     { key = '<leader>n', map = [[<cmd>bnext<cr>]] },
@@ -21,6 +22,13 @@ local normal_mode_maps = {
     { key = 'K', map = [[<cmd>lua vim.lsp.buf.hover()<cr>]] },
     { key = 'gd', map = [[<cmd>lua vim.lsp.buf.definition()<cr>]] },
     { key = 'gi', map = [[<cmd>lua vim.lsp.buf.implementation()<cr>]] },
+    { key = '<leader>o', map = [[<cmd>LspTroubleToggle<cr>]] },
+    { key = '<leader>a', map = [[<cmd>lua vim.lsp.buf.document_highlight()<cr>]] },
+    { key = '<leader>c', map = [[<cmd>lua vim.lsp.buf.clear_references()<cr>]] },
+    { key = 'F', map = [[<cmd>lua vim.lsp.buf.formatting()<cr>]] },
+
+    -- Other
+    { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },
 }
 
 local insert_mode_maps = {
