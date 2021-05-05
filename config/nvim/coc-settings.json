@@ -1,5 +1,0 @@
-{
-  "rust-analyzer.server.path": "/usr/bin/rust-analyzer",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "rust", "json"],
-  "prettier.printWidth": 120
-}
