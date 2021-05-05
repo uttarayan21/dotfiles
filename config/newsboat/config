@@ -1,0 +1,49 @@
+auto-reload yes
+reload-time 5
+reload-threads 4
+
+# Open in mpv
+macro m set browser "/usr/bin/mpv %u > /dev/null 2>&1 &"; open-in-browser ; set browser "xdg-open %u"
+
+# Image preview
+# pipe-to "tee ~/log"
+
+# notification
+notify-program /usr/bin/notify-send
+# notify-always yes
+
+# pager
+# pager "nvim -R -c 'set ft=mail nomod noma nolist' -c 'nnoremap q :qa! <enter>' -"
+pager "~/.local/bin/newspager"
+# html-renderer /usr/bin/cat
+# pager "xargs echo"
+
+macro l pipe-to "~/.local/bin/newspager"
+
+# vim keybinds
+unbind-key h
+unbind-key j
+unbind-key k
+unbind-key l
+
+# bind-key h quit
+bind-key j down
+bind-key k up
+# bind-key l open
+
+unbind-key g
+bind-key g home
+unbind-key G
+bind-key G end
+
+color background         default   default
+color listnormal         default   default
+color listnormal_unread  default   default
+color listfocus          black     cyan
+color listfocus_unread   black     cyan
+color info               default   black
+color article            default   default
+
+highlight article "^(Title):.*$" blue default
+highlight article "https?://[^ ]+" red default
+highlight article "\\[image\\ [0-9]+\\]" green default
