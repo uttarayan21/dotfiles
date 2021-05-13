@@ -3,7 +3,7 @@ local gl = require('galaxyline')
 
 local condition = require('galaxyline.condition')
 -- local diagnostic = require('galaxyline.provider_diagnostic')
-local diagnostics = require('lsp-status.diagnostics')
+-- local diagnostics = require('lsp-status.diagnostics')
 local vcs = require('galaxyline.provider_vcs')
 local fileinfo = require('galaxyline.provider_fileinfo')
 -- local extension = require('galaxyline.provider_extensions')
@@ -36,12 +36,13 @@ local colors = {
     bg_blue     = '#85d3f2',
     diff_blue   = '#354157',
 
+    yellow      = '#e7c664',
     diff_yellow = '#4e432f',
+
     fg          = '#e2e2e3',
 
     red         = '#fc5d7c',
     orange      = '#f39660',
-    yellow      = '#e7c664',
     green       = '#9ed072',
     blue        = '#76cce0',
     purple      = '#b39df3',
@@ -107,14 +108,6 @@ gls.left[1] = {
     }
 }
 
--- gls.left[2] = {
---     GitIcon = {
---         provider = function() return '  ' end,
---         condition = condition.check_git_workspace,
---         highlight = { colors.purple , colors.bg1 },
---     }
--- }
-
 gls.left[2] = {
     GitBranch = {
         provider = function() return vcs.get_git_branch()..' ' end,
@@ -129,15 +122,7 @@ gls.left[2] = {
 gls.left[3] = {
   ShowLspStatus = {
     provider = lspstatus.status,
-    -- condition = function ()
-    --   local tbl = {['dashboard'] = true,['']=true}
-    --   if tbl[vim.bo.filetype] then
-    --     return false
-    --   end
-    --       return true
-    -- end,
-    -- icon = '  LSP:',
-    highlight = { colors.diff_yellow , colors.dark_black, 'bold' }
+    highlight = { colors.grey , colors.dark_black, 'bold' }
   }
 }
 

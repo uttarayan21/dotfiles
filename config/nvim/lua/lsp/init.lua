@@ -3,6 +3,7 @@
 
 require("lsp.rust-analyzer")
 require("lsp.lua-language-server")
+require("lsp.pyls")
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt= "menuone,noinsert,noselect"

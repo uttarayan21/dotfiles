@@ -11,10 +11,11 @@ lspconfig.rust_analyzer.setup{
     settings = {
         ["rust-analyzer"] = {
             checkOnSave = {
-                command = "clippy";
+                command = "clippy",
             },
             cargo = {
-                allFeatures = true;
+                allFeatures = true,
+		-- target = "aarch64-linux-android"
             }
         }
     }
