@@ -1,0 +1,95 @@
+
+# EDITOR
+EDITOR=nvim
+VISUAL=neovide
+
+# Email
+EMAIL DEFAULT="uttarayan21@gmail.com"
+
+# Name
+NAME DEFAULT="Uttarayan Mondal"
+
+# Browser
+BROWSER=xdg-open
+# so that the default browser at any time can open
+
+# Pass
+PASSWORD_STORE_DIR DEFAULT=${XDG_DATA_HOME}/pass
+ 
+# GPG_TTY=(tty)
+
+# PATH
+PATH DEFAULT=${PATH}:@{HOME}/.local/bin
+PATH DEFAULT=${PATH}:@{HOME}/.local/share/gem/bin
+PATH DEFAULT=${PATH}:@{HOME}/.local/share/cargo/bin
+PATH DEFAULT=${PATH}:@{HOME}/.local/share/node_modules/bin
+
+# XDG
+XDG_CONFIG_HOME DEFAULT=@{HOME}/.config
+XDG_DATA_HOME DEFAULT=@{HOME}/.local/share
+XDG_CACHE_HOME DEFAULT=@{HOME}/.cache
+
+# GTK
+GTK_RC_FILES DEFAULT=${XDG_CONFIG_HOME}/gtk-1.0/gtkrc
+GTK2_RC_FILES DEFAULT=${XDG_CONFIG_HOME}/gtk-2.0/gtkrc
+
+# Notmuch
+NOTMUCH_CONFIG DEFAULT=${XDG_CONFIG_HOME}/notmuch/notmuchrc
+NMBGIT DEFAULT=${XDG_DATA_HOME}/notmuch/nmbug
+ 
+# Less
+LESSKEY DEFAULT=${XDG_CONFIG_HOME}/less/lesskey
+LESSHISTFILE DEFAULT=${XDG_CACHE_HOME}/less/history
+
+# Rust
+RUSTUP_HOME DEFAULT=${XDG_DATA_HOME}/rustup
+CARGO_HOME DEFAULT=${XDG_DATA_HOME}/cargo
+CARGO_TARGET_DIR DEFAULT=${XDG_DATA_HOME}/cargo-target
+ 
+# Android
+ANDROID_SDK_HOME DEFAULT=${XDG_CONFIG_HOME}/android
+ADB_VENDOR_KEY DEFAULT=${XDG_CONFIG_HOME}/android
+ANDROID_PREFS_ROOT DEFAULT=${XDG_CONFIG_HOME}/android
+ADB_KEYS_PATH DEFAULT="$ANDROID_PREFS_ROOT"
+ANDROID_EMULATOR_HOME DEFAULT=${XDG_DATA_HOME}/android/emulator
+ 
+# Node
+NPM_CONFIG_USERCONFIG DEFAULT=${XDG_CONFIG_HOME}/npm/npmrc
+npm_config_prefix DEFAULT=${XDG_DATA_HOME}/node_modules
+ 
+# Wine
+WINEPREFIX DEFAULT=${XDG_DATA_HOME}/wineprefixes/default
+ 
+# Java
+_JAVA_OPTIONS DEFAULT=-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java
+GRADLE_USER_HOME DEFAULT=${XDG_DATA_HOME}/gradle
+ 
+# Python
+PYLINTHOME DEFAULT=${XDG_CACHE_HOME}/pylint
+PYTHONSTARTUP DEFAULT=${XDG_CONFIG_HOME}/python/startup.py
+ 
+# export XAUTHORITY="$XDG_RUNTIME_DIR"/xauthority
+# export gnome_user_dir=${XDG_CONFIG_HOME}/gnome/apps
+ 
+# LaTeX
+TEXMFHOME DEFAULT=${XDG_DATA_HOME}/texmf
+TEXMFVAR DEFAULT=${XDG_CACHE_HOME}/texlive/texmf-var
+TEXMFCONFIG DEFAULT=${XDG_CONFIG_HOME}/texlive/texmf-config
+ 
+# Ruby gems
+GEM_HOME DEFAULT=${XDG_DATA_HOME}/gem
+GEM_SPEC_CACHE DEFAULT=${XDG_CACHE_HOME}/gem
+BUNDLE_USER_CONFIG DEFAULT=${XDG_CONFIG_HOME}/bundle 
+BUNDLE_USER_CACHE DEFAULT=${XDG_CACHE_HOME}/bundle
+BUNDLE_USER_PLUGIN DEFAULT=${XDG_DATA_HOME}/bundle
+
+# LANG
+LANG=en_US.UTF-8
+LC_CTYPE=en_US.UTF-8
+
+# sxhkd
+SXHKD_SHELL DEFAULT="/bin/sh"
+
+# fzf
+# export FZF_DEFAULT_COMMAND='fd --type f'
+ 
