@@ -66,5 +66,7 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
 export EDITOR=nvim
 export VISUAL=nvim
 
+# Browser
+export BROWSER=xdg-open # so that the default browser at any time can open
 # GPG
 export GPG_TTY=(tty)
