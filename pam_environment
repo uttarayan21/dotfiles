@@ -1,10 +1,16 @@
+# XDG
+XDG_CONFIG_HOME DEFAULT=@{HOME}/.config
+XDG_DATA_HOME DEFAULT=@{HOME}/.local/share
+XDG_CACHE_HOME DEFAULT=@{HOME}/.cache
 
 # EDITOR
 EDITOR=nvim
-VISUAL=neovide
 
 # Email
-EMAIL DEFAULT="uttarayan21@gmail.com"
+# EMAIL DEFAULT="uttarayan21@gmail.com"
+EMAIL DEFAULT="email@uttarayan.me"
+MAIL DEFAULT=@{HOME}/Mail
+
 
 # Name
 NAME DEFAULT="Uttarayan Mondal"
@@ -19,15 +25,11 @@ PASSWORD_STORE_DIR DEFAULT=${XDG_DATA_HOME}/pass
 # GPG_TTY=(tty)
 
 # PATH
-PATH DEFAULT=${PATH}:@{HOME}/.local/bin
-PATH DEFAULT=${PATH}:@{HOME}/.local/share/gem/bin
-PATH DEFAULT=${PATH}:@{HOME}/.local/share/cargo/bin
-PATH DEFAULT=${PATH}:@{HOME}/.local/share/node_modules/bin
+PATH DEFAULT=@{HOME}/.local/bin:${PATH}
+PATH DEFAULT=@{HOME}/.local/share/gem/bin:${PATH}
+PATH DEFAULT=@{HOME}/.local/share/cargo/bin:${PATH}
+PATH DEFAULT=@{HOME}/.local/share/node_modules/bin:${PATH}
 
-# XDG
-XDG_CONFIG_HOME DEFAULT=@{HOME}/.config
-XDG_DATA_HOME DEFAULT=@{HOME}/.local/share
-XDG_CACHE_HOME DEFAULT=@{HOME}/.cache
 
 # GTK
 GTK_RC_FILES DEFAULT=${XDG_CONFIG_HOME}/gtk-1.0/gtkrc
@@ -91,5 +93,5 @@ LC_CTYPE=en_US.UTF-8
 SXHKD_SHELL DEFAULT="/bin/sh"
 
 # fzf
-# export FZF_DEFAULT_COMMAND='fd --type f'
+# FZF_DEFAULT_COMMAND DEFAULT="fd --type f --hidden --exclude .git"
  
