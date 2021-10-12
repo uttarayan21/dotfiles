@@ -1,0 +1,84 @@
+env:
+  TERM: alacritty
+
+
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#f0f0f0'
+
+  cursor:
+    text: '0x44475a'
+    cursor: '0xf8f8f2'
+
+  selection:
+    text: '0xf8f8f2'
+    background: '0x44475a'
+
+  normal:
+    black:   '0x000000'
+    red:     '0xff5555'
+    green:   '0x50fa7b'
+    yellow:  '0xf1fa8c'
+    blue:    '0xbd93f9'
+    magenta: '0xff79c6'
+    cyan:    '0x8be9fd'
+    white:   '0xbfbfbf'
+
+  bright:
+    black:   '0x4d4d4d'
+    red:     '0xff6e67'
+    green:   '0x5af78e'
+    yellow:  '0xf4f99d'
+    blue:    '0xcaa9fa'
+    magenta: '0xff92d0'
+    cyan:    '0x9aedfe'
+    white:   '0xe6e6e6'
+
+  dim:
+    black:   '0x14151b'
+    red:     '0xff2222'
+    green:   '0x1ef956'
+    yellow:  '0xebf85b'
+    blue:    '0x4d5b86'
+    magenta: '0xff46b0'
+    cyan:    '0x59dffc'
+    white:   '0xe6e6d1'
+
+  indexed_colors: []
+
+
+window:
+  startup_mode: Maximized
+  title: Alacritty
+
+font:
+  normal:
+    family: Hack Nerd Font Mono
+    style: Regular
+  bold:
+    family: Hack Nerd Font Mono
+    style: Bold
+  italic:
+    family: Hack Nerd Font Mono
+    style: Italic
+  bold_italic:
+    family: Hack Nerd Font Mono
+    style: Bold Italic
+  size: 10
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: -1
+
+background_opacity: 0.8
+
+mouse:
+    launcher:
+      program: xdg-open
+      args: []
+
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }

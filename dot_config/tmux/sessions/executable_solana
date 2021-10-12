@@ -1,0 +1,3 @@
+tmux new-session -d -s 'solana' -n 'neovim' -c ~/Projects/solana
+tmux new-window -t solana -n shell -c ~/Projects/solana
+tmux select-window -t solana:0
