@@ -3,7 +3,7 @@ local gl = require('galaxyline')
 
 local condition = require('galaxyline.condition')
 -- local diagnostic = require('galaxyline.provider_diagnostic')
--- local diagnostics = require('lsp-status.diagnostics')
+local diagnostic = require('lsp-status.diagnostics')
 local vcs = require('galaxyline.provider_vcs')
 local fileinfo = require('galaxyline.provider_fileinfo')
 -- local extension = require('galaxyline.provider_extensions')
@@ -11,7 +11,7 @@ local fileinfo = require('galaxyline.provider_fileinfo')
 -- local buffer = require('galaxyline.provider_buffer')
 -- local whitespace = require('galaxyline.provider_whitespace')
 -- local lspclient = require('galaxyline.provider_lsp')
-local lspstatus = require('lsp-status')
+local lsp_status = require('lsp-status')
 
 
 -- local gls = gl.section
@@ -21,6 +21,8 @@ gl.short_line_list = { 'defx' }
 local colors = {
     dark_black  = '#151515',
     black       = '#181819',
+
+    bg          = '#151515', -- same as dark_black
     bg0         = '#2c2e34',
     bg1         = '#30323a',
     bg2         = '#363944',
@@ -121,34 +123,68 @@ gls.left[2] = {
 
 gls.left[3] = {
   ShowLspStatus = {
-    provider = lspstatus.status,
+    provider = lsp_status.status,
     highlight = { colors.grey , colors.dark_black, 'bold' }
   }
 }
 
 
 -- Right Side
-gls.right[1]= {
-  FileFormat = {
-    provider = function() return ' '..fileinfo.get_file_format()..' ' end,
-    highlight = { colors.purple, colors.bg3 },
-    separator = '',
-    separator_highlight = { colors.bg3, colors.dark_black },
+-- gls.right[1]= {
+--   FileFormat = {
+--     provider = function() return ' '..fileinfo.get_file_format()..' ' end,
+--     highlight = { colors.purple, colors.bg3 },
+--     separator = '',
+--     separator_highlight = { colors.bg3, colors.dark_black },
+--   }
+-- }
+
+
+gls.right[1] = {
+  DiagnosticError = {
+    provider = 'DiagnosticError',
+    icon = '  ',
+    highlight = {colors.red,colors.bg}
   }
 }
 gls.right[2] = {
+  DiagnosticWarn = {
+    provider = 'DiagnosticWarn',
+    icon = '  ',
+    highlight = {colors.yellow,colors.bg},
+  }
+}
+
+gls.right[3] = {
+  DiagnosticHint = {
+    provider = 'DiagnosticHint',
+    icon = '  ',
+    highlight = {colors.cyan,colors.bg},
+  }
+}
+
+gls.right[4] = {
+  DiagnosticInfo = {
+    provider = 'DiagnosticInfo',
+    icon = '  ',
+    highlight = {colors.blue,colors.bg},
+  }
+}
+
+gls.right[5] = {
   LineInfo = {
     provider = 'LineColumn',
-    highlight = { colors.grey, colors.bg2 },
+    highlight = { colors.grey , colors.bg3 },
     separator = '',
-    separator_highlight = { colors.bg2, colors.bg3 },
+    separator_highlight = { colors.bg3, colors.dark_black },
   },
 }
-gls.right[3] = {
+gls.right[6] = {
   PerCent = {
     provider = 'LinePercent',
     highlight = { colors.blue, colors.bg1 },
     separator = '',
-    separator_highlight = { colors.bg1 , colors.bg2 },
+    separator_highlight = { colors.bg1 , colors.bg3 },
   }
 }
+

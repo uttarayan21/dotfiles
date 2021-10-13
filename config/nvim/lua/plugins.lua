@@ -14,6 +14,7 @@ return require('packer').startup(function()
   -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
+
     use {
         'glepnir/galaxyline.nvim', branch = 'main',
         config = function() require('statusline') end,
@@ -51,34 +52,42 @@ return require('packer').startup(function()
     -- lsp
     use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
     use { 'folke/lsp-trouble.nvim', config = function() require("trouble").setup() end, }
+
     use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
-    use { 'nvim-lua/completion-nvim' }
     use { 'nvim-lua/lsp-status.nvim' }
-    -- use { 'folke/lsp-colors.nvim' }
+    
+
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'saadparwaiz1/cmp_luasnip', 'L3MON4D3/LuaSnip' },
+        config = function() require'nvim-cmp' end,
+    }
+
+    use { 'folke/lsp-colors.nvim' }
     use { 'nvim-lua/lsp_extensions.nvim' }
         -- config = function() vim.cmd([[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints()]]) end,
 	--
     -- Qol
 	use { 'sindrets/diffview.nvim' }
-	use { 'justinmk/vim-sneak' }
+    -- use { 'justinmk/vim-sneak' }
     use { 
-	'akinsho/nvim-toggleterm.lua',
-	config = function() require'setup.toggleterm' end,
+        'akinsho/nvim-toggleterm.lua',
+        config = function() require'setup.toggleterm' end,
     }
 
     use { 'airblade/vim-rooter' }
     use { 'glepnir/dashboard-nvim' }
 
     --  Treesitter {{{
-    use { 'nvim-treesitter/nvim-treesitter' }
-    use { 'nvim-treesitter/completion-treesitter' }
+    -- use { 'nvim-treesitter/nvim-treesitter' }
+    -- use { 'nvim-treesitter/completion-treesitter' }
     --- }}}
 
     --: rust {{{
     use {
         'rust-lang/rust.vim',
         'mhinz/vim-crates',
-	'cespare/vim-toml',
+        'cespare/vim-toml',
     }
     -- }}}
     use { 'vim-python/python-syntax' }

@@ -43,25 +43,7 @@ local normal_mode_maps = {
 }
 
 
-vim.api.nvim_command([[imap <tab> <Plug>(completion_smart_tab)]])
-vim.api.nvim_command([[imap <s-tab> <Plug>(completion_smart_s_tab)]])
-
 local insert_mode_maps = {
-    -- {
-    --     key = '<Tab>',
-    --     map = [[pumvisible() ? "\<C-n>" : "\<Tab>"]],
-    --     options = { noremap = true, silent = true, expr = true }
-    -- },
-
-    -- {
-    --     key = '<S-Tab>',
-    --     map = [[pumvisible() ? "\<C-p>" : "\<S-Tab>"]],
-    --     options = { noremap = true, silent = true, expr = true }
-    -- },
-
-    -- { key = '<tab>', map = '(completion_smart_tab)', options = { plug = true } },
-    -- { key = '<s-tab>', map = '(completion_smart_s_tab)', options = { plug = true } },
-
     { key = '<C-j>', map = '<ESC>' },
 }
 
