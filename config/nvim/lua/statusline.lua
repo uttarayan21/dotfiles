@@ -121,12 +121,12 @@ gls.left[2] = {
     }
 }
 
-gls.left[3] = {
-  ShowLspStatus = {
-    provider = lsp_status.status,
-    highlight = { colors.grey , colors.dark_black, 'bold' }
-  }
-}
+-- gls.left[3] = {
+--   ShowLspStatus = {
+--     provider = lsp_status.status,
+--     highlight = { colors.grey , colors.dark_black, 'bold' }
+--   }
+-- }
 
 
 -- Right Side

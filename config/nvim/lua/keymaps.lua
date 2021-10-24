@@ -12,6 +12,7 @@ local normal_mode_maps = {
     { key = '<leader>n', map = [[<cmd>bnext<cr>]] },
     { key = '<leader>p', map = [[<cmd>bprev<cr>]] },
     { key = '<leader>q', map = [[<cmd>bw<cr>]] },
+    { key = '<leader>v', map = [[<cmd>CHADopen<cr>]] },
 
     -- fzf
     { key = '<leader>;', map = [[<cmd>Buffers<cr>]] },

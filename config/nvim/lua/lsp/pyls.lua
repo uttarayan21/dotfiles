@@ -1,6 +1,8 @@
 local lspconfig = require'lspconfig'
 
 lspconfig.pyls.setup{
-    cmd = { "pyls" },
-    filetypes = { "python" },
+    coq.lsp_ensure_capabilities{
+        cmd = { "pyls" },
+        filetypes = { "python" },
+    }
 }

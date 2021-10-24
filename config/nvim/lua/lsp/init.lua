@@ -3,9 +3,10 @@
 
 require("lsp.rust-analyzer")
 require("lsp.lua-language-server")
--- require("lsp.pyls")
+require("lsp.deno")
 
 -- Set completeopt to have a better completion experience
+-- vim.o.completeopt= "menuone,noinsert,noselect"
 vim.o.completeopt= "menuone,noselect"
 
 -- vim.api.nvim_command [[autocmd CursorHold  <buffer> lua vim.lsp.buf.document_highlight()]]

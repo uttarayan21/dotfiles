@@ -1,18 +1,23 @@
 local lspconfig = require'lspconfig'
--- local lspstatus = require('lsp-status')
+local lspstatus = require('lsp-status')
+local coq = require'coq'
 
-require'lspconfig'.sumneko_lua.setup{
+lspconfig.sumneko_lua.setup{
     cmd = { "lua-language-server" },
-    on_attach=function(client) require'completion'.on_attach(client) require'lsp-status'.on_attach(client) return end,
-    -- on_attach=require'completion'.on_attach,
+    on_attach=function(client) lspstatus.on_attach(client)  return end,
+    capabilities = coq.lsp_ensure_capabilities(lspstatus.capabilities),
     filetypes = { "lua" },
     log_level = 2,
-    root_dir = lspconfig.util.root_pattern(".git"),
     settings = {
       Lua = {
+        diagnostics = {
+            globals = {'vim'},
+        },
         telemetry = {
-          enable = false
+            enable = false,
         }
       }
     }
 }
+-- lspconfig.sumenko_lua.setup(coq.lsp_ensure_capabilities())
+-- require'lspconfig'.sumneko_lua.setup{coq.lsp_ensure_capabilities()}

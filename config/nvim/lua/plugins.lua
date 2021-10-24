@@ -54,15 +54,11 @@ return require('packer').startup(function()
     use { 'folke/lsp-trouble.nvim', config = function() require("trouble").setup() end, }
 
     use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
+    use { 'williamboman/nvim-lsp-installer' }
     use { 'nvim-lua/lsp-status.nvim' }
+
+    use { 'ms-jpq/coq_nvim', requires =  { 'ms-jpq/coq.artifacts' } }
     
-
-    use {
-        'hrsh7th/nvim-cmp',
-        requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'saadparwaiz1/cmp_luasnip', 'L3MON4D3/LuaSnip' },
-        config = function() require'nvim-cmp' end,
-    }
-
     use { 'folke/lsp-colors.nvim' }
     use { 'nvim-lua/lsp_extensions.nvim' }
         -- config = function() vim.cmd([[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require'lsp_extensions'.inlay_hints()]]) end,
@@ -75,13 +71,16 @@ return require('packer').startup(function()
         config = function() require'setup.toggleterm' end,
     }
 
-    use { 'airblade/vim-rooter' }
+    -- use { 'airblade/vim-rooter' }
     use { 'glepnir/dashboard-nvim' }
 
-    --  Treesitter {{{
-    -- use { 'nvim-treesitter/nvim-treesitter' }
-    -- use { 'nvim-treesitter/completion-treesitter' }
-    --- }}}
+    -- Treesitter {{{
+    use { 
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+
+    -- }}}
 
     --: rust {{{
     use {
@@ -91,4 +90,7 @@ return require('packer').startup(function()
     }
     -- }}}
     use { 'vim-python/python-syntax' }
+
+    use { 'ms-jpq/chadtree' }
+
 end)
