@@ -1,0 +1,5 @@
+tmux new-session -d -s 'hexwords' -n 'neovim' -c ~/Projects/hexwords
+tmux new-window -t hexwords -n shell -c ~/Projects/hexwords
+tmux new-window -t hexwords -n npm -c ~/Projects/hexwords/docs
+tmux send-keys -t hexwords:npm "yarn start" Enter
+tmux select-window -t hexwords:0

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 live_sessions=$(tmux list-sessions 2>/dev/null)
-all_sessions=$(find ~/.config/tmux/sessions -type f -executable  -printf '%f\n')
+all_sessions=$(find ~/.config/tmux/sessions -type f -executable  -printf '%f\n'| sort)
 TMUX_SESSIONS="$HOME/.config/tmux/sessions"
 # for some reason ~/.config/tmux/session doesn't work if made with quotes 
 # TMUX_SESSIONS=$XDG_CONFIG_HOME/tmux/sessions

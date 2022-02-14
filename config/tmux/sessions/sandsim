@@ -1,0 +1,3 @@
+tmux new-session -d -s 'sandsim' -n 'neovim' -c ~/Projects/sandsim
+tmux new-window -t sandsim -n shell -c ~/Projects/sandsim
+tmux select-window -t sandsim:0

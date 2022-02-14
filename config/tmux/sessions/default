@@ -1,6 +1,5 @@
 tmux new-session -d -s 'default' -n 'neovim'
-tmux new-window -t default -n 'shell' 
-#tmux split-window -t default:1.0 -h*/
-#tmux split-window -t default:1.1 */
-#tmux resize-pane -t default:1.2 -x 60 -y 20*/
+tmux new-window -t default -n 'shell'
+# tmux new-window -t default -n 'IRC'
+# tmux send-keys -t default:IRC "irssi" Enter
 tmux select-window -t default:0

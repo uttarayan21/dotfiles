@@ -1,0 +1,3 @@
+tmux new-session -d -s 'hxrd' -n 'neovim' -c ~/Projects/rust/hxrd
+tmux new-window -t hxrd -n shell -c ~/Projects/rust/hxrd
+tmux select-window -t hxrd:0
