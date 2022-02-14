@@ -2,16 +2,16 @@ local vim = vim
 local gl = require('galaxyline')
 
 local condition = require('galaxyline.condition')
--- local diagnostic = require('galaxyline.provider_diagnostic')
-local diagnostic = require('lsp-status.diagnostics')
-local vcs = require('galaxyline.provider_vcs')
-local fileinfo = require('galaxyline.provider_fileinfo')
--- local extension = require('galaxyline.provider_extensions')
+-- local diagnostic = require('galaxyline.providers.diagnostic')
+-- local diagnostic = require('lsp-status.diagnostics')
+local vcs = require('galaxyline.providers.vcs')
+-- local fileinfo = require('galaxyline.providers.fileinfo')
+-- local extension = require('galaxyline.providers.extensions')
 -- local colors = require('galaxyline.colors')
--- local buffer = require('galaxyline.provider_buffer')
--- local whitespace = require('galaxyline.provider_whitespace')
--- local lspclient = require('galaxyline.provider_lsp')
-local lsp_status = require('lsp-status')
+-- local buffer = require('galaxyline.providers.buffer')
+-- local whitespace = require('galaxyline.providers.whitespace')
+-- local lspclient = require('galaxyline.providers.lsp')
+-- local lsp_status = require('lsp-status')
 
 
 -- local gls = gl.section
@@ -113,7 +113,12 @@ gls.left[1] = {
 gls.left[2] = {
     GitBranch = {
         provider = function() return vcs.get_git_branch()..' ' end,
-        condition = condition.check_git_workspace,
+        condition = function()
+            local function is_empty()
+                return vcs.get_git_branch() ~= nil
+            end
+            return condition.check_git_workspace() and condition.hide_in_width() and is_empty()
+        end,
         highlight = { colors.purple , colors.bg1 },
         icon = '  ',
         separator = '',

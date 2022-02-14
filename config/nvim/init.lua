@@ -17,6 +17,10 @@ augroup end
 au BufNewFile,BufRead,BufReadPost *.html.tera set syntax=HTML
 ]], false)
 
+vim.api.nvim_exec([[
+autocmd BufNewFile,BufRead *.sol set ft=solidity
+]], false)
+
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.timeoutlen = 700
@@ -24,6 +28,9 @@ vim.o.guifont='Hasklug Nerd Font Mono,Hack Nerd Font,NotoEmoji Nerd Font:h11'
 
 vim.o.undodir=vim.fn.stdpath('cache')..'/undodir'
 vim.o.undofile = true
+
+vim.o.autoread = true
+vim.o.foldmethod = 'indent'
 
 vim.o.showmode = false
 vim.o.showtabline = 2
@@ -42,6 +49,9 @@ vim.o.smartcase = true
 vim.o.termguicolors = true
 -- No clue why window scoped
 vim.wo.signcolumn='yes'
+
+
+vim.o.wrap = false
 
 -- vim.o.modifiable = true
 -- vim.bo.modifiable = true
@@ -67,6 +77,8 @@ vim.o.completeopt = 'menuone,noselect'
 vim.g.coq_settings = {
     auto_start = 'shut-up'
 }
+vim.g.rooter_manual_only = 1
+
 
 require('plugins')
 require('keymaps')
@@ -79,3 +91,12 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
+
+-- require "nvim-treesitter.parsers".get_parser_configs().Solidity = {
+--   install_info = {
+--     url = "https://github.com/JoranHonig/tree-sitter-solidity",
+--     files = {"src/parser.c"},
+--     requires_generate_from_grammar = true,
+--   },
+--   filetype = 'solidity'
+-- }

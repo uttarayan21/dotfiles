@@ -32,15 +32,17 @@ local normal_mode_maps = {
     { key = 'K', map = [[<cmd>lua vim.lsp.buf.hover()<cr>]] },
     { key = '<C-k>', map = [[<cmd>lua vim.lsp.buf.definition()<cr>]] },
     { key = 'gi', map = [[<cmd>lua vim.lsp.buf.implementation()<cr>]] },
-    { key = '<leader>o', map = [[<cmd>LspTroubleToggle<cr>]] },
+    { key = '<leader>o', map = [[<cmd>TroubleToggle<cr>]] },
     -- { key = '<leader>a', map = [[<cmd>lua vim.lsp.buf.document_highlight()<cr>]] },
     -- { key = '<leader>c', map = [[<cmd>lua vim.lsp.buf.clear_references()<cr>]] },
     { key = '<leader>"', map = [["+]] },
     { key = 'F', map = [[<cmd>lua vim.lsp.buf.formatting()<cr>]] },
     { key = 'T', map = [[<cmd>lua require'lsp_extensions'.inlay_hints()<cr>]] },
 
+
     -- Other
     { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },
+    { key = '<leader>l', map = [[<cmd>Glow<cr>]] },
 }
 
 
