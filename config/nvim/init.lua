@@ -24,9 +24,9 @@ autocmd BufNewFile,BufRead *.sol set ft=solidity
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.timeoutlen = 700
-vim.o.guifont='Hasklug Nerd Font Mono,Hack Nerd Font,NotoEmoji Nerd Font:h11'
+vim.o.guifont = 'Hasklug Nerd Font Mono,Hack Nerd Font,NotoEmoji Nerd Font:h11'
 
-vim.o.undodir=vim.fn.stdpath('cache')..'/undodir'
+vim.o.undodir = vim.fn.stdpath('cache') .. '/undodir'
 vim.o.undofile = true
 
 vim.o.autoread = true
@@ -36,11 +36,11 @@ vim.o.showmode = false
 vim.o.showtabline = 2
 vim.o.autoindent = true
 
-vim.o.tabstop=4
-vim.o.softtabstop=4
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
 
-vim.o.shiftwidth=4
-vim.bo.shiftwidth=4
+vim.o.shiftwidth = 4
+vim.bo.shiftwidth = 4
 
 vim.o.expandtab = true
 vim.o.hidden = true
@@ -48,7 +48,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.termguicolors = true
 -- No clue why window scoped
-vim.wo.signcolumn='yes'
+vim.wo.signcolumn = 'yes'
 
 
 vim.o.wrap = false
@@ -61,21 +61,35 @@ vim.g.python_highlight_all = 1
 
 vim.g.test = {
     default = {
-	default = {
-	    complete_items = { 'lsp', 'snippet' },
-	    mode = 'file',
-	},
-	comment = {},
-	string = { complete_items = { 'path' } },
+ default = {
+     complete_items = { 'lsp', 'snippet' },
+     mode = 'file',
+ },
+ comment = {},
+ string = { complete_items = { 'path' } },
     },
-    rust = { { complete_items = {'ts'} } },
+    rust = { { complete_items = { 'ts' } } },
 }
 
 
 vim.o.completeopt = 'menuone,noselect'
 
 vim.g.coq_settings = {
-    auto_start = 'shut-up'
+    auto_start = 'shut-up',
+    weights = {
+        prefix_matches = 4
+    },
+    clients = {
+        lsp = {
+            weight_adjust = 1
+        },
+        buffers = {
+            weight_adjust = -0.5
+        },
+        snippets = {
+            weight_adjust = -0.1
+        }
+    }
 }
 vim.g.rooter_manual_only = 1
 
@@ -83,10 +97,10 @@ vim.g.rooter_manual_only = 1
 require('plugins')
 require('keymaps')
 
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
-    enable = true,              -- false will disable the whole extension
+    enable = true, -- false will disable the whole extension
     additional_vim_regex_highlighting = false,
   },
 }
