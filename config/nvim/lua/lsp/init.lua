@@ -4,7 +4,7 @@
 require("lsp.rust-analyzer")
 require("lsp.lua-language-server")
 require("lsp.tsserver")
--- require("lsp.solang")
+require("lsp.clangd")
 require("lsp.pyright")
 
 -- Set completeopt to have a better completion experience

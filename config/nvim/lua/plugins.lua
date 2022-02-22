@@ -145,8 +145,8 @@ return require('packer').startup(function()
         -- 'cespare/vim-toml',
     }
 
-    -- use 'ms-jpq/chadtree'
-    use 'tomlion/vim-solidity'
+    use 'ms-jpq/chadtree'
+    -- use 'tomlion/vim-solidity'
     use 'ellisonleao/glow.nvim'
 
 end);
