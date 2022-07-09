@@ -13,7 +13,7 @@ lspconfig.rust_analyzer.setup{
             lruCapacity = 64,
             assist = {
                 importGranularity = "module",
-                importPrefix = "by_self",
+                importPrefix = "by_crate",
             },
             procMacro = {
                 enable = true,
@@ -24,8 +24,19 @@ lspconfig.rust_analyzer.setup{
             },
             cargo = {
                 loadOutDirsFromCheck = true,
-                allFeatures = true,
+                -- allFeatures = true,
+            },
+            completion = {
+                autoimport = {
+                    enable = true,
+                }
+            },
+            diagnostics = {
+                disabled = {
+                    "unresolved-macro-call"
+                }
             }
+
         }
     },
 }

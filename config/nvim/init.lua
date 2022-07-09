@@ -59,17 +59,17 @@ vim.g.dashboard_default_executive = 'fzf'
 vim.g.python_highlight_all = 1
 
 
-vim.g.test = {
-    default = {
- default = {
-     complete_items = { 'lsp', 'snippet' },
-     mode = 'file',
- },
- comment = {},
- string = { complete_items = { 'path' } },
-    },
-    rust = { { complete_items = { 'ts' } } },
-}
+-- vim.g.test = {
+--     default = {
+--         default = {
+--             complete_items = { 'lsp', 'snippet' },
+--             mode = 'file',
+--         },
+--         comment = {},
+--         string = { complete_items = { 'path' } },
+--     },
+--     rust = { { complete_items = { 'ts' } } },
+-- }
 
 
 vim.o.completeopt = 'menuone,noselect'
@@ -81,36 +81,29 @@ vim.g.coq_settings = {
     },
     clients = {
         lsp = {
-            weight_adjust = 1
+            weight_adjust = 2
         },
-        buffers = {
-            weight_adjust = -0.5
-        },
-        snippets = {
-            weight_adjust = -0.1
-        }
+        -- buffers = {
+        --     -- weight_adjust = -0.5
+        -- },
+        -- snippets = {
+        --     -- weight_adjust = -0.1
+        -- }
     }
 }
-vim.g.rooter_manual_only = 1
-
+-- vim.g.rooter_manual_only = 1
+vim.g.copilot_node_command = "~/.local/share/nvm/v16.0.0/bin/node"
 
 require('plugins')
 require('keymaps')
 
 require 'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    additional_vim_regex_highlighting = false,
-  },
+    -- ensure_installed = "all",
+    ensure_installed = { "c", "rust", "toml", "lua", "json", "python", "cmake", "make", "typescript", "bash", "cpp",
+        "comment", "css", "fish", "http", "html", "vim", "yaml" },
+    highlight = {
+        enable = true, -- false will disable the whole extension
+        additional_vim_regex_highlighting = false,
+    },
 }
 
-
--- require "nvim-treesitter.parsers".get_parser_configs().Solidity = {
---   install_info = {
---     url = "https://github.com/JoranHonig/tree-sitter-solidity",
---     files = {"src/parser.c"},
---     requires_generate_from_grammar = true,
---   },
---   filetype = 'solidity'
--- }

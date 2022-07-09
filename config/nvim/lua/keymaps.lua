@@ -1,4 +1,4 @@
-vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent=true})
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -14,15 +14,15 @@ local normal_mode_maps = {
     { key = '<leader>q', map = [[<cmd>bw<cr>]] },
     { key = '<leader>v', map = [[<cmd>CHADopen<cr>]] },
 
-    -- fzf
-    { key = '<leader>;', map = [[<cmd>Buffers<cr>]] },
-    { key = '<leader>ff', map = [[<cmd>Files<cr>]] },
-    { key = '<leader>fb', map = [[<cmd>Marks<cr>]] },
-    { key = '<leader>fh', map = [[<cmd>History<cr>]] },
-    { key = '<leader>fa', map = [[<cmd>History<cr>]] },
-    
-    { key = '<leader>tc', map = [[<cmd>Colors<cr>]] },
-    { key = '<leader>g', map = [[<cmd>Rg<cr>]] },
+    -- " Find files using Telescope command-line sugar.
+    { key = '<leader>ff', map = [[<cmd>lua require('telescope.builtin').find_files()<cr>]] },
+    { key = '<leader>gg', map = [[<cmd>lua require('telescope.builtin').live_grep()<cr>]] },
+    { key = '<leader>;', map = [[<cmd>lua require('telescope.builtin').buffers()<cr>]] },
+    { key = '<leader>fh', map = [[<cmd>lua require('telescope.builtin').help_tags()<cr>]] },
+    { key = '<leader>gB', map = [[<cmd>Git blame<cr>]] },
+
+    { key = '<leader>rd', map = [[<cmd>RustDebuggables<cr>]] },
+    { key = '<leader>rr', map = [[<cmd>RustRunnables<cr>]] },
 
     -- Session
     { key = '<leader>ss', map = [[<cmd>SessionSave<cr>]] },
@@ -39,6 +39,7 @@ local normal_mode_maps = {
     { key = 'F', map = [[<cmd>lua vim.lsp.buf.formatting()<cr>]] },
     { key = 'T', map = [[<cmd>lua require'lsp_extensions'.inlay_hints()<cr>]] },
 
+    -- { key = '<C-W-%>', map = [[<cmd>vsplit<cr>]] },
 
     -- Other
     { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },
@@ -48,32 +49,25 @@ local normal_mode_maps = {
 
 local insert_mode_maps = {
     { key = '<C-j>', map = '<ESC>' },
+    { key = "<C-l>", map = 'copilot#Accept("<CR>")', options = { silent = true, expr = true } },
+    { key = "<C-m>", map = 'copilot#Accept("<CR>")', options = { silent = true, expr = true } },
 }
 
 
 for idx = 1, #normal_mode_maps do
     if normal_mode_maps[idx].options then
         local options = normal_mode_maps[idx].options
-        vim.api.nvim_set_keymap('n', normal_mode_maps[idx].key, normal_mode_maps[idx].map ,options)
+        vim.api.nvim_set_keymap('n', normal_mode_maps[idx].key, normal_mode_maps[idx].map, options)
     else
-        vim.api.nvim_set_keymap('n', normal_mode_maps[idx].key, normal_mode_maps[idx].map ,options)
+        vim.api.nvim_set_keymap('n', normal_mode_maps[idx].key, normal_mode_maps[idx].map, options)
     end
 end
 
 for idx = 1, #insert_mode_maps do
     if insert_mode_maps[idx].options then
         local options = insert_mode_maps[idx].options
-        vim.api.nvim_set_keymap('i', insert_mode_maps[idx].key, insert_mode_maps[idx].map ,options)
+        vim.api.nvim_set_keymap('i', insert_mode_maps[idx].key, insert_mode_maps[idx].map, options)
     else
-        vim.api.nvim_set_keymap('i', insert_mode_maps[idx].key, insert_mode_maps[idx].map ,options)
+        vim.api.nvim_set_keymap('i', insert_mode_maps[idx].key, insert_mode_maps[idx].map, options)
     end
 end
-
-
-
-
--- local ff = {
--- 	{ 'this', 'and this' },
--- 	{ 'that', 'and that' },
--- }
--- print(ff[1][2])
