@@ -4,6 +4,7 @@
 -- local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
 local codelldb_path = '/Users/fs0c131y/.vscode/extensions/vadimcn.vscode-lldb-1.6.9/adapter/codelldb'
 local liblldb_path = '/Users/fs0c131y/.vscode/extensions/vadimcn.vscode-lldb-1.6.9/lldb/lib/liblldb.dylib'
+local rt = require('rust-tools')
 
 local opts = {
     tools = { -- rust-tools options
@@ -17,7 +18,7 @@ local opts = {
         -- whether to show hover actions inside the hover window
         -- this overrides the default hover handler so something like lspsaga.nvim's hover would be overriden by this
         -- default: true
-        hover_with_actions = true,
+        -- hover_with_actions = true,
 
         -- how to execute terminal commands
         -- options right now: termopen / quickfix
@@ -177,6 +178,14 @@ local opts = {
         -- standalone file support
         -- setting it to false may improve startup time
         standalone = true,
+
+        on_attach = function(_, bufnr)
+            -- Hover actions
+            vim.keymap.set("n", "<S-K>", rt.hover_actions.hover_actions, { buffer = bufnr })
+            -- Code action groups
+            vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+        end,
+
     }, -- rust-analyer options
 
     -- debugging stuff

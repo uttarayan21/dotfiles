@@ -1,11 +1,32 @@
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+-- nnoremap <silent> <F5> <Cmd>lua require'dap'.continue()<CR>
+-- nnoremap <silent> <F10> <Cmd>lua require'dap'.step_over()<CR>
+-- nnoremap <silent> <F11> <Cmd>lua require'dap'.step_into()<CR>
+-- nnoremap <silent> <F12> <Cmd>lua require'dap'.step_out()<CR>
+-- nnoremap <silent> <Leader>b <Cmd>lua require'dap'.toggle_breakpoint()<CR>
+-- nnoremap <silent> <Leader>B <Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+-- nnoremap <silent> <Leader>lp <Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+-- nnoremap <silent> <Leader>dr <Cmd>lua require'dap'.repl.open()<CR>
+-- nnoremap <silent> <Leader>dl <Cmd>lua require'dap'.run_last()<CR>
+
 
 local options = { noremap = true, silent = true }
 local normal_mode_maps = {
     -- toggles
     { key = '<F2>', map = [[<cmd>set number! relativenumber!<cr>]] },
+
+    -- dap
+    { key = '<F5>', map = [[<cmd>lua require'dap'.continue()<cr>]] },
+    { key = '<F10>', map = [[<cmd>lua require'dap'.step_over()<cr>]] },
+    { key = '<F11>', map = [[<cmd>lua require'dap'.step_into()<cr>]] },
+    { key = '<F12>', map = [[<cmd>lua require'dap'.step_out()<cr>]] },
+    { key = '<Leader>bb', map = [[<cmd>lua require'dap'.toggle_breakpoint()<cr>]] },
+    { key = '<Leader>B', map = [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>]] },
+    { key = '<Leader>lp', map = [[<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]] },
+    { key = '<Leader>dr', map = [[<cmd>lua require'dap'.repl.open()<cr>]] },
+    { key = '<Leader>dl', map = [[<cmd>lua require'dap'.run_last()<cr>]] },
 
     -- navigation
     { key = '<leader><leader>', map = [[<c-^>]] },
@@ -23,6 +44,9 @@ local normal_mode_maps = {
 
     { key = '<leader>rd', map = [[<cmd>RustDebuggables<cr>]] },
     { key = '<leader>rr', map = [[<cmd>RustRunnables<cr>]] },
+    { key = 'Vdiff', map = [[<cmd>vertical Gdiffsplit<cr>]] },
+    { key = 'Vdiff!', map = [[<cmd>vertical Gdiffsplit!<cr>]] },
+    { key = 'ssr', map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },
 
     -- Session
     { key = '<leader>ss', map = [[<cmd>SessionSave<cr>]] },

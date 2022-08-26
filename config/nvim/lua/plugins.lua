@@ -22,8 +22,8 @@ return require('packer').startup(function()
     }
     use { 'sainnhe/sonokai', config = function() require('colorscheme') end }
     use { 'folke/which-key.nvim', config = function() require("which-key").setup() end }
-    use 'yuttie/comfortable-motion.vim'
-    use 'ruanyl/vim-gh-line'
+    use { 'yuttie/comfortable-motion.vim' }
+    use { 'ruanyl/vim-gh-line' }
     use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -82,20 +82,47 @@ return require('packer').startup(function()
                 },
             }
 
-        end, }
+        end,
+    }
 
     use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
     use { 'williamboman/nvim-lsp-installer' }
     use { 'nvim-lua/lsp-status.nvim' }
 
-
-
-
-
-
     use { 'ms-jpq/coq_nvim', requires = { 'ms-jpq/coq.artifacts' } }
+    use { 'ms-jpq/coq.thirdparty', config = function()
+        require("coq_3p")({
+            {
+                src = "repl",
+                sh = "sh",
+                shell = { p = "perl", n = "node" },
+                max_lines = 99,
+                deadline = 500,
+                unsafe = { "rm", "poweroff", "mv" }
+            }, { src = "bc", short_name = "MATH", precision = 6 },
+            { src = "copilot", short_name = "COP", accept_key = "<C-l>" },
+            { src = "dap" }
+        })
+    end
+    }
 
     use 'airblade/vim-rooter'
+    -- use({
+    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --     config = function()
+    --         require("lsp_lines").setup()
+    --     end,
+    -- })
+
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require("indent_blankline").setup {
+                show_end_of_line = true,
+            }
+        end
+    }
+
     use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
     use {
         'akinsho/toggleterm.nvim',
@@ -138,5 +165,13 @@ return require('packer').startup(function()
 
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 
+    use {
+        'phaazon/hop.nvim',
+        branch = 'v2', -- optional but strongly recommended
+        config = function()
+            -- you can configure Hop the way you like here; see :h hop-config
+            require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        end
+    }
 
 end);

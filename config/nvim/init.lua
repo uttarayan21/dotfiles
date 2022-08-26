@@ -49,6 +49,14 @@ vim.o.smartcase = true
 vim.o.termguicolors = true
 -- No clue why window scoped
 vim.wo.signcolumn = 'yes'
+vim.opt.list = true
+-- vim.o.colorcolumn = '+1'
+-- vim.o.textwidth = 120
+
+-- vim.opt.listchars:append("eol:↴")
+-- vim.diagnostic.config({
+--     virtual_text = false,
+-- })
 
 
 vim.o.wrap = false
@@ -106,4 +114,3 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
-
