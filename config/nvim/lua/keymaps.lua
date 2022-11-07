@@ -60,7 +60,7 @@ local normal_mode_maps = {
     -- { key = '<leader>a', map = [[<cmd>lua vim.lsp.buf.document_highlight()<cr>]] },
     -- { key = '<leader>c', map = [[<cmd>lua vim.lsp.buf.clear_references()<cr>]] },
     { key = '<leader>"', map = [["+]] },
-    { key = 'F', map = [[<cmd>lua vim.lsp.buf.formatting()<cr>]] },
+    { key = 'F', map = [[<cmd>lua vim.lsp.buf.format { async = true }<cr>]] },
     { key = 'T', map = [[<cmd>lua require'lsp_extensions'.inlay_hints()<cr>]] },
 
     -- { key = '<C-W-%>', map = [[<cmd>vsplit<cr>]] },
