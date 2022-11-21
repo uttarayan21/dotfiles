@@ -1,17 +1,10 @@
-function man
-    set oldIFS "$IFS"
-    set IFS ""
-    set page (/usr/bin/man $argv | col -b)
-    if ! [ -z "$page" ]
-        echo "$page" | nvim -R -c 'set ft=man nomod nolist' -
-    end
-
-    set IFS "$oldIFS"
+if status is-interactive
+    # Commands to run in interactive sessions can go here
 end
 
+export BROWSER="open"
+export DYLD_FALLBACK_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib"
+# export DYLD_FALLBACK_LIBRARY_PATH="/Library/Developer/CommandLineTools/usr/lib"
+# export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+export CARGO_TARGET_DIR="$HOME/.local/share/cargo-target"
 
-function __fish_command_not_found_handler --on-event fish_command_not_found
-    echo "fish: Unknown command '$argv'"
-end
-
-thefuck --alias | source
