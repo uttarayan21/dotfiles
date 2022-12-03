@@ -1,3 +1,19 @@
 [submodule "config/neomutt/dracula"]
 	path = config/neomutt/dracula
 	url = https://github.com/dracula/mutt
+
+[submodule "tpm"]
+	path = config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+
+[submodule "zsh-abbr"]
+	path = config/zsh/plugins/zsh-abbr
+    url = https://github.com/olets/zsh-abbr
+
+[submodule "zsh-autocomplete"]
+	path = config/zsh/plugins/zsh-autocomplete
+    url = https://github.com/marlonrichert/zsh-autocomplete
+
+[submodule "zsh-vim-mode"]
+	path = config/zsh/plugins/zsh-vim-mode
+    url = https://github.com/softmoth/zsh-vim-mode
