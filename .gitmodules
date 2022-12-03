@@ -17,3 +17,6 @@
 [submodule "zsh-vim-mode"]
 	path = config/zsh/plugins/zsh-vim-mode
     url = https://github.com/softmoth/zsh-vim-mode
+[submodule "config/tmux/plugins/tpm"]
+	path = config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
