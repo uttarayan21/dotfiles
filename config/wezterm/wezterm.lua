@@ -39,7 +39,7 @@ return {
     window_background_opacity = 0.8,
     cursor_blink_rate = 880,
     default_cursor_style = "BlinkingBlock",
-    default_prog = { "nu", "-l" },
+    default_prog = { "/opt/homebrew/bin/fish", "-l" },
     window_padding = {
         left = 0,
         right = 0,
