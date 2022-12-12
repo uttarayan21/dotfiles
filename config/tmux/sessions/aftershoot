@@ -1,9 +1,10 @@
-tmux new-session -d -s 'aftershoot' -n 'neovim' -c ~/Projects/aftershoot/rust-backend
-tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot/rust-backend
-tmux new-window -t aftershoot -c ~/Projects/aftershoot/rust-backend
-tmux new-window -t aftershoot -c ~/Projects/aftershoot/rust-backend
-tmux new-window -t aftershoot -c ~/Projects/aftershoot/desktop-app
-tmux new-window -t aftershoot -c ~/Projects/aftershoot/desktop-app
-# tmux new-window -t aftershoot -c ~/Projects/aftershoot/python-backend
-# tmux new-window -t aftershoot -c ~/Projects/aftershoot/python-backend
+tmux new-session -d -s 'aftershoot' -n 'neovim' -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
+tmux new-window -t aftershoot -n shell -c ~/Projects/aftershoot
 tmux select-window -t aftershoot:0
