@@ -54,6 +54,6 @@ SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
-SETUVAR fish_user_paths:/Users/fs0c131y/\x2ecargo/bin\x1e/Users/fs0c131y/\x2elocal/bin
+SETUVAR fish_user_paths:/opt/homebrew/Cellar/arm\x2dgcc\x2dbin\x408/8\x2d2019\x2dq3\x2dupdate_2/bin\x1e/Users/fs0c131y/\x2ecargo/bin\x1e/Users/fs0c131y/\x2elocal/bin
 SETUVAR nvm_data:/Users/fs0c131y/\x2elocal/share/nvm
 SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

@@ -13,7 +13,33 @@ end
 
 return require('packer').startup(function()
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use { 'wbthomason/packer.nvim' }
+    use { 'williamboman/mason.nvim',
+        config = function()
+            require("mason").setup({
+                ui = {
+                    icons = {
+                        package_installed = "✓",
+                        package_pending = "➜",
+                        package_uninstalled = "✗"
+                    }
+                }
+            })
+        end
+    }
+    use {
+        "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup({
+                ensure_installed = { "sumneko_lua", "rust_analyzer" },
+                automatic_installation = true,
+            })
+        end
+    }
+
+    use { 'mhartington/formatter.nvim' }
+
+    -- use 'imsnif/kdl.vim'
     use 'christianrondeau/vim-base64'
     use {
         'NTBBloodbath/galaxyline.nvim', branch = 'main',
@@ -86,10 +112,10 @@ return require('packer').startup(function()
     }
 
     use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
-    use { 'williamboman/nvim-lsp-installer' }
     use { 'nvim-lua/lsp-status.nvim' }
 
-    use { 'ms-jpq/coq_nvim', requires = { 'ms-jpq/coq.artifacts' } }
+    use { 'ms-jpq/coq_nvim', requires = { 'ms-jpq/coq.artifacts' }, run = ':COQdeps' }
+    use { 'ms-jpq/chadtree', run = ':CHADdeps' }
     use { 'ms-jpq/coq.thirdparty', config = function()
         require("coq_3p")({
             {
@@ -99,7 +125,8 @@ return require('packer').startup(function()
                 max_lines = 99,
                 deadline = 500,
                 unsafe = { "rm", "poweroff", "mv" }
-            }, { src = "bc", short_name = "MATH", precision = 6 },
+            }, 
+            { src = "bc", short_name = "MATH", precision = 6 },
             { src = "copilot", short_name = "COP", accept_key = "<C-l>" },
             { src = "dap" }
         })
@@ -160,7 +187,6 @@ return require('packer').startup(function()
     }
     use { 'simrat39/rust-tools.nvim', config = function() require 'setup.rust-tools' end }
 
-    use 'ms-jpq/chadtree'
     use 'ellisonleao/glow.nvim'
 
     use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }

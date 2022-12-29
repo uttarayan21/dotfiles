@@ -1,11 +1,15 @@
 -- local lspstatus = require('lsp-status')
 -- lspstatus.register_progress()
 
--- require("lsp.rust-analyzer")
 require("lsp.lua-language-server")
-require("lsp.tsserver")
 require("lsp.clangd")
-require("lsp.pyright")
+-- require("lsp.tsserver")
+-- require("lsp.pyright")
+-- require("lsp.rust-analyzer")
+-- require 'lspconfig'.clangd.setup {}
+require 'lspconfig'.tsserver.setup {}
+require 'lspconfig'.pyright.setup {}
+require 'lspconfig'.sqls.setup {}
 
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt= "menuone,noinsert,noselect"

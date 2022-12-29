@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm';
 
 return {
-    font = wezterm.font("Hasklug Nerd Font"),
+    font = wezterm.font_with_fallback {"Hasklug Nerd Font", "Hasklug Nerd Font Mono"},
     font_size = 16,
     colors = {
         -- The default text color
