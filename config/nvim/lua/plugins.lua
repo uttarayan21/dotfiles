@@ -125,7 +125,7 @@ return require('packer').startup(function()
                 max_lines = 99,
                 deadline = 500,
                 unsafe = { "rm", "poweroff", "mv" }
-            }, 
+            },
             { src = "bc", short_name = "MATH", precision = 6 },
             { src = "copilot", short_name = "COP", accept_key = "<C-l>" },
             { src = "dap" }
@@ -189,7 +189,8 @@ return require('packer').startup(function()
 
     use 'ellisonleao/glow.nvim'
 
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" },
+        config = function() require("dapui").setup() end }
 
     use {
         'phaazon/hop.nvim',

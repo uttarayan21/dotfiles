@@ -24,7 +24,8 @@ local normal_mode_maps = {
     { key = '<F12>', map = [[<cmd>lua require'dap'.step_out()<cr>]] },
     { key = '<Leader>bb', map = [[<cmd>lua require'dap'.toggle_breakpoint()<cr>]] },
     { key = '<Leader>B', map = [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>]] },
-    { key = '<Leader>lp', map = [[<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]] },
+    { key = '<Leader>lp',
+        map = [[<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]] },
     { key = '<Leader>dr', map = [[<cmd>lua require'dap'.repl.open()<cr>]] },
     { key = '<Leader>dl', map = [[<cmd>lua require'dap'.run_last()<cr>]] },
 
@@ -44,8 +45,8 @@ local normal_mode_maps = {
 
     { key = '<leader>rd', map = [[<cmd>RustDebuggables<cr>]] },
     { key = '<leader>rr', map = [[<cmd>RustRunnables<cr>]] },
-    { key = 'Vdiff', map = [[<cmd>vertical Gdiffsplit<cr>]] },
-    { key = 'Vdiff!', map = [[<cmd>vertical Gdiffsplit!<cr>]] },
+    { key = 'Vff', map = [[<cmd>vertical Gdiffsplit<cr>]] },
+    { key = 'Vff!', map = [[<cmd>vertical Gdiffsplit!<cr>]] },
     { key = 'ssr', map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },
 
     -- Session
@@ -57,6 +58,8 @@ local normal_mode_maps = {
     { key = '<C-k>', map = [[<cmd>lua vim.lsp.buf.definition()<cr>]] },
     { key = 'gi', map = [[<cmd>lua vim.lsp.buf.implementation()<cr>]] },
     { key = '<leader>o', map = [[<cmd>TroubleToggle<cr>]] },
+    { key = '<leader>dd', map = [[<cmd>lua require'dapui'.toggle()<cr>]] },
+
     -- { key = '<leader>a', map = [[<cmd>lua vim.lsp.buf.document_highlight()<cr>]] },
     -- { key = '<leader>c', map = [[<cmd>lua vim.lsp.buf.clear_references()<cr>]] },
     { key = '<leader>"', map = [["+]] },
@@ -68,6 +71,8 @@ local normal_mode_maps = {
     -- Other
     { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },
     { key = '<leader>l', map = [[<cmd>Glow<cr>]] },
+    { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
+
 }
 
 
@@ -75,6 +80,7 @@ local insert_mode_maps = {
     { key = '<C-j>', map = '<ESC>' },
     { key = "<C-l>", map = 'copilot#Accept("<CR>")', options = { silent = true, expr = true } },
     { key = "<C-m>", map = 'copilot#Accept("<CR>")', options = { silent = true, expr = true } },
+    { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
 }
 
 
