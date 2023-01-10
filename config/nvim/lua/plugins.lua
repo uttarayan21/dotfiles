@@ -1,8 +1,6 @@
 local vim = vim
 local execute = vim.api.nvim_command
 local fn = vim.fn
-local use = require('packer').use
-
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -10,6 +8,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute 'packadd packer.nvim'
 end
 
+local use = require('packer').use
 
 return require('packer').startup(function()
     -- Packer can manage itself
@@ -79,6 +78,7 @@ return require('packer').startup(function()
     }
 
 
+
     use {
         'tpope/vim-commentary',
         'tpope/vim-fugitive',
@@ -133,7 +133,7 @@ return require('packer').startup(function()
     end
     }
 
-    use 'airblade/vim-rooter'
+    -- use 'airblade/vim-rooter'
     -- use({
     --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     --     config = function()

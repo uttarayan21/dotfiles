@@ -180,7 +180,6 @@ local opts = {
         -- standalone file support
         -- setting it to false may improve startup time
         standalone = true,
-
         settings = {
             ["rust-analyzer"] = {
                 imports = {
@@ -190,12 +189,28 @@ local opts = {
                         group = "module",
                     },
                     importPrefix = "self",
+                    prefer = {
+                        no = {
+                            std = false
+                        },
+                    }
+                },
+                -- inlayHints.closureReturnTypeHints.enable
+                inlayHints = {
+                    closureReturnTypeHints = {
+                        enable = true,
+                    }
                 },
                 cargo = {
                     loadOutDirsFromCheck = true,
                 },
                 procMacro = {
                     enable = true,
+                },
+                completion = {
+                    autoimport = {
+                        enalbe = true,
+                    }
                 },
                 checkOnSave = {
                     command = "clippy",
@@ -208,7 +223,6 @@ local opts = {
             vim.keymap.set("n", "<S-K>", rt.hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-
             lspstatus.on_attach(client)
         end,
         capabilities = coq.lsp_ensure_capabilities(lspstatus.capabilities),
