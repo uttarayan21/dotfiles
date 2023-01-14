@@ -1,6 +1,12 @@
 ## Dotfiles
 
-These are dotfiles for my linux machine
+These are dotfiles for my Linux as MacOS machines
+
+To install simply do
+
+```sh
+curl sh.uttarayan.me | sh
+```
 
 Includes the dotfiles for
 
