@@ -5,6 +5,7 @@ DOTFILES_REPO="https://github.com/uttarayan21/dotfiles"
 INSTALLED="$HOME/.local/share/dotfiles"
 git clone "$DOTFILES_REPO" "$INSTALLED"
 
-for file in "$INSTALLED"; do
-    ln -s "$file" $HOME/config/$(basename $file)
+for file in $(ls -1 $INSTALLED/config); do
+    # echo "$INSTALLED/config/$(basename file)" $HOME/config/$(basename $file)
+    ln -s "$INSTALLED/config/$(basename $file)" "$HOME/.config/$(basename $file)"
 done
