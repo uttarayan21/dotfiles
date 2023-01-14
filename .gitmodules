@@ -20,3 +20,12 @@
 [submodule "config/tmux/plugins/tpm"]
 	path = config/tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "config/tmux/plugins/tmux-battery"]
+	path = config/tmux/plugins/tmux-battery
+	url = ./config/tmux/plugins/tmux-battery
+[submodule "config/tmux/plugins/tmux-fzf-url"]
+	path = config/tmux/plugins/tmux-fzf-url
+	url = ./config/tmux/plugins/tmux-fzf-url
+[submodule "config/tmux/plugins/tmux"]
+	path = config/tmux/plugins/tmux
+	url = ./config/tmux/plugins/tmux
