@@ -1,19 +1,42 @@
-local vim = vim
-local execute = vim.api.nvim_command
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
-    execute 'packadd packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
+vim.opt.rtp:prepend(lazypath)
+-- require("lazy").setup(plugins, opts)
+-- if fn.empty(fn.glob(install_path)) > 0 then
+--     fn.system({ 'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path })
+--     execute 'packadd packer.nvim'
+-- end
 
-local use = require('packer').use
+-- local use = require('packer').use
 
-return require('packer').startup(function()
-    -- Packer can manage itself
-    use { 'wbthomason/packer.nvim' }
-    use { 'williamboman/mason.nvim',
+return require('lazy').setup({
+    'ellisonleao/glow.nvim',
+    'samoshkin/vim-mergetool',
+
+    'mhartington/formatter.nvim',
+    'christianrondeau/vim-base64',
+
+    'tpope/vim-commentary',
+    'tpope/vim-fugitive',
+    'tpope/vim-repeat',
+    'tpope/vim-speeddating',
+    'tpope/vim-surround',
+    'tpope/vim-vinegar',
+    'tpope/vim-abolish',
+
+    'yuttie/comfortable-motion.vim',
+    'ruanyl/vim-gh-line',
+
+    { 'williamboman/mason.nvim',
         config = function()
             require("mason").setup({
                 ui = {
@@ -25,34 +48,28 @@ return require('packer').startup(function()
                 }
             })
         end
-    }
-    use {
+    },
+    {
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "sumneko_lua", "rust_analyzer" },
+                ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls" },
                 automatic_installation = true,
             })
         end
-    }
+    },
 
-    use { 'mhartington/formatter.nvim' }
-
-    -- use 'imsnif/kdl.vim'
-    use 'christianrondeau/vim-base64'
-    use {
+    {
         'NTBBloodbath/galaxyline.nvim', branch = 'main',
         config = function() require('statusline') end,
-        requires = { 'kyazdani42/nvim-web-devicons' }
-    }
-    use { 'sainnhe/sonokai', config = function() require('colorscheme') end }
-    use { 'folke/which-key.nvim', config = function() require("which-key").setup() end }
-    use { 'yuttie/comfortable-motion.vim' }
-    use { 'ruanyl/vim-gh-line' }
-    use { 'nvim-telescope/telescope.nvim', requires = { { 'nvim-lua/plenary.nvim' } } }
-    use {
+        dependencies = { 'kyazdani42/nvim-web-devicons' }
+    },
+    { 'sainnhe/sonokai', config = function() require('colorscheme') end },
+    { 'folke/which-key.nvim', config = function() require("which-key").setup() end },
+    { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         config = function()
             require('telescope').setup {
                 defaults = {
@@ -69,30 +86,20 @@ return require('packer').startup(function()
             }
             require('telescope').load_extension('fzf')
         end,
-    }
+    },
 
-    use { 'nvim-telescope/telescope-ui-select.nvim',
+    { 'nvim-telescope/telescope-ui-select.nvim',
         config = function()
             require("telescope").load_extension("ui-select")
         end
-    }
+    },
 
 
-
-    use {
-        'tpope/vim-commentary',
-        'tpope/vim-fugitive',
-        'tpope/vim-repeat',
-        'tpope/vim-speeddating',
-        'tpope/vim-surround',
-        'tpope/vim-vinegar',
-    }
-
-    use { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end, }
+    { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end, },
 
     -- lsp
     -- use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
-    use {
+    {
         'folke/trouble.nvim',
         config = function()
             -- local actions = require("telescope.actions")
@@ -109,14 +116,14 @@ return require('packer').startup(function()
             }
 
         end,
-    }
+    },
 
-    use { 'neovim/nvim-lspconfig', config = function() require("lsp") end, }
-    use { 'nvim-lua/lsp-status.nvim' }
+    { 'neovim/nvim-lspconfig', config = function() require("lsp") end, },
+    { 'nvim-lua/lsp-status.nvim' },
 
-    use { 'ms-jpq/coq_nvim', requires = { 'ms-jpq/coq.artifacts' }, run = ':COQdeps' }
-    use { 'ms-jpq/chadtree', run = ':CHADdeps' }
-    use { 'ms-jpq/coq.thirdparty', config = function()
+    { 'ms-jpq/coq_nvim', dependencies = { 'ms-jpq/coq.artifacts' }, build = ':COQdeps' },
+    { 'ms-jpq/chadtree', build = ':CHADdeps' },
+    { 'ms-jpq/coq.thirdparty', config = function()
         require("coq_3p")({
             {
                 src = "repl",
@@ -131,7 +138,7 @@ return require('packer').startup(function()
             { src = "dap" }
         })
     end
-    }
+    },
 
     -- use 'airblade/vim-rooter'
     -- use({
@@ -141,39 +148,38 @@ return require('packer').startup(function()
     --     end,
     -- })
 
-    use {
+    {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             require("indent_blankline").setup {
                 show_end_of_line = true,
             }
         end
-    }
+    },
 
-    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-    use {
+    { 'sindrets/diffview.nvim', dependencies = 'nvim-lua/plenary.nvim' },
+    {
         'akinsho/toggleterm.nvim',
         config = function() require 'setup.toggleterm' end,
-    }
+    },
 
-    use {
+    {
         'glepnir/dashboard-nvim',
         config = function() require 'setup.dashboard' end,
-    }
-    use 'github/copilot.vim'
+    },
+    'github/copilot.vim',
 
-    use {
+    {
         'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
-
-    use 'samoshkin/vim-mergetool'
+        build = ':TSUpdate'
+    },
 
 
-    use {
+
+    {
         'saecki/crates.nvim',
         tag = 'v0.2.1',
-        requires = { 'nvim-lua/plenary.nvim' },
+        dependencies = { 'nvim-lua/plenary.nvim' },
         config = function()
             require('crates').setup {
                 src = {
@@ -184,21 +190,22 @@ return require('packer').startup(function()
                 },
             }
         end,
-    }
-    use { 'simrat39/rust-tools.nvim', config = function() require 'setup.rust-tools' end }
+    },
+    { 'simrat39/rust-tools.nvim', config = function() require 'setup.rust-tools' end },
 
-    use 'ellisonleao/glow.nvim'
 
-    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" },
-        config = function() require("dapui").setup() end }
+    {
+        "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" },
+        config = function() require("dapui").setup() end
+    },
 
-    use {
+    {
         'phaazon/hop.nvim',
         branch = 'v2', -- optional but strongly recommended
         config = function()
             -- you can configure Hop the way you like here; see :h hop-config
             require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
         end
-    }
+    },
 
-end);
+});

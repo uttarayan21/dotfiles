@@ -1,12 +1,12 @@
 -- Need to replace this once lua api has vim modes
-vim.api.nvim_exec([[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-    autocmd BufWritePost keymaps.lua PackerCompile
-    autocmd BufWritePost plugins.lua PackerCompile
-  augroup end
-]], false)
+-- vim.api.nvim_exec([[
+--   augroup Packer
+--     autocmd!
+--     autocmd BufWritePost init.lua PackerCompile
+--     autocmd BufWritePost keymaps.lua PackerCompile
+--     autocmd BufWritePost plugins.lua PackerCompile
+--   augroup end
+-- ]], false)
 
 vim.api.nvim_exec([[
 augroup AutoSaveGroup
@@ -102,8 +102,8 @@ vim.g.coq_settings = {
 -- vim.g.rooter_manual_only = 1
 vim.g.copilot_node_command = "~/.local/share/nvm/v16.18.1/bin/node"
 
-require('plugins')
 require('keymaps')
+require('plugins')
 
 require 'nvim-treesitter.configs'.setup {
     -- ensure_installed = "all",
