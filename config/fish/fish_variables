@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR AFTERSHOOT_LOG:desktop_rust_backend\x3dtrace
+SETUVAR BW_SESSION:lW6\x2bALLBSowAJgVMgqI6sSMqku9z/192K\x2bDNX0jF2WlzRGhBtKGlUAqXJgbWKTw/cDKU2MRO5Z/6aQPi6fkA6Q\x3d\x3d
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_cat:bat
 SETUVAR _fish_abbr_cd:z
@@ -8,6 +9,7 @@ SETUVAR _fish_abbr_find:gfind
 SETUVAR _fish_abbr_gcv:git\x20commit\x20\x2dva
 SETUVAR _fish_abbr_gp:git\x20push
 SETUVAR _fish_abbr_gpr:git\x20pull\x20\x2d\x2drebase
+SETUVAR _fish_abbr_gpu:git\x20pull
 SETUVAR _fish_abbr_j:joshuto
 SETUVAR _fish_abbr_l1:exa\x20\x2d1
 SETUVAR _fish_abbr_ll:exa\x20\x2dal

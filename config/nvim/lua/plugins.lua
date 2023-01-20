@@ -35,6 +35,7 @@ return require('lazy').setup({
 
     'yuttie/comfortable-motion.vim',
     'ruanyl/vim-gh-line',
+    'rest-nvim/rest.nvim',
 
     { 'williamboman/mason.nvim',
         config = function()

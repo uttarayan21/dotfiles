@@ -32,6 +32,7 @@ local colors = {
 
 -- Override some colors
 vim.cmd('hi Normal guibg='..colors.black)
+vim.cmd('hi NormalNC guibg='..colors.black)
 vim.cmd('hi EndOfBuffer guibg='..colors.black)
 -- vim.cmd('hi ToggleTerm1Buffer guibg='..colors.black)
--- vim.cmd('hi NonText guibg='..colors.black)
+vim.cmd('hi NonText guibg='..colors.black)

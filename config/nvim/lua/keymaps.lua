@@ -70,7 +70,13 @@ local normal_mode_maps = {
 
     -- Other
     { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },
-    { key = '<leader>l', map = [[<cmd>Glow<cr>]] },
+    { key = '<leader>l',
+        map = [[<cmd>lua require('telescope.builtin').lsp_references({include_current_line = true, fname_width = 40})<cr>]] },
+    { key = '<leader>i',
+        map = [[<cmd>lua require('telescope.builtin').lsp_incoming_calls({fname_width = 40})<cr>]] },
+    { key = '<leader>e',
+        map = [[<Plug>RestNvim<cr>]] },
+
     { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
 
 }
