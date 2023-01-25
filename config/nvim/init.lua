@@ -33,7 +33,7 @@ vim.o.autoread = true
 vim.o.foldmethod = 'indent'
 
 vim.o.showmode = false
-vim.o.showtabline = 2
+vim.o.showtabline = 0
 vim.o.autoindent = true
 
 vim.o.tabstop = 4
