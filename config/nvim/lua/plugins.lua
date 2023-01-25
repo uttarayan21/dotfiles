@@ -36,6 +36,30 @@ return require('lazy').setup({
     'yuttie/comfortable-motion.vim',
     'ruanyl/vim-gh-line',
     'rest-nvim/rest.nvim',
+    'b0o/SchemaStore.nvim',
+    'rcarriga/nvim-notify',
+    'folke/todo-comments.nvim',
+
+    { 'folke/zen-mode.nvim', config = function() require('zen-mode').setup() end },
+    { 'folke/twilight.nvim', config = function() require('twilight').setup() end },
+
+    {
+        'utilyre/barbecue.nvim',
+        version = "*",
+        config = function() require('barbecue').setup() end,
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'SmiteshP/nvim-navic',
+            'nvim-tree/nvim-web-devicons'
+        },
+    },
+
+    { 'akinsho/git-conflict.nvim',
+        version = "*",
+        config = function()
+            require('git-conflict').setup()
+        end
+    },
 
     { 'williamboman/mason.nvim',
         config = function()
@@ -63,7 +87,7 @@ return require('lazy').setup({
     {
         'NTBBloodbath/galaxyline.nvim', branch = 'main',
         config = function() require('statusline') end,
-        dependencies = { 'kyazdani42/nvim-web-devicons' }
+        dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
     { 'sainnhe/sonokai', config = function() require('colorscheme') end },
     { 'folke/which-key.nvim', config = function() require("which-key").setup() end },

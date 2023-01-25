@@ -191,7 +191,7 @@ local opts = {
                     importPrefix = "self",
                     prefer = {
                         no = {
-                            std = false
+                            std = true
                         },
                     }
                 },

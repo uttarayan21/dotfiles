@@ -1,15 +1,20 @@
 -- local lspstatus = require('lsp-status')
 -- lspstatus.register_progress()
 
-require("lsp.lua-language-server")
-require("lsp.clangd")
--- require("lsp.tsserver")
--- require("lsp.pyright")
--- require("lsp.rust-analyzer")
--- require 'lspconfig'.clangd.setup {}
+require 'lsp.lua-language-server'
+require 'lsp.clangd'
+
 require 'lspconfig'.tsserver.setup {}
 require 'lspconfig'.pyright.setup {}
-require 'lspconfig'.sqls.setup {}
+require 'lspconfig'.sqlls.setup {}
+require 'lspconfig'.jsonls.setup {
+    settings = {
+        json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+        },
+    },
+}
 
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt= "menuone,noinsert,noselect"
