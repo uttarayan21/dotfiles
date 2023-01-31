@@ -39,6 +39,8 @@ return require('lazy').setup({
     'b0o/SchemaStore.nvim',
     'rcarriga/nvim-notify',
     'folke/todo-comments.nvim',
+    'github/copilot.vim',
+    'ggandor/leap.nvim',
 
     { 'folke/zen-mode.nvim', config = function() require('zen-mode').setup() end },
     { 'folke/twilight.nvim', config = function() require('twilight').setup() end },
@@ -192,14 +194,16 @@ return require('lazy').setup({
         'glepnir/dashboard-nvim',
         config = function() require 'setup.dashboard' end,
     },
-    'github/copilot.vim',
 
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate'
     },
 
-
+    {
+        'nvim-treesitter/nvim-treesitter-context',
+        dependencies = { 'nvim-treesitter/nvim-treesitter' }
+    },
 
     {
         'saecki/crates.nvim',

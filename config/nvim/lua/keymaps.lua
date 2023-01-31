@@ -78,6 +78,8 @@ local normal_mode_maps = {
         map = [[<Plug>RestNvim<cr>]] },
 
     { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
+    -- { key = '<ScrollWheelDown>', map = [[<cmd>call comfortable_motion#flick(40)<cr>]], options = { silent = true } },
+    -- { key = '<ScrollWheelUp>', map = [[<cmd>call comfortable_motion#flick(-40)<cr>]], options = { silent = true } },
 
 }
 
