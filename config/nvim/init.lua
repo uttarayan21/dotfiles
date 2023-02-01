@@ -1,17 +1,8 @@
--- Need to replace this once lua api has vim modes
--- vim.api.nvim_exec([[
---   augroup Packer
---     autocmd!
---     autocmd BufWritePost init.lua PackerCompile
---     autocmd BufWritePost keymaps.lua PackerCompile
---     autocmd BufWritePost plugins.lua PackerCompile
---   augroup end
--- ]], false)
-
+local vim = vim;
 vim.api.nvim_exec([[
 augroup AutoSaveGroup
     autocmd!
-    autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested silent! mkview!
+    autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested mkview!
     autocmd BufWinEnter ?* silent! loadview
 augroup end
 au BufNewFile,BufRead,BufReadPost *.html.tera set syntax=HTML

@@ -195,6 +195,8 @@ local opts = {
                         },
                     }
                 },
+                check = {
+                },
                 -- inlayHints.closureReturnTypeHints.enable
                 inlayHints = {
                     closureReturnTypeHints = {
@@ -214,6 +216,8 @@ local opts = {
                 },
                 checkOnSave = {
                     command = "clippy",
+                    -- targets = "all",
+                    allTargets = true,
                 },
             },
         },

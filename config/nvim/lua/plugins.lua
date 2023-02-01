@@ -41,9 +41,11 @@ return require('lazy').setup({
     'folke/todo-comments.nvim',
     'github/copilot.vim',
     'ggandor/leap.nvim',
+    { 'shortcuts/no-neck-pain.nvim', version = "*" },
 
     { 'folke/zen-mode.nvim', config = function() require('zen-mode').setup() end },
     { 'folke/twilight.nvim', config = function() require('twilight').setup() end },
+
 
     {
         'utilyre/barbecue.nvim',
@@ -148,7 +150,12 @@ return require('lazy').setup({
     { 'neovim/nvim-lspconfig', config = function() require("lsp") end, },
     { 'nvim-lua/lsp-status.nvim' },
 
-    { 'ms-jpq/coq_nvim', dependencies = { 'ms-jpq/coq.artifacts' }, build = ':COQdeps' },
+    { 'ms-jpq/coq_nvim', dependencies = { 'ms-jpq/coq.artifacts' }, build = ':COQdeps',
+        config = function()
+            -- require("coq")
+            vim.g.coq_settings.keymap = { jump_to_mark = "<c-j>" }
+        end
+    },
     { 'ms-jpq/chadtree', build = ':CHADdeps' },
     { 'ms-jpq/coq.thirdparty', config = function()
         require("coq_3p")({
