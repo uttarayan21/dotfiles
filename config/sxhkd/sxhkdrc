@@ -2,7 +2,7 @@ super + Escape
     pkill -USR1 -x sxhkd
 
 super + Return
-    alacritty
+    wezterm
 
 super + shift + Return
     kitty
@@ -12,7 +12,9 @@ super + shift + r
 
 super + d
     rofi -show
-    #dmenu_run
+
+super + space
+    rofi -show
 
 super + {_,shift + } + q 
     bspc node -{c,k}

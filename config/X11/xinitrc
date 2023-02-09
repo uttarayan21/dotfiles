@@ -1,10 +1,11 @@
 #!/bin/sh
 
 setxkbmap -option "ctrl:nocaps" 
-xwallpaper --zoom ~/Pictures/wallpaper.png &
+xwallpaper --zoom ~/.local/share/dotfiles/images/wallpaper.jpg &
 picom --config ~/.config/picom/picom.conf &
 # libinput-gestures &
 #discord --start-minimized &
+xrandr --output HDMI-2 --mode 2560x1440 --refresh 120
 export _JAVA_AWT_WM_NONREPARENTING=1
 conky &
 unclutter &

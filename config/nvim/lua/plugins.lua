@@ -82,7 +82,7 @@ return require('lazy').setup({
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "sumneko_lua", "rust_analyzer", "gopls" },
+                ensure_installed = { "sumneko_lua", "rust_analyzer" },
                 automatic_installation = true,
             })
         end

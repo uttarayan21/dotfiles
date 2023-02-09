@@ -50,6 +50,7 @@ colors:
 window:
   startup_mode: Maximized
   title: Alacritty
+  opacity: 0.8
 
 font:
   normal:
@@ -64,7 +65,7 @@ font:
   bold_italic:
     family: Hack Nerd Font Mono
     style: Bold Italic
-  size: 10
+  size: 15
   offset:
     x: 0
     y: 0
@@ -72,7 +73,6 @@ font:
     x: 0
     y: -1
 
-background_opacity: 0.8
 
 mouse:
     launcher:
