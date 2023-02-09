@@ -10,7 +10,7 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 conky &
 unclutter &
 # twmnd &
-xf86keys -d &
+# xf86keys -d &
 aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec bspwm
