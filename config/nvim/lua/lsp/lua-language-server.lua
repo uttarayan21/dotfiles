@@ -2,7 +2,7 @@ local lspconfig = require 'lspconfig'
 local lspstatus = require('lsp-status')
 local coq = require 'coq'
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
     cmd = { "lua-language-server" },
     on_attach = function(client) lspstatus.on_attach(client) end,
     capabilities = coq.lsp_ensure_capabilities(lspstatus.capabilities),
@@ -22,5 +22,3 @@ lspconfig.sumneko_lua.setup {
       }
     }
 }
--- lspconfig.sumenko_lua.setup(coq.lsp_ensure_capabilities())
--- require'lspconfig'.sumneko_lua.setup{coq.lsp_ensure_capabilities()}

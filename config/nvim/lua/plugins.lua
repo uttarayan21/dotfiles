@@ -42,11 +42,9 @@ return require('lazy').setup({
     'github/copilot.vim',
     'ggandor/leap.nvim',
     { 'shortcuts/no-neck-pain.nvim', version = "*" },
-
-    { 'folke/zen-mode.nvim', config = function() require('zen-mode').setup() end },
-    { 'folke/twilight.nvim', config = function() require('twilight').setup() end },
-
-    { 'pwntester/octo.nvim', config = function() require('octo').setup() end },
+    { 'folke/zen-mode.nvim',         config = function() require('zen-mode').setup() end },
+    { 'folke/twilight.nvim',         config = function() require('twilight').setup() end },
+    { 'pwntester/octo.nvim',         config = function() require('octo').setup() end },
 
     {
         'utilyre/barbecue.nvim',
@@ -83,7 +81,7 @@ return require('lazy').setup({
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "sumneko_lua", "rust_analyzer" },
+                ensure_installed = { "lua_ls", "rust_analyzer" },
                 automatic_installation = true,
             })
         end
@@ -94,8 +92,8 @@ return require('lazy').setup({
         config = function() require('statusline') end,
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
-    { 'sainnhe/sonokai', config = function() require('colorscheme') end },
-    { 'folke/which-key.nvim', config = function() require("which-key").setup() end },
+    { 'sainnhe/sonokai',               config = function() require('colorscheme') end },
+    { 'folke/which-key.nvim',          config = function() require("which-key").setup() end },
     { 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
     {
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -145,11 +143,10 @@ return require('lazy').setup({
                     },
                 },
             }
-
         end,
     },
 
-    { 'neovim/nvim-lspconfig', config = function() require("lsp") end, },
+    { 'neovim/nvim-lspconfig',       config = function() require("lsp") end, },
     { 'nvim-lua/lsp-status.nvim' },
 
     { 'ms-jpq/coq_nvim', dependencies = { 'ms-jpq/coq.artifacts' }, build = ':COQdeps',
@@ -158,7 +155,7 @@ return require('lazy').setup({
             vim.g.coq_settings.keymap = { jump_to_mark = "<c-j>" }
         end
     },
-    { 'ms-jpq/chadtree', build = ':CHADdeps' },
+    { 'ms-jpq/chadtree',        build = ':CHADdeps' },
     { 'ms-jpq/coq.thirdparty', config = function()
         require("coq_3p")({
             {
@@ -169,8 +166,8 @@ return require('lazy').setup({
                 deadline = 500,
                 unsafe = { "rm", "poweroff", "mv" }
             },
-            { src = "bc", short_name = "MATH", precision = 6 },
-            { src = "copilot", short_name = "COP", accept_key = "<C-l>" },
+            { src = "bc",      short_name = "MATH", precision = 6 },
+            { src = "copilot", short_name = "COP",  accept_key = "<C-l>" },
             { src = "dap" }
         })
     end
@@ -199,10 +196,10 @@ return require('lazy').setup({
         config = function() require 'setup.toggleterm' end,
     },
 
-    {
-        'glepnir/dashboard-nvim',
-        config = function() require 'setup.dashboard' end,
-    },
+    -- {
+    --     'glepnir/dashboard-nvim',
+    --     config = function() require 'setup.dashboard' end,
+    -- },
 
     {
         'nvim-treesitter/nvim-treesitter',
