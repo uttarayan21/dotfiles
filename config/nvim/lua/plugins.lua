@@ -211,21 +211,21 @@ return require('lazy').setup({
         dependencies = { 'nvim-treesitter/nvim-treesitter' }
     },
 
-    {
-        'saecki/crates.nvim',
-        tag = 'v0.2.1',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('crates').setup {
-                src = {
-                    coq = {
-                        enabled = true,
-                        name = "crates.nvim",
-                    },
-                },
-            }
-        end,
-    },
+    -- {
+    --     'saecki/crates.nvim',
+    --     tag = 'v0.2.1',
+    --     dependencies = { 'nvim-lua/plenary.nvim' },
+    --     config = function()
+    --         require('crates').setup {
+    --             src = {
+    --                 coq = {
+    --                     enabled = true,
+    --                     name = "crates.nvim",
+    --                 },
+    --             },
+    --         }
+    --     end,
+    -- },
     { 'simrat39/rust-tools.nvim', config = function() require 'setup.rust-tools' end },
 
 
