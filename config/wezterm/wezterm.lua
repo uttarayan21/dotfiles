@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm';
 
 return {
-    font = wezterm.font_with_fallback {"Hasklug Nerd Font", "Hasklug Nerd Font Mono"},
+    font = wezterm.font_with_fallback { "Hasklug Nerd Font", "Hasklug Nerd Font Mono" },
     font_size = 16,
     colors = {
         -- The default text color
@@ -35,13 +35,14 @@ return {
         -- to this color to give a visual cue about the compose state.
         compose_cursor = "orange",
     },
+    initial_cols = 120,
     hide_tab_bar_if_only_one_tab = true,
     window_background_opacity = 0.8,
     cursor_blink_rate = 880,
     default_cursor_style = "BlinkingBlock",
     default_prog = { "fish", "-l" },
     window_padding = {
-        left = 0,
+        left = 2,
         right = 0,
         top = 2,
         bottom = 0,
