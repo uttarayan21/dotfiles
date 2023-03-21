@@ -148,6 +148,16 @@ return require('lazy').setup({
 
     { 'neovim/nvim-lspconfig',       config = function() require("lsp") end, },
     { 'nvim-lua/lsp-status.nvim' },
+    { 'ray-x/lsp_signature.nvim' },
+    { 'terrastruct/d2-vim' },
+    {
+        'andweeb/presence.nvim',
+        config = function()
+            require "presence".setup({
+                auto_update = true,
+                main_image = "file",
+            })
+        end },
 
     { 'ms-jpq/coq_nvim', dependencies = { 'ms-jpq/coq.artifacts' }, build = ':COQdeps',
         config = function()

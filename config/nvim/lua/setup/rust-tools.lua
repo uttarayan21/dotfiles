@@ -6,6 +6,7 @@ local codelldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lld
 local liblldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/lldb/lib/liblldb.dylib'
 local rt = require('rust-tools')
 local lspstatus = require('lsp-status')
+local lsp_signature = require('lsp_signature')
 local coq = require('coq')
 
 local opts = {
@@ -172,7 +173,6 @@ local opts = {
             },
         },
     },
-
     -- all the opts to send to nvim-lspconfig
     -- these override the defaults set by rust-tools.nvim
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#rust_analyzer
@@ -227,12 +227,12 @@ local opts = {
             vim.keymap.set("n", "<S-K>", rt.hover_actions.hover_actions, { buffer = bufnr })
             -- Code action groups
             vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+            lsp_signature.on_attach(client, bufnr)
             lspstatus.on_attach(client)
         end,
         capabilities = coq.lsp_ensure_capabilities(lspstatus.capabilities),
 
     }, -- rust-analyer options
-
     -- debugging stuff
 
     dap = {
