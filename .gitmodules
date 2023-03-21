@@ -17,15 +17,15 @@
 [submodule "zsh-vim-mode"]
 	path = config/zsh/plugins/zsh-vim-mode
     url = https://github.com/softmoth/zsh-vim-mode
-[submodule "config/tmux/plugins/tpm"]
-	path = config/tmux/plugins/tpm
-	url = https://github.com/tmux-plugins/tpm
-[submodule "config/tmux/plugins/tmux-battery"]
+
+[submodule "tmux-battery"]
 	path = config/tmux/plugins/tmux-battery
-	url = ./config/tmux/plugins/tmux-battery
-[submodule "config/tmux/plugins/tmux-fzf-url"]
+    url = https://github.com/tmux-plugins/tmux-battery
+
+[submodule "tmux-fzf-url"]
 	path = config/tmux/plugins/tmux-fzf-url
-	url = ./config/tmux/plugins/tmux-fzf-url
-[submodule "config/tmux/plugins/tmux"]
+	url = https://github.com/wfxr/tmux-fzf-url
+
+[submodule "tmux"]
 	path = config/tmux/plugins/tmux
-	url = ./config/tmux/plugins/tmux
+	url = https://github.com/dracula/tmux
