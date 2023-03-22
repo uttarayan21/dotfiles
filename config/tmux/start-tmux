@@ -1,7 +1,14 @@
 #!/bin/sh
 
 live_sessions=$(tmux list-sessions 2>/dev/null)
-all_sessions=$(find ~/.config/tmux/sessions -type f -executable  -printf '%f\n'| sort)
+if [[ $(uname) == "Darwin" ]]; then
+    all_sessions=$(gfind ~/.config/tmux/sessions -type f -executable  -printf '%f\n'| sort)
+elif [[ $(uname) == "Linux" ]]; then
+    all_sessions=$(find ~/.config/tmux/sessions -type f -executable  -printf '%f\n'| sort)
+else
+    echo "Unsupported OS"
+    exit 1
+fi
 TMUX_SESSIONS="$HOME/.config/tmux/sessions"
 # for some reason ~/.config/tmux/session doesn't work if made with quotes 
 # TMUX_SESSIONS=$XDG_CONFIG_HOME/tmux/sessions
