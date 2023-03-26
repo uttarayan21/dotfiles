@@ -21,7 +21,6 @@ SETUVAR _fish_abbr_reru:evcxr
 SETUVAR _fish_abbr_rpc:patch\x20\x2dp0\x20\x3c\x20\x7e/\x2elocal/share/console\x2ediff
 SETUVAR _fish_abbr_sl:exa
 SETUVAR _fish_abbr_sss:sqlite3\x20\x7e/Library/Application\x5c\x20Support/com\x2eaftershoot\x2eaftershoot/database\x2esqlite\x20\x22SELECT
-SETUVAR _fish_abbr_t:/home/fs0c131y/\x2econfig/tmux/start\x2dtmux
 SETUVAR _fish_abbr_v:nvim
 SETUVAR _fish_abbr_wget:curl\x20\x2dO
 SETUVAR _fish_abbr_zc:fd\x20\x7c\x20xargs\x20zip
