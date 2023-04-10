@@ -19,13 +19,13 @@ vim.opt.rtp:prepend(lazypath)
 -- local use = require('packer').use
 
 return require('lazy').setup({
-    { "ellisonleao/glow.nvim",         config = true, cmd = "Glow" },
+    { "ellisonleao/glow.nvim", config = true,                                                                                                   cmd = "Glow" },
     'samoshkin/vim-mergetool',
     'mhartington/formatter.nvim',
     -- 'christianrondeau/vim-base64',
 
-    'tpope/vim-commentary',
-    'tpope/vim-fugitive',
+    { 'tpope/vim-commentary',  lazy = false },
+    { 'tpope/vim-fugitive',    cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite", "Ggrep", "Gbrowse", "GMove", "GDelete" } },
     'tpope/vim-repeat',
     'tpope/vim-speeddating',
     'tpope/vim-surround',
@@ -37,9 +37,9 @@ return require('lazy').setup({
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
     'folke/todo-comments.nvim',
-    { 'github/copilot.vim',          event = "LspAttach" },
+    { 'github/copilot.vim',            event = "LspAttach" },
     -- 'ggandor/leap.nvim',
-    { 'shortcuts/no-neck-pain.nvim', version = "*" },
+    { 'shortcuts/no-neck-pain.nvim',   version = "*" },
     -- { 'folke/zen-mode.nvim',         config = function() require('zen-mode').setup() end },
     -- { 'folke/twilight.nvim',         config = function() require('twilight').setup() end },
     {
@@ -62,16 +62,17 @@ return require('lazy').setup({
         cmd = "Telescope",
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim', 'nvim-telescope/telescope-fzf-native.nvim' }
     },
-    {
-        'utilyre/barbecue.nvim',
-        version = "*",
-        config = function() require('barbecue').setup() end,
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'SmiteshP/nvim-navic',
-            'nvim-tree/nvim-web-devicons'
-        },
-    },
+    -- {
+    --     'utilyre/barbecue.nvim',
+    --     event = "LspAttach",
+    --     version = "*",
+    --     config = function() require('barbecue').setup() end,
+    --     dependencies = {
+    --         'neovim/nvim-lspconfig',
+    --         'SmiteshP/nvim-navic',
+    --         'nvim-tree/nvim-web-devicons'
+    --     },
+    -- },
     {
         'akinsho/git-conflict.nvim',
         version = "*",
