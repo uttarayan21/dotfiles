@@ -7,14 +7,14 @@ require 'lsp.clangd'
 require 'lspconfig'.tsserver.setup {}
 require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.sqlls.setup {}
-require 'lspconfig'.jsonls.setup {
-    settings = {
-        json = {
-            schemas = require('schemastore').json.schemas(),
-            validate = { enable = true },
-        },
-    },
-}
+-- require 'lspconfig'.jsonls.setup {
+--     settings = {
+--         json = {
+--             schemas = require('schemastore').json.schemas(),
+--             validate = { enable = true },
+--         },
+--     },
+-- }
 
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt= "menuone,noinsert,noselect"

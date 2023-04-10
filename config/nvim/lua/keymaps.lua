@@ -46,8 +46,8 @@ local normal_mode_maps = {
 
     { key = '<leader>rd', map = [[<cmd>RustDebuggables<cr>]] },
     { key = '<leader>rr', map = [[<cmd>RustRunnables<cr>]] },
-    { key = 'Vff', map = [[<cmd>vertical Gdiffsplit<cr>]] },
-    { key = 'Vff!', map = [[<cmd>vertical Gdiffsplit!<cr>]] },
+    { key = 'vff', map = [[<cmd>vertical Gdiffsplit<cr>]] },
+    { key = 'vff!', map = [[<cmd>vertical Gdiffsplit!<cr>]] },
     { key = 'ssr', map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },
 
     -- Session
@@ -67,7 +67,8 @@ local normal_mode_maps = {
     { key = 'F', map = [[<cmd>lua vim.lsp.buf.format { async = true }<cr>]] },
     { key = 'T', map = [[<cmd>lua require'lsp_extensions'.inlay_hints()<cr>]] },
 
-    -- { key = '<C-W-%>', map = [[<cmd>vsplit<cr>]] },
+    { key = '<C-W>%', map = [[<cmd>vsplit<cr>]] },
+    { key = '<C-l>', map = [[<cmd>:SymbolsOutline<cr>]] },
 
     -- Other
     { key = '<leader>m', map = [[<cmd>silent !mpcfzf<cr>]] },

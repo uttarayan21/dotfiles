@@ -5,7 +5,6 @@ augroup AutoSaveGroup
     autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested mkview!
     autocmd BufWinEnter ?* silent! loadview
 augroup end
-au BufNewFile,BufRead,BufReadPost *.html.tera set syntax=HTML
 ]], false)
 
 vim.api.nvim_exec([[
