@@ -87,8 +87,8 @@ local normal_mode_maps = {
 
 local insert_mode_maps = {
     { key = '<C-j>', map = '<ESC>' },
-    { key = "<C-l>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
-    { key = "<C-m>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
+    -- { key = "<C-l>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
+    -- { key = "<C-m>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
     { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
 }
 

@@ -28,10 +28,10 @@ return require('lazy').setup({
     { 'tpope/vim-fugitive',    cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite", "Ggrep", "Gbrowse", "GMove", "GDelete" } },
     'tpope/vim-repeat',
     'tpope/vim-speeddating',
-    'tpope/vim-surround',
+    { 'tpope/vim-surround',            lazy = false },
     'tpope/vim-vinegar',
     'tpope/vim-abolish',
-    { 'yuttie/comfortable-motion.vim', lazy = "BufEnter" },
+    { 'yuttie/comfortable-motion.vim', event = "BufEnter" },
     -- 'ruanyl/vim-gh-line',
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
@@ -166,11 +166,11 @@ return require('lazy').setup({
         end,
     },
     { 'neovim/nvim-lspconfig',
-        ft = { "rust", "toml", "lua" },
+        ft = { "rust", "toml", "lua", "c", "cpp", "markdown" },
         config = function()
-            require(
-                "lsp")
-        end, },
+            require("lsp")
+        end
+    },
     {
         'nvim-lua/lsp-status.nvim',
         event = "LspAttach"

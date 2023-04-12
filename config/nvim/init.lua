@@ -91,6 +91,7 @@ vim.g.coq_settings = {
 }
 -- vim.g.rooter_manual_only = 1
 vim.g.copilot_node_command = "~/.local/share/nvm/v16.18.1/bin/node"
+vim.g.copilot_no_tab_map = true
 
 require('keymaps')
 require('plugins')
