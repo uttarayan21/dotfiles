@@ -31,15 +31,19 @@ return require('lazy').setup({
     'tpope/vim-surround',
     'tpope/vim-vinegar',
     'tpope/vim-abolish',
-    { 'yuttie/comfortable-motion.vim', lazy = false },
+    { 'yuttie/comfortable-motion.vim', lazy = "BufEnter" },
     -- 'ruanyl/vim-gh-line',
-    'rest-nvim/rest.nvim',
+    { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
-    'folke/todo-comments.nvim',
+    { 'folke/todo-comments.nvim',      event = "BufEnter" },
     { 'github/copilot.vim',            event = "LspAttach" },
     -- 'ggandor/leap.nvim',
-    { 'shortcuts/no-neck-pain.nvim',   version = "*" },
+    {
+        'shortcuts/no-neck-pain.nvim',
+        cmd = { "NoNeckPain", "NoNeckPainResize", "NoNeckPainScratchPad", "NoNeckPainWidthUp", "NoNeckPainWidthDown" },
+        version = "*"
+    },
     -- { 'folke/zen-mode.nvim',         config = function() require('zen-mode').setup() end },
     -- { 'folke/twilight.nvim',         config = function() require('twilight').setup() end },
     {
@@ -53,8 +57,7 @@ return require('lazy').setup({
         'sainnhe/sonokai',
         lazy = false,
         config = function()
-            require(
-                'colorscheme')
+            require('colorscheme')
         end
     },
     { 'folke/which-key.nvim',        config = function() require("which-key").setup() end },
