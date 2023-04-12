@@ -48,7 +48,7 @@ local normal_mode_maps = {
     { key = 'vff',              map = [[<cmd>vertical Gdiffsplit<cr>]] },
     { key = 'vff!',             map = [[<cmd>vertical Gdiffsplit!<cr>]] },
     { key = 'ssr',              map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },
-    { key = '<C-\\>',            map = [[<cmd>ToggleTerm<cr>]] },
+    { key = '<C-\\>',           map = [[<cmd>ToggleTerm<cr>]] },
 
     -- Session
     { key = '<leader>ss',       map = [[<cmd>SessionSave<cr>]] },
