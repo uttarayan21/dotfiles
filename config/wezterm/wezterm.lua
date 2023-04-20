@@ -35,6 +35,7 @@ return {
         -- to this color to give a visual cue about the compose state.
         compose_cursor = "orange",
     },
+    -- color_scheme = "Catppuccin Mocha",
     initial_cols = 120,
     hide_tab_bar_if_only_one_tab = true,
     window_background_opacity = 0.8,
@@ -49,4 +50,5 @@ return {
     },
     window_decorations = "RESIZE",
     use_ime = false,
+
 }

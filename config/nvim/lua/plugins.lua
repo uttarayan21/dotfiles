@@ -37,7 +37,7 @@ return require('lazy').setup({
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
     { 'folke/todo-comments.nvim',      event = "BufEnter" },
-    { 'github/copilot.vim',            event = "LspAttach" },
+    { 'github/copilot.vim',            event = "LspAttach", cmd = "Copilot" },
     -- 'ggandor/leap.nvim',
     {
         'shortcuts/no-neck-pain.nvim',
@@ -60,6 +60,14 @@ return require('lazy').setup({
             require('colorscheme')
         end
     },
+    -- {
+    --     "catppuccin/nvim",
+    --     name = "catppuccin",
+    --     lazy = false,
+    --     config = function()
+    --         require('colorscheme')
+    --     end
+    -- },
     { 'folke/which-key.nvim',        config = function() require("which-key").setup() end },
     { 'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
@@ -166,7 +174,7 @@ return require('lazy').setup({
         end,
     },
     { 'neovim/nvim-lspconfig',
-        ft = { "rust", "toml", "lua", "c", "cpp", "markdown" },
+        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql" },
         config = function()
             require("lsp")
         end
@@ -175,15 +183,15 @@ return require('lazy').setup({
         'nvim-lua/lsp-status.nvim',
         event = "LspAttach"
     },
-    {
-        'ray-x/lsp_signature.nvim',
-        event = "LspAttach",
-        config = function()
-            require("lsp_signature").setup({
-                floating_window_above_cur_line = true,
-            })
-        end,
-    },
+    -- {
+    --     'ray-x/lsp_signature.nvim',
+    --     -- event = "LspAttach",
+    --     config = function()
+    --         require("lsp_signature").setup({
+    --             floating_window_above_cur_line = true,
+    --         })
+    --     end,
+    -- },
     {
         'terrastruct/d2-vim',
         ft = "d2",
@@ -314,7 +322,29 @@ return require('lazy').setup({
         config = function()
             require("fidget").setup({})
         end
+    },
+    {
+        "cshuaimin/ssr.nvim",
+        module = "ssr",
+        -- Calling setup is optional.
+        config = function()
+            require("ssr").setup {
+                border = "rounded",
+                min_width = 50,
+                min_height = 5,
+                max_width = 120,
+                max_height = 25,
+                keymaps = {
+                    close = "q",
+                    next_match = "n",
+                    prev_match = "N",
+                    replace_confirm = "<cr>",
+                    replace_all = "<leader><cr>",
+                },
+            }
+        end
     }
+
 }, {
     defaults = {
         lazy = true,
