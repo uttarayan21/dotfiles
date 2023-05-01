@@ -68,7 +68,29 @@ return require('lazy').setup({
     --         require('colorscheme')
     --     end
     -- },
-    { 'folke/which-key.nvim',        config = function() require("which-key").setup() end },
+    {
+        {
+            "nvim-neorg/neorg",
+            cmd = "Neorg",
+            ft = "norg",
+            build = ":Neorg sync-parsers",
+            opts = {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.dirman"] = { -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/Documents/norg",
+                            },
+                        },
+                    },
+                },
+            },
+            dependencies = { { "nvim-lua/plenary.nvim" } },
+        }
+    },
+    { 'folke/which-key.nvim',         config = function() require("which-key").setup() end },
     { 'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim', 'nvim-telescope/telescope-fzf-native.nvim' }
@@ -147,7 +169,8 @@ return require('lazy').setup({
             require("telescope").load_extension("ui-select")
         end
     },
-    { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end, },
+    { 'norcalli/nvim-colorizer.lua',  config = function() require 'colorizer'.setup() end },
+    { 'IndianBoy42/tree-sitter-just', config = function() require 'tree-sitter-just'.setup({}) end, dependencies = { "nvim-treesitter/nvim-treesitter" }, ft = "just" },
     -- lsp
     -- use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
     {
