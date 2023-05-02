@@ -78,7 +78,8 @@ local normal_mode_maps = {
         map = [[<cmd>lua require('telescope.builtin').lsp_incoming_calls({fname_width = 40})<cr>]] },
     { key = '<leader>e',
         map = [[<Plug>RestNvim<cr>]] },
-    { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
+    { key = '<leader>u', map = [[<cmd>Telescope undo<cr>]] },
+    { key = '<C-c>',     map = [[<cmd>Telescope commands<cr>]] },
     -- { key = '<ScrollWheelDown>', map = [[<cmd>call comfortable_motion#flick(40)<cr>]], options = { silent = true } },
     -- { key = '<ScrollWheelUp>', map = [[<cmd>call comfortable_motion#flick(-40)<cr>]], options = { silent = true } },
 
