@@ -19,25 +19,25 @@ vim.opt.rtp:prepend(lazypath)
 -- local use = require('packer').use
 
 return require('lazy').setup({
-    { "ellisonleao/glow.nvim", config = true,                                                                                                   cmd = "Glow" },
+    { "ellisonleao/glow.nvim",         config = true,                                                                                                   cmd = "Glow" },
     'samoshkin/vim-mergetool',
     'mhartington/formatter.nvim',
     -- 'christianrondeau/vim-base64',
 
-    { 'tpope/vim-commentary',  lazy = false },
-    { 'tpope/vim-fugitive',    cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite", "Ggrep", "Gbrowse", "GMove", "GDelete" } },
-    'tpope/vim-repeat',
-    'tpope/vim-speeddating',
+    { 'tpope/vim-commentary',          lazy = false },
+    { 'tpope/vim-fugitive',            cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite", "Ggrep", "Gbrowse", "GMove", "GDelete" } },
+    { 'tpope/vim-repeat',              lazy = false },
+    { 'tpope/vim-speeddating',         lazy = false },
     { 'tpope/vim-surround',            lazy = false },
-    'tpope/vim-vinegar',
-    'tpope/vim-abolish',
+    { 'tpope/vim-vinegar',             lazy = false },
+    { 'tpope/vim-abolish',             lazy = false },
     { 'yuttie/comfortable-motion.vim', event = "BufEnter" },
     -- 'ruanyl/vim-gh-line',
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
     { 'folke/todo-comments.nvim',      event = "BufEnter" },
-    { 'github/copilot.vim',            event = "LspAttach", cmd = "Copilot" },
+    { 'github/copilot.vim',            event = "LspAttach",                                                                                             cmd = "Copilot" },
     -- 'ggandor/leap.nvim',
     {
         'shortcuts/no-neck-pain.nvim',
@@ -90,7 +90,7 @@ return require('lazy').setup({
             dependencies = { { "nvim-lua/plenary.nvim" } },
         }
     },
-    { 'folke/which-key.nvim',         config = function() require("which-key").setup() end },
+    { 'folke/which-key.nvim',         config = function() require("which-key").setup() end,         event = "BufEnter" },
     { 'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim', 'nvim-telescope/telescope-fzf-native.nvim' }
