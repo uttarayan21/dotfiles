@@ -39,7 +39,7 @@ return {
     initial_cols = 120,
     hide_tab_bar_if_only_one_tab = true,
     window_background_opacity = 0.8,
-    cursor_blink_rate = 880,
+    cursor_blink_rate = 8,
     default_cursor_style = "BlinkingBlock",
     default_prog = { "fish", "-l" },
     window_padding = {
@@ -50,5 +50,4 @@ return {
     },
     window_decorations = "RESIZE",
     use_ime = false,
-
 }

@@ -23,10 +23,10 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 super + {1,2,3,4,5,6,7,8,9,0}
-    bspc desktop -f ^{1,2,3,4,5,6,7,8,9,10}
+    bspc desktop -f {I,II,III,IV,V,VI,VII,VIII,IX,X}
 
 super + shift + {1,2,3,4,5,6,7,8,9,0} 
-    bspc node focused -d '^{1,2,3,4,5,6,7,8,9,10}'
+    bspc node focused -d '{I,II,III,IV,V,VI,VII,VIII,IX,X}'
 
 super + {f,t,shift + t,shift + f}
     bspc node focused -f -t {fullscreen,tiled,pseudo_tiled,floating}
