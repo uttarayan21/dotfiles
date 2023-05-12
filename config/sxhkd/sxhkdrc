@@ -53,12 +53,10 @@ super + shift + a
 # MPC media keys
 
 XF86Audio{Play,Pause}
-    #mpc -q toggle   
-    xf86keys toggle
+    mctl toggle
 
 XF86Audio{Prev,Stop,Next}
-    #mpc -q {prev,stop,next}
-    xf86keys {prev,stop,next}
+    mctl {prev,stop,next}
 
 # Pulseaudio
 
@@ -77,5 +75,3 @@ XF86MonBrightnessUp
     xbacklight -inc 10
 XF86MonBrightnessDown
     xbacklight -dec 10
-
-
