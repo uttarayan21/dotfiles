@@ -5,7 +5,7 @@ xwallpaper --zoom ~/.local/share/dotfiles/images/wallpaper.jpg &
 picom --config ~/.config/picom/picom.conf &
 # libinput-gestures &
 #discord --start-minimized &
-xrandr --output DP-2 --mode 2560x1440 --refresh 170
+xrandr --output DP-0 --mode 2560x1440 --refresh 170 --pos 1440x538 --rotate normal --output DP-4 --mode 2560x1440 --pos 0x0 --rotate left --refresh 170
 export _JAVA_AWT_WM_NONREPARENTING=1
 conky &
 unclutter &
