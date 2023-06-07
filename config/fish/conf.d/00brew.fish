@@ -1,7 +1,7 @@
 if [ (uname) = "Darwin" ]
     set arch (arch)
     if [ "$arch" = "i386" ]
-        eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
+        # eval /usr/local/Caskroom/miniconda/base/bin/conda "shell.fish" "hook" $argv | source
         /usr/local/bin/brew shellenv | source
         export PATH="/usr/local/opt/llvm/bin:$PATH"
     else

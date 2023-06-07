@@ -5,7 +5,7 @@ require 'lsp.lua-language-server'
 require 'lsp.clangd'
 
 require 'lspconfig'.tsserver.setup {}
-require 'lspconfig'.pyright.setup {}
+-- require 'lspconfig'.pyright.setup {}
 require 'lspconfig'.sqlls.setup {}
 -- require 'lspconfig'.jsonls.setup {
 --     settings = {

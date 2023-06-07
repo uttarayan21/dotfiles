@@ -2,6 +2,9 @@
 
 These are dotfiles for my Linux as MacOS machines
 
+Linux is running Arch Linux with [hyprland](https://hyprland.org) / bspwm
+MacOS is running MacOS Ventura with [yabai](https://github.com/koekeishiya/yabai)
+
 To install simply do
 
 ```sh

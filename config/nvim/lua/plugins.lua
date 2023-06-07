@@ -19,13 +19,22 @@ vim.opt.rtp:prepend(lazypath)
 -- local use = require('packer').use
 
 return require('lazy').setup({
-    { "ellisonleao/glow.nvim",         config = true,                                                                                                   cmd = "Glow" },
+    {
+        "ellisonleao/glow.nvim",
+        config = true,
+        cmd =
+        "Glow"
+    },
     'samoshkin/vim-mergetool',
     'mhartington/formatter.nvim',
     -- 'christianrondeau/vim-base64',
 
     { 'tpope/vim-commentary',          lazy = false },
-    { 'tpope/vim-fugitive',            cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite", "Ggrep", "Gbrowse", "GMove", "GDelete" } },
+    {
+        'tpope/vim-fugitive',
+        cmd = { "Git", "Gdiffsplit", "Gvdiffsplit", "Gedit", "Gread", "Gwrite",
+            "Ggrep", "Gbrowse", "GMove", "GDelete" }
+    },
     { 'tpope/vim-repeat',              lazy = false },
     { 'tpope/vim-speeddating',         lazy = false },
     { 'tpope/vim-surround',            lazy = false },
@@ -37,7 +46,12 @@ return require('lazy').setup({
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
     { 'folke/todo-comments.nvim',      event = "BufEnter" },
-    { 'github/copilot.vim',            event = "LspAttach",                                                                                             cmd = "Copilot" },
+    {
+        'github/copilot.vim',
+        event = "LspAttach",
+        cmd =
+        "Copilot"
+    },
     -- 'ggandor/leap.nvim',
     {
         'shortcuts/no-neck-pain.nvim',
@@ -47,7 +61,8 @@ return require('lazy').setup({
     -- { 'folke/zen-mode.nvim',         config = function() require('zen-mode').setup() end },
     -- { 'folke/twilight.nvim',         config = function() require('twilight').setup() end },
     {
-        'pwntester/octo.nvim', cmd = "Octo",
+        'pwntester/octo.nvim',
+        cmd = "Octo",
         config = function()
             require(
                 'octo').setup()
@@ -76,9 +91,9 @@ return require('lazy').setup({
             build = ":Neorg sync-parsers",
             opts = {
                 load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.defaults"] = {},  -- Loads default behaviour
                     ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.dirman"] = { -- Manages Neorg workspaces
+                    ["core.dirman"] = {      -- Manages Neorg workspaces
                         config = {
                             workspaces = {
                                 notes = "~/Documents/norg",
@@ -90,10 +105,12 @@ return require('lazy').setup({
             dependencies = { { "nvim-lua/plenary.nvim" } },
         }
     },
-    { 'folke/which-key.nvim',         config = function() require("which-key").setup() end,         event = "BufEnter" },
-    { 'nvim-telescope/telescope.nvim',
+    { 'folke/which-key.nvim',        config = function() require("which-key").setup() end, event = "BufEnter" },
+    {
+        'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
-        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim', 'nvim-telescope/telescope-fzf-native.nvim' }
+        dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim',
+            'nvim-telescope/telescope-fzf-native.nvim' }
     },
     -- {
     --     'utilyre/barbecue.nvim',
@@ -132,13 +149,14 @@ return require('lazy').setup({
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "rust_analyzer" },
+                ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
                 automatic_installation = true,
             })
         end
     },
     {
-        'NTBBloodbath/galaxyline.nvim', branch = 'main',
+        'NTBBloodbath/galaxyline.nvim',
+        branch = 'main',
         lazy = false,
         config = function() require('statusline') end,
         dependencies = { 'nvim-tree/nvim-web-devicons' }
@@ -154,23 +172,31 @@ return require('lazy').setup({
                 },
                 extensions = {
                     fzf = {
-                        fuzzy = true, -- false will only do exact matching
+                        fuzzy = true,                   -- false will only do exact matching
                         override_generic_sorter = true, -- override the generic sorter
-                        override_file_sorter = true, -- override the file sorter
-                        case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                        override_file_sorter = true,    -- override the file sorter
+                        case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                     }
                 }
             }
             require('telescope').load_extension('fzf')
         end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim',
+    {
+        'nvim-telescope/telescope-ui-select.nvim',
         config = function()
             require("telescope").load_extension("ui-select")
         end
     },
-    { 'norcalli/nvim-colorizer.lua',  config = function() require 'colorizer'.setup() end },
-    { 'IndianBoy42/tree-sitter-just', config = function() require 'tree-sitter-just'.setup({}) end, dependencies = { "nvim-treesitter/nvim-treesitter" }, ft = "just" },
+    { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end },
+    {
+        'IndianBoy42/tree-sitter-just',
+        config = function() require 'tree-sitter-just'.setup({}) end,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter" },
+        ft =
+        "just"
+    },
     -- lsp
     -- use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
     {
@@ -196,8 +222,9 @@ return require('lazy').setup({
             }
         end,
     },
-    { 'neovim/nvim-lspconfig',
-        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql" },
+    {
+        'neovim/nvim-lspconfig',
+        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python" },
         config = function()
             require("lsp")
         end
@@ -226,7 +253,8 @@ return require('lazy').setup({
                 auto_update = true,
                 main_image = "file",
             })
-        end },
+        end
+    },
     {
         'ms-jpq/coq_nvim',
         ft = { "rust", "toml", "lua" },
@@ -237,7 +265,8 @@ return require('lazy').setup({
         end
     },
     -- { 'ms-jpq/chadtree',   build = ':CHADdeps' },
-    { 'ms-jpq/coq.thirdparty',
+    {
+        'ms-jpq/coq.thirdparty',
         config = function()
             require("coq_3p")({
                 {
@@ -270,7 +299,11 @@ return require('lazy').setup({
             }
         end
     },
-    { 'sindrets/diffview.nvim', cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh" }, dependencies = 'nvim-lua/plenary.nvim' },
+    {
+        'sindrets/diffview.nvim',
+        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh" },
+        dependencies = 'nvim-lua/plenary.nvim'
+    },
     {
         'akinsho/toggleterm.nvim',
         cmd = "ToggleTerm",
@@ -304,11 +337,17 @@ return require('lazy').setup({
     --         }
     --     end,
     -- },
-    { 'simrat39/rust-tools.nvim', ft = 'rust', config = function()
-        require 'setup.rust-tools'
-    end, dependencies = "ms-jpq/coq_nvim" },
     {
-        "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" },
+        'simrat39/rust-tools.nvim',
+        ft = 'rust',
+        config = function()
+            require 'setup.rust-tools'
+        end,
+        dependencies = "ms-jpq/coq_nvim"
+    },
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "mfussenegger/nvim-dap" },
         config = function() require("dapui").setup() end
     },
     -- {
