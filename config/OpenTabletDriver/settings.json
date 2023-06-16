@@ -18,14 +18,14 @@
         },
         "Tablet": {
           "Width": 152.0,
-          "Height": 95.0,
+          "Height": 85.5,
           "X": 76.00001,
           "Y": 47.500008,
           "Rotation": 180.0
         },
         "EnableClipping": true,
         "EnableAreaLimiting": false,
-        "LockAspectRatio": false
+        "LockAspectRatio": true
       },
       "RelativeModeSettings": {
         "XSensitivity": 10.0,
