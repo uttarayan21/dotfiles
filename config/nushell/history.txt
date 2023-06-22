@@ -1,0 +1,188 @@
+ls
+ls | sort 
+ls | sort-by type
+ls | sort-by size
+config nu
+config env 
+:q
+nu
+aichat
+aichat --info
+aichat --info | line 1
+aichat --info | read 1
+aichat --info | lines 
+ls
+ls | sort-by time
+ls | sort-by 
+ls 
+ls | sort-by modified
+cp IMG20220828111* ~/Pictures/Stickers/
+ls
+ls | sort-by size
+ls | sort-by size | filter
+ls | sort-by size | filter size > 10GB
+ls | sort-by size | filter (size > 10)
+ls | sort-by size | filter (size<10)
+man nu
+man filter
+which filter
+help fileter
+help filter
+ls | sort-by size | filter {|s| s.size > 10}
+ls | sort-by size | filter {|s| s > 10}
+ls | sort-by size | filter {|s| $s.size > 10}
+ls | sort-by size | filter {|s| $s.size > 10GB}
+ls | sort-by size | filter {|s| $s.size > 500MB}
+ls | sort-by size | filter {|s| $s.size < 500MB}
+ls | sort-by size | filter {|s| $s.size < 500MB } 
+ls | sort-by size | filter {|s| $s.size < 500MB }
+ls | sort-by size | filter {|s| $s.size > 500MB }
+ls | sort-by size | filter {|s| $s.size > 500MB } | sum
+ls | sort-by size | filter {|s| $s.size > 500MB } | help sum
+help sum
+which sum
+ls | sort-by size | filter {|s| $s.size > 500MB } | fold
+which fold
+ls | sort-by size | filter {|s| $s.size > 500MB } | fold
+ls | sort-by size | where size > 10MB
+ls | sort-by size | where size > 1GB and name ends-with .zip
+ls
+ls | where size > 1GB
+ls | where size > 1GB | sort-by size
+ls | where size > 1GB | sort-by size | where name ends-with .zip
+ls
+`~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`
+schema `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`
+schema ~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite
+schema ~/Library/Application\ Support/com.aftershoot.aftershoot/database.sqlite
+schema `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`
+schema
+`~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | shchema
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | shchema
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` 
+open ~/Downloads/UT-lrcat-by-mika.lrcat
+open ~/Downloads/UT-lrcat-by-mika.lrcat | AgLibraryFile
+open ~/Downloads/UT-lrcat-by-mika.lrcat | where AgLibraryFile
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` 
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`.presets
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` .presets
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` .edits
+ls
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`
+query db "a" `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite`
+query `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` "sus"
+query `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` 
+query
+help query
+help query db
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select * from edits"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select * from edits" | sort-by percent
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select * from edits" | sort-by status
+help query db
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select * from edits inner join projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select * from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,preset_key from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,name from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,status from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key, status from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,projects.project_codename from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select projects.* from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,projects.project_name from edits inner join projects on projects.project_codename = project_key"
+ls
+ls | sort-by now - 2wk
+ls | where modified < now - 2wk
+ls | where modified < time.now
+cd ~/.config/
+ls
+fd nu
+ls
+echo $nu.config-path
+cd dotfiles
+s
+cd ~/.local/share/
+ls
+cd ~/.local/
+ls
+ll
+cd ~/.config/
+ll
+ls -al
+alias ll="ls -al"
+alias ll = "ls -al"
+alias ll = ls -al
+ll
+ll | sort-by target
+ll | sort-by name
+ll 
+cd dotfiles
+ls
+cd ~/Projects/dotfiles/
+ls
+cd config/
+ls
+echo $nu.config-path
+fish
+ls
+cd nushell/
+ls
+nu
+cd 
+help source
+echo $nu.config-path | dirname
+echo $nu
+nu -l
+echo $nu
+nvim
+ls
+dirname($nu.config-path)
+dirname $nu.config-path
+dirname $nu.config-path | join a
+dirname $nu.config-path | path 
+dirname $nu.config-path | path  join a
+dirname $nu.config-path | path join sus
+ll
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select key,projects.project_name from edits inner join projects on projects.project_codename = project_key"
+open `~/Library/Application Support/com.aftershoot.aftershoot/database.sqlite` | query db "select project_key,key,projects.project_name from edits inner join projects on projects.project_codename = project_key"
+nvim sus.txt
+nvim sus.json
+open ~/Downloads/response_1687441262087.json
+open ~/Downloads/response_1687441262087.json | count
+open ~/Downloads/response_1687441262087.json | len
+open ~/Downloads/response_1687441262087.json | length 
+open ~/Downloads/response_1687441262087.json 
+open ~/Downloads/response_1687441262087.json | length 
+nvim sus.json
+open sus.json
+nvim sus.json
+open sus.json | length 
+curl -X 'GET' \
+  'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' \
+open  'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403'
+open 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403'
+help req
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403'
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files
+nvim query.sql
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files | lenth
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files | flatten
+cd libraw-sys
+ls
+nvim src/linux.rs
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files | flatten | length
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files | flatten 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files <\n>
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | get files  | flatten
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten | length
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten 
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten | filter {|x| echo $x}
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten | filter {|x| $x.global_id != ""}
+http get 'http://localhost:43938/editing/edits/filtered?key=0ec34b0d-3577-4d82-ab70-735d66a11403' | flatten | flatten | filter {|x| $x.files.global_id != ""}
+ls

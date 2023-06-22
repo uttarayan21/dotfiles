@@ -194,8 +194,12 @@ return require('lazy').setup({
         config = function() require 'tree-sitter-just'.setup({}) end,
         dependencies = {
             "nvim-treesitter/nvim-treesitter" },
-        ft =
-        "just"
+        ft = "just"
+    },
+    {
+        'LhKipp/nvim-nu',
+        config = function() require 'nu'.setup() end,
+        ft = "nu"
     },
     -- lsp
     -- use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }

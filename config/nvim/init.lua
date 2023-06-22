@@ -1,15 +1,11 @@
 local vim = vim;
-vim.api.nvim_exec([[
-augroup AutoSaveGroup
-    autocmd!
-    autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested mkview!
-    autocmd BufWinEnter ?* silent! loadview
-augroup end
-]], false)
-
-vim.api.nvim_exec([[
-autocmd BufNewFile,BufRead *.sol set ft=solidity
-]], false)
+-- vim.api.nvim_exec([[
+-- augroup AutoSaveGroup
+--     autocmd!
+--     autocmd BufWinLeave,BufLeave,BufWritePost,BufHidden,QuitPre ?* nested mkview!
+--     autocmd BufWinEnter ?* silent! loadview
+-- augroup end
+-- ]], false)
 
 vim.o.number = true
 vim.o.relativenumber = true
