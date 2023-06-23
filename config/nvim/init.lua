@@ -52,6 +52,8 @@ vim.o.wrap = false
 vim.g.dashboard_default_executive = 'fzf'
 vim.g.python_highlight_all = 1
 
+vim.g.suda_smart_edit = 1
+
 
 -- vim.g.test = {
 --     default = {

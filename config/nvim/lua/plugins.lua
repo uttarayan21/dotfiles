@@ -105,7 +105,7 @@ return require('lazy').setup({
             dependencies = { { "nvim-lua/plenary.nvim" } },
         }
     },
-    { 'folke/which-key.nvim',        config = function() require("which-key").setup() end, event = "BufEnter" },
+    { 'folke/which-key.nvim', config = function() require("which-key").setup() end, event = "BufEnter" },
     {
         'nvim-telescope/telescope.nvim',
         cmd = "Telescope",
@@ -182,6 +182,7 @@ return require('lazy').setup({
             require('telescope').load_extension('fzf')
         end,
     },
+    { 'lambdalisue/suda.vim', lazy = false },
     {
         'nvim-telescope/telescope-ui-select.nvim',
         config = function()
