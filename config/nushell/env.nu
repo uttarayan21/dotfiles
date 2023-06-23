@@ -59,10 +59,12 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
+load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace -a '"' '' | split column = | rename name value | where name != "FNM_ARCH" and name != "PATH" | reduce -f {} {|it, acc| $acc | upsert $it.name $it.value })
+
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 # macOS ARM64 (Apple Silicon)
 let-env PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
-
+let-env PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 # Linux
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
