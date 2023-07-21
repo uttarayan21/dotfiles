@@ -1,3 +1,4 @@
+---@diagnostic disable: redefined-local
 local vim = vim
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = " "
@@ -25,8 +26,10 @@ local normal_mode_maps = {
     { key = '<F12>',      map = [[<cmd>lua require'dap'.step_out()<cr>]] },
     { key = '<Leader>bb', map = [[<cmd>lua require'dap'.toggle_breakpoint()<cr>]] },
     { key = '<Leader>B',  map = [[<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>]] },
-    { key = '<Leader>lp',
-        map = [[<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]] },
+    {
+        key = '<Leader>lp',
+        map = [[<cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<cr>]]
+    },
     { key = '<Leader>dr',       map = [[<cmd>lua require'dap'.repl.open()<cr>]] },
     { key = '<Leader>dl',       map = [[<cmd>lua require'dap'.run_last()<cr>]] },
 
@@ -46,7 +49,7 @@ local normal_mode_maps = {
     { key = '<leader>rd',       map = [[<cmd>RustDebuggables<cr>]] },
     { key = '<leader>rr',       map = [[<cmd>RustRunnables<cr>]] },
     { key = 'vff',              map = [[<cmd>vertical Gdiffsplit<cr>]] },
-    { key = 'vff!',             map = [[<cmd>vertical Gdiffsplit!<cr>]] },
+    -- { key = 'vff!',             map = [[<cmd>vertical Gdiffsplit!<cr>]] },
     -- { key = 'ssr',              map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },
     { key = 'ssr',              map = [[<cmd>lua require("ssr").open()<cr>]] },
     { key = '<C-\\>',           map = [[<cmd>ToggleTerm<cr>]] },
@@ -56,7 +59,9 @@ local normal_mode_maps = {
     { key = '<leader>sl',       map = [[<cmd>SessionLoad<cr>]] },
 
     -- lsp
-    { key = 'K',                map = [[<cmd>lua vim.lsp.buf.hover()<cr>]] },
+    -- { key = 'K',                map = [[<cmd>lua vim.lsp.buf.hover()<cr>]] },
+    -- vim.keymap.set('n', 'K', '<cmd>Lspsaga hover_doc')
+    { key = 'K',                map = [[<cmd>Lspsaga hover_doc<cr>]] },
     { key = '<C-k>',            map = [[<cmd>lua vim.lsp.buf.definition()<cr>]] },
     { key = 'gi',               map = [[<cmd>lua vim.lsp.buf.implementation()<cr>]] },
     { key = '<leader>o',        map = [[<cmd>TroubleToggle<cr>]] },
@@ -68,16 +73,26 @@ local normal_mode_maps = {
     { key = 'F',                map = [[<cmd>lua vim.lsp.buf.format { async = true }<cr>]] },
     { key = 'T',                map = [[<cmd>lua require'lsp_extensions'.inlay_hints()<cr>]] },
     { key = '<C-W>%',           map = [[<cmd>vsplit<cr>]] },
+    { key = '<C-W>"',           map = [[<cmd>split<cr>]] },
     { key = '<C-l>',            map = [[<cmd>:SymbolsOutline<cr>]] },
+    { key = '<leader>A',        map = [[<cmd>:Lspsaga code_action<cr>]] },
 
     -- Other
     { key = '<leader>m',        map = [[<cmd>silent !mpcfzf<cr>]] },
-    { key = '<leader>l',
-        map = [[<cmd>lua require('telescope.builtin').lsp_references({include_current_line = true, fname_width = 40})<cr>]] },
-    { key = '<leader>i',
-        map = [[<cmd>lua require('telescope.builtin').lsp_incoming_calls({fname_width = 40})<cr>]] },
-    { key = '<leader>e',
-        map = [[<Plug>RestNvim<cr>]] },
+    -- { key = '<leader>l',
+    --     map = [[<cmd>lua require('telescope.builtin').lsp_references({include_current_line = true, fname_width = 40})<cr>]] },
+    {
+        key = '<leader>l',
+        map = [[<cmd>Lspsaga finder<cr>]]
+    },
+    {
+        key = '<leader>i',
+        map = [[<cmd>lua require('telescope.builtin').lsp_incoming_calls({fname_width = 40})<cr>]]
+    },
+    {
+        key = '<leader>e',
+        map = [[<Plug>RestNvim<cr>]]
+    },
     { key = '<leader>u', map = [[<cmd>Telescope undo<cr>]] },
     { key = '<C-c>',     map = [[<cmd>Telescope commands<cr>]] },
     -- { key = '<ScrollWheelDown>', map = [[<cmd>call comfortable_motion#flick(40)<cr>]], options = { silent = true } },
@@ -90,7 +105,7 @@ local insert_mode_maps = {
     { key = '<C-j>', map = '<ESC>' },
     -- { key = "<C-l>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
     -- { key = "<C-m>", map = 'copilot#Accept("<CR>")',       options = { silent = true, expr = true } },
-    { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
+    -- { key = '<C-c>', map = [[<cmd>Telescope commands<cr>]] },
 }
 
 

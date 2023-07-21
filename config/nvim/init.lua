@@ -88,7 +88,9 @@ vim.g.coq_settings = {
     }
 }
 -- vim.g.rooter_manual_only = 1
-vim.g.copilot_node_command = "~/.local/share/nvm/v16.18.1/bin/node"
+
+local fnm_dir = os.getenv("FNM_DIR") or "/Users/fs0c131y/Library/Application Support/fnm"
+vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/bin/node"
 vim.g.copilot_no_tab_map = true
 
 require('keymaps')
@@ -103,4 +105,3 @@ require 'nvim-treesitter.configs'.setup {
         additional_vim_regex_highlighting = false,
     },
 }
--- vim.notify = require 'notify'

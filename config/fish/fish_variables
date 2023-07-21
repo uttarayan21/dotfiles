@@ -4,8 +4,7 @@ SETUVAR AFTERSHOOT_LOG:desktop_rust_backend\x3dtrace
 SETUVAR BW_SESSION:lW6\x2bALLBSowAJgVMgqI6sSMqku9z/192K\x2bDNX0jF2WlzRGhBtKGlUAqXJgbWKTw/cDKU2MRO5Z/6aQPi6fkA6Q\x3d\x3d
 SETUVAR __fish_initialized:3400
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/fs0c131y/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_jorgebucaran_2F_nvm_2E_fish_files:/Users/fs0c131y/\x2econfig/fish/functions/_nvm_index_update\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/functions/_nvm_list\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/functions/_nvm_version_activate\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/functions/_nvm_version_deactivate\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/functions/nvm\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/conf\x2ed/nvm\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/completions/nvm\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejorgebucaran/nvm\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
@@ -36,5 +35,3 @@ SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/opt/homebrew/bin\x1e/usr/lib/emscripten\x1e/home/fs0c131y/\x2elocal/bin\x1e/home/fs0c131y/\x2ecargo/bin\x1e/opt/homebrew/Cellar/arm\x2dgcc\x2dbin\x408/8\x2d2019\x2dq3\x2dupdate_2/bin\x1e/Users/fs0c131y/\x2ecargo/bin\x1e/Users/fs0c131y/\x2elocal/bin
-SETUVAR nvm_data:/Users/fs0c131y/\x2elocal/share/nvm
-SETUVAR nvm_mirror:https\x3a//nodejs\x2eorg/dist

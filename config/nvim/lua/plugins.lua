@@ -230,6 +230,7 @@ return require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
         ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python" },
+        cmd = "LspStart",
         config = function()
             require("lsp")
         end
@@ -372,23 +373,20 @@ return require('lazy').setup({
         end
     },
     {
-        "glepnir/lspsaga.nvim",
+        "nvimdev/lspsaga.nvim",
         event = "LspAttach",
         config = function()
-            require("lspsaga").setup({})
+            require("lspsaga").setup({
+                ui = {
+                    code_action = 'A'
+                }
+            })
         end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
-            --Please make sure you install markdown and markdown_inline parser
             { "nvim-treesitter/nvim-treesitter" }
+            --Please make sure you install markdown and markdown_inline parser
         }
-    },
-    {
-        'j-hui/fidget.nvim',
-        event = "LspAttach",
-        config = function()
-            require("fidget").setup({})
-        end
     },
     {
         "cshuaimin/ssr.nvim",
@@ -410,6 +408,12 @@ return require('lazy').setup({
                 },
             }
         end
+    },
+    {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        event = "LspAttach",
+        opts = {},
     }
 
 }, {
