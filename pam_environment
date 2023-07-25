@@ -7,8 +7,8 @@ XDG_CACHE_HOME DEFAULT=@{HOME}/.cache
 EDITOR=nvim
 
 # Email
-# EMAIL DEFAULT="uttarayan21@gmail.com"
-EMAIL DEFAULT="email@uttarayan.me"
+EMAIL DEFAULT="uttarayan21@gmail.com"
+# EMAIL DEFAULT="email@uttarayan.me"
 MAIL DEFAULT=@{HOME}/Mail
 
 
@@ -16,7 +16,7 @@ MAIL DEFAULT=@{HOME}/Mail
 NAME DEFAULT="Uttarayan Mondal"
 
 # Browser
-BROWSER=xdg-open
+BROWSER=handlr
 # so that the default browser at any time can open
 
 # Pass
@@ -93,5 +93,4 @@ LC_CTYPE=en_US.UTF-8
 SXHKD_SHELL DEFAULT="/bin/sh"
 
 # fzf
-# FZF_DEFAULT_COMMAND DEFAULT="fd --type f --hidden --exclude .git"
- 
+FZF_DEFAULT_COMMAND DEFAULT="fd --type f --hidden --exclude .git"
