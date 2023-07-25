@@ -229,8 +229,8 @@ return require('lazy').setup({
     },
     {
         'neovim/nvim-lspconfig',
-        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python" },
         cmd = "LspStart",
+        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python", "go" },
         config = function()
             require("lsp")
         end
