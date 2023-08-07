@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 width=${2:-80%}
 height=${2:-80%}
