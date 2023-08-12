@@ -29,7 +29,7 @@ Some useful tools I use everyday
 | ---           | ---
 | `bat`         | [sharkdp/bat](https://github.com/sharkdp/fd)
 | `dust`        | [bootandy/dust](https://github.com/bootandy/dust)
-| `exa`         | [
+| `exa`         | [ogham/exa](https://github.com/ogham/exa)
 | `fd`          | [sharkdp/fd](https://github.com/sharkdp/fd)
 | `fnm`         | [Schniz/fnm](https://github.com/Schniz/fnm)
 | `fzf`         | [junegunn/fzf](https://github.com/junegunn/fzf)
