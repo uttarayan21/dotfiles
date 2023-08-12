@@ -3,25 +3,25 @@
 These are dotfiles for my Linux, MacOS and Windows machines
 
 ### Linux
-    - OS: Arch Linux
-    - Shell: fish
-    - Editor: nvim
-    - WM / DE: [hyprland](https://hyprland.org)
-    - Terminal: foot / wezterm
+- OS: Arch Linux
+- Shell: fish
+- Editor: nvim
+- WM / DE: [hyprland](https://hyprland.org)
+- Terminal: foot / wezterm
 
 ### MacOS 
-    - OS: MacOS Ventura
-    - Shell: fish
-    - Editor: nvim
-    - WM: [yabai](https://github.com/koekeishiya/yabai)
-    - Terminal: wezterm
+- OS: MacOS Ventura
+- Shell: fish
+- Editor: nvim
+- WM: [yabai](https://github.com/koekeishiya/yabai)
+- Terminal: wezterm
 
 ### Windows
-    - OS: Windows 11
-    - Shell: nushell
-    - Editor: nvim / helix
-    - WM: Vanilla
-    - Terminal: Vanilla / wezterm
+- OS: Windows 11
+- Shell: nushell
+- Editor: nvim / helix
+- WM: Vanilla
+- Terminal: Vanilla / wezterm
 
 #### Tools
 Some useful tools I use everyday
