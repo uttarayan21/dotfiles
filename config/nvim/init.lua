@@ -91,7 +91,7 @@ vim.g.coq_settings = {
 
 local fnm_dir = os.getenv("FNM_DIR") or "/Users/fs0c131y/Library/Application Support/fnm"
 
-if vim.fn.has('win32') then
+if vim.fn.has('win32') == 1 then
     vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/node.exe"
 else
     vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/bin/node"
