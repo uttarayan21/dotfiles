@@ -1,7 +1,11 @@
 switch (uname)
     case "Darwin"
-        source ~/.config/fish/conf.d/macos/*
+        for file in (ls ~/.config/fish/conf.d/macos/)
+            source ~/.config/fish/conf.d/macos/"$file"
+        end
     case "Linux"
-        source ~/.config/fish/conf.d/linux/*
+        for file in (ls ~/.config/fish/conf.d/linux/)
+            source ~/.config/fish/conf.d/linux/"$file"
+        end
 end
 
