@@ -16,7 +16,7 @@ MAIL DEFAULT=@{HOME}/Mail
 NAME DEFAULT="Uttarayan Mondal"
 
 # Browser
-BROWSER=handlr
+BROWSER=handlr open
 # so that the default browser at any time can open
 
 # Pass
