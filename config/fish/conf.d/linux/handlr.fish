@@ -1,1 +1,3 @@
-export BROWSER="handlr"
+function open 
+    handlr open $argv
+end

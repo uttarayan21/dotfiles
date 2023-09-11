@@ -105,7 +105,7 @@ return require('lazy').setup({
                     },
                 },
             },
-            dependencies = { { "nvim-lua/plenary.nvim" } },
+            dependencies = { "nvim-lua/plenary.nvim" },
         }
     },
     { 'folke/which-key.nvim', config = function() require("which-key").setup() end, event = "BufEnter" },
@@ -243,21 +243,74 @@ return require('lazy').setup({
     { 'hrsh7th/cmp-buffer',          lazy = false },
     { 'hrsh7th/cmp-path',            lazy = false },
     { 'hrsh7th/cmp-cmdline',         lazy = false },
+    { 'L3MON4D3/LuaSnip' },
+    { 'saadparwaiz1/cmp_luasnip' },
+    {
+        "petertriho/cmp-git",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function() require "cmp_git".setup() end,
+    },
     {
         'hrsh7th/nvim-cmp',
         lazy = false,
-        setup = function()
+        config = function()
             local cmp = require("cmp")
-            -- print!"setting up cmp");
             cmp.setup({
-                view = cmp.config.view({
+                view = {
                     entries = { name = 'custom', selection_order = 'near_cursor' }
-                }),
+                },
+                snippet = {
+                    expand = function(args)
+                        require('luasnip').lsp_expand(args.body)
+                    end
+                },
+                window = {
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
+                },
                 sources = cmp.config.sources({
                     { name = 'buffer' },
                     { name = 'nvim_lsp' },
+                    { name = 'luasnip' },
                     { name = 'path' },
+                    { name = 'git' },
                 }),
+                mapping = cmp.mapping.preset.insert({
+                    ['<CR>'] = cmp.mapping.confirm(),
+                    ['<C-y>'] = cmp.mapping.complete(),
+                    -- ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-n>'] = cmp.config.next,
+                    ['<C-p>'] = cmp.config.prev,
+                })
+            })
+
+            cmp.setup.cmdline({ '/', '?' }, {
+                mapping = cmp.mapping.preset.cmdline {
+                    ['<C-n>'] = cmp.config.disable,
+                    ['<C-p>'] = cmp.config.disable,
+                },
+                sources = {
+                    { name = 'buffer' }
+                }
+            })
+            cmp.setup.cmdline(':', {
+                mapping = cmp.mapping.preset.cmdline {
+                    ['<C-n>'] = cmp.config.disable,
+                    ['<C-p>'] = cmp.config.disable,
+                },
+                -- mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = 'path' }
+                }, {
+                    { name = 'cmdline' }
+                })
+            })
+            cmp.setup.filetype('gitcommit', {
+                sources = cmp.config.sources({
+                    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+                }, {
+                    { name = 'buffer' },
+                })
             })
         end
     },
@@ -458,6 +511,6 @@ return require('lazy').setup({
 
 }, {
     defaults = {
-        lazy = false,
+        lazy = true,
     }
 });

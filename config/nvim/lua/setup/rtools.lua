@@ -196,7 +196,6 @@ local opts = {
                 },
                 check = {
                 },
-                -- inlayHints.closureReturnTypeHints.enable
                 inlayHints = {
                     closureReturnTypeHints = {
                         enable = true,
