@@ -53,8 +53,7 @@ return require('lazy').setup({
     {
         'github/copilot.vim',
         event = "LspAttach",
-        cmd =
-        "Copilot"
+        cmd = "Copilot",
     },
     -- 'ggandor/leap.nvim',
     {
@@ -147,7 +146,7 @@ return require('lazy').setup({
                     }
                 }
             })
-        end
+        end,
     },
     {
         "williamboman/mason-lspconfig.nvim",
@@ -156,7 +155,8 @@ return require('lazy').setup({
                 ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
                 automatic_installation = true,
             })
-        end
+        end,
+        lazy = false,
     },
     {
         'NTBBloodbath/galaxyline.nvim',
@@ -239,11 +239,28 @@ return require('lazy').setup({
             require("lsp")
         end
     },
-    { 'hrsh7th/cmp-nvim-lsp', lazy = false },
-    { 'hrsh7th/cmp-buffer', lazy = false },
-    { 'hrsh7th/cmp-path', lazy = false },
-    { 'hrsh7th/cmp-cmdline', lazy = false },
-    { 'hrsh7th/nvim-cmp', lazy = false },
+    { 'hrsh7th/cmp-nvim-lsp',        lazy = false },
+    { 'hrsh7th/cmp-buffer',          lazy = false },
+    { 'hrsh7th/cmp-path',            lazy = false },
+    { 'hrsh7th/cmp-cmdline',         lazy = false },
+    {
+        'hrsh7th/nvim-cmp',
+        lazy = false,
+        setup = function()
+            local cmp = require("cmp")
+            -- print!"setting up cmp");
+            cmp.setup({
+                view = cmp.config.view({
+                    entries = { name = 'custom', selection_order = 'near_cursor' }
+                }),
+                sources = cmp.config.sources({
+                    { name = 'buffer' },
+                    { name = 'nvim_lsp' },
+                    { name = 'path' },
+                }),
+            })
+        end
+    },
     {
         'nvim-lua/lsp-status.nvim',
         event = "LspAttach"
@@ -356,9 +373,8 @@ return require('lazy').setup({
         'simrat39/rust-tools.nvim',
         ft = 'rust',
         config = function()
-            require 'setup.rust-tools'
+            require 'setup.rtools'
         end,
-        -- dependencies = "ms-jpq/coq_nvim"
     },
 
 
@@ -442,6 +458,6 @@ return require('lazy').setup({
 
 }, {
     defaults = {
-        lazy = true,
+        lazy = false,
     }
 });

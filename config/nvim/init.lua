@@ -68,25 +68,25 @@ vim.g.suda_smart_edit = 1
 -- }
 
 
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = 'menu,menuone,noselect'
 
-vim.g.coq_settings = {
-    auto_start = 'shut-up',
-    weights = {
-        prefix_matches = 4
-    },
-    clients = {
-        lsp = {
-            weight_adjust = 2
-        },
-        -- buffers = {
-        --     -- weight_adjust = -0.5
-        -- },
-        -- snippets = {
-        --     -- weight_adjust = -0.1
-        -- }
-    }
-}
+-- vim.g.coq_settings = {
+--     auto_start = 'shut-up',
+--     weights = {
+--         prefix_matches = 4
+--     },
+--     clients = {
+--         lsp = {
+--             weight_adjust = 2
+--         },
+--         -- buffers = {
+--         --     -- weight_adjust = -0.5
+--         -- },
+--         -- snippets = {
+--         --     -- weight_adjust = -0.1
+--         -- }
+--     }
+-- }
 -- vim.g.rooter_manual_only = 1
 
 local fnm_dir = os.getenv("FNM_DIR") or "/Users/fs0c131y/Library/Application Support/fnm"
