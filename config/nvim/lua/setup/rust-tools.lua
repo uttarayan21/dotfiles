@@ -7,7 +7,7 @@ local liblldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb
 local rt = require('rust-tools')
 local lspstatus = require('lsp-status')
 -- local lsp_signature = require('lsp_signature')
-local coq = require('coq')
+-- local coq = require('coq')
 
 local opts = {
     tools = { -- rust-tools options
@@ -230,7 +230,7 @@ local opts = {
             -- lsp_signature.on_attach(client, bufnr)
             lspstatus.on_attach(client)
         end,
-        capabilities = coq.lsp_ensure_capabilities(lspstatus.capabilities),
+        capabilities = lspstatus.capabilities,
 
     }, -- rust-analyer options
     -- debugging stuff

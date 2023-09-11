@@ -45,7 +45,11 @@ return require('lazy').setup({
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
-    { 'folke/todo-comments.nvim',      event = "BufEnter" },
+    {
+        'folke/todo-comments.nvim',
+        event = "BufEnter",
+        config = function() require('todo-comments').setup() end,
+    },
     {
         'github/copilot.vim',
         event = "LspAttach",
@@ -235,6 +239,11 @@ return require('lazy').setup({
             require("lsp")
         end
     },
+    { 'hrsh7th/cmp-nvim-lsp', lazy = false },
+    { 'hrsh7th/cmp-buffer', lazy = false },
+    { 'hrsh7th/cmp-path', lazy = false },
+    { 'hrsh7th/cmp-cmdline', lazy = false },
+    { 'hrsh7th/nvim-cmp', lazy = false },
     {
         'nvim-lua/lsp-status.nvim',
         event = "LspAttach"
@@ -261,34 +270,34 @@ return require('lazy').setup({
             })
         end
     },
-    {
-        'ms-jpq/coq_nvim',
-        ft = { "rust", "toml", "lua" },
-        dependencies = { 'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty' },
-        build = ':COQdeps',
-        config = function()
-            vim.g.coq_settings.keymap = { jump_to_mark = "<c-j>" }
-        end
-    },
+    -- {
+    --     'ms-jpq/coq_nvim',
+    --     ft = { "rust", "toml", "lua" },
+    --     dependencies = { 'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty' },
+    --     build = ':COQdeps',
+    --     config = function()
+    --         vim.g.coq_settings.keymap = { jump_to_mark = "<c-j>" }
+    --     end
+    -- },
     -- { 'ms-jpq/chadtree',   build = ':CHADdeps' },
-    {
-        'ms-jpq/coq.thirdparty',
-        config = function()
-            require("coq_3p")({
-                {
-                    src = "repl",
-                    sh = "sh",
-                    shell = { p = "perl", n = "node" },
-                    max_lines = 99,
-                    deadline = 500,
-                    unsafe = { "rm", "poweroff", "mv" }
-                },
-                { src = "bc",      short_name = "MATH", precision = 6 },
-                { src = "copilot", short_name = "COP",  accept_key = "<C-l>" },
-                { src = "dap" }
-            })
-        end
-    },
+    -- {
+    --     'ms-jpq/coq.thirdparty',
+    --     config = function()
+    --         require("coq_3p")({
+    --             {
+    --                 src = "repl",
+    --                 sh = "sh",
+    --                 shell = { p = "perl", n = "node" },
+    --                 max_lines = 99,
+    --                 deadline = 500,
+    --                 unsafe = { "rm", "poweroff", "mv" }
+    --             },
+    --             { src = "bc",      short_name = "MATH", precision = 6 },
+    --             { src = "copilot", short_name = "COP",  accept_key = "<C-l>" },
+    --             { src = "dap" }
+    --         })
+    --     end
+    -- },
     -- use 'airblade/vim-rooter'
     -- use({
     --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
@@ -349,8 +358,23 @@ return require('lazy').setup({
         config = function()
             require 'setup.rust-tools'
         end,
-        dependencies = "ms-jpq/coq_nvim"
+        -- dependencies = "ms-jpq/coq_nvim"
     },
+
+
+    -- " For luasnip users.
+    -- " Plug 'L3MON4D3/LuaSnip'
+    -- " Plug 'saadparwaiz1/cmp_luasnip'
+
+    -- " For ultisnips users.
+    -- " Plug 'SirVer/ultisnips'
+    -- " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
+    -- " For snippy users.
+    -- " Plug 'dcampos/nvim-snippy'
+    -- " Plug 'dcampos/cmp-snippy'
+
+
     {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap" },
