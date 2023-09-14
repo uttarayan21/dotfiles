@@ -514,6 +514,7 @@ return require('lazy').setup({
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
+        cmd = { "LazyGit" }
     },
 }, {
     defaults = {
