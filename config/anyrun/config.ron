@@ -20,7 +20,7 @@ Config(
 
   // Layer shell layer: Background, Bottom, Top, Overlay  
   layer: Overlay, 
-  
+
   // Hide the plugin info panel
   hide_plugin_info: false, 
 
@@ -36,10 +36,12 @@ Config(
   // List of plugins to be loaded by default, can be specified with a relative path to be loaded from the
   // `<anyrun config dir>/plugins` directory or with an absolute path to just load the file the path points to.
   plugins: [
-    "librandr.so",
+    "libhyprwin.so",
+    "librink.so",
     "libapplications.so",
     "libshell.so",
     // "libsymbols.so",
     "libtranslate.so",
+    "librandr.so",
   ],
 )
