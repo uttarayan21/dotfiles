@@ -516,6 +516,11 @@ return require('lazy').setup({
         },
         cmd = { "LazyGit" }
     },
+    {
+        "ron-rs/ron.vim",
+        ft = "ron",
+    }
+
 }, {
     defaults = {
         lazy = true,
