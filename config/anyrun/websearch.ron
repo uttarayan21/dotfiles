@@ -1,0 +1,4 @@
+Config(
+    prefix: "?",
+    engines: [Custom(name: "Whoogle", url: "search.uttarayan.me/search?q={}"), DuckDuckGo, Google, Bing, Ecosia]
+)

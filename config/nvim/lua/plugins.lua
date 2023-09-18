@@ -50,11 +50,11 @@ return require('lazy').setup({
         event = "BufEnter",
         config = function() require('todo-comments').setup() end,
     },
-    {
-        'github/copilot.vim',
-        event = "LspAttach",
-        cmd = "Copilot",
-    },
+    -- {
+    --     'github/copilot.vim',
+    --     event = "LspAttach",
+    --     cmd = "Copilot",
+    -- },
     -- 'ggandor/leap.nvim',
     {
         'shortcuts/no-neck-pain.nvim',
@@ -246,6 +246,12 @@ return require('lazy').setup({
     { 'L3MON4D3/LuaSnip' },
     { 'saadparwaiz1/cmp_luasnip' },
     {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end
+    },
+    {
         "petertriho/cmp-git",
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function() require "cmp_git".setup() end,
@@ -269,6 +275,7 @@ return require('lazy').setup({
                     documentation = cmp.config.window.bordered(),
                 },
                 sources = cmp.config.sources({
+                    { name = "copilot", },
                     { name = 'buffer' },
                     { name = 'nvim_lsp' },
                     { name = 'luasnip' },
@@ -519,8 +526,28 @@ return require('lazy').setup({
     {
         "ron-rs/ron.vim",
         ft = "ron",
+    },
+    -- require("copilot").setup({
+    -- suggestion = { enabled = false },
+    -- panel = { enabled = false },
+    -- })
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        event = "LspAttach",
+        config = function()
+            require("copilot").setup({
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    keymap = {
+                        accept = "<C-l>",
+                    }
+                },
+                panel = { enabled = true },
+            })
+        end
     }
-
 }, {
     defaults = {
         lazy = true,
