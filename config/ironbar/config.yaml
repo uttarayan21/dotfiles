@@ -1,0 +1,76 @@
+monitors:
+  DP-3:
+    position: bottom
+    start:
+      - type: launcher
+        favourites:
+          - firefox
+          - discord
+        show_names: false
+        show_icons: true
+      - type: focused
+
+    end:
+      # - type: custom
+      #   bar:
+      #     - type: slider
+      #       # orientation: h
+      #       step: 1
+      #       # length: 100
+      #       max: 100
+      #       # value: "!xbacklight get"
+      #       # on_change: "!xbacklight set ${0%.*}"
+      - type: clipboard
+        max_items: 3
+        truncate:
+          length: 50
+          mode: end
+      - type: music
+        player_type: mpris
+      - type: clock
+
+  DP-2:
+    position: bottom
+    icon_theme: Paper-Mono-Dark
+    end:
+      - type: sys_info
+        format:
+          -   CPU {cpu_percent}% | {temp_c:coretemp-Package-id-0}°C
+          -   RAM {memory_percent}%
+          # -   {disk_used:/home} GiB / {disk_total:/home} GiB ({disk_percent:/home}%)
+          # - 猪  {load_average:1} | {load_average:5} | {load_average:15}
+          # - 李 {net_down:eno1} / {net_up:eno1} Mbps
+          # -   {uptime}
+        interval:
+          cpu: 1
+          temps: 5
+          memory: 30
+          # disks: 300
+          # networks: 3
+      - type: "tray"
+    start:
+
+      - type: workspaces
+        name_map:
+          "1": icon:code
+          "2": 
+          "3": icon:chrome
+          "4": icon:discord
+          "5": icon:steam
+          "6": icon:misc
+          "7": icon:misc
+          "8": icon:docky
+          "9": icon:monodoc
+          "10": icon:spotify
+        favorites:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+          - "10"
+        all_monitors: true
