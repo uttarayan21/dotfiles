@@ -178,6 +178,7 @@ local opts = {
     server = {
         -- standalone file support
         -- setting it to false may improve startup time
+        -- cmd = { "ra-multiplex" },
         standalone = true,
         settings = {
             ["rust-analyzer"] = {
