@@ -7,12 +7,12 @@
 
 # Initialize hook to add new entries to the database.
 if (not ($env | default false __zoxide_hooked | get __zoxide_hooked)) {
-  let-env __zoxide_hooked = true
-  let-env config = ($env | default {} config).config
-  let-env config = ($env.config | default {} hooks)
-  let-env config = ($env.config | update hooks ($env.config.hooks | default {} env_change))
-  let-env config = ($env.config | update hooks.env_change ($env.config.hooks.env_change | default [] PWD))
-  let-env config = ($env.config | update hooks.env_change.PWD ($env.config.hooks.env_change.PWD | append {|_, dir|
+  $env.__zoxide_hooked = true
+  $env.config = ($env | default {} config).config
+  $env.config = ($env.config | default {} hooks)
+  $env.config = ($env.config | update hooks ($env.config.hooks | default {} env_change))
+  $env.config = ($env.config | update hooks.env_change ($env.config.hooks.env_change | default [] PWD))
+  $env.config = ($env.config | update hooks.env_change.PWD ($env.config.hooks.env_change.PWD | append {|_, dir|
     zoxide add -- $dir
   }))
 }
