@@ -203,7 +203,9 @@ return require('lazy').setup({
     },
     {
         'LhKipp/nvim-nu',
-        config = function() require 'nu'.setup() end,
+        config = function() require 'nu'.setup({
+            use_lsp_features = false,
+        }) end,
         ft = "nu"
     },
     -- lsp

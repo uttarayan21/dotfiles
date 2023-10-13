@@ -319,7 +319,7 @@ $env.config = {
   }
 
   explore: {
-    help_banner: true
+    help_banner: false
     exit_esc: true
 
     command_bar_text: '#C4C9C6'
@@ -378,7 +378,8 @@ $env.config = {
   history: {
     max_size: 10000 # Session has to be reloaded for this to take effect
     sync_on_enter: true # Enable to share history between multiple sessions, else you have to close the session to write history to file
-    file_format: "plaintext" # "sqlite" or "plaintext"
+    file_format: "sqlite" # "sqlite" or "plaintext"
+    isolation: true
   }
   completions: {
     case_sensitive: false # set to true to enable case-sensitive completions
@@ -649,6 +650,50 @@ $env.config = {
       event: { send: menu name: commands_with_description }
     }
   ]
+}
+
+let fish_completer = {|spans|
+    fish --command $'complete "--do-complete=($spans | str join " ")"'
+    | $"value(char tab)description(char newline)" + $in
+    | from tsv --flexible --no-infer
+}
+
+let carapace_completer = {|spans: list<string>|
+    carapace $spans.0 nushell $spans
+    | from json
+    | if ($in | default [] | where value =~ '^-.*ERR$' | is-empty) { $in } else { null }
+}
+
+# This completer will use carapace by default
+let external_completer = {|spans|
+    let expanded_alias = scope aliases
+    | where name == $spans.0
+    | get -i 0.expansion
+
+    let spans = if $expanded_alias != null {
+        $spans
+        | skip 1
+        | prepend ($expanded_alias | split row ' ')
+    } else {
+        $spans
+    }
+
+    match $spans.0 {
+        nu => $fish_completer
+        git => $fish_completer
+        _ => $fish_completer
+    } | do $in $spans
+}
+
+$env.config = {
+    # ...
+    completions: {
+        external: {
+            enable: true
+            completer: $external_completer
+        }
+    }
+    # ...
 }
 
 source starship.nu

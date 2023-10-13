@@ -31,3 +31,4 @@ end
 if not type -q wget
     abbr wget   curl -O
 end
+abbr rpc 'patch -p0 < ~/.local/share/console.diff'
