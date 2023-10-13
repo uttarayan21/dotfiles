@@ -63,8 +63,18 @@ load-env (fnm env --shell bash | lines | str replace 'export ' '' | str replace 
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+
 # macOS ARM64 (Apple Silicon)
-$env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
-$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+let os = (sys | get host.long_os_version)
+if ($os | str contains MacOS) {
+    $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
+} 
 # Linux
-# $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
+if ($os | str contains Linux) {
+    $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
+}
+
+$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
+$env.PATH = ($env.PATH | prepend $"($env.HOME)/local/bin")
+$env.EDITOR = "nvim"
+$env.VISUAL = "nvim"
