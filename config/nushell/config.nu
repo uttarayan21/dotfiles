@@ -29,7 +29,7 @@ let external_completer = {|spans|
     match $spans.0 {
         nu => $fish_completer
         git => $fish_completer
-        _ => $fish_completer
+        _ => $carapace_completer
     } | do $in $spans
 }
 
@@ -213,7 +213,7 @@ $env.config = {
     always_trash: false # always act as if -t was given. Can be overridden with -p
   }
   cd: {
-    abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
+    # abbreviations: false # allows `cd s/o/f` to expand to `cd some/other/folder`
   }
   table: {
     mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
