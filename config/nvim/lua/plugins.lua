@@ -45,6 +45,7 @@ return require('lazy').setup({
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
+    { 'echasnovski/mini.nvim', version = '*' },
     {
         'folke/todo-comments.nvim',
         event = "BufEnter",
@@ -513,7 +514,7 @@ return require('lazy').setup({
     },
     {
         "j-hui/fidget.nvim",
-        tag = "legacy",
+        -- tag = "",
         event = "LspAttach",
         opts = {},
     },

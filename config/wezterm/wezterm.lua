@@ -1,7 +1,13 @@
 local wezterm = require 'wezterm';
 
+-- wezterm.font("Hasklug Nerd Font", {weight="Regular", stretch="Normal", style="Normal"}) -- /Users/fs0c131y/Library/Fonts/Hasklug Nerd Font Complete.otf, CoreText
 return {
-    font = wezterm.font_with_fallback { "Hasklug Nerd Font", "Hasklug Nerd Font Mono" },
+    -- -- font = wezterm.font("Hasklug Nerd Font Mono", { weight = "Regular", stretch = "Normal", style = "Normal" }),
+    -- font = wezterm.font_with_fallback({
+    --      "Hasklig",
+    --      "Symbols Nerd Font Mono"
+   -- }),
+
     font_size = 16,
     colors = {
         -- The default text color
@@ -41,7 +47,7 @@ return {
     window_background_opacity = 0.8,
     cursor_blink_rate = 8,
     default_cursor_style = "BlinkingBlock",
-    default_prog = { "fish", "-l" },
+    default_prog = { "/opt/homebrew/bin/fish", "-l" },
     window_padding = {
         left = 2,
         right = 0,

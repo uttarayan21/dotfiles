@@ -74,12 +74,13 @@ if ($os | str contains Linux) {
     $env.PATH = ($env.PATH | split row (char esep) | prepend '/home/linuxbrew/.linuxbrew/bin')
 }
 
-if ($os | str contains Windows) {
-    $env.Path = ($env.Path | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
-} else {
-    $env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
-    $env.PATH = ($env.PATH | prepend $"($env.HOME)/local/bin")
-}
-
+$env.PATH = ($env.PATH | prepend $"($env.FNM_MULTISHELL_PATH)/bin")
 $env.EDITOR = "nvim"
 $env.VISUAL = "nvim"
+
+if ($os | str contains Windows) {
+} else {
+    $env.PATH = ($env.PATH | prepend $"($env.HOME)/local/bin")
+    $env.PATH = ($env.PATH | prepend $"($env.HOME)/.local/vcpkg")
+}
+
