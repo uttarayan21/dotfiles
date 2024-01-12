@@ -5,6 +5,7 @@
 local codelldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/adapter/codelldb'
 local liblldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/lldb/lib/liblldb.dylib'
 local lspstatus = require('lsp-status')
+local lsp_hints = require 'lsp-inlayhints'
 -- local lsp_signature = require('lsp_signature')
 
 
@@ -51,8 +52,9 @@ vim.g.rustaceanvim = {
     server = {
         on_attach = function(client, bufnr)
             -- you can also put keymaps in here
+            lsp_hints.on_attach(client, bufnr)
+            lspstatus.on_attach(client, bufnr)
             if client.server_capabilities.inlayHintProvider then
-                print("Inlay hints enabled")
                 vim.lsp.inlay_hint.enable(bufnr, true)
             end
         end,
