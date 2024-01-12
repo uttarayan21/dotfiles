@@ -47,7 +47,7 @@ local normal_mode_maps = {
     { key = '<leader>fh',       map = [[<cmd>lua require('telescope.builtin').help_tags()<cr>]] },
     { key = '<leader>gB',       map = [[<cmd>Git blame<cr>]] },
     { key = '<leader>rd',       map = [[<cmd>RustDebuggables<cr>]] },
-    { key = '<leader>rr',       map = [[<cmd>RustRunnables<cr>]] },
+    -- { key = '<leader>rr',       map =  vim.cmd.RustLsp('runnables') },
     { key = 'vff',              map = [[<cmd>vertical Gdiffsplit<cr>]] },
     -- { key = 'vff!',             map = [[<cmd>vertical Gdiffsplit!<cr>]] },
     -- { key = 'ssr',              map = [[<cmd>lua require'rust-tools'.ssr.ssr(query)<cr>]] },

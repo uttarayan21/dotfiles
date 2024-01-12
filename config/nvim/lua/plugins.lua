@@ -45,7 +45,7 @@ return require('lazy').setup({
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
     -- 'b0o/SchemaStore.nvim',
     -- 'rcarriga/nvim-notify',
-    { 'echasnovski/mini.nvim', version = '*' },
+    { 'echasnovski/mini.nvim',         version = '*' },
     {
         'folke/todo-comments.nvim',
         event = "BufEnter",
@@ -197,16 +197,19 @@ return require('lazy').setup({
     { 'norcalli/nvim-colorizer.lua', config = function() require 'colorizer'.setup() end },
     {
         'IndianBoy42/tree-sitter-just',
-        config = function() require 'tree-sitter-just'.setup({}) end,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            require 'tree-sitter-just'.setup({})
+        end,
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         ft = "just"
     },
     {
         'LhKipp/nvim-nu',
-        config = function() require 'nu'.setup({
-            use_lsp_features = false,
-        }) end,
+        config = function()
+            require 'nu'.setup({
+                use_lsp_features = false,
+            })
+        end,
         ft = "nu"
     },
     -- lsp
@@ -432,9 +435,17 @@ return require('lazy').setup({
     --         }
     --     end,
     -- },
+    -- {
+    --     'simrat39/rust-tools.nvim',
+    --     ft = 'rust',
+    --     config = function()
+    --         require 'setup.rtools'
+    --     end,
+    -- },
     {
-        'simrat39/rust-tools.nvim',
-        ft = 'rust',
+        'mrcjkb/rustaceanvim',
+        version = '^3', -- Recommended
+        ft = { 'rust' },
         config = function()
             require 'setup.rtools'
         end,

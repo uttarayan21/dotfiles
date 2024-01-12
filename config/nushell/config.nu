@@ -562,3 +562,4 @@ source zoxide.nu
 source alias.nu
 source cargo.nu
 use conda.nu
+macchina
