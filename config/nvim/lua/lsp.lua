@@ -1,6 +1,5 @@
 local lspconfig = require 'lspconfig'
 local lspstatus = require 'lsp-status'
-local lsp_hints = require 'lsp-inlayhints'
 
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -9,7 +8,6 @@ require("mason-lspconfig").setup_handlers {
         lspconfig[server_name].setup {
             on_attach = function(client, bufnr)
                 lspstatus.on_attach(client, bufnr)
-                lsp_hints.on_attach(client, bufnr)
                 if client.server_capabilities.inlayHintProvider then
                     vim.lsp.inlay_hint.enable(bufnr, true)
                 end

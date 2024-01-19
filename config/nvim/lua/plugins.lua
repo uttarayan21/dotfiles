@@ -562,15 +562,6 @@ return require('lazy').setup({
             })
         end
     },
-    {
-        "lvimuser/lsp-inlayhints.nvim",
-        event = "LspAttach",
-        config = function()
-            require("lsp-inlayhints").setup({
-                enabled_at_startup = true,
-            })
-        end
-    }
 }, {
     defaults = {
         lazy = true,
