@@ -27,4 +27,12 @@ require("mason-lspconfig").setup_handlers {
             single_file_support = true,
         }
     end,
+    ["ast_grep"] = function()
+        lspconfig.ast_grep.setup {
+            cmd = { "sg", "lsp" },
+            filetypes = { "c", "cpp", "rust", "typescript" },
+            root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
+            single_file_support = true,
+        }
+    end
 }
