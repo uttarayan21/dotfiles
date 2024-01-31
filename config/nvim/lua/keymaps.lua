@@ -75,7 +75,7 @@ local normal_mode_maps = {
     { key = '<C-W>%',           map = [[<cmd>vsplit<cr>]] },
     { key = '<C-W>"',           map = [[<cmd>split<cr>]] },
     { key = '<C-l>',            map = [[<cmd>:SymbolsOutline<cr>]] },
-    { key = '<leader>A',        map = [[<cmd>:Lspsaga code_action<cr>]] },
+    { key = '<leader>a',        map = [[<cmd>:lua vim.lsp.buf.code_action()<cr>]] },
 
     -- Other
     { key = '<leader>m',        map = [[<cmd>silent !mpcfzf<cr>]] },

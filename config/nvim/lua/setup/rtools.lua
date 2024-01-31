@@ -11,14 +11,14 @@ local lspstatus = require('lsp-status')
 -- vim.cmd([[autocmd BufEnter,BufWinEnter,TabEnter *.rs :lua require('rust-tools.inlay_hints').set_inlay_hints()]])
 -- require('rust-tools').setup(opts)
 local bufnr = vim.api.nvim_get_current_buf()
-vim.keymap.set(
-    "n",
-    "<leader>a",
-    function()
-        vim.cmd.RustLsp('codeAction')
-    end,
-    { silent = true, buffer = bufnr }
-)
+-- vim.keymap.set(
+--     "n",
+--     "<leader>a",
+--     function()
+--         vim.cmd.RustLsp('codeAction')
+--     end,
+--     { silent = true, buffer = bufnr }
+-- )
 vim.keymap.set(
     "n",
     "<leader>rr",
