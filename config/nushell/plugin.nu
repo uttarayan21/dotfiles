@@ -1,4 +1,4 @@
-register /Users/fs0c131y/.local/share/cargo-target/release/nu_plugin_from_agp  {
+register /Users/fs0c131y/.local/bin/nu_plugin_from_agp  {
   "sig": {
     "name": "from agp",
     "usage": "Parse text as agprefs and create a table.",
