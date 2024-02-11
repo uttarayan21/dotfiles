@@ -60,6 +60,14 @@
         system.keyboard.enableKeyMapping = true;
         system.keyboard.remapCapsLockToControl = true;
         system.keyboard.swapLeftCommandAndLeftAlt = true;
+        system.keyboard.userKeyMapping = {
+            # Right Command to Option
+            HIDKeyboardModifierMappingSrc = 30064771303;
+            HIDKeyboardModifierMappingDst = 30064771302;
+            # Right Option to command
+            HIDKeyboardModifierMappingSrc = 30064771302;
+            HIDKeyboardModifierMappingDst = 30064771303;
+        };
         fonts.fonts = [ (pkgs.nerdfonts.override { fonts = [ "Hasklig" "Hack" ]; }) ];
         system.defaults.finder.AppleShowAllExtensions = true;
         system.defaults.dock.autohide = true;
