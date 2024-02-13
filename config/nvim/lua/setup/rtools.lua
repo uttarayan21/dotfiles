@@ -2,8 +2,8 @@
 -- local extension_path = vim.env.HOME .. '/.vscode/extensions/vadimcn.vscode-lldb-1.7.0'
 -- local codelldb_path = extension_path .. 'adapter/codelldb'
 -- local liblldb_path = extension_path .. 'lldb/lib/liblldb.dylib'
-local codelldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/adapter/codelldb'
-local liblldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/lldb/lib/liblldb.dylib'
+-- local codelldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/adapter/codelldb'
+-- local liblldb_path = '/Users/fs0c131y/.vscode-oss/extensions/vadimcn.vscode-lldb-1.8.1-universal/lldb/lib/liblldb.dylib'
 local lspstatus = require('lsp-status')
 -- local lsp_signature = require('lsp_signature')
 
@@ -62,6 +62,8 @@ vim.g.rustaceanvim = {
         --     },
         --   },
         --   -- DAP configuration
-        --   dap = {},
+    },
+    dap = {
+        autoload_configurations = false
     },
 }

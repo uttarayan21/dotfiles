@@ -97,11 +97,18 @@ return require('lazy').setup({
                 load = {
                     ["core.defaults"] = {},  -- Loads default behaviour
                     ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.dirman"] = {      -- Manages Neorg workspaces
+                    ["core.completion"] = {
+                        config = {
+                            engine = "nvim-cmp",
+                        }
+                    },
+                    ["core.dirman"] = { -- Manages Neorg workspaces
                         config = {
                             workspaces = {
                                 notes = "~/Documents/norg",
                             },
+                            default_workspace = "general",
+                            index = "index.norg"
                         },
                     },
                 },
@@ -469,6 +476,47 @@ return require('lazy').setup({
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap" },
         config = function() require("dapui").setup() end
+    },
+    {
+        "mfussenegger/nvim-dap",
+        -- event = "LspAttach",
+        config = function()
+            local dap = require('dap')
+            local registry = require('mason-registry').get_package("codelldb");
+            local codelldb = registry:get_install_path() .. "/codelldb"
+            dap.adapters.codelldb = {
+                type = 'server',
+                port = "${port}",
+                executable = {
+                    -- CHANGE THIS to your path!
+                    command = codelldb,
+                    args = { "--port", "${port}" },
+
+                    -- On windows you may have to uncomment this:
+                    -- detached = false,
+                }
+            }
+            local program = function()
+                return vim.ui.select({
+                }, {
+                    prompt = "Select program to debug: ",
+                    format_item = function(item)
+                        return item
+                    end,
+                })
+            end
+            dap.configurations.rust = {
+                {
+                    name = "Launch Rust (CODELLDB)",
+                    type = "codelldb",
+                    request = "launch",
+                    program = program,
+                    cwd = '${workspaceFolder}',
+                    stopOnEntry = false,
+                },
+            }
+        end
+
     },
     -- {
     --     'phaazon/hop.nvim',
