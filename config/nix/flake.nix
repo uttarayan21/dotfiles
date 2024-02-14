@@ -20,7 +20,26 @@
     home-manager,
     darwin,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    devices = [
+      {
+        device = "mirai";
+        system = "x86_64-linux";
+      }
+      {
+        device = "genzai";
+        system = "x86_64-linux";
+      }
+      {
+        device = "Uttarayans-MacBook-Pro";
+        system = "aarch64-darwin";
+      }
+      {
+        device = "deck";
+        system = "x86_64-linux";
+      }
+    ];
+  in {
     homeConfigurations = let
       system = "x86_64-linux";
       overlays = [inputs.neovim-nightly-overlay.overlay];
@@ -38,27 +57,27 @@
       };
     };
 
-    darwinConfigurations = let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
-        modules = [
-          home-manager.darwinModules.home-manager
-          ./darwin.nix
-          ({config, ...}: {
-            home-manager = {
-              users = {
-                fs0c131y = {
-                  home = "/Users/fs0c131y";
-                  stateVersion = "21.05";
-                  configuration = home-manager.configurations.fs0c131y;
-                };
-              };
-            };
-          })
-        ];
-      };
-    };
+    # darwinConfigurations = let
+    #   system = "aarch64-darwin";
+    #   pkgs = nixpkgs.legacyPackages.${system};
+    # in {
+    #   "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
+    #     modules = [
+    #       home-manager.darwinModules.home-manager
+    #       ./darwin.nix
+    #       ({config, ...}: {
+    #         home-manager = {
+    #           users = {
+    #             fs0c131y = {
+    #               home = "/Users/fs0c131y";
+    #               stateVersion = "21.05";
+    #               configuration = home-manager.configurations.fs0c131y;
+    #             };
+    #           };
+    #         };
+    #       })
+    #     ];
+    #   };
+    # };
   };
 }

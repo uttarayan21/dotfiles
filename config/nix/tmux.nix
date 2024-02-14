@@ -1,6 +1,6 @@
-{ pkgs, ... }:
-let
-  tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin
+{pkgs, ...}: let
+  tmux-super-fingers =
+    pkgs.tmuxPlugins.mkTmuxPlugin
     {
       pluginName = "tmux-super-fingers";
       version = "v1-2024-02-14";
@@ -11,8 +11,16 @@ let
         sha256 = "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=";
       };
     };
-in
-{
+  scratchpad = pkgs.writeShellScript "scratchpad" ''
+        width=''\${2:-95%}
+        height=''\${2:-95%}
+        if [ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ];then
+            tmux detach-client
+        else
+            tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
+        fi
+    '';
+in {
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -20,29 +28,28 @@ in
     prefix = "C-q";
     historyLimit = 100000;
     keyMode = "vi";
-    plugins = with pkgs;
-      [
-        tmuxPlugins.better-mouse-mode
-        {
-          plugin = tmux-super-fingers;
-          extraConfig = "set -g @super-fingers-key o";
-        }
-        {
-          plugin = tmuxPlugins.catppuccin;
-          extraConfig = ''
-            set -g @catppuccin_flavour 'mocha'
-            set -g @catppuccin_window_tabs_enabled on
-            set -g @catppuccin_status_modules_right ""
-            set -g @catppuccin_status_modules_right "battery application session date_time"
-          '';
-        }
-        {
-          plugin = tmuxPlugins.battery;
-          extraConfig = ''
-            set -g @catppuccin_status_modules_right "application session user host date_time"
-          '';
-        }
-      ];
+    plugins = with pkgs; [
+      tmuxPlugins.better-mouse-mode
+      {
+        plugin = tmux-super-fingers;
+        extraConfig = "set -g @super-fingers-key o";
+      }
+      {
+        plugin = tmuxPlugins.catppuccin;
+        extraConfig = ''
+          set -g @catppuccin_flavour 'mocha'
+          set -g @catppuccin_window_tabs_enabled on
+          set -g @catppuccin_status_modules_right ""
+          set -g @catppuccin_status_modules_right "battery application session date_time"
+        '';
+      }
+      {
+        plugin = tmuxPlugins.battery;
+        extraConfig = ''
+          set -g @catppuccin_status_modules_right "application session user host date_time"
+        '';
+      }
+    ];
     extraConfig = ''
       set -gw mode-keys vi
       set -g status-keys vi
@@ -55,6 +62,8 @@ in
       bind k select-pane -U
       bind l select-pane -R
 
+      bind-key -n C-\\ run-shell ${scratchpad}
+
       bind C-n next-window
       bind C-p previous-window
       bind C-q last-window
@@ -64,4 +73,3 @@ in
     '';
   };
 }
-
