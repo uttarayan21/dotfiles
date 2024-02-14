@@ -69,7 +69,7 @@
     };
     keychain = {
       enable = true;
-      keys = ["id_ed25519" "hetzner_rsa"];
+      keys = ["id_ed25519"];
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
