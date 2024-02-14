@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darwin = {
+    nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -19,7 +19,7 @@
   outputs = {
     nixpkgs,
     home-manager,
-    darwin,
+    nix-darwin,
     flake-utils,
     ...
   } @ inputs: let
@@ -71,7 +71,7 @@
         value = let
           pkgs = nixpkgs.legacyPackages.${device.system};
         in {
-          "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
+          "Uttarayans-MacBook-Pro" = nix-darwin.lib.darwinSystem {
             modules = [
               home-manager.darwinModules.home-manager
               ./darwin.nix
