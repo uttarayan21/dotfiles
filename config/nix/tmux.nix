@@ -49,7 +49,6 @@ in
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-      bind h set status
       set -g allow-passthrough on
       set -ga update-environment TERM
       set -ga update-environment TERM_PROGRAM

@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-
+# https://mipmip.github.io/home-manager-option-search/
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -26,11 +26,18 @@
         ls = "exa";
       };
       interactiveShellInit = ''
-        # Add the following line to your ~/.config/fish/config.fish to enable
-        # Home Manager's Fish integration.
-        # source ${config.home.homeDirectory}/.nix-profile/share/hm-session-vars/hm-session-vars.fish
         set fish_greeting
-        # macchina
+        ${pkgs.macchina.outPath}/bin/macchina
+      '';
+    };
+    nushell = {
+      enable = true;
+      shellAliases = {
+        "cd" = "z";
+      };
+      package = pkgs.nushellFull;
+      configFile.text = ''
+        show_banner: false,
       '';
     };
     zoxide = {
@@ -54,18 +61,11 @@
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
-    nushell = {
-      enable = true;
-      package = pkgs.nushellFull;
-      shellAliases = {
-        "cd" = "z";
-      };
-    };
     fzf = {
         enable = true;
         package = pkgs.fzf;
         enableFishIntegration = true;
-        enableShellIntegration = true;
+        tmux.enableShellIntegration = true;
     };
     keychain = {
       enable = true;
@@ -73,7 +73,11 @@
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
-
+    yazi = {
+        enable = true;
+        enableFishIntegration = true;
+        enableNushellIntegration = true;
+    };
 
   };
 
@@ -112,6 +116,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    SHELL = "${pkgs.fish.outPath}/bin/fish";
   };
 
   # Let Home Manager install and manage itself.
