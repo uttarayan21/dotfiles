@@ -19,6 +19,7 @@ in
     terminal = "tmux-256color";
     prefix = "C-q";
     historyLimit = 100000;
+    keyMode = "vi";
     plugins = with pkgs;
       [
         tmuxPlugins.better-mouse-mode
@@ -45,13 +46,19 @@ in
     extraConfig = ''
       set -gw mode-keys vi
       set -g status-keys vi
+      set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
+
       bind h select-pane -L
       bind j select-pane -D
       bind k select-pane -U
       bind l select-pane -R
-      set -g allow-passthrough on
-      set -ga update-environment TERM
-      set -ga update-environment TERM_PROGRAM
+
+      bind C-n next-window
+      bind C-p previous-window
+      bind C-q last-window
+
       if-shell 'uname | grep -q "Darwin"' { set -s copy-command "pbcopy" }
       if-shell 'uname | grep -q "Linux"' { set -s copy-command "wl-copy" }
     '';

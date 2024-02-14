@@ -26,7 +26,11 @@ return require('lazy').setup({
         "Glow"
     },
     'samoshkin/vim-mergetool',
-    'mhartington/formatter.nvim',
+    {
+        cmd = { "Format", "FormatWrite" },
+        'mhartington/formatter.nvim'
+
+    },
     -- 'christianrondeau/vim-base64',
 
     { 'tpope/vim-commentary',          lazy = false },

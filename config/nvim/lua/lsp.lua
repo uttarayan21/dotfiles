@@ -34,5 +34,17 @@ require("mason-lspconfig").setup_handlers {
             root_dir = lspconfig.util.root_pattern("compile_commands.json", "compile_flags.txt", ".git"),
             single_file_support = true,
         }
+    end,
+    ['nil_ls'] = function()
+        lspconfig.nil_ls.setup {
+            capabilities = capabilities,
+            settings = {
+                ['nil'] = {
+                    formatting = {
+                        command = { "nixpkgs-fmt" },
+                    }
+                }
+            }
+        };
     end
 }

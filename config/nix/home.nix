@@ -12,6 +12,7 @@
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
+    ./hyprland.nix
   ];
 
   programs = {
@@ -87,10 +88,10 @@
         main = {
             shell = "${pkgs.fish.outPath}/bin/fish";
             font = "Hasklug Nerd Font Mono:size=13";
+            initial-window-size-pixels="1440x800";
         };
         colors = {
             foreground = "f8f8f2";
-            initial-window-size-pixels="1440x800";
             background=000000;
             alpha=0.8;
 
@@ -122,6 +123,7 @@
 
   home.packages = [
     pkgs.macchina
+    pkgs.nixpkgs-fmt
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -157,7 +159,13 @@
     EDITOR = "nvim";
     SHELL = "${pkgs.fish.outPath}/bin/fish";
   };
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
+    "${config.home.homeDirectory}/.nix-profile/bin"
+  ];
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+  };
 }
