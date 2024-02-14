@@ -1,5 +1,5 @@
 monitors:
-  DP-3:
+  HDMI-A-2:
     position: bottom
     start:
       - type: launcher
@@ -29,7 +29,7 @@ monitors:
         player_type: mpris
       - type: clock
 
-  DP-2:
+  DP-1:
     position: bottom
     icon_theme: Paper-Mono-Dark
     end:

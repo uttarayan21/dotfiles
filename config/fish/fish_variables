@@ -3,8 +3,9 @@
 SETUVAR AFTERSHOOT_LOG:desktop_rust_backend\x3dtrace
 SETUVAR BW_SESSION:lW6\x2bALLBSowAJgVMgqI6sSMqku9z/192K\x2bDNX0jF2WlzRGhBtKGlUAqXJgbWKTw/cDKU2MRO5Z/6aQPi6fkA6Q\x3d\x3d
 SETUVAR __fish_initialized:3400
+SETUVAR _fisher_edc_2F_bass_files:/home/fs0c131y/\x2econfig/fish/functions/__bass\x2epy\x1e/home/fs0c131y/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:/Users/fs0c131y/\x2econfig/fish/functions/fisher\x2efish\x1e/Users/fs0c131y/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1eedc/bass
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7
