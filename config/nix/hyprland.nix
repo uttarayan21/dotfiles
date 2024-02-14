@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     settings = {
       monitor = [
         ",preferred,auto,auto"
@@ -37,8 +37,6 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 10;
-
-
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
@@ -150,7 +148,6 @@
         # "$mainModShift,Print, exec, grim -g "$(slurp)""
         "$mainModShift,s, exec, watershot"
 
-
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
@@ -191,12 +188,9 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
 
-
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
-
-
 
         "$mainMod, Tab, cyclenext, bind = ALT, Tab, bringactivetotop,"
       ];
@@ -220,8 +214,6 @@
         "9,  monitor:HDMI-A-2"
         "10, monitor:HDMI-A-2"
       ];
-
     };
   };
 }
-

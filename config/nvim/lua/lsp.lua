@@ -41,7 +41,7 @@ require("mason-lspconfig").setup_handlers {
             settings = {
                 ['nil'] = {
                     formatting = {
-                        command = { "nixpkgs-fmt" },
+                        command = { "alejandra" },
                     }
                 }
             }

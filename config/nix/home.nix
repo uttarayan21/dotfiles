@@ -1,13 +1,10 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 # https://mipmip.github.io/home-manager-option-search/
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "fs0c131y";
-  home.homeDirectory = "/home/fs0c131y";
-
-  home.stateVersion = "23.11"; # Please read the comment before changing.
-
   imports = [
     # Include the results of the hardware scan.
     ./tmux.nix
@@ -31,6 +28,7 @@
         ${pkgs.macchina.outPath}/bin/macchina
       '';
     };
+
     nushell = {
       enable = true;
       shellAliases = {
@@ -65,10 +63,10 @@
       enableNushellIntegration = true;
     };
     fzf = {
-        enable = true;
-        package = pkgs.fzf;
-        enableFishIntegration = true;
-        tmux.enableShellIntegration = true;
+      enable = true;
+      package = pkgs.fzf;
+      enableFishIntegration = true;
+      tmux.enableShellIntegration = true;
     };
     keychain = {
       enable = true;
@@ -77,97 +75,104 @@
       enableNushellIntegration = true;
     };
     yazi = {
-        enable = true;
-        enableFishIntegration = true;
-        enableNushellIntegration = true;
+      enable = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
     foot = {
-      enable = true;
+      enable = pkgs.stdenv.isLinux;
       server.enable = true;
       settings = {
         main = {
-            shell = "${pkgs.fish.outPath}/bin/fish";
-            font = "Hasklug Nerd Font Mono:size=13";
-            initial-window-size-pixels="1440x800";
+          shell = "${pkgs.fish.outPath}/bin/fish";
+          font = "Hasklug Nerd Font Mono:size=13";
+          initial-window-size-pixels = "1440x800";
         };
         colors = {
-            foreground = "f8f8f2";
-            background=000000;
-            alpha=0.8;
+          foreground = "f8f8f2";
+          background = 000000;
+          alpha = 0.8;
 
-            "136" = "af8700";
+          "136" = "af8700";
 
-            regular0 ="21222c";
-            regular1 ="ff5555";
-            regular2 ="50fa7b";
-            regular3 ="f1fa8c";
-            regular4 ="bd93f9";
-            regular5 ="ff79c6";
-            regular6 ="8be9fd";
-            regular7 ="f8f8f2";
+          regular0 = "21222c";
+          regular1 = "ff5555";
+          regular2 = "50fa7b";
+          regular3 = "f1fa8c";
+          regular4 = "bd93f9";
+          regular5 = "ff79c6";
+          regular6 = "8be9fd";
+          regular7 = "f8f8f2";
 
-            bright0 ="6272a4";
-            bright1 ="ff6e6e";
-            bright2 ="69ff94";
-            bright3 ="ffffa5";
-            bright4 ="d6acff";
-            bright5 ="ff92df";
-            bright6 ="a4ffff";
-            bright7 ="ffffff";
-
+          bright0 = "6272a4";
+          bright1 = "ff6e6e";
+          bright2 = "69ff94";
+          bright3 = "ffffa5";
+          bright4 = "d6acff";
+          bright5 = "ff92df";
+          bright6 = "a4ffff";
+          bright7 = "ffffff";
         };
       };
     };
 
+    # Let Home Manager install and manage itself.
+    home-manager = {
+      enable = true;
+    };
   };
 
-  home.packages = [
-    pkgs.macchina
-    pkgs.nixpkgs-fmt
-    pkgs.neovim-nightly
-    pkgs.cachix
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
+  home = {
+    # Home Manager needs a bit of information about you and the paths it should
+    # manage.
+    username = "fs0c131y";
+    homeDirectory = "/home/fs0c131y";
 
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    stateVersion = "23.11";
 
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+    packages = [
+      pkgs.macchina
+      pkgs.alejandra
+      pkgs.neovim-nightly
+      pkgs.cachix
+      # # Adds the 'hello' command to your environment. It prints a friendly
+      # # "Hello, world!" when run.
+      # pkgs.hello
 
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    SHELL = "${pkgs.fish.outPath}/bin/fish";
-  };
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.local/bin"
-    "${config.home.homeDirectory}/.nix-profile/bin"
-  ];
+    file = {
+      # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+      # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+      # # symlink to the Nix store copy.
+      # ".screenrc".source = dotfiles/screenrc;
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager = {
-    enable = true;
+      # # You can also set the file content immediately.
+      # ".gradle/gradle.properties".text = ''
+      #   org.gradle.console=verbose
+      #   org.gradle.daemon.idletimeout=3600000
+      # '';
+    };
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      SHELL = "${pkgs.fish.outPath}/bin/fish";
+    };
+    sessionPath = [
+      "${config.home.homeDirectory}/.local/bin"
+      "${config.home.homeDirectory}/.nix-profile/bin"
+    ];
   };
 }
