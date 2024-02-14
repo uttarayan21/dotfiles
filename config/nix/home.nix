@@ -61,7 +61,12 @@
         "cd" = "z";
       };
     };
-
+    fzf = {
+        enable = true;
+        package = pkgs.fzf;
+        enableFishIntegration = true;
+        enableShellIntegration = true;
+    };
     keychain = {
       enable = true;
       keys = ["id_ed25519" "hetzner_rsa"];
