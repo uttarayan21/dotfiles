@@ -13,71 +13,121 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     darwin,
+    flake-utils,
     ...
   } @ inputs: let
     devices = [
       {
-        device = "mirai";
+        name = "mirai";
         system = "x86_64-linux";
+        user = "fs0c131y";
       }
       {
-        device = "genzai";
+        name = "genzai";
         system = "x86_64-linux";
+        user = "fs0c131y";
       }
       {
-        device = "Uttarayans-MacBook-Pro";
+        name = "Uttarayans-MacBook-Pro";
         system = "aarch64-darwin";
+        user = "fs0c131y";
       }
       {
-        device = "deck";
+        name = "SteamDeck";
         system = "x86_64-linux";
+        user = "deck";
       }
     ];
+    linux = builtins.filter (x: x.system == "x86_64-linux") devices;
+    darwin = builtins.filter (x: x.system == "aarch64-darwin") devices;
   in {
-    homeConfigurations = let
-      system = "x86_64-linux";
-      overlays = [inputs.neovim-nightly-overlay.overlay];
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      "fs0c131y" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+    homeConfigurations = builtins.listToAttrs (builtins.map (device: {
+        name = device.user;
+        value = let
+          pkgs = nixpkgs.legacyPackages.${device.system};
+          overlays = [inputs.neovim-nightly-overlay.overlay];
+        in
+          home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            modules = [
+              ./home.nix
+              {
+                nixpkgs.overlays = overlays;
+              }
+            ];
+          };
+      })
+      linux);
 
-        modules = [
-          ./home.nix
-          {
-            nixpkgs.overlays = overlays;
-          }
-        ];
-      };
-    };
-
-    # darwinConfigurations = let
-    #   system = "aarch64-darwin";
-    #   pkgs = nixpkgs.legacyPackages.${system};
-    # in {
-    #   "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
-    #     modules = [
-    #       home-manager.darwinModules.home-manager
-    #       ./darwin.nix
-    #       ({config, ...}: {
-    #         home-manager = {
-    #           users = {
-    #             fs0c131y = {
-    #               home = "/Users/fs0c131y";
-    #               stateVersion = "21.05";
-    #               configuration = home-manager.configurations.fs0c131y;
-    #             };
-    #           };
-    #         };
-    #       })
-    #     ];
-    #   };
-    # };
+    darwinConfigurations = builtins.listToAttrs (builtins.map (device: {
+        name = device.name;
+        value = let
+          pkgs = nixpkgs.legacyPackages.${device.system};
+        in {
+          "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
+            modules = [
+              home-manager.darwinModules.home-manager
+              ./darwin.nix
+              ({config, ...}: {
+                home-manager = {
+                  users = {
+                    fs0c131y = {
+                      home = "/Users/${device.user}";
+                      stateVersion = "21.05";
+                      configuration = home-manager.configurations.fs0c131y;
+                    };
+                  };
+                };
+              })
+            ];
+          };
+        };
+      })
+      darwin);
   };
 }
+# "fs0c131y" = let
+#   system = "x86_64-linux";
+#   overlays = [inputs.neovim-nightly-overlay.overlay];
+#   pkgs = nixpkgs.legacyPackages.${system};
+# in
+#   home-manager.lib.homeManagerConfiguration
+#   {
+#     inherit pkgs;
+#     modules = [
+#       ./home.nix
+#       {
+#         nixpkgs.overlays = overlays;
+#       }
+#     ];
+#   };
+# darwinConfigurations = let
+#   system = "aarch64-darwin";
+#   pkgs = nixpkgs.legacyPackages.${system};
+# in {
+#   "Uttarayans-MacBook-Pro" = darwin.lib.darwinSystem {
+#     modules = [
+#       home-manager.darwinModules.home-manager
+#       ./darwin.nix
+#       ({config, ...}: {
+#         home-manager = {
+#           users = {
+#             fs0c131y = {
+#               home = "/Users/fs0c131y";
+#               stateVersion = "21.05";
+#               configuration = home-manager.configurations.fs0c131y;
+#             };
+#           };
+#         };
+#       })
+#     ];
+#   };
+# };
+
