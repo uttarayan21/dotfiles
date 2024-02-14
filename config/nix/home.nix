@@ -124,6 +124,8 @@
   home.packages = [
     pkgs.macchina
     pkgs.nixpkgs-fmt
+    pkgs.neovim-nightly
+    pkgs.cachix
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
