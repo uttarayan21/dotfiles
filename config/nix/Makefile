@@ -1,5 +1,6 @@
-.PHONY: darwin build default 
-default: build
+.PHONY: darwin home default 
+
+default: home
 
 darwin:
 	nix run nix-darwin 			-- switch --flake ~/.local/share/dotfiles/config/nix

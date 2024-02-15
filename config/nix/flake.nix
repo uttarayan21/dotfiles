@@ -57,6 +57,9 @@
         in
           home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
+            extraSpecialArgs = {
+              inherit device;
+            };
             modules = [
               ./common/home.nix
               {
