@@ -1,10 +1,38 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
+  imports = [
+    ./yabai.nix
+    ./skhd.nix
+  ];
+
+  environment.systemPackages = with pkgs; [
+    nix
+    neovim
+  ];
   nix = {
     settings = {
       experimental-features = "nix-command flakes repl-flake";
       max-jobs = 8;
+      trusted-users = ["root" "fs0c131y"];
     };
+    extraOptions = ''
+      build-users-group = nixbld
+      extra-nix-path = nixpkgs=flake:nixpkgs
+    '';
+    package = pkgs.nix;
   };
+
+  programs.bash.enable = true;
+  programs.zsh.enable = true;
+  programs.fish.enable = true;
+
+  nixpkgs.hostPlatform = device.system;
+  services.nix-daemon.enable = true;
+  system.stateVersion = 4;
+
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
   system.keyboard.swapLeftCommandAndLeftAlt = true;

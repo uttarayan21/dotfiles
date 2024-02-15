@@ -1,11 +1,9 @@
-.PHONY: run build genzai
+.PHONY: darwin build default 
 default: build
 
+darwin:
+	nix run nix-darwin 			-- switch --flake ~/.local/share/dotfiles/config/nix
 
-switch:
+home:
 	nix run home-manager/master -- switch --flake ~/.local/share/dotfiles/config/nix
-build:
-	nix run home-manager/master -- build --flake ~/.local/share/dotfiles/config/nix
 
-genzai:
-	nix build .#homeConfigurations.genzai

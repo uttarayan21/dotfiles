@@ -1,26 +1,28 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   tmux-super-fingers =
     pkgs.tmuxPlugins.mkTmuxPlugin
-    {
-      pluginName = "tmux-super-fingers";
-      version = "v1-2024-02-14";
-      src = pkgs.fetchFromGitHub {
-        owner = "artemave";
-        repo = "tmux_super_fingers";
-        rev = "518044ef78efa1cf3c64f2e693fef569ae570ddd";
-        sha256 = "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=";
+      {
+        pluginName = "tmux-super-fingers";
+        version = "v1-2024-02-14";
+        src = pkgs.fetchFromGitHub {
+          owner = "artemave";
+          repo = "tmux_super_fingers";
+          rev = "518044ef78efa1cf3c64f2e693fef569ae570ddd";
+          sha256 = "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=";
+        };
       };
-    };
   scratchpad = pkgs.writeShellScript "scratchpad" ''
-        width=''\${2:-95%}
-        height=''\${2:-95%}
-        if [ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ];then
-            tmux detach-client
-        else
-            tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
-        fi
-    '';
-in {
+    width=''\${2:-95%}
+    height=''\${2:-95%}
+    if [ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ];then
+        tmux detach-client
+    else
+        tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
+    fi
+  '';
+in
+{
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -38,15 +40,12 @@ in {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_window_tabs_enabled on
-          set -g @catppuccin_status_modules_right ""
-          set -g @catppuccin_status_modules_right "battery application session date_time"
         '';
       }
       {
         plugin = tmuxPlugins.battery;
         extraConfig = ''
-          set -g @catppuccin_status_modules_right "application session user host date_time"
+          set -g @catppuccin_status_modules_right "battery application session date_time"
         '';
       }
     ];
