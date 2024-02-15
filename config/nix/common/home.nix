@@ -7,7 +7,7 @@
 
 }:
 let
-  start-tmux = (import ./scripts/start-tmux.nix) pkgs;
+  start-tmux = (import ../scripts/start-tmux.nix) pkgs;
 in
 # https://mipmip.github.io/home-manager-option-search/
 {
@@ -20,7 +20,7 @@ in
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-    ./hyprland.nix
+    ../linux/hyprland.nix
   ];
 
   programs = {
@@ -149,6 +149,7 @@ in
 
     packages = [
       pkgs.macchina
+      pkgs.ripgrep
       pkgs.alejandra
       # pkgs.neovim-nightly
       pkgs.cachix
@@ -171,8 +172,8 @@ in
     ];
 
     file = {
-      ".config/tmux/sessions".source = ../tmux/sessions;
-      ".config/nvim".source = ../nvim;
+      ".config/tmux/sessions".source = ../../tmux/sessions;
+      ".config/nvim".source = ../../nvim;
 
       # # You can also set the file content immediately.
       # ".gradle/gradle.properties".text = ''

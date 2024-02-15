@@ -83,7 +83,7 @@
                 nix-darwin.lib.darwinSystem {
                   inherit pkgs;
                   modules = [
-                    ./darwin.nix
+                    ./darwin
                     home-manager.darwinModules.home-manager
                     {
                       home-manager = {
@@ -93,7 +93,7 @@
                           inherit device;
                           inherit overlays;
                         };
-                        users.${device.user}.imports = [ ./home.nix ];
+                        users.${device.user}.imports = [ ./common/home.nix ];
                       };
                     }
                   ];
