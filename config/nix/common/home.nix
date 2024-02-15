@@ -79,12 +79,12 @@ in
         enableFishIntegration = true;
         tmux.enableShellIntegration = true;
       };
-      keychain = {
-        enable = true;
-        # keys = [ "id_ed25519" ];
-        enableFishIntegration = true;
-        enableNushellIntegration = true;
-      };
+      # keychain = {
+      #   enable = pkgs.isLinux;
+      #   keys = [ "id_ed25519" ];
+      #   enableFishIntegration = true;
+      #   enableNushellIntegration = true;
+      # };
       yazi = {
         enable = true;
         enableFishIntegration = true;
