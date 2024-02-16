@@ -40,6 +40,7 @@ in
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
+          set -g @catppuccin_window_default_text ""
         '';
       }
       {

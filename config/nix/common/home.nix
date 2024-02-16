@@ -22,6 +22,10 @@ in
       ../linux/hyprland.nix
     ];
 
+    xdg = {
+      enable = true;
+    };
+
     programs = {
       fish = {
         enable = true;
@@ -34,6 +38,9 @@ in
           ls = "exa";
           t = "${start-tmux}";
         };
+        shellInit = ''
+          fnm env | source
+        '';
         interactiveShellInit = ''
           set fish_greeting
           ${pkgs.macchina.outPath}/bin/macchina
@@ -138,9 +145,9 @@ in
       # manage.
       username = device.user;
       homeDirectory =
-        if device.system == "x86-64-linux"
-        then lib.mkForce "/home/${device.user}"
-        else lib.mkForce "/Users/${device.user}";
+        if !isNull (builtins.match ".*-darwin" device.system)
+        then lib.mkForce "/Users/${device.user}"
+        else lib.mkForce "/home/${device.user}";
 
       stateVersion = "23.11";
 
@@ -148,9 +155,17 @@ in
         macchina
         ripgrep
         fd
+        fnm
         alejandra
-        neovim-nightly
+        dust
+        eza
         cachix
+        rustup
+        cmake
+        # neovim-nightly
+        (nerdfonts.override {fonts = ["Hasklig"];})
+        mpv
+
         # # Adds the 'hello' command to your environment. It prints a friendly
         # # "Hello, world!" when run.
         # pkgs.hello
@@ -182,7 +197,8 @@ in
 
       sessionVariables = {
         EDITOR = "nvim";
-        SHELL = "${pkgs.fish.outPath}/bin/fish";
+        SHELL = "${pkgs.nushellFull}/bin/nu";
+        CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
       };
       sessionPath = [
         "${config.home.homeDirectory}/.local/bin"
