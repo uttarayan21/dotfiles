@@ -18,6 +18,10 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun-hyprwin = {
+      url = "github:uttarayan21/anyrun-hyprwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -79,11 +83,11 @@
 
     anyrun-overlay = final: prev: {
       anyrun = inputs.anyrun.packages.${prev.system}.anyrun;
+      hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
     };
     overlays = [
       inputs.neovim-nightly-overlay.overlay
       anyrun-overlay
-      # inputs.anyrun.overlays
     ];
   in {
     nixosConfigurations =

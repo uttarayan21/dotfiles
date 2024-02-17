@@ -20,6 +20,9 @@ in
     ];
 
     home.packages = with pkgs; [
+      htop-vim
+      lsof
+      wl-clipboard
       qmk
       nodejs
       nix-index
@@ -174,6 +177,7 @@ in
         enable = true;
         config = {
           plugins = with inputs.anyrun.packages.${pkgs.system}; [
+            inputs.anyrun-hyprwin.packages.${pkgs.system}.hyprwin
             rink
             applications
             websearch
