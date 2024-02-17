@@ -1,21 +1,22 @@
 {
+  nixpkgs,
   devices,
   inputs,
   overlays,
   home-manager,
-  nix-darwin,
   ...
 }:
 builtins.listToAttrs
 (builtins.map
   (device: {
     name = device.name;
-    value = nix-darwin.lib.darwinSystem {
+    value = nixpkgs.lib.nixosSystem {
       system = device.system;
+      specialArgs = {inherit device;};
       modules = [
         {nixpkgs.overlays = overlays;}
         ./configuration.nix
-        home-manager.darwinModules.home-manager
+        home-manager.nixosModules.home-manager
         {
           nixpkgs.config.allowUnfree = true;
           home-manager = {

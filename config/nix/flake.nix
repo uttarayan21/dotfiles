@@ -63,7 +63,7 @@
       }
     ];
 
-    mkDevice = {device, ...}: {
+    mkDevice = {device}: {
       isLinux = !isNull (builtins.match ".*-linux" device.system);
       isNix =
         if (builtins.hasAttr "isNix" device)
@@ -90,83 +90,19 @@
       anyrun-overlay
     ];
   in {
-    nixosConfigurations =
-      builtins.listToAttrs
-      (builtins.map
-        (device: {
-          name = device.name;
-          value = nixpkgs.lib.nixosSystem {
-            system = device.system;
-            # system.packages = [anyrun.packages.${device.system}.anyrun];
-            specialArgs = {inherit device;};
-            modules = [
-              {nixpkgs.overlays = overlays;}
-              ./nixos/configuration.nix
-              home-manager.nixosModules.home-manager
-              {
-                nixpkgs.config.allowUnfree = true;
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  extraSpecialArgs = {
-                    inherit inputs;
-                    inherit device;
-                  };
-                  users.${device.user}.imports = [./common/home.nix];
-                };
-              }
-            ];
-          };
-        })
-        nixos_devices);
+    nixosConfigurations = let
+      devices = nixos_devices;
+    in
+      import ./nixos {inherit devices inputs nixpkgs home-manager overlays;};
 
-    homeConfigurations = builtins.listToAttrs (builtins.map
-      (device: {
-        name = device.user;
-        value = let
-          pkgs = nixpkgs.legacyPackages.${device.system};
-        in
-          home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit inputs;
-              inherit device;
-            };
-            modules = [
-              {nixpkgs.overlays = overlays;}
-              ./common/home.nix
-            ];
-          };
-      })
-      linux_devices);
+    darwinConfigurations = let
+      devices = darwin_devices;
+    in
+      import ./darwin {inherit devices inputs nixpkgs home-manager overlays nix-darwin;};
 
-    darwinConfigurations =
-      builtins.listToAttrs
-      (builtins.map
-        (device: {
-          name = device.name;
-          value = let
-            pkgs = nixpkgs.legacyPackages.${device.system};
-          in
-            nix-darwin.lib.darwinSystem {
-              inherit pkgs;
-              modules = [
-                {nixpkgs.overlays = overlays;}
-                ./darwin
-                home-manager.darwinModules.home-manager
-                {
-                  home-manager = {
-                    useGlobalPkgs = true;
-                    useUserPackages = true;
-                    extraSpecialArgs = {
-                      inherit device;
-                    };
-                    users.${device.user}.imports = [./common/home.nix];
-                  };
-                }
-              ];
-            };
-        })
-        darwin_devices);
+    homeConfigurations = let
+      devices = linux_devices;
+    in
+      import ./linux {inherit devices inputs nixpkgs home-manager overlays;};
   };
 }
