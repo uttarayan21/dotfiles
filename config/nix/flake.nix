@@ -125,14 +125,12 @@
           home-manager.lib.homeManagerConfiguration {
             inherit pkgs;
             extraSpecialArgs = {
+              inherit inputs;
               inherit device;
             };
             modules = [
               {nixpkgs.overlays = overlays;}
               ./common/home.nix
-              {
-                nixpkgs.overlays = overlays;
-              }
             ];
           };
       })
