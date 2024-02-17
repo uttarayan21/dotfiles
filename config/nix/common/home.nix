@@ -267,6 +267,7 @@ in
         ".config/tmux/sessions".source = ../../tmux/sessions;
         ".config/nvim/lua".source = ../../nvim/lua;
         ".config/nvim/init.lua".source = ../../nvim/init.lua;
+        ".config/macchina".source = ../../macchina;
 
         # # You can also set the file content immediately.
         # ".gradle/gradle.properties".text = ''
