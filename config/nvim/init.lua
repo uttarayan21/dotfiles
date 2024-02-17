@@ -91,13 +91,14 @@ vim.o.completeopt = 'menu,menuone,noselect'
 -- }
 -- vim.g.rooter_manual_only = 1
 
-local fnm_dir = os.getenv("FNM_DIR") or "/Users/fs0c131y/Library/Application Support/fnm"
+-- local fnm_dir = os.getenv("FNM_DIR") or "/Users/fs0c131y/Library/Application Support/fnm"
 
-if vim.fn.has('win32') == 1 then
-    vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/node.exe"
-else
-    vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/bin/node"
-end
+-- if vim.fn.has('win32') == 1 then
+    -- vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/node.exe"
+-- else
+--     vim.g.copilot_node_command = fnm_dir .. "/node-versions/v17.9.1/installation/bin/node"
+-- end
+vim.g.copilot_node_command = "node"
 
 vim.g.copilot_no_tab_map = true
 

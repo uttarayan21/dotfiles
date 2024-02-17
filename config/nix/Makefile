@@ -1,10 +1,13 @@
-.PHONY: darwin home default 
+.PHONY: darwin home default nixos
 
-default: home
+default: nixos
 
 darwin:
-	nix run nix-darwin 			-- switch --flake ~/.local/share/dotfiles/config/nix
+	# nix run nix-darwin 			-- switch --flake ~/.local/share/dotfiles/config/nix
+	nix run nix-darwin -- switch --flake .
 
 home:
-	nix run home-manager/master -- switch --flake ~/.local/share/dotfiles/config/nix
+	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .
 
+nixos:
+	nixos-rebuild switch --flake .
