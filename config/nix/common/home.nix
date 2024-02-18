@@ -16,11 +16,11 @@ in {
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Normal-Dark";
+      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
       package = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
         size = "standard";
         accents = [ "mauve" ];
-        variant = "mocha";
         tweaks = [ "normal" ];
       };
     };
@@ -39,9 +39,11 @@ in {
   };
 
   home.packages = with pkgs; [
+    handlr-regex
     gnome.nautilus
     webcord-vencord
     spotify
+    spotify-player
     htop-vim
     lsof
     wl-clipboard
@@ -61,9 +63,17 @@ in {
     fzf
     clang
     ncpamixer
-    neovim-nightly
+    # neovim-nightly
+    neovim
     yubikey-agent
     (nerdfonts.override { fonts = [ "Hasklig" ]; })
+    (pkgs.writeShellApplication {
+      name = "xdg-open";
+      runtimeInputs = [ handlr-regex ];
+      text = ''
+        handlr open "$@"
+      '';
+    })
     mpv
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

@@ -3,6 +3,8 @@ local lspstatus = require 'lsp-status'
 
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local capabilities = cmp_nvim_lsp.default_capabilities()
+
+if not vim.fn.filereadable('/etc/nix/nix.conf') then (
 require("mason-lspconfig").setup_handlers {
     function(server_name) -- default handler (optional)
         lspconfig[server_name].setup {
@@ -48,3 +50,5 @@ require("mason-lspconfig").setup_handlers {
         };
     end
 }
+)
+end

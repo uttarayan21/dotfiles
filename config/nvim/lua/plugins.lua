@@ -164,9 +164,15 @@ return require('lazy').setup({
         "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "rust_analyzer", "pylsp" },
                 automatic_installation = true,
             })
+            -- if not vim.fn.filereadable("/etc/nix/nix.conf") then (
+            --     require("mason-lspconfig").setup({
+            --         ensure_installed = { "lua_ls" },
+            --         automatic_installation = true,
+            --     })
+            -- )
+            -- end
         end,
         lazy = false,
     },

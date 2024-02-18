@@ -13,7 +13,12 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay = {
+      url =
+        "github:nix-community/neovim-nightly-overlay/1afaeebc41dab1029b855b17d78f2348e8dd49e3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     anyrun = {
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +27,17 @@
       url = "github:uttarayan21/anyrun-hyprwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun-nixos-options = {
+      url = "github:n3oney/anyrun-nixos-options";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    anyrun-rink = {
+      # url = "github:uttarayan21/anyrun-rink";
+      url = "git+file:///home/servius/Projects/anyrun-rink";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ironbar = {
       url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -82,8 +98,12 @@
       anyrun-overlay = final: prev: {
         anyrun = inputs.anyrun.packages.${prev.system}.anyrun;
         hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
+        nixos-options =
+          inputs.anyrun-nixos-options.packages.${prev.system}.default;
+        anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;
       };
       overlays = [ inputs.neovim-nightly-overlay.overlay anyrun-overlay ];
+      # overlays = [ anyrun-overlay ];
     in {
       nixosConfigurations = let devices = nixos_devices;
       in import ./nixos {

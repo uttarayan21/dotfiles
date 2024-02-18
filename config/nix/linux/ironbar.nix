@@ -30,7 +30,7 @@
       };
       DP-1 = {
         position = "bottom";
-        icon_theme = "Paper-Mono-Dark";
+        icon_theme = "Papirus-Dark";
         end = [
           {
             type = "sys_info";
