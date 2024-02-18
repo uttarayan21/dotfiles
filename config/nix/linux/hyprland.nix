@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = pkgs.stdenv.isLinux;
     settings = {
@@ -68,7 +68,8 @@
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        pseudotile =
+          true; # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # you probably want this
       };
 
@@ -84,9 +85,7 @@
 
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-      "device:epic-mouse-v1" = {
-        sensitivity = -0.5;
-      };
+      "device:epic-mouse-v1" = { sensitivity = -0.5; };
 
       # Example windowrule v1
       # windowrule = float, ^(kitty)$
@@ -94,10 +93,7 @@
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
-      windowrule = [
-        "float, title:^(Steam)$"
-        "float, title:^(Archetype.*)$"
-      ];
+      windowrule = [ "float, title:^(Steam)$" "float, title:^(Archetype.*)$" ];
 
       "misc:vfr" = true;
 

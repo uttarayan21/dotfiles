@@ -10,4 +10,4 @@ home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .
 
 nixos:
-	nixos-rebuild switch --flake .
+	sudo nixos-rebuild switch --flake .

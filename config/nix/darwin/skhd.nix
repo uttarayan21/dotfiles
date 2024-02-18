@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   services = {
     skhd = {
       enable = true;

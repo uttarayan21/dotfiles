@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -12,10 +12,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "ryu"; # Define your hostname.
-  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui];
+  services.udev.packages =
+    [ pkgs.yubikey-personalization pkgs.yubikey-personalization-gui ];
   services.yubikey-agent.enable = true;
 
   # Configure network proxy if necessary
@@ -28,9 +29,7 @@
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
 
-  i18n.supportedLocales = [
-    "en_US.UTF-8/UTF-8"
-  ];
+  i18n.supportedLocales = [ "en_US.UTF-8/UTF-8" ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -57,7 +56,7 @@
   users.users.servius = {
     isNormalUser = true;
     description = "Uttarayan";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   # Allow unfree packages
@@ -76,10 +75,11 @@
     git
     fish
     nushellFull
-    (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {})
+    (pkgs.wrapFirefox
+      (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
     gnumake
     python3
-    (nerdfonts.override {fonts = ["FiraCode" "Hasklig"];})
+    (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" ]; })
   ];
 
   programs = {
@@ -123,4 +123,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
   nix.settings.extra-experimental-features = "nix-command flakes";
+  nix.settings.trusted-users = [ "root" "servius" ];
 }

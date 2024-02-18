@@ -1,21 +1,12 @@
-{
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./yabai.nix
-    ./skhd.nix
-  ];
+{ pkgs, ... }: {
+  imports = [ ./yabai.nix ./skhd.nix ];
 
-  environment.systemPackages = with pkgs; [
-    nix
-    neovim
-  ];
+  environment.systemPackages = with pkgs; [ nix neovim ];
   nix = {
     settings = {
       experimental-features = "nix-command flakes repl-flake";
       max-jobs = 8;
-      trusted-users = ["root" "fs0c131y"];
+      trusted-users = [ "root" "fs0c131y" ];
     };
     extraOptions = ''
       build-users-group = nixbld
