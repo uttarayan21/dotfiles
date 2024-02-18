@@ -20,7 +20,7 @@
     };
 
     anyrun = {
-      url = "github:Kirottu/anyrun";
+      url = "github:uttarayan21/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun-hyprwin = {
@@ -33,8 +33,7 @@
     };
 
     anyrun-rink = {
-      # url = "github:uttarayan21/anyrun-rink";
-      url = "git+file:///home/servius/Projects/anyrun-rink";
+      url = "github:uttarayan21/anyrun-rink";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -31,7 +31,6 @@ return require('lazy').setup({
         'mhartington/formatter.nvim'
 
     },
-    -- 'christianrondeau/vim-base64',
 
     { 'tpope/vim-commentary',          lazy = false },
     {
@@ -45,10 +44,7 @@ return require('lazy').setup({
     { 'tpope/vim-vinegar',             lazy = false },
     { 'tpope/vim-abolish',             lazy = false },
     { 'yuttie/comfortable-motion.vim', event = "BufEnter" },
-    -- 'ruanyl/vim-gh-line',
     { 'rest-nvim/rest.nvim',           event = "BufEnter" },
-    -- 'b0o/SchemaStore.nvim',
-    -- 'rcarriga/nvim-notify',
     { 'echasnovski/mini.nvim',         version = '*' },
     {
         'folke/todo-comments.nvim',
@@ -62,35 +58,12 @@ return require('lazy').setup({
     -- },
     -- 'ggandor/leap.nvim',
     {
-        'shortcuts/no-neck-pain.nvim',
-        cmd = { "NoNeckPain", "NoNeckPainResize", "NoNeckPainScratchPad", "NoNeckPainWidthUp", "NoNeckPainWidthDown" },
-        version = "*"
-    },
-    -- { 'folke/zen-mode.nvim',         config = function() require('zen-mode').setup() end },
-    -- { 'folke/twilight.nvim',         config = function() require('twilight').setup() end },
-    {
-        'pwntester/octo.nvim',
-        cmd = "Octo",
-        config = function()
-            require(
-                'octo').setup()
-        end
-    },
-    {
         'sainnhe/sonokai',
         lazy = false,
         config = function()
             require('colorscheme')
         end
     },
-    -- {
-    --     "catppuccin/nvim",
-    --     name = "catppuccin",
-    --     lazy = false,
-    --     config = function()
-    --         require('colorscheme')
-    --     end
-    -- },
     {
         {
             "nvim-neorg/neorg",
@@ -128,54 +101,43 @@ return require('lazy').setup({
             'nvim-telescope/telescope-fzf-native.nvim' }
     },
     -- {
-    --     'utilyre/barbecue.nvim',
-    --     event = "LspAttach",
+    --     'akinsho/git-conflict.nvim',
     --     version = "*",
-    --     config = function() require('barbecue').setup() end,
-    --     dependencies = {
-    --         'neovim/nvim-lspconfig',
-    --         'SmiteshP/nvim-navic',
-    --         'nvim-tree/nvim-web-devicons'
-    --     },
+    --     config = function()
+    --         require('git-conflict').setup()
+    --     end
     -- },
-    {
-        'akinsho/git-conflict.nvim',
-        version = "*",
-        config = function()
-            require('git-conflict').setup()
-        end
-    },
-    {
-        'williamboman/mason.nvim',
-        cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
-        config = function()
-            require("mason").setup({
-                ui = {
-                    icons = {
-                        package_installed = "✓",
-                        package_pending = "➜",
-                        package_uninstalled = "✗"
-                    }
-                }
-            })
-        end,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                automatic_installation = true,
-            })
-            -- if not vim.fn.filereadable("/etc/nix/nix.conf") then (
-            --     require("mason-lspconfig").setup({
-            --         ensure_installed = { "lua_ls" },
-            --         automatic_installation = true,
-            --     })
-            -- )
-            -- end
-        end,
-        lazy = false,
-    },
+    -- {
+    --     'williamboman/mason.nvim',
+    --     cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
+    --     config = function()
+    --         require("mason").setup({
+    --             ui = {
+    --                 icons = {
+    --                     package_installed = "✓",
+    --                     package_pending = "➜",
+    --                     package_uninstalled = "✗"
+    --                 }
+    --             }
+    --         })
+    --     end,
+    -- },
+    -- {
+    --     "williamboman/mason-lspconfig.nvim",
+    --     config = function()
+    --         require("mason-lspconfig").setup({
+    --             automatic_installation = true,
+    --         })
+    --         -- if not vim.fn.filereadable("/etc/nix/nix.conf") then (
+    --         --     require("mason-lspconfig").setup({
+    --         --         ensure_installed = { "lua_ls" },
+    --         --         automatic_installation = true,
+    --         --     })
+    --         -- )
+    --         -- end
+    --     end,
+    --     lazy = false,
+    -- },
     {
         'NTBBloodbath/galaxyline.nvim',
         branch = 'main',
@@ -229,8 +191,6 @@ return require('lazy').setup({
         end,
         ft = "nu"
     },
-    -- lsp
-    -- use { 'onsails/lspkind-nvim', config = function() require'lspkind'.init() end, }
     {
         'folke/trouble.nvim',
         cmd = {
@@ -348,117 +308,10 @@ return require('lazy').setup({
         'nvim-lua/lsp-status.nvim',
         event = "LspAttach"
     },
-    -- {
-    --     'ray-x/lsp_signature.nvim',
-    --     -- event = "LspAttach",
-    --     config = function()
-    --         require("lsp_signature").setup({
-    --             floating_window_above_cur_line = true,
-    --         })
-    --     end,
-    -- },
     {
         'terrastruct/d2-vim',
         ft = "d2",
     },
-    {
-        'andweeb/presence.nvim',
-        config = function()
-            require "presence".setup({
-                auto_update = true,
-                main_image = "file",
-            })
-        end
-    },
-    -- {
-    --     'ms-jpq/coq_nvim',
-    --     ft = { "rust", "toml", "lua" },
-    --     dependencies = { 'ms-jpq/coq.artifacts', 'ms-jpq/coq.thirdparty' },
-    --     build = ':COQdeps',
-    --     config = function()
-    --         vim.g.coq_settings.keymap = { jump_to_mark = "<c-j>" }
-    --     end
-    -- },
-    -- { 'ms-jpq/chadtree',   build = ':CHADdeps' },
-    -- {
-    --     'ms-jpq/coq.thirdparty',
-    --     config = function()
-    --         require("coq_3p")({
-    --             {
-    --                 src = "repl",
-    --                 sh = "sh",
-    --                 shell = { p = "perl", n = "node" },
-    --                 max_lines = 99,
-    --                 deadline = 500,
-    --                 unsafe = { "rm", "poweroff", "mv" }
-    --             },
-    --             { src = "bc",      short_name = "MATH", precision = 6 },
-    --             { src = "copilot", short_name = "COP",  accept_key = "<C-l>" },
-    --             { src = "dap" }
-    --         })
-    --     end
-    -- },
-    -- use 'airblade/vim-rooter'
-    -- use({
-    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --     config = function()
-    --         require("lsp_lines").setup()
-    --     end,
-    -- })
-
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        config = function()
-            require("indent_blankline").setup {
-                show_end_of_line = true,
-            }
-        end
-    },
-    {
-        'sindrets/diffview.nvim',
-        cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewRefresh" },
-        dependencies = 'nvim-lua/plenary.nvim'
-    },
-    {
-        'akinsho/toggleterm.nvim',
-        cmd = "ToggleTerm",
-        config = function() require 'setup.toggleterm' end,
-    },
-    -- {
-    --     'glepnir/dashboard-nvim',
-    --     config = function() require 'setup.dashboard' end,
-    -- },
-
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate'
-    },
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        dependencies = { 'nvim-treesitter/nvim-treesitter' }
-    },
-    -- {
-    --     'saecki/crates.nvim',
-    --     tag = 'v0.2.1',
-    --     dependencies = { 'nvim-lua/plenary.nvim' },
-    --     config = function()
-    --         require('crates').setup {
-    --             src = {
-    --                 coq = {
-    --                     enabled = true,
-    --                     name = "crates.nvim",
-    --                 },
-    --             },
-    --         }
-    --     end,
-    -- },
-    -- {
-    --     'simrat39/rust-tools.nvim',
-    --     ft = 'rust',
-    --     config = function()
-    --         require 'setup.rtools'
-    --     end,
-    -- },
     {
         'mrcjkb/rustaceanvim',
         version = '^3', -- Recommended
@@ -467,21 +320,6 @@ return require('lazy').setup({
             require 'setup.rtools'
         end,
     },
-
-
-    -- " For luasnip users.
-    -- " Plug 'L3MON4D3/LuaSnip'
-    -- " Plug 'saadparwaiz1/cmp_luasnip'
-
-    -- " For ultisnips users.
-    -- " Plug 'SirVer/ultisnips'
-    -- " Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-
-    -- " For snippy users.
-    -- " Plug 'dcampos/nvim-snippy'
-    -- " Plug 'dcampos/cmp-snippy'
-
-
     {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap" },
@@ -528,15 +366,6 @@ return require('lazy').setup({
         end
 
     },
-    -- {
-    --     'phaazon/hop.nvim',
-    --     branch = 'v2', -- optional but strongly recommended
-    --     config = function()
-    --         -- you can configure Hop the way you like here; see :h hop-config
-    --         require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    --     end
-    -- },
-    -- https://github.com/simrat39/symbols-outline.nvim
     {
         'simrat39/symbols-outline.nvim',
         cmd = "SymbolsOutline",
@@ -561,48 +390,9 @@ return require('lazy').setup({
         }
     },
     {
-        "cshuaimin/ssr.nvim",
-        module = "ssr",
-        -- Calling setup is optional.
-        config = function()
-            require("ssr").setup {
-                border = "rounded",
-                min_width = 50,
-                min_height = 5,
-                max_width = 120,
-                max_height = 25,
-                keymaps = {
-                    close = "q",
-                    next_match = "n",
-                    prev_match = "N",
-                    replace_confirm = "<cr>",
-                    replace_all = "<leader><cr>",
-                },
-            }
-        end
-    },
-    {
-        "j-hui/fidget.nvim",
-        -- tag = "",
-        event = "LspAttach",
-        opts = {},
-    },
-    {
-        "kdheepak/lazygit.nvim",
-        -- optional for floating window border decoration
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        cmd = { "LazyGit" }
-    },
-    {
         "ron-rs/ron.vim",
         ft = "ron",
     },
-    -- require("copilot").setup({
-    -- suggestion = { enabled = false },
-    -- panel = { enabled = false },
-    -- })
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",

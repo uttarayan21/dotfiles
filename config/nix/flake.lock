@@ -8,15 +8,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1701453400,
-        "narHash": "sha256-hI9+KBShsSfvWX7bmRa/1VI20WGat3lDXmbceMZzMS4=",
-        "owner": "Kirottu",
+        "lastModified": 1708281605,
+        "narHash": "sha256-I25ZCH4lr8upYUWolS1UXaq3xEfoMA20bjTHkB07cVU=",
+        "owner": "uttarayan21",
         "repo": "anyrun",
-        "rev": "e14da6c37337ffa3ee1bc66965d58ef64c1590e5",
+        "rev": "4673f0a6049329235597658f2494043b6b222e76",
         "type": "github"
       },
       "original": {
-        "owner": "Kirottu",
+        "owner": "uttarayan21",
         "repo": "anyrun",
         "type": "github"
       }
@@ -81,16 +81,17 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "dirtyRev": "0fd7377026e800022e661ae887b99a8ce7f1846d-dirty",
-        "dirtyShortRev": "0fd7377-dirty",
-        "lastModified": 1708266468,
+        "lastModified": 1708279042,
         "narHash": "sha256-z2KAA2Jtphn8+psnDDZClhXG3N7zwNfBFrVu5lqrK6w=",
-        "type": "git",
-        "url": "file:///home/servius/Projects/anyrun-rink"
+        "owner": "uttarayan21",
+        "repo": "anyrun-rink",
+        "rev": "45feb4fb26f7a03fd99ff1d558c0eaf4e6862201",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/servius/Projects/anyrun-rink"
+        "owner": "uttarayan21",
+        "repo": "anyrun-rink",
+        "type": "github"
       }
     },
     "crane": {
