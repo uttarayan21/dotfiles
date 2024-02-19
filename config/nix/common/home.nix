@@ -1,5 +1,10 @@
-{ config, pkgs, lib, device, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  device,
+  ...
+}: let
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
 in {
@@ -9,86 +14,70 @@ in {
     ./wezterm.nix
     ./firefox.nix
     ../linux/hyprland.nix
+    ../linux/gtk.nix
     ../linux/anyrun.nix
     ../linux/ironbar.nix
   ];
 
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        size = "standard";
-        accents = [ "mauve" ];
-        tweaks = [ "normal" ];
-      };
-    };
+  home.packages = with pkgs;
+    [
+      htop-vim
+      qmk
+      nodejs
+      nix-index
+      macchina
+      ripgrep
+      fd
+      nixfmt
+      dust
+      eza
+      cachix
+      rustup
+      cmake
+      fzf
+      clang
+      # neovim-nightly
+      neovim
+      (nerdfonts.override {fonts = ["Hasklig"];})
+      mpv
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        accent = "mauve";
-        flavor = "mocha";
-      };
-    };
+      # # It is sometimes useful to fine-tune packages, for example, by applying
+      # # overrides. You can do that directly here, just don't forget the
+      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
+      # # fonts?
+      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-  };
-
-  home.packages = with pkgs; [
-    handlr-regex
-    gnome.nautilus
-    webcord-vencord
-    spotify
-    spotify-player
-    htop-vim
-    lsof
-    wl-clipboard
-    qmk
-    nodejs
-    nix-index
-    yubikey-personalization
-    macchina
-    ripgrep
-    fd
-    nixfmt
-    dust
-    eza
-    cachix
-    rustup
-    cmake
-    fzf
-    clang
-    ncpamixer
-    # neovim-nightly
-    neovim
-    yubikey-agent
-    (nerdfonts.override { fonts = [ "Hasklig" ]; })
-    (pkgs.writeShellApplication {
-      name = "xdg-open";
-      runtimeInputs = [ handlr-regex ];
-      text = ''
-        handlr open "$@"
-      '';
-    })
-    mpv
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+      # # You can also create simple shell scripts directly inside your
+      # # configuration. For example, this adds a command 'my-hello' to your
+      # # environment:
+      # (pkgs.writeShellScriptBin "my-hello" ''
+      #   echo "Hello, ${config.home.username}!"
+      # '')
+    ]
+    ++ (
+      if device.isLinux
+      then
+        with pkgs; [
+          handlr-regex
+          gnome.nautilus
+          webcord-vencord
+          spotify
+          spotify-player
+          lsof
+          wl-clipboard
+          yubikey-personalization
+          ncpamixer
+          yubikey-agent
+          (pkgs.writeShellApplication {
+            name = "xdg-open";
+            runtimeInputs = [handlr-regex];
+            text = ''
+              handlr open "$@"
+            '';
+          })
+        ]
+      else []
+    );
 
   xdg.enable = true;
 
@@ -120,7 +109,7 @@ in {
 
     nushell = {
       enable = true;
-      shellAliases = { "cd" = "z"; };
+      shellAliases = {"cd" = "z";};
       package = pkgs.nushellFull;
       configFile.text = ''
         $env.config = {
@@ -166,45 +155,9 @@ in {
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
-    foot = {
-      enable = pkgs.stdenv.isLinux;
-      server.enable = true;
-      settings = {
-        main = {
-          shell = "${pkgs.fish.outPath}/bin/fish";
-          font = "Hasklug Nerd Font Mono:size=13";
-          initial-window-size-pixels = "1440x800";
-        };
-        colors = {
-          foreground = "f8f8f2";
-          background = 0;
-          alpha = 0.8;
-
-          "136" = "af8700";
-
-          regular0 = "21222c";
-          regular1 = "ff5555";
-          regular2 = "50fa7b";
-          regular3 = "f1fa8c";
-          regular4 = "bd93f9";
-          regular5 = "ff79c6";
-          regular6 = "8be9fd";
-          regular7 = "f8f8f2";
-
-          bright0 = "6272a4";
-          bright1 = "ff6e6e";
-          bright2 = "69ff94";
-          bright3 = "ffffa5";
-          bright4 = "d6acff";
-          bright5 = "ff92df";
-          bright6 = "a4ffff";
-          bright7 = "ffffff";
-        };
-      };
-    };
 
     # Let Home Manager install and manage itself.
-    home-manager = { enable = true; };
+    home-manager = {enable = true;};
   };
 
   fonts.fontconfig.enable = true;
@@ -212,10 +165,10 @@ in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory = if device.isMac then
-      lib.mkForce "/Users/${device.user}"
-    else
-      lib.mkForce "/home/${device.user}";
+    homeDirectory =
+      if device.isMac
+      then lib.mkForce "/Users/${device.user}"
+      else lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 

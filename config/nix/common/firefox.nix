@@ -1,1 +1,1 @@
-{ ... }: { programs.firefox = { enable = true; }; }
+{pkgs, ...}: {programs.firefox = {enable = pkgs.stdenv.isLinux;};}

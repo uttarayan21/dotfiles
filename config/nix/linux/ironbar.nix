@@ -1,18 +1,25 @@
-{ inputs, ... }: {
-  imports = [ inputs.ironbar.homeManagerModules.default ];
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports =
+    if pkgs.stdenv.isLinux
+    then [inputs.ironbar.homeManagerModules.default]
+    else [];
   programs.ironbar = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     config.monitors = {
       HDMI-A-2 = {
         position = "bottom";
         start = [
           {
             type = "launcher";
-            favourites = [ "firefox" "discord" ];
+            favourites = ["firefox" "discord"];
             show_names = false;
             show_icons = true;
           }
-          { type = "focused"; }
+          {type = "focused";}
         ];
         end = [
           {
@@ -25,7 +32,7 @@
             type = "music";
             player_type = "mpris";
           }
-          { type = "clock"; }
+          {type = "clock";}
         ];
       };
       DP-1 = {
@@ -50,25 +57,27 @@
               # networks= 3;
             };
           }
-          { type = "tray"; }
+          {type = "tray";}
         ];
-        start = [{
-          type = "workspaces";
-          name_map = {
-            "1" = "icon:code";
-            "2" = "";
-            "3" = "icon:chrome";
-            "4" = "icon:discord";
-            "5" = "icon:steam";
-            "6" = "icon:misc";
-            "7" = "icon:misc";
-            "8" = "icon:docky";
-            "9" = "icon:monodoc";
-            "10" = "icon:spotify";
-          };
-          favorites = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ];
-          all_monitors = true;
-        }];
+        start = [
+          {
+            type = "workspaces";
+            name_map = {
+              "1" = "icon:code";
+              "2" = "";
+              "3" = "icon:chrome";
+              "4" = "icon:discord";
+              "5" = "icon:steam";
+              "6" = "icon:misc";
+              "7" = "icon:misc";
+              "8" = "icon:docky";
+              "9" = "icon:monodoc";
+              "10" = "icon:spotify";
+            };
+            favorites = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
+            all_monitors = true;
+          }
+        ];
       };
     };
     style = ''
