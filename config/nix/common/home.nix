@@ -1,10 +1,5 @@
-{
-  config,
-  pkgs,
-  lib,
-  device,
-  ...
-}: let
+{ config, pkgs, lib, device, ... }:
+let
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
 in {
@@ -12,12 +7,10 @@ in {
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-    ./firefox.nix
-    ../linux/hyprland.nix
-    ../linux/gtk.nix
-    ../linux/anyrun.nix
-    ../linux/ironbar.nix
-  ];
+  ] ++ (if device.isLinux then [
+    ../linux
+  ] else
+    [ ]);
 
   home.packages = with pkgs;
     [
@@ -38,46 +31,25 @@ in {
       clang
       # neovim-nightly
       neovim
-      (nerdfonts.override {fonts = ["Hasklig"];})
+      (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
-
-      # # It is sometimes useful to fine-tune packages, for example, by applying
-      # # overrides. You can do that directly here, just don't forget the
-      # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-      # # fonts?
-      # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-      # # You can also create simple shell scripts directly inside your
-      # # configuration. For example, this adds a command 'my-hello' to your
-      # # environment:
-      # (pkgs.writeShellScriptBin "my-hello" ''
-      #   echo "Hello, ${config.home.username}!"
-      # '')
-    ]
-    ++ (
-      if device.isLinux
-      then
-        with pkgs; [
-          handlr-regex
-          gnome.nautilus
-          webcord-vencord
-          spotify
-          spotify-player
-          lsof
-          wl-clipboard
-          yubikey-personalization
-          ncpamixer
-          yubikey-agent
-          (pkgs.writeShellApplication {
-            name = "xdg-open";
-            runtimeInputs = [handlr-regex];
-            text = ''
-              handlr open "$@"
-            '';
-          })
-        ]
-      else []
-    );
+    ] ++ (if device.isLinux then [
+      handlr-regex
+      webcord-vencord
+      spotify
+      spotify-player
+      lsof
+      wl-clipboard
+      ncpamixer
+      (pkgs.writeShellApplication {
+        name = "xdg-open";
+        runtimeInputs = [ handlr-regex ];
+        text = ''
+          handlr open "$@"
+        '';
+      })
+    ] else
+      [ ]);
 
   xdg.enable = true;
 
@@ -109,7 +81,7 @@ in {
 
     nushell = {
       enable = true;
-      shellAliases = {"cd" = "z";};
+      shellAliases = { "cd" = "z"; };
       package = pkgs.nushellFull;
       configFile.text = ''
         $env.config = {
@@ -144,12 +116,6 @@ in {
       enableFishIntegration = true;
       tmux.enableShellIntegration = true;
     };
-    # keychain = {
-    #   enable = pkgs.isLinux;
-    #   keys = [ "id_ed25519" ];
-    #   enableFishIntegration = true;
-    #   enableNushellIntegration = true;
-    # };
     yazi = {
       enable = true;
       enableFishIntegration = true;
@@ -157,7 +123,7 @@ in {
     };
 
     # Let Home Manager install and manage itself.
-    home-manager = {enable = true;};
+    home-manager = { enable = true; };
   };
 
   fonts.fontconfig.enable = true;
@@ -165,10 +131,10 @@ in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory =
-      if device.isMac
-      then lib.mkForce "/Users/${device.user}"
-      else lib.mkForce "/home/${device.user}";
+    homeDirectory = if device.isMac then
+      lib.mkForce "/Users/${device.user}"
+    else
+      lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 

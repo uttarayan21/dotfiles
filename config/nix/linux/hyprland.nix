@@ -1,6 +1,6 @@
-{ pkgs, ... }: {
+{ ... }: {
   wayland.windowManager.hyprland = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
     settings = {
       monitor = [
         ",preferred,auto,auto"

@@ -105,17 +105,17 @@
       # overlays = [ anyrun-overlay ];
     in {
       nixosConfigurations = let devices = nixos_devices;
-      in import ./nixos {
+      in import ./nixos/device.nix {
         inherit devices inputs nixpkgs home-manager overlays;
       };
 
       darwinConfigurations = let devices = darwin_devices;
-      in import ./darwin {
+      in import ./darwin/device.nix {
         inherit devices inputs nixpkgs home-manager overlays nix-darwin;
       };
 
       homeConfigurations = let devices = linux_devices;
-      in import ./linux {
+      in import ./linux/device.nix {
         inherit devices inputs nixpkgs home-manager overlays;
       };
     };

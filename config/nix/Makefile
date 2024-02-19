@@ -3,8 +3,7 @@
 default: nixos
 
 darwin:
-	# nix run nix-darwin 			-- switch --flake ~/.local/share/dotfiles/config/nix
-	nix run nix-darwin -- switch --flake .
+	nix run nix-darwin -- switch --flake . --show-trace
 
 home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .

@@ -1,1 +1,1 @@
-{pkgs, ...}: {programs.firefox = {enable = pkgs.stdenv.isLinux;};}
+{ device, ... }: { programs.firefox = { enable = device.isLinux; }; }

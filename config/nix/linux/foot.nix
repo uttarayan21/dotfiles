@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   foot = {
     enable = pkgs.stdenv.isLinux;
     server.enable = true;

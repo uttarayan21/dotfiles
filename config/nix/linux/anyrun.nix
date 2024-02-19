@@ -1,20 +1,12 @@
-{
-  inputs,
-  pkgs,
-  osConfig,
-  ...
-}: {
-  imports =
-    if pkgs.stdenv.isLinux
-    then [inputs.anyrun.nixosModules.home-manager]
-    else [];
+{ inputs, pkgs, osConfig, ... }: {
+  imports = [ inputs.anyrun.nixosModules.home-manager ];
   programs.anyrun = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
         inputs.anyrun-nixos-options.packages.${pkgs.system}.default
         inputs.anyrun-hyprwin.packages.${pkgs.system}.default
-        # inputs.anyrun-rink.packages.${pkgs.system}.default
+        inputs.anyrun-rink.packages.${pkgs.system}.default
         # rink
         applications
         websearch
@@ -23,10 +15,10 @@
         symbols
         kidex
       ];
-      x = {fraction = 0.5;};
-      y = {fraction = 0.3;};
-      height = {absolute = 0;};
-      width = {absolute = 1000;};
+      x = { fraction = 0.5; };
+      y = { fraction = 0.3; };
+      height = { absolute = 0; };
+      width = { absolute = 1000; };
       showResultsImmediately = true;
       maxEntries = 10;
       layer = "overlay";
@@ -34,11 +26,9 @@
 
     extraConfigFiles = {
       "nixos-options.ron".text = let
-        nixos-options =
-          osConfig.system.build.manual.optionsJSON
+        nixos-options = osConfig.system.build.manual.optionsJSON
           + "/share/doc/nixos/options.json";
-        hm-options =
-          inputs.home-manager.packages.${pkgs.system}.docs-json
+        hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json
           + "/share/doc/home-manager/options.json";
         # or alternatively if you wish to read any other documentation options, such as home-manager
         # get the docs-json package from the home-manager flake
@@ -50,9 +40,10 @@
         #   ":nall" = [nixos-options hm-options some-other-option];
         # };
         options = builtins.toJSON {
-          ":nix" = [nixos-options];
-          ":hm" = [hm-options];
+          ":nix" = [ nixos-options ];
+          ":hm" = [ hm-options ];
         };
+
       in ''
         Config(
             options: ${options},
@@ -89,12 +80,12 @@
       "rink.ron".text = ''
         Config(
             currency: Some("${
-          builtins.toFile "currency.units" ''
-            !category currencies "Currencies"
-            usd                     USD
-            inr                     INR
-          ''
-        }"),
+              builtins.toFile "currency.units" ''
+                !category currencies "Currencies"
+                usd                     USD
+                inr                     INR
+              ''
+            }"),
         )
       '';
     };
