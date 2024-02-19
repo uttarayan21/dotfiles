@@ -26,8 +26,9 @@ in {
       cmake
       fzf
       clang
-      # neovim-nightly
-      neovim
+      neovim-nightly
+      nil
+      # neovim
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [

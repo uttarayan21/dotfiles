@@ -64,35 +64,6 @@ return require('lazy').setup({
             require('colorscheme')
         end
     },
-    {
-        {
-            "nvim-neorg/neorg",
-            cmd = "Neorg",
-            ft = "norg",
-            build = ":Neorg sync-parsers",
-            opts = {
-                load = {
-                    ["core.defaults"] = {},  -- Loads default behaviour
-                    ["core.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.completion"] = {
-                        config = {
-                            engine = "nvim-cmp",
-                        }
-                    },
-                    ["core.dirman"] = { -- Manages Neorg workspaces
-                        config = {
-                            workspaces = {
-                                notes = "~/Documents/norg",
-                            },
-                            default_workspace = "general",
-                            index = "index.norg"
-                        },
-                    },
-                },
-            },
-            dependencies = { "nvim-lua/plenary.nvim" },
-        }
-    },
     { 'folke/which-key.nvim', config = function() require("which-key").setup() end, event = "BufEnter" },
     {
         'nvim-telescope/telescope.nvim',
@@ -100,44 +71,6 @@ return require('lazy').setup({
         dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-ui-select.nvim',
             'nvim-telescope/telescope-fzf-native.nvim' }
     },
-    -- {
-    --     'akinsho/git-conflict.nvim',
-    --     version = "*",
-    --     config = function()
-    --         require('git-conflict').setup()
-    --     end
-    -- },
-    -- {
-    --     'williamboman/mason.nvim',
-    --     cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall" },
-    --     config = function()
-    --         require("mason").setup({
-    --             ui = {
-    --                 icons = {
-    --                     package_installed = "✓",
-    --                     package_pending = "➜",
-    --                     package_uninstalled = "✗"
-    --                 }
-    --             }
-    --         })
-    --     end,
-    -- },
-    -- {
-    --     "williamboman/mason-lspconfig.nvim",
-    --     config = function()
-    --         require("mason-lspconfig").setup({
-    --             automatic_installation = true,
-    --         })
-    --         -- if not vim.fn.filereadable("/etc/nix/nix.conf") then (
-    --         --     require("mason-lspconfig").setup({
-    --         --         ensure_installed = { "lua_ls" },
-    --         --         automatic_installation = true,
-    --         --     })
-    --         -- )
-    --         -- end
-    --     end,
-    --     lazy = false,
-    -- },
     {
         'NTBBloodbath/galaxyline.nvim',
         branch = 'main',
@@ -217,11 +150,12 @@ return require('lazy').setup({
     {
         'neovim/nvim-lspconfig',
         cmd = "LspStart",
-        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python", "go" },
+        ft = { "rust", "toml", "lua", "c", "cpp", "markdown", "sql", "python", "go", "nix" },
         config = function()
             require("lsp")
         end
     },
+    { 'VonHeikemen/lsp-zero.nvim', lazy = false },
     { 'hrsh7th/cmp-nvim-lsp',        lazy = false },
     { 'hrsh7th/cmp-buffer',          lazy = false },
     { 'hrsh7th/cmp-path',            lazy = false },

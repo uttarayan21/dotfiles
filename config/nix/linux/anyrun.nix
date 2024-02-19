@@ -63,6 +63,10 @@
             Google,
             DuckDuckGo,
             Custom (
+                name: "GitHub",
+                url: "github.com/search?q={}"
+            ),
+            Custom (
                 name: "Nix Packages",
                 url: "search.nixos.org/packages?query={}"
             ),

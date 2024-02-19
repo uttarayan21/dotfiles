@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  foot = {
+  programs.foot = {
     enable = pkgs.stdenv.isLinux;
     server.enable = true;
     settings = {

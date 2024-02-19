@@ -5,5 +5,6 @@
     ../linux/gtk.nix
     ../linux/anyrun.nix
     ../linux/ironbar.nix
+    ../linux/foot.nix
   ];
 }
