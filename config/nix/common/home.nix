@@ -7,10 +7,7 @@ in {
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-  ] ++ (if device.isLinux then [
-    ../linux
-  ] else
-    [ ]);
+  ] ++ (if device.isLinux then [ ../linux ] else [ ]);
 
   home.packages = with pkgs;
     [
