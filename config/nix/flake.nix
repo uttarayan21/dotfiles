@@ -41,6 +41,7 @@
       url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs = { nixpkgs,

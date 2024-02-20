@@ -16,7 +16,7 @@
         kb_options = "ctrl:nocaps";
         # kb_rules = "";
 
-        follow_mouse = 1;
+        follow_mouse = 0;
 
         touchpad = {
           natural_scroll = true;

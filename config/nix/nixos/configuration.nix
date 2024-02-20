@@ -23,6 +23,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.bootspec.enable = true;
 
   networking.hostName = "ryu"; # Define your hostname.
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];

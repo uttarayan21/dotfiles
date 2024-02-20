@@ -11,6 +11,9 @@ in {
 
   home.packages = with pkgs;
     [
+      jq
+      tldr
+      spotify-player
       htop-vim
       qmk
       nodejs
@@ -32,10 +35,13 @@ in {
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      swaynotificationcenter
+      openocd-rp2040
+      usbutils
+      picotool
       handlr-regex
       webcord-vencord
       spotify
-      spotify-player
       lsof
       wl-clipboard
       ncpamixer
@@ -73,6 +79,7 @@ in {
         set fish_greeting
       '';
       interactiveShellInit = ''
+        ${pkgs.spotify-player}/bin/spotify_player generate fish | source
         ${pkgs.macchina.outPath}/bin/macchina
       '';
     };

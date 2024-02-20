@@ -15,5 +15,13 @@ end)
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 lspconfig.lua_ls.setup(lua_opts)
-lspconfig.nil_ls.setup({})
+lspconfig.nil_ls.setup({
+    settings = {
+        ['nil'] = {
+          formatting = {
+            command = { "nixfmt" },
+          },
+        },
+      },
+})
 lspconfig.clangd.setup({})
