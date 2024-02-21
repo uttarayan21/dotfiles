@@ -161,6 +161,7 @@ return require('lazy').setup({
     { 'hrsh7th/cmp-path',            lazy = false },
     { 'hrsh7th/cmp-cmdline',         lazy = false },
     { 'L3MON4D3/LuaSnip' },
+    { "nvim-treesitter/nvim-treesitter", lazy = false },
     { 'saadparwaiz1/cmp_luasnip' },
     {
         "zbirenbaum/copilot-cmp",
@@ -264,14 +265,14 @@ return require('lazy').setup({
         -- event = "LspAttach",
         config = function()
             local dap = require('dap')
-            local registry = require('mason-registry').get_package("codelldb");
-            local codelldb = registry:get_install_path() .. "/codelldb"
+            -- local registry = require('mason-registry').get_package("codelldb");
+            -- local codelldb = registry:get_install_path() .. "/codelldb"
             dap.adapters.codelldb = {
                 type = 'server',
                 port = "${port}",
                 executable = {
                     -- CHANGE THIS to your path!
-                    command = codelldb,
+                    command = "codelldb",
                     args = { "--port", "${port}" },
 
                     -- On windows you may have to uncomment this:

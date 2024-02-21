@@ -35,6 +35,16 @@ in {
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      (pkgs.catppuccin-gtk.override {
+        variant = "mocha";
+        size = "standard";
+        accents = [ "mauve" ];
+        tweaks = [ "normal" ];
+      })
+      (pkgs.catppuccin-papirus-folders.override {
+        accent = "mauve";
+        flavor = "mocha";
+      })
       swaynotificationcenter
       openocd-rp2040
       usbutils
@@ -55,7 +65,7 @@ in {
     ] else
       [ ]);
 
-  xdg.enable = true;
+  # xdg.enable = true;
 
   programs = {
     git = {

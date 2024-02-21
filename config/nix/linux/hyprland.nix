@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
@@ -119,22 +119,22 @@
 
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, foot"
-        "$mainModShift, Return, exec, wezterm"
+        "$mainMod, Return, exec, ${pkgs.foot}/bin/foot"
+        "$mainModShift, Return, exec, ${pkgs.wezterm}/bin/wezterm"
         "$mainModShift, Q, killactive,"
         # "$mainMod, M, exit,"
         "$mainMod, t, togglefloating,"
         "$mainMod, f, fullscreen,"
-        "$mainMod, d, exec, anyrun"
-        "$mainMod, Space, exec, anyrun"
+        "$mainMod, d, exec, ${pkgs.anyrun}/bin/anyrun"
+        "$mainMod, Space, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, p, pseudo, # dwindle"
         "$mainMod, v, togglesplit, # dwindle"
         "$mainMod, a, exec, swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
-        ",xf86audioraisevolume, exec, swayosd --output-volume raise"
-        ",xf86audiolowervolume, exec, swayosd --output-volume lower"
-        ",xf86audiomute, exec, swayosd --output-volume mute-toggle"
+        ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume raise"
+        ",xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume lower"
+        ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd --output-volume mute-toggle"
         ",xf86audioprev, exec, /home/fs0c131y/.cargo/bin/mctl prev"
         ",xf86audionext, exec, /home/fs0c131y/.cargo/bin/mctl next"
         ",xf86audioplay, exec, /home/fs0c131y/.cargo/bin/mctl toggle"

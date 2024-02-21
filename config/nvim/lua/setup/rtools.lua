@@ -38,7 +38,7 @@ vim.g.rustaceanvim = {
     -- tools = {},
     -- LSP configuration
     server = {
-        capabilities = require'lsp_zero'.get_capabilities(),
+        capabilities = require'lsp-zero'.get_capabilities(),
         on_attach = function(client, bufnr)
             -- you can also put keymaps in here
             lspstatus.on_attach(client, bufnr)
