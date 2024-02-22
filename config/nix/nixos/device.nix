@@ -3,11 +3,15 @@ builtins.listToAttrs (builtins.map (device: {
   name = device.name;
   value = nixpkgs.lib.nixosSystem {
     system = device.system;
-    specialArgs = { inherit device; };
+    specialArgs = {
+      inherit device;
+      lanzaboote = inputs.lanzaboote;
+    };
     modules = [
       { nixpkgs.overlays = overlays; }
       ./configuration.nix
       home-manager.nixosModules.home-manager
+      inputs.lanzaboote.nixosModules.lanzaboote
       {
         nixpkgs.config.allowUnfree = true;
         home-manager = {

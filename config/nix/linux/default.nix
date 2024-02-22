@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, device, ... }: {
   imports = [
     ../common/firefox.nix
     ../linux/hyprland.nix
@@ -17,6 +17,7 @@
       ExecStart = "${pkgs.spotify-player}/bin/spotify_player -d";
       Restart = "on-failure";
       RestartSec = "5";
+      User = "${device.user}";
     };
   };
 }
