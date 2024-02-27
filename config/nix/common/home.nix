@@ -7,10 +7,15 @@ in {
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
+    ./nvim.nix
+
   ] ++ (if device.isLinux then [ ../linux ] else [ ]);
 
   home.packages = with pkgs;
     [
+      ngrok
+      gh
+      yarn
       just
       jq
       tldr
@@ -32,6 +37,7 @@ in {
       clang
       neovim-nightly
       nil
+      pkg-config
       # neovim
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
@@ -64,7 +70,7 @@ in {
         '';
       })
     ] else
-      [ ]);
+      [ ]) ++ (if device.isMac then [ ] else [ ]);
 
   # xdg.enable = true;
 
@@ -114,6 +120,17 @@ in {
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
+      settings = let flavour = "mocha"; # Replace with your preferred palette
+      in {
+        # Other config here
+        format = "$all"; # Remove this line to disable the default prompt format
+        palette = "catppuccin_${flavour}";
+      } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "starship";
+        rev = "main"; # Replace with the latest commit hash
+        sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
+      } + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -137,6 +154,22 @@ in {
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
+    bat = {
+      enable = true;
+      config = { theme = "catppuccin"; };
+      themes = {
+        catppuccin = let flavor = "mocha";
+        in {
+          src = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "bat";
+            rev = "main";
+            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
+          };
+          file = "Catppuccin-${flavor}.tmTheme";
+        };
+      };
+    };
 
     # Let Home Manager install and manage itself.
     home-manager = { enable = true; };
@@ -156,8 +189,8 @@ in {
 
     file = {
       ".config/tmux/sessions".source = ../../tmux/sessions;
-      ".config/nvim/lua".source = ../../nvim/lua;
-      ".config/nvim/init.lua".source = ../../nvim/init.lua;
+      # ".config/nvim/lua".source = ../../nvim/lua;
+      # ".config/nvim/init.lua".source = ../../nvim/init.lua;
       ".config/macchina".source = ../../macchina;
 
       # # You can also set the file content immediately.

@@ -47,6 +47,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixneovim = {
+      url = "github:nixneovim/nixneovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # { pkgs, inputs, system, ... }:
+
+    # {
+    #   nixpkgs.overlays = [
+    #     (final: prev: {
+    #       postman = prev.postman.overrideAttrs(old: rec {
+    #         version = "20230716100528";
+    #         src = final.fetchurl {
+    #           url = "https://web.archive.org/web/${version}/https://dl.pstmn.io/download/latest/linux_64";
+    #           sha256 = "sha256-svk60K4pZh0qRdx9+5OUTu0xgGXMhqvQTGTcmqBOMq8=";
+
+    #           name = "${old.pname}-${version}.tar.gz";
+    #         };
+    #       });
+    #     })
+    #   ];
+    # }
+
   };
 
   outputs = { nixpkgs,
@@ -107,8 +130,22 @@
           inputs.anyrun-nixos-options.packages.${prev.system}.default;
         anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;
       };
-      overlays = [ inputs.neovim-nightly-overlay.overlay anyrun-overlay ];
-      # overlays = [ anyrun-overlay ];
+      # postman-overlay = final: prev: {
+      #   postman = prev.postman.overrideAttrs (old: rec {
+      #     version = "20230716100528";
+      #     src = final.fetchurl {
+      #       url =
+      #         "https://dl.pstmn.io/download/latest/osx_arm64";
+      #       sha256 = "sha256-P7x06KKH0e1Yro93SCEJyiWS/Uv25tWU8A85vxv85hI=";
+      #       name = "${old.pname}-${version}.tar.gz";
+      #     };
+      #   });
+      # };
+      overlays = [
+        inputs.neovim-nightly-overlay.overlay
+        anyrun-overlay
+        inputs.nixneovim.overlays.default
+      ];
     in {
       nixosConfigurations = let devices = nixos_devices;
       in import ./nixos/device.nix {

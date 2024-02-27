@@ -1,6 +1,6 @@
 local vim = vim
 vim.o.termguicolors = true
-vim.cmd.colorscheme "sonokai"
+vim.cmd.colorscheme "catppuccin"
 -- vim.cmd [[colorscheme sonokai]]
 -- require("catppuccin").setup({
 --     -- flavour = "mocha",
@@ -36,9 +36,12 @@ local colors = {
 
 -- vim.cmd.colorscheme "catppuccin"
 -- Override some colors
-vim.cmd('hi Normal guibg=' .. colors.black)
-vim.cmd('hi NormalNC guibg=' .. colors.black)
-vim.cmd('hi EndOfBuffer guibg=' .. colors.black)
--- vim.cmd('hi ToggleTerm1Buffer guibg='..colors.black)
-vim.cmd('hi NonText guibg=' .. colors.black)
-vim.cmd('hi link LspInlayHint Comment')
+-- vim.cmd('hi Normal guibg=' .. colors.black)
+-- vim.cmd('hi NormalNC guibg=' .. colors.black)
+-- vim.cmd('hi EndOfBuffer guibg=' .. colors.black)
+-- -- vim.cmd('hi ToggleTerm1Buffer guibg='..colors.black)
+-- vim.cmd('hi NonText guibg=' .. colors.black)
+-- vim.cmd('hi link LspInlayHint Comment')
+require('catppuccin').setup({
+    flavour = "mocha",
+})

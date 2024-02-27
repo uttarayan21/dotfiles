@@ -1,15 +1,22 @@
 tmux new-session -d -s 'default' -n 'neovim'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
+sleep .05
 tmux new-window -t default -n 'shell'
-tmux new-window -t default -n 'IRC'
-tmux send-keys -t default:IRC "irssi" Enter
-tmux send-keys -t default:IRC Enter
 tmux select-window -t default:0

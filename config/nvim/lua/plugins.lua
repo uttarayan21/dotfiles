@@ -19,6 +19,15 @@ vim.opt.rtp:prepend(lazypath)
 -- local use = require('packer').use
 
 return require('lazy').setup({
+    { 
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        lazy = false,
+        config = function()
+            require('colorscheme')
+        end
+    },
     {
         "ellisonleao/glow.nvim",
         config = true,
@@ -57,13 +66,13 @@ return require('lazy').setup({
     --     cmd = "Copilot",
     -- },
     -- 'ggandor/leap.nvim',
-    {
-        'sainnhe/sonokai',
-        lazy = false,
-        config = function()
-            require('colorscheme')
-        end
-    },
+    -- {
+    --     'sainnhe/sonokai',
+    --     lazy = false,
+    --     config = function()
+    --         require('colorscheme')
+    --     end
+    -- },
     { 'folke/which-key.nvim', config = function() require("which-key").setup() end, event = "BufEnter" },
     {
         'nvim-telescope/telescope.nvim',
