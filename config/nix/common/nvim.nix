@@ -8,7 +8,7 @@
     '';
     options = {
       number = true;
-      relativenumberr = true;
+      relativenumber = true;
     };
     plugins = {
       lspconfig = {
@@ -31,15 +31,15 @@
     };
     mappings = {
       normal = {
-        "<leader>ff" = "require'telescope.builtin'.find_files()";
-        "<leader>gg" = "require'telescope.builtin'.live_grep()";
-        "<leader>;" = "require'telescope.builtin'.buffers()";
-        "<leader><leader>" = "<c-^>";
-        "vff" = "<cmd>vertical Gdiffsplit<cr>";
-        "<C-k>" = "vim.lsp.buf.definition()";
-        "gi" = "vim.lsp.buf.implementation()";
-        "<leader>a" = "vim.lsp.buf.code_action()";
-        "F" = "vim.lsp.buf.format( async = true )";
+        "<leader>ff" = "require'telescope.builtin'.find_files";
+        "<leader>gg" = "require'telescope.builtin'.live_grep";
+        "<leader>;" = "require'telescope.builtin'.buffers";
+        "<leader><leader>" = "'<c-^>'";
+        "vff" = "'<cmd>vertical Gdiffsplit<cr>'";
+        "<C-k>" = "vim.lsp.buf.definition";
+        "gi" = "vim.lsp.buf.implementation";
+        "<leader>a" = "vim.lsp.buf.code_action";
+        "F" = "function() vim.lsp.buf.format({ async = true }) end";
       };
     };
   };
