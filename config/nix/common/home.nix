@@ -42,6 +42,7 @@ in {
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      steam-run
       (pkgs.catppuccin-gtk.override {
         variant = "mocha";
         size = "standard";
