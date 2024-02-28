@@ -2,14 +2,15 @@
 let
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
-in {
+  lazy = true;
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-    ./nvim.nix
-
-  ] ++ (if device.isLinux then [ ../linux ] else [ ]);
+  ] ++ (if device.isLinux then [ ../linux ] else [ ])
+  ++ (if !lazy then [ ./nvim ] else [ ]);
 
   home.packages = with pkgs;
     [
@@ -38,6 +39,7 @@ in {
       neovim-nightly
       nil
       pkg-config
+      lua-language-server
       # neovim
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
@@ -121,17 +123,19 @@ in {
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings = let flavour = "mocha"; # Replace with your preferred palette
-      in {
-        # Other config here
-        format = "$all"; # Remove this line to disable the default prompt format
-        palette = "catppuccin_${flavour}";
-      } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "starship";
-        rev = "main"; # Replace with the latest commit hash
-        sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
-      } + /palettes/${flavour}.toml));
+      settings =
+        let flavour = "mocha"; # Replace with your preferred palette
+        in {
+          # Other config here
+          format = "$all"; # Remove this line to disable the default prompt format
+          palette = "catppuccin_${flavour}";
+        } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub
+          {
+            owner = "catppuccin";
+            repo = "starship";
+            rev = "main"; # Replace with the latest commit hash
+            sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
+          } + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -159,16 +163,17 @@ in {
       enable = true;
       config = { theme = "catppuccin"; };
       themes = {
-        catppuccin = let flavor = "mocha";
-        in {
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "main";
-            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
+        catppuccin =
+          let flavor = "mocha";
+          in {
+            src = pkgs.fetchFromGitHub {
+              owner = "catppuccin";
+              repo = "bat";
+              rev = "main";
+              sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
+            };
+            file = "Catppuccin-${flavor}.tmTheme";
           };
-          file = "Catppuccin-${flavor}.tmTheme";
-        };
       };
     };
 
@@ -181,17 +186,16 @@ in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory = if device.isMac then
-      lib.mkForce "/Users/${device.user}"
-    else
-      lib.mkForce "/home/${device.user}";
+    homeDirectory =
+      if device.isMac then
+        lib.mkForce "/Users/${device.user}"
+      else
+        lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
     file = {
       ".config/tmux/sessions".source = ../../tmux/sessions;
-      # ".config/nvim/lua".source = ../../nvim/lua;
-      # ".config/nvim/init.lua".source = ../../nvim/init.lua;
       ".config/macchina".source = ../../macchina;
 
       # # You can also set the file content immediately.
@@ -199,7 +203,10 @@ in {
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
-    };
+    } // (if lazy then {
+      ".config/nvim/lua".source = ../../nvim/lua;
+      ".config/nvim/init.lua".source = ../../nvim/init.lua;
+    } else { });
 
     sessionVariables = {
       EDITOR = "nvim";
