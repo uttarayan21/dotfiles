@@ -67,20 +67,18 @@
         }];
       };
     };
-    style =
-      let
-        # mocha = fetchurl {
-        # url = "https://github.com/catppuccin/waybar/releases/download/v1.0/mocha.css";
-        # sha256 = pkgs.lib.fakeSha256;
-        # };
-        catppuccin = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "waybar";
-          rev = "v1.0";
-          sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
-        };
-        mocha = builtins.readFile "${catppuccin}/mocha.css";
-      in
-      mocha + builtins.readFile ./ironbar.css;
+    style = let
+      # mocha = fetchurl {
+      # url = "https://github.com/catppuccin/waybar/releases/download/v1.0/mocha.css";
+      # sha256 = pkgs.lib.fakeSha256;
+      # };
+      catppuccin = pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "waybar";
+        rev = "v1.0";
+        sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
+      };
+      mocha = builtins.readFile "${catppuccin}/mocha.css";
+    in mocha + builtins.readFile ./ironbar.css;
   };
 }

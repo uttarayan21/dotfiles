@@ -21,9 +21,7 @@
       undofile = true;
     };
 
-    globals = {
-      mapleader = " ";
-    };
+    globals = { mapleader = " "; };
     plugins = {
       lspconfig = {
         enable = true;
