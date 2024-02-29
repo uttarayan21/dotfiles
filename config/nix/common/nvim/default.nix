@@ -43,7 +43,9 @@
               },
             '';
           };
-          lua-language-server = { enable = true; };
+          lua-language-server.enable = true;
+          jsonls.enable = true;
+          html.enable = true;
         };
         extraLua.pre = ''
           local lsp_zero = require'lsp-zero'
@@ -60,6 +62,7 @@
         # '';
       };
 
+      nvim-dap.enable = true;
       todo-comments.enable = true;
       lualine.enable = true;
       commentary.enable = true;
@@ -97,34 +100,39 @@
       };
     };
 
-    extraPlugins = let
-      comfortable-motion = pkgs.fetchFromGitHub {
-        owner = "yuttie";
-        repo = "comfortable-motion.vim";
-        rev = "master";
-        sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
-      };
-    in [
-      comfortable-motion
-      pkgs.vimPlugins.vim-abolish
-      pkgs.vimPlugins.telescope-nvim
-      pkgs.vimPlugins.telescope-ui-select-nvim
-      pkgs.vimPlugins.telescope-fzf-native-nvim
-      pkgs.vimPlugins.telescope-file-browser-nvim
-      pkgs.vimExtraPlugins.rustaceanvim
+    extraPlugins =
+      let
+        comfortable-motion = pkgs.fetchFromGitHub {
+          owner = "yuttie";
+          repo = "comfortable-motion.vim";
+          rev = "master";
+          sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
+        };
+      in
+      [
+        comfortable-motion
+        pkgs.vimPlugins.vim-abolish
+        pkgs.vimPlugins.telescope-nvim
+        pkgs.vimPlugins.telescope-ui-select-nvim
+        pkgs.vimPlugins.telescope-fzf-native-nvim
+        pkgs.vimPlugins.telescope-file-browser-nvim
+        pkgs.vimPlugins.telescope-dap-nvim
+        pkgs.vimExtraPlugins.rustaceanvim
 
-      pkgs.vimPlugins.nvim-cmp
-      pkgs.vimPlugins.cmp-buffer
-      pkgs.vimPlugins.cmp-path
-      pkgs.vimPlugins.cmp-cmdline
-      pkgs.vimPlugins.cmp-nvim-lsp
-      pkgs.vimPlugins.cmp-nvim-lua
+        # lsp stuff
+        pkgs.vimPlugins.nvim-cmp
+        pkgs.vimPlugins.cmp-buffer
+        pkgs.vimPlugins.cmp-path
+        pkgs.vimPlugins.cmp-cmdline
+        pkgs.vimPlugins.cmp-nvim-lsp
+        pkgs.vimPlugins.cmp-nvim-lua
+        pkgs.vimExtraPlugins.fidget-nvim
+        pkgs.vimExtraPlugins.copilot-lua
+        pkgs.vimExtraPlugins.lsp-zero-nvim
 
-      pkgs.vimExtraPlugins.fidget-nvim
-      pkgs.vimExtraPlugins.copilot-lua
-      pkgs.vimExtraPlugins.lsp-zero-nvim
-      pkgs.vimExtraPlugins.rest-nvim
-    ];
+        pkgs.vimExtraPlugins.rest-nvim
+
+      ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
     package = pkgs.neovim-nightly;
   };
