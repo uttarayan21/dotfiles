@@ -4,7 +4,7 @@
     ../linux/hyprland.nix
     ../linux/gtk.nix
     ../linux/anyrun.nix
-    ../linux/ironbar.nix
+    ../linux/ironbar
     ../linux/foot.nix
   ];
   systemd.user.services.spotify-player = {
