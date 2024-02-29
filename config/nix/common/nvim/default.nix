@@ -71,33 +71,6 @@
         indent = true;
       };
 
-      nvim-cmp = {
-        enable = true;
-        completion = { completeopt = "menu,menuone,popup,noselect"; };
-        window = {
-          completion = { border = "rounded"; };
-          documentation = { border = "rounded"; };
-        };
-        sources = {
-          nvim_lsp.enable = true;
-          luasnip.enable = true;
-          buffer.enable = true;
-          path.enable = true;
-          git.enable = true;
-          cmdline.enable = true;
-        };
-        mappingPresets = [ "insert" ];
-        mapping = {
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-          "<C-y>" = "cmp.mapping.complete()";
-          "<C-n>" = "cmp.config.next";
-          "<C-p>" = "cmp.config.prev";
-
-        };
-
-        snippet.luasnip.enable = true;
-      };
-
     };
     colorschemes = {
       catppuccin = {
@@ -139,7 +112,14 @@
       pkgs.vimPlugins.telescope-fzf-native-nvim
       pkgs.vimPlugins.telescope-file-browser-nvim
       pkgs.vimExtraPlugins.rustaceanvim
-      pkgs.vimExtraPlugins.cmp-nvim-lsp
+
+      pkgs.vimPlugins.nvim-cmp
+      pkgs.vimPlugins.cmp-buffer
+      pkgs.vimPlugins.cmp-path
+      pkgs.vimPlugins.cmp-cmdline
+      pkgs.vimPlugins.cmp-nvim-lsp
+      pkgs.vimPlugins.cmp-nvim-lua
+
       pkgs.vimExtraPlugins.fidget-nvim
       pkgs.vimExtraPlugins.copilot-lua
       pkgs.vimExtraPlugins.lsp-zero-nvim
