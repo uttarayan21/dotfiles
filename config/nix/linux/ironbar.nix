@@ -55,15 +55,15 @@
         start = [{
           type = "workspaces";
           name_map = {
-            "1" = "icon:code";
-            "2" = "";
-            "3" = "icon:chrome";
-            "4" = "icon:discord";
+            "1" = "icon:foot";
+            "2" = "icon:code";
+            "3" = "icon:firefox";
+            "4" = "icon:slack";
             "5" = "icon:steam";
             "6" = "icon:misc";
             "7" = "icon:misc";
-            "8" = "icon:docky";
-            "9" = "icon:monodoc";
+            "8" = "icon:firefox";
+            "9" = "icon:discord";
             "10" = "icon:spotify";
           };
           favorites = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ];

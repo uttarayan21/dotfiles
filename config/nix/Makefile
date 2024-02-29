@@ -12,3 +12,6 @@ home:
 
 nixos:
 	sudo nixos-rebuild switch --flake .
+
+test_nixos:
+	sudo nixos-rebuild test --fast --flake .

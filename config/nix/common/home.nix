@@ -2,7 +2,7 @@
 let
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
-  lazy = true;
+  lazy = false;
 in
 {
   imports = [
