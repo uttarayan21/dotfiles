@@ -81,7 +81,7 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nix-darwin, flake-utils, anyrun
+  outputs = { nixpkgs, home-manager, nix-darwin, flake-utils, anyrun, nur
     , neovim-nightly-overlay, ... }@inputs:
     let
       config_devices = [
@@ -157,7 +157,7 @@
     in {
       nixosConfigurations = let devices = nixos_devices;
       in import ./nixos/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays;
+        inherit devices inputs nixpkgs home-manager overlays nur;
       };
 
       darwinConfigurations = let devices = darwin_devices;

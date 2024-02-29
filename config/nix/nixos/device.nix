@@ -1,4 +1,4 @@
-{ nixpkgs, devices, inputs, overlays, home-manager, ... }:
+{ nixpkgs, devices, inputs, overlays, home-manager, nur, ... }:
 builtins.listToAttrs (builtins.map (device: {
   name = device.name;
   value = nixpkgs.lib.nixosSystem {
@@ -8,6 +8,7 @@ builtins.listToAttrs (builtins.map (device: {
       lanzaboote = inputs.lanzaboote;
     };
     modules = [
+      nur.nixosModules.nur
       { nixpkgs.overlays = overlays; }
       ./configuration.nix
       home-manager.nixosModules.home-manager

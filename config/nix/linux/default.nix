@@ -1,4 +1,4 @@
-{ pkgs, device, ... }: {
+{ pkgs, device, nur, ... }: {
   imports = [
     ../common/firefox.nix
     ../linux/hyprland.nix
