@@ -14,7 +14,6 @@ in {
   home.packages = with pkgs;
     [
       ngrok
-      kdeconnect
       slack
       gh
       yarn
@@ -45,6 +44,7 @@ in {
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      kdeconnect
       steam-run
       (pkgs.catppuccin-gtk.override {
         variant = "mocha";
