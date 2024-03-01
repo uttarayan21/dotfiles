@@ -14,6 +14,8 @@ in {
   home.packages = with pkgs;
     [
       ngrok
+      kdeconnect
+      slack
       gh
       yarn
       just

@@ -104,14 +104,13 @@
         "QT_QPA_PLATFORM,wayland"
       ];
       exec-once = [
-        "swayosd"
-        "swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
-        "ironbar"
-        "nextcloud --background"
+        "${pkgs.swayosd}/bin/swayosd"
+        "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
+        "${pkgs.ironbar}/bin/ironbar"
+        "${pkgs.nextcloud-client}/bin/nextcloud --background"
         "/usr/lib/polkit-kde-authentication-agent-1"
-        "/usr/local/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland --start-minimized"
-        "/usr/lib/kdeconnectd"
-        "aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log"
+        "${pkgs.kdeconnect}/libexec/kdeconnectd"
+        # "aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log"
       ];
 
       "$mainMod" = "SUPER";
@@ -142,7 +141,7 @@
         # Screenshot
         # "$mainMod,Print, exec, grim"
         # "$mainModShift,Print, exec, grim -g "$(slurp)""
-        "$mainModShift,s, exec, watershot"
+        "$mainModShift,s, exec, ${pkgs.watershot}/bin/watershot"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"

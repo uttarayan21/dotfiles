@@ -57,7 +57,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-     nur.url = "github:nix-community/nur"; 
+    nur.url = "github:nix-community/nur";
 
     # { pkgs, inputs, system, ... }:
     # {
@@ -78,8 +78,16 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nix-darwin, flake-utils, anyrun, nur
-    , neovim-nightly-overlay, ... }@inputs:
+  outputs =
+    { nixpkgs
+    , home-manager
+    , nix-darwin
+    , flake-utils
+    , anyrun
+    , nur
+    , neovim-nightly-overlay
+    , ...
+    }@inputs:
     let
       config_devices = [
         {
@@ -150,21 +158,26 @@
         anyrun-overlay
         inputs.nixneovim.overlays.default
         inputs.nixneovimplugins.overlays.default
+        nur.overlay
       ];
-    in {
-      nixosConfigurations = let devices = nixos_devices;
-      in import ./nixos/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nur;
-      };
+    in
+    {
+      nixosConfigurations =
+        let devices = nixos_devices;
+        in import ./nixos/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nur;
+        };
 
-      darwinConfigurations = let devices = darwin_devices;
-      in import ./darwin/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nix-darwin;
-      };
+      darwinConfigurations =
+        let devices = darwin_devices;
+        in import ./darwin/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nix-darwin;
+        };
 
-      homeConfigurations = let devices = linux_devices;
-      in import ./linux/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays;
-      };
+      homeConfigurations =
+        let devices = linux_devices;
+        in import ./linux/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays;
+        };
     };
 }
