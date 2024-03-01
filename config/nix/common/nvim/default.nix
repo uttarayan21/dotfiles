@@ -87,6 +87,7 @@
         "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
+        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
         "<leader>\\\"" = ''[["+]]'';
         "<leader><leader>" = "'<c-^>'";
         "vff" = "'<cmd>vertical Gdiffsplit<cr>'";
@@ -118,7 +119,7 @@
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.telescope-file-browser-nvim
         pkgs.vimPlugins.telescope-dap-nvim
-        pkgs.vimExtraPlugins.rustaceanvim
+        pkgs.vimPlugins.rustaceanvim
 
         # lsp stuff
         pkgs.vimPlugins.nvim-cmp
@@ -129,11 +130,12 @@
         pkgs.vimPlugins.cmp-nvim-lua
         pkgs.vimPlugins.cmp_luasnip
         pkgs.vimPlugins.luasnip
-        pkgs.vimExtraPlugins.fidget-nvim
-        pkgs.vimExtraPlugins.copilot-lua
-        pkgs.vimExtraPlugins.lsp-zero-nvim
+        pkgs.vimPlugins.fidget-nvim
+        pkgs.vimPlugins.copilot-lua
+        pkgs.vimPlugins.lsp-zero-nvim
+        pkgs.vimPlugins.trouble-nvim
 
-        pkgs.vimExtraPlugins.rest-nvim
+        pkgs.vimPlugins.rest-nvim
 
       ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
