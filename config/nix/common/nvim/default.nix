@@ -46,6 +46,7 @@
           lua-language-server.enable = true;
           jsonls.enable = true;
           html.enable = true;
+          # rust-analyzer.enable = true;
         };
         extraLua.pre = ''
           local lsp_zero = require'lsp-zero'
@@ -126,6 +127,8 @@
         pkgs.vimPlugins.cmp-cmdline
         pkgs.vimPlugins.cmp-nvim-lsp
         pkgs.vimPlugins.cmp-nvim-lua
+        pkgs.vimPlugins.cmp_luasnip
+        pkgs.vimPlugins.luasnip
         pkgs.vimExtraPlugins.fidget-nvim
         pkgs.vimExtraPlugins.copilot-lua
         pkgs.vimExtraPlugins.lsp-zero-nvim
