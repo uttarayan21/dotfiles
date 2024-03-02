@@ -69,6 +69,8 @@
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
+      ufo.enable = true;
+      fugitive.enable = true;
 
       treesitter = {
         enable = true;
@@ -80,6 +82,7 @@
         ai.enable = true;
         pairs.enable = true;
         cursorword.enable = true;
+        starter.enable = true;
       };
 
     };
@@ -95,6 +98,8 @@
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
         "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
+        "<leader>ee" = "[[<Plug>RestNvim]]";
+        "<leader>ec" = "[[<Plug>RestNvimPreview]]";
         "<leader>\\\"" = ''[["+]]'';
         "<leader><leader>" = "'<c-^>'";
         "vff" = "'<cmd>vertical Gdiffsplit<cr>'";
@@ -109,37 +114,41 @@
       };
     };
 
-    extraPlugins =
-      [
-        pkgs.vimPlugins.comfortable-motion
-        pkgs.vimPlugins.vim-abolish
-        pkgs.vimPlugins.telescope-nvim
-        pkgs.vimPlugins.telescope-ui-select-nvim
-        pkgs.vimPlugins.telescope-fzf-native-nvim
-        pkgs.vimPlugins.telescope-file-browser-nvim
-        pkgs.vimPlugins.telescope-dap-nvim
-        pkgs.vimPlugins.rustaceanvim
+    extraPlugins = with pkgs.vimPlugins; [
+      comfortable-motion
+      vim-abolish
+      telescope-nvim
+      telescope-ui-select-nvim
+      telescope-fzf-native-nvim
+      telescope-file-browser-nvim
+      telescope-dap-nvim
+      rustaceanvim
 
-        # lsp stuff
-        pkgs.vimPlugins.nvim-cmp
-        pkgs.vimPlugins.cmp-buffer
-        pkgs.vimPlugins.cmp-path
-        pkgs.vimPlugins.cmp-cmdline
-        pkgs.vimPlugins.cmp-nvim-lsp
-        pkgs.vimPlugins.cmp-nvim-lua
-        pkgs.vimPlugins.cmp_luasnip
-        pkgs.vimPlugins.luasnip
-        pkgs.vimPlugins.fidget-nvim
-        pkgs.vimPlugins.copilot-lua
-        pkgs.vimPlugins.lsp-zero-nvim
-        pkgs.vimPlugins.trouble-nvim
-        pkgs.vimPlugins.nvim-web-devicons
+      # lsp stuff
+      nvim-cmp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-nvim-lua
+      cmp_luasnip
+      cmp-tmux
+      cmp-treesitter
+      luasnip
+      fidget-nvim
+      copilot-lua
+      lsp-zero-nvim
+      trouble-nvim
+      crates-nvim
 
-        pkgs.vimPlugins.rest-nvim
+      # No more postman
+      rest-nvim
 
-        pkgs.vimPlugins.noice-nvim
+      # UI
+      noice-nvim
+      nvim-web-devicons
 
-      ];
+    ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
     package = pkgs.neovim-nightly;
   };

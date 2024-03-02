@@ -78,16 +78,8 @@
 
   };
 
-  outputs =
-    { nixpkgs
-    , home-manager
-    , nix-darwin
-    , flake-utils
-    , anyrun
-    , nur
-    , neovim-nightly-overlay
-    , ...
-    }@inputs:
+  outputs = { nixpkgs, home-manager, nix-darwin, flake-utils, anyrun, nur
+    , neovim-nightly-overlay, ... }@inputs:
     let
       config_devices = [
         {
@@ -144,48 +136,58 @@
       };
 
       vimPlugins = final: prev: {
-        vimPlugins =
-          prev.vimPlugins
-          //
-          {
-            comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
-              name = "comfortable-motion";
-              src = final.pkgs.fetchFromGitHub {
-                owner = "yuttie";
-                repo = "comfortable-motion.vim";
-                rev = "master";
-                sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
-              };
+        vimPlugins = prev.vimPlugins // {
+          comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
+            name = "comfortable-motion";
+            src = final.pkgs.fetchFromGitHub {
+              owner = "yuttie";
+              repo = "comfortable-motion.vim";
+              rev = "master";
+              sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
             };
           };
+        };
+      };
+
+      tmuxPlugins = final: prev: {
+        tmuxPlugins = prev.tmuxPlugins // {
+
+          tmux-super-fingers = final.pkgs.tmuxPlugins.mkTmuxPlugin {
+            pluginName = "tmux-super-fingers";
+            version = "v1-2024-02-14";
+            src = final.pkgs.fetchFromGitHub {
+              owner = "artemave";
+              repo = "tmux_super_fingers";
+              rev = "518044ef78efa1cf3c64f2e693fef569ae570ddd";
+              sha256 = "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=";
+            };
+          };
+        };
       };
 
       overlays = [
+        vimPlugins
+        tmuxPlugins
         inputs.neovim-nightly-overlay.overlay
         anyrun-overlay
-        vimPlugins
         inputs.nixneovim.overlays.default
         inputs.nixneovimplugins.overlays.default
         nur.overlay
       ];
-    in
-    {
-      nixosConfigurations =
-        let devices = nixos_devices;
-        in import ./nixos/device.nix {
-          inherit devices inputs nixpkgs home-manager overlays nur;
-        };
+    in {
+      nixosConfigurations = let devices = nixos_devices;
+      in import ./nixos/device.nix {
+        inherit devices inputs nixpkgs home-manager overlays nur;
+      };
 
-      darwinConfigurations =
-        let devices = darwin_devices;
-        in import ./darwin/device.nix {
-          inherit devices inputs nixpkgs home-manager overlays nix-darwin;
-        };
+      darwinConfigurations = let devices = darwin_devices;
+      in import ./darwin/device.nix {
+        inherit devices inputs nixpkgs home-manager overlays nix-darwin;
+      };
 
-      homeConfigurations =
-        let devices = linux_devices;
-        in import ./linux/device.nix {
-          inherit devices inputs nixpkgs home-manager overlays;
-        };
+      homeConfigurations = let devices = linux_devices;
+      in import ./linux/device.nix {
+        inherit devices inputs nixpkgs home-manager overlays;
+      };
     };
 }

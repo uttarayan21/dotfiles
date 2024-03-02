@@ -1,15 +1,5 @@
 { pkgs, ... }:
 let
-  tmux-super-fingers = pkgs.tmuxPlugins.mkTmuxPlugin {
-    pluginName = "tmux-super-fingers";
-    version = "v1-2024-02-14";
-    src = pkgs.fetchFromGitHub {
-      owner = "artemave";
-      repo = "tmux_super_fingers";
-      rev = "518044ef78efa1cf3c64f2e693fef569ae570ddd";
-      sha256 = "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=";
-    };
-  };
   scratchpad = pkgs.writeShellScript "scratchpad" ''
     width=''${2:-95%}
     height=''${2:-95%}
@@ -19,8 +9,7 @@ let
         tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
     fi
   '';
-in
-{
+in {
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -30,8 +19,9 @@ in
     keyMode = "vi";
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
+      tmuxPlugins.tmux-fzf
       {
-        plugin = tmux-super-fingers;
+        plugin = tmuxPlugins.tmux-super-fingers;
         extraConfig = "set -g @super-fingers-key o";
       }
       {
