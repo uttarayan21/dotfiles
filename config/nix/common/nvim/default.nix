@@ -75,6 +75,13 @@
         indent = true;
       };
 
+      mini = {
+        enable = true;
+        ai.enable = true;
+        pairs.enable = true;
+        cursorword.enable = true;
+      };
+
     };
     colorschemes = {
       catppuccin = {
@@ -111,7 +118,7 @@
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.telescope-file-browser-nvim
         pkgs.vimPlugins.telescope-dap-nvim
-        # pkgs.vimPlugins.rustaceanvim
+        pkgs.vimPlugins.rustaceanvim
 
         # lsp stuff
         pkgs.vimPlugins.nvim-cmp
@@ -129,6 +136,8 @@
         pkgs.vimPlugins.nvim-web-devicons
 
         pkgs.vimPlugins.rest-nvim
+
+        pkgs.vimPlugins.noice-nvim
 
       ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
