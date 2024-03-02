@@ -103,23 +103,15 @@
     };
 
     extraPlugins =
-      let
-        comfortable-motion = pkgs.fetchFromGitHub {
-          owner = "yuttie";
-          repo = "comfortable-motion.vim";
-          rev = "master";
-          sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
-        };
-      in
       [
-        comfortable-motion
+        pkgs.vimPlugins.comfortable-motion
         pkgs.vimPlugins.vim-abolish
         pkgs.vimPlugins.telescope-nvim
         pkgs.vimPlugins.telescope-ui-select-nvim
         pkgs.vimPlugins.telescope-fzf-native-nvim
         pkgs.vimPlugins.telescope-file-browser-nvim
         pkgs.vimPlugins.telescope-dap-nvim
-        pkgs.vimPlugins.rustaceanvim
+        # pkgs.vimPlugins.rustaceanvim
 
         # lsp stuff
         pkgs.vimPlugins.nvim-cmp
@@ -134,6 +126,7 @@
         pkgs.vimPlugins.copilot-lua
         pkgs.vimPlugins.lsp-zero-nvim
         pkgs.vimPlugins.trouble-nvim
+        pkgs.vimPlugins.nvim-web-devicons
 
         pkgs.vimPlugins.rest-nvim
 

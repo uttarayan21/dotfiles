@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, device, ... }: {
   imports = [ ./yabai.nix ./skhd.nix ];
 
   environment.systemPackages = with pkgs; [ nix neovim ];

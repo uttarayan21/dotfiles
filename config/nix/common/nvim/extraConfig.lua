@@ -19,6 +19,7 @@ require('telescope').load_extension("file_browser")
 
 vim.g.rustaceanvim = {
     server = {
+        capabilities = require 'lsp-zero'.get_capabilities(),
         on_attach = function(client, bufnr)
             if client.server_capabilities.inlayHintProvider then
                 vim.lsp.inlay_hint.enable(bufnr, true)
@@ -102,7 +103,7 @@ cmp.setup.cmdline(':', {
 })
 cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-        { name = 'git' },             -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+        { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
     }, {
         { name = 'buffer' },
     })

@@ -19,7 +19,8 @@ let
         tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
     fi
   '';
-in {
+in
+{
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -37,7 +38,7 @@ in {
         plugin = tmuxPlugins.catppuccin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
-          set -g @catppuccin_window_default_text ""
+          set -g @catppuccin_window_default_text ''''''
         '';
       }
       {
@@ -53,6 +54,10 @@ in {
       set -g allow-passthrough on
       set -ga update-environment TERM
       set -ga update-environment TERM_PROGRAM
+      set-option -sg escape-time 10
+      set-option -sa terminal-features ',xterm-256color:RGB'
+
+
 
       bind h select-pane -L
       bind j select-pane -D

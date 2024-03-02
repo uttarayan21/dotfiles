@@ -98,7 +98,8 @@
     fish
     nushellFull
     (pkgs.wrapFirefox
-      (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
+      (pkgs.firefox-unwrapped.override { pipewireSupport = true; })
+      { })
     gnumake
     python3
     (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" ]; })

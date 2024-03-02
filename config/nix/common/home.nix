@@ -3,13 +3,14 @@ let
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
   lazy = false;
-in {
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
   ] ++ (if device.isLinux then [ ../linux ] else [ ])
-    ++ (if !lazy then [ ./nvim ] else [ ]);
+  ++ (if !lazy then [ ./nvim ] else [ ]);
 
   home.packages = with pkgs;
     [
@@ -79,6 +80,22 @@ in {
   # xdg.enable = true;
 
   programs = {
+    helix = {
+      enable = true;
+      settings = {
+        theme = "base16";
+        editor = {
+          line-number = "relative";
+          lsp.display-messages = true;
+        };
+        keys.normal = {
+          space.space = "file_picker";
+          space.w = ":w";
+          space.q = ":q";
+          esc = [ "collapse_selection" "keep_primary_selection" ];
+        };
+      };
+    };
     git = {
       enable = true;
       userName = "uttarayan21";
@@ -124,17 +141,19 @@ in {
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings = let flavour = "mocha"; # Replace with your preferred palette
-      in {
-        # Other config here
-        format = "$all"; # Remove this line to disable the default prompt format
-        palette = "catppuccin_${flavour}";
-      } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "starship";
-        rev = "main"; # Replace with the latest commit hash
-        sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
-      } + /palettes/${flavour}.toml));
+      settings =
+        let flavour = "mocha"; # Replace with your preferred palette
+        in {
+          # Other config here
+          format = "$all"; # Remove this line to disable the default prompt format
+          palette = "catppuccin_${flavour}";
+        } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub
+          {
+            owner = "catppuccin";
+            repo = "starship";
+            rev = "main"; # Replace with the latest commit hash
+            sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
+          } + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -162,16 +181,17 @@ in {
       enable = true;
       config = { theme = "catppuccin"; };
       themes = {
-        catppuccin = let flavor = "mocha";
-        in {
-          src = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "bat";
-            rev = "main";
-            sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
+        catppuccin =
+          let flavor = "mocha";
+          in {
+            src = pkgs.fetchFromGitHub {
+              owner = "catppuccin";
+              repo = "bat";
+              rev = "main";
+              sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
+            };
+            file = "Catppuccin-${flavor}.tmTheme";
           };
-          file = "Catppuccin-${flavor}.tmTheme";
-        };
       };
     };
 
@@ -184,10 +204,11 @@ in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory = if device.isMac then
-      lib.mkForce "/Users/${device.user}"
-    else
-      lib.mkForce "/home/${device.user}";
+    homeDirectory =
+      if device.isMac then
+        lib.mkForce "/Users/${device.user}"
+      else
+        lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 

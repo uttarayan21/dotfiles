@@ -142,20 +142,28 @@
           inputs.anyrun-nixos-options.packages.${prev.system}.default;
         anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;
       };
-      # postman-overlay = final: prev: {
-      #   postman = prev.postman.overrideAttrs (old: rec {
-      #     version = "20230716100528";
-      #     src = final.fetchurl {
-      #       url =
-      #         "https://dl.pstmn.io/download/latest/osx_arm64";
-      #       sha256 = "sha256-P7x06KKH0e1Yro93SCEJyiWS/Uv25tWU8A85vxv85hI=";
-      #       name = "${old.pname}-${version}.tar.gz";
-      #     };
-      #   });
-      # };
+
+      vimPlugins = final: prev: {
+        vimPlugins =
+          prev.vimPlugins
+          //
+          {
+            comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
+              name = "comfortable-motion";
+              src = final.pkgs.fetchFromGitHub {
+                owner = "yuttie";
+                repo = "comfortable-motion.vim";
+                rev = "master";
+                sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
+              };
+            };
+          };
+      };
+
       overlays = [
         inputs.neovim-nightly-overlay.overlay
         anyrun-overlay
+        vimPlugins
         inputs.nixneovim.overlays.default
         inputs.nixneovimplugins.overlays.default
         nur.overlay
