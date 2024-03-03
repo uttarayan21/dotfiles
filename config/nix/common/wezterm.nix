@@ -12,7 +12,7 @@
             }),
             color_scheme = "Catppuccin Mocha",
             font_size = 16,
-            initial_cols = 120,
+            initial_cols = 200,
             hide_tab_bar_if_only_one_tab = true,
             window_background_opacity = 0.8,
             cursor_blink_rate = 8,

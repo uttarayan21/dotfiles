@@ -1,7 +1,18 @@
 { pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
+
     settings = {
+      source =
+        let
+          catppuccin = pkgs.fetchFromGitHub {
+            owner = "catppuccin";
+            repo = "hyprland";
+            rev = "main";
+            sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
+          };
+        in
+        "${catppuccin}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
         "DP-1,       2560x1440@170, 0x0,     1, transform, 0"
@@ -104,13 +115,11 @@
         "QT_QPA_PLATFORM,wayland"
       ];
       exec-once = [
-        "${pkgs.swayosd}/bin/swayosd"
-        "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
+        "${pkgs.swayosd}/bin/swayosd-server"
+        # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
         "${pkgs.nextcloud-client}/bin/nextcloud --background"
         "/usr/lib/polkit-kde-authentication-agent-1"
-        "${pkgs.kdeconnect}/libexec/kdeconnectd"
-        # "aa-notify -p -s 1 -w 60 -f /var/log/audit/audit.log"
       ];
 
       "$mainMod" = "SUPER";
@@ -127,16 +136,16 @@
         "$mainMod, d, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, Space, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, p, pseudo, # dwindle"
-        "$mainMod, v, togglesplit, # dwindle"
+        "$mainMod, v, togglesplit,"
         "$mainMod, a, exec, swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
-        ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume raise"
-        ",xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume lower"
-        ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd --output-volume mute-toggle"
-        ",xf86audioprev, exec, /home/fs0c131y/.cargo/bin/mctl prev"
-        ",xf86audionext, exec, /home/fs0c131y/.cargo/bin/mctl next"
-        ",xf86audioplay, exec, /home/fs0c131y/.cargo/bin/mctl toggle"
+        ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise"
+        ",xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume lower"
+        ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle"
+        # ",xf86audioprev, exec, /home/fs0c131y/.cargo/bin/mctl prev"
+        # ",xf86audionext, exec, /home/fs0c131y/.cargo/bin/mctl next"
+        # ",xf86audioplay, exec, /home/fs0c131y/.cargo/bin/mctl toggle"
 
         # Screenshot
         # "$mainMod,Print, exec, grim"

@@ -1,4 +1,4 @@
-{ pkgs, device, nur, ... }: {
+{ pkgs, device, nur, inputs, ... }: {
   imports = [
     ../common/firefox.nix
     ../linux/hyprland.nix
@@ -7,6 +7,9 @@
     ../linux/ironbar
     ../linux/foot.nix
   ];
+
+  services.kdeconnect.enable = true;
+
   systemd.user.services.spotify-player = {
     Install = { WantedBy = [ "graphical-session.target" ]; };
     Unit = {

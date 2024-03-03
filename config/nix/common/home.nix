@@ -12,6 +12,9 @@ in
   ] ++ (if device.isLinux then [ ../linux ] else [ ])
   ++ (if !lazy then [ ./nvim ] else [ ]);
 
+
+  services.swayosd.enable = true;
+
   home.packages = with pkgs;
     [
       yt-dlp
@@ -46,11 +49,9 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
-      openssl
-      openssl.dev
+      polkit-kde-agent
       dig
       mullvad
-      kdeconnect
       steam-run
       (pkgs.catppuccin-gtk.override {
         variant = "mocha";
@@ -63,7 +64,6 @@ in
         flavor = "mocha";
       })
       swaynotificationcenter
-      openocd-rp2040
       usbutils
       picotool
       handlr-regex
@@ -190,17 +190,11 @@ in
       enable = true;
       config = { theme = "catppuccin"; };
       themes = {
-        catppuccin =
-          let flavor = "mocha";
-          in {
-            src = pkgs.fetchFromGitHub {
-              owner = "catppuccin";
-              repo = "bat";
-              rev = "main";
-              sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw";
-            };
-            file = "Catppuccin-${flavor}.tmTheme";
-          };
+        # catppuccin =
+        #   {
+        #     src = "${pkgs.catppuccinThemes.bat}";
+        #     file = "Catppuccin-mocha.tmTheme";
+        #   };
       };
     };
 

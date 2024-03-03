@@ -36,7 +36,7 @@
             type = "sys_info";
             format = [
               "  CPU {cpu_percent}% | {temp_c:coretemp-Package-id-0}°C"
-              "  RAM {memory_used}GB/{memory_total}GB ({memory_percent})%"
+              "  RAM {memory_used}GB/{memory_total}GB"
             ];
             interval = {
               cpu = 1;
