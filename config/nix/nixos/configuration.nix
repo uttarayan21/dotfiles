@@ -8,6 +8,7 @@
   ];
 
   services.mullvad-vpn.enable = true;
+  services.resolved.enable = true;
 
   boot.lanzaboote = {
     enable = true;

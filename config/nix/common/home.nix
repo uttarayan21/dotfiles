@@ -46,6 +46,7 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      dig
       mullvad
       kdeconnect
       steam-run
