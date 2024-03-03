@@ -1,16 +1,11 @@
-{ ... }: {
+{ pkgs, ... }: {
   services = {
     skhd = {
       enable = true;
       skhdConfig = ''
         # open terminal, blazingly fast compared to iTerm/Hyper
-        # alt - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-        alt - return : /Applications/WezTerm.app/Contents/MacOS/wezterm
+        alt - return : ${pkgs.wezterm}/bin/wezterm-gui
         shift + alt - return: pkill mpv
-        # alt + \ : pkill mpv
-
-        # open qutebrowser
-        # alt + shift - return : ~/Scripts/qtb.sh
 
         # open mpv
         alt - m : open -na /Applications/mpv.app $(pbpaste)

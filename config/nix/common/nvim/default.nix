@@ -21,43 +21,49 @@
       undofile = true;
     };
 
-    globals = { mapleader = " "; };
+    globals = {
+      mapleader = " ";
+    };
     plugins = {
       lspconfig = {
         enable = true;
         servers = {
           nil = {
             enable = true;
-            extraConfig = ''
-              settings = {
-                ['nil'] = {
-                  formatting = {
-                    command = { "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
-                  },
-                  nix = {
-                    flake = {
-                        autoArchive = true,
+            extraConfig =
+              /* lua */
+              ''
+                settings = {
+                  ['nil'] = {
+                    formatting = {
+                      command = { "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
+                    },
+                    nix = {
+                      flake = {
+                          autoArchive = true,
+                      },
                     },
                   },
                 },
-              },
-            '';
+              '';
           };
           lua-language-server.enable = true;
           jsonls.enable = true;
           html.enable = true;
           # rust-analyzer.enable = true;
         };
-        extraLua.pre = ''
-          local lsp_zero = require'lsp-zero'
-          local lspconfig = require 'lspconfig'
-          lsp_zero.on_attach(function(client, bufnr)
-            lsp_zero.default_keymaps({buffer = bufnr})
-              if client.server_capabilities.inlayHintProvider then
-                  vim.lsp.inlay_hint.enable(bufnr, true)
-              end
-          end)
-        '';
+        extraLua.pre =
+          /* lua */
+          ''
+            local lsp_zero = require'lsp-zero'
+            local lspconfig = require 'lspconfig'
+            lsp_zero.on_attach(function(client, bufnr)
+              lsp_zero.default_keymaps({buffer = bufnr})
+                if client.server_capabilities.inlayHintProvider then
+                    vim.lsp.inlay_hint.enable(bufnr, true)
+                end
+            end)
+          '';
         # extraLua.post = ''
         #   vim.lsp.inlay_hint.enable(bufnr, true)
         # '';
@@ -65,16 +71,32 @@
 
       nvim-dap.enable = true;
       todo-comments.enable = true;
-      lualine.enable = true;
+      lualine = {
+        enable = true;
+      };
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
       ufo.enable = true;
       fugitive.enable = true;
+      markdown-preview = {
+        enable = true;
+        autoStart = true;
+      };
+      ts-context-commentstring.enable = true;
 
       treesitter = {
         enable = true;
         indent = true;
+        folding = true;
+        refactor = {
+          smartRename = {
+            enable = true;
+            keymaps = {
+              smartRename = "<leader>rn";
+            };
+          };
+        };
       };
 
       mini = {
@@ -147,6 +169,7 @@
       # UI
       noice-nvim
       nvim-web-devicons
+
 
     ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
