@@ -14,6 +14,7 @@ in
 
   home.packages = with pkgs;
     [
+      yt-dlp
       ngrok
       slack
       gh
@@ -45,6 +46,7 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      mullvad
       kdeconnect
       steam-run
       (pkgs.catppuccin-gtk.override {
