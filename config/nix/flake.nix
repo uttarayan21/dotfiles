@@ -174,7 +174,9 @@
       };
 
       catppuccinThemes = final: prev: {
-        catppuccinThemes = ./themes/catppuccin.nix;
+        catppuccinThemes = import ./themes/catppuccin.nix {
+          pkgs = final.pkgs;
+        };
       };
 
       overlays = [

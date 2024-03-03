@@ -1,7 +1,7 @@
 { config, pkgs, lib, device, ... }:
 let
-  start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   # https://mipmip.github.io/home-manager-option-search/
+  start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   lazy = false;
 in
 {
@@ -114,6 +114,7 @@ in
         vi = "nvim";
         nv = "nvim";
         g = "git";
+        yy = "yazi";
         cd = "z";
         ls = "exa";
         t = "${start-tmux}";
@@ -127,13 +128,16 @@ in
       '';
       interactiveShellInit = ''
         ${pkgs.spotify-player}/bin/spotify_player generate fish | source
-        ${pkgs.macchina.outPath}/bin/macchina
+        ${pkgs.macchina}/bin/macchina
       '';
     };
 
     nushell = {
       enable = true;
-      shellAliases = { "cd" = "z"; };
+      shellAliases = {
+        cd = "z";
+        yy = "yazi";
+      };
       package = pkgs.nushellFull;
       configFile.text = ''
         $env.config = {
@@ -156,13 +160,8 @@ in
           # Other config here
           format = "$all"; # Remove this line to disable the default prompt format
           palette = "catppuccin_${flavour}";
-        } // builtins.fromTOML (builtins.readFile (pkgs.fetchFromGitHub
-          {
-            owner = "catppuccin";
-            repo = "starship";
-            rev = "main"; # Replace with the latest commit hash
-            sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
-          } + /palettes/${flavour}.toml));
+        } // builtins.fromTOML (builtins.readFile (pkgs.catppuccinThemes.starship
+          + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -190,11 +189,11 @@ in
       enable = true;
       config = { theme = "catppuccin"; };
       themes = {
-        # catppuccin =
-        #   {
-        #     src = "${pkgs.catppuccinThemes.bat}";
-        #     file = "Catppuccin-mocha.tmTheme";
-        #   };
+        catppuccin =
+          {
+            src = "${pkgs.catppuccinThemes.bat}/themes";
+            file = "Catppuccin Mocha.tmTheme";
+          };
       };
     };
 

@@ -4,15 +4,15 @@
 
     settings = {
       source =
-        let
-          catppuccin = pkgs.fetchFromGitHub {
-            owner = "catppuccin";
-            repo = "hyprland";
-            rev = "main";
-            sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
-          };
-        in
-        "${catppuccin}/themes/mocha.conf";
+        # let
+        #   catppuccin = pkgs.fetchFromGitHub {
+        #     owner = "catppuccin";
+        #     repo = "hyprland";
+        #     rev = "main";
+        #     sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
+        #   };
+        # in
+        "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
         "DP-1,       2560x1440@170, 0x0,     1, transform, 0"
