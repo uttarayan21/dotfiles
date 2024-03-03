@@ -1,3 +1,0 @@
-tmux new-session -d -s 'wasm' -n 'neovim' -c ~/Projects/wasm
-tmux new-window -t wasm -n shell -c ~/Projects/wasm
-tmux select-window -t wasm:0

@@ -1,3 +1,0 @@
-tmux new-session -d -s 'assembly' -n 'neovim' -c ~/Projects/assembly
-tmux new-window -t assembly -n shell -c ~/Projects/assembly
-tmux select-window -t assembly:0

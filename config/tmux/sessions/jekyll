@@ -1,3 +1,0 @@
-tmux new-session -d -s 'jekyll' -n 'neovim' -c ~/Projects/uttarayan21.github.io
-tmux new-window -t jekyll -n shell -c ~/Projects/uttarayan21.github.io
-tmux select-window -t jekyll:0

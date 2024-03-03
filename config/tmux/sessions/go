@@ -1,3 +1,0 @@
-tmux new-session -d -s 'go' -n 'neovim' -c ~/go
-tmux new-window -t go -n shell -c ~/go
-tmux select-window -t go:0

@@ -46,6 +46,8 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      openssl
+      openssl.dev
       dig
       mullvad
       kdeconnect

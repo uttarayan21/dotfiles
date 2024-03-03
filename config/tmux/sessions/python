@@ -1,3 +1,0 @@
-tmux new-session -d -s 'python' -n 'neovim' -c ~/Projects/python
-tmux new-window -t python -n shell -c ~/Projects/python
-tmux select-window -t python:0

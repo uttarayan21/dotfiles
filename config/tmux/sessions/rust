@@ -1,3 +1,0 @@
-tmux new-session -d -s 'rust' -n 'neovim' -c ~/Projects/rust
-tmux new-window -t rust -n shell -c ~/Projects/rust
-tmux select-window -t rust:0
