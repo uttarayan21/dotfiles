@@ -50,6 +50,7 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      sbctl
       gparted
       gptfdisk
       polkit-kde-agent
