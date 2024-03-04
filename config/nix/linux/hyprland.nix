@@ -119,7 +119,7 @@
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
         "${pkgs.nextcloud-client}/bin/nextcloud --background"
-        "/usr/lib/polkit-kde-authentication-agent-1"
+        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
       "$mainMod" = "SUPER";

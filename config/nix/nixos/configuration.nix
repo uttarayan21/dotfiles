@@ -137,6 +137,7 @@
 
   programs = {
     hyprland.enable = true;
+    nushell.enable = true;
     yubikey-touch-detector.enable = true;
     hyprland.xwayland.enable = true;
   };

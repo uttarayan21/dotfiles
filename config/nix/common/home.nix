@@ -17,6 +17,7 @@ in
 
   home.packages = with pkgs;
     [
+      file
       yt-dlp
       ngrok
       slack
@@ -49,6 +50,7 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      gparted
       polkit-kde-agent
       dig
       mullvad
