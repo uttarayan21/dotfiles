@@ -123,6 +123,7 @@
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
     hyprland
+    xorg.xhost
     foot
     git
     fish
@@ -137,9 +138,8 @@
 
   programs = {
     hyprland.enable = true;
-    nushell.enable = true;
-    yubikey-touch-detector.enable = true;
     hyprland.xwayland.enable = true;
+    yubikey-touch-detector.enable = true;
   };
 
   security.rtkit.enable = true;

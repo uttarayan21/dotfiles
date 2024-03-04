@@ -2,18 +2,20 @@
   programs.firefox = {
     enable = device.isLinux;
     profiles.default = {
-      userChrome = let
-        csshacks = pkgs.fetchFromGitHub {
-          owner = "MrOtherGuy";
-          repo = "firefox-csshacks";
-          rev = "master";
-          sha256 = "sha256-r5CKOOcRWZQzYA9M6j7m2CAulOQItCuWsTSNGOYN87w=";
-        };
-      in ''
-        @import url(${csshacks}/chrome/toolbars_below_content.css);
-        @import url(${csshacks}/chrome/scrollable_menupopups.css);
-        @import url(${csshacks}/chrome/linux_gtk_window_control_patch.css);
-      '';
+      userChrome =
+        let
+          csshacks = pkgs.fetchFromGitHub {
+            owner = "MrOtherGuy";
+            repo = "firefox-csshacks";
+            rev = "master";
+            sha256 = "sha256-XJ+MTEADzOsCIh0I8EAxbtIpDHfMJsN68sKBy7/1l60=";
+          };
+        in
+        ''
+          @import url(${csshacks}/chrome/toolbars_below_content.css);
+          @import url(${csshacks}/chrome/scrollable_menupopups.css);
+          @import url(${csshacks}/chrome/linux_gtk_window_control_patch.css);
+        '';
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         bitwarden

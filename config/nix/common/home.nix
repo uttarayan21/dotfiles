@@ -51,6 +51,7 @@ in
       mpv
     ] ++ (if device.isLinux then [
       gparted
+      gptfdisk
       polkit-kde-agent
       dig
       mullvad
