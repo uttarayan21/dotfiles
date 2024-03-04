@@ -47,12 +47,13 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      gnome.seahorse
       gnome.nautilus
       nextcloud-client
       sbctl
       gparted
       gptfdisk
-      polkit-kde-agent
+      polkit_gnome
       dig
       mullvad
       steam-run

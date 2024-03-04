@@ -16,6 +16,7 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;

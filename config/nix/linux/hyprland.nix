@@ -1,4 +1,23 @@
 { pkgs, ... }: {
+  imports = [ ../modules/hyprpaper.nix ];
+  programs.hyprpaper =
+    let
+      wallpapers = [
+        (builtins.fetchurl
+          {
+            url = "https://w.wallhaven.cc/full/zy/wallhaven-zy2x7v.png";
+            sha256 =
+              "1vy4knw8cdwb5gszgvjahnwa2g0hh5lmz3v2hbx1nylmjg2rzpda";
+          })
+      ];
+    in
+    {
+      enable = true;
+      systemd.enable = true;
+      systemd.target = "hyprland-session.target";
+      settings.preload = wallpapers;
+      settings.wallpapers = (map (wallpaper: "DP-1," + wallpaper) wallpapers);
+    };
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -32,8 +51,8 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        "col.active_border" = "$mauve $mauve 45deg";
+        "col.inactive_border" = "$crust";
       };
 
       decoration = {
@@ -111,7 +130,8 @@
         "QT_QPA_PLATFORM,wayland"
       ];
       exec-once = [
-        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+        # "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         # "${pkgs.swayosd}/bin/swayosd-server"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
