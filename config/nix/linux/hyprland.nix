@@ -4,14 +4,6 @@
 
     settings = {
       source =
-        # let
-        #   catppuccin = pkgs.fetchFromGitHub {
-        #     owner = "catppuccin";
-        #     repo = "hyprland";
-        #     rev = "main";
-        #     sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
-        #   };
-        # in
         "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
@@ -104,7 +96,11 @@
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
-      windowrule = [ "float, title:^(Steam)$" "float, title:^(Archetype.*)$" ];
+      windowrulev2 = [
+        "float, title:^(Steam)$"
+        "float, title:^(Archetype.*)$"
+        "float, class:(.*nextcloud.*)"
+      ];
 
       "misc:vfr" = true;
 
@@ -115,11 +111,11 @@
         "QT_QPA_PLATFORM,wayland"
       ];
       exec-once = [
-        "${pkgs.swayosd}/bin/swayosd-server"
+        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
+        # "${pkgs.swayosd}/bin/swayosd-server"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
         "${pkgs.nextcloud-client}/bin/nextcloud --background"
-        "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
       ];
 
       "$mainMod" = "SUPER";

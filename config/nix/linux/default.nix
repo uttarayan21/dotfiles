@@ -9,6 +9,7 @@
   ];
 
   services.kdeconnect.enable = true;
+  services.swayosd.enable = true;
 
   systemd.user.services.spotify-player = {
     Install = { WantedBy = [ "graphical-session.target" ]; };

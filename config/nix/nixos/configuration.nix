@@ -8,8 +8,14 @@
   ];
 
   security.polkit.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+
+
   services.mullvad-vpn.enable = true;
   services.resolved.enable = true;
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;
@@ -20,6 +26,14 @@
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "catppuccin-mocha";
+  boot.plymouth.themePackages = with pkgs; [
+    (catppuccin-plymouth.override
+      {
+        variant = "mocha";
+      })
+  ];
 
   services.greetd =
     let

@@ -12,9 +12,6 @@ in
   ] ++ (if device.isLinux then [ ../linux ] else [ ])
   ++ (if !lazy then [ ./nvim ] else [ ]);
 
-
-  services.swayosd.enable = true;
-
   home.packages = with pkgs;
     [
       file
@@ -50,6 +47,8 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
+      gnome.nautilus
+      nextcloud-client
       sbctl
       gparted
       gptfdisk
