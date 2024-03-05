@@ -18,7 +18,7 @@
   # security.pam.enableSudoTouchIdAuth = true;
   system.patches = [
     (pkgs.writeText "pam-reattach.patch"
-      /* diff */
+      # diff
       ''
         new file mode 100644
         index 0000000..e4293c0

@@ -21,9 +21,7 @@
       undofile = true;
     };
 
-    globals = {
-      mapleader = " ";
-    };
+    globals = { mapleader = " "; };
     plugins = {
       lspconfig = {
         enable = true;
@@ -31,7 +29,7 @@
           nil = {
             enable = true;
             extraConfig =
-              /* lua */
+              # lua
               ''
                 settings = {
                   ['nil'] = {
@@ -53,7 +51,7 @@
           # rust-analyzer.enable = true;
         };
         extraLua.pre =
-          /* lua */
+          # lua
           ''
             local lsp_zero = require'lsp-zero'
             local lspconfig = require 'lspconfig'
@@ -71,9 +69,7 @@
 
       nvim-dap.enable = true;
       todo-comments.enable = true;
-      lualine = {
-        enable = true;
-      };
+      lualine = { enable = true; };
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
@@ -92,9 +88,7 @@
         refactor = {
           smartRename = {
             enable = true;
-            keymaps = {
-              smartRename = "<leader>rn";
-            };
+            keymaps = { smartRename = "<leader>rn"; };
           };
         };
       };
@@ -169,7 +163,6 @@
       # UI
       noice-nvim
       nvim-web-devicons
-
 
     ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;

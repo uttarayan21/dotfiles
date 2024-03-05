@@ -1,29 +1,19 @@
 { pkgs, ... }: {
   imports = [ ../modules/hyprpaper.nix ];
   programs.hyprpaper =
-    let
-      wallpapers = [
-        (builtins.fetchurl
-          {
-            url = "https://w.wallhaven.cc/full/zy/wallhaven-zy2x7v.png";
-            sha256 =
-              "1vy4knw8cdwb5gszgvjahnwa2g0hh5lmz3v2hbx1nylmjg2rzpda";
-          })
-      ];
-    in
-    {
+    let wallpapers = import ../utils/wallhaven.nix { inherit pkgs; };
+    in {
       enable = true;
       systemd.enable = true;
       systemd.target = "hyprland-session.target";
-      settings.preload = wallpapers;
-      settings.wallpapers = (map (wallpaper: "DP-1," + wallpaper) wallpapers);
+      settings.preload = wallpapers.all;
+      settings.wallpapers = { "DP-1" = wallpapers.shapes; };
     };
   wayland.windowManager.hyprland = {
     enable = true;
 
     settings = {
-      source =
-        "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
+      source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
         "DP-1,       2560x1440@170, 0x0,     1, transform, 0"

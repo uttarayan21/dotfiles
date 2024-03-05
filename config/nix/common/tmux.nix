@@ -9,8 +9,7 @@ let
         tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
     fi
   '';
-in
-{
+in {
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -28,7 +27,7 @@ in
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig =
-          /* tmux */
+          # tmux
           ''
             set -g @catppuccin_flavour 'mocha'
             set -g @catppuccin_window_default_text ''''''
@@ -37,14 +36,14 @@ in
       {
         plugin = tmuxPlugins.battery;
         extraConfig =
-          /* tmux */
+          # tmux
           ''
             set -g @catppuccin_status_modules_right "battery application session date_time"
           '';
       }
     ];
     extraConfig =
-      /* tmux */
+      # tmux
       ''
         set -gw mode-keys vi
         set -g status-keys vi

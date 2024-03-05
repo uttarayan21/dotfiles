@@ -10,7 +10,6 @@
   security.polkit.enable = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-
   services.mullvad-vpn.enable = true;
   services.resolved.enable = true;
   services.devmon.enable = true;
@@ -29,27 +28,22 @@
   };
   boot.plymouth.enable = true;
   boot.plymouth.theme = "catppuccin-mocha";
-  boot.plymouth.themePackages = with pkgs; [
-    (catppuccin-plymouth.override
-      {
-        variant = "mocha";
-      })
-  ];
+  boot.plymouth.themePackages = with pkgs;
+    [ (catppuccin-plymouth.override { variant = "mocha"; }) ];
 
-  services.greetd =
-    let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-      hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-    in
-    {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
-          user = "greeter";
-        };
+  services.greetd = let
+    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
+  in {
+    enable = true;
+    settings = {
+      default_session = {
+        command =
+          "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+        user = "greeter";
       };
     };
+  };
 
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
@@ -149,8 +143,7 @@
     fish
     nushellFull
     (pkgs.wrapFirefox
-      (pkgs.firefox-unwrapped.override { pipewireSupport = true; })
-      { })
+      (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
     gnumake
     python3
     (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" ]; })

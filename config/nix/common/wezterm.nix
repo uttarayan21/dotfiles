@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   programs.wezterm = {
     enable = true;
-    extraConfig = /* lua */
+    extraConfig = # lua
       ''
         local wezterm = require 'wezterm';
         return {

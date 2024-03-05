@@ -3,14 +3,13 @@ let
   # https://mipmip.github.io/home-manager-option-search/
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   lazy = false;
-in
-{
+in {
   imports = [
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
   ] ++ (if device.isLinux then [ ../linux ] else [ ])
-  ++ (if !lazy then [ ./nvim ] else [ ]);
+    ++ (if !lazy then [ ./nvim ] else [ ]);
 
   home.packages = with pkgs;
     [
@@ -158,14 +157,13 @@ in
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings =
-        let flavour = "mocha"; # Replace with your preferred palette
-        in {
-          # Other config here
-          format = "$all"; # Remove this line to disable the default prompt format
-          palette = "catppuccin_${flavour}";
-        } // builtins.fromTOML (builtins.readFile (pkgs.catppuccinThemes.starship
-          + /palettes/${flavour}.toml));
+      settings = let flavour = "mocha"; # Replace with your preferred palette
+      in {
+        # Other config here
+        format = "$all"; # Remove this line to disable the default prompt format
+        palette = "catppuccin_${flavour}";
+      } // builtins.fromTOML (builtins.readFile
+        (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -193,11 +191,10 @@ in
       enable = true;
       config = { theme = "catppuccin"; };
       themes = {
-        catppuccin =
-          {
-            src = "${pkgs.catppuccinThemes.bat}/themes";
-            file = "Catppuccin Mocha.tmTheme";
-          };
+        catppuccin = {
+          src = "${pkgs.catppuccinThemes.bat}/themes";
+          file = "Catppuccin Mocha.tmTheme";
+        };
       };
     };
 
@@ -206,7 +203,8 @@ in
       settings = {
         email = "uttarayan21@gmail.com";
         base_url = "https://pass.uttarayan.me";
-        pinenttry = if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
+        pinenttry =
+          if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
       };
     };
     # Let Home Manager install and manage itself.
@@ -218,11 +216,10 @@ in
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory =
-      if device.isMac then
-        lib.mkForce "/Users/${device.user}"
-      else
-        lib.mkForce "/home/${device.user}";
+    homeDirectory = if device.isMac then
+      lib.mkForce "/Users/${device.user}"
+    else
+      lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
