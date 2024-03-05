@@ -9,7 +9,8 @@ let
         tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
     fi
   '';
-in {
+in
+{
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
@@ -20,6 +21,7 @@ in {
     plugins = with pkgs; [
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.tmux-fzf
+      tmuxPlugins.fzf-tmux-url
       {
         plugin = tmuxPlugins.tmux-super-fingers;
         extraConfig = "set -g @super-fingers-key o";

@@ -7,7 +7,7 @@
         return {
             term = "wezterm",
             font = wezterm.font_with_fallback({
-                 "Hasklig",
+                 "Hasklug Nerd Font Mono",
                  "Symbols Nerd Font Mono"
             }),
             color_scheme = "Catppuccin Mocha",

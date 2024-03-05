@@ -13,6 +13,8 @@ in {
 
   home.packages = with pkgs;
     [
+      vcpkg
+      # vcpkg-tool
       file
       yt-dlp
       ngrok
