@@ -25,61 +25,65 @@
     };
 
     extraConfigFiles = {
-      "nixos-options.ron".text = let
-        nixos-options = pkgs.lib.optionalString device.isNix
-          osConfig.system.build.manual.optionsJSON
+      "nixos-options.ron".text =
+        let
+          nixos-options = pkgs.lib.optionalString device.isNix
+            osConfig.system.build.manual.optionsJSON
           + "/share/doc/nixos/options.json";
-        hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json
-          + "/share/doc/home-manager/options.json";
-        # or alternatively if you wish to read any other documentation options, such as home-manager
-        # get the docs-json package from the home-manager flake
-        # hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
-        # options = builtins.toJSON {
-        #   ":nix" = [nixos-options];
-        #   ":hm" = [hm-options];
-        #   ":something-else" = [some-other-option];
-        #   ":nall" = [nixos-options hm-options some-other-option];
-        # };
-        options = builtins.toJSON ({
-          ":hm" = [ hm-options ];
-        } // (if device.isNix then { ":nix" = [ nixos-options ]; } else { }));
-      in ''
-        Config(
-            options: ${options},
-            max_entries: Some(10),
-         )
-      '';
+          hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json
+            + "/share/doc/home-manager/options.json";
+          # or alternatively if you wish to read any other documentation options, such as home-manager
+          # get the docs-json package from the home-manager flake
+          # hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
+          # options = builtins.toJSON {
+          #   ":nix" = [nixos-options];
+          #   ":hm" = [hm-options];
+          #   ":something-else" = [some-other-option];
+          #   ":nall" = [nixos-options hm-options some-other-option];
+          # };
+          options = builtins.toJSON ({
+            ":hm" = [ hm-options ];
+          } // (if device.isNix then { ":nix" = [ nixos-options ]; } else { }));
+        in
+        ''
+          Config(
+              options: ${options},
+              max_entries: Some(10),
+           )
+        '';
       "shell.ron".text = ''
         Config(
             prefix: "",
             shell: None,
         )
       '';
-      "websearch.ron".text = ''
-        Config(
-            prefix: "?",
-            engines: [
-            Google,
-            DuckDuckGo,
-            Custom (
-                name: "GitHub",
-                url: "github.com/search?q={}"
-            ),
-            Custom (
-                name: "Nix Packages",
-                url: "search.nixos.org/packages?query={}"
-            ),
-            Custom (
-                name: "docs.rs",
-                url: "docs.rs/releases/search?query={}"
-            ),
-            Custom (
-                name: "NixOS options",
-                url: "search.nixos.org/options?query={}"
-            ),
-            ]
-        )
-      '';
+      "websearch.ron".text =
+        /* ron */
+        ''
+          Config(
+              prefix: "?",
+              engines: [
+              Google,
+              Custom (
+                  name: "Nix Packages",
+                  url: "search.nixos.org/packages?channel=unstable&query={}"
+              ),
+              Custom (
+                  name: "GitHub",
+                  url: "github.com/search?q={}"
+              ),
+              Custom (
+                  name: "docs.rs",
+                  url: "docs.rs/releases/search?query={}"
+              ),
+              Custom (
+                  name: "NixOS options",
+                  url: "search.nixos.org/options?query={}"
+              ),
+              DuckDuckGo,
+              ]
+          )
+        '';
       "rink.ron".text = ''
         Config(
             currency: Some("${
