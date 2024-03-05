@@ -9,8 +9,7 @@ let
         tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux attach -t scratch || tmux new -s scratch"
     fi
   '';
-in
-{
+in {
   programs.tmux = {
     enable = true;
     shell = "${pkgs.nushellFull}/bin/nu";
