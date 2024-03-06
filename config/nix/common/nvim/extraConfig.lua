@@ -114,7 +114,7 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 require('crates').setup()
-
+require('outline').setup()
 require("noice").setup({
     lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**

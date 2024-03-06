@@ -29,7 +29,7 @@
           nil = {
             enable = true;
             extraConfig =
-              # lua
+              /* lua */
               ''
                 settings = {
                   ['nil'] = {
@@ -48,6 +48,15 @@
           lua-language-server.enable = true;
           jsonls.enable = true;
           html.enable = true;
+          pylyzer.enable = true;
+          sqls = {
+            enable = true;
+            onAttachExtra =
+              /* lua */
+              ''
+                require('sqls').on_attach(client, bufnr)
+              '';
+          };
           # rust-analyzer.enable = true;
         };
         extraLua.pre =
@@ -117,16 +126,18 @@
         "<leader>ee" = "[[<Plug>RestNvim]]";
         "<leader>ec" = "[[<Plug>RestNvimPreview]]";
         "<leader>\\\"" = ''[["+]]'';
-        "<leader><leader>" = "'<c-^>'";
-        "vff" = "'<cmd>vertical Gdiffsplit<cr>'";
+        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
         "gi" = "vim.lsp.buf.implementation";
         "<leader>a" = "vim.lsp.buf.code_action";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
-        "<C-l>" = "'copilot#Accept(\"<CR>\")'";
+
+        "<leader><leader>" = "'<c-^>'";
         "<leader>q" = "[[<cmd>bw<cr>]]";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
         "<leader>p" = "[[<cmd>bprev<cr>]]";
+
+        "<C-l>" = "[[<cmd>Outline<cr>]]";
       };
     };
 
@@ -139,6 +150,9 @@
       telescope-file-browser-nvim
       telescope-dap-nvim
       rustaceanvim
+
+      # Treesitter stuff
+      outline-nvim
 
       # lsp stuff
       nvim-cmp
@@ -156,6 +170,7 @@
       lsp-zero-nvim
       trouble-nvim
       crates-nvim
+      sqls-nvim
 
       # No more postman
       rest-nvim

@@ -48,14 +48,15 @@
     };
 
     nixneovim = {
-      url = "github:nixneovim/nixneovim";
+      # url = "github:nixneovim/nixneovim";
+      url = "github:uttarayan21/NixNeovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixneovimplugins = {
-      url = "github:NixNeovim/NixNeovimPlugins";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixneovimplugins = {
+    #   url = "github:NixNeovim/NixNeovimPlugins";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nur.url = "github:nix-community/nur";
 
@@ -78,8 +79,16 @@
 
   };
 
-  outputs = { nixpkgs, home-manager, nix-darwin, flake-utils, anyrun, nur
-    , neovim-nightly-overlay, ... }@inputs:
+  outputs =
+    { nixpkgs
+    , home-manager
+    , nix-darwin
+    , flake-utils
+    , anyrun
+    , nur
+    , neovim-nightly-overlay
+    , ...
+    }@inputs:
     let
       config_devices = [
         {
@@ -146,6 +155,24 @@
               sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
             };
           };
+          sqls-nvim = final.pkgs.vimUtils.buildVimPlugin {
+            name = "sqls-nvim";
+            src = final.pkgs.fetchFromGitHub {
+              owner = "nanotee";
+              repo = "sqls.nvim";
+              rev = "master";
+              sha256 = "sha256-jKFut6NZAf/eIeIkY7/2EsjsIhvZQKCKAJzeQ6XSr0s";
+            };
+          };
+          outline-nvim = final.pkgs.vimUtils.buildVimPlugin {
+            name = "outline-nvim";
+            src = final.pkgs.fetchFromGitHub {
+              owner = "hedyhli";
+              repo = "outline.nvim";
+              rev = "master";
+              sha256 = "sha256-HaxfnvgFy7fpa2CS7/dQhf6dK9+Js7wP5qGdIeXLGPY";
+            };
+          };
         };
       };
 
@@ -177,23 +204,27 @@
         inputs.neovim-nightly-overlay.overlay
         anyrun-overlay
         inputs.nixneovim.overlays.default
-        inputs.nixneovimplugins.overlays.default
+        # inputs.nixneovimplugins.overlays.default
         nur.overlay
       ];
-    in {
-      nixosConfigurations = let devices = nixos_devices;
-      in import ./nixos/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nur;
-      };
+    in
+    {
+      nixosConfigurations =
+        let devices = nixos_devices;
+        in import ./nixos/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nur;
+        };
 
-      darwinConfigurations = let devices = darwin_devices;
-      in import ./darwin/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nix-darwin;
-      };
+      darwinConfigurations =
+        let devices = darwin_devices;
+        in import ./darwin/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nix-darwin;
+        };
 
-      homeConfigurations = let devices = linux_devices;
-      in import ./linux/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays;
-      };
+      homeConfigurations =
+        let devices = linux_devices;
+        in import ./linux/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays;
+        };
     };
 }

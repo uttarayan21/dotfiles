@@ -395,24 +395,6 @@
         "type": "github"
       }
     },
-    "flake-utils_8": {
-      "inputs": {
-        "systems": "systems_8"
-      },
-      "locked": {
-        "lastModified": 1689068808,
-        "narHash": "sha256-6ixXo3wt24N/melDWjq70UuHQLxGV8jZvooRanIHXw0=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "919d646de7be200f3bf08cb76ae1f09402b6f9b4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -691,28 +673,6 @@
         "type": "github"
       }
     },
-    "nix-github-actions_2": {
-      "inputs": {
-        "nixpkgs": [
-          "nixneovimplugins",
-          "poetry2nix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1688870561,
-        "narHash": "sha256-4UYkifnPEw1nAzqqPOTL2MvWtm3sNGw1UTYTalkTcGY=",
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "rev": "165b1650b753316aa7f1787f3005a8d2da0f5301",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nix-github-actions",
-        "type": "github"
-      }
-    },
     "nixneovim": {
       "inputs": {
         "flake-utils": "flake-utils_7",
@@ -727,16 +687,16 @@
         "nmt": "nmt"
       },
       "locked": {
-        "lastModified": 1709513017,
-        "narHash": "sha256-Ch86BJ023rvYI4bHAeLKkY6ctQIXMJ+NOVKYo3+SEjQ=",
-        "owner": "nixneovim",
-        "repo": "nixneovim",
-        "rev": "80485170869551e50a405e61bb3b37bf17319c98",
+        "lastModified": 1709737441,
+        "narHash": "sha256-SM68Sn82qk8osLkpIcvE8Z4iE8C6dWcAdig8TZz2QKM=",
+        "owner": "uttarayan21",
+        "repo": "NixNeovim",
+        "rev": "21961ef3fd7193aba8ec76572ce7d5d2e79d027f",
         "type": "github"
       },
       "original": {
-        "owner": "nixneovim",
-        "repo": "nixneovim",
+        "owner": "uttarayan21",
+        "repo": "NixNeovim",
         "type": "github"
       }
     },
@@ -763,28 +723,6 @@
       "original": {
         "owner": "nixneovim",
         "repo": "nixneovimplugins",
-        "type": "github"
-      }
-    },
-    "nixneovimplugins_2": {
-      "inputs": {
-        "flake-utils": "flake-utils_8",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "poetry2nix": "poetry2nix_2"
-      },
-      "locked": {
-        "lastModified": 1709475467,
-        "narHash": "sha256-lGTtQyGkR1/XIwIQiPFLgtawrMn5DedbAH+Qn5Vk+Zg=",
-        "owner": "NixNeovim",
-        "repo": "NixNeovimPlugins",
-        "rev": "f830c560c66a489f84d165efb5fbc6659718fc83",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixNeovim",
-        "repo": "NixNeovimPlugins",
         "type": "github"
       }
     },
@@ -975,32 +913,6 @@
         "type": "github"
       }
     },
-    "poetry2nix_2": {
-      "inputs": {
-        "flake-utils": [
-          "nixneovimplugins",
-          "flake-utils"
-        ],
-        "nix-github-actions": "nix-github-actions_2",
-        "nixpkgs": [
-          "nixneovimplugins",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1689849924,
-        "narHash": "sha256-d259Z2S7CS7Na04qQNQ6LYQILuI7cf4Rpe76qc4mz40=",
-        "owner": "nix-community",
-        "repo": "poetry2nix",
-        "rev": "1d7eda9336f336392d24e9602be5cb9be7ae405c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "poetry2nix",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -1045,7 +957,6 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-darwin": "nix-darwin",
         "nixneovim": "nixneovim",
-        "nixneovimplugins": "nixneovimplugins_2",
         "nixpkgs": "nixpkgs_5",
         "nur": "nur"
       }
@@ -1226,21 +1137,6 @@
       }
     },
     "systems_7": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_8": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

@@ -13,6 +13,7 @@ in {
 
   home.packages = with pkgs;
     [
+      sqls
       vcpkg
       # vcpkg-tool
       file
