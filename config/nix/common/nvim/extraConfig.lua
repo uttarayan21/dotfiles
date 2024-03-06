@@ -133,3 +133,13 @@ require("noice").setup({
         lsp_doc_border = true,        -- add a border to hover docs and signature help
     },
 })
+
+require 'FTerm'.setup({
+    border     = 'double',
+    dimensions = {
+        height = 0.9,
+        width = 0.9,
+    },
+    cmd        = "fish",
+    blend      = 10,
+})

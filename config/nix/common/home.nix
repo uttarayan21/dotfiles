@@ -3,16 +3,18 @@ let
   # https://mipmip.github.io/home-manager-option-search/
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
   lazy = false;
-in {
+in
+{
   imports = [
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
   ] ++ (if device.isLinux then [ ../linux ] else [ ])
-    ++ (if !lazy then [ ./nvim ] else [ ]);
+  ++ (if !lazy then [ ./nvim ] else [ ]);
 
   home.packages = with pkgs;
     [
+      neovide
       sqls
       vcpkg
       # vcpkg-tool
@@ -35,7 +37,6 @@ in {
       fd
       nixfmt
       dust
-      eza
       cachix
       rustup
       cmake
@@ -118,19 +119,19 @@ in {
       shellAbbrs = {
         vim = "nvim";
         vi = "nvim";
-        nv = "nvim";
+        nv = "neovide";
         g = "git";
         yy = "yazi";
         cd = "z";
-        ls = "exa";
+        ls = "eza";
         t = "${start-tmux}";
       };
       shellAliases = {
         g = "git";
-
       };
       shellInit = ''
         set fish_greeting
+        yes | fish_config theme save "Catppuccin Mocha"
       '';
       interactiveShellInit = ''
         ${pkgs.spotify-player}/bin/spotify_player generate fish | source
@@ -160,17 +161,18 @@ in {
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings = let flavour = "mocha"; # Replace with your preferred palette
-      in {
-        # Other config here
-        format = "$all"; # Remove this line to disable the default prompt format
-        palette = "catppuccin_${flavour}";
-      } // builtins.fromTOML (builtins.readFile
-        (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
+      settings =
+        let flavour = "mocha"; # Replace with your preferred palette
+        in {
+          # Other config here
+          format = "$all"; # Remove this line to disable the default prompt format
+          palette = "catppuccin_${flavour}";
+        } // builtins.fromTOML (builtins.readFile
+          (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
-      enableAliases = true;
+      # enableAliases = true;
       git = true;
       icons = true;
     };
@@ -219,22 +221,20 @@ in {
     # Home Manager needs a bit of information about you and the paths it should
     # manage.
     username = device.user;
-    homeDirectory = if device.isMac then
-      lib.mkForce "/Users/${device.user}"
-    else
-      lib.mkForce "/home/${device.user}";
+    homeDirectory =
+      if device.isMac then
+        lib.mkForce "/Users/${device.user}"
+      else
+        lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
     file = {
       ".config/tmux/sessions".source = ../../tmux/sessions;
       ".config/macchina".source = ../../macchina;
+      # catppuccin themes for fish
+      ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
 
-      # # You can also set the file content immediately.
-      # ".gradle/gradle.properties".text = ''
-      #   org.gradle.console=verbose
-      #   org.gradle.daemon.idletimeout=3600000
-      # '';
     } // (if lazy then {
       ".config/nvim/lua".source = ../../nvim/lua;
       ".config/nvim/init.lua".source = ../../nvim/init.lua;

@@ -105,8 +105,8 @@
       mini = {
         enable = true;
         ai.enable = true;
-        pairs.enable = true;
-        cursorword.enable = true;
+        # pairs.enable = true;
+        # cursorword.enable = true;
         starter.enable = true;
       };
 
@@ -138,6 +138,10 @@
         "<leader>p" = "[[<cmd>bprev<cr>]]";
 
         "<C-l>" = "[[<cmd>Outline<cr>]]";
+        "<C-\\\\>" = "require('FTerm').toggle";
+      };
+      terminal = {
+        "<C-\\\\>" = "require('FTerm').toggle";
       };
     };
 
@@ -178,6 +182,9 @@
       # UI
       noice-nvim
       nvim-web-devicons
+
+      # Utils
+      FTerm-nvim
 
     ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;

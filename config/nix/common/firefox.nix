@@ -39,7 +39,6 @@
           Value = true;
           Status = "default";
         };
-        # "browser.compactmode.show" = { Value = true; Status = "default"; };
         "browser.urlbar.suggest.calculator" = {
           Value = true;
           Status = "default";

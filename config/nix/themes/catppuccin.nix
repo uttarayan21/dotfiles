@@ -1,7 +1,12 @@
 { pkgs, ... }:
 let
-  mkCatppuccin = { owner ? "catppuccin", version ? "0.0.1", item, rev ? "main"
-    , sha256 ? pkgs.lib.fakeSha256 }:
+  mkCatppuccin =
+    { owner ? "catppuccin"
+    , version ? "0.0.1"
+    , item
+    , rev ? "main"
+    , sha256 ? pkgs.lib.fakeSha256
+    }:
     pkgs.stdenv.mkDerivation {
       inherit version;
       pname = item;
@@ -15,7 +20,8 @@ let
         cp -r ./* $out/
       '';
     };
-in {
+in
+{
 
   bat = mkCatppuccin {
     item = "bat";
@@ -30,5 +36,10 @@ in {
   starship = mkCatppuccin {
     item = "starship";
     sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
+  };
+
+  fish = mkCatppuccin {
+    item = "fish";
+    sha256 = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg";
   };
 }
