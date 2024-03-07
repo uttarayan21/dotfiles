@@ -31,19 +31,21 @@
   boot.plymouth.themePackages = with pkgs;
     [ (catppuccin-plymouth.override { variant = "mocha"; }) ];
 
-  services.greetd = let
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-  in {
-    enable = true;
-    settings = {
-      default_session = {
-        command =
-          "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
-        user = "greeter";
+  services.greetd =
+    let
+      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+      hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
+    in
+    {
+      enable = true;
+      settings = {
+        default_session = {
+          command =
+            "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+          user = "greeter";
+        };
       };
     };
-  };
 
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
@@ -143,11 +145,15 @@
     fish
     nushellFull
     (pkgs.wrapFirefox
-      (pkgs.firefox-unwrapped.override { pipewireSupport = true; }) { })
+      (pkgs.firefox-unwrapped.override { pipewireSupport = true; })
+      { })
     gnumake
     python3
     (nerdfonts.override { fonts = [ "FiraCode" "Hasklig" ]; })
   ];
+  environment.sessionVariables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   programs = {
     hyprland.enable = true;

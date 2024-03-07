@@ -3,7 +3,7 @@
   programs.ironbar = {
     enable = true;
     config.monitors = {
-      HDMI-A-2 = {
+      DP-2 = {
         position = "bottom";
         start = [
           {
@@ -28,7 +28,7 @@
           { type = "clock"; }
         ];
       };
-      DP-1 = {
+      DP-4 = {
         position = "bottom";
         icon_theme = "Papirus-Dark";
         end = [

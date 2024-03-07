@@ -7,7 +7,10 @@
       systemd.enable = true;
       systemd.target = "hyprland-session.target";
       settings.preload = wallpapers.all;
-      settings.wallpapers = { "DP-1" = wallpapers.shapes; };
+      settings.wallpapers = {
+        "DP-4" = wallpapers.lights;
+        "DP-2" = wallpapers.shapes;
+      };
     };
   wayland.windowManager.hyprland = {
     enable = true;
@@ -16,8 +19,8 @@
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
-        "DP-1,       2560x1440@170, 0x0,     1, transform, 0"
-        "HDMI-A-2,   2560x1440@144, -1440x-800,1, transform, 1"
+        "DP-4,       2560x1440@170, 0x0,     1, transform, 0"
+        "DP-2,   2560x1440@170, -1440x-800,1, transform, 1"
         ",highrr,auto,1"
       ];
 
@@ -213,16 +216,16 @@
       ];
 
       workspace = [
-        "1,  monitor:DP-1"
-        "2,  monitor:DP-1"
-        "3,  monitor:DP-1"
-        "4,  monitor:DP-1"
-        "5,  monitor:DP-1"
-        "6,  monitor:DP-1"
-        "7,  monitor:DP-1"
-        "8,  monitor:HDMI-A-2"
-        "9,  monitor:HDMI-A-2"
-        "10, monitor:HDMI-A-2"
+        "1,  monitor:DP-4"
+        "2,  monitor:DP-4"
+        "3,  monitor:DP-4"
+        "4,  monitor:DP-4"
+        "5,  monitor:DP-4"
+        "6,  monitor:DP-4"
+        "7,  monitor:DP-4"
+        "8,  monitor:DP-2"
+        "9,  monitor:DP-2"
+        "10, monitor:DP-2"
       ];
     };
   };
