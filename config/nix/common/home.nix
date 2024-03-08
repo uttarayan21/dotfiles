@@ -178,7 +178,7 @@ in
     };
     carapace = {
       enable = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true;
       enableNushellIntegration = true;
     };
     fzf = {
