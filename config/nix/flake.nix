@@ -173,6 +173,15 @@
               sha256 = "sha256-HaxfnvgFy7fpa2CS7/dQhf6dK9+Js7wP5qGdIeXLGPY";
             };
           };
+          rest-nvim = final.pkgs.vimUtils.buildVimPlugin {
+            name = "rest-nvim";
+            src = final.pkgs.fetchFromGitHub {
+              owner = "rest-nvim";
+              repo = "rest.nvim";
+              rev = "main";
+              sha256 = "sha256-EclCwr0Oi6+5zF47niO0nt8wjNmb6cAADxd7S71DAiI";
+            };
+          };
         };
       };
 

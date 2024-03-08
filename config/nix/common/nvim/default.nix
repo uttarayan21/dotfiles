@@ -123,15 +123,17 @@
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
         "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
-        "<leader>ee" = "[[<Plug>RestNvim]]";
-        "<leader>ec" = "[[<Plug>RestNvimPreview]]";
+        "<leader>ee" = "require'rest-nvim'.run";
+        "<leader>ec" = "function() require'rest-nvim'.run(true) end";
+        # "<leader>ee" = "[[<Plug>RestNvim]]";
+        # "<leader>ec" = "[[<Plug>RestNvimPreview]]";
+        # "<leader>el" = "require('telescope').extensions.rest.select_env";
         "<leader>\\\"" = ''[["+]]'';
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
         "gi" = "vim.lsp.buf.implementation";
         "<leader>a" = "vim.lsp.buf.code_action";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
-
         "<leader><leader>" = "'<c-^>'";
         "<leader>q" = "[[<cmd>bw<cr>]]";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
@@ -185,6 +187,7 @@
 
       # Utils
       FTerm-nvim
+      plenary-nvim
 
     ];
     extraConfigLua = builtins.readFile ./extraConfig.lua;
