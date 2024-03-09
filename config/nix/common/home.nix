@@ -14,6 +14,7 @@ in
 
   home.packages = with pkgs;
     [
+      psst
       comma
       neovide
       sqls
@@ -47,7 +48,6 @@ in
       nil
       pkg-config
       lua-language-server
-      # neovim
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ (if device.isLinux then [
@@ -73,7 +73,6 @@ in
       })
       swaynotificationcenter
       usbutils
-      picotool
       handlr-regex
       webcord-vencord
       spotify
