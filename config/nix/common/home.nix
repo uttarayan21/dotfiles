@@ -9,8 +9,8 @@ in
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-  ] ++ (if device.isLinux then [ ../linux ] else [ ])
-  ++ (if !lazy then [ ./nvim ] else [ ]);
+  ] ++ lib.optionals device.isLinux [ ../linux ]
+  ++ lib.optionals (!lazy) [ ./nvim ];
 
   home.packages = with pkgs;
     [
@@ -19,7 +19,6 @@ in
       neovide
       sqls
       vcpkg
-      # vcpkg-tool
       file
       yt-dlp
       ngrok
@@ -50,7 +49,7 @@ in
       lua-language-server
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
-    ] ++ (if device.isLinux then [
+    ] ++ lib.optionals device.isLinux [
       gnome.seahorse
       gnome.nautilus
       nextcloud-client
@@ -71,7 +70,6 @@ in
         accent = "mauve";
         flavor = "mocha";
       })
-      swaynotificationcenter
       usbutils
       handlr-regex
       webcord-vencord
@@ -86,8 +84,7 @@ in
           handlr open "$@"
         '';
       })
-    ] else
-      [ ]) ++ (if device.isMac then [ ] else [ ]);
+    ] ++ lib.optionals device.isMac [ ];
 
   # xdg.enable = true;
 
@@ -126,9 +123,7 @@ in
         ls = "eza";
         t = "${start-tmux}";
       };
-      shellAliases = {
-        g = "git";
-      };
+      shellAliases = { g = "git"; };
       shellInit = ''
         set fish_greeting
         yes | fish_config theme save "Catppuccin Mocha"
@@ -144,6 +139,7 @@ in
       shellAliases = {
         cd = "z";
         yy = "yazi";
+        nv = "neovide";
       };
       package = pkgs.nushellFull;
       configFile.text = ''
@@ -245,6 +241,7 @@ in
       EDITOR = "nvim";
       SHELL = "${pkgs.nushellFull}/bin/nu";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
+      BROWSER = "xdg-open";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.local/bin"

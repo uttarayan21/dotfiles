@@ -46,6 +46,8 @@
   };
 
 
+  # hardware.bluetooth.settings = {
+
 
   boot.initrd.availableKernelModules =
     [ "vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];

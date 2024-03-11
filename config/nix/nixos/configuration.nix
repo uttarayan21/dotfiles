@@ -73,6 +73,13 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Name = "Ryu";
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = pkgs.lib.mkForce false;
 

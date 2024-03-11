@@ -31,7 +31,7 @@
         kb_options = "ctrl:nocaps";
         # kb_rules = "";
 
-        follow_mouse = 0;
+        # follow_mouse = 0;
 
         touchpad = {
           natural_scroll = true;
@@ -146,7 +146,7 @@
         "$mainMod, Space, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, p, pseudo, # dwindle"
         "$mainMod, v, togglesplit,"
-        "$mainMod, a, exec, swaync-client -t"
+        # "$mainMod, a, exec, swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
         ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise"
