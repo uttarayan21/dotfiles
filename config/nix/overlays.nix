@@ -9,7 +9,21 @@ let
   };
   vimPlugins = final: prev: {
     vimPlugins = prev.vimPlugins // {
-      # nvim-treesitter
+      # nvim-treesitter = prev.vimPlugins.nvim-treesitter.override(.allGrammars ++ [
+      # (prev.vimPlugins.nvim-treesitter.allGrammars ++ [
+      #   (prev.vimPluginspkgs.tree-sitter.buildGrammar {
+      #     language = "just";
+      #     version = "8af0aab";
+      #     src = final.pkgs.fetchFromGitHub {
+      #       owner = "IndianBoy42";
+      #       repo = "tree-sitter-just";
+      #       rev = "613b3fd39183bec94bc741addc5beb6e6f17969f";
+      #       sha256 = final.pkgs.lib.fakeSha256;
+      #       # sha256 = "sha256-hYKFidN3LHJg2NLM1EiJFki+0nqi1URnoLLPknUbFJY=";
+      #     };
+      #   })
+      # ]);
+
       comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
         name = "comfortable-motion";
         src = final.pkgs.fetchFromGitHub {
@@ -43,7 +57,7 @@ let
           owner = "rest-nvim";
           repo = "rest.nvim";
           rev = "main";
-          sha256 = "sha256-EclCwr0Oi6+5zF47niO0nt8wjNmb6cAADxd7S71DAiI";
+          sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338=";
         };
       };
     };
@@ -74,6 +88,18 @@ let
       ln -s ${inputs.nix-index-database.legacyPackages.${prev.system}.database} $out/files
     '';
   });
+  treesitterGrammars = (final: prev: {
+    treesitter-just = prev.pkgs.tree-sitter.buildGrammar {
+      language = "just";
+      version = "8af0aab";
+      src = final.pkgs.fetchFromGitHub {
+        owner = "IndianBoy42";
+        repo = "tree-sitter-just";
+        rev = "613b3fd39183bec94bc741addc5beb6e6f17969f";
+        sha256 = "sha256-OBlXwWriE6cdGn0dhpfSMnJ6Rx1Z7KcXehaamdi/TxQ";
+      };
+    };
+  });
 in
 [
   catppuccinThemes
@@ -85,4 +111,5 @@ in
   # inputs.nixneovimplugins.overlays.default
   inputs.nur.overlay
   nix-index-db
+  treesitterGrammars
 ]

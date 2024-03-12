@@ -15,9 +15,9 @@ in
   home.packages = with pkgs;
     [
       gnupg
-      gpg-tui
+      # gpg-tui
       comma
-      neovide
+      # neovide
       sqls
       vcpkg
       file
@@ -29,7 +29,7 @@ in
       just
       jq
       tldr
-      spotify-player
+      # spotify-player
       bottom
       qmk
       nodejs

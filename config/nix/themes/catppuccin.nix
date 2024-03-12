@@ -25,7 +25,7 @@ in
 
   bat = mkCatppuccin {
     item = "bat";
-    sha256 = "sha256-PLbTLj0qhsDj+xm+OML/AQsfRQVPXLYQNEPllgKcEx4";
+    sha256 = "sha256-yHt3oIjUnljARaihalcWSNldtaJfVDfmfiecYfbzGs0";
   };
 
   hyprland = mkCatppuccin {

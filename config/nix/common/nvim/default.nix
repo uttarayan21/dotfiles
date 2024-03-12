@@ -3,8 +3,6 @@
   programs.nixneovim = {
     enable = true;
     options = {
-      foldexpr = "nvim_treesitter#foldexpr()";
-      foldmethod = "expr";
       number = true;
       relativenumber = true;
       tabstop = 4;
@@ -48,7 +46,7 @@
           lua-language-server.enable = true;
           jsonls.enable = true;
           html.enable = true;
-          pylyzer.enable = true;
+          # pylyzer.enable = true;
           sqls = {
             enable = true;
             onAttachExtra =
@@ -60,7 +58,7 @@
           # rust-analyzer.enable = true;
         };
         extraLua.pre =
-          # lua
+          /* lua */
           ''
             local lsp_zero = require'lsp-zero'
             local lspconfig = require 'lspconfig'
@@ -88,6 +86,7 @@
         enable = true;
         autoStart = true;
       };
+      treesitter-context.enable = true;
       ts-context-commentstring.enable = true;
 
       treesitter = {
@@ -97,9 +96,10 @@
         refactor = {
           smartRename = {
             enable = true;
-            keymaps = { smartRename = "<leader>rn"; };
           };
         };
+        grammars = [ pkgs.tree-sitter-grammars.tree-sitter-just ];
+        installAllGrammars = true;
       };
 
       mini = {
@@ -177,18 +177,6 @@
       trouble-nvim
       crates-nvim
       sqls-nvim
-      # (nvim-treesitter.withPlugins (_: nvim-treesitter.allGrammars ++ [
-      #   (pkgs.tree-sitter.buildGrammar {
-      #     language = "just";
-      #     version = "8af0aab";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "IndianBoy42";
-      #       repo = "tree-sitter-just";
-      #       rev = "8af0aab79854aaf25b620a52c39485849922f766";
-      #       sha256 = "sha256-hYKFidN3LHJg2NLM1EiJFki+0nqi1URnoLLPknUbFJY=";
-      #     };
-      #   })
-      # ]))
 
       # No more postman
       rest-nvim
