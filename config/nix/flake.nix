@@ -47,6 +47,8 @@
     # nixneovimplugins = {
     #   url = "github:NixNeovim/NixNeovimPlugins";
     #   inputs.nixpkgs.follows = "nixpkgs";
+    # }
+    nix-index-database.url = "github:Mic92/nix-index-database";
 
     nur.url = "github:nix-community/nur";
 

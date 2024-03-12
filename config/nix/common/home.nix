@@ -14,7 +14,8 @@ in
 
   home.packages = with pkgs;
     [
-      psst
+      gnupg
+      gpg-tui
       comma
       neovide
       sqls
@@ -32,7 +33,6 @@ in
       bottom
       qmk
       nodejs
-      nix-index
       macchina
       ripgrep
       fd
@@ -50,6 +50,7 @@ in
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       mpv
     ] ++ lib.optionals device.isLinux [
+      psst
       gnome.seahorse
       gnome.nautilus
       nextcloud-client
@@ -110,7 +111,10 @@ in
       userName = "uttarayan21";
       userEmail = "email@uttarayan.me";
     };
-    nix-index.enableFishIntegration = true;
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+    };
     fish = {
       enable = true;
       shellAbbrs = {
@@ -228,9 +232,8 @@ in
     file = {
       ".config/tmux/sessions".source = ../../tmux/sessions;
       ".config/macchina".source = ../../macchina;
-      # catppuccin themes for fish
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
-
+      ".cache/nix-index".source = pkgs.nix-index-database;
     } // (if lazy then {
       ".config/nvim/lua".source = ../../nvim/lua;
       ".config/nvim/init.lua".source = ../../nvim/init.lua;

@@ -9,6 +9,7 @@ let
   };
   vimPlugins = final: prev: {
     vimPlugins = prev.vimPlugins // {
+      # nvim-treesitter
       comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
         name = "comfortable-motion";
         src = final.pkgs.fetchFromGitHub {
@@ -66,6 +67,13 @@ let
     catppuccinThemes =
       import ./themes/catppuccin.nix { pkgs = final.pkgs; };
   };
+
+  nix-index-db = (final: prev: {
+    nix-index-database = final.runCommandLocal "nix-index-database" { } ''
+      mkdir -p $out
+      ln -s ${inputs.nix-index-database.legacyPackages.${prev.system}.database} $out/files
+    '';
+  });
 in
 [
   catppuccinThemes
@@ -76,4 +84,5 @@ in
   inputs.nixneovim.overlays.default
   # inputs.nixneovimplugins.overlays.default
   inputs.nur.overlay
+  nix-index-db
 ]
