@@ -9,21 +9,6 @@ let
   };
   vimPlugins = final: prev: {
     vimPlugins = prev.vimPlugins // {
-      # nvim-treesitter = prev.vimPlugins.nvim-treesitter.override(.allGrammars ++ [
-      # (prev.vimPlugins.nvim-treesitter.allGrammars ++ [
-      #   (prev.vimPluginspkgs.tree-sitter.buildGrammar {
-      #     language = "just";
-      #     version = "8af0aab";
-      #     src = final.pkgs.fetchFromGitHub {
-      #       owner = "IndianBoy42";
-      #       repo = "tree-sitter-just";
-      #       rev = "613b3fd39183bec94bc741addc5beb6e6f17969f";
-      #       sha256 = final.pkgs.lib.fakeSha256;
-      #       # sha256 = "sha256-hYKFidN3LHJg2NLM1EiJFki+0nqi1URnoLLPknUbFJY=";
-      #     };
-      #   })
-      # ]);
-
       comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
         name = "comfortable-motion";
         src = final.pkgs.fetchFromGitHub {
@@ -88,15 +73,18 @@ let
       ln -s ${inputs.nix-index-database.legacyPackages.${prev.system}.database} $out/files
     '';
   });
-  treesitterGrammars = (final: prev: {
-    treesitter-just = prev.pkgs.tree-sitter.buildGrammar {
-      language = "just";
-      version = "8af0aab";
-      src = final.pkgs.fetchFromGitHub {
-        owner = "IndianBoy42";
-        repo = "tree-sitter-just";
-        rev = "613b3fd39183bec94bc741addc5beb6e6f17969f";
-        sha256 = "sha256-OBlXwWriE6cdGn0dhpfSMnJ6Rx1Z7KcXehaamdi/TxQ";
+
+  tree-sitter-grammars = (final: prev: {
+    tree-sitter-grammars = prev.tree-sitter-grammars // {
+      tree-sitter-just = final.pkgs.tree-sitter.buildGrammar {
+        language = "just";
+        version = "1";
+        src = final.pkgs.fetchFromGitHub {
+          owner = "IndianBoy42";
+          repo = "tree-sitter-just";
+          rev = "613b3fd39183bec94bc741addc5beb6e6f17969f";
+          sha256 = "sha256-OBlXwWriE6cdGn0dhpfSMnJ6Rx1Z7KcXehaamdi/TxQ";
+        };
       };
     };
   });
@@ -104,12 +92,11 @@ in
 [
   catppuccinThemes
   vimPlugins
+  tree-sitter-grammars
   tmuxPlugins
   inputs.neovim-nightly-overlay.overlay
   anyrun-overlay
   inputs.nixneovim.overlays.default
-  # inputs.nixneovimplugins.overlays.default
   inputs.nur.overlay
   nix-index-db
-  treesitterGrammars
 ]

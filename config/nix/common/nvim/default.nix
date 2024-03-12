@@ -125,9 +125,6 @@
         "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
         "<leader>ee" = "require'rest-nvim'.run";
         "<leader>ec" = "function() require'rest-nvim'.run(true) end";
-        # "<leader>ee" = "[[<Plug>RestNvim]]";
-        # "<leader>ec" = "[[<Plug>RestNvimPreview]]";
-        # "<leader>el" = "require('telescope').extensions.rest.select_env";
         "<leader>\\\"" = ''[["+]]'';
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
@@ -143,6 +140,9 @@
         "<C-\\\\>" = "require('FTerm').toggle";
       };
       terminal = {
+        "<C-\\\\>" = "require('FTerm').toggle";
+      };
+      insert = {
         "<C-\\\\>" = "require('FTerm').toggle";
       };
     };
