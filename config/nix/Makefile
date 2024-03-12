@@ -1,6 +1,9 @@
-.PHONY: darwin home default nixos
+.PHONY: darwin home default nixos just
 
-default: nixos
+default: just
+
+just:
+	just
 
 darwin:
 	nix run nix-darwin -- switch --flake . --show-trace
