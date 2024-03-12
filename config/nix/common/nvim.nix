@@ -190,6 +190,8 @@
       plenary-nvim
       nix-develop-nvim
 
+      pkgs.tree-sitter-grammars.tree-sitter-just
+
     ];
     extraConfigLua = /* lua */ ''
       require('rest-nvim').setup()

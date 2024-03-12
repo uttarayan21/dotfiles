@@ -10,7 +10,7 @@ in
     ./tmux.nix
     ./wezterm.nix
   ] ++ lib.optionals device.isLinux [ ../linux ]
-  ++ lib.optionals (!lazy) [ ./nvim ];
+  ++ lib.optionals (!lazy) [ ./nvim.nix ];
 
   home.packages = with pkgs;
     [
