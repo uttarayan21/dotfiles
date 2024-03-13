@@ -9,6 +9,7 @@
   ];
 
   services.kdeconnect.enable = true;
+  services.kdeconnect.indicator = true;
   services.swayosd.enable = true;
 
   systemd.user.services.spotify-player = {

@@ -6,9 +6,10 @@ let
     , item
     , rev ? "main"
     , sha256 ? pkgs.lib.fakeSha256
+    , override ? null
     }:
     pkgs.stdenv.mkDerivation {
-      inherit version;
+      inherit version override;
       pname = item;
       src = pkgs.fetchFromGitHub {
         inherit owner rev sha256;
@@ -20,9 +21,14 @@ let
         cp -r ./* $out/
       '';
     };
+
+  flavors = [ "latte" "frappe" "macchiato" "mocha" ];
+  mapFlavor = flavorMap: (flavor: {
+    name = flavor;
+    value = flavorMap flavor;
+  }) flavors;
 in
 {
-
   bat = mkCatppuccin {
     item = "bat";
     sha256 = "sha256-yHt3oIjUnljARaihalcWSNldtaJfVDfmfiecYfbzGs0";
@@ -41,5 +47,11 @@ in
   fish = mkCatppuccin {
     item = "fish";
     sha256 = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg";
+  };
+
+  ironbar = mkCatppuccin {
+    item = "waybar";
+    rev = "v1.0";
+    sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
   };
 }
