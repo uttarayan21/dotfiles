@@ -1,20 +1,18 @@
 { inputs, config, pkgs, lib, device, ... }:
 let
-  # https://mipmip.github.io/home-manager-option-search/
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
-  lazy = false;
 in
 {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
-    # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
-  ] ++ lib.optionals device.isLinux [ ../linux ]
-  ++ lib.optionals (!lazy) [ ./nvim.nix ];
+    ./nvim.nix
+  ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
     [
+      pandoc
       gnupg
       gpg-tui
       ngrok
@@ -47,9 +45,10 @@ in
       nil
       pkg-config
       lua-language-server
-      # mpv
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
+      pfetch-rs
     ] ++ lib.optionals device.isLinux [
+      mpv
       psst
       gnome.seahorse
       gnome.nautilus
@@ -87,7 +86,7 @@ in
       })
     ] ++ lib.optionals device.isMac [ ];
 
-  # xdg.enable = true;
+  xdg.enable = true;
 
   programs = {
     nix-index-database.comma.enable = true;
@@ -233,15 +232,11 @@ in
     stateVersion = "23.11";
 
     file = {
-      ".config/tmux/sessions".source = ../../tmux/sessions;
-      ".config/macchina".source = ../../macchina;
+      # ".config/tmux/sessions".source = ../../tmux/sessions;
+      # ".config/macchina".source = ../../macchina;
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
       # ".cache/nix-index".source = pkgs.nix-index-database;
-    } // (if lazy then {
-      ".config/nvim/lua".source = ../../nvim/lua;
-      ".config/nvim/init.lua".source = ../../nvim/init.lua;
-    } else
-      { });
+    };
 
     sessionVariables = {
       EDITOR = "nvim";

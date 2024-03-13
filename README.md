@@ -3,28 +3,35 @@
 These are dotfiles for my Linux, MacOS and Windows machines
 
 ### Linux
-- OS: Arch Linux
-- Shell: fish
-- Editor: nvim
+- OS: NixOS
+- Shell: fish / nushell
+- Editor: nvim / neovide
 - WM / DE: [hyprland](https://hyprland.org)
 - Terminal: foot / wezterm
 
 ### MacOS 
 - OS: MacOS Ventura
-- Shell: fish
-- Editor: nvim
+- Shell: fish / nushell
+- Editor: nvim / neovide
 - WM: [yabai](https://github.com/koekeishiya/yabai)
 - Terminal: wezterm
 
 ### Windows
 - OS: Windows 11
 - Shell: nushell
-- Editor: nvim / helix
-- WM: Vanilla
+- Editor: nvim / neovide / helix
+- WM: Vanilla / 
 - Terminal: Vanilla / wezterm
 
+
+### For nix
+
+I'm a recent convert to NixOS from ArchLinux and have been usin it as primary os as well as a package manager on macos so the flake.nix contains configuration for both nix-darwin as well as nixos. It also contains a native home-manager module configuration for non-nixos devices ( like a SteamDeck ).
+The 
+
+
 #### Tools
-Some useful tools I use everyday
+Some useful tools I regularly use.
 | Name          | Repo
 | ---           | ---
 | `bat`         | [sharkdp/bat](https://github.com/sharkdp/fd)
@@ -39,6 +46,8 @@ Some useful tools I use everyday
 | `rg/ripgrep`  | [BurntSushi/ripgrep](https://github.com/BurntSushi/ripgrep)
 | `starship`    | [starship/starship](https://github.com/starship/starship)
 | `z/zoxide`    | [ajeetdsouza/zoxide](https://github.com/ajeetdsouza/zoxide)
+| `anyrun`      | [Kirottu/anyrun](https://github.com/Kirottu/anyrun)
+
 
 #### Others
 `zig` zig toolchain can be used to compile tree-sitter definitions without having to go through all the hassle of setting up llvm / MSVC on windows  
@@ -66,47 +75,3 @@ Includes the dotfiles for
 - [tmux](#tmux)
 - [fish](#fish)
 - [zsh](#zsh)
-
-### alacritty
-
-![alacritty](images/alacritty.png)
-
-### bspwm
-
-[bspwm](https://github.com/baskerville/bspwm)
-
-### conky
-
-![conky](images/conky.png)
-
-### neovim
-
-![neovim](images/neovim.png)
-
-### neomutt
-
-![neomutt](images/neomutt.png)
-
-### picom
-
-[picom](https://github.com/yshui/picom)
-
-### rofi
-
-![rofi](images/rofi.png)
-
-### sxhkd
-
-[sxhkd](https://github.com/baskerville/sxhkd)
-
-### tmux
-
-![tmux](images/tmux.png)
-
-### fish
-
-![fish](images/fish.png)
-
-### zsh
-
-![zsh](images/zsh.png)
