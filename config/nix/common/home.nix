@@ -1,4 +1,4 @@
-{ config, pkgs, lib, device, ... }:
+{ inputs, config, pkgs, lib, device, ... }:
 let
   # https://mipmip.github.io/home-manager-option-search/
   start-tmux = (import ../scripts/start-tmux.nix) pkgs;
@@ -6,6 +6,7 @@ let
 in
 {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index
     # Include the results of the hardware scan.
     ./tmux.nix
     ./wezterm.nix
@@ -22,7 +23,6 @@ in
       spotify-player
       qmk
       nodejs
-      comma
       neovide
       sqls
       vcpkg
@@ -90,6 +90,7 @@ in
   # xdg.enable = true;
 
   programs = {
+    nix-index-database.comma.enable = true;
     helix = {
       enable = true;
       settings = {
@@ -235,7 +236,7 @@ in
       ".config/tmux/sessions".source = ../../tmux/sessions;
       ".config/macchina".source = ../../macchina;
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
-      ".cache/nix-index".source = pkgs.nix-index-database;
+      # ".cache/nix-index".source = pkgs.nix-index-database;
     } // (if lazy then {
       ".config/nvim/lua".source = ../../nvim/lua;
       ".config/nvim/init.lua".source = ../../nvim/init.lua;

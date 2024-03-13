@@ -64,7 +64,7 @@
               Google,
               Custom (
                   name: "Nix Packages",
-                  url: "search.nixos.org/packages?channel=unstable&query={}"
+                  url: "search.nixos.org/packages?query={}&channel=unstable"
               ),
               Custom (
                   name: "GitHub",
