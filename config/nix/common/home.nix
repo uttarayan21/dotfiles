@@ -16,23 +16,23 @@ in
     [
       gnupg
       gpg-tui
+      ngrok
+      slack
+      yarn
+      spotify-player
+      qmk
+      nodejs
       comma
       neovide
       sqls
       vcpkg
       file
       yt-dlp
-      ngrok
-      slack
       gh
-      yarn
       just
       jq
       tldr
-      spotify-player
       bottom
-      qmk
-      nodejs
       macchina
       ripgrep
       fd
@@ -47,8 +47,8 @@ in
       nil
       pkg-config
       lua-language-server
+      # mpv
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
-      mpv
     ] ++ lib.optionals device.isLinux [
       psst
       gnome.seahorse
