@@ -76,7 +76,7 @@
 
       nvim-dap.enable = true;
       todo-comments.enable = true;
-      lualine = { enable = true; };
+      lualine.enable = true;
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
@@ -128,13 +128,15 @@
         "<leader>\\\"" = ''[["+]]'';
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
-        "gi" = "vim.lsp.buf.implementation";
+        "gi" = "require'telescope.builtin'.lsp_incoming_calls";
         "<leader>a" = "vim.lsp.buf.code_action";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
         "<leader><leader>" = "'<c-^>'";
         "<leader>q" = "[[<cmd>bw<cr>]]";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
         "<leader>p" = "[[<cmd>bprev<cr>]]";
+        "<C-w>\\\"" = "[[<cmd>split<cr>]]";
+        "<C-w>%" = "[[<cmd>vsplit<cr>]]";
 
         "<C-l>" = "[[<cmd>Outline<cr>]]";
         "<C-\\\\>" = "require('FTerm').toggle";
@@ -170,6 +172,7 @@
       cmp_luasnip
       cmp-tmux
       cmp-treesitter
+      cmp-git
       luasnip
       fidget-nvim
       copilot-lua
@@ -282,8 +285,8 @@
 
       cmp.setup.cmdline({ '/', '?' }, {
           mapping = cmp.mapping.preset.cmdline {
-              ['<C-n>'] = cmp.config.disable,
-              ['<C-p>'] = cmp.config.disable,
+              -- ['<C-n>'] = cmp.config.disable,
+              -- ['<C-p>'] = cmp.config.disable,
           },
           sources = {
               { name = 'buffer' }
@@ -291,8 +294,8 @@
       })
       cmp.setup.cmdline(':', {
           mapping = cmp.mapping.preset.cmdline {
-              ['<C-n>'] = cmp.config.disable,
-              ['<C-p>'] = cmp.config.disable,
+              -- ['<C-n>'] = cmp.config.disable,
+              -- ['<C-p>'] = cmp.config.disable,
           },
           -- mapping = cmp.mapping.preset.cmdline(),
           sources = cmp.config.sources({
@@ -321,7 +324,7 @@
           },
           -- you can enable a preset for easier configuration
           presets = {
-              bottom_search = true,         -- use a classic bottom cmdline for search
+              bottom_search = false,         -- use a classic bottom cmdline for search
               command_palette = true,       -- position the cmdline and popupmenu together
               long_message_to_split = true, -- long messages will be sent to a split
               inc_rename = false,           -- enables an input dialog for inc-rename.nvim

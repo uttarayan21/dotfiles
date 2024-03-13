@@ -125,6 +125,7 @@ in
         yy = "yazi";
         cd = "z";
         ls = "eza";
+        cat = "bat";
         t = "${start-tmux}";
       };
       shellAliases = { g = "git"; };
@@ -144,6 +145,7 @@ in
         cd = "z";
         yy = "yazi";
         nv = "neovide";
+        cat = "bat";
       };
       package = pkgs.nushellFull;
       configFile.text = ''
