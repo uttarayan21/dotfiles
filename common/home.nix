@@ -1,8 +1,4 @@
-{ inputs, config, pkgs, lib, device, ... }:
-let
-  start-tmux = (import ../scripts/start-tmux.nix) pkgs;
-in
-{
+{ inputs, config, pkgs, lib, device, ... }: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
     ./tmux.nix
@@ -93,7 +89,7 @@ in
     helix = {
       enable = true;
       settings = {
-        theme = "base16";
+        theme = "catppuccin_mocha";
         editor = {
           line-number = "relative";
           lsp.display-messages = true;
@@ -126,7 +122,7 @@ in
         cd = "z";
         ls = "eza";
         cat = "bat";
-        t = "${start-tmux}";
+        t = "tmux";
       };
       shellAliases = { g = "git"; };
       shellInit = ''
@@ -135,7 +131,7 @@ in
       '';
       interactiveShellInit = ''
         ${pkgs.spotify-player}/bin/spotify_player generate fish | source
-        ${pkgs.macchina}/bin/macchina
+        ${pkgs.pfetch-rs}/bin/pfetch
       '';
     };
 
@@ -147,6 +143,9 @@ in
         nv = "neovide";
         cat = "bat";
       };
+      extraConfig = ''
+        ${pkgs.pfetch-rs}/bin/pfetch
+      '';
       package = pkgs.nushellFull;
       configFile.text = ''
         $env.config = {
