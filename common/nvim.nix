@@ -75,6 +75,7 @@
       };
 
       nvim-dap.enable = true;
+      nvim-dap-ui.enable = true;
       todo-comments.enable = true;
       lualine.enable = true;
       commentary.enable = true;
@@ -138,6 +139,10 @@
         "<C-w>\\\"" = "[[<cmd>split<cr>]]";
         "<C-w>%" = "[[<cmd>vsplit<cr>]]";
 
+        "<leader>bb" = "require'dap'.toggle_breakpoint";
+        "<leader>dd" = "require'dapui'.toggle";
+        "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
+
         "<C-l>" = "[[<cmd>Outline<cr>]]";
         "<C-\\\\>" = "require('FTerm').toggle";
       };
@@ -169,6 +174,7 @@
       cmp-cmdline
       cmp-nvim-lsp
       cmp-nvim-lua
+      cmp-dap
       cmp_luasnip
       cmp-tmux
       cmp-treesitter

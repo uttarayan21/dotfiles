@@ -85,6 +85,12 @@
   xdg.enable = true;
 
   programs = {
+    direnv = {
+      enable = true;
+      # enableFishIntegration = true;
+      enableNushellIntegration = true;
+      nix-direnv.enable = true;
+    };
     nix-index-database.comma.enable = true;
     helix = {
       enable = true;
