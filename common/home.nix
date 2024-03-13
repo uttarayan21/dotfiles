@@ -84,6 +84,11 @@
 
   xdg.enable = true;
 
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
+
   programs = {
     direnv = {
       enable = true;
@@ -219,14 +224,12 @@
           if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
       };
     };
-    # Let Home Manager install and manage itself.
     home-manager = { enable = true; };
   };
 
   fonts.fontconfig.enable = true;
+
   home = {
-    # Home Manager needs a bit of information about you and the paths it should
-    # manage.
     username = device.user;
     homeDirectory =
       if device.isMac then
@@ -237,10 +240,7 @@
     stateVersion = "23.11";
 
     file = {
-      # ".config/tmux/sessions".source = ../../tmux/sessions;
-      # ".config/macchina".source = ../../macchina;
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
-      # ".cache/nix-index".source = pkgs.nix-index-database;
     };
 
     sessionVariables = {
@@ -250,8 +250,7 @@
       BROWSER = "xdg-open";
     };
     sessionPath = [
-      "${config.home.homeDirectory}/.local/bin"
-      "${config.home.homeDirectory}/.nix-profile/bin"
+      "${config.home.homeDirectory}/.cargo/bin"
     ];
   };
 }
