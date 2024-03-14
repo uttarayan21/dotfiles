@@ -112,6 +112,7 @@
         "float, title:^(Steam)$"
         "float, title:^(Archetype.*)$"
         "float, class:(.*nextcloud.*)"
+        "float, class:org.kde.kdeconnect.app"
       ];
 
       "misc:vfr" = true;
