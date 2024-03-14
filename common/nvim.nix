@@ -3,6 +3,7 @@
   programs.nixneovim = {
     enable = true;
     options = {
+      shell = "sh";
       number = true;
       relativenumber = true;
       tabstop = 4;
