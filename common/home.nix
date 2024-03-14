@@ -37,7 +37,6 @@
       cmake
       fzf
       clang
-      neovim-nightly
       nil
       pkg-config
       lua-language-server
@@ -84,10 +83,6 @@
 
   xdg.enable = true;
 
-  services.nextcloud-client = {
-    enable = true;
-    startInBackground = true;
-  };
 
   programs = {
     direnv = {

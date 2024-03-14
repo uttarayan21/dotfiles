@@ -11,6 +11,10 @@
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;
   services.swayosd.enable = true;
+  services.nextcloud-client = {
+    enable = true;
+    startInBackground = true;
+  };
 
   systemd.user.services.spotify-player = {
     Install = { WantedBy = [ "graphical-session.target" ]; };
