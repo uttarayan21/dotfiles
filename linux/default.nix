@@ -6,7 +6,9 @@
     ../linux/anyrun.nix
     ../linux/ironbar
     ../linux/foot.nix
+    ../linux/mpd.nix
   ];
+
 
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;

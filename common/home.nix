@@ -43,6 +43,8 @@
       codelldb
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       pfetch-rs
+      mpc-cli
+      mmtc
     ] ++ lib.optionals device.isLinux [
       mpv
       psst
@@ -77,6 +79,10 @@
     ] ++ lib.optionals device.isMac [ ];
 
   xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    music = "${config.home.homeDirectory}/Nextcloud/Music";
+  };
 
 
   programs = {
