@@ -27,8 +27,6 @@ These are dotfiles for my Linux, MacOS and Windows machines
 ### For nix
 
 I'm a recent convert to NixOS from ArchLinux and have been usin it as primary os as well as a package manager on macos so the flake.nix contains configuration for both nix-darwin as well as nixos. It also contains a native home-manager module configuration for non-nixos devices ( like a SteamDeck ).
-The 
-
 
 #### Tools
 Some useful tools I regularly use.
@@ -53,25 +51,3 @@ Some useful tools I regularly use.
 `zig` zig toolchain can be used to compile tree-sitter definitions without having to go through all the hassle of setting up llvm / MSVC on windows  
 `hx/helix` Vim/Neovim - like editor which has autocomplete, tree-sitter, debugger built-in.  
 `winget` Use winget to install tools onto windows. It comes by default and can easily install most things.  
-
-#### Installation
-To install on unixes simply do ( needs to have git installed )
-
-```sh
-curl sh.uttarayan.me | sh
-```
-
-#### Dotfiles
-Includes the dotfiles for
-
-- [alacritty](#alacritty)
-- [bspwm](#bspwm)
-- [conky](#conky)
-- [neovim](#neovim)
-- [neomutt](#neomutt)
-- [picom](#picom)
-- [rofi](#rofi)
-- [sxhkd](#sxhkd)
-- [tmux](#tmux)
-- [fish](#fish)
-- [zsh](#zsh)

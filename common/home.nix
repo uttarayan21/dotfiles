@@ -4,6 +4,7 @@
     ./tmux.nix
     ./wezterm.nix
     ./nvim.nix
+    ./goread.nix
   ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
@@ -11,7 +12,6 @@
       pandoc
       gnupg
       gpg-tui
-      ngrok
       slack
       yarn
       spotify-player
@@ -40,6 +40,7 @@
       nil
       pkg-config
       lua-language-server
+      codelldb
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       pfetch-rs
     ] ++ lib.optionals device.isLinux [
@@ -67,18 +68,12 @@
       })
       usbutils
       handlr-regex
+      handlr-xdg
       webcord-vencord
       spotify
       lsof
       wl-clipboard
       ncpamixer
-      (pkgs.writeShellApplication {
-        name = "xdg-open";
-        runtimeInputs = [ handlr-regex ];
-        text = ''
-          handlr open "$@"
-        '';
-      })
     ] ++ lib.optionals device.isMac [ ];
 
   xdg.enable = true;
@@ -171,9 +166,18 @@
       settings =
         let flavour = "mocha"; # Replace with your preferred palette
         in {
-          # Other config here
-          format = "$all"; # Remove this line to disable the default prompt format
+          # Check https://starship.rs/config/#prompt
+          format = "$all$character";
           palette = "catppuccin_${flavour}";
+          character = {
+            success_symbol = "[[OK](bold green) ❯](maroon)";
+            error_symbol = "[❯](red)";
+            vimcmd_symbol = "[❮](green)";
+          };
+          directory = {
+            truncation_length = 4;
+            style = "bold lavender";
+          };
         } // builtins.fromTOML (builtins.readFile
           (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
@@ -219,6 +223,18 @@
           if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
       };
     };
+
+    # Only for checking markdown previews
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        shd101wyy.markdown-preview-enhanced
+        asvetliakov.vscode-neovim
+      ];
+    };
+
+
     home-manager = { enable = true; };
   };
 
@@ -249,3 +265,4 @@
     ];
   };
 }
+

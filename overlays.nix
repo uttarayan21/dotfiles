@@ -1,5 +1,30 @@
 { inputs, ... }:
 let
+  shell-scipts = final: prev: {
+    handlr-xdg = (final.pkgs.writeShellApplication {
+      name = "xdg-open";
+      runtimeInputs = [ final.pkgs.handlr-regex ];
+      text = ''
+        handlr open "$@"
+      '';
+    });
+  };
+
+  misc-applications = final: prev: {
+    goread = final.pkgs.buildGoModule {
+      pname = "goread";
+      version = "v1.6.4";
+      vendorHash = "sha256-/kxEnw8l9S7WNMcPh1x7xqiQ3L61DSn6DCIvJlyrip0";
+      src = final.pkgs.fetchFromGitHub {
+        owner = "TypicalAM";
+        repo = "goread";
+        rev = "v1.6.4";
+        sha256 = "sha256-m6reRaJNeFhJBUatfPNm66LwTXPdD/gioT8HTv52QOw";
+      };
+      checkPhase = null;
+    };
+  };
+
   anyrun-overlay = final: prev: {
     anyrun = inputs.anyrun.packages.${prev.system}.anyrun;
     hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
@@ -94,9 +119,12 @@ in
   vimPlugins
   tree-sitter-grammars
   tmuxPlugins
-  inputs.neovim-nightly-overlay.overlay
   anyrun-overlay
+  nix-index-db
+  shell-scipts
+  misc-applications
+  inputs.neovim-nightly-overlay.overlay
   inputs.nixneovim.overlays.default
   inputs.nur.overlay
-  nix-index-db
+  inputs.rustaceanvim.overlays.default
 ]
