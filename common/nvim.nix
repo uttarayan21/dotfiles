@@ -44,6 +44,7 @@
                 },
               '';
           };
+          clangd.enable = true;
           lua-language-server.enable = true;
           jsonls.enable = true;
           html.enable = true;

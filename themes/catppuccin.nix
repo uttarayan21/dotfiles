@@ -54,4 +54,9 @@ in
     rev = "v1.0";
     sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
   };
+  newsboat = mkCatppuccin {
+    item = "newsboat";
+    rev = "main";
+    sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
+  };
 }

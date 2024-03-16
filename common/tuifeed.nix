@@ -1,7 +1,7 @@
 { ... }: {
   imports = [ ../modules/tuifeed.nix ];
   programs.tuifeed = {
-    enable = true;
+    enable = false;
     config = {
       sources = {
         "r/rust" = "https://www.reddit.com/r/rust/.rss";
