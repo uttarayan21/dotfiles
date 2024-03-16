@@ -22,6 +22,7 @@ commands = f"{RUSTUP_HOME}/toolchains/{TOOLCHAIN}/lib/rustlib/etc/lldb_commands"
 # Print or use the 'settings' variable as needed
 print(settings)
 
+print(commands)
 # Append settings to commands file
-with open(commands, "a") as f:
-    f.write(settings)
+# with open(commands, "a") as f:
+#     f.write(settings)

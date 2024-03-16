@@ -5,6 +5,7 @@
     ./wezterm.nix
     ./nvim.nix
     ./goread.nix
+    ./ncmpcpp.nix
   ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
