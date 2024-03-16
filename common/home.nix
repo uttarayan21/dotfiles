@@ -5,10 +5,16 @@
     ./wezterm.nix
     ./nvim.nix
     ./goread.nix
+    ./tuifeed.nix
   ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
     [
+      tuifeed
+      russ
+      picat
+      spotdl
+      davis
       music-player
       pandoc
       gnupg

@@ -8,8 +8,8 @@
       systemd.target = "hyprland-session.target";
       settings.preload = wallpapers.all;
       settings.wallpapers = {
-        "DP-4" = wallpapers.frieren_3;
-        "DP-2" = wallpapers.shapes;
+        "DP-3" = wallpapers.frieren_3;
+        "DP-1" = wallpapers.shapes;
       };
     };
   wayland.windowManager.hyprland = {
@@ -19,8 +19,8 @@
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
-        "DP-4,       2560x1440@170, 0x0,     1, transform, 0"
-        "DP-2,   2560x1440@170, -1440x-800,1, transform, 1"
+        "DP-3,       2560x1440@170, 0x0,     1, transform, 0"
+        "DP-1,   2560x1440@170, -1440x-800,1, transform, 1"
         ",highrr,auto,1"
       ];
 
@@ -31,7 +31,7 @@
         kb_options = "ctrl:nocaps";
         # kb_rules = "";
 
-        # follow_mouse = 0;
+        follow_mouse = 2;
 
         touchpad = {
           natural_scroll = true;
@@ -217,16 +217,16 @@
       ];
 
       workspace = [
-        "1,  monitor:DP-4"
-        "2,  monitor:DP-4"
-        "3,  monitor:DP-4"
-        "4,  monitor:DP-4"
-        "5,  monitor:DP-4"
-        "6,  monitor:DP-4"
-        "7,  monitor:DP-4"
-        "8,  monitor:DP-2"
-        "9,  monitor:DP-2"
-        "10, monitor:DP-2"
+        "1,  monitor:DP-3"
+        "2,  monitor:DP-3"
+        "3,  monitor:DP-3"
+        "4,  monitor:DP-3"
+        "5,  monitor:DP-3"
+        "6,  monitor:DP-3"
+        "7,  monitor:DP-3"
+        "8,  monitor:DP-1"
+        "9,  monitor:DP-1"
+        "10, monitor:DP-1"
       ];
     };
   };

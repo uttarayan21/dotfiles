@@ -24,13 +24,81 @@ let
       checkPhase = null;
     };
     music-player-git = inputs.music-player.packages.${prev.system}.default;
+    davis =
+      let
+        davis-src = final.pkgs.fetchFromGitHub {
+          owner = "SimonPersson";
+          repo = "davis";
+          rev = "main";
+          sha256 = "sha256-p4l1nF6M28OyIaPorgsyR7NJtmVwpmuws67KvVnJa8s";
+        };
+        cargoToml =
+          builtins.fromTOML (builtins.readFile "${davis-src}/Cargo.toml");
+      in
+      final.rustPlatform.buildRustPackage {
+        pname = cargoToml.package.name;
+        version = cargoToml.package.version;
+        src = davis-src;
+        cargoLock = { lockFile = "${davis-src}/Cargo.lock"; };
+        buildPhase = ''
+          runHook cargoBuildHook
+          runHook cargoInstallPostBuildHook
+        '';
+        runtimeInputs = [ final.pkgs.picat ];
+        buildInputs = [ final.pkgs.picat ];
+        installPhase = ''
+          mkdir -p $out/bin
+          cp $bins $out/bin
+          cp $src/subcommands/cur/davis-cur-vertical $out/bin
+          cp $src/subcommands/cur/davis-cur-horizontal $out/bin
+          cp $src/subcommands/cover/davis-cover $out/bin
+        '';
+      };
+
+    picat =
+      let
+        # https://github.com/SimonPersson/picat
+        picat-src = final.pkgs.fetchFromGitHub {
+          owner = "SimonPersson";
+          repo = "picat";
+          rev = "main";
+          sha256 = "sha256-HheBinHW4RLjRtiE8Xe5BoEuSCdtZTA9XkRJgtDkXaM";
+        };
+        cargoToml =
+          builtins.fromTOML (builtins.readFile "${picat-src}/Cargo.toml");
+      in
+      final.rustPlatform.buildRustPackage {
+        pname = cargoToml.package.name;
+        version = cargoToml.package.version;
+        src = picat-src;
+        cargoLock = { lockFile = "${picat-src}/Cargo.lock"; };
+      };
+
+    # russ =
+    #   let
+    #     src = final.pkgs.fetchFromGitHub {
+    #       owner = "ckampfe";
+    #       repo = "russ";
+    #       rev = "master";
+    #       sha256 = "sha256-WJ/arI1zwt5UJNxo3MowKxof4wjROhgoRcfEYqWkYB8";
+    #     };
+    #     cargoToml = builtins.fromTOML (builtins.readFile "${src}/Cargo.toml");
+    #   in
+    #   final.pkgs.rustPlatform.buildRustPackage rec {
+    #     pname = cargoToml.package.name;
+    #     version = cargoToml.package.version;
+    #     inherit src;
+    #     doCheck = false;
+    #     cargoLock = { lockFile = "${src}/Cargo.lock"; };
+    #   };
+
+
   };
 
   anyrun-overlay = final: prev: {
     anyrun = inputs.anyrun.packages.${prev.system}.anyrun;
     hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
-    nixos-options =
-      inputs.anyrun-nixos-options.packages.${prev.system}.default;
+    nixos-options = inputs.anyrun-nixos-options.packages.${prev.system}.default;
     anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;
   };
   vimPlugins = final: prev: {
@@ -89,14 +157,15 @@ let
     };
   };
   catppuccinThemes = final: prev: {
-    catppuccinThemes =
-      import ./themes/catppuccin.nix { pkgs = final.pkgs; };
+    catppuccinThemes = import ./themes/catppuccin.nix { pkgs = final.pkgs; };
   };
 
   nix-index-db = (final: prev: {
     nix-index-database = final.runCommandLocal "nix-index-database" { } ''
       mkdir -p $out
-      ln -s ${inputs.nix-index-database.legacyPackages.${prev.system}.database} $out/files
+      ln -s ${
+        inputs.nix-index-database.legacyPackages.${prev.system}.database
+      } $out/files
     '';
   });
 

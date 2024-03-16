@@ -3,7 +3,7 @@
   programs.ironbar = {
     enable = true;
     config.monitors = {
-      DP-2 = {
+      DP-1 = {
         position = "bottom";
         start = [
           {
@@ -28,7 +28,7 @@
           { type = "clock"; }
         ];
       };
-      DP-4 = {
+      DP-3 = {
         position = "bottom";
         icon_theme = "Papirus-Dark";
         end = [
