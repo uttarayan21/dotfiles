@@ -25,6 +25,7 @@
       lspconfig = {
         enable = true;
         servers = {
+          gopls.enable = true;
           nil = {
             enable = true;
             extraConfig =

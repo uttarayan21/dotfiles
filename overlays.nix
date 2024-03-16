@@ -21,6 +21,7 @@ let
         rev = "v1.6.4";
         sha256 = "sha256-m6reRaJNeFhJBUatfPNm66LwTXPdD/gioT8HTv52QOw";
       };
+      patches = [ patches/goread.patch ];
       checkPhase = null;
     };
     music-player-git = inputs.music-player.packages.${prev.system}.default;

@@ -5,14 +5,12 @@
     ./wezterm.nix
     ./nvim.nix
     ./goread.nix
-    ./tuifeed.nix
-    ./newsboat.nix
   ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
     [
-      newsboat
       russ
+      go
 
       picat
       spotdl

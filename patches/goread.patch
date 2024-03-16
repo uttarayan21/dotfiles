@@ -1,0 +1,171 @@
+diff --git a/internal/backend/backend.go b/internal/backend/backend.go
+index 661861a..c6e3efc 100644
+--- a/internal/backend/backend.go
++++ b/internal/backend/backend.go
+@@ -132,9 +132,10 @@ func (b Backend) DownloadItem(feedName string, index int) tea.Cmd {
+ 
+ // Close closes the backend and saves its components.
+ func (b Backend) Close() error {
+-	if err := b.Rss.Save(); err != nil {
+-		return fmt.Errorf("backend.Close: %w", err)
+-	}
++    // Can't do in nix
++	// if err := b.Rss.Save(); err != nil {
++	// 	return fmt.Errorf("backend.Close: %w", err)
++	// }
+ 
+ 	if err := b.Cache.Save(); err != nil {
+ 		return fmt.Errorf("backend.Close: %w", err)
+diff --git a/internal/ui/browser/browser.go b/internal/ui/browser/browser.go
+index 437e6e7..d2682b6 100644
+--- a/internal/ui/browser/browser.go
++++ b/internal/ui/browser/browser.go
+@@ -33,20 +33,20 @@ type Keymap struct {
+ // DefaultKeymap contains the default key bindings for the browser
+ var DefaultKeymap = Keymap{
+ 	CloseTab: key.NewBinding(
+-		key.WithKeys("c", "ctrl+w"),
+-		key.WithHelp("c", "Close tab"),
++		key.WithKeys("x", "ctrl+w", "q"),
++		key.WithHelp("x", "Close tab"),
+ 	),
+ 	NextTab: key.NewBinding(
+ 		key.WithKeys("tab"),
+ 		key.WithHelp("Tab", "Next tab"),
+ 	),
+ 	PrevTab: key.NewBinding(
+-		key.WithKeys("shift+tab"),
++		key.WithKeys("shift+tab", "h"),
+ 		key.WithHelp("Shift+Tab", "Previous tab"),
+ 	),
+ 	ShowHelp: key.NewBinding(
+-		key.WithKeys("h", "ctrl+h"),
+-		key.WithHelp("h", "Help"),
++		key.WithKeys("?", "ctrl+h"),
++		key.WithHelp("?", "Help"),
+ 	),
+ 	ToggleOfflineMode: key.NewBinding(
+ 		key.WithKeys("o", "ctrl+o"),
+diff --git a/internal/ui/simplelist/list.go b/internal/ui/simplelist/list.go
+index 476ad90..9ddb272 100644
+--- a/internal/ui/simplelist/list.go
++++ b/internal/ui/simplelist/list.go
+@@ -135,11 +135,11 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
+ 				m.page++
+ 			}
+ 
+-		case "shift+up", "K":
++		case "shift+up", "gg":
+ 			m.selected = 0
+ 			m.page = 0
+ 
+-		case "shift+down", "J":
++		case "shift+down", "shift+g":
+ 			m.selected = len(m.items) - 1
+ 			m.page = len(m.items) / m.itemsPerPage
+ 		}
+diff --git a/internal/ui/tab/feed/feed.go b/internal/ui/tab/feed/feed.go
+index ad2b95f..1e918bb 100644
+--- a/internal/ui/tab/feed/feed.go
++++ b/internal/ui/tab/feed/feed.go
+@@ -210,6 +210,12 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+ 
+ 			m.viewport.SetContent(m.selector.cycle())
+ 			return m, nil
++        case key.Matches(msg, m.keymap.CycleSelectionBack):
++            if !m.viewportFocused {
++                return m, nil
++            }
++
++            m.viewport.SetContent(m.selector.cycle_back())
+ 		}
+ 
+ 	default:
+diff --git a/internal/ui/tab/feed/keymap.go b/internal/ui/tab/feed/keymap.go
+index 6f4dd7f..cd5170e 100644
+--- a/internal/ui/tab/feed/keymap.go
++++ b/internal/ui/tab/feed/keymap.go
+@@ -4,13 +4,14 @@ import "github.com/charmbracelet/bubbles/key"
+ 
+ // Keymap contains the key bindings for this tab
+ type Keymap struct {
+-	Open            key.Binding
+-	ToggleFocus     key.Binding
+-	RefreshArticles key.Binding
+-	SaveArticle     key.Binding
+-	DeleteFromSaved key.Binding
+-	CycleSelection  key.Binding
+-	MarkAsUnread    key.Binding
++	Open               key.Binding
++	ToggleFocus        key.Binding
++	RefreshArticles    key.Binding
++	SaveArticle        key.Binding
++	DeleteFromSaved    key.Binding
++	CycleSelection     key.Binding
++	CycleSelectionBack key.Binding
++	MarkAsUnread       key.Binding
+ }
+ 
+ // DefaultKeymap contains the default key bindings for this tab
+@@ -36,8 +37,12 @@ var DefaultKeymap = Keymap{
+ 		key.WithHelp("d/ctrl+d", "Delete from saved"),
+ 	),
+ 	CycleSelection: key.NewBinding(
+-		key.WithKeys("g"),
+-		key.WithHelp("g", "Cycle selection"),
++		key.WithKeys("n"),
++		key.WithHelp("n", "Cycle selection"),
++	),
++	CycleSelectionBack: key.NewBinding(
++		key.WithKeys("shift+n"),
++		key.WithHelp("shift+n", "Cycle selection"),
+ 	),
+ 	MarkAsUnread: key.NewBinding(
+ 		key.WithKeys("u"),
+@@ -53,5 +58,6 @@ func (m *Keymap) SetEnabled(enabled bool) {
+ 	m.SaveArticle.SetEnabled(enabled)
+ 	m.DeleteFromSaved.SetEnabled(enabled)
+ 	m.CycleSelection.SetEnabled(enabled)
++	m.CycleSelectionBack.SetEnabled(enabled)
+ 	m.MarkAsUnread.SetEnabled(enabled)
+ }
+diff --git a/internal/ui/tab/feed/selector.go b/internal/ui/tab/feed/selector.go
+index fb2ef72..a0b138a 100644
+--- a/internal/ui/tab/feed/selector.go
++++ b/internal/ui/tab/feed/selector.go
+@@ -120,6 +120,35 @@ func (s *selector) cycle() string {
+ 	return b.String()
+ }
+ 
++func (s *selector) cycle_back() string {
++	var b strings.Builder
++
++	s.selection--
++	if !s.active || s.selection < 0 {
++		s.selection = len(s.urls) - 1
++		s.active = true
++	}
++
++	start, end := s.indices[s.selection][0], s.indices[s.selection][1]
++	b.WriteString((*s.article)[:start])
++	linkText := (*s.article)[start:end]
++
++	// This is tricky
++	if strings.ContainsRune(linkText, '\n') {
++		newLine := strings.IndexRune(linkText, '\n')
++		lastSpace := strings.LastIndex(linkText, " ")
++
++		b.WriteString(s.linkStyle.Render(strings.TrimSpace(linkText[:lastSpace])))
++		b.WriteString(linkText[newLine:lastSpace])
++		b.WriteString(s.linkStyle.Render(linkText[lastSpace:]))
++	} else {
++		b.WriteString(s.linkStyle.Render(linkText))
++	}
++
++	b.WriteString((*s.article)[end:])
++	return b.String()
++}
++
+ // open opens the URL in the browser
+ func (s *selector) open() error {
+ 	switch runtime.GOOS {
