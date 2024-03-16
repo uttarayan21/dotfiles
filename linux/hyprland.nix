@@ -8,7 +8,7 @@
       systemd.target = "hyprland-session.target";
       settings.preload = wallpapers.all;
       settings.wallpapers = {
-        "DP-4" = wallpapers.lights;
+        "DP-4" = wallpapers.frieren_3;
         "DP-2" = wallpapers.shapes;
       };
     };

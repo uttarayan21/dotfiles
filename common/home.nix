@@ -9,6 +9,7 @@
 
   home.packages = with pkgs;
     [
+      music-player
       pandoc
       gnupg
       gpg-tui

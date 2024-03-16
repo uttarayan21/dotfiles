@@ -53,6 +53,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.url = "github:Mic92/nix-index-database";
+    music-player = {
+      url = "github:tsirysndr/music-player";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nur.url = "github:nix-community/nur";
 

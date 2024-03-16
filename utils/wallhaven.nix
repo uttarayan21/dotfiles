@@ -2,7 +2,8 @@
 let
   getWall = { url, sha256 ? pkgs.lib.fakeSha256 }:
     builtins.fetchurl { inherit url sha256; };
-in rec {
+in
+rec {
   inherit getWall;
   # Some predefined wallpapers
   lights = getWall {
@@ -17,6 +18,11 @@ in rec {
     url = "https://w.wallhaven.cc/full/gp/wallhaven-gpv6rd.jpg";
     sha256 = "18hpaxwi1npcfkmyw42plivmjlpgvxgblp8fy2glxh7g1yxh6qds";
   };
+  frieren_3 = getWall {
+    url = "https://w.wallhaven.cc/full/jx/wallhaven-jxqml5.jpg";
+    sha256 = "0vm02yg4w5bfqns5k1r8y09fqxs0qy4y886myvnp64n1maaihp4k";
+  };
 
-  all = [ lights shapes cloud ];
+  anime = [ frieren_3 ];
+  all = [ lights shapes cloud ] ++ anime;
 }

@@ -19,8 +19,12 @@
       };
     };
 
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    cursorTheme = {
+        name = "Vanillay-DMZ";
+        package = pkgs.vanilla-dmz;
+    };
 
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
     gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
 }

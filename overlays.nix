@@ -23,6 +23,7 @@ let
       };
       checkPhase = null;
     };
+    music-player-git = inputs.music-player.packages.${prev.system}.default;
   };
 
   anyrun-overlay = final: prev: {
