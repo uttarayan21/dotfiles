@@ -43,6 +43,7 @@
       # url = "github:nixneovim/nixneovim";
       url = "github:uttarayan21/NixNeovim";
       inputs.nixpkgs.follows = "nixpkgs";
+      # patches = [ ./patches/nixneovim.patch ];
     };
     # nixneovimplugins = {
     #   url = "github:NixNeovim/NixNeovimPlugins";

@@ -10,9 +10,8 @@
 
   home.packages = with pkgs;
     [
-      russ
       go
-
+      p7zip
       picat
       spotdl
       davis

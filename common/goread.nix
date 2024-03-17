@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [ ../modules/goread.nix ];
   programs.goread = {
     enable = true;

@@ -167,6 +167,12 @@
     hyprland.enable = true;
     hyprland.xwayland.enable = true;
     yubikey-touch-detector.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
   };
 
   security.rtkit.enable = true;

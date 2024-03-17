@@ -74,26 +74,6 @@ let
         src = picat-src;
         cargoLock = { lockFile = "${picat-src}/Cargo.lock"; };
       };
-
-    # russ =
-    #   let
-    #     src = final.pkgs.fetchFromGitHub {
-    #       owner = "ckampfe";
-    #       repo = "russ";
-    #       rev = "master";
-    #       sha256 = "sha256-WJ/arI1zwt5UJNxo3MowKxof4wjROhgoRcfEYqWkYB8";
-    #     };
-    #     cargoToml = builtins.fromTOML (builtins.readFile "${src}/Cargo.toml");
-    #   in
-    #   final.pkgs.rustPlatform.buildRustPackage rec {
-    #     pname = cargoToml.package.name;
-    #     version = cargoToml.package.version;
-    #     inherit src;
-    #     doCheck = false;
-    #     cargoLock = { lockFile = "${src}/Cargo.lock"; };
-    #   };
-
-
   };
 
   anyrun-overlay = final: prev: {
@@ -169,6 +149,13 @@ let
       } $out/files
     '';
   });
+
+
+  # nixneovim = nixneovim.applyPatches {
+  #   name = "nixneovim-patched";
+  #   src = inputs.nixneovim;
+  #   patches = [ ./patches/nixneovim.patch ];
+  # };
 
   tree-sitter-grammars = (final: prev: {
     tree-sitter-grammars = prev.tree-sitter-grammars // {

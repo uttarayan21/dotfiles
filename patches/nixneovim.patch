@@ -1,0 +1,24 @@
+diff --git a/src/plugins/_lspconfig-modules/servers.nix b/src/plugins/_lspconfig-modules/servers.nix
+index f553364..3f235e9 100644
+--- a/src/plugins/_lspconfig-modules/servers.nix
++++ b/src/plugins/_lspconfig-modules/servers.nix
+@@ -96,6 +96,9 @@ let
+       languages = "OCaml";
+       packages = [ pkgs.ocamlPackages.ocaml-lsp ];
+     };
++    pylyzer = {
++      languages = "Python";
++    };
+     pyright = {
+       languages = "Python";
+     };
+@@ -119,6 +122,9 @@ let
+         else
+           [ python3Packages.ruff-lsp ];
+     };
++    sqls = {
++      languages = "SQL";
++    };
+     taplo = {
+       languages = "TOML";
+       packages = [ taplo ];
