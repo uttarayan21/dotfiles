@@ -212,12 +212,12 @@
     ];
     extraConfigLua =
       let
-        codelldb = pkgs.codelldb;
+        codelldb = if device.isLinux then pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter else null;
         liblldb =
           if device.isLinux then
             "${codelldb}/lldb/lib/liblldb.so"
-          else if device.isMac then
-            "${codelldb}/lldb/lib/liblldb.dylib"
+          # else if device.isMac then
+          #   "${codelldb}/lldb/lib/liblldb.dylib"
           else null
         ;
       in
@@ -273,7 +273,10 @@
             },
             dap = {
                 autoload_configurations = false,
-                adapter = require'rustaceanvim.config'.get_codelldb_adapter("${codelldb}/bin/codelldb", "${codelldb}/lldb/lib/liblldb.so")
+                ${pkgs.lib.optionalString device.isLinux ''
+                adapter = require'rustaceanvim.config'.get_codelldb_adapter("${codelldb}/bin/codelldb", "${liblldb}")
+                ''
+                }
             },
         }
 

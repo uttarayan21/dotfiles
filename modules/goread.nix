@@ -2,8 +2,15 @@
 
 with lib;
 
-let cfg = config.programs.goread;
-in {
+let
+  cfg = config.programs.goread;
+  # configDir =
+  #   if pkgs.stdenv.isDarwin then
+  #     "${config.home.homeDirectory}Library/Application Support/goread"
+  #   else
+  #     "${config.xdg.configHome}/goread";
+in
+{
   options = {
     programs.goread = {
       enable = mkEnableOption "goread - a terminal RSS/Atom reader";

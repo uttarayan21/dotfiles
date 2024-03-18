@@ -15,7 +15,6 @@
       picat
       spotdl
       davis
-      music-player
       pandoc
       gnupg
       gpg-tui
@@ -47,7 +46,6 @@
       nil
       pkg-config
       lua-language-server
-      codelldb
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       pfetch-rs
       mpc-cli
@@ -87,7 +85,7 @@
 
   xdg.enable = true;
   xdg.userDirs = {
-    enable = true;
+    enable = device.isLinux;
     music = "${config.home.homeDirectory}/Nextcloud/Music";
   };
 

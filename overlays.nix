@@ -184,5 +184,5 @@ in
   inputs.neovim-nightly-overlay.overlay
   inputs.nixneovim.overlays.default
   inputs.nur.overlay
-  inputs.rustaceanvim.overlays.default
+  # inputs.rustaceanvim.overlays.default
 ]
