@@ -1,5 +1,6 @@
-{ pkgs, ... }: {
-  imports = [ ../modules/hyprpaper.nix ];
+{ pkgs, inputs, ... }: {
+  imports = [ ../modules/hyprpaper.nix inputs.hyprlock.homeManagerModules.hyprlock ];
+
   programs.hyprpaper =
     let wallpapers = import ../utils/wallhaven.nix { inherit pkgs; };
     in {
@@ -12,6 +13,9 @@
         "DP-1" = wallpapers.shapes;
       };
     };
+  programs.hyprlock = {
+    enable = true;
+  };
   wayland.windowManager.hyprland = {
     enable = true;
 

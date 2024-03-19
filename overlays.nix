@@ -83,7 +83,9 @@ let
   };
 
   anyrun-overlay = final: prev: {
-    anyrun = inputs.anyrun.packages.${prev.system}.anyrun;
+    anyrun = (inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs (finalAttrs: prevAttrs: {
+      cargoPatches = [ ./patches/anyrun.patch ];
+    }));
     hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
     nixos-options = inputs.anyrun-nixos-options.packages.${prev.system}.default;
     anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;

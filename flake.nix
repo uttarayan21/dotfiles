@@ -31,6 +31,7 @@
       url = "github:uttarayan21/anyrun-rink";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     ironbar = {
       url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +61,11 @@
     };
 
     nur.url = "github:nix-community/nur";
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 
