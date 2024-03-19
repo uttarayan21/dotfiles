@@ -256,6 +256,7 @@
         require('telescope').load_extension("fzf")
         require('telescope').load_extension("file_browser")
         require('telescope').load_extension("rest")
+        require('telescope').load_extension("neorg")
 
         vim.g.rustaceanvim = {
             tools = {
@@ -395,7 +396,9 @@
             load = {
                 ["core.defaults"] = {},
                 ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
-                ["core.concealer"] = { icon_preset = "diamond" },
+                ["core.concealer"] = {
+                    config = { icon_preset = "diamond" }
+                },
                 ["core.keybinds"] = {
                    -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
                    config = {
