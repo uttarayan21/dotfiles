@@ -1,7 +1,5 @@
 { pkgs, config, lib, ... }:
-
 with lib;
-
 let
   cfg = config.programs.goread;
   # configDir =

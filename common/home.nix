@@ -89,7 +89,6 @@
     music = "${config.home.homeDirectory}/Nextcloud/Music";
   };
 
-
   programs = {
     direnv = {
       enable = true;
@@ -174,23 +173,22 @@
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings =
-        let flavour = "mocha"; # Replace with your preferred palette
-        in {
-          # Check https://starship.rs/config/#prompt
-          format = "$all$character";
-          palette = "catppuccin_${flavour}";
-          character = {
-            success_symbol = "[[OK](bold green) ❯](maroon)";
-            error_symbol = "[❯](red)";
-            vimcmd_symbol = "[❮](green)";
-          };
-          directory = {
-            truncation_length = 4;
-            style = "bold lavender";
-          };
-        } // builtins.fromTOML (builtins.readFile
-          (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
+      settings = let flavour = "mocha"; # Replace with your preferred palette
+      in {
+        # Check https://starship.rs/config/#prompt
+        format = "$all$character";
+        palette = "catppuccin_${flavour}";
+        character = {
+          success_symbol = "[[OK](bold green) ❯](maroon)";
+          error_symbol = "[❯](red)";
+          vimcmd_symbol = "[❮](green)";
+        };
+        directory = {
+          truncation_length = 4;
+          style = "bold lavender";
+        };
+      } // builtins.fromTOML (builtins.readFile
+        (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -223,6 +221,7 @@
           file = "Catppuccin Mocha.tmTheme";
         };
       };
+      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
     };
 
     rbw = {
@@ -245,7 +244,6 @@
       ];
     };
 
-
     home-manager = { enable = true; };
   };
 
@@ -253,11 +251,10 @@
 
   home = {
     username = device.user;
-    homeDirectory =
-      if device.isMac then
-        lib.mkForce "/Users/${device.user}"
-      else
-        lib.mkForce "/home/${device.user}";
+    homeDirectory = if device.isMac then
+      lib.mkForce "/Users/${device.user}"
+    else
+      lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
@@ -269,11 +266,9 @@
       EDITOR = "nvim";
       SHELL = "${pkgs.nushellFull}/bin/nu";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
-      BROWSER = "xdg-open";
+      BROWSER = if device.isMac then "open" else "xdg-open";
     };
-    sessionPath = [
-      "${config.home.homeDirectory}/.cargo/bin"
-    ];
+    sessionPath = [ "${config.home.homeDirectory}/.cargo/bin" ];
   };
 }
 
