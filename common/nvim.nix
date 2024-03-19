@@ -133,6 +133,7 @@
         # '';
       };
 
+      oil.enable = true;
       nvim-dap.enable = true;
       nvim-dap-ui.enable = true;
       todo-comments.enable = true;
