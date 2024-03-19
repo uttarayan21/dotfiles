@@ -7,6 +7,9 @@
       neorg
       neorg-telescope
 
+      # Wut
+      ChatGPT-nvim
+
       # UI and UX
       comfortable-motion
       vim-abolish
@@ -181,6 +184,7 @@
     mappings = {
       normal = {
         "<leader>ff" = "require'telescope.builtin'.find_files";
+        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
@@ -420,6 +424,10 @@
         vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
           pattern = {"*.norg"},
           command = "set conceallevel=3"
+        })
+
+        require('chatgpt').setup({
+            api_key_cmd = "rbw get platform.openai.com",
         })
       '';
     # builtins.readFile ./extraConfig.lua;
