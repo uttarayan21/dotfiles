@@ -133,7 +133,7 @@
         "<leader>\\\"" = ''[["+]]'';
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
-        "gi" = "require'telescope.builtin'.lsp_incoming_calls";
+        "gi" = "require'telescope.builtin'.lsp_implementations";
         "<leader>a" = "vim.lsp.buf.code_action";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
         "<leader><leader>" = "'<c-^>'";
