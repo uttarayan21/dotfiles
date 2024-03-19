@@ -2,6 +2,62 @@
   imports = [ inputs.nixneovim.nixosModules.default ];
   programs.nixneovim = {
     enable = true;
+    extraPlugins = with pkgs.vimPlugins; [
+      # neorg
+      neorg
+      neorg-telescope
+
+      # UI and UX
+      comfortable-motion
+      vim-abolish
+      telescope-nvim
+      telescope-ui-select-nvim
+      telescope-fzf-native-nvim
+      telescope-file-browser-nvim
+      telescope-dap-nvim
+
+      # Treesitter stuff
+      outline-nvim
+
+      # lsp stuff
+      nvim-cmp
+      cmp-buffer
+      cmp-path
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-nvim-lua
+      cmp-dap
+      cmp_luasnip
+      cmp-tmux
+      cmp-treesitter
+      cmp-git
+      luasnip
+      fidget-nvim
+      copilot-lua
+      lsp-zero-nvim
+      trouble-nvim
+      crates-nvim
+      sqls-nvim
+      rustaceanvim
+
+      # No more postman
+      rest-nvim
+
+      # UI
+      noice-nvim
+      nvim-web-devicons
+
+      # Utils
+      FTerm-nvim
+      plenary-nvim
+      nix-develop-nvim
+
+      pkgs.tree-sitter-grammars.tree-sitter-just
+
+      # Testing
+      neotest
+      # neotest-rust
+    ];
     options = {
       shell = "sh";
       number = true;
@@ -102,7 +158,7 @@
             enable = true;
           };
         };
-        grammars = [ pkgs.tree-sitter-grammars.tree-sitter-just ];
+        grammars = with pkgs.tree-sitter-grammars; [ tree-sitter-just tree-sitter-norg-meta ];
         installAllGrammars = true;
       };
 
@@ -158,58 +214,6 @@
       };
     };
 
-    extraPlugins = with pkgs.vimPlugins; [
-      comfortable-motion
-      vim-abolish
-      telescope-nvim
-      telescope-ui-select-nvim
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
-      telescope-dap-nvim
-      rustaceanvim
-
-      # Treesitter stuff
-      outline-nvim
-
-      # lsp stuff
-      nvim-cmp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      cmp-nvim-lsp
-      cmp-nvim-lua
-      cmp-dap
-      cmp_luasnip
-      cmp-tmux
-      cmp-treesitter
-      cmp-git
-      luasnip
-      fidget-nvim
-      copilot-lua
-      lsp-zero-nvim
-      trouble-nvim
-      crates-nvim
-      sqls-nvim
-
-      # No more postman
-      rest-nvim
-
-      # UI
-      noice-nvim
-      nvim-web-devicons
-
-      # Utils
-      FTerm-nvim
-      plenary-nvim
-      nix-develop-nvim
-
-      pkgs.tree-sitter-grammars.tree-sitter-just
-
-      # Testing
-      neotest
-      # neotest-rust
-
-    ];
     extraConfigLua =
       let
         codelldb = if device.isLinux then pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter else null;
@@ -385,6 +389,33 @@
             },
             cmd        = "fish",
             blend      = 10,
+        })
+
+        require('neorg').setup({
+            load = {
+                ["core.defaults"] = {},
+                ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
+                ["core.concealer"] = { icon_preset = "diamond" },
+                ["core.keybinds"] = {
+                   -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+                   config = {
+                     default_keybinds = true,
+                     neorg_leader = "<leader>n",
+                   },
+                },
+                ["core.dirman"] = {
+                    config = {
+                        workspaces = {
+                            Notes = "~/Nextcloud/Notes",
+                            Work = "~/Nextcloud/Work",
+                        }
+                    }
+                }
+            }
+        })
+        vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+          pattern = {"*.norg"},
+          command = "set conceallevel=3"
         })
       '';
     # builtins.readFile ./extraConfig.lua;

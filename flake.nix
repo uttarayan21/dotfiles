@@ -66,7 +66,6 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
