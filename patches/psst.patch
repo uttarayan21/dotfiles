@@ -1,0 +1,13 @@
+diff --git a/Psst.desktop b/Psst.desktop
+index 267da3c..258dba2 100644
+--- a/Psst.desktop
++++ b/Psst.desktop
+@@ -1,7 +1,7 @@
+ [Desktop Entry]
+ Categories=Audio;AudioVideo
+ Comment=Fast and multi-platform Spotify client with native GUI
+-Exec=psst-gui
++Exec=env WAYLAND_DISPLAY= psst-gui
+ Icon=psst
+ Name=Psst
+ StartupWMClass=psst-gui

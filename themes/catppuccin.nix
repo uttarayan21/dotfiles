@@ -59,4 +59,16 @@ in
     rev = "main";
     sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
   };
+
+  gtk = (pkgs.catppuccin-gtk.override {
+    variant = "mocha";
+    size = "standard";
+    accents = [ "mauve" ];
+    tweaks = [ "normal" ];
+  });
+
+  papirus-folders = (pkgs.catppuccin-papirus-folders.override {
+    accent = "mauve";
+    flavor = "mocha";
+  });
 }

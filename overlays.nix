@@ -74,6 +74,12 @@ let
         src = picat-src;
         cargoLock = { lockFile = "${picat-src}/Cargo.lock"; };
       };
+
+    psst = (prev.psst.overrideAttrs (final: prev: {
+      postInstall = (prev.postInstall or "") + ''
+        patch $out/share/applications/Psst.desktop < ${./patches/psst.patch}
+      '';
+    }));
   };
 
   anyrun-overlay = final: prev: {

@@ -6,6 +6,7 @@
     ./nvim.nix
     ./goread.nix
     ./ncmpcpp.nix
+    # ./neomutt.nix
   ] ++ lib.optionals device.isLinux [ ../linux ];
 
   home.packages = with pkgs;
@@ -53,6 +54,8 @@
     ] ++ lib.optionals device.isLinux [
       mpv
       psst
+      catppuccinThemes.gtk
+      catppuccinThemes.papirus-folders
       gnome.seahorse
       gnome.nautilus
       nextcloud-client
@@ -63,16 +66,6 @@
       dig
       mullvad
       steam-run
-      (pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        size = "standard";
-        accents = [ "mauve" ];
-        tweaks = [ "normal" ];
-      })
-      (pkgs.catppuccin-papirus-folders.override {
-        accent = "mauve";
-        flavor = "mocha";
-      })
       usbutils
       handlr-regex
       handlr-xdg
@@ -173,22 +166,23 @@
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings = let flavour = "mocha"; # Replace with your preferred palette
-      in {
-        # Check https://starship.rs/config/#prompt
-        format = "$all$character";
-        palette = "catppuccin_${flavour}";
-        character = {
-          success_symbol = "[[OK](bold green) ❯](maroon)";
-          error_symbol = "[❯](red)";
-          vimcmd_symbol = "[❮](green)";
-        };
-        directory = {
-          truncation_length = 4;
-          style = "bold lavender";
-        };
-      } // builtins.fromTOML (builtins.readFile
-        (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
+      settings =
+        let flavour = "mocha"; # Replace with your preferred palette
+        in {
+          # Check https://starship.rs/config/#prompt
+          format = "$all$character";
+          palette = "catppuccin_${flavour}";
+          character = {
+            success_symbol = "[[OK](bold green) ❯](maroon)";
+            error_symbol = "[❯](red)";
+            vimcmd_symbol = "[❮](green)";
+          };
+          directory = {
+            truncation_length = 4;
+            style = "bold lavender";
+          };
+        } // builtins.fromTOML (builtins.readFile
+          (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
     eza = {
       enable = true;
@@ -251,10 +245,11 @@
 
   home = {
     username = device.user;
-    homeDirectory = if device.isMac then
-      lib.mkForce "/Users/${device.user}"
-    else
-      lib.mkForce "/home/${device.user}";
+    homeDirectory =
+      if device.isMac then
+        lib.mkForce "/Users/${device.user}"
+      else
+        lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
