@@ -139,6 +139,10 @@
       "$mainMod" = "SUPER";
       "$mainModShift" = "SUPER_SHIFT";
 
+      binde = [
+        ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise"
+        ",xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume lower"
+      ];
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
         "$mainMod, Return, exec, ${pkgs.foot}/bin/foot"
@@ -154,8 +158,6 @@
         # "$mainMod, a, exec, swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
-        ",xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume raise"
-        ",xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume lower"
         ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle"
         # ",xf86audioprev, exec, /home/fs0c131y/.cargo/bin/mctl prev"
         # ",xf86audionext, exec, /home/fs0c131y/.cargo/bin/mctl next"

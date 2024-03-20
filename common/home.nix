@@ -11,6 +11,7 @@
 
   home.packages = with pkgs;
     [
+      sd
       go
       p7zip
       picat
@@ -50,6 +51,7 @@
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       pfetch-rs
       psst
+      abaddon
     ] ++ lib.optionals device.isLinux [
       mpv
       catppuccinThemes.gtk
@@ -108,6 +110,11 @@
       enable = true;
       userName = "uttarayan21";
       userEmail = "email@uttarayan.me";
+      extraConfig = {
+        color.ui = true;
+        core.editor = "nvim";
+        push.autoSetupRemote = true;
+      };
     };
     nix-index = {
       enable = true;
@@ -222,7 +229,7 @@
         email = "uttarayan21@gmail.com";
         base_url = "https://pass.uttarayan.me";
         pinentry =
-          if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
+          if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-gnome3;
       };
     };
 

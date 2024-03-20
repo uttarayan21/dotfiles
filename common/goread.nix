@@ -11,7 +11,7 @@
             {
               name = "r/rust";
               desc = "The rust subreddit";
-              url = "https://www.reddit.com/r/rust/.rss";
+              url = "https://old.reddit.com/r/rust/.rss";
             }
             {
               name = "thesquareplanet";
@@ -24,7 +24,18 @@
               url = "https://www.youtube.com/feeds/videos.xml?channel_id=UC_iD0xppBwwsrM9DegC5cQQ";
             }
           ];
-        }];
+        }
+          {
+            name = "Nix";
+            desc = "Stuff related to the nix / nixos / nixlang";
+            subscriptions = [
+              {
+                name = "r/nixos";
+                desc = "The nixos subreddit";
+                url = "https://old.reddit.com/r/nixos/.rss";
+              }
+            ];
+          }];
       };
     };
   };
