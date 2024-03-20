@@ -18,6 +18,7 @@
       telescope-fzf-native-nvim
       telescope-file-browser-nvim
       telescope-dap-nvim
+      octo-nvim
 
       # Treesitter stuff
       outline-nvim
@@ -195,6 +196,7 @@
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
         "<C-k>" = "vim.lsp.buf.definition";
         "gi" = "require'telescope.builtin'.lsp_implementations";
+        "gh" = "[[<cmd>Octo actions<cr>]]";
         "<leader>a" = "vim.lsp.buf.code_action";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
         "<leader><leader>" = "'<c-^>'";
@@ -414,7 +416,7 @@
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            Notes = "~/Nextcloud/Notes",
+                            default = "~/Nextcloud/Notes",
                             Work = "~/Nextcloud/Work",
                         }
                     }
@@ -428,6 +430,12 @@
 
         require('chatgpt').setup({
             api_key_cmd = "rbw get platform.openai.com",
+        })
+
+        require"octo".setup({
+          use_local_fs = false,                    -- use local files on right side of reviews
+          enable_builtin = false,                  -- shows a list of builtin actions when no action is provided
+          default_remote = {"upstream", "origin"};
         })
       '';
     # builtins.readFile ./extraConfig.lua;

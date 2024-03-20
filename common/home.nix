@@ -52,8 +52,8 @@
       mpc-cli
       mmtc
     ] ++ lib.optionals device.isLinux [
-      mpv
       psst
+      mpv
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
       gnome.seahorse
@@ -223,7 +223,7 @@
       settings = {
         email = "uttarayan21@gmail.com";
         base_url = "https://pass.uttarayan.me";
-        pinenttry =
+        pinentry =
           if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-qt;
       };
     };
