@@ -75,17 +75,43 @@ let
         cargoLock = { lockFile = "${picat-src}/Cargo.lock"; };
       };
 
-    psst = (prev.psst.overrideAttrs (final: prev: {
-      postInstall = (prev.postInstall or "") + ''
-        patch $out/share/applications/Psst.desktop < ${./patches/psst.patch}
-      '';
-    }));
+    psst =
+      if final.pkgs.stdenv.isLinux then
+        (prev.psst.overrideAttrs (finalAttrs: prevAttrs: {
+          postInstall = (prevAttrs.postInstall or "") + ''
+            patch $out/share/applications/Psst.desktop < ${./patches/psst.patch}
+          '';
+        }))
+      else
+        final.rustPlatform.buildRustPackage rec {
+          pname = "psst";
+          version = "1";
+          src = final.pkgs.fetchFromGitHub {
+            # https://github.com/jpochyla/psst
+            owner = "jpochyla";
+            repo = "psst";
+            rev = "master";
+            sha256 = "sha256-W+MFToyvYDQuC/8DqigvENxzJ6QGQOAeAdmdWG6+qZk";
+          };
+          buildInputs = with final; [
+            pkgs.darwin.apple_sdk.frameworks.CoreAudio
+            pkgs.darwin.apple_sdk.frameworks.AudioUnit
+          ];
+          # nativeBuildInputs = buildInputs;
+          cargoLock = {
+            lockFile = "${src}/Cargo.lock";
+            outputHashes = {
+              "cubeb-0.10.3" = "sha256-gV1KHOhq678E/Rj+u8jX9Fw+TepPwuZdV5y/D+Iby+o";
+              "druid-0.8.3" = "sha256-hTB9PQf2TAhcLr64VjjQIr18mczwcNogDSRSN5dQULA";
+              "druid-enums-0.1.0" = "sha256-KJvAgKxicx/g+4QRZq3iHt6MGVQbfOpyN+EhS6CyDZk";
+            };
+          };
+        };
   };
 
   anyrun-overlay = final: prev: {
-    anyrun = (inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs (finalAttrs: prevAttrs: {
-      cargoPatches = [ ./patches/anyrun.patch ];
-    }));
+    anyrun = (inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs
+      (finalAttrs: prevAttrs: { cargoPatches = [ ./patches/anyrun.patch ]; }));
     hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
     nixos-options = inputs.anyrun-nixos-options.packages.${prev.system}.default;
     anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;
@@ -157,7 +183,6 @@ let
       } $out/files
     '';
   });
-
 
   # nixneovim = nixneovim.applyPatches {
   #   name = "nixneovim-patched";

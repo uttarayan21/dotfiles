@@ -49,10 +49,8 @@
       lua-language-server
       (nerdfonts.override { fonts = [ "Hasklig" ]; })
       pfetch-rs
-      mpc-cli
-      mmtc
-    ] ++ lib.optionals device.isLinux [
       psst
+    ] ++ lib.optionals device.isLinux [
       mpv
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
