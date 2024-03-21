@@ -4,7 +4,6 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }: {
@@ -15,6 +14,15 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  virtualisation.libvirtd.enable = true;
+  users.extraUsers.servius.extraGroups = ["libvirtd"];
+
+  boot.extraModprobeConfig = ''
+    options kvm_intel nested=1
+    options kvm_intel emulate_invalid_guest_state=0
+    options kvm ignore_msrs=1
+  '';
 
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
   hardware.nvidia = {

@@ -14,34 +14,35 @@
       ./nvim.nix
       ./goread.nix
       ./ncmpcpp.nix
-      # ./neomutt.nix
     ]
     ++ lib.optionals device.isLinux [../linux];
 
   home.packages = with pkgs;
     [
-      sony-headphones-client
+      spotify-player
+
       sd
       go
-      p7zip
-      picat
-      spotdl
-      davis
       pandoc
-      gnupg
-      gpg-tui
-      slack
-      yarn
-      spotify-player
-      qmk
       nodejs
       neovide
       sqls
       vcpkg
-      file
-      yt-dlp
       gh
       just
+      yarn
+
+      # Misc
+      qmk
+      p7zip
+      yt-dlp
+      spotdl
+      picat
+      davis
+      gnupg
+      gpg-tui
+
+      file
       jq
       tldr
       bottom
@@ -61,9 +62,11 @@
       (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
       psst
-      abaddon
     ]
     ++ lib.optionals device.isLinux [
+      sony-headphones-client
+      abaddon
+      rr
       mpv
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
@@ -97,7 +100,7 @@
   programs = {
     direnv = {
       enable = true;
-      # enableFishIntegration = true;
+      # enableFishIntegration = true; // Auto enabled
       enableNushellIntegration = true;
       nix-direnv.enable = true;
     };

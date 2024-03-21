@@ -130,6 +130,15 @@
             sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
           };
         };
+        nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
+          name = "nvim-dap-rr";
+          src = final.pkgs.fetchFromGitHub {
+            owner = "jonboh";
+            repo = "nvim-dap-rr";
+            rev = "master";
+            sha256 = "sha256-JNztLTSyHmEmh3xT4WR0cpP25vjZ4A6aQbnU49U6+Ss";
+          };
+        };
         sqls-nvim = final.pkgs.vimUtils.buildVimPlugin {
           name = "sqls-nvim";
           src = final.pkgs.fetchFromGitHub {

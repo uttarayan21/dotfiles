@@ -26,6 +26,9 @@
       telescope-dap-nvim
       octo-nvim
 
+      # Debuggging
+      nvim-dap-rr
+
       # Treesitter stuff
       outline-nvim
 
@@ -451,6 +454,17 @@
           enable_builtin = false,
           default_remote = {"upstream", "origin"};
         })
+
+        local rr_dap = require('nvim-dap-rr')
+        rr_dap.setup({
+            mappings = {
+                continue = "<F7>"
+            },
+        })
+
+        local dap = require'dap';
+        dap.configurations.rust = { rr_dap.get_rust_config() }
+        dap.configurations.cpp = { rr_dap.get_config() }
       '';
     package = pkgs.neovim-nightly;
   };

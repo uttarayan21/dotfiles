@@ -101,6 +101,11 @@
         user = "fs0c131y";
       }
       {
+        name = "Serviuss-iMac-Pro";
+        system = "x86_64-darwin";
+        user = "servius";
+      }
+      {
         name = "SteamDeck";
         system = "x86_64-linux";
         user = "deck";
