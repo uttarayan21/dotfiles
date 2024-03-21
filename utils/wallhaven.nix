@@ -1,9 +1,10 @@
-{ pkgs, ... }:
-let
-  getWall = { url, sha256 ? pkgs.lib.fakeSha256 }:
-    builtins.fetchurl { inherit url sha256; };
-in
-rec {
+{pkgs, ...}: let
+  getWall = {
+    url,
+    sha256 ? pkgs.lib.fakeSha256,
+  }:
+    builtins.fetchurl {inherit url sha256;};
+in rec {
   inherit getWall;
   # Some predefined wallpapers
   lights = getWall {
@@ -23,6 +24,6 @@ rec {
     sha256 = "0vm02yg4w5bfqns5k1r8y09fqxs0qy4y886myvnp64n1maaihp4k";
   };
 
-  anime = [ frieren_3 ];
-  all = [ lights shapes cloud ] ++ anime;
+  anime = [frieren_3];
+  all = [lights shapes cloud] ++ anime;
 }

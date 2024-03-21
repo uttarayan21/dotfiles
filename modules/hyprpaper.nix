@@ -1,8 +1,11 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-
-let cfg = config.programs.hyprpaper;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.programs.hyprpaper;
 in {
   options = {
     programs.hyprpaper = {
@@ -24,17 +27,17 @@ in {
       settings = with types; {
         preload = mkOption {
           type = listOf path;
-          default = [ ];
+          default = [];
           description = ''
-            Wallpaper images that should be preloaded into memory 
+            Wallpaper images that should be preloaded into memory
           '';
-          example = [ ./wallpapers/tensura.png ];
+          example = [./wallpapers/tensura.png];
         };
 
         wallpapers = mkOption {
           type = attrsOf str;
-          default = { };
-          example = { "DP-1" = ./wallpapers/tensura.png; };
+          default = {};
+          example = {"DP-1" = ./wallpapers/tensura.png;};
           description = ''
             Wallpaper to monitor mapper
           '';
@@ -43,8 +46,7 @@ in {
         extraConfig = mkOption {
           type = str;
           default = "";
-          description =
-            "Check https://github.com/hyprwm/hyprpaper#usage for info";
+          description = "Check https://github.com/hyprwm/hyprpaper#usage for info";
           example = ''
             newConfigOption = foo,bar
           '';
@@ -54,14 +56,14 @@ in {
   };
 
   config = {
-    home.packages = mkIf cfg.enable [ pkgs.hyprpaper ];
+    home.packages = mkIf cfg.enable [pkgs.hyprpaper];
 
     systemd.user.services.hyprpaper = mkIf cfg.systemd.enable {
       Unit = {
         Description = "autostart service for Hyprpaper";
         Documentation = "https://github.com/hyprwm/hyprpaper";
-        BindsTo = [ "graphical-session.target" ];
-        After = [ "graphical-session-pre.target" ];
+        BindsTo = ["graphical-session.target"];
+        After = ["graphical-session-pre.target"];
       };
 
       Service = {
@@ -71,7 +73,7 @@ in {
         KillMode = "mixed";
       };
 
-      Install = { WantedBy = [ cfg.systemd.target ]; };
+      Install = {WantedBy = [cfg.systemd.target];};
     };
 
     xdg.configFile = mkIf cfg.enable {
@@ -80,16 +82,19 @@ in {
 
         # hyprpaper.settings.preload
         ${(lists.foldl (acc: v:
-          acc + ''
+          acc
+          + ''
             preload = ${v}
-          '') "" cfg.settings.preload)}
+          '') ""
+        cfg.settings.preload)}
 
         # hyprpaper.settings.wallpapers
         ${(lists.foldl (acc: v:
-          acc + ''
+          acc
+          + ''
             wallpaper = ${v}
           '') "" (pkgs.lib.attrsets.mapAttrsToList (name: val: name + "," + val)
-            cfg.settings.wallpapers))}
+          cfg.settings.wallpapers))}
 
         # hyprpaper.settings.extraConfig
         ${cfg.settings.extraConfig}

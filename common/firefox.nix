@@ -1,17 +1,22 @@
-{ device, pkgs, ... }: {
+{
+  device,
+  pkgs,
+  ...
+}: {
   programs.firefox = {
     enable = device.isLinux;
     profiles.default = {
-      userChrome =
-        let
-          csshacks = pkgs.fetchFromGitHub {
-            owner = "MrOtherGuy";
-            repo = "firefox-csshacks";
-            rev = "master";
-            sha256 = "sha256-XJ+MTEADzOsCIh0I8EAxbtIpDHfMJsN68sKBy7/1l60=";
-          };
-        in
-          /* css */
+      userChrome = let
+        csshacks = pkgs.fetchFromGitHub {
+          owner = "MrOtherGuy";
+          repo = "firefox-csshacks";
+          rev = "master";
+          sha256 = "sha256-XJ+MTEADzOsCIh0I8EAxbtIpDHfMJsN68sKBy7/1l60=";
+        };
+      in
+        /*
+        css
+        */
         ''
           /* @import url(${csshacks}/chrome/toolbars_below_content.css); */
           /* @import url(${csshacks}/chrome/scrollable_menupopups.css); */
@@ -23,12 +28,11 @@
         tridactyl
       ];
     };
-    nativeMessagingHosts = [ pkgs.tridactyl-native ];
+    nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {
       ExtensionSettings = {
         "uBlock0@raymondhill.net" = {
-          install_url =
-            "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           installation_mode = "force_installed";
         };
       };

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{pkgs, ...}:
 pkgs.writeShellScript "start-tmux" ''
   live_sessions=$(${pkgs.tmux}/bin/tmux list-sessions 2>/dev/null)
   all_sessions=$(${pkgs.findutils}/bin/find -L ~/.config/tmux/sessions -type f -executable  -printf '%f\n'| sort)

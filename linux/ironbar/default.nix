@@ -1,5 +1,9 @@
-{ inputs, pkgs, ... }: {
-  imports = [ inputs.ironbar.homeManagerModules.default ];
+{
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports = [inputs.ironbar.homeManagerModules.default];
   programs.ironbar = {
     enable = true;
     config.monitors = {
@@ -8,11 +12,11 @@
         start = [
           {
             type = "launcher";
-            favourites = [ "firefox" "discord" ];
+            favourites = ["firefox" "discord"];
             show_names = false;
             show_icons = true;
           }
-          { type = "focused"; }
+          {type = "focused";}
         ];
         end = [
           {
@@ -25,7 +29,7 @@
             type = "music";
             player_type = "mpris";
           }
-          { type = "clock"; }
+          {type = "clock";}
         ];
       };
       DP-3 = {
@@ -46,25 +50,27 @@
               # networks= 3;
             };
           }
-          { type = "tray"; }
+          {type = "tray";}
         ];
-        start = [{
-          type = "workspaces";
-          name_map = {
-            "1" = "icon:foot";
-            "2" = "icon:code";
-            "3" = "icon:firefox";
-            "4" = "icon:slack";
-            "5" = "icon:steam";
-            "6" = "icon:misc";
-            "7" = "icon:misc";
-            "8" = "icon:firefox";
-            "9" = "icon:discord";
-            "10" = "icon:spotify";
-          };
-          favorites = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ];
-          all_monitors = true;
-        }];
+        start = [
+          {
+            type = "workspaces";
+            name_map = {
+              "1" = "icon:foot";
+              "2" = "icon:code";
+              "3" = "icon:firefox";
+              "4" = "icon:slack";
+              "5" = "icon:steam";
+              "6" = "icon:misc";
+              "7" = "icon:misc";
+              "8" = "icon:firefox";
+              "9" = "icon:discord";
+              "10" = "icon:spotify";
+            };
+            favorites = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
+            all_monitors = true;
+          }
+        ];
       };
     };
     style = let
@@ -79,6 +85,7 @@
         sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
       };
       mocha = builtins.readFile "${catppuccin}/mocha.css";
-    in mocha + builtins.readFile ./ironbar.css;
+    in
+      mocha + builtins.readFile ./ironbar.css;
   };
 }

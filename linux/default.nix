@@ -1,4 +1,10 @@
-{ pkgs, device, nur, inputs, ... }: {
+{
+  pkgs,
+  device,
+  nur,
+  inputs,
+  ...
+}: {
   imports = [
     ../common/firefox.nix
     ../linux/hyprland.nix
@@ -9,7 +15,6 @@
     ../linux/mpd.nix
   ];
 
-
   services.kdeconnect.enable = true;
   services.kdeconnect.indicator = true;
   services.swayosd.enable = true;
@@ -19,10 +24,10 @@
   };
 
   systemd.user.services.spotify-player = {
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = {WantedBy = ["graphical-session.target"];};
     Unit = {
       Description = "Spotify Player Daemon";
-      After = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
     };
     Service = {
       ExecStart = "${pkgs.spotify-player}/bin/spotify_player -d";

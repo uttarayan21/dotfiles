@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   scratchpad = pkgs.writeShellScript "scratchpad" ''
     width=''${2:-95%}
     height=''${2:-95%}

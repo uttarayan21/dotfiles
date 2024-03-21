@@ -1,5 +1,11 @@
-{ pkgs, config, inputs, device, ... }: {
-  imports = [ inputs.nixneovim.nixosModules.default ];
+{
+  pkgs,
+  config,
+  inputs,
+  device,
+  ...
+}: {
+  imports = [inputs.nixneovim.nixosModules.default];
   programs.nixneovim = {
     enable = true;
     extraPlugins = with pkgs.vimPlugins; [
@@ -80,7 +86,9 @@
       undofile = true;
     };
 
-    globals = { mapleader = " "; };
+    globals = {
+      mapleader = " ";
+    };
     plugins = {
       lspconfig = {
         enable = true;
@@ -89,12 +97,14 @@
           nil = {
             enable = true;
             extraConfig =
-              /* lua */
+              # lua
               ''
                 settings = {
                   ['nil'] = {
                     formatting = {
-                      command = { "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
+                      -- command = { "$\{pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
+                      -- command = { "$\{pkgs.nixfmt}/bin/nixfmt" },
+                      command = { "${pkgs.alejandra}/bin/alejandra" },
                     },
                     nix = {
                       flake = {
@@ -113,7 +123,7 @@
           sqls = {
             enable = true;
             onAttachExtra =
-              /* lua */
+              # lua
               ''
                 require('sqls').on_attach(client, bufnr)
               '';
@@ -121,7 +131,7 @@
           # rust-analyzer.enable = true;
         };
         extraLua.pre =
-          /* lua */
+          # lua
           ''
             local lsp_zero = require'lsp-zero'
             local lspconfig = require 'lspconfig'
@@ -163,7 +173,10 @@
             enable = true;
           };
         };
-        grammars = with pkgs.tree-sitter-grammars; [ tree-sitter-just tree-sitter-norg-meta ];
+        grammars = with pkgs.tree-sitter-grammars; [
+          tree-sitter-just
+          tree-sitter-norg-meta
+        ];
         installAllGrammars = true;
       };
 
@@ -174,7 +187,6 @@
         # cursorword.enable = true;
         starter.enable = true;
       };
-
     };
     colorschemes = {
       catppuccin = {
@@ -221,18 +233,21 @@
       };
     };
 
-    extraConfigLua =
-      let
-        codelldb = if device.isLinux then pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter else null;
-        liblldb =
-          if device.isLinux then
-            "${codelldb}/lldb/lib/liblldb.so"
-          # else if device.isMac then
-          #   "${codelldb}/lldb/lib/liblldb.dylib"
-          else null
-        ;
-      in
-        /* lua */
+    extraConfigLua = let
+      codelldb =
+        if device.isLinux
+        then pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
+        else null;
+      liblldb =
+        if device.isLinux
+        then "${codelldb}/lldb/lib/liblldb.so"
+        # else if device.isMac then
+        #   "${codelldb}/lldb/lib/liblldb.dylib"
+        else null;
+    in
+      /*
+      lua
+      */
       ''
         require'neotest'.setup({
           adapters = {
@@ -276,7 +291,7 @@
                         vim.lsp.inlay_hint.enable(bufnr, true)
                     end
                 end,
-                settings = function(project_root) 
+                settings = function(project_root)
                   local ra = require('rustaceanvim.config.server')
                     return ra.load_rust_analyzer_settings(project_root, {
                       settings_file_pattern = 'rust-analyzer.json'
@@ -286,9 +301,8 @@
             dap = {
                 autoload_configurations = false,
                 ${pkgs.lib.optionalString device.isLinux ''
-                adapter = require'rustaceanvim.config'.get_codelldb_adapter("${codelldb}/bin/codelldb", "${liblldb}")
-                ''
-                }
+          adapter = require'rustaceanvim.config'.get_codelldb_adapter("${codelldb}/bin/codelldb", "${liblldb}")
+        ''}
             },
         }
 
@@ -441,4 +455,3 @@
     package = pkgs.neovim-nightly;
   };
 }
-

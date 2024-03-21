@@ -1,12 +1,13 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
-
-let
-  cfg = config.programs.tuifeed;
-  tomlFormat = pkgs.formats.toml { };
-in
 {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.programs.tuifeed;
+  tomlFormat = pkgs.formats.toml {};
+in {
   options = {
     programs.tuifeed = {
       enable = mkEnableOption "tuifeed - a terminal RSS/Atom reader";
@@ -14,11 +15,11 @@ in
       config = with types; {
         sources = mkOption {
           type = attrsOf str;
-          default = { };
+          default = {};
           description = ''
             Urls that will be fetched ~/.config/tuifeed/urls.yml
           '';
-          example = { };
+          example = {};
         };
 
         article_title = mkOption {
@@ -30,15 +31,14 @@ in
           description = ''
             Urls that will be fetched ~/.config/tuifeed/urls.yml
           '';
-          example = { };
+          example = {};
         };
-
       };
     };
   };
 
   config = {
-    home.packages = mkIf cfg.enable [ pkgs.tuifeed ];
+    home.packages = mkIf cfg.enable [pkgs.tuifeed];
 
     xdg.configFile = mkIf cfg.enable {
       "tuifeed/config.toml".source = tomlFormat.generate "tuifeed-config" {
@@ -46,6 +46,5 @@ in
         "article-title" = cfg.config.article_title;
       };
     };
-
   };
 }

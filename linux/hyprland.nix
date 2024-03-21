@@ -1,18 +1,22 @@
-{ pkgs, inputs, ... }: {
-  imports = [ ../modules/hyprpaper.nix inputs.hyprlock.homeManagerModules.hyprlock ];
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [../modules/hyprpaper.nix inputs.hyprlock.homeManagerModules.hyprlock];
 
-  programs.hyprpaper =
-    let wallpapers = import ../utils/wallhaven.nix { inherit pkgs; };
-    in {
-      enable = true;
-      systemd.enable = true;
-      systemd.target = "hyprland-session.target";
-      settings.preload = wallpapers.all;
-      settings.wallpapers = {
-        "DP-3" = wallpapers.frieren_3;
-        "DP-1" = wallpapers.shapes;
-      };
+  programs.hyprpaper = let
+    wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
+  in {
+    enable = true;
+    systemd.enable = true;
+    systemd.target = "hyprland-session.target";
+    settings.preload = wallpapers.all;
+    settings.wallpapers = {
+      "DP-3" = wallpapers.frieren_3;
+      "DP-1" = wallpapers.shapes;
     };
+  };
   programs.hyprlock = {
     enable = true;
   };

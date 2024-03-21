@@ -1,13 +1,12 @@
-{ pkgs, ... }:
-let
-  mkCatppuccin =
-    { owner ? "catppuccin"
-    , version ? "0.0.1"
-    , item
-    , rev ? "main"
-    , sha256 ? pkgs.lib.fakeSha256
-    , override ? null
-    }:
+{pkgs, ...}: let
+  mkCatppuccin = {
+    owner ? "catppuccin",
+    version ? "0.0.1",
+    item,
+    rev ? "main",
+    sha256 ? pkgs.lib.fakeSha256,
+    override ? null,
+  }:
     pkgs.stdenv.mkDerivation {
       inherit version override;
       pname = item;
@@ -22,13 +21,14 @@ let
       '';
     };
 
-  flavors = [ "latte" "frappe" "macchiato" "mocha" ];
-  mapFlavor = flavorMap: (flavor: {
-    name = flavor;
-    value = flavorMap flavor;
-  }) flavors;
-in
-{
+  flavors = ["latte" "frappe" "macchiato" "mocha"];
+  mapFlavor = flavorMap:
+    (flavor: {
+      name = flavor;
+      value = flavorMap flavor;
+    })
+    flavors;
+in {
   bat = mkCatppuccin {
     item = "bat";
     sha256 = "sha256-yHt3oIjUnljARaihalcWSNldtaJfVDfmfiecYfbzGs0";
@@ -60,15 +60,15 @@ in
     sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
   };
 
-  gtk = (pkgs.catppuccin-gtk.override {
+  gtk = pkgs.catppuccin-gtk.override {
     variant = "mocha";
     size = "standard";
-    accents = [ "mauve" ];
-    tweaks = [ "normal" ];
-  });
+    accents = ["mauve"];
+    tweaks = ["normal"];
+  };
 
-  papirus-folders = (pkgs.catppuccin-papirus-folders.override {
+  papirus-folders = pkgs.catppuccin-papirus-folders.override {
     accent = "mauve";
     flavor = "mocha";
-  });
+  };
 }

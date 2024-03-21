@@ -1,16 +1,26 @@
-{ inputs, config, pkgs, lib, device, ... }: {
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-    ./tmux.nix
-    ./wezterm.nix
-    ./nvim.nix
-    ./goread.nix
-    ./ncmpcpp.nix
-    # ./neomutt.nix
-  ] ++ lib.optionals device.isLinux [ ../linux ];
+{
+  inputs,
+  config,
+  pkgs,
+  lib,
+  device,
+  ...
+}: {
+  imports =
+    [
+      inputs.nix-index-database.hmModules.nix-index
+      ./tmux.nix
+      ./wezterm.nix
+      ./nvim.nix
+      ./goread.nix
+      ./ncmpcpp.nix
+      # ./neomutt.nix
+    ]
+    ++ lib.optionals device.isLinux [../linux];
 
   home.packages = with pkgs;
     [
+      sony-headphones-client
       sd
       go
       p7zip
@@ -38,7 +48,7 @@
       macchina
       ripgrep
       fd
-      nixfmt
+      alejandra
       dust
       cachix
       rustup
@@ -48,11 +58,12 @@
       nil
       pkg-config
       lua-language-server
-      (nerdfonts.override { fonts = [ "Hasklig" ]; })
+      (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
       psst
       abaddon
-    ] ++ lib.optionals device.isLinux [
+    ]
+    ++ lib.optionals device.isLinux [
       mpv
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
@@ -74,7 +85,8 @@
       lsof
       wl-clipboard
       ncpamixer
-    ] ++ lib.optionals device.isMac [ ];
+    ]
+    ++ lib.optionals device.isMac [];
 
   xdg.enable = true;
   xdg.userDirs = {
@@ -102,7 +114,7 @@
           space.space = "file_picker";
           space.w = ":w";
           space.q = ":q";
-          esc = [ "collapse_selection" "keep_primary_selection" ];
+          esc = ["collapse_selection" "keep_primary_selection"];
         };
       };
     };
@@ -133,7 +145,7 @@
         cat = "bat";
         t = "tmux";
       };
-      shellAliases = { g = "git"; };
+      shellAliases = {g = "git";};
       shellInit = ''
         set fish_greeting
         yes | fish_config theme save "Catppuccin Mocha"
@@ -171,9 +183,10 @@
       enable = true;
       enableFishIntegration = true;
       enableNushellIntegration = true;
-      settings =
-        let flavour = "mocha"; # Replace with your preferred palette
-        in {
+      settings = let
+        flavour = "mocha"; # Replace with your preferred palette
+      in
+        {
           # Check https://starship.rs/config/#prompt
           format = "$all$character";
           palette = "catppuccin_${flavour}";
@@ -186,7 +199,8 @@
             truncation_length = 4;
             style = "bold lavender";
           };
-        } // builtins.fromTOML (builtins.readFile
+        }
+        // builtins.fromTOML (builtins.readFile
           (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
     };
     eza = {
@@ -213,14 +227,14 @@
     };
     bat = {
       enable = true;
-      config = { theme = "catppuccin"; };
+      config = {theme = "catppuccin";};
       themes = {
         catppuccin = {
           src = "${pkgs.catppuccinThemes.bat}/themes";
           file = "Catppuccin Mocha.tmTheme";
         };
       };
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+      extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
     };
 
     rbw = {
@@ -229,7 +243,9 @@
         email = "uttarayan21@gmail.com";
         base_url = "https://pass.uttarayan.me";
         pinentry =
-          if device.isMac then pkgs.pinentry_mac else pkgs.pinentry-gnome3;
+          if device.isMac
+          then pkgs.pinentry_mac
+          else pkgs.pinentry-gnome3;
       };
     };
 
@@ -243,7 +259,7 @@
       ];
     };
 
-    home-manager = { enable = true; };
+    home-manager = {enable = true;};
   };
 
   fonts.fontconfig.enable = true;
@@ -251,10 +267,9 @@
   home = {
     username = device.user;
     homeDirectory =
-      if device.isMac then
-        lib.mkForce "/Users/${device.user}"
-      else
-        lib.mkForce "/home/${device.user}";
+      if device.isMac
+      then lib.mkForce "/Users/${device.user}"
+      else lib.mkForce "/home/${device.user}";
 
     stateVersion = "23.11";
 
@@ -266,9 +281,11 @@
       EDITOR = "nvim";
       SHELL = "${pkgs.nushellFull}/bin/nu";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
-      BROWSER = if device.isMac then "open" else "xdg-open";
+      BROWSER =
+        if device.isMac
+        then "open"
+        else "xdg-open";
     };
-    sessionPath = [ "${config.home.homeDirectory}/.cargo/bin" ];
+    sessionPath = ["${config.home.homeDirectory}/.cargo/bin"];
   };
 }
-

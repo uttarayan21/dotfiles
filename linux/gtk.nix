@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   gtk = {
     enable = true;
     theme = {
@@ -6,8 +6,8 @@
       package = pkgs.catppuccin-gtk.override {
         variant = "mocha";
         size = "standard";
-        accents = [ "mauve" ];
-        tweaks = [ "normal" ];
+        accents = ["mauve"];
+        tweaks = ["normal"];
       };
     };
 
@@ -20,11 +20,11 @@
     };
 
     cursorTheme = {
-        name = "Vanillay-DMZ";
-        package = pkgs.vanilla-dmz;
+      name = "Vanillay-DMZ";
+      package = pkgs.vanilla-dmz;
     };
 
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
+    gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
 }
