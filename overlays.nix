@@ -162,8 +162,10 @@
           src = final.pkgs.fetchFromGitHub {
             owner = "rest-nvim";
             repo = "rest.nvim";
-            rev = "main";
-            sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338=";
+            rev = "c12c0b06ce5a09d83e79c8464f09d21fdd6b32d6";
+            # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
+            # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
+            sha256 = "sha256-rp1DkX3i+qZxvcsPXEKPiFLSfWbetRm0/cEAWBoBOic=";
           };
         };
       };
