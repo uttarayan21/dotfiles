@@ -31,21 +31,25 @@
 in {
   bat = mkCatppuccin {
     item = "bat";
-    sha256 = "sha256-yHt3oIjUnljARaihalcWSNldtaJfVDfmfiecYfbzGs0";
+    rev = "b19bea35a85a32294ac4732cad5b0dc6495bed32";
+    sha256 = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg";
   };
 
   hyprland = mkCatppuccin {
     item = "hyprland";
+    rev = "fc228737d3d0c12e34a7fa155a0fc3192e5e4017";
     sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
   };
 
   starship = mkCatppuccin {
     item = "starship";
+    rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
     sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
   };
 
   fish = mkCatppuccin {
     item = "fish";
+    rev = "0ce27b518e8ead555dec34dd8be3df5bd75cff8e";
     sha256 = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg";
   };
 
@@ -56,7 +60,7 @@ in {
   };
   newsboat = mkCatppuccin {
     item = "newsboat";
-    rev = "main";
+    rev = "be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f";
     sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
   };
 
