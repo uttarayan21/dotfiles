@@ -2,6 +2,8 @@
   description = "Home Manager configuration of fs0c131y";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-main.url = "github:nixos/nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,20 +42,14 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixneovim = {
-      # url = "github:nixneovim/nixneovim";
-      url = "github:uttarayan21/NixNeovim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
-      # patches = [ ./patches/nixneovim.patch ];
     };
-    # nixneovimplugins = {
-    #   url = "github:NixNeovim/NixNeovimPlugins";
+    # rustaceanvim = {
+    #   url = "github:mrcjkb/rustaceanvim";
     #   inputs.nixpkgs.follows = "nixpkgs";
-    # }
-    rustaceanvim = {
-      url = "github:mrcjkb/rustaceanvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # };
     nix-index-database.url = "github:Mic92/nix-index-database";
     music-player = {
       url = "github:tsirysndr/music-player";

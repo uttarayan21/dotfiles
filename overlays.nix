@@ -157,17 +157,6 @@
             sha256 = "sha256-HaxfnvgFy7fpa2CS7/dQhf6dK9+Js7wP5qGdIeXLGPY";
           };
         };
-        rest-nvim = final.pkgs.vimUtils.buildVimPlugin {
-          name = "rest-nvim";
-          src = final.pkgs.fetchFromGitHub {
-            owner = "rest-nvim";
-            repo = "rest.nvim";
-            rev = "c12c0b06ce5a09d83e79c8464f09d21fdd6b32d6";
-            # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
-            # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
-            sha256 = "sha256-rp1DkX3i+qZxvcsPXEKPiFLSfWbetRm0/cEAWBoBOic=";
-          };
-        };
       };
   };
   tmuxPlugins = final: prev: {
@@ -221,6 +210,31 @@
         };
       };
   };
+
+  rest-nvim-overlay = final: prev: let
+    rest-nvim-src = final.pkgs.fetchFromGitHub {
+      owner = "rest-nvim";
+      repo = "rest.nvim";
+      rev = "v2.0.0";
+      # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
+      # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
+      sha256 = "sha256-d/2aiQZ4YpZ//j6N4boU5ASVFJcErwpK/9PCisEXoxg=";
+    };
+  in {
+    vimPlugins =
+      prev.vimPlugins
+      // {
+        rest-nvim = final.neovimUtils.buildNeovimPlugin {
+          pname = "rest.nvim";
+          version = "scm-1";
+          src = rest-nvim-src;
+          postInstall = ''
+            mkdir -p $out/
+            cp -r ftplugin ftdetect syntax $out/
+          '';
+        };
+      };
+  };
 in [
   catppuccinThemes
   vimPlugins
@@ -231,7 +245,8 @@ in [
   shell-scipts
   misc-applications
   inputs.neovim-nightly-overlay.overlay
-  inputs.nixneovim.overlays.default
-  inputs.nur.overlay
   # inputs.rustaceanvim.overlays.default
+  # inputs.nixneovim.overlays.default
+  inputs.nur.overlay
+  rest-nvim-overlay
 ]

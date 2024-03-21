@@ -4,9 +4,10 @@
   inputs,
   device,
   ...
-}: {
-  imports = [inputs.nixneovim.nixosModules.default];
-  programs.nixneovim = {
+}: let
+in {
+  imports = [inputs.nixvim.homeManagerModules.nixvim];
+  programs.nixvim = {
     enable = true;
     extraPlugins = with pkgs.vimPlugins; [
       # neorg
@@ -54,6 +55,7 @@
       rustaceanvim
 
       # No more postman
+      # rest-nvim.ftplugin
       rest-nvim
 
       # UI
@@ -93,77 +95,89 @@
       mapleader = " ";
     };
     plugins = {
-      lspconfig = {
-        enable = true;
-        servers = {
-          gopls.enable = true;
-          nil = {
-            enable = true;
-            extraConfig =
-              # lua
-              ''
-                settings = {
-                  ['nil'] = {
-                    formatting = {
-                      -- command = { "$\{pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
-                      -- command = { "$\{pkgs.nixfmt}/bin/nixfmt" },
-                      command = { "${pkgs.alejandra}/bin/alejandra" },
-                    },
-                    nix = {
-                      flake = {
-                          autoArchive = true,
-                      },
-                    },
-                  },
-                },
-              '';
-          };
-          clangd.enable = true;
-          lua-language-server.enable = true;
-          jsonls.enable = true;
-          html.enable = true;
-          # pylyzer.enable = true;
-          sqls = {
-            enable = true;
-            onAttachExtra =
-              # lua
-              ''
-                require('sqls').on_attach(client, bufnr)
-              '';
-          };
-          # rust-analyzer.enable = true;
-        };
-        extraLua.pre =
-          # lua
-          ''
-            local lsp_zero = require'lsp-zero'
-            local lspconfig = require 'lspconfig'
-            lsp_zero.on_attach(function(client, bufnr)
-              lsp_zero.default_keymaps({buffer = bufnr})
-                if client.server_capabilities.inlayHintProvider then
-                    vim.lsp.inlay_hint.enable(bufnr, true)
-                end
-            end)
-          '';
-        # extraLua.post = ''
-        #   vim.lsp.inlay_hint.enable(bufnr, true)
-        # '';
-      };
+      # lspconfig = {
+      #   enable = true;
+      #   servers = {
+      #     gopls.enable = true;
+      #     nil = {
+      #       enable = true;
+      #       extraConfig =
+      #         /*
+      #         lua
+      #         */
+      #         ''
+      #           settings = {
+      #             ['nil'] = {
+      #               formatting = {
+      #                 -- command = { "$\{pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
+      #                 -- command = { "$\{pkgs.nixfmt}/bin/nixfmt" },
+      #                 command = { "${pkgs.alejandra}/bin/alejandra" },
+      #               },
+      #               nix = {
+      #                 flake = {
+      #                     autoArchive = true,
+      #                 },
+      #               },
+      #             },
+      #           },
+      #         '';
+      #     };
+      #     clangd.enable = true;
+      #     lua-language-server.enable = true;
+      #     jsonls.enable = true;
+      #     html.enable = true;
+      #     # pylyzer.enable = true;
+      #     sqls = {
+      #       enable = true;
+      #       onAttachExtra =
+      #         /*
+      #         lua
+      #         */
+      #         ''
+      #           require('sqls').on_attach(client, bufnr)
+      #         '';
+      #     };
+      #     # rust-analyzer.enable = true;
+      #   };
+      #   extraLua.pre =
+      #     /*
+      #     lua
+      #     */
+      #     ''
+      #       local lsp_zero = require'lsp-zero'
+      #       local lspconfig = require 'lspconfig'
+      #       lsp_zero.on_attach(function(client, bufnr)
+      #         lsp_zero.default_keymaps({buffer = bufnr})
+      #           if client.server_capabilities.inlayHintProvider then
+      #               vim.lsp.inlay_hint.enable(bufnr, true)
+      #           end
+      #       end)
+      #     '';
+      #   # extraLua.post = ''
+      #   #   vim.lsp.inlay_hint.enable(bufnr, true)
+      #   # '';
+      # };
 
       oil.enable = true;
-      nvim-dap.enable = true;
-      nvim-dap-ui.enable = true;
+      dap = {
+        enable = true;
+        extensions = {
+          dap-ui.enable = true;
+          dap-virtual-text.enable = true;
+        };
+      };
       todo-comments.enable = true;
       lualine.enable = true;
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
-      ufo.enable = true;
+      nvim-ufo.enable = true;
       fugitive.enable = true;
       markdown-preview = {
         enable = true;
-        autoStart = true;
+        settings.auto_start = true;
       };
+      rest.enable = true;
       treesitter-context.enable = true;
       ts-context-commentstring.enable = true;
 
@@ -171,24 +185,26 @@
         enable = true;
         indent = true;
         folding = true;
-        refactor = {
-          smartRename = {
-            enable = true;
-          };
-        };
-        grammars = with pkgs.tree-sitter-grammars; [
-          tree-sitter-just
-          tree-sitter-norg-meta
-        ];
-        installAllGrammars = true;
+        # refactor = {
+        #   smartRename = {
+        #     enable = true;
+        #   };
+        # };
+        # grammars = with pkgs.tree-sitter-grammars; [
+        #   tree-sitter-just
+        #   tree-sitter-norg-meta
+        # ];
+        # installAllGrammars = true;
       };
 
       mini = {
         enable = true;
-        ai.enable = true;
-        # pairs.enable = true;
-        # cursorword.enable = true;
-        starter.enable = true;
+        modules = {
+          ai = {};
+          starter = {};
+          # pairs.enable = true;
+          # cursorword.enable = true;
+        };
       };
     };
     colorschemes = {
@@ -197,44 +213,44 @@
         flavour = "mocha";
       };
     };
-    mappings = {
-      normal = {
-        "<leader>ff" = "require'telescope.builtin'.find_files";
-        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
-        "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-        "<leader>gg" = "require'telescope.builtin'.live_grep";
-        "<leader>;" = "require'telescope.builtin'.buffers";
-        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
-        "<leader>ee" = "require'rest-nvim'.run";
-        "<leader>ec" = "function() require'rest-nvim'.run(true) end";
-        "<leader>\\\"" = ''[["+]]'';
-        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-        "<C-k>" = "vim.lsp.buf.definition";
-        "gi" = "require'telescope.builtin'.lsp_implementations";
-        "gh" = "[[<cmd>Octo actions<cr>]]";
-        "<leader>a" = "vim.lsp.buf.code_action";
-        "F" = "function() vim.lsp.buf.format({ async = true }) end";
-        "<leader><leader>" = "'<c-^>'";
-        "<leader>q" = "[[<cmd>bw<cr>]]";
-        "<leader>n" = "[[<cmd>bnext<cr>]]";
-        "<leader>p" = "[[<cmd>bprev<cr>]]";
-        "<C-w>\\\"" = "[[<cmd>split<cr>]]";
-        "<C-w>%" = "[[<cmd>vsplit<cr>]]";
-
-        "<leader>bb" = "require'dap'.toggle_breakpoint";
-        "<leader>du" = "require'dapui'.toggle";
-        "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-
-        "<C-l>" = "[[<cmd>Outline<cr>]]";
-        "<C-\\\\>" = "require('FTerm').toggle";
-      };
-      terminal = {
-        "<C-\\\\>" = "require('FTerm').toggle";
-      };
-      insert = {
-        "<C-\\\\>" = "require('FTerm').toggle";
-      };
-    };
+    #   mappings = {
+    #     normal = {
+    #       "<leader>ff" = "require'telescope.builtin'.find_files";
+    #       "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
+    #       "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
+    #       "<leader>gg" = "require'telescope.builtin'.live_grep";
+    #       "<leader>;" = "require'telescope.builtin'.buffers";
+    #       "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
+    #       "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+    #       "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+    #       "<leader>\\\"" = ''[["+]]'';
+    #       "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
+    #       "<C-k>" = "vim.lsp.buf.definition";
+    #       "gi" = "require'telescope.builtin'.lsp_implementations";
+    #       "gh" = "[[<cmd>Octo actions<cr>]]";
+    #       "<leader>a" = "vim.lsp.buf.code_action";
+    #       "F" = "function() vim.lsp.buf.format({ async = true }) end";
+    #       "<leader><leader>" = "'<c-^>'";
+    #       "<leader>q" = "[[<cmd>bw<cr>]]";
+    #       "<leader>n" = "[[<cmd>bnext<cr>]]";
+    #       "<leader>p" = "[[<cmd>bprev<cr>]]";
+    #       "<C-w>\\\"" = "[[<cmd>split<cr>]]";
+    #       "<C-w>%" = "[[<cmd>vsplit<cr>]]";
+    #
+    #       "<leader>bb" = "require'dap'.toggle_breakpoint";
+    #       "<leader>du" = "require'dapui'.toggle";
+    #       "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
+    #
+    #       "<C-l>" = "[[<cmd>Outline<cr>]]";
+    #       "<C-\\\\>" = "require('FTerm').toggle";
+    #     };
+    #     terminal = {
+    #       "<C-\\\\>" = "require('FTerm').toggle";
+    #     };
+    #     insert = {
+    #       "<C-\\\\>" = "require('FTerm').toggle";
+    #     };
+    #   };
 
     extraConfigLua = let
       codelldb =
@@ -261,7 +277,17 @@
           }
         })
 
-        require('rest-nvim').setup()
+        -- do
+        --     function setup()
+        --         require('rest-nvim').setup()
+        --     end
+        --     success, output = pcall(setup)
+        --     if not success then
+        --         print("Failed to setup rest-nvim: " .. output)
+        --     end
+        -- end
+
+
         require('telescope').setup {
             defaults = {
                 initial_mode = 'insert',
