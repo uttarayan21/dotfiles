@@ -8,7 +8,6 @@
       '';
     };
   };
-
   misc-applications = final: prev: {
     goread = final.pkgs.buildGoModule {
       pname = "goread";
@@ -53,7 +52,6 @@
           cp $src/subcommands/cover/davis-cover $out/bin
         '';
       };
-
     picat = let
       # https://github.com/SimonPersson/picat
       picat-src = final.pkgs.fetchFromGitHub {
@@ -71,12 +69,11 @@
         src = picat-src;
         cargoLock = {lockFile = "${picat-src}/Cargo.lock";};
       };
-
-    pylyzer = prev.pylyzer.override { 
-        rustPlatform = final.makeRustPlatform {
-            rustc = final.pkgs.rust-bin.stable."1.75.0".default;
-            cargo = final.pkgs.cargo;
-        };
+    pylyzer = prev.pylyzer.override {
+      rustPlatform = final.makeRustPlatform {
+        rustc = final.pkgs.rust-bin.stable."1.75.0".default;
+        cargo = final.pkgs.cargo;
+      };
     };
     psst =
       if final.pkgs.stdenv.isLinux
@@ -114,7 +111,6 @@
           };
         };
   };
-
   anyrun-overlay = final: prev: {
     anyrun =
       inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs
@@ -184,7 +180,6 @@
   catppuccinThemes = final: prev: {
     catppuccinThemes = import ./themes/catppuccin.nix {pkgs = final.pkgs;};
   };
-
   nix-index-db = final: prev: {
     nix-index-database = final.runCommandLocal "nix-index-database" {} ''
       mkdir -p $out
@@ -193,13 +188,11 @@
       } $out/files
     '';
   };
-
   # nixneovim = nixneovim.applyPatches {
   #   name = "nixneovim-patched";
   #   src = inputs.nixneovim;
   #   patches = [ ./patches/nixneovim.patch ];
   # };
-
   tree-sitter-grammars = final: prev: {
     tree-sitter-grammars =
       prev.tree-sitter-grammars
@@ -216,7 +209,6 @@
         };
       };
   };
-
   rest-nvim-overlay = final: prev: let
     rest-nvim-src = final.pkgs.fetchFromGitHub {
       owner = "rest-nvim";
@@ -256,14 +248,12 @@
           python-final: python-prev: {
             catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
               version = "1.3.2";
-
               src = prev.fetchFromGitHub {
                 owner = "catppuccin";
                 repo = "python";
                 rev = "refs/tags/v${version}";
                 hash = "sha256-spPZdQ+x3isyeBXZ/J2QE6zNhyHRfyRQGiHreuXzzik=";
               };
-
               # can be removed next version
               disabledTestPaths = [
                 "tests/test_flavour.py" # would download a json to check correctness of flavours
@@ -285,7 +275,10 @@ in [
   inputs.neovim-nightly-overlay.overlay
   inputs.nur.overlay
   catppuccin
-  (import (builtins.fetchTarball { url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"; sha256 = "sha256:1k1d7bkx6kdqcvawsm2mm2rd8a0apfkx5y6m1lzr8lxv3bimp4ry";}))
+  (import (builtins.fetchTarball {
+    url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz";
+    sha256 = "sha256:1k1d7bkx6kdqcvawsm2mm2rd8a0apfkx5y6m1lzr8lxv3bimp4ry";
+  }))
   # rest-nvim-overlay
   # inputs.rustaceanvim.overlays.default
   # inputs.nixneovim.overlays.default
