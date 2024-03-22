@@ -215,10 +215,10 @@
     rest-nvim-src = final.pkgs.fetchFromGitHub {
       owner = "rest-nvim";
       repo = "rest.nvim";
-      rev = "v2.0.0";
+      rev = "9023802373bfcef55cd4907ac3135e0737aa337b";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
-      sha256 = "sha256-d/2aiQZ4YpZ//j6N4boU5ASVFJcErwpK/9PCisEXoxg=";
+      sha256 = "sha256-CyJyeODZbfWDAvSzzqrAEcFmLASxu3GBdF5VxSocwbY";
     };
   in {
     vimPlugins =
@@ -227,11 +227,18 @@
         rest-nvim = final.neovimUtils.buildNeovimPlugin {
           pname = "rest.nvim";
           version = "scm-1";
+          # src = rest-nvim-src;
+          # buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
+        };
+      };
+    lua51Packages =
+      prev.lua51Packages
+      // {
+        rest-nvim = final.lua.buildLuarocksPackage {
+          pname = "rest.nvim";
+          version = "scm-1";
           src = rest-nvim-src;
-          postInstall = ''
-            mkdir -p $out/
-            cp -r ftplugin ftdetect syntax $out/
-          '';
+          buildInputs = with final.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
         };
       };
   };
@@ -245,8 +252,8 @@ in [
   shell-scipts
   misc-applications
   inputs.neovim-nightly-overlay.overlay
+  inputs.nur.overlay
+  # rest-nvim-overlay
   # inputs.rustaceanvim.overlays.default
   # inputs.nixneovim.overlays.default
-  inputs.nur.overlay
-  rest-nvim-overlay
 ]

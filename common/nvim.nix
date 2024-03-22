@@ -32,7 +32,7 @@ in {
       ChatGPT-nvim
 
       # UI and UX
-      comfortable-motion
+      nvim-ufo
       vim-abolish
       telescope-nvim
       telescope-ui-select-nvim
@@ -40,6 +40,7 @@ in {
       telescope-file-browser-nvim
       telescope-dap-nvim
       octo-nvim
+      neoscroll-nvim
 
       # Debuggging
       nvim-dap-rr
@@ -61,17 +62,13 @@ in {
       cmp-git
       luasnip
       copilot-lua
-      lsp-zero-nvim
       crates-nvim
       sqls-nvim
-      rustaceanvim
 
       # No more postman
-      # rest-nvim.ftplugin
       rest-nvim
 
       # UI
-      noice-nvim
       nvim-web-devicons
 
       # Utils
@@ -107,73 +104,72 @@ in {
       mapleader = " ";
     };
     plugins = {
-      fidget.enable = true;
+      lsp = {
+        enable = true;
+        servers = {
+          gopls.enable = true;
+          nil_ls = {
+            enable = true;
+            settings = {
+              formatting = {
+                command = [
+                  "${pkgs.alejandra}/bin/alejandra"
+                  # "${pkgs.nixfmt}/bin/nixfmt"
+                  # "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
+                ];
+              };
+            };
+          };
+          clangd.enable = true;
+          lua-ls.enable = true;
+          jsonls.enable = true;
+          html.enable = true;
+          pylyzer.enable = true;
+          # rust-analyzer.enable = true;
+        };
+      };
+
+      noice = {
+        enable = true;
+        notify.enabled = false;
+      };
+      fidget = {
+        enable = true;
+        notification.overrideVimNotify = true;
+      };
+
+      trouble.enable = true;
       rustaceanvim = {
         enable = true;
+        server = {
+          onAttach =
+            /*
+            lua
+            */
+            ''
+              function(client, bufnr)
+                  if client.server_capabilities.inlayHintProvider then
+                      vim.lsp.inlay_hint.enable(bufnr, true)
+                  end
+              end
+            '';
+          settings =
+            /*
+            lua
+            */
+            ''
+              function(project_root)
+                local ra = require('rustaceanvim.config.server')
+                  return ra.load_rust_analyzer_settings(project_root, {
+                    settings_file_pattern = 'rust-analyzer.json'
+                  })
+              end
+            '';
+        };
+        dap = {
+          autoloadConfigurations = false;
+        };
       };
-      # lspconfig = {
-      #   enable = true;
-      #   servers = {
-      #     gopls.enable = true;
-      #     nil = {
-      #       enable = true;
-      #       extraConfig =
-      #         /*
-      #         lua
-      #         */
-      #         ''
-      #           settings = {
-      #             ['nil'] = {
-      #               formatting = {
-      #                 -- command = { "$\{pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" },
-      #                 -- command = { "$\{pkgs.nixfmt}/bin/nixfmt" },
-      #                 command = { "${pkgs.alejandra}/bin/alejandra" },
-      #               },
-      #               nix = {
-      #                 flake = {
-      #                     autoArchive = true,
-      #                 },
-      #               },
-      #             },
-      #           },
-      #         '';
-      #     };
-      #     clangd.enable = true;
-      #     lua-language-server.enable = true;
-      #     jsonls.enable = true;
-      #     html.enable = true;
-      #     # pylyzer.enable = true;
-      #     sqls = {
-      #       enable = true;
-      #       onAttachExtra =
-      #         /*
-      #         lua
-      #         */
-      #         ''
-      #           require('sqls').on_attach(client, bufnr)
-      #         '';
-      #     };
-      #     # rust-analyzer.enable = true;
-      #   };
-      #   extraLua.pre =
-      #     /*
-      #     lua
-      #     */
-      #     ''
-      #       local lsp_zero = require'lsp-zero'
-      #       local lspconfig = require 'lspconfig'
-      #       lsp_zero.on_attach(function(client, bufnr)
-      #         lsp_zero.default_keymaps({buffer = bufnr})
-      #           if client.server_capabilities.inlayHintProvider then
-      #               vim.lsp.inlay_hint.enable(bufnr, true)
-      #           end
-      #       end)
-      #     '';
-      #   # extraLua.post = ''
-      #   #   vim.lsp.inlay_hint.enable(bufnr, true)
-      #   # '';
-      # };
-
       oil.enable = true;
       dap = {
         enable = true;
@@ -187,14 +183,30 @@ in {
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
-      nvim-ufo.enable = true;
+      # nvim-ufo = {
+      #   enable = true;
+      #   closeFoldKinds = null;
+      #   providerSelector =
+      #     /*
+      #     lua
+      #     */
+      #     ''
+      #       function(bufnr, filetype, buftype)
+      #             return {'treesitter', 'indent'}
+      #       end
+      #     '';
+      # };
       fugitive.enable = true;
       markdown-preview = {
         enable = true;
         settings.auto_start = true;
       };
-      rest.enable = true;
-      treesitter-context.enable = true;
+      # rest.enable = true;
+      treesitter-context = {
+        maxLines = 3;
+        mode = "topline";
+        enable = true;
+      };
       ts-context-commentstring.enable = true;
 
       treesitter = {
@@ -207,16 +219,15 @@ in {
             tree-sitter-just
             tree-sitter-norg-meta
           ]);
-        # refactor = {
-        #   smartRename = {
-        #     enable = true;
-        #   };
-        # };
-        # grammars = with pkgs.tree-sitter-grammars; [
-        #   tree-sitter-just
-        #   tree-sitter-norg-meta
-        # ];
-        # installAllGrammars = true;
+      };
+      telescope = {
+        enable = true;
+        extensions = {
+          undo.enable = true;
+          ui-select.enable = true;
+          fzf-native.enable = true;
+          file_browser.enable = true;
+        };
       };
 
       mini = {
@@ -242,13 +253,13 @@ in {
         "<leader>ee" = "[[<cmd>Rest run<cr>]]";
         "<leader>el" = "[[<cmd>Rest run last<cr>]]";
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-        "<leader>\\\"" = ''[["+]]'';
+        "<leader>\"" = ''[["+]]'';
         "gh" = "[[<cmd>Octo actions<cr>]]";
         "<leader><leader>" = "'<c-^>'";
         "<leader>q" = "[[<cmd>bw<cr>]]";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
         "<leader>p" = "[[<cmd>bprev<cr>]]";
-        "<C-w>\\\"" = "[[<cmd>split<cr>]]";
+        "<C-w>\"" = "[[<cmd>split<cr>]]";
         "<C-w>%" = "[[<cmd>vsplit<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
         "<C-l>" = "[[<cmd>Outline<cr>]]";
@@ -263,13 +274,13 @@ in {
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
         "<leader>bb" = "require'dap'.toggle_breakpoint";
         "<leader>du" = "require'dapui'.toggle";
-        "<C-\\\\>" = "require('FTerm').toggle";
+        "<C-\\>" = "require('FTerm').toggle";
       };
       terminal = {
-        "<C-\\\\>" = "require('FTerm').toggle";
+        "<C-\\>" = "require('FTerm').toggle";
       };
       insert = {
-        "<C-\\\\>" = "require('FTerm').toggle";
+        "<C-\\>" = "require('FTerm').toggle";
       };
     };
 
@@ -298,63 +309,20 @@ in {
           }
         })
 
-        -- do
-        --     function setup()
-        --         require('rest-nvim').setup()
-        --     end
-        --     success, output = pcall(setup)
-        --     if not success then
-        --         print("Failed to setup rest-nvim: " .. output)
-        --     end
-        -- end
+        do
+            function setup()
+                require('rest-nvim').setup()
+            end
+            success, output = pcall(setup)
+            if not success then
+                print("Failed to setup rest-nvim: " .. output)
+            end
+        end
 
 
-        require('telescope').setup {
-            defaults = {
-                initial_mode = 'insert',
-            },
-            extensions = {
-                fzf = {
-                    fuzzy = true,                   -- false will only do exact matching
-                    override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true,    -- override the file sorter
-                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-                }
-            }
-        }
-
-        require('telescope').load_extension("ui-select")
         require('telescope').load_extension("dap")
-        require('telescope').load_extension("fzf")
-        require('telescope').load_extension("file_browser")
-        require('telescope').load_extension("rest")
+        -- require('telescope').load_extension("rest")
         require('telescope').load_extension("neorg")
-
-        vim.g.rustaceanvim = {
-            tools = {
-                enable_clippy = false,
-            },
-            server = {
-                capabilities = require 'lsp-zero'.get_capabilities(),
-                on_attach = function(client, bufnr)
-                    if client.server_capabilities.inlayHintProvider then
-                        vim.lsp.inlay_hint.enable(bufnr, true)
-                    end
-                end,
-                settings = function(project_root)
-                  local ra = require('rustaceanvim.config.server')
-                    return ra.load_rust_analyzer_settings(project_root, {
-                      settings_file_pattern = 'rust-analyzer.json'
-                    })
-                end
-            },
-            dap = {
-                autoload_configurations = false,
-                ${pkgs.lib.optionalString device.isLinux ''
-          adapter = require'rustaceanvim.config'.get_codelldb_adapter("${codelldb}/bin/codelldb", "${liblldb}")
-        ''}
-            },
-        }
 
         require("copilot").setup({
             suggestion = {
@@ -434,24 +402,24 @@ in {
         })
         require('crates').setup()
         require('outline').setup()
-        require("noice").setup({
-            lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-                override = {
-                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                    ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-                },
-            },
-            -- you can enable a preset for easier configuration
-            presets = {
-                bottom_search = false,         -- use a classic bottom cmdline for search
-                command_palette = true,       -- position the cmdline and popupmenu together
-                long_message_to_split = true, -- long messages will be sent to a split
-                inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                lsp_doc_border = true,        -- add a border to hover docs and signature help
-            },
-        })
+        -- require("noice").setup({
+        --     lsp = {
+        --         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+        --         override = {
+        --             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        --             ["vim.lsp.util.stylize_markdown"] = true,
+        --             ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+        --         },
+        --     },
+        --     -- you can enable a preset for easier configuration
+        --     presets = {
+        --         bottom_search = false,         -- use a classic bottom cmdline for search
+        --         command_palette = true,       -- position the cmdline and popupmenu together
+        --         long_message_to_split = true, -- long messages will be sent to a split
+        --         inc_rename = false,           -- enables an input dialog for inc-rename.nvim
+        --         lsp_doc_border = true,        -- add a border to hover docs and signature help
+        --     },
+        -- })
 
         require 'FTerm'.setup({
             border     = 'double',
@@ -512,6 +480,29 @@ in {
         local dap = require'dap';
         dap.configurations.rust = { rr_dap.get_rust_config() }
         dap.configurations.cpp = { rr_dap.get_config() }
+
+        require('neoscroll').setup()
+        do
+            function setup()
+                local capabilities = vim.lsp.protocol.make_client_capabilities()
+                capabilities.textDocument.foldingRange = {
+                    dynamicRegistration = false,
+                    lineFoldingOnly = true
+                }
+                local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+                for _, ls in ipairs(language_servers) do
+                    require('lspconfig')[ls].setup({
+                        capabilities = capabilities
+                        -- you can add other fields for setting up lsp server in this table
+                    })
+                end
+            end
+            success, output = pcall(setup)
+            if not success then
+                print("Failed to setup lspconfig folds: " .. output)
+            end
+        end
+        require('ufo').setup()
       '';
     package = pkgs.neovim-nightly;
   };

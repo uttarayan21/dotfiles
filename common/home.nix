@@ -31,6 +31,11 @@
       gh
       just
       yarn
+      rustup
+      clang
+      cmake
+      alejandra
+      pkg-config
 
       # Misc
       qmk
@@ -49,25 +54,18 @@
       macchina
       ripgrep
       fd
-      alejandra
       dust
       cachix
-      rustup
-      cmake
       fzf
-      clang
-      nil
-      pkg-config
-      lua-language-server
       (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
+      mpv
     ]
     ++ lib.optionals device.isLinux [
       psst
       sony-headphones-client
       abaddon
       rr
-      mpv
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
       gnome.seahorse
