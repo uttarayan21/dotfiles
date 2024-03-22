@@ -72,6 +72,12 @@
         cargoLock = {lockFile = "${picat-src}/Cargo.lock";};
       };
 
+    pylyzer = prev.pylyzer.override { 
+        rustPlatform = final.makeRustPlatform {
+            rustc = final.pkgs.rust-bin.stable."1.75.0".default;
+            cargo = final.pkgs.cargo;
+        };
+    };
     psst =
       if final.pkgs.stdenv.isLinux
       then
@@ -242,6 +248,31 @@
         };
       };
   };
+  catppuccin = final: prev: {
+    pythonPackagesExtensions =
+      prev.pythonPackagesExtensions
+      ++ [
+        (
+          python-final: python-prev: {
+            catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
+              version = "1.3.2";
+
+              src = prev.fetchFromGitHub {
+                owner = "catppuccin";
+                repo = "python";
+                rev = "refs/tags/v${version}";
+                hash = "sha256-spPZdQ+x3isyeBXZ/J2QE6zNhyHRfyRQGiHreuXzzik=";
+              };
+
+              # can be removed next version
+              disabledTestPaths = [
+                "tests/test_flavour.py" # would download a json to check correctness of flavours
+              ];
+            });
+          }
+        )
+      ];
+  };
 in [
   catppuccinThemes
   vimPlugins
@@ -253,6 +284,8 @@ in [
   misc-applications
   inputs.neovim-nightly-overlay.overlay
   inputs.nur.overlay
+  catppuccin
+  (import (builtins.fetchTarball { url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz"; sha256 = "sha256:1k1d7bkx6kdqcvawsm2mm2rd8a0apfkx5y6m1lzr8lxv3bimp4ry";}))
   # rest-nvim-overlay
   # inputs.rustaceanvim.overlays.default
   # inputs.nixneovim.overlays.default
