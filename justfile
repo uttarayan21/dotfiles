@@ -8,5 +8,9 @@ install:
 install:
 	sudo nixos-rebuild switch --flake .
 
+build:
+    nix run nix-darwin -- build --flake . --show-trace
+
+
 home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .

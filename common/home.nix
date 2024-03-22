@@ -61,9 +61,9 @@
       lua-language-server
       (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
-      psst
     ]
     ++ lib.optionals device.isLinux [
+      psst
       sony-headphones-client
       abaddon
       rr

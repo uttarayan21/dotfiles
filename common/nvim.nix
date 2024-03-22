@@ -5,6 +5,20 @@
   device,
   ...
 }: let
+  mkMappings = mappings:
+    []
+    ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
+    ++ (pkgs.lib.optionals (builtins.hasAttr "terminal" mappings) (mkMode mappings.terminal "t"))
+    ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"));
+  mkMode = mappings: mode:
+    pkgs.lib.mapAttrsToList
+    (key: value: {
+      key = key;
+      action = value;
+      mode = mode;
+      lua = true;
+    })
+    mappings;
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
   programs.nixvim = {
@@ -46,10 +60,8 @@ in {
       cmp-treesitter
       cmp-git
       luasnip
-      fidget-nvim
       copilot-lua
       lsp-zero-nvim
-      trouble-nvim
       crates-nvim
       sqls-nvim
       rustaceanvim
@@ -95,6 +107,10 @@ in {
       mapleader = " ";
     };
     plugins = {
+      fidget.enable = true;
+      rustaceanvim = {
+        enable = true;
+      };
       # lspconfig = {
       #   enable = true;
       #   servers = {
@@ -185,6 +201,12 @@ in {
         enable = true;
         indent = true;
         folding = true;
+        grammarPackages =
+          pkgs.vimPlugins.nvim-treesitter.allGrammars
+          ++ (with pkgs.tree-sitter-grammars; [
+            tree-sitter-just
+            tree-sitter-norg-meta
+          ]);
         # refactor = {
         #   smartRename = {
         #     enable = true;
@@ -213,44 +235,43 @@ in {
         flavour = "mocha";
       };
     };
-    #   mappings = {
-    #     normal = {
-    #       "<leader>ff" = "require'telescope.builtin'.find_files";
-    #       "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
-    #       "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-    #       "<leader>gg" = "require'telescope.builtin'.live_grep";
-    #       "<leader>;" = "require'telescope.builtin'.buffers";
-    #       "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
-    #       "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-    #       "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-    #       "<leader>\\\"" = ''[["+]]'';
-    #       "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-    #       "<C-k>" = "vim.lsp.buf.definition";
-    #       "gi" = "require'telescope.builtin'.lsp_implementations";
-    #       "gh" = "[[<cmd>Octo actions<cr>]]";
-    #       "<leader>a" = "vim.lsp.buf.code_action";
-    #       "F" = "function() vim.lsp.buf.format({ async = true }) end";
-    #       "<leader><leader>" = "'<c-^>'";
-    #       "<leader>q" = "[[<cmd>bw<cr>]]";
-    #       "<leader>n" = "[[<cmd>bnext<cr>]]";
-    #       "<leader>p" = "[[<cmd>bprev<cr>]]";
-    #       "<C-w>\\\"" = "[[<cmd>split<cr>]]";
-    #       "<C-w>%" = "[[<cmd>vsplit<cr>]]";
-    #
-    #       "<leader>bb" = "require'dap'.toggle_breakpoint";
-    #       "<leader>du" = "require'dapui'.toggle";
-    #       "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-    #
-    #       "<C-l>" = "[[<cmd>Outline<cr>]]";
-    #       "<C-\\\\>" = "require('FTerm').toggle";
-    #     };
-    #     terminal = {
-    #       "<C-\\\\>" = "require('FTerm').toggle";
-    #     };
-    #     insert = {
-    #       "<C-\\\\>" = "require('FTerm').toggle";
-    #     };
-    #   };
+    keymaps = mkMappings {
+      normal = {
+        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
+        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
+        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
+        "<leader>\\\"" = ''[["+]]'';
+        "gh" = "[[<cmd>Octo actions<cr>]]";
+        "<leader><leader>" = "'<c-^>'";
+        "<leader>q" = "[[<cmd>bw<cr>]]";
+        "<leader>n" = "[[<cmd>bnext<cr>]]";
+        "<leader>p" = "[[<cmd>bprev<cr>]]";
+        "<C-w>\\\"" = "[[<cmd>split<cr>]]";
+        "<C-w>%" = "[[<cmd>vsplit<cr>]]";
+        "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
+        "<C-l>" = "[[<cmd>Outline<cr>]]";
+
+        "<leader>ff" = "require'telescope.builtin'.find_files";
+        "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
+        "<leader>gg" = "require'telescope.builtin'.live_grep";
+        "<leader>;" = "require'telescope.builtin'.buffers";
+        "<C-k>" = "vim.lsp.buf.definition";
+        "gi" = "require'telescope.builtin'.lsp_implementations";
+        "<leader>a" = "vim.lsp.buf.code_action";
+        "F" = "function() vim.lsp.buf.format({ async = true }) end";
+        "<leader>bb" = "require'dap'.toggle_breakpoint";
+        "<leader>du" = "require'dapui'.toggle";
+        "<C-\\\\>" = "require('FTerm').toggle";
+      };
+      terminal = {
+        "<C-\\\\>" = "require('FTerm').toggle";
+      };
+      insert = {
+        "<C-\\\\>" = "require('FTerm').toggle";
+      };
+    };
 
     extraConfigLua = let
       codelldb =
@@ -346,7 +367,7 @@ in {
             panel = { enabled = true },
         })
 
-        require 'fidget'.setup()
+        -- require 'fidget'.setup()
         -- =======================================================================
         -- nvim-cmp
         -- =======================================================================
