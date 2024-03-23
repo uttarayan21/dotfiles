@@ -213,10 +213,10 @@
     rest-nvim-src = final.pkgs.fetchFromGitHub {
       owner = "rest-nvim";
       repo = "rest.nvim";
-      rev = "9023802373bfcef55cd4907ac3135e0737aa337b";
+      rev = "64175b161b61b6807b4c6f3f18dd884325cf04e0";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
-      sha256 = "sha256-CyJyeODZbfWDAvSzzqrAEcFmLASxu3GBdF5VxSocwbY";
+      sha256 = "sha256-w/Z9lHu99gpbmrDCw/MEUDy6jyABsC7K5dbbl3K+HWk=";
     };
   in {
     vimPlugins =
@@ -225,20 +225,21 @@
         rest-nvim = final.neovimUtils.buildNeovimPlugin {
           pname = "rest.nvim";
           version = "scm-1";
-          # src = rest-nvim-src;
-          # buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
-        };
-      };
-    lua51Packages =
-      prev.lua51Packages
-      // {
-        rest-nvim = final.lua.buildLuarocksPackage {
-          pname = "rest.nvim";
-          version = "scm-1";
           src = rest-nvim-src;
-          buildInputs = with final.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
+          rockspecVersion = "0.2-1";
+          buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
         };
       };
+    # lua51Packages =
+    #   prev.lua51Packages
+    #   // {
+    #     rest-nvim = final.lua.buildLuarocksPackage {
+    #       pname = "rest.nvim";
+    #       version = "scm-1";
+    #       src = rest-nvim-src;
+    #       buildInputs = with final.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
+    #     };
+    #   };
   };
   catppuccin = final: prev: {
     pythonPackagesExtensions =
@@ -277,7 +278,7 @@ in [
   catppuccin
   (import (builtins.fetchTarball {
     url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz";
-    sha256 = "sha256:1k1d7bkx6kdqcvawsm2mm2rd8a0apfkx5y6m1lzr8lxv3bimp4ry";
+    sha256 = "sha256:143qm7bj651v2pwzq4sf5sp33g733inixf2b98sxf89ia0cabaqn";
   }))
   # rest-nvim-overlay
   # inputs.rustaceanvim.overlays.default

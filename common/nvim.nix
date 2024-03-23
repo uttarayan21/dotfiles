@@ -110,15 +110,11 @@ in {
           gopls.enable = true;
           nil_ls = {
             enable = true;
-            settings = {
-              formatting = {
-                command = [
-                  "${pkgs.alejandra}/bin/alejandra"
-                  # "${pkgs.nixfmt}/bin/nixfmt"
-                  # "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
-                ];
-              };
-            };
+            settings.formatting.command = [
+              "${pkgs.alejandra}/bin/alejandra"
+              # "${pkgs.nixfmt}/bin/nixfmt"
+              # "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
+            ];
           };
           clangd.enable = true;
           lua-ls.enable = true;
@@ -127,11 +123,33 @@ in {
           pylyzer.enable = true;
           # rust-analyzer.enable = true;
         };
+        onAttach =
+          /*
+          lua
+          */
+          ''
+            if client.server_capabilities.inlayHintProvider then
+                vim.lsp.inlay_hint.enable(bufnr, true)
+            end
+          '';
       };
 
       noice = {
         enable = true;
         notify.enabled = false;
+
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+        presets = {
+          bottom_search = false;
+          command_palette = true;
+          long_message_to_split = true;
+          inc_rename = false;
+          lsp_doc_border = true;
+        };
       };
       fidget = {
         enable = true;
@@ -447,8 +465,10 @@ in {
                 },
                 ["core.dirman"] = {
                     config = {
+                        default_workspace = "Notes",
+                        open_last_workspace = true,
                         workspaces = {
-                            default = "~/Nextcloud/Notes",
+                            Notes = "~/Nextcloud/Notes",
                             Work = "~/Nextcloud/Work",
                         }
                     }
@@ -468,6 +488,7 @@ in {
           use_local_fs = false,
           enable_builtin = false,
           default_remote = {"upstream", "origin"};
+          default_merge_method = "squash";
         })
 
         local rr_dap = require('nvim-dap-rr')
@@ -481,7 +502,13 @@ in {
         dap.configurations.rust = { rr_dap.get_rust_config() }
         dap.configurations.cpp = { rr_dap.get_config() }
 
-        require('neoscroll').setup()
+        if not vim.g.neovide then
+            require('neoscroll').setup()
+        else
+            vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+        end
+        
+
         do
             function setup()
                 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -489,7 +516,8 @@ in {
                     dynamicRegistration = false,
                     lineFoldingOnly = true
                 }
-                local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+                -- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+                local language_servers = {"rust_analyzer"};
                 for _, ls in ipairs(language_servers) do
                     require('lspconfig')[ls].setup({
                         capabilities = capabilities

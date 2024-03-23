@@ -26,6 +26,10 @@
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than +5";
 
+
+    
+
+
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
@@ -171,6 +175,12 @@
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+    };
+    nix-ld = {
+        enable = true;
+        libraries = with pkgs; [
+            libglvnd
+        ];
     };
   };
 
