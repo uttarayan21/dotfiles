@@ -26,10 +26,6 @@
   nix.gc.dates = "daily";
   nix.gc.options = "--delete-older-than +5";
 
-
-    
-
-
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
@@ -177,10 +173,10 @@
       dedicatedServer.openFirewall = true;
     };
     nix-ld = {
-        enable = true;
-        libraries = with pkgs; [
-            libglvnd
-        ];
+      enable = true;
+      libraries = with pkgs; [
+        libglvnd
+      ];
     };
   };
 
