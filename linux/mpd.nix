@@ -1,6 +1,6 @@
 {
-  pkgs,
-  config,
+  # pkgs,
+  # config,
   ...
 }: {
   services.mpd = {

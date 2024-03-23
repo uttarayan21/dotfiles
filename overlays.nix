@@ -280,7 +280,4 @@ in [
     url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz";
     sha256 = "sha256:143qm7bj651v2pwzq4sf5sp33g733inixf2b98sxf89ia0cabaqn";
   }))
-  # rest-nvim-overlay
-  # inputs.rustaceanvim.overlays.default
-  # inputs.nixneovim.overlays.default
 ]

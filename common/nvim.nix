@@ -20,6 +20,7 @@
       lua = true;
     })
     mappings;
+  border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
   programs.nixvim = {
@@ -36,7 +37,10 @@ in {
               # "${pkgs.nixfmt}/bin/nixfmt"
               # "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
             ];
+            # nix.flake.autoArchive = true;
           };
+          marksman.enable = true;
+          nushell.enable = true;
           clangd.enable = true;
           lua-ls.enable = true;
           jsonls.enable = true;
@@ -88,18 +92,17 @@ in {
           };
           window = {
             completion = {
-              border = "cmp.config.window.bordered()";
+              inherit border;
             };
             documentation = {
-              border = "cmp.config.window.bordered()";
+              inherit border;
             };
           };
           mapping = {
             "<CR>" = "cmp.mapping.confirm({select = true})";
             "<C-Space>" = "cmp.mapping.complete()";
-            # "<C-y>" = "cmp.mapping.complete()";
-            "<C-n>" = "cmp.config.next";
-            "<C-p>" = "cmp.config.prev";
+            "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+            "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           };
           snippet.expand =
             /*
@@ -180,19 +183,19 @@ in {
       commentary.enable = true;
       surround.enable = true;
       which-key.enable = true;
-      # nvim-ufo = {
-      #   enable = true;
-      #   closeFoldKinds = null;
-      #   providerSelector =
-      #     /*
-      #     lua
-      #     */
-      #     ''
-      #       function(bufnr, filetype, buftype)
-      #             return {'treesitter', 'indent'}
-      #       end
-      #     '';
-      # };
+      nvim-ufo = {
+        enable = true;
+        closeFoldKinds = null;
+        # providerSelector =
+        #   /*
+        #   lua
+        #   */
+        #   ''
+        #     function(bufnr, filetype, buftype)
+        #           return {'treesitter', 'indent'}
+        #     end
+        #   '';
+      };
       fugitive.enable = true;
       markdown-preview = {
         enable = true;
@@ -344,6 +347,24 @@ in {
       };
     };
 
+    autoCmd = [
+      {
+        event = ["BufEnter" "BufWinEnter"];
+        pattern = "*.norg";
+        command = "set conceallevel=3";
+      }
+      {
+        event = ["BufWinLeave"];
+        pattern = "*.*";
+        command = "mkview";
+      }
+      {
+        event = ["BufWinEnter"];
+        pattern = "*.*";
+        command = "silent loadview";
+      }
+    ];
+
     extraConfigLua = let
       codelldb =
         if device.isLinux
@@ -360,14 +381,22 @@ in {
       lua
       */
       ''
-        require'neotest'.setup({
-          adapters = {
-              -- require('neotest-rust') {
-              --     args = { "--no-capture" },
-              -- }
-              require('rustaceanvim.neotest'),
-          }
-        })
+        function catcher(callback)
+            do
+                success, output = pcall(callback)
+                if not success then
+                    print("Failed to setup: " .. output)
+                end
+            end
+        end
+
+        catcher(function()
+            require'neotest'.setup({
+              adapters = {
+                  require('rustaceanvim.neotest'),
+              }
+            })
+        end)
 
         do
             function setup()
@@ -380,7 +409,7 @@ in {
         end
 
 
-        require('telescope').load_extension("dap")
+        -- require('telescope').load_extension("dap")
         -- require('telescope').load_extension("rest")
         require('telescope').load_extension("neorg")
 
@@ -395,82 +424,16 @@ in {
             panel = { enabled = true },
         })
 
-        -- require 'fidget'.setup()
-        -- =======================================================================
-        -- nvim-cmp
-        -- =======================================================================
-        -- local cmp = require("cmp")
-        -- cmp.setup({
-        --     view = {
-        --         entries = { name = 'custom', selection_order = 'near_cursor' }
-        --     },
-        --     snippet = {
-        --         expand = function(args)
-        --             require('luasnip').lsp_expand(args.body)
-        --         end
-        --     },
-        --     window = {
-        --         completion = cmp.config.window.bordered(),
-        --         documentation = cmp.config.window.bordered(),
-        --     },
-        --     sources = cmp.config.sources({
-        --         { name = "copilot", },
-        --         { name = 'buffer' },
-        --         { name = 'nvim_lsp' },
-        --         { name = 'luasnip' },
-        --         { name = 'treesitter' },
-        --         { name = 'path' },
-        --         { name = 'git' },
-        --         { name = 'tmux' }
-        --     }),
-        --     mapping = cmp.mapping.preset.insert({
-        --         ['<CR>'] = cmp.mapping.confirm(),
-        --         ['<C-y>'] = cmp.mapping.complete(),
-        --         -- ['<C-Space>'] = cmp.mapping.complete(),
-        --         ['<C-n>'] = cmp.config.next,
-        --         ['<C-p>'] = cmp.config.prev,
-        --     })
-        -- })
-
-        -- cmp.setup.cmdline({ '/', '?' }, {
-        --     mapping = cmp.mapping.preset.cmdline {
-        --         -- ['<C-n>'] = cmp.config.disable,
-        --         -- ['<C-p>'] = cmp.config.disable,
-        --     },
-        --     sources = {
-        --         { name = 'buffer' }
-        --     }
-        -- })
-        -- cmp.setup.cmdline(':', {
-        --     mapping = cmp.mapping.preset.cmdline {
-        --         -- ['<C-n>'] = cmp.config.disable,
-        --         -- ['<C-p>'] = cmp.config.disable,
-        --     },
-        --     -- mapping = cmp.mapping.preset.cmdline(),
-        --     sources = cmp.config.sources({
-        --         { name = 'path' }
-        --     }, {
-        --         { name = 'cmdline' }
-        --     })
-        -- })
-        -- cmp.setup.filetype('gitcommit', {
-        --     sources = cmp.config.sources({
-        --         { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-        --     }, {
-        --         { name = 'buffer' },
-        --     })
-        -- })
-
-        require('crates').setup()
-        require('outline').setup()
+        catcher(require('crates').setup)
+        catcher(require('outline').setup)
 
         require 'FTerm'.setup({
-            border     = 'double',
+            border     = 'single',
             dimensions = {
-                height = 0.95,
-                width = 0.95,
+                height = 0.99,
+                width = 0.99,
             },
-            cmd        = "fish",
+            cmd        = "${pkgs.fish}/bin/fish",
             blend      = 10,
         })
 
@@ -499,16 +462,12 @@ in {
                 }
             }
         })
-        vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
-          pattern = {"*.norg"},
-          command = "set conceallevel=3"
-        })
 
         require('chatgpt').setup({
             api_key_cmd = "rbw get platform.openai.com",
         })
 
-        require"octo".setup({
+        require('octo').setup({
           use_local_fs = false,
           enable_builtin = false,
           default_remote = {"upstream", "origin"};

@@ -1,6 +1,6 @@
 ## Dotfiles
 
-These are dotfiles for my Linux, MacOS and Windows machines
+These are dotfiles for my Linux and MacOS machines
 
 ### Linux
 - OS: NixOS
@@ -15,14 +15,6 @@ These are dotfiles for my Linux, MacOS and Windows machines
 - Editor: nvim / neovide
 - WM: [yabai](https://github.com/koekeishiya/yabai)
 - Terminal: wezterm
-
-### Windows
-- OS: Windows 11
-- Shell: nushell
-- Editor: nvim / neovide / helix
-- WM: Vanilla / 
-- Terminal: Vanilla / wezterm
-
 
 ### For nix
 
