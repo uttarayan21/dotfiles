@@ -9,7 +9,8 @@
     []
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "terminal" mappings) (mkMode mappings.terminal "t"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"));
+    ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"))
+    ++ (pkgs.lib.optionals (builtins.hasAttr "visual" mappings) (mkMode mappings.insert "v"));
   mkMode = mappings: mode:
     pkgs.lib.mapAttrsToList
     (key: value: {
@@ -23,86 +24,6 @@ in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
   programs.nixvim = {
     enable = true;
-    extraPlugins = with pkgs.vimPlugins; [
-      # neorg
-      neorg
-      neorg-telescope
-
-      # Wut
-      ChatGPT-nvim
-
-      # UI and UX
-      nvim-ufo
-      vim-abolish
-      telescope-nvim
-      telescope-ui-select-nvim
-      telescope-fzf-native-nvim
-      telescope-file-browser-nvim
-      telescope-dap-nvim
-      octo-nvim
-      neoscroll-nvim
-
-      # Debuggging
-      nvim-dap-rr
-
-      # Treesitter stuff
-      outline-nvim
-
-      # lsp stuff
-      nvim-cmp
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
-      cmp-nvim-lsp
-      cmp-nvim-lua
-      cmp-dap
-      cmp_luasnip
-      cmp-tmux
-      cmp-treesitter
-      cmp-git
-      luasnip
-      copilot-lua
-      crates-nvim
-      sqls-nvim
-
-      # No more postman
-      rest-nvim
-
-      # UI
-      nvim-web-devicons
-
-      # Utils
-      FTerm-nvim
-      plenary-nvim
-      nix-develop-nvim
-
-      pkgs.tree-sitter-grammars.tree-sitter-just
-
-      # Testing
-      neotest
-      # neotest-rust
-    ];
-    options = {
-      shell = "sh";
-      number = true;
-      relativenumber = true;
-      tabstop = 4;
-      softtabstop = 4;
-      shiftwidth = 4;
-      expandtab = true;
-      hidden = true;
-      smartcase = true;
-      termguicolors = true;
-      signcolumn = "yes";
-      wrap = true;
-      completeopt = "menu,menuone,popup,noselect";
-      undodir = "${config.xdg.cacheHome}/undodir";
-      undofile = true;
-    };
-
-    globals = {
-      mapleader = " ";
-    };
     plugins = {
       lsp = {
         enable = true;
@@ -134,10 +55,67 @@ in {
           '';
       };
 
+      cmp = {
+        enable = true;
+        settings = {
+          sources = [
+            {name = "buffer";}
+            {name = "buffer";}
+            {name = "cmdline";}
+            {name = "cmp-clippy";}
+            {name = "cmp-cmdline-history";}
+            {name = "crates";}
+            {name = "dap";}
+            {name = "dictionary";}
+            {name = "fish";}
+            {name = "git";}
+            {name = "luasnip";}
+            {name = "nvim_lsp";}
+            {name = "nvim_lua";}
+            {name = "nvim_lsp_signature_help";}
+            {name = "nvim_lsp_document_symbol";}
+            {name = "path";}
+            {name = "rg";}
+            {name = "spell";}
+            {name = "tmux";}
+            {name = "treesitter";}
+          ];
+          view = {
+            entries = {
+              name = "custom";
+              selection_order = "near_cursor";
+            };
+          };
+          window = {
+            completion = {
+              border = "cmp.config.window.bordered()";
+            };
+            documentation = {
+              border = "cmp.config.window.bordered()";
+            };
+          };
+          mapping = {
+            "<CR>" = "cmp.mapping.confirm({select = true})";
+            "<C-Space>" = "cmp.mapping.complete()";
+            # "<C-y>" = "cmp.mapping.complete()";
+            "<C-n>" = "cmp.config.next";
+            "<C-p>" = "cmp.config.prev";
+          };
+          snippet.expand =
+            /*
+            lua
+            */
+            ''
+              function(args)
+              require('luasnip').lsp_expand(args.body)
+              end
+            '';
+        };
+      };
+
       noice = {
         enable = true;
         notify.enabled = false;
-
         lsp.override = {
           "vim.lsp.util.convert_input_to_markdown_lines" = true;
           "vim.lsp.util.stylize_markdown" = true;
@@ -151,6 +129,7 @@ in {
           lsp_doc_border = true;
         };
       };
+
       fidget = {
         enable = true;
         notification.overrideVimNotify = true;
@@ -258,6 +237,66 @@ in {
         };
       };
     };
+    extraPlugins = with pkgs.vimPlugins; [
+      # neorg
+      neorg
+      neorg-telescope
+
+      # Wut
+      ChatGPT-nvim
+
+      # UI and UX
+      vim-abolish
+      octo-nvim
+      neoscroll-nvim
+
+      # Debuggging
+      nvim-dap-rr
+
+      # Treesitter stuff
+      outline-nvim
+
+      # lsp stuff
+      copilot-lua
+      crates-nvim
+
+      # No more postman
+      rest-nvim
+
+      # UI
+      nvim-web-devicons
+
+      # Utils
+      FTerm-nvim
+      plenary-nvim
+
+      pkgs.tree-sitter-grammars.tree-sitter-just
+
+      # Testing
+      neotest
+      # neotest-rust
+    ];
+    options = {
+      shell = "sh";
+      number = true;
+      relativenumber = true;
+      tabstop = 4;
+      softtabstop = 4;
+      shiftwidth = 4;
+      expandtab = true;
+      hidden = true;
+      smartcase = true;
+      termguicolors = true;
+      signcolumn = "yes";
+      wrap = true;
+      completeopt = "menu,menuone,popup,noselect";
+      undodir = "${config.xdg.cacheHome}/undodir";
+      undofile = true;
+    };
+
+    globals = {
+      mapleader = " ";
+    };
     colorschemes = {
       catppuccin = {
         enable = true;
@@ -282,8 +321,8 @@ in {
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
         "<C-l>" = "[[<cmd>Outline<cr>]]";
 
-        "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
+        "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
         "<C-k>" = "vim.lsp.buf.definition";
@@ -299,6 +338,9 @@ in {
       };
       insert = {
         "<C-\\>" = "require('FTerm').toggle";
+      };
+      visual = {
+        "S" = "[[<cmd>'<,'>!sort -u<cr>]]";
       };
     };
 
@@ -357,87 +399,70 @@ in {
         -- =======================================================================
         -- nvim-cmp
         -- =======================================================================
-        local cmp = require("cmp")
-        cmp.setup({
-            view = {
-                entries = { name = 'custom', selection_order = 'near_cursor' }
-            },
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body)
-                end
-            },
-            window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
-            },
-            sources = cmp.config.sources({
-                { name = "copilot", },
-                { name = 'buffer' },
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' },
-                { name = 'treesitter' },
-                { name = 'path' },
-                { name = 'git' },
-                { name = 'tmux' }
-            }),
-            mapping = cmp.mapping.preset.insert({
-                ['<CR>'] = cmp.mapping.confirm(),
-                ['<C-y>'] = cmp.mapping.complete(),
-                -- ['<C-Space>'] = cmp.mapping.complete(),
-                ['<C-n>'] = cmp.config.next,
-                ['<C-p>'] = cmp.config.prev,
-            })
-        })
+        -- local cmp = require("cmp")
+        -- cmp.setup({
+        --     view = {
+        --         entries = { name = 'custom', selection_order = 'near_cursor' }
+        --     },
+        --     snippet = {
+        --         expand = function(args)
+        --             require('luasnip').lsp_expand(args.body)
+        --         end
+        --     },
+        --     window = {
+        --         completion = cmp.config.window.bordered(),
+        --         documentation = cmp.config.window.bordered(),
+        --     },
+        --     sources = cmp.config.sources({
+        --         { name = "copilot", },
+        --         { name = 'buffer' },
+        --         { name = 'nvim_lsp' },
+        --         { name = 'luasnip' },
+        --         { name = 'treesitter' },
+        --         { name = 'path' },
+        --         { name = 'git' },
+        --         { name = 'tmux' }
+        --     }),
+        --     mapping = cmp.mapping.preset.insert({
+        --         ['<CR>'] = cmp.mapping.confirm(),
+        --         ['<C-y>'] = cmp.mapping.complete(),
+        --         -- ['<C-Space>'] = cmp.mapping.complete(),
+        --         ['<C-n>'] = cmp.config.next,
+        --         ['<C-p>'] = cmp.config.prev,
+        --     })
+        -- })
 
-        cmp.setup.cmdline({ '/', '?' }, {
-            mapping = cmp.mapping.preset.cmdline {
-                -- ['<C-n>'] = cmp.config.disable,
-                -- ['<C-p>'] = cmp.config.disable,
-            },
-            sources = {
-                { name = 'buffer' }
-            }
-        })
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline {
-                -- ['<C-n>'] = cmp.config.disable,
-                -- ['<C-p>'] = cmp.config.disable,
-            },
-            -- mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                { name = 'cmdline' }
-            })
-        })
-        cmp.setup.filetype('gitcommit', {
-            sources = cmp.config.sources({
-                { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-            }, {
-                { name = 'buffer' },
-            })
-        })
+        -- cmp.setup.cmdline({ '/', '?' }, {
+        --     mapping = cmp.mapping.preset.cmdline {
+        --         -- ['<C-n>'] = cmp.config.disable,
+        --         -- ['<C-p>'] = cmp.config.disable,
+        --     },
+        --     sources = {
+        --         { name = 'buffer' }
+        --     }
+        -- })
+        -- cmp.setup.cmdline(':', {
+        --     mapping = cmp.mapping.preset.cmdline {
+        --         -- ['<C-n>'] = cmp.config.disable,
+        --         -- ['<C-p>'] = cmp.config.disable,
+        --     },
+        --     -- mapping = cmp.mapping.preset.cmdline(),
+        --     sources = cmp.config.sources({
+        --         { name = 'path' }
+        --     }, {
+        --         { name = 'cmdline' }
+        --     })
+        -- })
+        -- cmp.setup.filetype('gitcommit', {
+        --     sources = cmp.config.sources({
+        --         { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+        --     }, {
+        --         { name = 'buffer' },
+        --     })
+        -- })
+
         require('crates').setup()
         require('outline').setup()
-        -- require("noice").setup({
-        --     lsp = {
-        --         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
-        --         override = {
-        --             ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        --             ["vim.lsp.util.stylize_markdown"] = true,
-        --             ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
-        --         },
-        --     },
-        --     -- you can enable a preset for easier configuration
-        --     presets = {
-        --         bottom_search = false,         -- use a classic bottom cmdline for search
-        --         command_palette = true,       -- position the cmdline and popupmenu together
-        --         long_message_to_split = true, -- long messages will be sent to a split
-        --         inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-        --         lsp_doc_border = true,        -- add a border to hover docs and signature help
-        --     },
-        -- })
 
         require 'FTerm'.setup({
             border     = 'double',
@@ -466,7 +491,6 @@ in {
                 ["core.dirman"] = {
                     config = {
                         default_workspace = "Notes",
-                        open_last_workspace = true,
                         workspaces = {
                             Notes = "~/Nextcloud/Notes",
                             Work = "~/Nextcloud/Work",
@@ -507,7 +531,7 @@ in {
         else
             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
         end
-        
+
 
         do
             function setup()
