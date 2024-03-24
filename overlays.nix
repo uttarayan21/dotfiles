@@ -207,6 +207,16 @@
             sha256 = "sha256-OBlXwWriE6cdGn0dhpfSMnJ6Rx1Z7KcXehaamdi/TxQ";
           };
         };
+        tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
+          language = "nu";
+          version = "0.0.1";
+          src = final.pkgs.fetchFromGitHub {
+            owner = "nushell";
+            repo = "tree-sitter-nu";
+            rev = "c5b7816043992b1cdc1462a889bc74dc08576fa6";
+            sha256 = "sha256-P+ixE359fAW7R5UJLwvMsmju7UFmJw5SN+kbMEw7Kz0=";
+          };
+        };
       };
   };
   rest-nvim-overlay = final: prev: let

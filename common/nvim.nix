@@ -110,7 +110,7 @@ in {
             */
             ''
               function(args)
-              require('luasnip').lsp_expand(args.body)
+                  require('luasnip').lsp_expand(args.body)
               end
             '';
         };
@@ -151,6 +151,10 @@ in {
                   if client.server_capabilities.inlayHintProvider then
                       vim.lsp.inlay_hint.enable(bufnr, true)
                   end
+                  client.server_capabilities.textDocument.foldingRange = {
+                    dynamicRegistration = false,
+                    lineFoldingOnly = true
+                  }
               end
             '';
           settings =
@@ -217,6 +221,7 @@ in {
           pkgs.vimPlugins.nvim-treesitter.allGrammars
           ++ (with pkgs.tree-sitter-grammars; [
             tree-sitter-just
+            tree-sitter-nu
             tree-sitter-norg-meta
           ]);
       };
@@ -274,6 +279,7 @@ in {
       plenary-nvim
 
       pkgs.tree-sitter-grammars.tree-sitter-just
+      pkgs.tree-sitter-grammars.tree-sitter-nu
 
       # Testing
       neotest
@@ -295,8 +301,8 @@ in {
       completeopt = "menu,menuone,popup,noselect";
       undodir = "${config.xdg.cacheHome}/undodir";
       undofile = true;
+      viewoptions = "cursor,folds";
     };
-
     globals = {
       mapleader = " ";
     };
@@ -355,13 +361,13 @@ in {
       }
       {
         event = ["BufWinLeave"];
-        pattern = "*.*";
-        command = "mkview";
+        pattern = "?*";
+        command = "mkview!";
       }
       {
         event = ["BufWinEnter"];
-        pattern = "*.*";
-        command = "silent loadview";
+        pattern = "?*";
+        command = "silent! loadview!";
       }
     ];
 
@@ -390,13 +396,19 @@ in {
             end
         end
 
-        catcher(function()
-            require'neotest'.setup({
-              adapters = {
-                  require('rustaceanvim.neotest'),
-              }
-            })
-        end)
+        do
+            function setup()
+                require'neotest'.setup({
+                  adapters = {
+                      require('rustaceanvim.neotest'),
+                  }
+                })
+            end
+            success, output = pcall(setup)
+            if not success then
+                print("Failed to setup neotest: " .. output)
+            end
+        end
 
         do
             function setup()
@@ -427,11 +439,11 @@ in {
         catcher(require('crates').setup)
         catcher(require('outline').setup)
 
-        require 'FTerm'.setup({
+        require('FTerm').setup({
             border     = 'single',
             dimensions = {
                 height = 0.99,
-                width = 0.99,
+                width = 0.95,
             },
             cmd        = "${pkgs.fish}/bin/fish",
             blend      = 10,
@@ -500,7 +512,7 @@ in {
                     lineFoldingOnly = true
                 }
                 -- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-                local language_servers = {"rust_analyzer"};
+                local language_servers = {"nil_ls"};
                 for _, ls in ipairs(language_servers) do
                     require('lspconfig')[ls].setup({
                         capabilities = capabilities
