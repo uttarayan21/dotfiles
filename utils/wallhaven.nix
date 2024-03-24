@@ -23,7 +23,11 @@ in rec {
     url = "https://w.wallhaven.cc/full/jx/wallhaven-jxqml5.jpg";
     sha256 = "0vm02yg4w5bfqns5k1r8y09fqxs0qy4y886myvnp64n1maaihp4k";
   };
+  skull = getWall {
+    url = "https://w.wallhaven.cc/full/85/wallhaven-856dlk.png";
+    sha256 = "11w5lfqg6ip6zhiwfw63gv08f55kqbfnhmv7iq07mfspny36w840";
+  };
 
   anime = [frieren_3];
-  all = [lights shapes cloud] ++ anime;
+  all = [lights shapes cloud skull] ++ anime;
 }

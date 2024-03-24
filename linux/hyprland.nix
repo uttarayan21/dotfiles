@@ -13,8 +13,8 @@
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;
     settings.wallpapers = {
-      "DP-3" = wallpapers.frieren_3;
-      "DP-1" = wallpapers.shapes;
+      "DP-3" = wallpapers.skull;
+      "DP-1" = wallpapers.frieren_3;
     };
   };
   programs.hyprlock = {

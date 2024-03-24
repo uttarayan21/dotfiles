@@ -10,7 +10,8 @@
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "terminal" mappings) (mkMode mappings.terminal "t"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "visual" mappings) (mkMode mappings.insert "v"));
+    ++ (pkgs.lib.optionals (builtins.hasAttr "visual" mappings) (mkMode mappings.visual "v"))
+    ++ (pkgs.lib.optionals (builtins.hasAttr "global" mappings) (mkMode mappings.global ""));
   mkMode = mappings: mode:
     pkgs.lib.mapAttrsToList
     (key: value: {
@@ -349,7 +350,7 @@ in {
         "<C-\\>" = "require('FTerm').toggle";
       };
       visual = {
-        "S" = "[[<cmd>'<,'>!sort -u<cr>]]";
+        "L" = "[[:'<,'>!sort -u<cr>]]";
       };
     };
 
@@ -526,6 +527,7 @@ in {
             end
         end
         require('ufo').setup()
+        require('lspconfig.ui.windows').default_options.border = 'single'
       '';
     package = pkgs.neovim-nightly;
   };
