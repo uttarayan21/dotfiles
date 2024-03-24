@@ -22,11 +22,175 @@
     })
     mappings;
   border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+  rawLua = lua: {
+    "__raw" = ''
+      ${lua}
+    '';
+  };
 in {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
   programs.nixvim = {
     enable = true;
     plugins = {
+      fugitive.enable = true;
+      oil.enable = true;
+      surround.enable = true;
+      todo-comments.enable = true;
+      trouble.enable = true;
+      ts-context-commentstring.enable = true;
+      navic = {
+        enable = true;
+        lsp.autoAttach = true;
+      };
+      which-key.enable = true;
+      lualine = {
+        enable = true;
+        sections = {
+          lualine_c = [
+            {
+              name =
+                rawLua
+                /*
+                lua
+                */
+                ''
+                    function(bufnr)
+                        local opts = { highlight = true }
+                        return require'nvim-navic'.get_location(opts)
+                    end,
+                    cond = function()
+                        return require'nvim-navic'.is_available()
+                    end
+                '';
+            }
+          ];
+        };
+      };
+
+      mini = {
+        enable = true;
+        modules = {
+          ai = {};
+          starter = {};
+        };
+      };
+
+      comment-nvim = {
+        enable = true;
+        preHook = ''
+          require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+        '';
+      };
+
+      markdown-preview = {
+        enable = true;
+        settings.auto_start = true;
+      };
+      # rest.enable = true;
+      # treesitter-context = {
+      #   maxLines = 3;
+      #   mode = "topline";
+      #   enable = true;
+      # };
+
+      noice = {
+        enable = true;
+        notify.enabled = false;
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+        presets = {
+          bottom_search = false;
+          command_palette = true;
+          long_message_to_split = true;
+          inc_rename = false;
+          lsp_doc_border = true;
+        };
+      };
+
+      treesitter = {
+        enable = true;
+        indent = true;
+        folding = true;
+        grammarPackages =
+          pkgs.vimPlugins.nvim-treesitter.allGrammars
+          ++ (with pkgs.tree-sitter-grammars; [
+            tree-sitter-just
+            tree-sitter-nu
+            tree-sitter-norg-meta
+          ]);
+      };
+
+      telescope = {
+        enable = true;
+        extensions = {
+          undo.enable = true;
+          ui-select.enable = true;
+          fzf-native.enable = true;
+          file_browser.enable = true;
+        };
+      };
+
+      fidget = {
+        enable = true;
+        notification.overrideVimNotify = true;
+      };
+
+      dap = {
+        enable = true;
+        extensions = {
+          dap-ui.enable = true;
+          dap-virtual-text.enable = true;
+        };
+      };
+
+      nvim-ufo = {
+        enable = true;
+        closeFoldKinds = null;
+        # providerSelector =
+        #   /*
+        #   lua
+        #   */
+        #   ''
+        #     function(bufnr, filetype, buftype)
+        #           return {'treesitter', 'indent'}
+        #     end
+        #   '';
+      };
+      rustaceanvim = {
+        enable = true;
+        server = {
+          onAttach =
+            /*
+            lua
+            */
+            ''
+              function(client, bufnr)
+                  if client.server_capabilities.inlayHintProvider then
+                      vim.lsp.inlay_hint.enable(bufnr, true)
+                  end
+              end
+            '';
+          settings =
+            /*
+            lua
+            */
+            ''
+              function(project_root)
+                local ra = require('rustaceanvim.config.server')
+                  return ra.load_rust_analyzer_settings(project_root, {
+                    settings_file_pattern = 'rust-analyzer.json'
+                  })
+              end
+            '';
+        };
+        dap = {
+          autoloadConfigurations = false;
+        };
+      };
+
       lsp = {
         enable = true;
         servers = {
@@ -59,7 +223,6 @@ in {
             end
           '';
       };
-
       cmp = {
         enable = true;
         settings = {
@@ -116,193 +279,6 @@ in {
             '';
         };
       };
-
-      noice = {
-        enable = true;
-        notify.enabled = false;
-        lsp.override = {
-          "vim.lsp.util.convert_input_to_markdown_lines" = true;
-          "vim.lsp.util.stylize_markdown" = true;
-          "cmp.entry.get_documentation" = true;
-        };
-        presets = {
-          bottom_search = false;
-          command_palette = true;
-          long_message_to_split = true;
-          inc_rename = false;
-          lsp_doc_border = true;
-        };
-      };
-
-      fidget = {
-        enable = true;
-        notification.overrideVimNotify = true;
-      };
-
-      trouble.enable = true;
-      rustaceanvim = {
-        enable = true;
-        server = {
-          onAttach =
-            /*
-            lua
-            */
-            ''
-              function(client, bufnr)
-                  if client.server_capabilities.inlayHintProvider then
-                      vim.lsp.inlay_hint.enable(bufnr, true)
-                  end
-                  client.server_capabilities.textDocument.foldingRange = {
-                    dynamicRegistration = false,
-                    lineFoldingOnly = true
-                  }
-              end
-            '';
-          settings =
-            /*
-            lua
-            */
-            ''
-              function(project_root)
-                local ra = require('rustaceanvim.config.server')
-                  return ra.load_rust_analyzer_settings(project_root, {
-                    settings_file_pattern = 'rust-analyzer.json'
-                  })
-              end
-            '';
-        };
-        dap = {
-          autoloadConfigurations = false;
-        };
-      };
-      oil.enable = true;
-      dap = {
-        enable = true;
-        extensions = {
-          dap-ui.enable = true;
-          dap-virtual-text.enable = true;
-        };
-      };
-      todo-comments.enable = true;
-      lualine.enable = true;
-      commentary.enable = true;
-      surround.enable = true;
-      which-key.enable = true;
-      nvim-ufo = {
-        enable = true;
-        closeFoldKinds = null;
-        # providerSelector =
-        #   /*
-        #   lua
-        #   */
-        #   ''
-        #     function(bufnr, filetype, buftype)
-        #           return {'treesitter', 'indent'}
-        #     end
-        #   '';
-      };
-      fugitive.enable = true;
-      markdown-preview = {
-        enable = true;
-        settings.auto_start = true;
-      };
-      # rest.enable = true;
-      treesitter-context = {
-        maxLines = 3;
-        mode = "topline";
-        enable = true;
-      };
-      ts-context-commentstring.enable = true;
-
-      treesitter = {
-        enable = true;
-        indent = true;
-        folding = true;
-        grammarPackages =
-          pkgs.vimPlugins.nvim-treesitter.allGrammars
-          ++ (with pkgs.tree-sitter-grammars; [
-            tree-sitter-just
-            tree-sitter-nu
-            tree-sitter-norg-meta
-          ]);
-      };
-      telescope = {
-        enable = true;
-        extensions = {
-          undo.enable = true;
-          ui-select.enable = true;
-          fzf-native.enable = true;
-          file_browser.enable = true;
-        };
-      };
-
-      mini = {
-        enable = true;
-        modules = {
-          ai = {};
-          starter = {};
-          # pairs.enable = true;
-          # cursorword.enable = true;
-        };
-      };
-    };
-    extraPlugins = with pkgs.vimPlugins; [
-      # neorg
-      neorg
-      neorg-telescope
-
-      # Wut
-      ChatGPT-nvim
-
-      # UI and UX
-      vim-abolish
-      octo-nvim
-      neoscroll-nvim
-
-      # Debuggging
-      nvim-dap-rr
-
-      # Treesitter stuff
-      outline-nvim
-
-      # lsp stuff
-      copilot-lua
-      crates-nvim
-
-      # No more postman
-      rest-nvim
-
-      # UI
-      nvim-web-devicons
-
-      # Utils
-      FTerm-nvim
-      plenary-nvim
-
-      pkgs.tree-sitter-grammars.tree-sitter-just
-      pkgs.tree-sitter-grammars.tree-sitter-nu
-
-      # Testing
-      neotest
-      # neotest-rust
-    ];
-    options = {
-      shell = "sh";
-      number = true;
-      relativenumber = true;
-      tabstop = 4;
-      softtabstop = 4;
-      shiftwidth = 4;
-      expandtab = true;
-      hidden = true;
-      smartcase = true;
-      termguicolors = true;
-      signcolumn = "yes";
-      wrap = true;
-      completeopt = "menu,menuone,popup,noselect";
-      undodir = "${config.xdg.cacheHome}/undodir";
-      undofile = true;
-      viewoptions = "cursor,folds";
     };
     globals = {
       mapleader = " ";
@@ -505,30 +481,90 @@ in {
         end
 
 
-        do
-            function setup()
-                local capabilities = vim.lsp.protocol.make_client_capabilities()
-                capabilities.textDocument.foldingRange = {
-                    dynamicRegistration = false,
-                    lineFoldingOnly = true
-                }
-                -- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-                local language_servers = {"nil_ls"};
-                for _, ls in ipairs(language_servers) do
-                    require('lspconfig')[ls].setup({
-                        capabilities = capabilities
-                        -- you can add other fields for setting up lsp server in this table
-                    })
-                end
-            end
-            success, output = pcall(setup)
-            if not success then
-                print("Failed to setup lspconfig folds: " .. output)
-            end
-        end
-        require('ufo').setup()
+        -- do
+        --     function setup()
+        --         local capabilities = vim.lsp.protocol.make_client_capabilities()
+        --         capabilities.textDocument.foldingRange = {
+        --             dynamicRegistration = false,
+        --             lineFoldingOnly = true
+        --         }
+        --         -- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+        --         local language_servers = {"nil_ls"};
+        --         for _, ls in ipairs(language_servers) do
+        --             require('lspconfig')[ls].setup({
+        --                 capabilities = capabilities
+        --                 -- you can add other fields for setting up lsp server in this table
+        --             })
+        --         end
+        --     end
+        --     success, output = pcall(setup)
+        --     if not success then
+        --         print("Failed to setup lspconfig folds: " .. output)
+        --     end
+        -- end
         require('lspconfig.ui.windows').default_options.border = 'single'
+
+        catcher(require('nvim_context_vt').setup)
       '';
     package = pkgs.neovim-nightly;
+    options = {
+      shell = "sh";
+      number = true;
+      relativenumber = true;
+      tabstop = 4;
+      softtabstop = 4;
+      shiftwidth = 4;
+      expandtab = true;
+      hidden = true;
+      smartcase = true;
+      termguicolors = true;
+      signcolumn = "yes";
+      wrap = true;
+      completeopt = "menu,menuone,popup,noselect";
+      undodir = "${config.xdg.cacheHome}/undodir";
+      undofile = true;
+      viewoptions = "cursor,folds";
+    };
+    extraPlugins = with pkgs.vimPlugins; [
+      # neorg
+      neorg
+      neorg-telescope
+
+      # Wut
+      ChatGPT-nvim
+
+      # UI and UX
+      vim-abolish
+      octo-nvim
+      neoscroll-nvim
+
+      # Debuggging
+      nvim-dap-rr
+
+      # Treesitter stuff
+      outline-nvim
+
+      # lsp stuff
+      copilot-lua
+      crates-nvim
+
+      # No more postman
+      rest-nvim
+
+      # UI
+      nvim-web-devicons
+
+      # Utils
+      FTerm-nvim
+      plenary-nvim
+
+      pkgs.tree-sitter-grammars.tree-sitter-just
+      pkgs.tree-sitter-grammars.tree-sitter-nu
+
+      # Testing
+      neotest
+      # neotest-rust
+      nvim_context_vt
+    ];
   };
 }

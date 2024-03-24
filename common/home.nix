@@ -36,6 +36,7 @@
       cmake
       alejandra
       pkg-config
+      devenv
 
       # Misc
       qmk
