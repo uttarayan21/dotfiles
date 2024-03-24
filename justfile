@@ -1,5 +1,7 @@
 set dotenv-load
 
+# clean := `git diff-index --quiet --cached HEAD --`
+
 [macos]
 install:
     nix run nix-darwin -- switch --flake .
@@ -13,4 +15,4 @@ build:
 
 
 home:
-	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .
+	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace

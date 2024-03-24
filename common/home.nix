@@ -14,6 +14,8 @@
       ./nvim.nix
       ./goread.nix
       ./ncmpcpp.nix
+      ./zellij.nix
+      ../modules
     ]
     ++ lib.optionals device.isLinux [../linux];
 
@@ -145,7 +147,9 @@
         cd = "z";
         ls = "eza";
         cat = "bat";
-        t = "tmux";
+        j = "just --choose";
+        t = "zellij a -c --index 0";
+        # t = "tmux";
       };
       shellAliases = {g = "git";};
       shellInit = ''

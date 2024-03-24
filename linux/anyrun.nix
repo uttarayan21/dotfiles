@@ -2,7 +2,7 @@
   inputs,
   pkgs,
   device,
-  osConfig,
+  # osConfig,
   ...
 }: {
   imports = [inputs.anyrun.nixosModules.home-manager];
@@ -32,10 +32,10 @@
 
     extraConfigFiles = {
       "nixos-options.ron".text = let
-        nixos-options =
-          pkgs.lib.optionalString device.isNix
-          osConfig.system.build.manual.optionsJSON
-          + "/share/doc/nixos/options.json";
+        # nixos-options =
+        # pkgs.lib.optionalString device.isNix
+        # osConfig.system.build.manual.optionsJSON
+        # + "/share/doc/nixos/options.json";
         hm-options =
           inputs.home-manager.packages.${pkgs.system}.docs-json
           + "/share/doc/home-manager/options.json";
@@ -48,14 +48,14 @@
         #   ":something-else" = [some-other-option];
         #   ":nall" = [nixos-options hm-options some-other-option];
         # };
-        options = builtins.toJSON ({
-            ":hm" = [hm-options];
-          }
-          // (
-            if device.isNix
-            then {":nix" = [nixos-options];}
-            else {}
-          ));
+        options = builtins.toJSON {
+          ":hm" = [hm-options];
+        };
+        # // (
+        #   if device.isNix
+        #   then {":nix" = [nixos-options];}
+        #   else {}
+        # ));
       in ''
         Config(
             options: ${options},
