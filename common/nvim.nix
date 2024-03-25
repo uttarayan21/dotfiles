@@ -264,7 +264,8 @@ in {
             };
           };
           mapping = {
-            "<CR>" = "cmp.mapping.confirm({select = true})";
+            # "<CR>" = "cmp.mapping.confirm({select = true})";
+            "<CR>" = "cmp.mapping.confirm()";
             "<C-Space>" = "cmp.mapping.complete()";
             "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
             "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
@@ -543,6 +544,7 @@ in {
       undofile = true;
       viewoptions = "cursor,folds";
       concealcursor = "n";
+      foldlevelstart = 99;
     };
     extraPlugins = with pkgs.vimPlugins; [
       # neorg
