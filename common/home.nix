@@ -15,6 +15,7 @@
       ./goread.nix
       ./ncmpcpp.nix
       ./zellij.nix
+      ./kitty.nix
       ../modules
     ]
     ++ lib.optionals device.isLinux [../linux];
