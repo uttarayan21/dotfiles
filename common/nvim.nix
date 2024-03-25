@@ -579,17 +579,20 @@ in {
       # Utils
       FTerm-nvim
       plenary-nvim
-
-      pkgs.tree-sitter-grammars.tree-sitter-just
-      pkgs.tree-sitter-grammars.tree-sitter-nu
+      vim-speeddating
 
       # Testing
       neotest
+
       # Helper libs
       webapi-vim
+
       # Treesitter
       nvim_context_vt
       nvim-devdocs
+
+      pkgs.tree-sitter-grammars.tree-sitter-just
+      pkgs.tree-sitter-grammars.tree-sitter-nu
     ];
   };
 }
