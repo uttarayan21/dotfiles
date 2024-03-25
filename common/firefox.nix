@@ -7,6 +7,7 @@
     enable = device.isLinux;
     profiles.default = {
       userChrome = let
+      # TODO: Move to subflake
         csshacks = pkgs.fetchFromGitHub {
           owner = "MrOtherGuy";
           repo = "firefox-csshacks";

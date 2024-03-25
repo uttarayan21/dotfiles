@@ -41,9 +41,13 @@ in {
   config = {
     home.packages = mkIf cfg.enable [pkgs.goread];
 
-    xdg.configFile = mkIf cfg.enable {
-      "goread/urls.yml".text = generators.toYAML {} cfg.config.urls;
-      # "goread/colorscheme.json".text = lib.generators.toJSON cfg.config.colorscheme;
+    # xdg.configFile = mkIf cfg.enable {
+    #   "goread/urls.yml".text = generators.toYAML {} cfg.config.urls;
+    #   # "goread/colorscheme.json".text = lib.generators.toJSON cfg.config.colorscheme;
+    # };
+    # Possibly fixes it on macos
+    home.file = {
+      ".config/goread/urls.yml".text = generators.toYAML {} cfg.config.urls;
     };
   };
 }

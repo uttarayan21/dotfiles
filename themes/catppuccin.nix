@@ -10,6 +10,8 @@
     pkgs.stdenv.mkDerivation {
       inherit version override;
       pname = item;
+      # TODO: Move to subflake
+      # NOTE: It might not make sense to move this to subflake
       src = pkgs.fetchFromGitHub {
         inherit owner rev sha256;
         repo = item;

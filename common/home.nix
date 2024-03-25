@@ -80,7 +80,9 @@
       gptfdisk
       polkit_gnome
       dig
-      mullvad
+      mullvad-vpn
+      mullvad-closest
+      mullvad-browser
       steam-run
       usbutils
       handlr-regex
@@ -218,7 +220,7 @@
     };
     carapace = {
       enable = true;
-      # enableFishIntegration = true;
+      enableFishIntegration = true;
       enableNushellIntegration = true;
     };
     fzf = {

@@ -13,6 +13,7 @@
       pname = "goread";
       version = "v1.6.4";
       vendorHash = "sha256-/kxEnw8l9S7WNMcPh1x7xqiQ3L61DSn6DCIvJlyrip0";
+      # TODO: Move to subflake
       src = final.pkgs.fetchFromGitHub {
         owner = "TypicalAM";
         repo = "goread";
@@ -24,6 +25,7 @@
     };
     music-player-git = inputs.music-player.packages.${prev.system}.default;
     davis = let
+      # TODO: Move to subflake
       davis-src = final.pkgs.fetchFromGitHub {
         owner = "SimonPersson";
         repo = "davis";
@@ -54,6 +56,7 @@
       };
     picat = let
       # https://github.com/SimonPersson/picat
+      # TODO: Move to subflake
       picat-src = final.pkgs.fetchFromGitHub {
         owner = "SimonPersson";
         repo = "picat";
@@ -89,6 +92,7 @@
         final.rustPlatform.buildRustPackage rec {
           pname = "psst";
           version = "1";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             # https://github.com/jpochyla/psst
             owner = "jpochyla";
@@ -125,6 +129,7 @@
       // {
         comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
           name = "comfortable-motion";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "yuttie";
             repo = "comfortable-motion.vim";
@@ -134,6 +139,7 @@
         };
         nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
           name = "nvim-dap-rr";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "jonboh";
             repo = "nvim-dap-rr";
@@ -143,6 +149,7 @@
         };
         sqls-nvim = final.pkgs.vimUtils.buildVimPlugin {
           name = "sqls-nvim";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "nanotee";
             repo = "sqls.nvim";
@@ -152,6 +159,7 @@
         };
         outline-nvim = final.pkgs.vimUtils.buildVimPlugin {
           name = "outline-nvim";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "hedyhli";
             repo = "outline.nvim";
@@ -168,6 +176,7 @@
         tmux-super-fingers = final.pkgs.tmuxPlugins.mkTmuxPlugin {
           pluginName = "tmux-super-fingers";
           version = "v1-2024-02-14";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "artemave";
             repo = "tmux_super_fingers";
@@ -200,6 +209,7 @@
         tree-sitter-just = final.pkgs.tree-sitter.buildGrammar {
           language = "just";
           version = "1";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "IndianBoy42";
             repo = "tree-sitter-just";
@@ -210,6 +220,7 @@
         tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
           language = "nu";
           version = "0.0.1";
+          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "nushell";
             repo = "tree-sitter-nu";
@@ -220,6 +231,7 @@
       };
   };
   rest-nvim-overlay = final: prev: let
+    # TODO: Move to subflake
     rest-nvim-src = final.pkgs.fetchFromGitHub {
       owner = "rest-nvim";
       repo = "rest.nvim";
@@ -259,6 +271,7 @@
           python-final: python-prev: {
             catppuccin = python-prev.catppuccin.overridePythonAttrs (oldAttrs: rec {
               version = "1.3.2";
+              # TODO: Move to subflake
               src = prev.fetchFromGitHub {
                 owner = "catppuccin";
                 repo = "python";
@@ -274,7 +287,14 @@
         )
       ];
   };
+  zellij = final: prev: {
+    zellijPlugins = {
+      zjstatus = inputs.zjstatus.packages.${prev.system}.default;
+    };
+  };
 in [
+  inputs.subflakes.overlays.default
+  zellij
   catppuccinThemes
   vimPlugins
   tree-sitter-grammars
@@ -286,8 +306,5 @@ in [
   inputs.neovim-nightly-overlay.overlay
   inputs.nur.overlay
   catppuccin
-  (import (builtins.fetchTarball {
-    url = "https://github.com/oxalica/rust-overlay/archive/master.tar.gz";
-    sha256 = "sha256:143qm7bj651v2pwzq4sf5sp33g733inixf2b98sxf89ia0cabaqn";
-  }))
+  inputs.rust-overlay.overlays.default
 ]

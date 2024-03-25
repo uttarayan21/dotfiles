@@ -54,13 +54,13 @@ in {
                 lua
                 */
                 ''
-                    function(bufnr)
-                        local opts = { highlight = true }
-                        return require'nvim-navic'.get_location(opts)
-                    end,
-                    cond = function()
-                        return require'nvim-navic'.is_available()
-                    end
+                  function(bufnr)
+                      local opts = { highlight = true }
+                      return require'nvim-navic'.get_location(opts)
+                  end,
+                  cond = function()
+                      return require'nvim-navic'.is_available()
+                  end
                 '';
             }
           ];
@@ -226,6 +226,7 @@ in {
       cmp = {
         enable = true;
         settings = {
+          autoEnableSources = true;
           sources = [
             {name = "buffer";}
             {name = "buffer";}
@@ -291,33 +292,36 @@ in {
     };
     keymaps = mkMappings {
       normal = {
-        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
-        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
-        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-        "<leader>\"" = ''[["+]]'';
-        "gh" = "[[<cmd>Octo actions<cr>]]";
-        "<leader><leader>" = "'<c-^>'";
-        "<leader>q" = "[[<cmd>bw<cr>]]";
-        "<leader>n" = "[[<cmd>bnext<cr>]]";
-        "<leader>p" = "[[<cmd>bprev<cr>]]";
+        "<C-l>" = "[[<cmd>Outline<cr>]]";
         "<C-w>\"" = "[[<cmd>split<cr>]]";
         "<C-w>%" = "[[<cmd>vsplit<cr>]]";
+        "gh" = "[[<cmd>Octo actions<cr>]]";
+        "<leader>\"" = ''[["+]]'';
+        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        "<C-l>" = "[[<cmd>Outline<cr>]]";
+        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+        "<leader>hh" = "[[<cmd>DevdocsOpenFloat<cr>]]";
+        "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
+        "<leader><leader>" = "'<c-^>'";
+        "<leader>n" = "[[<cmd>bnext<cr>]]";
+        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
+        "<leader>p" = "[[<cmd>bprev<cr>]]";
+        "<leader>q" = "[[<cmd>bw<cr>]]";
+        "<leader>nn" = "[[<cmd>Neorg<cr>]]";
+        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
 
+        "<C-k>" = "vim.lsp.buf.definition";
+        "<C-\\>" = "require('FTerm').toggle";
+        "F" = "function() vim.lsp.buf.format({ async = true }) end";
+        "gi" = "require'telescope.builtin'.lsp_implementations";
+        "<leader>a" = "vim.lsp.buf.code_action";
+        "<leader>bb" = "require'dap'.toggle_breakpoint";
+        "<leader>du" = "require'dapui'.toggle";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
         "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
-        "<C-k>" = "vim.lsp.buf.definition";
-        "gi" = "require'telescope.builtin'.lsp_implementations";
-        "<leader>a" = "vim.lsp.buf.code_action";
-        "F" = "function() vim.lsp.buf.format({ async = true }) end";
-        "<leader>bb" = "require'dap'.toggle_breakpoint";
-        "<leader>du" = "require'dapui'.toggle";
-        "<C-\\>" = "require('FTerm').toggle";
       };
       terminal = {
         "<C-\\>" = "require('FTerm').toggle";
@@ -505,6 +509,20 @@ in {
         require('lspconfig.ui.windows').default_options.border = 'single'
 
         catcher(require('nvim_context_vt').setup)
+        catcher(function()
+            require('nvim-devdocs').setup({
+                ensure_installed = {"nix", "rust"},
+                float_win = {
+                    relative = "editor",
+                    height = 80,
+                    width = 100,
+                    border = "rounded",
+                },
+                after_open = function()
+                    vim.o.conceallevel = 3
+                end,
+            })
+        end)
       '';
     package = pkgs.neovim-nightly;
     options = {
@@ -524,6 +542,7 @@ in {
       undodir = "${config.xdg.cacheHome}/undodir";
       undofile = true;
       viewoptions = "cursor,folds";
+      concealcursor = "n";
     };
     extraPlugins = with pkgs.vimPlugins; [
       # neorg
@@ -547,6 +566,7 @@ in {
       # lsp stuff
       copilot-lua
       crates-nvim
+      luasnip
 
       # No more postman
       rest-nvim
@@ -563,8 +583,11 @@ in {
 
       # Testing
       neotest
-      # neotest-rust
+      # Helper libs
+      webapi-vim
+      # Treesitter
       nvim_context_vt
+      nvim-devdocs
     ];
   };
 }
