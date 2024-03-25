@@ -151,8 +151,8 @@
         ls = "eza";
         cat = "bat";
         j = "just --choose";
-        t = "zellij a -c --index 0";
-        # t = "tmux";
+        # t = "zellij a -c --index 0";
+        t = "tmux";
       };
       shellAliases = {g = "git";};
       shellInit = ''

@@ -112,29 +112,22 @@
                 plugin location="file:${pkgs.zellijPlugins.zjstatus}/bin/zjstatus.wasm" {
                     hide_frame_for_single_pane "true"
 
-                    format_left  "{mode}#[fg=#89B4FA,bg=#181825,bold] {session}#[bg=#181825] {tabs}"
-                    format_right "{command_kubectx}#[fg=#424554,bg=#181825]::{command_kubens}{datetime}"
+                    format_left  "{mode}#[fg=#89B4FA,bg=#181825,bold] {tabs}"
+                    format_right "#[fg=#424554,bg=#181825]{session} on {datetime}"
                     format_space "#[bg=#181825]"
 
-                    mode_normal          "#[bg=#89B4FA] "
-                    mode_tmux            "#[bg=#ffc387] "
-                    mode_default_to_mode "tmux"
+                    mode_normal          "#[fg=black,bg=#89B4FA] NORMAL #[fg=#87B4FA,bg=#181825]"
+                    mode_tmux            "#[fg=black,bg=#FFC387] TMUX #[fg=#FFC387,bg=#181825]"
+                    // mode_default_to_mode "tmux"
 
-                    tab_normal               "#[fg=#6C7086,bg=#181825] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-                    tab_active               "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-                    tab_fullscreen_indicator "□ "
-                    tab_sync_indicator       "  "
-                    tab_floating_indicator   "󰉈 "
+                    tab_normal              "#[fg=#181825,bg=#4C4C59] #[fg=#000000,bg=#4C4C59]{index}  {name} #[fg=#4C4C59,bg=#181825]"
+                    tab_normal_fullscreen   "#[fg=#6C7086,bg=#181825] {index} {name} [] "
+                    tab_normal_sync         "#[fg=#6C7086,bg=#181825] {index} {name} <> "
+                    tab_active              "#[fg=#181825,bg=#ffffff,bold,italic] {index}  {name} #[fg=#ffffff,bg=#181825]"
+                    tab_active_fullscreen   "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} [] "
+                    tab_active_sync         "#[fg=#9399B2,bg=#181825,bold,italic] {index} {name} <> "
 
-                    command_kubectx_command  "kubectx -c"
-                    command_kubectx_format   "#[fg=#6C7086,bg=#181825,italic] {stdout}"
-                    command_kubectx_interval "2"
-
-                    command_kubens_command  "kubens -c"
-                    command_kubens_format   "#[fg=#6C7086,bg=#181825]{stdout} "
-                    command_kubens_interval "2"
-
-                    datetime          "#[fg=#9399B2,bg=#181825] {format} "
+                    datetime          "#[fg=#9399B2,bg=#181825] {format}"
                     datetime_format   "%A, %d %b %Y %H:%M"
                     datetime_timezone "Asia/Kolkata"
                 }

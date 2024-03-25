@@ -1461,11 +1461,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-PaTXAe/aVsZln/cKtHPXfiWIL+VwFxRiSQU0CRmglLI=",
-        "path": "/nix/store/fnisi67sjq0bbws6fds9bjsrq9bss3s4-source/flakes",
+        "path": "/nix/store/5v4fml58z01s1lf98qhi4zp8plqqjv41-source/flakes",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/fnisi67sjq0bbws6fds9bjsrq9bss3s4-source/flakes",
+        "path": "/nix/store/5v4fml58z01s1lf98qhi4zp8plqqjv41-source/flakes",
         "type": "path"
       }
     },
