@@ -65,6 +65,12 @@ in {
     rev = "be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f";
     sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
   };
+  # https://github.com/catppuccin/yazi
+  yazi = mkCatppuccin {
+    item = "yazi";
+    rev = "0846aed69b2a62d29c98e100af0cf55ca729723d";
+    sha256 = "sha256-2T41qWMe++3Qxl9veRNHMeRI3eU4+LAueKTss02gYNk";
+  };
 
   # gtk = pkgs.catppuccin-gtk.override {
   #   variant = "mocha";

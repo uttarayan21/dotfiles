@@ -3,11 +3,11 @@ set dotenv-load
 # clean := `git diff-index --quiet --cached HEAD --`
 
 [macos]
-install:
+install: local
     nix run nix-darwin -- switch --flake .
 
 [linux]
-install:
+install: local
 	sudo nixos-rebuild switch --flake .
 
 build:
@@ -16,3 +16,6 @@ build:
 
 home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace
+
+local:
+    nix flake lock --update-input subflakes
