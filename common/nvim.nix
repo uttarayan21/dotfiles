@@ -300,7 +300,8 @@ in {
         "<leader>\"" = ''[["+]]'';
         "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        # "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        "<leader>ee" = "[[<Plug>RestNvim]]";
         "<leader>el" = "[[<cmd>Rest run last<cr>]]";
         "<leader>hh" = "[[<cmd>DevdocsOpenFloat<cr>]]";
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
@@ -392,15 +393,7 @@ in {
             end
         end
 
-        do
-            function setup()
-                require('rest-nvim').setup()
-            end
-            success, output = pcall(setup)
-            if not success then
-                print("Failed to setup rest-nvim: " .. output)
-            end
-        end
+        catcher(require('rest-nvim').setup)
 
 
         -- require('telescope').load_extension("dap")

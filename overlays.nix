@@ -235,21 +235,24 @@
     rest-nvim-src = final.pkgs.fetchFromGitHub {
       owner = "rest-nvim";
       repo = "rest.nvim";
-      rev = "64175b161b61b6807b4c6f3f18dd884325cf04e0";
+      # rev = "64175b161b61b6807b4c6f3f18dd884325cf04e0";
+      # Before v2 release
+      rev = "v1.0.0";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
       # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
-      sha256 = "sha256-w/Z9lHu99gpbmrDCw/MEUDy6jyABsC7K5dbbl3K+HWk=";
+      sha256 = "sha256-jSY5WXx5tQAD0ZefPbg2luHywGAMcB9wdUTy6Av3xnY";
     };
   in {
     vimPlugins =
       prev.vimPlugins
       // {
-        rest-nvim = final.neovimUtils.buildNeovimPlugin {
+        rest-nvim = final.vimUtils.buildVimPlugin {
           pname = "rest.nvim";
-          version = "scm-1";
+          version = "1.0.0";
           src = rest-nvim-src;
-          rockspecVersion = "0.2-1";
-          buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
+          # version = "scm-1";
+          # rockspecVersion = "0.2-1";
+          # buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
         };
       };
     # lua51Packages =
@@ -297,6 +300,7 @@ in [
   zellij
   catppuccinThemes
   vimPlugins
+  rest-nvim-overlay
   tree-sitter-grammars
   tmuxPlugins
   anyrun-overlay

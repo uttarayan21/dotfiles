@@ -62,7 +62,7 @@
     subflakes = {
       # TODO: Will eventualy move all the non-flake fetchFromGitHub urls to this flake
       # As inputs for the flake that way I don't have to update the hashes manually
-      url = "./flakes";
+      url = "path:./flakes";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = {
