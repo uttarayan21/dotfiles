@@ -65,9 +65,10 @@
       fzf
       (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
-      mpv
     ]
     ++ lib.optionals device.isLinux [
+      (pkgs.wrapMpv
+        (pkgs.mpv-unwrapped.override {sixelSupport = true;}) {})
       psst
       sony-headphones-client
       abaddon
@@ -156,7 +157,11 @@
         # t = "zellij a -c --index 0";
         t = "tmux";
       };
-      shellAliases = {g = "git";};
+      shellAliases = {
+        g = "git";
+        kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
+        smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
+      };
       shellInit = ''
         set fish_greeting
         yes | fish_config theme save "Catppuccin Mocha"
