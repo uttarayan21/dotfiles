@@ -40,6 +40,8 @@
       alejandra
       pkg-config
       devenv
+      python312Packages.sqlparse
+      sleek
 
       # Misc
       qmk

@@ -517,6 +517,7 @@ in {
                 end,
             })
         end)
+        vim.g.rustaceanvim.tools = { enable_clippy = false };
       '';
     package = pkgs.neovim-nightly;
     options = {
