@@ -149,8 +149,8 @@
       ];
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, ${pkgs.foot}/bin/foot"
-        "$mainModShift, Return, exec, ${pkgs.wezterm}/bin/wezterm"
+        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
         # "$mainMod, M, exit,"
         "$mainMod, t, togglefloating,"
