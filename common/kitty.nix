@@ -7,7 +7,7 @@
     };
     settings = {
       background_opacity = "0.8";
-      background_color = "#FFFFFF";
+      background = "#000000";
       shell = "${pkgs.fish}/bin/fish";
     };
     shellIntegration.enableFishIntegration = true;

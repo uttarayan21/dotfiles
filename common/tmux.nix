@@ -11,7 +11,7 @@
 in {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.nushellFull}/bin/nu";
+    shell = "${pkgs.fish}/bin/fish";
     terminal = "tmux-256color";
     prefix = "C-q";
     historyLimit = 100000;
@@ -22,7 +22,7 @@ in {
       tmuxPlugins.fzf-tmux-url
       {
         plugin = tmuxPlugins.tmux-super-fingers;
-        extraConfig = "set -g @super-fingers-key o";
+        extraConfig = "set -g @super-fingers-key i";
       }
       {
         plugin = tmuxPlugins.catppuccin;
