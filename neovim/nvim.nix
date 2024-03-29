@@ -427,7 +427,9 @@ in rec {
                     config = { icon_preset = "diamond" }
                 },
                 ["core.integrations.image"] = {
-                    tmux_show_only_in_active_window = true,
+                    config = {
+                        tmux_show_only_in_active_window = true,
+                    }
                 },
                 ["core.keybinds"] = {
                    -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
