@@ -1,7 +1,6 @@
 set dotenv-load
 
 # clean := `git diff-index --quiet --cached HEAD --`
-
 [macos]
 install: local
     nix run nix-darwin -- switch --flake .
@@ -19,3 +18,7 @@ home:
 
 local:
     nix flake lock --update-input subflakes
+    nix flake lock --update-input neovim
+
+nvim:
+    nix run .#neovim

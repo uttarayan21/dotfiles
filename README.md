@@ -16,6 +16,14 @@ These are dotfiles for my Linux and MacOS machines
 - WM: [yabai](https://github.com/koekeishiya/yabai)
 - Terminal: wezterm
 
+### Neovim
+
+If you want to try my neovim config just do
+```
+nix run github:uttarayan21/dotfiles#neovim
+```
+
+
 ### For nix
 
 I'm a recent convert to NixOS from ArchLinux and have been usin it as primary os as well as a package manager on macos so the flake.nix contains configuration for both nix-darwin as well as nixos. It also contains a native home-manager module configuration for non-nixos devices ( like a SteamDeck ).

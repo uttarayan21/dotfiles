@@ -48,6 +48,7 @@ in {
         set -gw mode-keys vi
         set -g status-keys vi
         set -g allow-passthrough on
+        set -g visual-activity off
         set -ga update-environment TERM
         set -ga update-environment TERM_PROGRAM
         set -sg escape-time 10

@@ -308,7 +308,9 @@ in [
   shell-scipts
   misc-applications
   inputs.neovim-nightly-overlay.overlay
+  inputs.nixvim.overlays.default
   inputs.nur.overlay
+  inputs.neovim.overlays.default
   catppuccin
   inputs.rust-overlay.overlays.default
 ]

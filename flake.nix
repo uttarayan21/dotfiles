@@ -69,6 +69,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    neovim = {
+      url = "path:./neovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -158,5 +163,7 @@
       import ./linux/device.nix {
         inherit devices inputs nixpkgs home-manager overlays;
       };
+
+    packages = inputs.neovim.packages;
   };
 }
