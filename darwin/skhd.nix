@@ -4,7 +4,8 @@
       enable = true;
       skhdConfig = ''
         # open terminal, blazingly fast compared to iTerm/Hyper
-        alt - return : ${pkgs.wezterm}/bin/wezterm-gui
+        alt - return : open -a Kitty.app
+        # alt - return : $\{pkgs.wezterm}/bin/wezterm-gui
         shift + alt - return: pkill mpv
 
         # open mpv

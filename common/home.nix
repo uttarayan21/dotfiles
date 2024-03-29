@@ -92,10 +92,10 @@ in {
       (nerdfonts.override {fonts = ["Hasklig"];})
       pfetch-rs
       hotedit
-    ]
-    ++ lib.optionals device.isLinux [
       (pkgs.wrapMpv
         (pkgs.mpv-unwrapped.override {sixelSupport = true;}) {})
+    ]
+    ++ lib.optionals device.isLinux [
       psst
       sony-headphones-client
       abaddon
