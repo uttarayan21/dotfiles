@@ -520,7 +520,7 @@ in rec {
         vim.g.rustaceanvim.tools = { enable_clippy = false };
       '';
     package = pkgs.neovim-nightly;
-    options = {
+    opts = {
       shell = "sh";
       number = true;
       relativenumber = true;
