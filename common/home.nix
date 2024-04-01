@@ -324,7 +324,7 @@ in {
 
     sessionVariables = {
       EDITOR = "nvim";
-      SHELL = "${pkgs.nushellFull}/bin/nu";
+      SHELL = "${pkgs.fish}/bin/fish";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
       BROWSER =
         if device.isMac
