@@ -38,11 +38,13 @@ in rec {
         lsp.autoAttach = true;
       };
 
-      image = {
-        enable = true;
-        backend = "kitty";
-        tmuxShowOnlyInActiveWindow = true;
-      };
+      # Check extraConfigLua for the actual setup
+      # For disabling when using neovide
+      # image = {
+      #   enable = true;
+      #   backend = "kitty";
+      #   tmuxShowOnlyInActiveWindow = true;
+      # };
 
       mini = {
         enable = true;
@@ -120,6 +122,20 @@ in rec {
 
       telescope = {
         enable = true;
+        extraOptions = {
+          defaults = {
+            layout_strategy = "vertical";
+            layout_config = {
+              preview_height = 0.7;
+              vertical = {
+                size = {
+                  width = "95%";
+                  height = "95%";
+                };
+              };
+            };
+          };
+        };
         extensions = {
           undo.enable = true;
           ui-select.enable = true;
@@ -419,35 +435,40 @@ in rec {
             blend      = 10,
         })
 
-        require('neorg').setup({
-            load = {
-                ["core.defaults"] = {},
-                ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
-                ["core.concealer"] = {
-                    config = { icon_preset = "diamond" }
-                },
-                ["core.integrations.image"] = {
-                    config = {
-                        tmux_show_only_in_active_window = true,
-                    }
-                },
-                ["core.keybinds"] = {
-                   -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
-                   config = {
-                     default_keybinds = true,
-                     neorg_leader = "<leader>n",
-                   },
-                },
-                ["core.dirman"] = {
-                    config = {
-                        default_workspace = "Notes",
-                        workspaces = {
-                            Notes = "~/Nextcloud/Notes",
-                            Work = "~/Nextcloud/Work",
-                        }
+        local load = {
+            ["core.defaults"] = {},
+            ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
+            ["core.concealer"] = {
+                config = { icon_preset = "diamond" }
+            },
+            ["core.keybinds"] = {
+               -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+               config = {
+                 default_keybinds = true,
+                 neorg_leader = "<leader>n",
+               },
+            },
+            ["core.dirman"] = {
+                config = {
+                    default_workspace = "Notes",
+                    workspaces = {
+                        Notes = "~/Nextcloud/Notes",
+                        Work = "~/Nextcloud/Work",
                     }
                 }
             }
+        }
+
+        if not vim.g.neovide then
+            load["core.integrations.image"] = {
+                config = {
+                    tmux_show_only_in_active_window = true,
+                }
+            }
+        end
+
+        require('neorg').setup({
+            load = load,
         })
 
         require('chatgpt').setup({
@@ -474,6 +495,7 @@ in rec {
 
         if not vim.g.neovide then
             require('neoscroll').setup()
+            require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
         else
             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
         end
@@ -517,7 +539,7 @@ in rec {
                 end,
             })
         end)
-        vim.g.rustaceanvim.tools = { enable_clippy = false };
+        vim.g.rustaceanvim["tools"] = { enable_clippy = false };
       '';
     package = pkgs.neovim-nightly;
     opts = {
@@ -537,7 +559,7 @@ in rec {
       # undodir = "${config.xdg.cacheHome}/undodir";
       undofile = true;
       viewoptions = "cursor,folds";
-      concealcursor = "n";
+      # concealcursor = "n";
       foldlevelstart = 99;
     };
     extraPlugins = with pkgs.vimPlugins; [
@@ -546,6 +568,7 @@ in rec {
       neorg-telescope
 
       # Wut
+      image-nvim
       ChatGPT-nvim
 
       # UI and UX
