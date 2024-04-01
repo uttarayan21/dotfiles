@@ -38,14 +38,6 @@ in rec {
         lsp.autoAttach = true;
       };
 
-      # Check extraConfigLua for the actual setup
-      # For disabling when using neovide
-      # image = {
-      #   enable = true;
-      #   backend = "kitty";
-      #   tmuxShowOnlyInActiveWindow = true;
-      # };
-
       mini = {
         enable = true;
         modules = {
@@ -321,7 +313,7 @@ in rec {
         "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
         "<leader>p" = "[[<cmd>bprev<cr>]]";
         "<leader>q" = "[[<cmd>bw<cr>]]";
-        "<leader>nn" = "[[<cmd>Neorg<cr>]]";
+        "<leader>mm" = "[[<cmd>Neorg<cr>]]";
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
 
         "<C-k>" = "vim.lsp.buf.definition";
@@ -445,7 +437,7 @@ in rec {
                -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
                config = {
                  default_keybinds = true,
-                 neorg_leader = "<leader>n",
+                 neorg_leader = "<leader>m",
                },
             },
             ["core.dirman"] = {
