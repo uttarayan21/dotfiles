@@ -17,8 +17,8 @@ home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace
 
 local:
-    nix flake lock --update-input subflakes
-    nix flake lock --update-input neovim
+    nix flake update subflakes
+    nix flake update neovim
 
 nvim:
     nix run .#neovim
