@@ -6,7 +6,9 @@
 }:
 lib.attrsets.optionalAttrs device.hasGui {
   home.packages = with pkgs;
-    []
+    [
+      neovide
+    ]
     ++ lib.optionals device.isLinux [
       ferdium
       psst

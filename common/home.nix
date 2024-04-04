@@ -56,7 +56,6 @@ in {
       go
       pandoc
       nodejs
-      neovide
       sqls
       vcpkg
       gh
