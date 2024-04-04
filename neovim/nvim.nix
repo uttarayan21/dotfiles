@@ -306,7 +306,7 @@ in rec {
         # "<leader>ee" = "[[<cmd>Rest run<cr>]]";
         "<leader>ee" = "[[<Plug>RestNvim]]";
         "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-        "<leader>hh" = "[[<cmd>DevdocsOpenFloat<cr>]]";
+        "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
         "<leader><leader>" = "'<c-^>'";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
@@ -532,6 +532,18 @@ in rec {
             })
         end)
         vim.g.rustaceanvim["tools"] = { enable_clippy = false };
+
+        vim.api.nvim_create_user_command('Reso',
+        function()
+            pcall(vim.cmd'source ~/.config/nvim/init.lua')
+        end,
+        {})
+
+        vim.api.nvim_create_user_command('Sqlfmt',
+        function()
+            pcall(vim.cmd'%!${pkgs.sleek}/bin/sleek')
+        end,
+        {})
       '';
     package = pkgs.neovim-nightly;
     opts = {

@@ -66,7 +66,6 @@ in {
       alejandra
       pkg-config
       devenv
-      python312Packages.sqlparse
       sleek
 
       # Misc
@@ -96,6 +95,7 @@ in {
         (pkgs.mpv-unwrapped.override {sixelSupport = true;}) {})
     ]
     ++ lib.optionals device.isLinux [
+      ferdium
       psst
       sony-headphones-client
       abaddon
@@ -320,6 +320,27 @@ in {
 
     file = {
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
+      ".cargo/config.toml".text =
+        /*
+        toml
+        */
+        ''
+          [alias]
+          lldb = ["with", "rust-lldb", "--"]
+
+          [net]
+          git-fetch-with-cli = true
+
+          # [target.aarch64-apple-darwin]
+          # linker = "clang"
+          # rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
+
+          [registries.catscii]
+          index = "https://git.shipyard.rs/catscii/crate-index.git"
+
+          [http]
+          user-agent = "shipyard J0/QFq2Sa5y6nTxJQAb8t+e/3qLSub1/sa3zn0leZv6LKG/zmQcoikT9U3xPwbzp8hQ="
+        '';
     };
 
     sessionVariables = {
