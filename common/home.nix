@@ -35,13 +35,15 @@ in {
   imports =
     [
       inputs.nix-index-database.hmModules.nix-index
-      ./tmux.nix
       ./wezterm.nix
+      ./kitty.nix
+      ./gui.nix
+
+      ./tmux.nix
       ./nvim.nix
       ./goread.nix
       ./ncmpcpp.nix
       ./zellij.nix
-      ./kitty.nix
       ../modules
     ]
     ++ lib.optionals device.isLinux [../linux];
@@ -95,32 +97,14 @@ in {
         (pkgs.mpv-unwrapped.override {sixelSupport = true;}) {})
     ]
     ++ lib.optionals device.isLinux [
-      ferdium
-      psst
-      sony-headphones-client
-      abaddon
       rr
-      catppuccinThemes.gtk
-      catppuccinThemes.papirus-folders
-      gnome.seahorse
-      gnome.nautilus
-      nextcloud-client
       sbctl
-      gparted
       gptfdisk
-      polkit_gnome
       dig
-      mullvad-vpn
-      mullvad-closest
-      mullvad-browser
-      steam-run
       usbutils
       handlr-regex
       handlr-xdg
-      webcord-vencord
-      spotify
       lsof
-      wl-clipboard
       ncpamixer
     ]
     ++ lib.optionals device.isMac [];

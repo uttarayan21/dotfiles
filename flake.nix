@@ -102,6 +102,7 @@
         name = "genzai";
         system = "x86_64-linux";
         user = "fs0c131y";
+        hasGui = false; # Don't wan't to run GUI apps on a headless server
       }
       {
         name = "Uttarayans-MacBook-Pro";
@@ -112,11 +113,13 @@
         name = "Serviuss-iMac-Pro";
         system = "x86_64-darwin";
         user = "servius";
+        hasGui = false; # It's a vm so no GUI apps are used
       }
       {
         name = "SteamDeck";
         system = "x86_64-linux";
         user = "deck";
+        hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
       }
     ];
 
@@ -127,6 +130,10 @@
         then device.isNix
         else false;
       isMac = !isNull (builtins.match ".*-darwin" device.system);
+      hasGui =
+        if (builtins.hasAttr "hasGui" device)
+        then device.hasGui
+        else true;
       system = device.system;
       name = device.name;
       user = device.user;

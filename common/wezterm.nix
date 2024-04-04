@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
   programs.wezterm = {
-    enable = true;
+    enable = device.hasGui;
     extraConfig =
       /*
       lua

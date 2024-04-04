@@ -1,8 +1,6 @@
 {
   pkgs,
   device,
-  nur,
-  inputs,
   ...
 }: {
   imports = [
@@ -15,11 +13,11 @@
     ../linux/mpd.nix
   ];
 
-  services.kdeconnect.enable = true;
-  services.kdeconnect.indicator = true;
-  services.swayosd.enable = true;
+  services.kdeconnect.enable = device.hasGui;
+  services.kdeconnect.indicator = device.hasGui;
+  services.swayosd.enable = device.hasGui;
   services.nextcloud-client = {
-    enable = true;
+    enable = device.hasGui;
     startInBackground = true;
   };
 

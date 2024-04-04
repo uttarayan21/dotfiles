@@ -7,7 +7,7 @@
 }: {
   imports = [inputs.anyrun.nixosModules.home-manager];
   programs.anyrun = {
-    enable = true;
+    enable = device.hasGui;
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
         inputs.anyrun-nixos-options.packages.${pkgs.system}.default

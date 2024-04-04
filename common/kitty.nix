@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
   programs.kitty = {
-    enable = true;
+    enable = device.hasGui;
     font = {
       name = "Hasklug Nerd Font Mono";
       size = 13;

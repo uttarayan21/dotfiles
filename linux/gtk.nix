@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{pkgs, device, ...}: {
   gtk = {
-    enable = true;
+    enable = device.hasGui;
     theme = {
       name = "Catppuccin-Mocha-Standard-Mauve-Dark";
       package = pkgs.catppuccin-gtk.override {

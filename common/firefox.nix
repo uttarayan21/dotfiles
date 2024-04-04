@@ -4,7 +4,7 @@
   ...
 }: {
   programs.firefox = {
-    enable = device.isLinux;
+    enable = device.hasGui;
     profiles.default = {
       userChrome = let
       # TODO: Move to subflake

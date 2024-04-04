@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  device,
   ...
 }: {
   imports = [../modules/hyprpaper.nix inputs.hyprlock.homeManagerModules.hyprlock];
@@ -8,7 +9,7 @@
   programs.hyprpaper = let
     wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
   in {
-    enable = true;
+    enable = device.hasGui;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;

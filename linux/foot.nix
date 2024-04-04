@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
   programs.foot = {
-    enable = pkgs.stdenv.isLinux;
+    enable = device.hasGui;
     server.enable = true;
     settings = {
       main = {

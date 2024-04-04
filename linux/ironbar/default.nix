@@ -1,11 +1,12 @@
 {
   inputs,
   pkgs,
+  device,
   ...
 }: {
   imports = [inputs.ironbar.homeManagerModules.default];
   programs.ironbar = {
-    enable = true;
+    enable = device.hasGui;
     config.monitors = {
       DP-1 = {
         position = "bottom";
