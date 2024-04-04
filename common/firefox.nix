@@ -6,22 +6,14 @@
   programs.firefox = {
     enable = device.hasGui;
     profiles.default = {
-      userChrome = let
-      # TODO: Move to subflake
-        csshacks = pkgs.fetchFromGitHub {
-          owner = "MrOtherGuy";
-          repo = "firefox-csshacks";
-          rev = "master";
-          sha256 = "sha256-XJ+MTEADzOsCIh0I8EAxbtIpDHfMJsN68sKBy7/1l60=";
-        };
-      in
+      userChrome =
         /*
         css
         */
         ''
-          /* @import url(${csshacks}/chrome/toolbars_below_content.css); */
-          /* @import url(${csshacks}/chrome/scrollable_menupopups.css); */
-          /* @import url(${csshacks}/chrome/linux_gtk_window_control_patch.css); */
+          /* @import url(${pkgs.csshacks}/chrome/toolbars_below_content.css); */
+          /* @import url(${pkgs.csshacks}/chrome/scrollable_menupopups.css); */
+          /* @import url(${pkgs.csshacks}/chrome/linux_gtk_window_control_patch.css); */
         '';
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger

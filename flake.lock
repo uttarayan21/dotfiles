@@ -197,6 +197,22 @@
         "type": "github"
       }
     },
+    "csshacks": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712075115,
+        "narHash": "sha256-asxjHWOHWK9Hrf7qF4D+KfFlxQOpPK8oYgdbR1b4gxc=",
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "rev": "daf2d17b3607085d51e30a0da01bf9b713672827",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MrOtherGuy",
+        "repo": "firefox-csshacks",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils_8",
@@ -1587,22 +1603,6 @@
         "type": "github"
       }
     },
-    "nvim-devdocs_2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1703234230,
-        "narHash": "sha256-qqtBNfBBGyxMsHL3UXu+MF/UyfVAubG+6fnwLK9kY9Q=",
-        "owner": "luckasRanarison",
-        "repo": "nvim-devdocs",
-        "rev": "521d24661ffe6d1ba025debea2675c765a9c1ee1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "luckasRanarison",
-        "repo": "nvim-devdocs",
-        "type": "github"
-      }
-    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -1877,15 +1877,15 @@
     },
     "subflakes": {
       "inputs": {
+        "csshacks": "csshacks",
         "flake-utils": "flake-utils_15",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "nvim-devdocs": "nvim-devdocs_2"
+        ]
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-PaTXAe/aVsZln/cKtHPXfiWIL+VwFxRiSQU0CRmglLI=",
+        "narHash": "sha256-FXBBslH2CHFNTtc3NQmcoJAcjGz/c9/+k6oJegUaYig=",
         "path": "./flakes",
         "type": "path"
       },
