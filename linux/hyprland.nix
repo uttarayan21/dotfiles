@@ -14,8 +14,8 @@
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;
     settings.wallpapers = {
-      "DP-3" = wallpapers.skull;
-      "DP-1" = wallpapers.frieren_3;
+      "${device.monitors.primary}" = wallpapers.skull;
+      "${device.monitors.secondary}" = wallpapers.frieren_3;
     };
   };
   programs.hyprlock = {
@@ -28,8 +28,8 @@
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
         ",preferred,auto,auto"
-        "DP-3,       2560x1440@170, 0x0,     1, transform, 0"
-        "DP-1,   2560x1440@170, -1440x-800,1, transform, 1"
+        "${device.monitors.primary},       2560x1440@170, 0x0,     1, transform, 0"
+        "${device.monitors.secondary},   2560x1440@170, -1440x-800,1, transform, 1"
         ",highrr,auto,1"
       ];
 
@@ -226,18 +226,18 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-
+      # ${device.monitors.primary}
       workspace = [
-        "1,  monitor:DP-3"
-        "2,  monitor:DP-3"
-        "3,  monitor:DP-3"
-        "4,  monitor:DP-3"
-        "5,  monitor:DP-3"
-        "6,  monitor:DP-3"
-        "7,  monitor:DP-3"
-        "8,  monitor:DP-1"
-        "9,  monitor:DP-1"
-        "10, monitor:DP-1"
+        "1,  monitor:${device.monitors.primary}"
+        "2,  monitor:${device.monitors.primary}"
+        "3,  monitor:${device.monitors.primary}"
+        "4,  monitor:${device.monitors.primary}"
+        "5,  monitor:${device.monitors.primary}"
+        "6,  monitor:${device.monitors.primary}"
+        "7,  monitor:${device.monitors.primary}"
+        "8,  monitor:${device.monitors.secondary}"
+        "9,  monitor:${device.monitors.secondary}"
+        "10, monitor:${device.monitors.secondary}"
       ];
     };
   };

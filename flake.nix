@@ -98,6 +98,10 @@
         system = "x86_64-linux";
         user = "servius";
         isNix = true;
+        monitors = {
+          primary = "DP-1";
+          secondary = "DP-4";
+        };
       }
       {
         name = "genzai";
@@ -135,6 +139,10 @@
         if (builtins.hasAttr "hasGui" device)
         then device.hasGui
         else true;
+      monitors =
+        if (builtins.hasAttr "monitors" device)
+        then device.monitors
+        else null;
       system = device.system;
       name = device.name;
       user = device.user;

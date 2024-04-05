@@ -8,7 +8,7 @@
   programs.ironbar = {
     enable = device.hasGui;
     config.monitors = {
-      DP-1 = {
+      "${device.monitors.secondary}" = {
         position = "bottom";
         start = [
           {
@@ -33,7 +33,7 @@
           {type = "clock";}
         ];
       };
-      DP-3 = {
+      "${device.monitors.primary}" = {
         position = "bottom";
         icon_theme = "Papirus-Dark";
         end = [
