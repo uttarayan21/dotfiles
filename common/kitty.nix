@@ -18,6 +18,9 @@
       # font_size = 13.0;
     };
     shellIntegration.enableFishIntegration = true;
+    darwinLaunchOptions = [
+      "--single-instance"
+    ];
     theme = "Catppuccin-Mocha";
   };
 }

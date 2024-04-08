@@ -451,13 +451,6 @@ in rec {
             }
         }
 
-        if not vim.g.neovide then
-            load["core.integrations.image"] = {
-                config = {
-                    tmux_show_only_in_active_window = true,
-                }
-            }
-        end
 
         require('neorg').setup({
             load = load,
@@ -488,8 +481,14 @@ in rec {
         if not vim.g.neovide then
             require('neoscroll').setup()
             require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
+            load["core.integrations.image"] = {
+                config = {
+                    tmux_show_only_in_active_window = true,
+                }
+            }
         else
             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+            vim.g.neovide_cursor_vfx_mode = "railgun"
         end
 
 

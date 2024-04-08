@@ -12,7 +12,7 @@
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
     '';
-    package = pkgs.nix;
+    # package = pkgs.nixVersions.nix_2_21;
   };
 
   # security.pam.enableSudoTouchIdAuth = true;
