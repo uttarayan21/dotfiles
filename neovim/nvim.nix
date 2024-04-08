@@ -114,7 +114,7 @@ in rec {
 
       telescope = {
         enable = true;
-        extraOptions = {
+        settings = {
           defaults = {
             layout_strategy = "vertical";
             layout_config = {
@@ -132,7 +132,7 @@ in rec {
           undo.enable = true;
           ui-select.enable = true;
           fzf-native.enable = true;
-          file_browser.enable = true;
+          file-browser.enable = true;
         };
       };
 
@@ -202,8 +202,6 @@ in rec {
             enable = true;
             settings.formatting.command = [
               "${pkgs.alejandra}/bin/alejandra"
-              # "${pkgs.nixfmt}/bin/nixfmt"
-              # "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"
             ];
             # nix.flake.autoArchive = true;
           };

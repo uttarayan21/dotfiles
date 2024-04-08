@@ -2,8 +2,6 @@
   description = "Home Manager configuration of fs0c131y";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-main.url = "github:nixos/nixpkgs";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -69,7 +67,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     neovim = {
       url = "path:./neovim";
       inputs.nixpkgs.follows = "nixpkgs";

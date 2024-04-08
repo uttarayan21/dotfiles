@@ -72,13 +72,12 @@ in {
     sha256 = "sha256-2T41qWMe++3Qxl9veRNHMeRI3eU4+LAueKTss02gYNk";
   };
 
-  # gtk = pkgs.catppuccin-gtk.override {
-  #   variant = "mocha";
-  #   size = "standard";
-  #   accents = ["mauve"];
-  #   tweaks = ["normal"];
-  # };
-  gtk = pkgs.catppuccin-gtk;
+  gtk = pkgs.catppuccin-gtk.override {
+    variant = "mocha";
+    size = "standard";
+    accents = ["mauve"];
+    tweaks = ["normal"];
+  };
 
   papirus-folders = pkgs.catppuccin-papirus-folders.override {
     accent = "mauve";
