@@ -299,7 +299,7 @@ in rec {
         "<C-w>%" = "[[<cmd>vsplit<cr>]]";
         "gh" = "[[<cmd>Octo actions<cr>]]";
         "<leader>\"" = ''[["+]]'';
-        "<leader>c" = "[[<cmd>ChatGPT<cr>]]";
+        "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
         # "<leader>ee" = "[[<cmd>Rest run<cr>]]";
         "<leader>ee" = "[[<Plug>RestNvim]]";
@@ -554,8 +554,17 @@ in rec {
                 -- returns a table (see below)
                 command = {"zsh"}
               },
-              sqlite = {
-                
+              sql = {
+                command = function(meta)
+                    local db = os.getenv("DATABASE_PATH")
+                    if db == nil then
+                        local filename = vim.api.nvim_buf_get_name(meta.current_bufnr)
+                        return { '${pkgs.sqlite}/bin/sqlite3', ':memory:', filename}
+                    else
+                        return { '${pkgs.sqlite}/bin/sqlite3', db }
+                    end
+
+                end
               }
             },
             -- How the repl window will be displayed
