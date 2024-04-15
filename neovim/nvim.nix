@@ -289,7 +289,7 @@ in rec {
     colorschemes = {
       catppuccin = {
         enable = true;
-        flavour = "mocha";
+        settings.flavour = "mocha";
       };
     };
     keymaps = mkMappings {
