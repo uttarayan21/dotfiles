@@ -96,8 +96,8 @@
         user = "servius";
         isNix = true;
         monitors = {
-          primary = "DP-1";
-          secondary = "DP-4";
+          primary = "DP-3";
+          secondary = "DP-1";
         };
       }
       {
