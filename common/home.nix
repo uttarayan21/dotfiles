@@ -115,6 +115,10 @@ in {
   };
 
   programs = {
+    thefuck = {
+        enable = true;
+        enableFishIntegration = true;
+    };
     direnv = {
       enable = true;
       # enableFishIntegration = true; // Auto enabled

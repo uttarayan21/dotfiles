@@ -435,7 +435,7 @@ in rec {
                -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
                config = {
                  default_keybinds = true,
-                 neorg_leader = "<leader>m",
+                 neorg_leader = "<C-m>",
                },
             },
             ["core.dirman"] = {
