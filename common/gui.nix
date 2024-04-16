@@ -10,6 +10,8 @@ lib.attrsets.optionalAttrs device.hasGui {
       neovide
     ]
     ++ lib.optionals device.isLinux [
+      minecraft
+      nixos.jdk
       ferdium
       psst
       sony-headphones-client
