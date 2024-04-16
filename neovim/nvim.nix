@@ -455,7 +455,7 @@ in rec {
         })
 
         require('chatgpt').setup({
-            api_key_cmd = "rbw get platform.openai.com",
+            api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
         })
 
         require('octo').setup({
