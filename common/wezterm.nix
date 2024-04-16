@@ -14,6 +14,7 @@
         return {
             term = "wezterm",
             font = wezterm.font_with_fallback({
+                 "Monaspace Krypton",
                  "Hasklug Nerd Font Mono",
                  "Symbols Nerd Font Mono"
             }),
@@ -24,7 +25,7 @@
             window_background_opacity = 0.8,
             cursor_blink_rate = 8,
             default_cursor_style = "BlinkingBlock",
-            default_prog = { "${pkgs.fish.outPath}/bin/fish", "-l" },
+            default_prog = { "${pkgs.fish}/bin/fish", "-l" },
             window_padding = {
                 left = 2,
                 right = 0,

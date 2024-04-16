@@ -90,6 +90,7 @@ in {
       cachix
       fzf
       (nerdfonts.override {fonts = ["Hasklig"];})
+      monaspace
       pfetch-rs
       hotedit
       (pkgs.wrapMpv
@@ -275,8 +276,8 @@ in {
         base_url = "https://pass.uttarayan.me";
         pinentry =
           if device.isMac
-          # then pkgs.pinentry_mac
-          then pkgs.pinentry-curses
+          then pkgs.pinentry_mac
+          # then pkgs.pinentry-curses
           else pkgs.pinentry-gnome3;
       };
     };

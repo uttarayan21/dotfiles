@@ -9,7 +9,8 @@
     settings = {
       main = {
         shell = "${pkgs.fish.outPath}/bin/fish";
-        font = "Hasklug Nerd Font Mono:size=13";
+        # font = "Hasklug Nerd Font Mono:size=13";
+        font = "Monaspace Krypton:size=13";
         initial-window-size-pixels = "1440x800";
       };
       colors = {

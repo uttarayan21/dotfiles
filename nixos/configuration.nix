@@ -219,6 +219,7 @@
       gnumake
       python3
       (nerdfonts.override {fonts = ["FiraCode" "Hasklig"];})
+      monaspace
     ];
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";

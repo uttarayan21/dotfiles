@@ -485,7 +485,8 @@ in rec {
                 }
             }
         else
-            vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+            vim.o.guifont = "Monaspace Krypton:h13"
+            -- vim.o.guifont = "Hasklug Nerd Font Mono:h13"
             vim.g.neovide_cursor_vfx_mode = "railgun"
         end
 
@@ -558,8 +559,7 @@ in rec {
                 command = function(meta)
                     local db = os.getenv("DATABASE_PATH")
                     if db == nil then
-                        local filename = vim.api.nvim_buf_get_name(meta.current_bufnr)
-                        return { '${pkgs.sqlite}/bin/sqlite3', ':memory:', filename}
+                        return { '${pkgs.sqlite}/bin/sqlite3', ':memory:' }
                     else
                         return { '${pkgs.sqlite}/bin/sqlite3', db }
                     end
@@ -569,7 +569,7 @@ in rec {
             },
             -- How the repl window will be displayed
             -- See below for more information
-            repl_open_cmd = require('iron.view').right(40),
+            repl_open_cmd = require('iron.view').right(60),
           },
           -- Iron doesn't set keymaps by default anymore.
           -- You can set them here or manually add keymaps to the functions in iron.core
