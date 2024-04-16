@@ -52,7 +52,8 @@
           pname = "neorg";
           version = inputs.neorg.rev;
           src = inputs.neorg;
-          dependencies = [final.vimPlugins.plenary-nvim final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim];
+          dependencies = [final.vimPlugins.plenary-nvim];
+          # final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim;
         };
         neorg-telescope = final.vimUtils.buildVimPlugin {
           pname = "neorg-telescope";
