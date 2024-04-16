@@ -48,6 +48,18 @@
           version = "0.4.1";
           src = inputs.nvim-devdocs;
         };
+        neorg = final.vimUtils.buildVimPlugin {
+          pname = "neorg";
+          version = inputs.neorg.rev;
+          src = inputs.neorg;
+          dependencies = [final.vimPlugins.plenary-nvim final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim];
+        };
+        neorg-telescope = final.vimUtils.buildVimPlugin {
+          pname = "neorg-telescope";
+          version = inputs.neorg-telescope.rev;
+          src = inputs.neorg-telescope;
+          dependencies = [final.vimPlugins.telescope-nvim final.vimPlugins.neorg];
+        };
       };
   };
   tree-sitter-grammars = final: prev: {

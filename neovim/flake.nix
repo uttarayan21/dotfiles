@@ -11,6 +11,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    norg.url = "github:nvim-neorg/tree-sitter-norg/dev";
+    norg-meta.url = "github:nvim-neorg/tree-sitter-norg-meta";
+
+    neorg = {
+      url = "github:nvim-neorg/neorg";
+      flake = false;
+    };
+    neorg-telescope = {
+      url = "github:nvim-neorg/neorg-telescope";
+      flake = false;
+    };
+
     nvim-devdocs.url = "github:luckasRanarison/nvim-devdocs";
     nvim-devdocs.flake = false;
   };

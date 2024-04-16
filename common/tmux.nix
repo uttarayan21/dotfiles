@@ -63,6 +63,7 @@ in {
 
         bind-key -n C-\\ run-shell ${scratchpad}
 
+        bind o set status
         bind C-n next-window
         bind C-p previous-window
         bind C-q last-window
