@@ -7,7 +7,7 @@
     enable = device.hasGui;
     font = {
       # name = "Hasklug Nerd Font Mono";
-      name = "Monaspace Krypton Var Medium";
+      name = "Monaspace Krypton Var Light";
       size = 13;
     };
     settings = {

@@ -317,7 +317,7 @@ in rec {
         "<C-k>" = "vim.lsp.buf.definition";
         "<C-\\>" = "require('FTerm').toggle";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
-        "gi" = "require'telescope.builtin'.lsp_implementations";
+        "gi" = "require'telescope.builtin'.lsp_references";
         "<leader>a" = "vim.lsp.buf.code_action";
         "<leader>bb" = "require'dap'.toggle_breakpoint";
         "<leader>du" = "require'dapui'.toggle";
@@ -421,7 +421,7 @@ in rec {
                 height = 0.99,
                 width = 0.95,
             },
-            cmd        = "${pkgs.fish}/bin/fish",
+            cmd        = "sh -c 'tmux attach -t scratch || tmux new -s scratch'",
             blend      = 10,
         })
 
@@ -431,6 +431,7 @@ in rec {
             ["core.concealer"] = {
                 config = { icon_preset = "diamond" }
             },
+            ["core.export"] = {},
             ["core.keybinds"] = {
                -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
                config = {
