@@ -26,12 +26,18 @@ in rec {
   config = {
     plugins = {
       fugitive.enable = true;
-      oil.enable = true;
+      gitsigns.enable = true;
+      neogit.enable = true;
       surround.enable = true;
       todo-comments.enable = true;
       trouble.enable = true;
       ts-context-commentstring.enable = true;
       which-key.enable = true;
+
+      oil = {
+        enable = true;
+        settings.skip_confirm_for_simple_edits = true;
+      };
 
       navic = {
         enable = true;

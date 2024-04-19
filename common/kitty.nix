@@ -6,8 +6,8 @@
   programs.kitty = {
     enable = device.hasGui;
     font = {
-      # name = "Hasklug Nerd Font Mono";
-      name = "Monaspace Krypton Var Light";
+      name = "Hasklug Nerd Font Mono";
+      # name = "Monaspace Krypton Var Light";
       size = 13;
     };
     settings = {
