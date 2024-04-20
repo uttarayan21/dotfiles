@@ -10,6 +10,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       neovide
     ]
     ++ lib.optionals device.isLinux [
+      bottles
       minecraft
       jdk
       ferdium
