@@ -11,7 +11,7 @@ lib.attrsets.optionalAttrs device.hasGui {
     ]
     ++ lib.optionals device.isLinux [
       minecraft
-      nixos.jdk
+      jdk
       ferdium
       psst
       sony-headphones-client

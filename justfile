@@ -9,8 +9,13 @@ install: local
 install: local
 	sudo nixos-rebuild switch --flake .
 
+[macos]
 build:
     nix run nix-darwin -- build --flake . --show-trace
+
+[linux]
+build:
+    nixos-rebuild build --flake . --show-trace
 
 
 home:
