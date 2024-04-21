@@ -7,7 +7,7 @@ install: local
 
 [linux]
 install: local
-	sudo nixos-rebuild switch --flake .
+	NIX_BUILD_CORES=0 sudo nixos-rebuild switch --flake .
 
 [macos]
 build:
