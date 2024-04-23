@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713846960,
-        "narHash": "sha256-Q9AwDiJfnvfXhHF0/pruvcDekgc6DWdzp5FVRSFstQg=",
+        "lastModified": 1713901371,
+        "narHash": "sha256-2di941xGNgI4VnNaQnmnQ6NSNlQE6v2Gdgg4wNonM/I=",
         "owner": "uttarayan21",
         "repo": "anyrun-rbw",
-        "rev": "0eecca4980a382eb792b064f4040bbee7b436493",
+        "rev": "964c7cbb8e5fc49417d2611bcb1cbb74c37c98a3",
         "type": "github"
       },
       "original": {
