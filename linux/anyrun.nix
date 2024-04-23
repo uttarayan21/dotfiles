@@ -13,6 +13,7 @@
         inputs.anyrun-nixos-options.packages.${pkgs.system}.default
         inputs.anyrun-hyprwin.packages.${pkgs.system}.default
         inputs.anyrun-rink.packages.${pkgs.system}.default
+        inputs.anyrun-rbw.packages.${pkgs.system}.default
         # rink
         applications
         websearch

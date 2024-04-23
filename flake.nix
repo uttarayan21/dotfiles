@@ -19,6 +19,10 @@
       url = "github:uttarayan21/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anyrun-rbw = {
+      url = "github:uttarayan21/anyrun-rbw";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     anyrun-hyprwin = {
       url = "github:uttarayan21/anyrun-hyprwin";
       inputs.nixpkgs.follows = "nixpkgs";
