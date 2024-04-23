@@ -603,6 +603,9 @@ in rec {
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
         })
 
+        require("pets").setup({
+          -- your options here
+        })
 
       '';
     package = pkgs.neovim-nightly;
@@ -634,6 +637,7 @@ in rec {
       # Wut
       image-nvim
       ChatGPT-nvim
+      pets-nvim
 
       # UI and UX
       vim-abolish

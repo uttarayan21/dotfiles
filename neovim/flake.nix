@@ -10,7 +10,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    pets = {
+        url = "github:giusgad/pets.nvim";
+        flake = false;
+    };
     neorg = {
       url = "github:nvim-neorg/neorg/v7.0.0";
       flake = false;

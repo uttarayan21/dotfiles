@@ -61,6 +61,12 @@
           src = inputs.neorg-telescope;
           dependencies = [final.vimPlugins.telescope-nvim final.vimPlugins.neorg];
         };
+        pets-nvim = final.pkgs.vimUtils.buildVimPlugin {
+          pname = "pets-nvim";
+          version = "1";
+          src = inputs.pets;
+          dependencies = [final.pkgs.vimPlugins.hologram-nvim final.pkgs.vimPlugins.nui-nvim];
+        };
       };
   };
   tree-sitter-grammars = final: prev: {
