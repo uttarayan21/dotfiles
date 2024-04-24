@@ -19,10 +19,10 @@
     };
   };
   programs.hyprlock = {
-    enable = true;
+    enable = device.hasGui;
   };
   wayland.windowManager.hyprland = {
-    enable = true;
+    enable = device.hasGui;
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
