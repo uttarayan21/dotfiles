@@ -3,16 +3,25 @@
     vimPlugins =
       prev.vimPlugins
       // {
-        comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
-          name = "comfortable-motion";
-          # TODO: Move to subflake
-          src = final.pkgs.fetchFromGitHub {
-            owner = "yuttie";
-            repo = "comfortable-motion.vim";
-            rev = "master";
-            sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
-          };
+        gp-nvim = final.pkgs.vimUtils.buildVimPlugin {
+          name = "gp.nvim";
+          src = inputs.gp-nvim;
         };
+        neogit = final.pkgs.vimUtils.buildVimPlugin {
+          name = "neogit";
+          src = inputs.neogit;
+          dependencies = [final.vimPlugins.plenary-nvim];
+        };
+        # comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
+        #   name = "comfortable-motion";
+        #   # TODO: Move to subflake
+        #   src = final.pkgs.fetchFromGitHub {
+        #     owner = "yuttie";
+        #     repo = "comfortable-motion.vim";
+        #     rev = "master";
+        #     sha256 = "sha256-S1LJXmShhpCJIg/FEPx3jFbmPpS/1U4MAQN2RY/nkI0";
+        #   };
+        # };
         nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
           name = "nvim-dap-rr";
           # TODO: Move to subflake
@@ -98,30 +107,45 @@
       };
   };
   rest-nvim-overlay = final: prev: let
-    # TODO: Move to subflake
-    rest-nvim-src = final.pkgs.fetchFromGitHub {
-      owner = "rest-nvim";
-      repo = "rest.nvim";
-      # rev = "64175b161b61b6807b4c6f3f18dd884325cf04e0";
-      # Before v2 release
-      rev = "v1.0.0";
-      # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0338";
-      # sha256 = "sha256-3EC0j/hEbdQ8nJU0I+LGmE/zNnglO/FrP/6POer0339";
-      sha256 = "sha256-jSY5WXx5tQAD0ZefPbg2luHywGAMcB9wdUTy6Av3xnY";
+    rest-nvim-src = inputs.rest-nvim;
+    rest-nvim-luaPackage-override = luaself: luaprev: {
+      rest-nvim = luaself.callPackage (
+        {
+          luaOlder,
+          buildLuarocksPackage,
+          lua,
+          nvim-nio,
+          luarocks-nix,
+          lua-curl,
+          mimetypes,
+          xml2lua,
+        }:
+          buildLuarocksPackage {
+            pname = "rest.nvim";
+            version = "scm-1";
+            knownRockspec = "${rest-nvim-src}/rest.nvim-scm-1.rockspec";
+            src = rest-nvim-src;
+            propagatedBuildInputs = [lua luarocks-nix nvim-nio lua-curl mimetypes xml2lua];
+            disable = luaOlder "5.1";
+          }
+      ) {};
     };
+    lua5_1 = prev.lua5_1.override {
+      packageOverrides = rest-nvim-luaPackage-override;
+    };
+    lua51Packages = final.lua5_1.pkgs;
   in {
-    vimPlugins =
-      prev.vimPlugins
-      // {
-        rest-nvim = final.vimUtils.buildVimPlugin {
-          pname = "rest.nvim";
-          version = "1.0.0";
-          src = rest-nvim-src;
-          # version = "scm-1";
-          # rockspecVersion = "0.2-1";
-          # buildInputs = with final.pkgs.lua51Packages; [lua lua-curl mimetypes nvim-nio xml2lua];
-        };
-      };
+    inherit lua5_1 lua51Packages;
+    # vimPlugins =
+    #   prev.vimPlugins
+    #   // {
+    #     rest-nvim = final.neovimUtils.buildNeovimPlugin {
+    #       pname = "rest.nvim";
+    #       version = "scm-1";
+    #       src = rest-nvim-src;
+    #     };
+    #   };
+    # rest-nvim = final.vimPlugins.rest-nvim;
   };
 in [
   inputs.nnn.overlay

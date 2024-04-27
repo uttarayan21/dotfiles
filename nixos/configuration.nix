@@ -218,7 +218,7 @@
         {})
       gnumake
       python3
-      (nerdfonts.override {fonts = ["FiraCode" "Hasklig"];})
+      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "Symbols"];})
       monaspace
     ];
     sessionVariables = {

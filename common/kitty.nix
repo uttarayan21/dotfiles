@@ -6,7 +6,8 @@
   programs.kitty = {
     enable = device.hasGui;
     font = {
-      name = "Hasklug Nerd Font Mono";
+      name = "FiraCode Nerd Font Mono";
+      # name = "Hasklug Nerd Font Mono";
       # name = "Monaspace Krypton Var Light";
       size = 13;
     };
@@ -15,8 +16,7 @@
       background = "#000000";
       shell = "${pkgs.fish}/bin/fish";
       hide_window_decorations = "yes";
-      # font_family = "Hasklug Nerd Font Mono";
-      # font_size = 13.0;
+      symbol_map = "U+22c4 Symbols Nerd Font Mono";
     };
     shellIntegration.enableFishIntegration = true;
     darwinLaunchOptions = [

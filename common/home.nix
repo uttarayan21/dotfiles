@@ -68,6 +68,7 @@ in {
       pkg-config
       devenv
       sleek
+      openapi-tui
 
       # Misc
       qmk
@@ -89,8 +90,9 @@ in {
       dust
       cachix
       fzf
-      (nerdfonts.override {fonts = ["Hasklig"];})
+      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "NerdFontsSymbolsOnly"];})
       monaspace
+      hasklig
       pfetch-rs
       hotedit
       (pkgs.wrapMpv

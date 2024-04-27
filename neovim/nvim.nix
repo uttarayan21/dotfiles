@@ -124,11 +124,11 @@ in rec {
           defaults = {
             layout_strategy = "vertical";
             layout_config = {
-              preview_height = 0.7;
+              preview_height = 0.8;
               vertical = {
                 size = {
-                  width = "95%";
-                  height = "95%";
+                  width = "99%";
+                  height = "99%";
                 };
               };
             };
@@ -178,7 +178,7 @@ in rec {
             ''
               function(client, bufnr)
                   if client.server_capabilities.inlayHintProvider then
-                      vim.lsp.inlay_hint.enable(bufnr, true)
+                      vim.lsp.inlay_hint.enable(true)
                   end
               end
             '';
@@ -217,6 +217,7 @@ in rec {
           lua-ls.enable = true;
           jsonls.enable = true;
           html.enable = true;
+          ast-grep.enable = true;
           # pylyzer.enable = true;
           # rust-analyzer.enable = true;
         };
@@ -331,6 +332,12 @@ in rec {
         "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
+
+        "<C-q><C-q>" = "[[g<Tab>]]";
+        "<C-q>c" = "[[<cmd>tabnew<cr>]]";
+        "<C-q>x" = "[[<cmd>tabclose<cr>]]";
+        "<C-q>n" = "[[<cmd>tabnext<cr>]]";
+        "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
       };
       terminal = {
         "<C-\\>" = "require('FTerm').toggle";
@@ -402,6 +409,7 @@ in rec {
 
         catcher(require('rest-nvim').setup)
 
+        catcher(require('lspconfig').ast_grep.setup)
 
         -- require('telescope').load_extension("dap")
         -- require('telescope').load_extension("rest")
@@ -456,13 +464,15 @@ in rec {
             }
         }
 
-
         require('neorg').setup({
             load = load,
         })
 
-        require('chatgpt').setup({
-            api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
+        -- require('chatgpt').setup({
+        --     api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
+        -- })
+        require("gp").setup({
+            openai_api_key = { "${pkgs.rbw}/bin/rbw", "get", "platform.openai.com" },
         })
 
         require('octo').setup({
@@ -491,6 +501,9 @@ in rec {
                     tmux_show_only_in_active_window = true,
                 }
             }
+            require("pets").setup({
+              -- your options here
+            })
         else
             vim.o.guifont = "Monaspace Krypton:h13"
             -- vim.o.guifont = "Hasklug Nerd Font Mono:h13"
@@ -560,7 +573,7 @@ in rec {
               sh = {
                 -- Can be a table or a function that
                 -- returns a table (see below)
-                command = {"zsh"}
+                command = {"${pkgs.zsh}/bin/zsh"}
               },
               sql = {
                 command = function(meta)
@@ -572,7 +585,10 @@ in rec {
                     end
 
                 end
-              }
+              },
+              rust = {
+                command = {"${pkgs.evcxr}/bin/evcxr"}
+              },
             },
             -- How the repl window will be displayed
             -- See below for more information
@@ -602,11 +618,6 @@ in rec {
           },
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
         })
-
-        require("pets").setup({
-          -- your options here
-        })
-
       '';
     package = pkgs.neovim-nightly;
     opts = {
@@ -636,7 +647,8 @@ in rec {
 
       # Wut
       image-nvim
-      ChatGPT-nvim
+      # ChatGPT-nvim
+      gp-nvim
       pets-nvim
 
       # UI and UX

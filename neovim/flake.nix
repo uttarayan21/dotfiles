@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     nixvim = {
-      url = "github:nix-community/nixvim";
+      url = "github:GaetanLepage/nixvim/ast-grep";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nnn = {
@@ -11,8 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     pets = {
-        url = "github:giusgad/pets.nvim";
-        flake = false;
+      url = "github:giusgad/pets.nvim";
+      flake = false;
     };
     neorg = {
       url = "github:nvim-neorg/neorg/v7.0.0";
@@ -22,9 +22,22 @@
       url = "github:nvim-neorg/neorg-telescope";
       flake = false;
     };
-
-    nvim-devdocs.url = "github:luckasRanarison/nvim-devdocs";
-    nvim-devdocs.flake = false;
+    rest-nvim = {
+      url = "github:rest-nvim/rest.nvim";
+      flake = false;
+    };
+    gp-nvim = {
+      url = "github:Robitx/gp.nvim";
+      flake = false;
+    };
+    nvim-devdocs = {
+      url = "github:luckasRanarison/nvim-devdocs";
+      flake = false;
+    };
+    neogit = {
+      url = "github:NeogitOrg/neogit/nightly";
+      flake = false;
+    };
   };
 
   outputs = {

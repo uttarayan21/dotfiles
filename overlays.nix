@@ -54,6 +54,22 @@
           cp $src/subcommands/cover/davis-cover $out/bin
         '';
       };
+
+    openapi-tui = let
+      cargoToml = builtins.fromTOML (builtins.readFile "${inputs.openapi-tui}/Cargo.toml");
+    in
+      final.rustPlatform.buildRustPackage {
+        pname = cargoToml.package.name;
+        version = cargoToml.package.version;
+        src = inputs.openapi-tui;
+        cargoLock = {lockFile = "${inputs.openapi-tui}/Cargo.lock";};
+        buildInputs = with final;
+          pkgs.lib.optionals pkgs.stdenv.isDarwin [
+            pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
+            pkgs.darwin.apple_sdk.frameworks.Security
+            pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+          ];
+      };
     picat = let
       # https://github.com/SimonPersson/picat
       # TODO: Move to subflake
