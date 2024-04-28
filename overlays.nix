@@ -68,7 +68,12 @@
             pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
             pkgs.darwin.apple_sdk.frameworks.Security
             pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+          ]
+          ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
+            pkgs.openssl
           ];
+        PKG_CONFIG_PATH = with final; pkgs.lib.makeSearchPath "lib/pkgconfig" [pkgs.openssl.dev];
+        nativeBuildINputs = with final; [pkgs.pkg-config];
       };
     picat = let
       # https://github.com/SimonPersson/picat

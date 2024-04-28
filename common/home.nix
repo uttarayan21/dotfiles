@@ -46,7 +46,8 @@ in {
       ./zellij.nix
       ../modules
     ]
-    ++ lib.optionals device.isLinux [../linux];
+    ++ lib.optionals device.isLinux [../linux]
+    ++ lib.optionals device.isServer [../server];
 
   home.packages = with pkgs;
     [
@@ -68,7 +69,7 @@ in {
       pkg-config
       devenv
       sleek
-      openapi-tui
+      # openapi-tui
 
       # Misc
       qmk
@@ -119,8 +120,8 @@ in {
 
   programs = {
     thefuck = {
-        enable = true;
-        enableFishIntegration = true;
+      enable = true;
+      enableFishIntegration = true;
     };
     direnv = {
       enable = true;

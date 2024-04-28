@@ -269,11 +269,11 @@
     "neogit": {
       "flake": false,
       "locked": {
-        "lastModified": 1713820126,
-        "narHash": "sha256-HornAbEtdpxSIQktJCHu8sLjXVjJJOdw4Kwa2T3NihE=",
+        "lastModified": 1714142101,
+        "narHash": "sha256-LgVQAwXTUr/tw92EkgTy1AlyTs2gyyYoU0ENlioeMII=",
         "owner": "NeogitOrg",
         "repo": "neogit",
-        "rev": "45dcbb677d3933b8671be13df872aca51fa9d0df",
+        "rev": "df527d152d34214a3a24a577bf7ef1f121e8add2",
         "type": "github"
       },
       "original": {
@@ -390,15 +390,16 @@
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
-        "lastModified": 1713939051,
-        "narHash": "sha256-EwDbsFjpXANXd2MIvRm4Bz2CDNWIhlV/659xOAxhEv0=",
-        "owner": "nix-community",
+        "lastModified": 1714124569,
+        "narHash": "sha256-v8DjUedj2WB0cyeOlZtM88Xm2sfrhlgcqqoEFFr8myc=",
+        "owner": "GaetanLepage",
         "repo": "nixvim",
-        "rev": "f2f97d844bb39559f3356e209b49c92900d860b8",
+        "rev": "aa696d6fb70d7a68a010a18f844ded267cfcb80a",
         "type": "github"
       },
       "original": {
-        "owner": "nix-community",
+        "owner": "GaetanLepage",
+        "ref": "ast-grep",
         "repo": "nixvim",
         "type": "github"
       }

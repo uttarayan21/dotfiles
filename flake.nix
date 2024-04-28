@@ -79,6 +79,10 @@
       url = "github:zaghaghi/openapi-tui";
       flake = false;
     };
+    cachix-deploy-flake = {
+      url = "github:cachix/cachix-deploy-flake";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = {
@@ -97,6 +101,7 @@
         system = "x86_64-linux";
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
+        isServer = true;
       }
       {
         name = "ryu";
@@ -135,6 +140,10 @@
 
     mkDevice = {device}: {
       isLinux = !isNull (builtins.match ".*-linux" device.system);
+      isServer =
+        if (builtins.hasAttr "isServer" device)
+        then device.isServer
+        else false;
       isNix =
         if (builtins.hasAttr "isNix" device)
         then device.isNix
@@ -163,7 +172,7 @@
     overlays = import ./overlays.nix {
       inherit inputs;
     };
-  in {
+  in rec {
     nixosConfigurations = let
       devices = nixos_devices;
     in
@@ -186,5 +195,14 @@
       };
 
     packages = inputs.neovim.packages;
+
+    cachix = let
+      cachix-deploy-lib = inputs.cachix-deploy.lib nixpkgs.legacyPackages.x86_64-linux;
+    in
+      cachix-deploy-lib.spec {
+        agents.mirai = homeConfigurations.mirai.config.system.build.toplevel;
+        agents.ryu = nixosConfigurations.ryu.config.system.build.toplevel;
+        # agents.mirai = homeConfigurations.mirai.config.system.build.toplevel;
+      };
   };
 }

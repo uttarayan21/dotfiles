@@ -9,8 +9,9 @@
         };
         neogit = final.pkgs.vimUtils.buildVimPlugin {
           name = "neogit";
+          version = inputs.neogit.rev;
           src = inputs.neogit;
-          dependencies = [final.vimPlugins.plenary-nvim];
+          dependencies = with final.vimPlugins; [plenary-nvim diffview-nvim fzf-lua];
         };
         # comfortable-motion = final.pkgs.vimUtils.buildVimPlugin {
         #   name = "comfortable-motion";
