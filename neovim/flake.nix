@@ -3,7 +3,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
     nixvim = {
-      url = "github:GaetanLepage/nixvim/ast-grep";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nnn = {
@@ -36,6 +36,18 @@
     };
     neogit = {
       url = "github:NeogitOrg/neogit/nightly";
+      flake = false;
+    };
+    tree-sitter-d2 = {
+      url = "github:ravsii/tree-sitter-d2";
+      flake = false;
+    };
+    tree-sitter-just = {
+      url = "github:IndianBoy42/tree-sitter-just";
+      flake = false;
+    };
+    d2 = {
+      url = "github:terrastruct/d2-vim";
       flake = false;
     };
   };

@@ -114,6 +114,7 @@ in rec {
           ++ (with pkgs.tree-sitter-grammars; [
             tree-sitter-just
             tree-sitter-nu
+            tree-sitter-d2
             tree-sitter-norg-meta
           ]);
       };
@@ -321,6 +322,7 @@ in rec {
         "<leader>mm" = "[[<cmd>Neorg<cr>]]";
         "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
 
+        "<leader>rr" = "vim.lsp.buf.rename";
         "<C-k>" = "vim.lsp.buf.definition";
         "<C-\\>" = "require('FTerm').toggle";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
@@ -333,6 +335,7 @@ in rec {
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
 
+        # Emulate tmux bindings with prefix <C-q> and tabs
         "<C-q><C-q>" = "[[g<Tab>]]";
         "<C-q>c" = "[[<cmd>tabnew<cr>]]";
         "<C-q>x" = "[[<cmd>tabclose<cr>]]";
@@ -618,6 +621,13 @@ in rec {
           },
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
         })
+
+        vim.filetype.add({
+          extension = {
+            http = "http",
+          },
+        })
+
       '';
     package = pkgs.neovim-nightly;
     opts = {
@@ -689,6 +699,7 @@ in rec {
       nvim-devdocs
 
       iron-nvim
+      d2
 
       pkgs.tree-sitter-grammars.tree-sitter-just
       pkgs.tree-sitter-grammars.tree-sitter-nu

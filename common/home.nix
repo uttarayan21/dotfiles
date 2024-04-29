@@ -69,6 +69,8 @@ in {
       pkg-config
       devenv
       sleek
+      d2
+      jujutsu
       # openapi-tui
 
       # Misc
