@@ -20,10 +20,11 @@ in {
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.tmux-fzf
       tmuxPlugins.fzf-tmux-url
-      {
-        plugin = tmuxPlugins.tmux-super-fingers;
-        extraConfig = "set -g @super-fingers-key i";
-      }
+      tmuxPlugins.tmux-thumbs
+      # {
+      #   plugin = tmuxPlugins.tmux-super-fingers;
+      #   extraConfig = "set -g @super-fingers-key i";
+      # }
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig =

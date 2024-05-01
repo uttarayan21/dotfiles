@@ -309,8 +309,7 @@ in rec {
         "<leader>\"" = ''[["+]]'';
         "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        # "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-        "<leader>ee" = "[[<Plug>RestNvim]]";
+        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
         "<leader>el" = "[[<cmd>Rest run last<cr>]]";
         "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
@@ -471,12 +470,12 @@ in rec {
             load = load,
         })
 
-        -- require('chatgpt').setup({
-        --     api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
-        -- })
-        require("gp").setup({
-            openai_api_key = { "${pkgs.rbw}/bin/rbw", "get", "platform.openai.com" },
+        require('chatgpt').setup({
+            api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
         })
+        -- require("gp").setup({
+        --     openai_api_key = { "${pkgs.rbw}/bin/rbw", "get", "platform.openai.com" },
+        -- })
 
         require('octo').setup({
           use_local_fs = false,
@@ -628,6 +627,12 @@ in rec {
           },
         })
 
+        vim.filetype.add({
+            filename = {
+                ['nurfile'] = "nu",
+            },
+        })
+
       '';
     package = pkgs.neovim-nightly;
     opts = {
@@ -657,8 +662,8 @@ in rec {
 
       # Wut
       image-nvim
-      # ChatGPT-nvim
-      gp-nvim
+      ChatGPT-nvim
+      # gp-nvim
       pets-nvim
 
       # UI and UX
