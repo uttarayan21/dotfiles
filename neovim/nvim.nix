@@ -159,15 +159,15 @@ in rec {
       nvim-ufo = {
         enable = true;
         closeFoldKinds = null;
-        # providerSelector =
-        #   /*
-        #   lua
-        #   */
-        #   ''
-        #     function(bufnr, filetype, buftype)
-        #           return {'treesitter', 'indent'}
-        #     end
-        #   '';
+        providerSelector =
+          /*
+          lua
+          */
+          ''
+            function(bufnr, filetype, buftype)
+                  return {'treesitter', 'indent'}
+            end
+          '';
       };
       rustaceanvim = {
         enable = true;
