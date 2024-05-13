@@ -3,7 +3,6 @@
   devices,
   inputs,
   overlays,
-  lib,
   home-manager,
   nur,
   ...
@@ -36,7 +35,7 @@ builtins.listToAttrs (builtins.map (device: {
             };
           }
         ]
-        ++ lib.optionals device.live [
+        ++ nixpkgs.lib.optionals device.live [
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
         ];
     };
