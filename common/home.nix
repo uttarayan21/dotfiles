@@ -121,6 +121,11 @@ in {
   };
 
   programs = {
+    atuin = {
+      enable = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+    };
     thefuck = {
       enable = true;
       enableFishIntegration = true;
