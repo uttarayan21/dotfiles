@@ -516,8 +516,7 @@ in rec {
               -- your options here
             })
         else
-            vim.o.guifont = "Monaspace Krypton:h13"
-            -- vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+            vim.o.guifont = "Hasklug Nerd Font Mono:h13"
             vim.g.neovide_cursor_vfx_mode = "railgun"
         end
 

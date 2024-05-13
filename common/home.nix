@@ -47,6 +47,7 @@ in {
       ../modules
     ]
     ++ lib.optionals device.isLinux [../linux]
+    # ++ lib.optionals.device.isMac [../macos]
     ++ lib.optionals device.isServer [../server];
 
   home.packages = with pkgs;
@@ -121,6 +122,7 @@ in {
   };
 
   programs = {
+    sketchybar.enable = true;
     atuin = {
       settings = {
         auto_sync = true;

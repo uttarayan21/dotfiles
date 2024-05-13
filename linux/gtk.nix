@@ -1,4 +1,8 @@
-{pkgs, device, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
   gtk = {
     enable = device.hasGui;
     theme = {

@@ -73,7 +73,7 @@
     device = "/dev/disk/by-uuid/64099f91-d4d6-44fa-92d4-9e905b3e7829";
     fsType = "ext4";
     neededForBoot = true;
-    options = [ "noatime" ];
+    options = ["noatime"];
   };
 
   fileSystems."/boot" = {
