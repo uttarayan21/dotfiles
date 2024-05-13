@@ -121,20 +121,20 @@ in rec {
 
       telescope = {
         enable = true;
-        settings = {
-          defaults = {
-            layout_strategy = "vertical";
-            layout_config = {
-              preview_height = 0.8;
-              vertical = {
-                size = {
-                  width = "99%";
-                  height = "99%";
-                };
-              };
-            };
-          };
-        };
+        # settings = {
+        #   defaults = {
+        #     layout_strategy = "vertical";
+        #     layout_config = {
+        #       preview_height = 0.8;
+        #       vertical = {
+        #         size = {
+        #           width = "99%";
+        #           height = "99%";
+        #         };
+        #       };
+        #     };
+        #   };
+        # };
         extensions = {
           undo.enable = true;
           ui-select.enable = true;
@@ -193,6 +193,15 @@ in rec {
                   return ra.load_rust_analyzer_settings(project_root, {
                     settings_file_pattern = 'rust-analyzer.json'
                   })
+              end
+            '';
+          cmd =
+            /*
+            lua
+            */
+            ''
+              function()
+                return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
               end
             '';
         };

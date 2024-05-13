@@ -155,6 +155,11 @@ in {
       extraConfig = {
         color.ui = true;
         core.editor = "nvim";
+        core.pager = "${pkgs.delta}/bin/delta";
+        interactive.diffFilter = "${pkgs.delta}/bin/delta --color-only";
+        delta.navigate = true;
+        merge.conflictStyle = "diff3";
+        diff.colorMoved = "default";
         push.autoSetupRemote = true;
       };
     };
