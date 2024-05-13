@@ -122,7 +122,7 @@ in {
   };
 
   programs = {
-    sketchybar.enable = true;
+    sketchybar.enable = device.isMac;
     atuin = {
       settings = {
         auto_sync = true;
