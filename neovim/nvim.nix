@@ -450,7 +450,7 @@ in rec {
                 height = 0.99,
                 width = 0.95,
             },
-            cmd        = "sh -c 'tmux attach -t scratch || tmux new -s scratch'",
+            cmd        = "sh -c 'tmux new -As scratch'",
             blend      = 10,
         })
 
@@ -516,9 +516,8 @@ in rec {
                     tmux_show_only_in_active_window = true,
                 }
             }
-            require("pets").setup({
-              -- your options here
-            })
+            -- require("pets").setup({
+            -- })
         else
             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
             vim.g.neovide_cursor_vfx_mode = "railgun"
@@ -676,7 +675,7 @@ in rec {
       image-nvim
       ChatGPT-nvim
       # gp-nvim
-      pets-nvim
+      # pets-nvim
 
       # UI and UX
       vim-abolish

@@ -102,6 +102,7 @@
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
         isServer = true;
+        live = true;
       }
       {
         name = "ryu";
@@ -157,6 +158,10 @@
         if (builtins.hasAttr "monitors" device)
         then device.monitors
         else null;
+      live =
+        if (builtins.hasAttr "live" device)
+        then device.live
+        else false;
       system = device.system;
       name = device.name;
       user = device.user;
