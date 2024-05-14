@@ -76,6 +76,7 @@ in {
 
       # Misc
       qmk
+      bitwarden-cli
       p7zip
       yt-dlp
       spotdl

@@ -4,7 +4,7 @@
   environment.systemPackages = with pkgs; [nix neovim];
   nix = {
     settings = {
-      experimental-features = "nix-command flakes repl-flake";
+      experimental-features = "nix-command flakes repl-flake auto-allocate-uids";
       max-jobs = 8;
       trusted-users = ["root" "fs0c131y"];
     };

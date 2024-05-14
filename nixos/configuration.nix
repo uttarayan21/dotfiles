@@ -20,7 +20,7 @@
   nix = {
     settings = {
       auto-optimise-store = true; # Did you read the comment?
-      extra-experimental-features = "nix-command flakes repl-flake";
+      extra-experimental-features = "nix-command flakes repl-flake auto-allocate-uids";
       trusted-users = ["root" "servius"];
     };
     gc = {
