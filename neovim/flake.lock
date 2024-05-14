@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "d2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1675176182,
+        "narHash": "sha256-+mT4pEbtq7f9ZXhOop3Jnjr7ulxU32VtahffIwQqYF4=",
+        "owner": "terrastruct",
+        "repo": "d2-vim",
+        "rev": "981c87dccb63df2887cc41b96e84bf550f736c57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "terrastruct",
+        "repo": "d2-vim",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -505,6 +521,7 @@
     },
     "root": {
       "inputs": {
+        "d2": "d2",
         "gp-nvim": "gp-nvim",
         "neogit": "neogit",
         "neorg": "neorg",
@@ -515,7 +532,9 @@
         "nvim-devdocs": "nvim-devdocs",
         "pets": "pets",
         "rest-nvim": "rest-nvim",
-        "systems": "systems_4"
+        "systems": "systems_4",
+        "tree-sitter-d2": "tree-sitter-d2",
+        "tree-sitter-just": "tree-sitter-just"
       }
     },
     "systems": {
@@ -575,6 +594,38 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "tree-sitter-d2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1694985317,
+        "narHash": "sha256-Auap3+yBBxv4RyiSaQ1sHKsSfzgrKdq0F1ethWnM+pE=",
+        "owner": "ravsii",
+        "repo": "tree-sitter-d2",
+        "rev": "c21126b5ee97b0dffe4b2f982932739f0a772743",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ravsii",
+        "repo": "tree-sitter-d2",
+        "type": "github"
+      }
+    },
+    "tree-sitter-just": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1714632960,
+        "narHash": "sha256-yuTcgNfF4oRNZkwwFpt5WLpWtTvgJJRDYo3CWnCNyiU=",
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
+        "rev": "fd814fc6c579f68c2a642f5e0268cf69daae92d7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "IndianBoy42",
+        "repo": "tree-sitter-just",
         "type": "github"
       }
     }

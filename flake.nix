@@ -105,6 +105,15 @@
         live = true;
       }
       {
+        name = "phoenix";
+        system = "x86_64-linux";
+        user = "fs0c131y";
+        isNix = true;
+        hasGui = false;
+        isServer = true;
+        live = true;
+      }
+      {
         name = "ryu";
         system = "x86_64-linux";
         user = "servius";
