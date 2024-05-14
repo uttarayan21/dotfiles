@@ -37,6 +37,16 @@ builtins.listToAttrs (builtins.map (device: {
         ]
         ++ nixpkgs.lib.optionals device.live [
           (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
+          ({pkgs, ...}: {
+            systemd.services.sshd.wantedBy = pkgs.lib.mkForce ["multi-user.target"];
+            users.users.root.openssh.authorizedKeys.keys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILdV/cFR8ENy4vCHnK/dL+Ud7jOJV7+iLeAe8y5nj3xF email@uttarayan.me"
+            ];
+            networking = {
+              # usePredictableInterfaceNames = false;
+              nameservers = ["1.1.1.1"];
+            };
+          })
         ];
     };
   })
