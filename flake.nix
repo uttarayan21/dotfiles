@@ -218,5 +218,8 @@
         agents.ryu = nixosConfigurations.ryu.config.system.build.toplevel;
         # agents.mirai = homeConfigurations.mirai.config.system.build.toplevel;
       };
+    devshells.default = {
+      packages = packages;
+    };
   };
 }

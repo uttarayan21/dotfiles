@@ -20,7 +20,21 @@ in {
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.tmux-fzf
       tmuxPlugins.fzf-tmux-url
-      tmuxPlugins.tmux-thumbs
+      {
+        plugin = tmuxPlugins.tmux-thumbs;
+        extraConfig =
+          if pkgs.stdenv.isDarwin
+          then
+            #tmux
+            ''
+              set -g @thumbs-command 'echo -n {} | pbcopy'
+            ''
+          else
+            #tmux
+            ''
+              set -g @thumbs-command 'echo -n {} | wl-copy'
+            '';
+      }
       # {
       #   plugin = tmuxPlugins.tmux-super-fingers;
       #   extraConfig = "set -g @super-fingers-key i";
