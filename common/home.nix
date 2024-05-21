@@ -263,11 +263,11 @@ in {
       git = true;
       icons = true;
     };
-    carapace = {
-      enable = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-    };
+    # carapace = {
+    #   # enable = true;
+    #   # enableFishIntegration = true;
+    #   enableNushellIntegration = true;
+    # };
     fzf = {
       enable = true;
       package = pkgs.fzf;
