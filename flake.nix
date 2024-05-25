@@ -10,10 +10,6 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     anyrun = {
       # My fork of anyrun that allows up / down with <C-n> / <C-p>
       url = "github:uttarayan21/anyrun";
@@ -92,7 +88,6 @@
     flake-utils,
     anyrun,
     nur,
-    neovim-nightly-overlay,
     ...
   } @ inputs: let
     config_devices = [

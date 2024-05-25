@@ -175,42 +175,44 @@ in rec {
       };
       rustaceanvim = {
         enable = true;
-        server = {
-          onAttach =
-            /*
-            lua
-            */
-            ''
-              function(client, bufnr)
-                  if client.server_capabilities.inlayHintProvider then
-                      vim.lsp.inlay_hint.enable(true)
-                  end
-              end
-            '';
-          settings =
-            /*
-            lua
-            */
-            ''
-              function(project_root)
-                local ra = require('rustaceanvim.config.server')
-                  return ra.load_rust_analyzer_settings(project_root, {
-                    settings_file_pattern = 'rust-analyzer.json'
-                  })
-              end
-            '';
-          cmd =
-            /*
-            lua
-            */
-            ''
-              function()
-                return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
-              end
-            '';
-        };
-        dap = {
-          autoloadConfigurations = false;
+        settings = {
+          server = {
+            on_attach =
+              /*
+              lua
+              */
+              ''
+                function(client, bufnr)
+                    if client.server_capabilities.inlayHintProvider then
+                        vim.lsp.inlay_hint.enable(true)
+                    end
+                end
+              '';
+            settings =
+              /*
+              lua
+              */
+              ''
+                function(project_root)
+                  local ra = require('rustaceanvim.config.server')
+                    return ra.load_rust_analyzer_settings(project_root, {
+                      settings_file_pattern = 'rust-analyzer.json'
+                    })
+                end
+              '';
+            cmd =
+              /*
+              lua
+              */
+              ''
+                function()
+                  return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
+                end
+              '';
+          };
+          dap = {
+            autoload_configurations = false;
+          };
         };
       };
 
@@ -339,12 +341,14 @@ in rec {
         "<C-\\>" = "require('FTerm').toggle";
         "F" = "function() vim.lsp.buf.format({ async = true }) end";
         "gi" = "require'telescope.builtin'.lsp_references";
+        # "gc" = "require'telescope.builtin'.lsp_references";
         "<leader>a" = "vim.lsp.buf.code_action";
         "<leader>bb" = "require'dap'.toggle_breakpoint";
         "<leader>du" = "require'dapui'.toggle";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
         "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
+        "<leader>tt" = "require'telescope.builtin'.treesitter";
         "<leader>;" = "require'telescope.builtin'.buffers";
 
         # Emulate tmux bindings with prefix <C-q> and tabs

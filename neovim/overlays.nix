@@ -54,19 +54,19 @@
           version = "0.4.1";
           src = inputs.nvim-devdocs;
         };
-        neorg = final.vimUtils.buildVimPlugin {
-          pname = "neorg";
-          version = inputs.neorg.rev;
-          src = inputs.neorg;
-          dependencies = [final.vimPlugins.plenary-nvim];
-          # final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim;
-        };
-        neorg-telescope = final.vimUtils.buildVimPlugin {
-          pname = "neorg-telescope";
-          version = inputs.neorg-telescope.rev;
-          src = inputs.neorg-telescope;
-          dependencies = [final.vimPlugins.telescope-nvim final.vimPlugins.neorg];
-        };
+        # neorg = final.vimUtils.buildVimPlugin {
+        #   pname = "neorg";
+        #   version = inputs.neorg.rev;
+        #   src = inputs.neorg;
+        #   dependencies = [final.vimPlugins.plenary-nvim];
+        #   # final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim;
+        # };
+        # neorg-telescope = final.vimUtils.buildVimPlugin {
+        #   pname = "neorg-telescope";
+        #   version = inputs.neorg-telescope.rev;
+        #   src = inputs.neorg-telescope;
+        #   dependencies = [final.vimPlugins.telescope-nvim final.vimPlugins.neorg];
+        # };
         pets-nvim = final.pkgs.vimUtils.buildVimPlugin {
           pname = "pets-nvim";
           version = "1";
@@ -144,7 +144,8 @@
   #   # rest-nvim = final.vimPlugins.rest-nvim;
   # };
 in [
-  inputs.nnn.overlay
+  inputs.nno.overlays.default
+  inputs.nnn.overlays.default
   inputs.nixvim.overlays.default
   vimPlugins
   tree-sitter-grammars

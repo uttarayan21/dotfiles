@@ -10,6 +10,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nno = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pets = {
       url = "github:giusgad/pets.nvim";
       flake = false;
@@ -73,6 +77,7 @@
   in rec {
     packages = forEachSystem (system: rec {
       neovim = nvim.${system}.neovim;
+      # neovim-nightly = nvim.${system}.neovim;
       default = neovim;
     });
     overlays = {
