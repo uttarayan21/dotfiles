@@ -11,7 +11,7 @@ lib.attrsets.optionalAttrs device.hasGui {
     ]
     ++ lib.optionals device.isLinux [
       bottles
-      minecraft
+      # minecraft
       jdk
       ferdium
       psst

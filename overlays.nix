@@ -210,7 +210,7 @@ in [
   nix-index-db
   shell-scipts
   misc-applications
-  inputs.neovim-nightly-overlay.overlay
+  inputs.neovim-nightly-overlay.overlays.default
   inputs.nixvim.overlays.default
   inputs.nur.overlay
   inputs.neovim.overlays.default

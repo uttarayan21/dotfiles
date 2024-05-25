@@ -4,7 +4,7 @@
   device,
   ...
 }: {
-  imports = [../modules/hyprpaper.nix inputs.hyprlock.homeManagerModules.hyprlock];
+  imports = [../modules/hyprpaper.nix];
 
   programs.hyprpaper = let
     wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};

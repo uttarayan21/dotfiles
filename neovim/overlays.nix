@@ -144,7 +144,7 @@
   #   # rest-nvim = final.vimPlugins.rest-nvim;
   # };
 in [
-  inputs.nnn.overlay
+  inputs.nnn.overlays.default
   inputs.nixvim.overlays.default
   vimPlugins
   tree-sitter-grammars

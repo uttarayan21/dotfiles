@@ -645,7 +645,7 @@ in rec {
         })
 
       '';
-    package = pkgs.neovim-nightly;
+    package = pkgs.neovim;
     opts = {
       shell = "sh";
       number = true;
