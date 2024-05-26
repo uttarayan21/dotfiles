@@ -175,42 +175,44 @@ in rec {
       };
       rustaceanvim = {
         enable = true;
-        server = {
-          onAttach =
-            /*
-            lua
-            */
-            ''
-              function(client, bufnr)
-                  if client.server_capabilities.inlayHintProvider then
-                      vim.lsp.inlay_hint.enable(true)
-                  end
-              end
-            '';
-          settings =
-            /*
-            lua
-            */
-            ''
-              function(project_root)
-                local ra = require('rustaceanvim.config.server')
-                  return ra.load_rust_analyzer_settings(project_root, {
-                    settings_file_pattern = 'rust-analyzer.json'
-                  })
-              end
-            '';
-          cmd =
-            /*
-            lua
-            */
-            ''
-              function()
-                return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
-              end
-            '';
-        };
-        dap = {
-          autoloadConfigurations = false;
+        settings = {
+          server = {
+            on_attach =
+              /*
+              lua
+              */
+              ''
+                function(client, bufnr)
+                    if client.server_capabilities.inlayHintProvider then
+                        vim.lsp.inlay_hint.enable(true)
+                    end
+                end
+              '';
+            settings =
+              /*
+              lua
+              */
+              ''
+                function(project_root)
+                  local ra = require('rustaceanvim.config.server')
+                    return ra.load_rust_analyzer_settings(project_root, {
+                      settings_file_pattern = 'rust-analyzer.json'
+                    })
+                end
+              '';
+            cmd =
+              /*
+              lua
+              */
+              ''
+                function()
+                  return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
+                end
+              '';
+          };
+          dap = {
+            autoload_configurations = false;
+          };
         };
       };
 
