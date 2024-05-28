@@ -70,6 +70,7 @@ in {
       pkg-config
       devenv
       sleek
+      ra-multiplex
       d2
       jujutsu
       # openapi-tui

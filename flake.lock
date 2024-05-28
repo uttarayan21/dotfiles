@@ -66,11 +66,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1716669849,
-        "narHash": "sha256-TL89j4wxsMxSQJpW3nFgkQtctZV/rzrfQcuHEzu6R+M=",
+        "lastModified": 1716923244,
+        "narHash": "sha256-Ou51DBT18/lG+kTfmzgnYNcLfccq+fnY0xsnqNCbF34=",
         "owner": "uttarayan21",
         "repo": "anyrun-hyprwin",
-        "rev": "8a05196cc4bf98fedc904b2926f976002289c0ad",
+        "rev": "9b6200c06bb4f73b5a72bf23be43ce0e737e4165",
         "type": "github"
       },
       "original": {
