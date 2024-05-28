@@ -10,9 +10,8 @@
     pkgs.lib.mapAttrsToList
     (key: value: {
       key = key;
-      action = value;
+      action = rawLua value;
       mode = mode;
-      lua = true;
     })
     mappings;
   border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
@@ -647,7 +646,8 @@ in rec {
         })
 
       '';
-    package = pkgs.neovim;
+    # package = pkgs.neovim-unwrapped;
+    # pkgs.neovim;
     opts = {
       shell = "sh";
       number = true;

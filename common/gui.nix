@@ -7,7 +7,7 @@
 lib.attrsets.optionalAttrs device.hasGui {
   home.packages = with pkgs;
     [
-      neovide
+      # neovide
     ]
     ++ lib.optionals device.isLinux [
       bottles

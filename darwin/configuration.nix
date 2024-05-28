@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   imports = [./yabai.nix ./skhd.nix];
 
-  environment.systemPackages = with pkgs; [nix neovim];
+  # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
     settings = {
-      experimental-features = "nix-command flakes repl-flake auto-allocate-uids";
+      experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
       trusted-users = ["root" "fs0c131y"];
     };
@@ -12,7 +12,7 @@
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
     '';
-    # package = pkgs.nixVersions.nix_2_21;
+    package = pkgs.nixVersions.latest;
   };
 
   # security.pam.enableSudoTouchIdAuth = true;

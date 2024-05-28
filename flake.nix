@@ -92,7 +92,6 @@
     flake-utils,
     anyrun,
     nur,
-    neovim-nightly-overlay,
     ...
   } @ inputs: let
     config_devices = [
