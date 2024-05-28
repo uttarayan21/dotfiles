@@ -20,7 +20,7 @@
   nix = {
     settings = {
       auto-optimise-store = true; # Did you read the comment?
-      extra-experimental-features = "nix-command flakes repl-flake auto-allocate-uids";
+      extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];
     };
     gc = {
@@ -28,7 +28,7 @@
       dates = "daily";
       options = "--delete-older-than +5";
     };
-    package = pkgs.nixVersions.nix_2_21;
+    package = pkgs.nixVersions.latest;
   };
 
   services = {
