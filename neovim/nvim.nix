@@ -212,6 +212,10 @@ in rec {
           dap = {
             autoload_configurations = false;
           };
+          tools = {
+            float_win_config = {border = "rounded";};
+            enable_clippy = false;
+          };
         };
       };
 
@@ -563,7 +567,6 @@ in rec {
                 end,
             })
         end)
-        vim.g.rustaceanvim["tools"] = { enable_clippy = false };
 
         vim.api.nvim_create_user_command('Reso',
         function()
