@@ -425,7 +425,7 @@ in rec {
 
         -- catcher(require('rest-nvim').setup)
 
-        catcher(require('lspconfig').ast_grep.setup)
+        -- catcher(require('lspconfig').ast_grep.setup)
 
         -- require('telescope').load_extension("dap")
         -- require('telescope').load_extension("rest")
