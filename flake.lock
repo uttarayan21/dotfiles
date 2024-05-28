@@ -1604,7 +1604,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-jAcLbG2bZ7FxNMYTSPyT7G2kfLa26nW5LXZiMNWxfrY=",
+        "narHash": "sha256-+PrgoLGR+Ee9DsMlMNfbB37hBWrkn/uP9ennYuX1xtM=",
         "path": "./neovim",
         "type": "path"
       },

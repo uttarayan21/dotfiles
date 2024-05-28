@@ -323,8 +323,8 @@ in rec {
         "<leader>\"" = ''[["+]]'';
         "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+        #"<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        #"<leader>el" = "[[<cmd>Rest run last<cr>]]";
         "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
         "<leader><leader>" = "'<c-^>'";
@@ -423,7 +423,7 @@ in rec {
             end
         end
 
-        catcher(require('rest-nvim').setup)
+        -- catcher(require('rest-nvim').setup)
 
         catcher(require('lspconfig').ast_grep.setup)
 
@@ -696,7 +696,7 @@ in rec {
       luasnip
 
       # No more postman
-      rest-nvim
+      # rest-nvim
 
       # UI
       nvim-web-devicons
