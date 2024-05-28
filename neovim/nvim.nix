@@ -521,8 +521,6 @@ in rec {
                     tmux_show_only_in_active_window = true,
                 }
             }
-            -- require("pets").setup({
-            -- })
         else
             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
             vim.g.neovide_cursor_vfx_mode = "railgun"
@@ -679,8 +677,6 @@ in rec {
       # Wut
       image-nvim
       ChatGPT-nvim
-      # gp-nvim
-      # pets-nvim
 
       # UI and UX
       vim-abolish

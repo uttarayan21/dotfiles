@@ -8,17 +8,6 @@
           version = "1";
           src = inputs.d2;
         };
-        gp-nvim = final.pkgs.vimUtils.buildVimPlugin {
-          name = "gp.nvim";
-          src = inputs.gp-nvim;
-        };
-        neogit = final.pkgs.vimUtils.buildVimPlugin {
-          name = "neogit";
-          version = inputs.neogit.rev;
-          src = inputs.neogit;
-          dependencies = with final.vimPlugins; [plenary-nvim diffview-nvim fzf-lua];
-        };
-
         nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
           name = "nvim-dap-rr";
           # TODO: Move to subflake
@@ -53,25 +42,6 @@
           pname = "nvim-devdocs";
           version = "0.4.1";
           src = inputs.nvim-devdocs;
-        };
-        neorg = final.vimUtils.buildVimPlugin {
-          pname = "neorg";
-          version = inputs.neorg.rev;
-          src = inputs.neorg;
-          dependencies = [final.vimPlugins.plenary-nvim];
-          # final.lua51Packages.lua-utils-nvim final.vimPlugins.nvim-nio final.vimPlugins.nui-nvim;
-        };
-        neorg-telescope = final.vimUtils.buildVimPlugin {
-          pname = "neorg-telescope";
-          version = inputs.neorg-telescope.rev;
-          src = inputs.neorg-telescope;
-          dependencies = [final.vimPlugins.telescope-nvim final.vimPlugins.neorg];
-        };
-        pets-nvim = final.pkgs.vimUtils.buildVimPlugin {
-          pname = "pets-nvim";
-          version = "1";
-          src = inputs.pets;
-          dependencies = [final.pkgs.vimPlugins.hologram-nvim final.pkgs.vimPlugins.nui-nvim];
         };
       };
   };
@@ -145,6 +115,7 @@
   # };
 in [
   # inputs.nnn.overlays.default
+  inputs.nno.overlays.default
   inputs.nixvim.overlays.default
   vimPlugins
   tree-sitter-grammars
