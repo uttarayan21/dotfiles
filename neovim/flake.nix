@@ -54,6 +54,14 @@
       url = "github:terrastruct/d2-vim";
       flake = false;
     };
+    navigator = {
+      url = "github:ray-x/navigator.lua";
+      flake = false;
+    };
+    guihua = {
+      url = "github:ray-x/guihua.lua";
+      flake = false;
+    };
   };
 
   outputs = {

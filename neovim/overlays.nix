@@ -8,6 +8,17 @@
           version = "1";
           src = inputs.d2;
         };
+        navigator = final.pkgs.vimUtils.buildVimPlugin {
+          pname = "navigator";
+          version = "1";
+          src = inputs.navigator;
+          dependencies = [final.pkgs.vimPlugins.nvim-lspconfig final.pkgs.vimPlugins.guihua];
+        };
+        guihua = final.pkgs.vimUtils.buildVimPlugin {
+          pname = "guihua";
+          version = "1";
+          src = inputs.guihua;
+        };
         nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
           name = "nvim-dap-rr";
           # TODO: Move to subflake

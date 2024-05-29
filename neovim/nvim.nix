@@ -448,6 +448,7 @@ in rec {
 
         catcher(require('crates').setup)
         catcher(require('outline').setup)
+        -- catcher(require('navigator').setup)
 
         require('FTerm').setup({
             border     = 'single',
@@ -483,6 +484,7 @@ in rec {
                 }
             }
         }
+
 
         require('neorg').setup({
             load = load,
@@ -714,6 +716,8 @@ in rec {
       # Treesitter
       nvim_context_vt
       nvim-devdocs
+
+      # navigator
 
       iron-nvim
       d2

@@ -1468,6 +1468,22 @@
         "type": "github"
       }
     },
+    "navigator": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716632835,
+        "narHash": "sha256-TP1Fmu6LJFioPskUMWBG+rUNcaxejSF3Fqr5nT6htAY=",
+        "owner": "ray-x",
+        "repo": "navigator.lua",
+        "rev": "877a45747332085ba469f27f5f643ffc4840bb45",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ray-x",
+        "repo": "navigator.lua",
+        "type": "github"
+      }
+    },
     "neogit": {
       "flake": false,
       "locked": {
@@ -1554,6 +1570,7 @@
       "inputs": {
         "d2": "d2",
         "gp-nvim": "gp-nvim",
+        "navigator": "navigator",
         "neogit": "neogit",
         "neorg": "neorg",
         "neorg-telescope": "neorg-telescope",
@@ -1572,7 +1589,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-x82DvwENF0HkU2D+nvaCx2Zk7ZQnE4ImED8RA2u1Cno=",
+        "narHash": "sha256-WXW2vXBo7GVNQVJHY1Zav4sVe4fQm+Qo100DV7Duf9s=",
         "path": "./neovim",
         "type": "path"
       },
