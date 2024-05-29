@@ -1247,6 +1247,22 @@
         "type": "github"
       }
     },
+    "guihua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716805402,
+        "narHash": "sha256-/yWYsgD/MIzcXIlGr5IncoI4uzf627ufyhjhJUq/+9I=",
+        "owner": "ray-x",
+        "repo": "guihua.lua",
+        "rev": "a53b76514ad42d92a821d75d712ef71e71898fcf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ray-x",
+        "repo": "guihua.lua",
+        "type": "github"
+      }
+    },
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": "flake-parts_7",
@@ -1570,6 +1586,7 @@
       "inputs": {
         "d2": "d2",
         "gp-nvim": "gp-nvim",
+        "guihua": "guihua",
         "navigator": "navigator",
         "neogit": "neogit",
         "neorg": "neorg",
@@ -1589,7 +1606,7 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-WXW2vXBo7GVNQVJHY1Zav4sVe4fQm+Qo100DV7Duf9s=",
+        "narHash": "sha256-9gbJnltqIKmcgjHXhd8DZb/EDwtqBw4l82qn7UI9b/E=",
         "path": "./neovim",
         "type": "path"
       },
