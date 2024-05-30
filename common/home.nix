@@ -57,6 +57,7 @@ in {
       sd
       go
       pandoc
+      aichat
       nodejs
       sqls
       vcpkg

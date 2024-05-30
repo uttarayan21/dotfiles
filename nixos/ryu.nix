@@ -25,6 +25,7 @@
   '';
 
   services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+  services.fprintd.enable = true;
   boot.loader.systemd-boot.consoleMode = "max";
   hardware.nvidia = {
     # Modesetting is required.
