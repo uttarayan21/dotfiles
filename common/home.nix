@@ -209,6 +209,15 @@ in {
       interactiveShellInit = ''
         ${pkgs.spotify-player}/bin/spotify_player generate fish | source
         ${pkgs.pfetch-rs}/bin/pfetch
+        function _aichat_fish
+            set -l _old (commandline)
+            if test -n $_old
+                echo -n "⌛"
+                commandline -f repaint
+                commandline (aichat -e $_old)
+            end
+        end
+        bind \co _aichat_fish
       '';
     };
 
