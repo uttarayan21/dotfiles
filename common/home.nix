@@ -349,6 +349,7 @@ in {
         ''
           [alias]
           lldb = ["with", "rust-lldb", "--"]
+          t = ["nextest", "run"]
 
           [net]
           git-fetch-with-cli = true
