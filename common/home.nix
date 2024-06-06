@@ -232,7 +232,7 @@ in {
       extraConfig = ''
         ${pkgs.pfetch-rs}/bin/pfetch
       '';
-      package = pkgs.nushellFull;
+      package = pkgs.nushell;
       configFile.text = ''
         $env.config = {
             show_banner: false,

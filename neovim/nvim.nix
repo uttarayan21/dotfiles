@@ -223,7 +223,7 @@ in rec {
         enable = true;
         servers = {
           gopls.enable = true;
-          nil_ls = {
+          nil-ls = {
             enable = true;
             settings.formatting.command = [
               "${pkgs.alejandra}/bin/alejandra"

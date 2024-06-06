@@ -212,7 +212,7 @@
       foot
       git
       fish
-      nushellFull
+      nushell
       (pkgs.wrapFirefox
         (pkgs.firefox-unwrapped.override {pipewireSupport = true;})
         {})
