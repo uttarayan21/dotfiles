@@ -27,10 +27,11 @@
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       monitor = [
-        ",preferred,auto,auto"
+        # ",preferred,auto,auto"
+        # ",highrr,auto,1"
         "${device.monitors.primary},       2560x1440@170, 0x0,     1, transform, 0"
         "${device.monitors.secondary},   2560x1440@170, -1440x-800,1, transform, 1"
-        ",highrr,auto,1"
+        "Unknown-1,disable"
       ];
 
       input = {
