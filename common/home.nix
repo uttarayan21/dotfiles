@@ -39,6 +39,7 @@ in {
       ./kitty.nix
       ./gui.nix
 
+      ./auth.nix
       ./tmux.nix
       ./nvim.nix
       ./goread.nix
@@ -78,7 +79,7 @@ in {
 
       # Misc
       qmk
-      bitwarden-cli
+      # bitwarden-cli
       p7zip
       yt-dlp
       spotdl
