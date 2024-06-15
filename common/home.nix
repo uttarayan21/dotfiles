@@ -103,8 +103,7 @@ in {
       hasklig
       pfetch-rs
       hotedit
-      (pkgs.wrapMpv
-        (pkgs.mpv-unwrapped.override {sixelSupport = true;}) {})
+      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
     ]
     ++ lib.optionals device.isLinux [
       rr
