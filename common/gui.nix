@@ -39,6 +39,5 @@ lib.attrsets.optionalAttrs device.hasGui {
       webcord-vencord
       spotify
       wl-clipboard
-
     ];
 }

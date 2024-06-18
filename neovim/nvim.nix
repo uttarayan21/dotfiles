@@ -238,7 +238,7 @@ in rec {
           html.enable = true;
           ast-grep.enable = true;
           # pylyzer.enable = true;
-          # rust-analyzer.enable = true;
+          rust-analyzer.enable = false;
         };
         onAttach =
           /*

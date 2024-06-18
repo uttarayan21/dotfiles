@@ -103,7 +103,7 @@ in {
       hasklig
       pfetch-rs
       hotedit
-      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
+      # (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
     ]
     ++ lib.optionals device.isLinux [
       rr
@@ -199,8 +199,8 @@ in {
       };
       shellAliases = {
         g = "git";
-        kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
-        smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
+        # kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
+        # smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
       };
       shellInit = ''
         set fish_greeting
