@@ -79,7 +79,6 @@ in {
 
       # Misc
       qmk
-      # bitwarden-cli
       p7zip
       yt-dlp
       spotdl
@@ -301,19 +300,6 @@ in {
         };
       };
       extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
-    };
-
-    rbw = {
-      enable = true;
-      settings = {
-        email = "uttarayan21@gmail.com";
-        base_url = "https://pass.uttarayan.me";
-        pinentry =
-          if device.isMac
-          then pkgs.pinentry_mac
-          # then pkgs.pinentry-curses
-          else pkgs.pinentry-gnome3;
-      };
     };
 
     # Only for checking markdown previews

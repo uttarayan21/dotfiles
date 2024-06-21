@@ -13,7 +13,6 @@ lib.attrsets.optionalAttrs device.hasGui {
     ]
     ++ lib.optionals device.isLinux [
       _1password-gui
-      bitwarden
       discord
       bottles
       # minecraft
