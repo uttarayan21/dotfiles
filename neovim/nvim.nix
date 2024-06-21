@@ -396,6 +396,11 @@ in rec {
         else if pkgs.stdenv.isDarwin
         then "${codelldb}/lldb/lib/liblldb.dylib"
         else null;
+      apikey =
+        pkgs.writeShellScriptBin
+        "openapikey" ''
+          ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential
+        '';
     in
       /*
       lua
@@ -488,11 +493,8 @@ in rec {
         })
 
         require('chatgpt').setup({
-            api_key_cmd = "${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential",
+            api_key_cmd = "${apikey}/bin/openapikey",
         })
-        -- require("gp").setup({
-        --     openai_api_key = { "${pkgs.rbw}/bin/rbw", "get", "platform.openai.com" },
-        -- })
 
         require('octo').setup({
           use_local_fs = false,
