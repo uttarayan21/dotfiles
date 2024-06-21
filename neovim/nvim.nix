@@ -333,7 +333,7 @@ in rec {
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
         "<leader><leader>" = "'<c-^>'";
         "<leader>n" = "[[<cmd>bnext<cr>]]";
-        "<leader>o" = "[[<cmd>TroubleToggle<cr>]]";
+        "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
         "<leader>p" = "[[<cmd>bprev<cr>]]";
         "<leader>q" = "[[<cmd>bw<cr>]]";
         "<leader>mm" = "[[<cmd>Neorg<cr>]]";
@@ -389,15 +389,12 @@ in rec {
     ];
 
     extraConfigLua = let
-      codelldb =
-        if pkgs.stdenv.isLinux
-        then pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter
-        else null;
+      codelldb = pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter;
       liblldb =
         if pkgs.stdenv.isLinux
         then "${codelldb}/lldb/lib/liblldb.so"
-        # else if device.isMac then
-        #   "${codelldb}/lldb/lib/liblldb.dylib"
+        else if pkgs.stdenv.isDarwin
+        then "${codelldb}/lldb/lib/liblldb.dylib"
         else null;
     in
       /*
@@ -491,7 +488,7 @@ in rec {
         })
 
         require('chatgpt').setup({
-            api_key_cmd = "${pkgs.rbw}/bin/rbw get platform.openai.com",
+            api_key_cmd = "${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential",
         })
         -- require("gp").setup({
         --     openai_api_key = { "${pkgs.rbw}/bin/rbw", "get", "platform.openai.com" },

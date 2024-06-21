@@ -75,6 +75,7 @@
       import ./nvim.nix {
         pkgs = import nixpkgs {
           inherit system;
+          config.allowUnfree = true;
           overlays = import ./overlays.nix {
             inherit inputs;
           };
