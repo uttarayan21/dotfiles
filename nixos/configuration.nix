@@ -53,7 +53,7 @@
     };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui];
+    udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
     yubikey-agent.enable = true;
 
     # Configure keymap in X11

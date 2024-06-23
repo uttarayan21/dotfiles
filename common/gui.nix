@@ -9,6 +9,7 @@ lib.attrsets.optionalAttrs device.hasGui {
   home.packages = with pkgs;
     [
       _1password
+      via
       # neovide
     ]
     ++ lib.optionals device.isLinux [
