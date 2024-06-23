@@ -8,12 +8,11 @@
 lib.attrsets.optionalAttrs device.hasGui {
   home.packages = with pkgs;
     [
-      _1password
       via
+      # _1password-gui
       # neovide
     ]
     ++ lib.optionals device.isLinux [
-      _1password-gui
       discord
       bottles
       # minecraft

@@ -219,6 +219,14 @@
         ];
     });
   };
+  # _1password = final: prev: {
+  #   _1password-gui = prev._1password-gui.override {
+  #     polkitPolicyOwners = ["servius"];
+  #   };
+  #   # _1password = prev._1password.override {
+  #   #   polkitPolicyOwners = ["servius"];
+  #   # };
+  # };
 in [
   inputs.subflakes.overlays.default
   libfprint

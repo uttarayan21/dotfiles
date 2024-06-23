@@ -8,6 +8,13 @@
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+  programs = {
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = ["servius"];
+    };
+  };
 
   hardware.opengl = {
     enable = true;
