@@ -398,9 +398,15 @@ in rec {
         else null;
       apikey =
         pkgs.writeShellScriptBin
-        "openapikey" ''
-          ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential
-        '';
+        "openapikey" (
+          if pkgs.stdenv.isDarwin
+          then ''
+            ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential
+          ''
+          else ''
+            /run/wrappers/bin/op item get 'OpenAI API Token' --fields label=credential
+          ''
+        );
     in
       /*
       lua
