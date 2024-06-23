@@ -98,6 +98,7 @@
     TTYVTDisallocate = true;
   };
   hardware = {
+    keyboard.qmk.enable = true;
     # services.wireplumber.configPackages = with pkgs; [ bluez ];
 
     # environment.etc = {

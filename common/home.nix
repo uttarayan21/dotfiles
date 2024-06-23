@@ -181,7 +181,10 @@ in {
         pull = {
           rebase = true;
         };
-        "gpg \"ssh\"".program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
+        "gpg \"ssh\"".program =
+          if pkgs.stdenv.isDarwin
+          then "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+          else "${pkgs._1password-gui}/share/1password/op-ssh-sign";
       };
     };
     nix-index = {
