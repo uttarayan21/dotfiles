@@ -2,10 +2,24 @@
   pkgs,
   device,
   lib,
-  inputs,
   ...
 }:
 lib.attrsets.optionalAttrs device.hasGui {
+  systemd.user.services._1password-gui = {
+    Unit = {
+      Description = "1Password GUI";
+      BindsTo = ["graphical-session.target"];
+      After = ["graphical-session-pre.target"];
+    };
+
+    Service = {
+      ExecStart = "${pkgs._1password-gui}/bin/1password";
+      Restart = "always";
+    };
+    Install = {
+      WantedBy = ["graphical-session.target"];
+    };
+  };
   home.packages = with pkgs;
     [
       via
