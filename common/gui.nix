@@ -5,7 +5,7 @@
   ...
 }:
 lib.attrsets.optionalAttrs device.hasGui {
-  systemd.user.services._1password-gui = {
+  systemd.user.services._1password-gui = lib.optionalAttrs pkgs.stdenv.isDarwin {
     Unit = {
       Description = "1Password GUI";
       BindsTo = ["graphical-session.target"];
@@ -20,13 +20,15 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
+  home.file = {
+    "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
+  };
   home.packages = with pkgs;
     [
-      via
-      # _1password-gui
-      # neovide
+      _1password
     ]
     ++ lib.optionals device.isLinux [
+      via
       discord
       bottles
       # minecraft
