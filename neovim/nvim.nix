@@ -401,7 +401,7 @@ in rec {
         "openapikey" (
           if pkgs.stdenv.isDarwin
           then ''
-            ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label=credential
+            ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label='api key'
           ''
           else ''
             /run/wrappers/bin/op item get 'OpenAI API Token' --fields label=credential

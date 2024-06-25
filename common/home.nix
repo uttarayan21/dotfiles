@@ -65,7 +65,6 @@ in {
       gh
       just
       yarn
-      rustup
       clang
       cmake
       alejandra
@@ -78,6 +77,7 @@ in {
       # openapi-tui
 
       # Misc
+      ttyper
       qmk
       p7zip
       yt-dlp
@@ -208,6 +208,7 @@ in {
       };
       shellAliases = {
         g = "git";
+        aichat = "op plugin run -- aichat";
         # kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
         # smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
       };
