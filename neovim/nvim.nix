@@ -404,7 +404,7 @@ in rec {
             ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label='api key'
           ''
           else ''
-            /run/wrappers/bin/op item get 'OpenAI API Token' --fields label=credential
+            /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key'
           ''
         );
     in
