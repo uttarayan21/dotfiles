@@ -48,7 +48,6 @@ lib.attrsets.optionalAttrs device.hasGui {
 
       mullvad-vpn
       mullvad-closest
-      mullvad-browser
       steam-run
 
       webcord-vencord

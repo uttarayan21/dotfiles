@@ -6,15 +6,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1716464653,
-        "narHash": "sha256-7ABtcvZf8P2axZNVV3m9LiKy1VW0lumu60sSuUOYG0o=",
-        "owner": "1Password",
+        "lastModified": 1719260329,
+        "narHash": "sha256-4p/WaE92QFjTtyFNQQxsKXxd2GxL4l60Y5T6y9hU0DI=",
+        "owner": "uttarayan21",
         "repo": "shell-plugins",
-        "rev": "d36189bf486ff2c4d9275c9ce29ec1aa92eaa4a7",
+        "rev": "8c841a394819e5d19103b0f8bb03ed28b3ccb7d2",
         "type": "github"
       },
       "original": {
-        "owner": "1Password",
+        "owner": "uttarayan21",
         "repo": "shell-plugins",
         "type": "github"
       }
@@ -2304,11 +2304,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1718681902,
-        "narHash": "sha256-E/T7Ge6ayEQe7FVKMJqDBoHyLhRhjc6u9CmU8MyYfy0=",
+        "lastModified": 1719195554,
+        "narHash": "sha256-bFXHMjpYlEERexzXa1gLGJO/1l8dxaAtSNE56YALuTg=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "16c8ad83297c278eebe740dea5491c1708960dd1",
+        "rev": "577ee84c69ba89894ac622d71a678a14d746b2f7",
         "type": "github"
       },
       "original": {
