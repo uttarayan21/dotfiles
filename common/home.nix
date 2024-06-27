@@ -61,7 +61,7 @@ in {
       aichat
       nodejs
       sqls
-      vcpkg
+      vcpkg-tool
       gh
       just
       yarn
@@ -102,7 +102,6 @@ in {
       hasklig
       pfetch-rs
       hotedit
-      # (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
     ]
     ++ lib.optionals device.isLinux [
       rr
@@ -209,8 +208,8 @@ in {
       shellAliases = {
         g = "git";
         aichat = "op plugin run -- aichat";
-        # kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
-        # smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
+        kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
+        smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
       };
       shellInit = ''
         set fish_greeting

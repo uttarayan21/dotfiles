@@ -28,8 +28,9 @@ lib.attrsets.optionalAttrs device.hasGui {
       _1password
     ]
     ++ lib.optionals device.isLinux [
+      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       via
-      discord
+      webcord-vencord
       bottles
       # minecraft
       jdk

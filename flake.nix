@@ -75,7 +75,11 @@
       url = "github:cachix/cachix-deploy-flake";
       inputs.home-manager.follows = "home-manager";
     };
-    _1password-shell-plugins.url = "github:uttarayan21/shell-plugins";
+    # _1password-shell-plugins.url = "github:uttarayan21/shell-plugins";
+    onepassword-shell-plugins = {
+      url = "path:/home/servius/Projects/shell-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
