@@ -5,7 +5,7 @@
   ...
 }:
 lib.attrsets.optionalAttrs device.hasGui {
-  systemd.user.services._1password-gui = lib.optionalAttrs pkgs.stdenv.isDarwin {
+  systemd.user.services.onepassword-gui = lib.optionalAttrs pkgs.stdenv.isLinux {
     Unit = {
       Description = "1Password GUI";
       BindsTo = ["graphical-session.target"];
@@ -20,7 +20,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  home.file = {
+  home.file = lib.optionalAttrs device.isMac {
     "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
   };
   home.packages = with pkgs;
