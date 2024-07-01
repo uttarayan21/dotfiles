@@ -2057,14 +2057,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1719472508,
-        "narHash": "sha256-y8PNjZIu6HQXmCSKKxzAHI902Kvwikujpcm7Q5is8OI=",
-        "path": "/home/servius/Projects/shell-plugins",
-        "type": "path"
+        "lastModified": 1719472071,
+        "narHash": "sha256-9IzkwkomGRg1iFfmkgIPh10Rro5fCb3UdcUeObEBduo=",
+        "owner": "uttarayan21",
+        "repo": "shell-plugins",
+        "rev": "8cfa7696299b58b196d724922e7edd5a423d3b0e",
+        "type": "github"
       },
       "original": {
-        "path": "/home/servius/Projects/shell-plugins",
-        "type": "path"
+        "owner": "uttarayan21",
+        "repo": "shell-plugins",
+        "type": "github"
       }
     },
     "openapi-tui": {
