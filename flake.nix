@@ -204,6 +204,14 @@
       };
 
     packages = inputs.neovim.packages;
+    # // {
+    #   x86_64-linux.fprintd =
+    #     (import nixpkgs {
+    #       inherit overlays;
+    #       system = "x86_64-linux";
+    #     })
+    #     .fprintd;
+    # };
 
     cachix = let
       cachix-deploy-lib = inputs.cachix-deploy.lib nixpkgs.legacyPackages.x86_64-linux;

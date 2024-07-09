@@ -218,6 +218,21 @@
           final.doctest
         ];
     });
+    fprintd = prev.fprintd.overrideAttrs (oldAttrs: rec {
+      version = "1.94.3";
+      src = final.fetchFromGitLab {
+        domain = "gitlab.freedesktop.org";
+        owner = "libfprint";
+        repo = "fprintd";
+        rev = "v${version}";
+        sha256 = "sha256-shH+ctQAx4fpTMWTmo3wB45ZS38Jf8RknryPabfZ6QE=";
+      };
+      patches = [];
+      mesonCheckFlags = [
+        "--no-suite" "fprintd:PAM"
+        "--no-suite" "fprintd:TestPamFprintd"
+      ];
+    });
   };
   # _1password = final: prev: {
   #   _1password-gui = prev._1password-gui.override {

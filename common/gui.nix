@@ -41,8 +41,8 @@ lib.attrsets.optionalAttrs device.hasGui {
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
 
-      gnome.seahorse
-      gnome.nautilus
+      seahorse
+      nautilus
       nextcloud-client
       gparted
       polkit_gnome
