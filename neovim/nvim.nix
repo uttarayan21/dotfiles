@@ -110,7 +110,7 @@ in rec {
 
       treesitter = {
         enable = true;
-        indent = true;
+        settings.indent.enable = true;
         folding = true;
         grammarPackages =
           pkgs.vimPlugins.nvim-treesitter.allGrammars

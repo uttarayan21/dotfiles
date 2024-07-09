@@ -81,7 +81,7 @@ in {
       qmk
       p7zip
       yt-dlp
-      spotdl
+      # spotdl
       picat
       davis
       gnupg
@@ -134,10 +134,10 @@ in {
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
-    thefuck = {
-      enable = true;
-      enableFishIntegration = true;
-    };
+    # thefuck = {
+    #   enable = true;
+    #   enableFishIntegration = true;
+    # };
     direnv = {
       enable = true;
       # enableFishIntegration = true; // Auto enabled

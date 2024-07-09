@@ -26,7 +26,7 @@
             owner = "jonboh";
             repo = "nvim-dap-rr";
             rev = "master";
-            sha256 = "sha256-JNztLTSyHmEmh3xT4WR0cpP25vjZ4A6aQbnU49U6+Ss";
+            sha256 = "sha256-1WgES0gng74eNfTxJZksYoAFIYtuG3D/l/BEyt1o60w=";
           };
         };
         sqls-nvim = final.pkgs.vimUtils.buildVimPlugin {
