@@ -41,6 +41,8 @@ lib.attrsets.optionalAttrs device.hasGui {
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
 
+      signal-desktop
+
       seahorse
       nautilus
       nextcloud-client

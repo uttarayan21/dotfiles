@@ -6,13 +6,14 @@
   gtk = {
     enable = device.hasGui;
     theme = {
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        size = "standard";
-        accents = ["mauve"];
-        tweaks = ["normal"];
-      };
+      name = "Adwaita-Dark";
+      package = pkgs.adwaita-icon-theme;
+      # package = pkgs.catppuccin-gtk.override {
+      #   variant = "mocha";
+      #   size = "standard";
+      #   accents = ["mauve"];
+      #   tweaks = ["normal"];
+      # };
     };
 
     iconTheme = {
