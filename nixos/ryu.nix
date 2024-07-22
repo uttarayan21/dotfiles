@@ -14,6 +14,9 @@
       enable = true;
       polkitPolicyOwners = ["servius"];
     };
+    alvr.enable = true;
+    alvr.openFirewall = true;
+    steam.enable = true;
   };
 
   hardware.graphics = {
