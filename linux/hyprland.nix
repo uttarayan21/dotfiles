@@ -3,7 +3,9 @@
   device,
   ...
 }: {
-  imports = [../modules/hyprpaper.nix];
+  imports = [
+    ../modules/hyprpaper.nix
+  ];
 
   programs.hyprpaper = let
     wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
@@ -25,7 +27,7 @@
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
-      "experimental:explicit_sync" = true;
+      # "experimental:explicit_sync" = true;
       monitor = [
         # ",preferred,auto,auto"
         # ",highrr,auto,1"
