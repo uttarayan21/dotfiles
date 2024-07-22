@@ -25,6 +25,7 @@
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
+      "experimental:explicit_sync" = true;
       monitor = [
         # ",preferred,auto,auto"
         # ",highrr,auto,1"
