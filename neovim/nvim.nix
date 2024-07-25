@@ -262,7 +262,7 @@ in rec {
             {name = "cmp-cmdline-history";}
             {name = "crates";}
             {name = "dap";}
-            {name = "dictionary";}
+            # {name = "dictionary";}
             {name = "fish";}
             {name = "git";}
             {name = "luasnip";}
