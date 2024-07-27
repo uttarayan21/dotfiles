@@ -194,7 +194,7 @@
   users.users.servius = {
     isNormalUser = true;
     description = "Uttarayan";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "audio"];
   };
 
   # Allow unfree packages
@@ -228,6 +228,7 @@
     };
   };
 
+  musnix.enable = true;
   programs = {
     hyprland.enable = true;
     hyprland.xwayland.enable = true;

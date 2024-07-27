@@ -22,6 +22,7 @@ builtins.listToAttrs (builtins.map (device: {
           ./configuration.nix
           home-manager.nixosModules.home-manager
           inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.musnix.nixosModules.musnix
           {
             nixpkgs.config.allowUnfree = true;
             home-manager = {

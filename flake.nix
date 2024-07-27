@@ -83,6 +83,10 @@
       url = "github:uttarayan21/shell-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
