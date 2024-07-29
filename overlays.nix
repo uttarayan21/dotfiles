@@ -229,11 +229,24 @@
       };
       patches = [];
       mesonCheckFlags = [
-        "--no-suite" "fprintd:PAM"
-        "--no-suite" "fprintd:TestPamFprintd"
+        "--no-suite"
+        "fprintd:PAM"
+        "--no-suite"
+        "fprintd:TestPamFprintd"
       ];
     });
   };
+  # hyprwm = final: prev: {
+  #   # hyprland = prev.hyprland.overrideAttrs (oldAttrs: {
+  #   #   src = prev.fetchFromGitHub {
+  #   #     owner = "hyprwm";
+  #   #     repo = "hyprland";
+  #   #     rev = "76610d9fb0ba5a2d495a963773c38b717d76776f";
+  #   #     sha256 = "sha256-ghYa1VeYt90YFfqObVY87yESVEaO4RIGmQ8KsYX+6eY=";
+  #   #   };
+  #   #   buildInputs = oldAttrs.buildInputs ++ [final.pkgs.wlroots.dev];
+  #   # });
+  # };
   # _1password = final: prev: {
   #   _1password-gui = prev._1password-gui.override {
   #     polkitPolicyOwners = ["servius"];
@@ -258,4 +271,5 @@ in [
   inputs.neovim.overlays.default
   # catppuccin
   inputs.rust-overlay.overlays.default
+  # inputs.hyprland.overlays.default
 ]
