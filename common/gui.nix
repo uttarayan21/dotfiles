@@ -29,6 +29,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       neovide
     ]
     ++ lib.optionals device.isLinux [
+      slack
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       via
       webcord-vencord

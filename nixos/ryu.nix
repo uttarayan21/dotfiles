@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  pkgs,
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
@@ -23,6 +24,7 @@
     enable = true;
     enable32Bit = true;
   };
+  hardware.opengl.extraPackages = [pkgs.intel-compute-runtime];
 
   virtualisation.libvirtd.enable = true;
   users.extraUsers.servius.extraGroups = ["libvirtd"];
