@@ -208,13 +208,13 @@ in rec {
             #      return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
             #    end
             #  '';
-            default_settings = ''{
-              ['rust-analyzer'] = {
-                files = {
-                  excludeDirs = {".git", ".direnv"},
-                },
-              },
-            }'';
+            default_settings = ''              {
+                            ['rust-analyzer'] = {
+                              files = {
+                                excludeDirs = {".git", ".direnv"},
+                              },
+                            },
+                          }'';
           };
           dap = {
             autoload_configurations = false;

@@ -46,7 +46,7 @@
     };
     nur.url = "github:nix-community/nur";
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/explicit-sync";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {

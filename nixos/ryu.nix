@@ -23,8 +23,8 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = [pkgs.intel-compute-runtime];
   };
-  hardware.opengl.extraPackages = [pkgs.intel-compute-runtime];
 
   virtualisation.libvirtd.enable = true;
   users.extraUsers.servius.extraGroups = ["libvirtd"];
