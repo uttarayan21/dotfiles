@@ -20,9 +20,9 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  home.file = lib.optionalAttrs device.isMac {
-    "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
-  };
+  # home.file = lib.optionalAttrs device.isMac {
+  #   "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
+  # };
   home.packages = with pkgs;
     [
       _1password
