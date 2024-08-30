@@ -309,7 +309,7 @@ in {
           file = "Catppuccin Mocha.tmTheme";
         };
       };
-      extraPackages = with pkgs.bat-extras; [batdiff batman batgrep batwatch];
+      extraPackages = with pkgs.bat-extras; [batman batgrep batwatch];
     };
 
     # Only for checking markdown previews
