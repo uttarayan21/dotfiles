@@ -163,6 +163,7 @@ in {
     };
     git = {
       enable = true;
+      lfs.enable = true;
       userName = "uttarayan21";
       userEmail = "email@uttarayan.me";
       extraConfig = {

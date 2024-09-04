@@ -40,7 +40,7 @@ in rec {
 
       navic = {
         enable = true;
-        lsp.autoAttach = true;
+        settings.lsp.auto_attach = true;
       };
 
       mini = {
@@ -84,6 +84,11 @@ in rec {
           ''
             require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
           '';
+      };
+
+      molten = {
+        enable = true;
+        settings.image_provider = "image.nvim";
       };
 
       markdown-preview = {
@@ -176,45 +181,24 @@ in rec {
         enable = true;
         settings = {
           server = {
-            on_attach =
-              /*
-              lua
-              */
-              ''
-                function(client, bufnr)
-                    if client.server_capabilities.inlayHintProvider then
-                        vim.lsp.inlay_hint.enable(true)
-                    end
-                end
-              '';
-            # settings =
+            # on_attach =
             #   /*
             #   lua
             #   */
             #   ''
-            #     function(project_root)
-            #       local ra = require('rustaceanvim.config.server')
-            #         return ra.load_rust_analyzer_settings(project_root, {
-            #           settings_file_pattern = 'rust-analyzer.json'
-            #         })
+            #     function(client, bufnr)
+            #         if client.server_capabilities.inlayHintProvider then
+            #             vim.lsp.inlay_hint.enable(true)
+            #         end
             #     end
             #   '';
-            #cmd =
-            #  /*
-            #  lua
-            #  */
-            #  ''
-            #    function()
-            #      return { '${pkgs.ra-multiplex}/bin/ra-multiplex', 'client' }
-            #    end
-            #  '';
-            default_settings = ''              {
-                            ['rust-analyzer'] = {
-                              files = {
-                                excludeDirs = {".git", ".direnv"},
-                              },
-                            },
-                          }'';
+            default_settings = {
+              rust-analyzer = {
+                files = {
+                  excludeDirs = [".git" ".direnv"];
+                };
+              };
+            };
           };
           dap = {
             autoload_configurations = false;
@@ -318,6 +302,7 @@ in rec {
     };
     globals = {
       mapleader = " ";
+      localleader = " ";
     };
     colorschemes = {
       catppuccin = {

@@ -9,6 +9,7 @@
     };
   };
   misc-applications = final: prev: {
+    # kitty = inputs.nixpkgs-master.legacyPackages.kitty;
     goread = final.pkgs.buildGoModule {
       pname = "goread";
       version = "v1.6.4";
