@@ -1,17 +1,20 @@
 {
   pkgs,
+  lib,
   device,
   ...
 }: {
-  imports = [
-    ../common/firefox.nix
-    ../linux/hyprland.nix
-    ../linux/gtk.nix
-    ../linux/anyrun.nix
-    ../linux/ironbar
-    ../linux/foot.nix
-    ../linux/mpd.nix
-  ];
+  imports =
+    []
+    ++ (lib.optionals device.hasGui [
+      ../common/firefox.nix
+      ../linux/hyprland.nix
+      ../linux/gtk.nix
+      ../linux/anyrun.nix
+      ../linux/ironbar
+      ../linux/foot.nix
+      ../linux/mpd.nix
+    ]);
 
   services.kdeconnect.enable = device.hasGui;
   services.kdeconnect.indicator = device.hasGui;

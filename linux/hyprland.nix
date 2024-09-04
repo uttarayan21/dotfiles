@@ -10,7 +10,8 @@
   programs.hyprpaper = let
     wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
   in {
-    enable = device.hasGui;
+    # enable = device.hasGui;
+    enable = false;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;
