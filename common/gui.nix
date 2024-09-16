@@ -27,10 +27,10 @@ lib.attrsets.optionalAttrs device.hasGui {
     [
       _1password
       neovide
+      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
     ]
     ++ lib.optionals device.isLinux [
       slack
-      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       via
       webcord-vencord
       bottles

@@ -32,6 +32,21 @@ in rec {
       trouble.enable = true;
       ts-context-commentstring.enable = true;
       which-key.enable = true;
+      chatgpt = {
+        enable = true;
+        settings = {
+          api_key_cmd = ''${pkgs.writeShellScript
+              "openapikey" (
+                if pkgs.stdenv.isDarwin
+                then ''
+                  ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label='api key'
+                ''
+                else ''
+                  /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key'
+                ''
+              )}'';
+        };
+      };
 
       oil = {
         enable = true;
@@ -53,7 +68,7 @@ in rec {
 
       lualine = {
         enable = true;
-        sections = {
+        settings.sections = {
           lualine_c = [
             {
               name =
@@ -74,6 +89,17 @@ in rec {
           ];
         };
       };
+
+      neotest = {
+        enable = true;
+        settings = {
+          adapters = [
+            ''require('rustaceanvim.neotest')''
+          ];
+        };
+      };
+
+      rest.enable = true;
 
       comment = {
         enable = true;
@@ -120,6 +146,7 @@ in rec {
         grammarPackages =
           pkgs.vimPlugins.nvim-treesitter.allGrammars
           ++ (with pkgs.tree-sitter-grammars; [
+            tree-sitter-http
             tree-sitter-just
             tree-sitter-nu
             tree-sitter-d2
@@ -343,6 +370,8 @@ in rec {
         "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
+        "zR" = "require'ufo'.openAllFolds";
+        "zM" = "require'ufo'.closeAllFolds";
 
         # Emulate tmux bindings with prefix <C-q> and tabs
         "<C-q><C-q>" = "[[g<Tab>]]";
@@ -388,262 +417,211 @@ in rec {
         else if pkgs.stdenv.isDarwin
         then "${codelldb}/lldb/lib/liblldb.dylib"
         else null;
-      apikey =
-        pkgs.writeShellScriptBin
-        "openapikey" (
-          if pkgs.stdenv.isDarwin
-          then ''
-            ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label='api key'
-          ''
-          else ''
-            /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key'
-          ''
-        );
     in
       /*
       lua
       */
       ''
-          function catcher(callback)
-              do
-                  success, output = pcall(callback)
-                  if not success then
-                      print("Failed to setup: " .. output)
-                  end
-              end
-          end
+         function catcher(callback)
+             do
+                 success, output = pcall(callback)
+                 if not success then
+                     print("Failed to setup: " .. output)
+                 end
+             end
+         end
 
-        -- do
-        --     function setup()
-        --         require'neotest'.setup({
-        --           adapters = {
-        --               require('rustaceanvim.neotest'),
-        --           }
-        --         })
-        --     end
-        --     success, output = pcall(setup)
-        --     if not success then
-        --         print("Failed to setup neotest: " .. output)
-        --     end
-        -- end
+         -- catcher(require('rest-nvim').setup)
 
-          -- catcher(require('rest-nvim').setup)
+         -- catcher(require('lspconfig').ast_grep.setup)
 
-          -- catcher(require('lspconfig').ast_grep.setup)
+         -- require('telescope').load_extension("dap")
+         -- require('telescope').load_extension("rest")
+         require('telescope').load_extension("neorg")
 
-          -- require('telescope').load_extension("dap")
-          -- require('telescope').load_extension("rest")
-          require('telescope').load_extension("neorg")
+         require("copilot").setup({
+             suggestion = {
+                 enabled = true,
+                 auto_trigger = true,
+                 keymap = {
+                     accept = "<C-l>",
+                 }
+             },
+             panel = { enabled = true },
+         })
 
-          require("copilot").setup({
-              suggestion = {
-                  enabled = true,
-                  auto_trigger = true,
-                  keymap = {
-                      accept = "<C-l>",
-                  }
-              },
-              panel = { enabled = true },
-          })
+         catcher(require('crates').setup)
+         catcher(require('outline').setup)
+         -- catcher(require('navigator').setup)
 
-          catcher(require('crates').setup)
-          catcher(require('outline').setup)
-          -- catcher(require('navigator').setup)
+         require('FTerm').setup({
+             border     = 'single',
+             dimensions = {
+                 height = 0.99,
+                 width = 0.95,
+             },
+             cmd        = "sh -c 'tmux new -As scratch'",
+             blend      = 10,
+         })
 
-          require('FTerm').setup({
-              border     = 'single',
-              dimensions = {
-                  height = 0.99,
-                  width = 0.95,
-              },
-              cmd        = "sh -c 'tmux new -As scratch'",
-              blend      = 10,
-          })
-
-          local load = {
-              ["core.defaults"] = {},
-              ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
-              ["core.concealer"] = {
-                  config = { icon_preset = "diamond" }
-              },
-              ["core.export"] = {},
-              ["core.keybinds"] = {
-                 -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+         local load = {
+             ["core.defaults"] = {},
+             ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
+             ["core.concealer"] = {
+                 config = { icon_preset = "diamond" }
+             },
+             ["core.export"] = {},
+             ["core.keybinds"] = {
+                -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
+                config = {
+                  default_keybinds = true,
+                  neorg_leader = "<C-m>",
+                },
+             },
+             ["core.dirman"] = {
                  config = {
-                   default_keybinds = true,
-                   neorg_leader = "<C-m>",
+                     default_workspace = "Notes",
+                     workspaces = {
+                         Notes = "~/Nextcloud/Notes",
+                         Work = "~/Nextcloud/Work",
+                     }
+                 }
+             }
+         }
+
+
+         require('neorg').setup({
+             load = load,
+         })
+
+         require('octo').setup({
+           use_local_fs = false,
+           enable_builtin = false,
+           default_remote = {"upstream", "origin"};
+           default_merge_method = "squash";
+         })
+
+         local rr_dap = require('nvim-dap-rr')
+         rr_dap.setup({
+             mappings = {
+                 continue = "<F7>"
+             },
+         })
+
+         local dap = require'dap';
+         -- dap.configurations.rust = { rr_dap.get_rust_config() }
+         dap.configurations.cpp = { rr_dap.get_config() }
+
+         if not vim.g.neovide then
+             require('neoscroll').setup()
+             require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
+             load["core.integrations.image"] = {
+                 config = {
+                     tmux_show_only_in_active_window = true,
+                 }
+             }
+         else
+             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+             vim.g.neovide_cursor_vfx_mode = "railgun"
+         end
+
+         require('lspconfig.ui.windows').default_options.border = 'single'
+
+         catcher(require('nvim_context_vt').setup)
+         catcher(function()
+             require('nvim-devdocs').setup({
+                 ensure_installed = {"nix", "rust"},
+                 float_win = {
+                     relative = "editor",
+                     height = 80,
+                     width = 100,
+                     border = "rounded",
                  },
+                 after_open = function()
+                     vim.o.conceallevel = 3
+                 end,
+             })
+         end)
+
+         vim.api.nvim_create_user_command('Reso',
+             function()
+                 pcall(vim.cmd'source ~/.config/nvim/init.lua')
+             end,
+         {})
+
+         vim.api.nvim_create_user_command('Sqlfmt',
+             function()
+                 pcall(vim.cmd'%!${pkgs.sleek}/bin/sleek')
+             end,
+         {})
+
+        local iron = require("iron.core")
+        iron.setup({
+          config = {
+            -- Whether a repl should be discarded or not
+            scratch_repl = true,
+            -- Your repl definitions come here
+            repl_definition = {
+              sh = {
+                -- Can be a table or a function that
+                -- returns a table (see below)
+                command = {"${pkgs.zsh}/bin/zsh"}
               },
-              ["core.dirman"] = {
-                  config = {
-                      default_workspace = "Notes",
-                      workspaces = {
-                          Notes = "~/Nextcloud/Notes",
-                          Work = "~/Nextcloud/Work",
-                      }
-                  }
-              }
-          }
+              sql = {
+                command = function(meta)
+                    local db = os.getenv("DATABASE_PATH")
+                    if db == nil then
+                        return { '${pkgs.sqlite}/bin/sqlite3', ':memory:' }
+                    else
+                        return { '${pkgs.sqlite}/bin/sqlite3', db }
+                    end
 
-
-          require('neorg').setup({
-              load = load,
-          })
-
-          require('chatgpt').setup({
-              api_key_cmd = "${apikey}/bin/openapikey",
-          })
-
-          require('octo').setup({
-            use_local_fs = false,
-            enable_builtin = false,
-            default_remote = {"upstream", "origin"};
-            default_merge_method = "squash";
-          })
-
-          local rr_dap = require('nvim-dap-rr')
-          rr_dap.setup({
-              mappings = {
-                  continue = "<F7>"
+                end
               },
-          })
-
-          local dap = require'dap';
-          -- dap.configurations.rust = { rr_dap.get_rust_config() }
-          dap.configurations.cpp = { rr_dap.get_config() }
-
-          if not vim.g.neovide then
-              require('neoscroll').setup()
-              require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
-              load["core.integrations.image"] = {
-                  config = {
-                      tmux_show_only_in_active_window = true,
-                  }
-              }
-          else
-              vim.o.guifont = "Hasklug Nerd Font Mono:h13"
-              vim.g.neovide_cursor_vfx_mode = "railgun"
-          end
-
-
-          -- do
-          --     function setup()
-          --         local capabilities = vim.lsp.protocol.make_client_capabilities()
-          --         capabilities.textDocument.foldingRange = {
-          --             dynamicRegistration = false,
-          --             lineFoldingOnly = true
-          --         }
-          --         -- local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-          --         local language_servers = {"nil_ls"};
-          --         for _, ls in ipairs(language_servers) do
-          --             require('lspconfig')[ls].setup({
-          --                 capabilities = capabilities
-          --                 -- you can add other fields for setting up lsp server in this table
-          --             })
-          --         end
-          --     end
-          --     success, output = pcall(setup)
-          --     if not success then
-          --         print("Failed to setup lspconfig folds: " .. output)
-          --     end
-          -- end
-          require('lspconfig.ui.windows').default_options.border = 'single'
-
-          catcher(require('nvim_context_vt').setup)
-        --  catcher(function()
-        --      require('nvim-devdocs').setup({
-        --          ensure_installed = {"nix", "rust"},
-        --          float_win = {
-        --              relative = "editor",
-        --              height = 80,
-        --              width = 100,
-        --              border = "rounded",
-        --          },
-        --          after_open = function()
-        --              vim.o.conceallevel = 3
-        --          end,
-        --      })
-        --  end)
-
-          vim.api.nvim_create_user_command('Reso',
-          function()
-              pcall(vim.cmd'source ~/.config/nvim/init.lua')
-          end,
-          {})
-
-          vim.api.nvim_create_user_command('Sqlfmt',
-          function()
-              pcall(vim.cmd'%!${pkgs.sleek}/bin/sleek')
-          end,
-          {})
-
-          local iron = require("iron.core")
-        -- iron.setup({
-        --   config = {
-        --     -- Whether a repl should be discarded or not
-        --     scratch_repl = true,
-        --     -- Your repl definitions come here
-        --     repl_definition = {
-        --       sh = {
-        --         -- Can be a table or a function that
-        --         -- returns a table (see below)
-        --         command = {"${pkgs.zsh}/bin/zsh"}
-        --       },
-        --       sql = {
-        --         command = function(meta)
-        --             local db = os.getenv("DATABASE_PATH")
-        --             if db == nil then
-        --                 return { '${pkgs.sqlite}/bin/sqlite3', ':memory:' }
-        --             else
-        --                 return { '${pkgs.sqlite}/bin/sqlite3', db }
-        --             end
-
-        --         end
-        --       },
-        --       rust = {
-        --         command = {"${pkgs.evcxr}/bin/evcxr"}
-        --       },
-        --     },
-        --     -- How the repl window will be displayed
-        --     -- See below for more information
-        --     repl_open_cmd = require('iron.view').right(60),
-        --   },
-        --   -- Iron doesn't set keymaps by default anymore.
-        --   -- You can set them here or manually add keymaps to the functions in iron.core
-        --   keymaps = {
-        --     send_motion = "<space>sc",
-        --     visual_send = "<space>sc",
-        --     send_file = "<space>sf",
-        --     send_line = "<space>sl",
-        --     send_until_cursor = "<space>su",
-        --     send_mark = "<space>sm",
-        --     mark_motion = "<space>mc",
-        --     mark_visual = "<space>mc",
-        --     remove_mark = "<space>md",
-        --     cr = "<space>s<cr>",
-        --     interrupt = "<space>s<space>",
-        --     exit = "<space>sq",
-        --     clear = "<space>cl",
-        --   },
-        --   -- If the highlight is on, you can change how it looks
-        --   -- For the available options, check nvim_set_hl
-        --   highlight = {
-        --     italic = true
-        --   },
-        --   ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-        -- })
-
-          vim.filetype.add({
-            extension = {
-              http = "http",
+              rust = {
+                command = {"${pkgs.evcxr}/bin/evcxr"}
+              },
             },
-          })
+            -- How the repl window will be displayed
+            -- See below for more information
+            repl_open_cmd = require('iron.view').right(60),
+          },
+          -- Iron doesn't set keymaps by default anymore.
+          -- You can set them here or manually add keymaps to the functions in iron.core
+          keymaps = {
+            send_motion = "<space>sc",
+            visual_send = "<space>sc",
+            send_file = "<space>sf",
+            send_line = "<space>sl",
+            send_until_cursor = "<space>su",
+            send_mark = "<space>sm",
+            mark_motion = "<space>mc",
+            mark_visual = "<space>mc",
+            remove_mark = "<space>md",
+            cr = "<space>s<cr>",
+            interrupt = "<space>s<space>",
+            exit = "<space>sq",
+            clear = "<space>cl",
+          },
+          -- If the highlight is on, you can change how it looks
+          -- For the available options, check nvim_set_hl
+          highlight = {
+            italic = true
+          },
+          ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+        })
 
-          vim.filetype.add({
-              filename = {
-                  ['nurfile'] = "nu",
-              },
-          })
+         vim.filetype.add({
+           extension = {
+             http = "http",
+           },
+         })
+
+         vim.filetype.add({
+             filename = {
+                 ['nurfile'] = "nu",
+             },
+         })
 
       '';
     # package = pkgs.neovim-unwrapped;
@@ -666,6 +644,8 @@ in rec {
       undofile = true;
       viewoptions = "cursor,folds";
       # concealcursor = "n";
+      foldenable = true;
+      foldlevel = 99;
       foldlevelstart = 99;
     };
     extraPlugins = with pkgs.vimPlugins; [
@@ -675,7 +655,6 @@ in rec {
 
       # Wut
       image-nvim
-      ChatGPT-nvim
 
       # UI and UX
       vim-abolish
@@ -705,7 +684,7 @@ in rec {
       vim-speeddating
 
       # Testing
-      neotest
+      # neotest
 
       # Helper libs
       webapi-vim
