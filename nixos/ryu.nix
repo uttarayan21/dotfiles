@@ -17,6 +17,7 @@
     };
     alvr.enable = true;
     alvr.openFirewall = true;
+    adb.enable = true;
     steam.enable = true;
   };
 
@@ -27,7 +28,7 @@
   };
 
   virtualisation.libvirtd.enable = true;
-  users.extraUsers.servius.extraGroups = ["libvirtd"];
+  users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
 
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1
