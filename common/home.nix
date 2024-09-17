@@ -206,12 +206,15 @@ in {
         # t = "zellij a -c --index 0";
         t = "tmux";
       };
-      shellAliases = {
-        g = "git";
-        aichat = "op plugin run -- aichat";
-        kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
-        smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
-      };
+      shellAliases =
+        {
+          g = "git";
+          aichat = "op plugin run -- aichat";
+        }
+        // lib.optionalAttrs pkgs.stdenv.isLinux {
+          kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
+          smpv = "mpv --vo-sixel-buffered=yes --vo=sixel --profile=sw-fast";
+        };
       shellInit = ''
         set fish_greeting
         yes | fish_config theme save "Catppuccin Mocha"

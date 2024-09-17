@@ -94,12 +94,50 @@ in rec {
         enable = true;
         settings = {
           adapters = [
-            ''require('rustaceanvim.neotest')''
+            # ''require('rustaceanvim.neotest')''
           ];
         };
       };
+      neorg = {
+        enable = true;
+        modules = {
+          "core.defaults" = {
+            __empty = null;
+          };
+          "core.completion" = {
+            config = {
+              engine = "nvim-cmp";
+              name = "[Norg]";
+            };
+          };
+          "core.concealer" = {
+            config = {
+              icon_preset = "diamond";
+            };
+          };
+          "core.keybinds" = {
+            config = {
+              default_keybinds = true;
+              neorg_leader = "<C-m>";
+            };
+          };
+          "core.integrations.treesitter" = {
+            config.install_parsers = false;
+            config.configure_parsers = false;
+          };
+          "core.dirman" = {
+            config = {
+              default_workspace = "Notes";
+              workspaces = {
+                Notes = "~/Nextcloud/Notes";
+                Work = "~/Nextcloud/Work";
+              };
+            };
+          };
+        };
+      };
 
-      rest.enable = true;
+      # rest.enable = true;
 
       comment = {
         enable = true;
@@ -144,14 +182,15 @@ in rec {
         settings.indent.enable = true;
         folding = true;
         grammarPackages =
-          pkgs.vimPlugins.nvim-treesitter.allGrammars
-          ++ (with pkgs.tree-sitter-grammars; [
-            tree-sitter-http
+          (with pkgs.tree-sitter-grammars; [
+            tree-sitter-norg
+            tree-sitter-norg-meta
+            # tree-sitter-http
             tree-sitter-just
             tree-sitter-nu
             tree-sitter-d2
-            tree-sitter-norg-meta
-          ]);
+          ])
+          ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
       };
 
       telescope = {
@@ -205,24 +244,29 @@ in rec {
           '';
       };
       rustaceanvim = {
-        enable = true;
+        enable = false;
         settings = {
           server = {
-            # on_attach =
-            #   /*
-            #   lua
-            #   */
-            #   ''
-            #     function(client, bufnr)
-            #         if client.server_capabilities.inlayHintProvider then
-            #             vim.lsp.inlay_hint.enable(true)
-            #         end
-            #     end
-            #   '';
             default_settings = {
               rust-analyzer = {
                 files = {
-                  excludeDirs = [".git" ".direnv"];
+                  excludeDirs = [
+                    ".cargo"
+                    ".direnv"
+                    ".git"
+                    "node_modules"
+                    "target"
+                  ];
+                };
+                diagnostics = {
+                  enable = true;
+                  styleLints.enable = true;
+                };
+
+                checkOnSave = true;
+                check = {
+                  command = "clippy";
+                  features = "all";
                 };
               };
             };
@@ -256,7 +300,22 @@ in rec {
           html.enable = true;
           ast-grep.enable = true;
           # pylyzer.enable = true;
-          # rust-analyzer.enable = false;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+            settings = {
+              files = {
+                excludeDirs = [
+                  ".cargo"
+                  ".direnv"
+                  ".git"
+                  "node_modules"
+                  "target"
+                ];
+              };
+            };
+          };
         };
         onAttach =
           /*
@@ -392,11 +451,11 @@ in rec {
     };
 
     autoCmd = [
-      {
-        event = ["BufEnter" "BufWinEnter"];
-        pattern = "*.norg";
-        command = "set conceallevel=3";
-      }
+      # {
+      #   event = ["BufEnter" "BufWinEnter"];
+      #   pattern = "*.norg";
+      #   command = "set conceallevel=3";
+      # }
       {
         event = ["BufWinLeave"];
         pattern = "?*";
@@ -431,13 +490,12 @@ in rec {
              end
          end
 
-         -- catcher(require('rest-nvim').setup)
 
          -- catcher(require('lspconfig').ast_grep.setup)
 
          -- require('telescope').load_extension("dap")
          -- require('telescope').load_extension("rest")
-         require('telescope').load_extension("neorg")
+         -- require('telescope').load_extension("neorg")
 
          require("copilot").setup({
              suggestion = {
@@ -464,36 +522,6 @@ in rec {
              blend      = 10,
          })
 
-         local load = {
-             ["core.defaults"] = {},
-             ["core.completion"] = { config = { engine = "nvim-cmp", name = "[Norg]" } },
-             ["core.concealer"] = {
-                 config = { icon_preset = "diamond" }
-             },
-             ["core.export"] = {},
-             ["core.keybinds"] = {
-                -- https://github.com/nvim-neorg/neorg/blob/main/lua/neorg/modules/core/keybinds/keybinds.lua
-                config = {
-                  default_keybinds = true,
-                  neorg_leader = "<C-m>",
-                },
-             },
-             ["core.dirman"] = {
-                 config = {
-                     default_workspace = "Notes",
-                     workspaces = {
-                         Notes = "~/Nextcloud/Notes",
-                         Work = "~/Nextcloud/Work",
-                     }
-                 }
-             }
-         }
-
-
-         require('neorg').setup({
-             load = load,
-         })
-
          require('octo').setup({
            use_local_fs = false,
            enable_builtin = false,
@@ -515,11 +543,11 @@ in rec {
          if not vim.g.neovide then
              require('neoscroll').setup()
              require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
-             load["core.integrations.image"] = {
-                 config = {
-                     tmux_show_only_in_active_window = true,
-                 }
-             }
+             -- load["core.integrations.image"] = {
+             --     config = {
+             --         tmux_show_only_in_active_window = true,
+             --     }
+             -- }
          else
              vim.o.guifont = "Hasklug Nerd Font Mono:h13"
              vim.g.neovide_cursor_vfx_mode = "railgun"
@@ -611,11 +639,11 @@ in rec {
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
         })
 
-         vim.filetype.add({
-           extension = {
-             http = "http",
-           },
-         })
+         -- vim.filetype.add({
+         --   extension = {
+         --     http = "http",
+         --   },
+         -- })
 
          vim.filetype.add({
              filename = {
@@ -649,10 +677,6 @@ in rec {
       foldlevelstart = 99;
     };
     extraPlugins = with pkgs.vimPlugins; [
-      # neorg
-      neorg
-      neorg-telescope
-
       # Wut
       image-nvim
 
@@ -671,9 +695,6 @@ in rec {
       copilot-lua
       crates-nvim
       luasnip
-
-      # No more postman
-      # rest-nvim
 
       # UI
       nvim-web-devicons
@@ -700,6 +721,9 @@ in rec {
 
       pkgs.tree-sitter-grammars.tree-sitter-just
       pkgs.tree-sitter-grammars.tree-sitter-nu
+      pkgs.tree-sitter-grammars.tree-sitter-norg
+      pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     ];
+    extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
   };
 }

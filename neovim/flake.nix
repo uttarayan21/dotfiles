@@ -19,7 +19,7 @@
       flake = false;
     };
     neorg = {
-      url = "github:nvim-neorg/neorg/v7.0.0";
+      url = "github:nvim-neorg/neorg/v9.1.1";
       flake = false;
     };
     neorg-telescope = {

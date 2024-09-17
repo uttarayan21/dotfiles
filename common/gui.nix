@@ -27,9 +27,9 @@ lib.attrsets.optionalAttrs device.hasGui {
     [
       _1password
       neovide
-      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
     ]
-    ++ lib.optionals device.isLinux [
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       slack
       via
       webcord-vencord
@@ -58,5 +58,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       webcord-vencord
       spotify
       wl-clipboard
+    ]
+    ++ lib.optionals pkgs.stdenv.isDarwin [
     ];
 }
