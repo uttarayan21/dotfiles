@@ -500,6 +500,12 @@ in rec {
         command = "set conceallevel=3";
       }
       {
+        event = ["BufEnter" "BufWinEnter"];
+        pattern = "*.sql";
+        # set keymap for F to format using :Sqlfmt
+        command = ["nnoremap <buffer> F :Sqlfmt<cr>"];
+      }
+      {
         event = ["BufWinLeave"];
         pattern = "?*";
         command = "mkview!";
