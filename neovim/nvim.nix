@@ -94,7 +94,7 @@ in rec {
         enable = true;
         settings = {
           adapters = [
-            # ''require('rustaceanvim.neotest')''
+            ''require('rustaceanvim.neotest')''
           ];
         };
       };
@@ -125,6 +125,11 @@ in rec {
             config.install_parsers = false;
             config.configure_parsers = false;
           };
+
+          "core.integrations.image" = {
+            config.tmux_show_only_in_active_window = true;
+          };
+
           "core.dirman" = {
             config = {
               default_workspace = "Notes";
@@ -157,7 +162,6 @@ in rec {
 
       markdown-preview = {
         enable = true;
-        settings.auto_start = false;
       };
 
       noice = {
@@ -179,7 +183,13 @@ in rec {
 
       treesitter = {
         enable = true;
-        settings.indent.enable = true;
+        settings = {
+          indent.enable = true;
+          highlight = {
+            enable = true;
+            additional_vim_regex_highlighting = true;
+          };
+        };
         folding = true;
         grammarPackages =
           (with pkgs.tree-sitter-grammars; [
@@ -244,16 +254,23 @@ in rec {
           '';
       };
       rustaceanvim = {
-        enable = false;
+        enable = true;
         settings = {
           server = {
             default_settings = {
               rust-analyzer = {
+                inlayHints = {
+                  genericParameterHints = {
+                    lifetime.enable = true;
+                  };
+                  # implicitDrops.enable = true;
+                };
                 files = {
                   excludeDirs = [
                     ".cargo"
                     ".direnv"
                     ".git"
+                    ".vcpkg"
                     "node_modules"
                     "target"
                   ];
@@ -265,14 +282,30 @@ in rec {
 
                 checkOnSave = true;
                 check = {
-                  command = "clippy";
+                  command = "check";
                   features = "all";
                 };
               };
             };
           };
-          dap = {
+          dap = let
+            vscode-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
+            liblldb =
+              if pkgs.stdenv.isLinux
+              then "${vscode-lldb.lldb}/lib/liblldb.so"
+              else if pkgs.stdenv.isDarwin
+              then "${vscode-lldb.lldb}/lib/liblldb.dylib"
+              else null;
+            codelldb = "${vscode-lldb.adapter}/bin/codelldb";
+          in {
             autoload_configurations = false;
+            adapter =
+              /*
+              lua
+              */
+              ''
+                require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
+              '';
           };
           tools = {
             float_win_config = {border = "rounded";};
@@ -298,24 +331,34 @@ in rec {
           lua-ls.enable = true;
           jsonls.enable = true;
           html.enable = true;
+          htmx.enable = true;
+          elixirls.enable = true;
           ast-grep.enable = true;
+          sqls.enable = true;
+          pyright.enable = true;
           # pylyzer.enable = true;
-          rust-analyzer = {
-            enable = true;
-            installCargo = false;
-            installRustc = false;
-            settings = {
-              files = {
-                excludeDirs = [
-                  ".cargo"
-                  ".direnv"
-                  ".git"
-                  "node_modules"
-                  "target"
-                ];
-              };
-            };
-          };
+          # rust-analyzer = {
+          #   enable = false;
+          #   installCargo = false;
+          #   installRustc = false;
+          #   settings = {
+          #     inlayHints = {
+          #       genericParameterHints = {
+          #         lifetime.enable = true;
+          #       };
+          #       implicitDrops.enable = true;
+          #     };
+          #     files = {
+          #       excludeDirs = [
+          #         ".cargo"
+          #         ".direnv"
+          #         ".git"
+          #         "node_modules"
+          #         "target"
+          #       ];
+          #     };
+          #   };
+          # };
         };
         onAttach =
           /*
@@ -451,11 +494,11 @@ in rec {
     };
 
     autoCmd = [
-      # {
-      #   event = ["BufEnter" "BufWinEnter"];
-      #   pattern = "*.norg";
-      #   command = "set conceallevel=3";
-      # }
+      {
+        event = ["BufEnter" "BufWinEnter"];
+        pattern = "*.norg";
+        command = "set conceallevel=3";
+      }
       {
         event = ["BufWinLeave"];
         pattern = "?*";
@@ -468,15 +511,7 @@ in rec {
       }
     ];
 
-    extraConfigLua = let
-      codelldb = pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter;
-      liblldb =
-        if pkgs.stdenv.isLinux
-        then "${codelldb}/lldb/lib/liblldb.so"
-        else if pkgs.stdenv.isDarwin
-        then "${codelldb}/lldb/lib/liblldb.dylib"
-        else null;
-    in
+    extraConfigLua =
       /*
       lua
       */
@@ -529,25 +564,20 @@ in rec {
            default_merge_method = "squash";
          })
 
-         local rr_dap = require('nvim-dap-rr')
-         rr_dap.setup({
-             mappings = {
-                 continue = "<F7>"
-             },
-         })
+         -- local rr_dap = require('nvim-dap-rr')
+         -- rr_dap.setup({
+         --     mappings = {
+         --         continue = "<F7>"
+         --     },
+         -- })
 
-         local dap = require'dap';
+         -- local dap = require'dap';
          -- dap.configurations.rust = { rr_dap.get_rust_config() }
-         dap.configurations.cpp = { rr_dap.get_config() }
+         -- dap.configurations.cpp = { rr_dap.get_config() }
 
          if not vim.g.neovide then
              require('neoscroll').setup()
              require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
-             -- load["core.integrations.image"] = {
-             --     config = {
-             --         tmux_show_only_in_active_window = true,
-             --     }
-             -- }
          else
              vim.o.guifont = "Hasklug Nerd Font Mono:h13"
              vim.g.neovide_cursor_vfx_mode = "railgun"
@@ -556,20 +586,20 @@ in rec {
          require('lspconfig.ui.windows').default_options.border = 'single'
 
          catcher(require('nvim_context_vt').setup)
-         catcher(function()
-             require('nvim-devdocs').setup({
-                 ensure_installed = {"nix", "rust"},
-                 float_win = {
-                     relative = "editor",
-                     height = 80,
-                     width = 100,
-                     border = "rounded",
-                 },
-                 after_open = function()
-                     vim.o.conceallevel = 3
-                 end,
-             })
-         end)
+         -- catcher(function()
+         --     require('nvim-devdocs').setup({
+         --         ensure_installed = {"nix", "rust"},
+         --         float_win = {
+         --             relative = "editor",
+         --             height = 80,
+         --             width = 100,
+         --             border = "rounded",
+         --         },
+         --         after_open = function()
+         --             vim.o.conceallevel = 3
+         --         end,
+         --     })
+         -- end)
 
          vim.api.nvim_create_user_command('Reso',
              function()
@@ -655,75 +685,48 @@ in rec {
     # package = pkgs.neovim-unwrapped;
     # pkgs.neovim;
     opts = {
-      shell = "sh";
-      number = true;
-      relativenumber = true;
-      tabstop = 4;
-      softtabstop = 4;
-      shiftwidth = 4;
-      expandtab = true;
-      hidden = true;
-      smartcase = true;
-      termguicolors = true;
-      signcolumn = "yes";
-      wrap = true;
       completeopt = "menu,menuone,popup,noselect";
-      # undodir = "${config.xdg.cacheHome}/undodir";
-      undofile = true;
-      viewoptions = "cursor,folds";
-      # concealcursor = "n";
+      expandtab = true;
       foldenable = true;
       foldlevel = 99;
       foldlevelstart = 99;
+      hidden = true;
+      number = true;
+      relativenumber = true;
+      shell = "sh";
+      shiftwidth = 4;
+      signcolumn = "yes";
+      smartcase = true;
+      softtabstop = 4;
+      tabstop = 4;
+      termguicolors = true;
+      undofile = true;
+      viewoptions = "cursor,folds";
+      wrap = true;
     };
     extraPlugins = with pkgs.vimPlugins; [
-      # Wut
-      image-nvim
-
-      # UI and UX
-      vim-abolish
-      octo-nvim
-      neoscroll-nvim
-
-      # Debuggging
-      nvim-dap-rr
-
-      # Treesitter stuff
-      outline-nvim
-
-      # lsp stuff
+      FTerm-nvim
       copilot-lua
       crates-nvim
-      luasnip
-
-      # UI
-      nvim-web-devicons
-
-      # Utils
-      FTerm-nvim
-      plenary-nvim
-      vim-speeddating
-
-      # Testing
-      # neotest
-
-      # Helper libs
-      webapi-vim
-
-      # Treesitter
-      nvim_context_vt
-      nvim-devdocs
-
-      # navigator
-
-      iron-nvim
       d2
-
+      image-nvim
+      iron-nvim
+      luasnip
+      neoscroll-nvim
+      nvim-web-devicons
+      nvim_context_vt
+      octo-nvim
+      outline-nvim
+      plenary-nvim
+      vim-abolish
+      vim-speeddating
+      webapi-vim
       pkgs.tree-sitter-grammars.tree-sitter-just
       pkgs.tree-sitter-grammars.tree-sitter-nu
       pkgs.tree-sitter-grammars.tree-sitter-norg
       pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
+    extraPackages = [pkgs.lldb];
   };
 }

@@ -3,10 +3,9 @@
     skhd = {
       enable = true;
       skhdConfig = ''
-        # open terminal, blazingly fast compared to iTerm/Hyper
-        alt - return : open -na Kitty.app
+        alt - return : ${pkgs.lib.getExe pkgs.kitty} -1 --directory ~
         # alt - return : $\{pkgs.wezterm}/bin/wezterm-gui
-        shift + alt - return: pkill mpv
+        shift + alt - return: pkill afplay
 
         # open mpv
         alt - m : open -na /Applications/mpv.app $(pbpaste)

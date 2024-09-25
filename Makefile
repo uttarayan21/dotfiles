@@ -5,6 +5,9 @@ default: just
 just:
 	just
 
+local:
+	just local
+
 darwin:
 	nix run nix-darwin -- switch --flake . --show-trace
 build_darwin:

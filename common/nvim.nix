@@ -4,5 +4,9 @@
   ...
 }: {
   imports = [inputs.nixvim.homeManagerModules.nixvim];
-  programs.nixvim = pkgs.sneovim.config // {enable = true;};
+  programs.nixvim =
+    pkgs.sneovim.config
+    // {
+      enable = true;
+    };
 }
