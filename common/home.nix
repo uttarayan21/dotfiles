@@ -60,7 +60,7 @@ in {
       pandoc
       aichat
       nodejs
-      sqls
+      deploy-rs
       vcpkg-tool
       gh
       just
@@ -70,7 +70,6 @@ in {
       alejandra
       pkg-config
       devenv
-      sleek
       ra-multiplex
       d2
       jujutsu

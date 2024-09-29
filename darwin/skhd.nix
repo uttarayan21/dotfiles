@@ -3,7 +3,7 @@
     skhd = {
       enable = true;
       skhdConfig = ''
-        alt - return : ${pkgs.lib.getExe pkgs.kitty} -1 --directory ~
+        alt - return : ${pkgs.lib.getExe pkgs.kitty} --single-instance --directory ~ 
         # alt - return : $\{pkgs.wezterm}/bin/wezterm-gui
         shift + alt - return: pkill afplay
 

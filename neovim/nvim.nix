@@ -32,6 +32,18 @@ in rec {
       trouble.enable = true;
       ts-context-commentstring.enable = true;
       which-key.enable = true;
+      conform-nvim = {
+        enable = true;
+        settings = {
+          format_on_save.lsp_format = "fallback";
+          formatters_by_ft = {
+            d2 = ["d2"];
+            sql = ["sleek"];
+            toml = ["taplo"];
+            nix = ["alejandra"];
+          };
+        };
+      };
       chatgpt = {
         enable = true;
         settings = {
@@ -317,6 +329,7 @@ in rec {
       lsp = {
         enable = true;
         servers = {
+          taplo.enable = true;
           gopls.enable = true;
           nil-ls = {
             enable = true;
@@ -336,29 +349,6 @@ in rec {
           ast-grep.enable = true;
           sqls.enable = true;
           pyright.enable = true;
-          # pylyzer.enable = true;
-          # rust-analyzer = {
-          #   enable = false;
-          #   installCargo = false;
-          #   installRustc = false;
-          #   settings = {
-          #     inlayHints = {
-          #       genericParameterHints = {
-          #         lifetime.enable = true;
-          #       };
-          #       implicitDrops.enable = true;
-          #     };
-          #     files = {
-          #       excludeDirs = [
-          #         ".cargo"
-          #         ".direnv"
-          #         ".git"
-          #         "node_modules"
-          #         "target"
-          #       ];
-          #     };
-          #   };
-          # };
         };
         onAttach =
           /*
@@ -463,7 +453,8 @@ in rec {
         "<leader>rr" = "vim.lsp.buf.rename";
         "<C-k>" = "vim.lsp.buf.definition";
         "<C-\\>" = "require('FTerm').toggle";
-        "F" = "function() vim.lsp.buf.format({ async = true }) end";
+        # "F" = "function() vim.lsp.buf.format({ async = true }) end";
+        "F" = "require('conform').format";
         "gi" = "require'telescope.builtin'.lsp_references";
         "<leader>a" = "vim.lsp.buf.code_action";
         "<leader>bb" = "require'dap'.toggle_breakpoint";
@@ -499,11 +490,11 @@ in rec {
         pattern = "*.norg";
         command = "set conceallevel=3";
       }
-      {
-        event = ["BufEnter" "BufWinEnter"];
-        pattern = "*.sql";
-        command = "nnoremap <buffer> F :Sqlfmt<cr>";
-      }
+      # {
+      #   event = ["BufEnter" "BufWinEnter"];
+      #   pattern = "*.sql";
+      #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
+      # }
       {
         event = ["BufWinLeave"];
         pattern = "?*";
@@ -732,6 +723,6 @@ in rec {
       pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-    extraPackages = [pkgs.lldb];
+    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2];
   };
 }

@@ -92,15 +92,21 @@
       url = "github:musnix/musnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nix-darwin,
     flake-utils,
     anyrun,
     nur,
+    deploy-rs,
     ...
   } @ inputs: let
     config_devices = [
@@ -217,23 +223,24 @@
       };
 
     packages = inputs.neovim.packages;
-    # // {
-    #   x86_64-linux.fprintd =
-    #     (import nixpkgs {
-    #       inherit overlays;
-    #       system = "x86_64-linux";
-    #     })
-    #     .fprintd;
-    # };
-
-    cachix = let
-      cachix-deploy-lib = inputs.cachix-deploy.lib nixpkgs.legacyPackages.x86_64-linux;
-    in
-      cachix-deploy-lib.spec {
-        agents.mirai = homeConfigurations.mirai.config.system.build.toplevel;
-        agents.ryu = nixosConfigurations.ryu.config.system.build.toplevel;
-        # agents.mirai = homeConfigurations.mirai.config.system.build.toplevel;
+    deploy = {
+      nodes.mirai = {
+        hostname = "ryu";
+        profiles.system = {
+          user = "servius";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
+        };
       };
+      nodes.mbpro = {
+        hostname = "Uttarayans-MacBook-Pro.local";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
+        };
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     devshells.default = {
       packages = packages;
     };
