@@ -216,31 +216,17 @@
     packages = inputs.neovim.packages;
     deploy = {
       nodes = {
-        ryu = {
-          hostname = "ryu";
-          profiles.system = {
-            user = "servius";
-            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
-          };
-        };
         mirai = {
           hostname = "mirai";
           profiles.system = {
+            sshUser = "fs0c131y";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.mirai;
             user = "fs0c131y";
-            path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.mirai;
-          };
-        };
-        mbpro = {
-          hostname = "Uttarayans-MacBook-Pro.local";
-          profiles.system = {
-            user = "root";
-            path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
           };
         };
       };
     };
 
-    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     devshells.default = {
       packages = packages;
     };
