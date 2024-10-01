@@ -119,15 +119,6 @@
         live = true;
       }
       {
-        name = "phoenix";
-        system = "x86_64-linux";
-        user = "fs0c131y";
-        isNix = true;
-        hasGui = false;
-        isServer = true;
-        live = true;
-      }
-      {
         name = "ryu";
         system = "x86_64-linux";
         user = "servius";
@@ -224,18 +215,27 @@
 
     packages = inputs.neovim.packages;
     deploy = {
-      nodes.mirai = {
-        hostname = "ryu";
-        profiles.system = {
-          user = "servius";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
+      nodes = {
+        ryu = {
+          hostname = "ryu";
+          profiles.system = {
+            user = "servius";
+            path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
+          };
         };
-      };
-      nodes.mbpro = {
-        hostname = "Uttarayans-MacBook-Pro.local";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
+        mirai = {
+          hostname = "mirai";
+          profiles.system = {
+            user = "fs0c131y";
+            path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.mirai;
+          };
+        };
+        mbpro = {
+          hostname = "Uttarayans-MacBook-Pro.local";
+          profiles.system = {
+            user = "root";
+            path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
+          };
         };
       };
     };
