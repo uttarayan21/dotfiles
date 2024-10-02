@@ -5,7 +5,7 @@
   # osConfig,
   ...
 }: {
-  imports = [inputs.anyrun.nixosModules.home-manager];
+  imports = [inputs.anyrun.homeManagerModules.default];
   programs.anyrun = {
     enable = device.hasGui;
     config = {
