@@ -208,8 +208,8 @@
       src = final.fetchFromGitHub {
         owner = "ericlinagora";
         repo = "libfprint-CS9711";
-        rev = "c242a40fcc51aec5b57d877bdf3edfe8cb4883fd";
-        sha256 = "sha256-WFq8sNitwhOOS3eO8V35EMs+FA73pbILRP0JoW/UR80=";
+        rev = "058851c20d1e98d7c8ba82e6bfc9da08f791593f";
+        sha256 = "sha256-LCXKQmOzi/l4jQ40qkgL2gqMtmu0n30Yo6HMgUpW+uI";
       };
       nativeBuildInputs =
         oldAttrs.nativeBuildInputs
@@ -219,23 +219,23 @@
           final.doctest
         ];
     });
-    fprintd = prev.fprintd.overrideAttrs (oldAttrs: rec {
-      version = "1.94.3";
-      src = final.fetchFromGitLab {
-        domain = "gitlab.freedesktop.org";
-        owner = "libfprint";
-        repo = "fprintd";
-        rev = "v${version}";
-        sha256 = "sha256-shH+ctQAx4fpTMWTmo3wB45ZS38Jf8RknryPabfZ6QE=";
-      };
-      patches = [];
-      mesonCheckFlags = [
-        "--no-suite"
-        "fprintd:PAM"
-        "--no-suite"
-        "fprintd:TestPamFprintd"
-      ];
-    });
+    # fprintd = prev.fprintd.overrideAttrs (oldAttrs: rec {
+    #   version = "1.94.3";
+    #   src = final.fetchFromGitLab {
+    #     domain = "gitlab.freedesktop.org";
+    #     owner = "libfprint";
+    #     repo = "fprintd";
+    #     rev = "v${version}";
+    #     sha256 = "sha256-shH+ctQAx4fpTMWTmo3wB45ZS38Jf8RknryPabfZ6QE=";
+    #   };
+    #   patches = [];
+    #   mesonCheckFlags = [
+    #     "--no-suite"
+    #     "fprintd:PAM"
+    #     "--no-suite"
+    #     "fprintd:TestPamFprintd"
+    #   ];
+    # });
   };
   # hyprwm = final: prev: {
   #   # hyprland = prev.hyprland.overrideAttrs (oldAttrs: {

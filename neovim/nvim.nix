@@ -27,7 +27,8 @@ in rec {
       fugitive.enable = true;
       gitsigns.enable = true;
       neogit.enable = true;
-      surround.enable = true;
+      web-devicons.enable = true;
+      vim-surround.enable = true;
       todo-comments.enable = true;
       trouble.enable = true;
       ts-context-commentstring.enable = true;
