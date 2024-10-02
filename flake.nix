@@ -224,6 +224,14 @@
             user = "fs0c131y";
           };
         };
+        ryu = {
+          hostname = "ryu";
+          profiles.system = {
+            sshUser = "servius";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
+            user = "servius";
+          };
+        };
       };
     };
 

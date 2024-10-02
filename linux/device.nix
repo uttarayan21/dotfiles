@@ -6,7 +6,7 @@
   ...
 }:
 builtins.listToAttrs (builtins.map (device: {
-    name = device.user;
+    name = device.name;
     value = let
       pkgs = import inputs.nixpkgs {
         inherit overlays;
