@@ -106,9 +106,9 @@ in rec {
       neotest = {
         enable = true;
         settings = {
-          adapters = [
-            ''require('rustaceanvim.neotest')''
-          ];
+          # adapters = [
+          #   ''require('rustaceanvim.neotest')''
+          # ];
         };
       };
       neorg = {
@@ -155,7 +155,10 @@ in rec {
         };
       };
 
-      # rest.enable = true;
+      rest = {
+        enable = true;
+        enableTelescope = true;
+      };
 
       comment = {
         enable = true;
@@ -218,20 +221,20 @@ in rec {
 
       telescope = {
         enable = true;
-        # settings = {
-        #   defaults = {
-        #     layout_strategy = "vertical";
-        #     layout_config = {
-        #       preview_height = 0.8;
-        #       vertical = {
-        #         size = {
-        #           width = "99%";
-        #           height = "99%";
-        #         };
-        #       };
-        #     };
-        #   };
-        # };
+        settings = {
+          defaults = {
+            layout_strategy = "vertical";
+            layout_config = {
+              preview_height = 0.8;
+              vertical = {
+                size = {
+                  width = "99%";
+                  height = "99%";
+                };
+              };
+            };
+          };
+        };
         extensions = {
           undo.enable = true;
           ui-select.enable = true;
@@ -267,7 +270,7 @@ in rec {
           '';
       };
       rustaceanvim = {
-        enable = true;
+        enable = false;
         settings = {
           server = {
             default_settings = {
@@ -312,13 +315,13 @@ in rec {
             codelldb = "${vscode-lldb.adapter}/bin/codelldb";
           in {
             autoload_configurations = false;
-            adapter =
-              /*
-              lua
-              */
-              ''
-                require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
-              '';
+            # adapter =
+            #   /*
+            #   lua
+            #   */
+            #   ''
+            #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
+            #   '';
           };
           tools = {
             float_win_config = {border = "rounded";};
@@ -350,6 +353,40 @@ in rec {
           ast-grep.enable = true;
           sqls.enable = true;
           pyright.enable = true;
+          rust-analyzer = {
+            enable = true;
+            package = null;
+            installCargo = false;
+            installRustc = false;
+            settings = {
+              inlayHints = {
+                genericParameterHints = {
+                  lifetime.enable = true;
+                };
+                # implicitDrops.enable = true;
+              };
+              files = {
+                excludeDirs = [
+                  ".cargo"
+                  ".direnv"
+                  ".git"
+                  ".vcpkg"
+                  "node_modules"
+                  "target"
+                ];
+              };
+              diagnostics = {
+                enable = true;
+                styleLints.enable = true;
+              };
+
+              checkOnSave = true;
+              check = {
+                command = "check";
+                features = "all";
+              };
+            };
+          };
         };
         onAttach =
           /*
@@ -439,8 +476,8 @@ in rec {
         "<leader>\"" = ''[["+]]'';
         "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
         "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        #"<leader>ee" = "[[<cmd>Rest run<cr>]]";
-        #"<leader>el" = "[[<cmd>Rest run last<cr>]]";
+        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
         "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
         "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
         "<leader><leader>" = "'<c-^>'";
@@ -521,13 +558,6 @@ in rec {
                  end
              end
          end
-
-
-         -- catcher(require('lspconfig').ast_grep.setup)
-
-         -- require('telescope').load_extension("dap")
-         -- require('telescope').load_extension("rest")
-         -- require('telescope').load_extension("neorg")
 
          require("copilot").setup({
              suggestion = {
@@ -724,6 +754,6 @@ in rec {
       pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2];
+    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek];
   };
 }
