@@ -122,6 +122,26 @@ in {
   };
 
   programs = {
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        github = {
+          user = "git";
+          host = "github.com";
+        };
+        mirai = {
+          user = "fs0c131y";
+          hostname = "sh.darksailor.dev";
+          forwardAgent = true;
+        };
+      };
+      serverAliveInterval = 120;
+      extraConfig =
+        lib.strings.optionalString pkgs.stdenv.isDarwin
+        ''
+          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+        '';
+    };
     sketchybar.enable = device.isMac;
     atuin = {
       settings = {
