@@ -10,8 +10,8 @@
   programs.hyprpaper = let
     wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
   in {
-    # enable = device.hasGui;
-    enable = false;
+    enable = device.hasGui;
+    # enable = true;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;
@@ -28,7 +28,7 @@
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
-      # "experimental:explicit_sync" = true;
+      "render:explicit_sync" = true;
       monitor = [
         # ",preferred,auto,auto"
         # ",highrr,auto,1"
