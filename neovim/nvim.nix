@@ -158,6 +158,7 @@ in rec {
       rest = {
         enable = true;
         enableTelescope = true;
+        settings.response.hooks.format = true;
       };
 
       comment = {
@@ -258,16 +259,18 @@ in rec {
 
       nvim-ufo = {
         enable = true;
-        closeFoldKinds = null;
-        providerSelector =
-          /*
-          lua
-          */
-          ''
-            function(bufnr, filetype, buftype)
-                  return {'treesitter', 'indent'}
-            end
-          '';
+        settings = {
+          close_fold_kinds = null;
+          provider_selector =
+            /*
+            lua
+            */
+            ''
+              function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+              end
+            '';
+        };
       };
       rustaceanvim = {
         enable = false;
@@ -335,7 +338,7 @@ in rec {
         servers = {
           taplo.enable = true;
           gopls.enable = true;
-          nil-ls = {
+          nil_ls = {
             enable = true;
             settings.formatting.command = [
               "${pkgs.alejandra}/bin/alejandra"
@@ -343,17 +346,18 @@ in rec {
             # nix.flake.autoArchive = true;
           };
           marksman.enable = true;
+          neocmake.enable = true;
           nushell.enable = true;
           clangd.enable = true;
-          lua-ls.enable = true;
+          lua_ls.enable = true;
           jsonls.enable = true;
           html.enable = true;
           htmx.enable = true;
           elixirls.enable = true;
-          ast-grep.enable = true;
+          ast_grep.enable = true;
           sqls.enable = true;
           pyright.enable = true;
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             package = null;
             installCargo = false;
@@ -754,6 +758,6 @@ in rec {
       pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     ];
     extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek];
+    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
   };
 }
