@@ -139,7 +139,10 @@ in {
       extraConfig =
         lib.strings.optionalString pkgs.stdenv.isDarwin
         ''
-          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+          IdentityAgent ~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock
+        ''
+        + lib.strings.optionalString pkgs.stdenv.isLinux ''
+          IdentityAgent ~/.1password/agent.sock
         '';
     };
     sketchybar.enable = device.isMac;

@@ -104,7 +104,7 @@ in rec {
       };
 
       neotest = {
-        enable = true;
+        enable = false;
         settings = {
           # adapters = [
           #   ''require('rustaceanvim.neotest')''
