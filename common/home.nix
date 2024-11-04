@@ -62,7 +62,6 @@ in {
       nodejs
       deploy-rs
       vcpkg-tool
-      gh
       just
       yarn
       clang
@@ -139,12 +138,14 @@ in {
       extraConfig =
         lib.strings.optionalString pkgs.stdenv.isDarwin
         ''
-          IdentityAgent ~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock
+          IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
         ''
         + lib.strings.optionalString pkgs.stdenv.isLinux ''
           IdentityAgent ~/.1password/agent.sock
         '';
     };
+    gh.enable = true;
+    gh-dash.enable = true;
     sketchybar.enable = device.isMac;
     atuin = {
       settings = {
