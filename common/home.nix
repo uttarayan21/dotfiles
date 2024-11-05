@@ -77,6 +77,7 @@ in {
       # Misc
       ttyper
       qmk
+      ast-grep
       p7zip
       yt-dlp
       # spotdl

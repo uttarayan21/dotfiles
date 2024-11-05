@@ -1,0 +1,2 @@
+facter:
+    nix run github:nix-community/nixos-anywhere -- --flake .#facter --generate-hardware-config nixos-facter facter.json root@sh.darksailor.dev
