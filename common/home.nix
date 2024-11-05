@@ -49,7 +49,8 @@ in {
     ]
     ++ lib.optionals device.isLinux [../linux]
     # ++ lib.optionals.device.isMac [../macos]
-    ++ lib.optionals device.isServer [../server];
+    # ++ lib.optionals device.isServer [../server];
+    ;
 
   home.packages = with pkgs;
     [

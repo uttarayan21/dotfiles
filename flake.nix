@@ -120,7 +120,6 @@
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
         isServer = true;
-        live = true;
       }
       {
         name = "ryu";

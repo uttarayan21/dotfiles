@@ -14,7 +14,7 @@ build_darwin:
 	nix run nix-darwin -- build --flake . 
 
 home:
-	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .
+	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .#mirai -b backup
 
 nixos:
 	sudo nixos-rebuild switch --flake .
