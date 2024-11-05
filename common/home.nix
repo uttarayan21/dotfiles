@@ -256,6 +256,7 @@ in {
             end
         end
         bind \co _aichat_fish
+        ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
       '';
     };
 
