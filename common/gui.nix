@@ -25,8 +25,6 @@ lib.attrsets.optionalAttrs device.hasGui {
   # };
   home.packages = with pkgs;
     [
-      _1password
-      neovide
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})

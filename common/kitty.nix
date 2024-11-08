@@ -23,7 +23,7 @@
     darwinLaunchOptions = [
       "--single-instance"
     ];
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
     package = inputs.nixpkgs-master.legacyPackages.${device.system}.kitty;
   };
 }

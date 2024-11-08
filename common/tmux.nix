@@ -11,7 +11,6 @@
 in {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
     terminal = "tmux-256color";
     prefix = "C-q";
     historyLimit = 100000;
@@ -68,6 +67,8 @@ in {
         set -ga update-environment TERM_PROGRAM
         set -sg escape-time 10
         set -sa terminal-features ',wezterm:RGB'
+        set -g default-command "${pkgs.fish}/bin/fish";
+        set -g default-shell "${pkgs.fish}/bin/fish";
 
 
 

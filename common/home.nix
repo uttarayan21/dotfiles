@@ -54,8 +54,7 @@ in {
 
   home.packages = with pkgs;
     [
-      spotify-player
-
+      # spotify-player
       sd
       go
       pandoc
@@ -244,8 +243,8 @@ in {
         set fish_greeting
         yes | fish_config theme save "Catppuccin Mocha"
       '';
+      # ${pkgs.spotify-player}/bin/spotify_player generate fish | source
       interactiveShellInit = ''
-        ${pkgs.spotify-player}/bin/spotify_player generate fish | source
         ${pkgs.pfetch-rs}/bin/pfetch
         function _aichat_fish
             set -l _old (commandline)
@@ -311,7 +310,7 @@ in {
       enable = true;
       # enableAliases = true;
       git = true;
-      icons = true;
+      icons = "auto";
     };
     # carapace = {
     #   # enable = true;

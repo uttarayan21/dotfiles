@@ -52,7 +52,7 @@ in rec {
               "openapikey" (
                 if pkgs.stdenv.isDarwin
                 then ''
-                  ${pkgs._1password}/bin/op item get 'OpenAI API Token' --fields label='api key'
+                  ${pkgs._1password-cli}/bin/op item get 'OpenAI API Token' --fields label='api key'
                 ''
                 else ''
                   /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key'
@@ -183,18 +183,20 @@ in rec {
 
       noice = {
         enable = true;
-        notify.enabled = false;
-        lsp.override = {
-          "vim.lsp.util.convert_input_to_markdown_lines" = true;
-          "vim.lsp.util.stylize_markdown" = true;
-          "cmp.entry.get_documentation" = true;
-        };
-        presets = {
-          bottom_search = false;
-          command_palette = true;
-          long_message_to_split = true;
-          inc_rename = false;
-          lsp_doc_border = true;
+        settings = {
+          notify.enabled = false;
+          lsp.override = {
+            "vim.lsp.util.convert_input_to_markdown_lines" = true;
+            "vim.lsp.util.stylize_markdown" = true;
+            "cmp.entry.get_documentation" = true;
+          };
+          presets = {
+            bottom_search = false;
+            command_palette = true;
+            long_message_to_split = true;
+            inc_rename = false;
+            lsp_doc_border = true;
+          };
         };
       };
 
