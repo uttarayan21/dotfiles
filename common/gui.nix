@@ -45,7 +45,7 @@ lib.attrsets.optionalAttrs device.hasGui {
 
       seahorse
       nautilus
-      nextcloud-client
+      # nextcloud-client
       gparted
       polkit_gnome
 
