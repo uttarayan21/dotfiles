@@ -352,6 +352,7 @@ in {
     };
 
     home-manager = {enable = true;};
+    # _1password-cli.enable = true;
   };
 
   fonts.fontconfig.enable = true;

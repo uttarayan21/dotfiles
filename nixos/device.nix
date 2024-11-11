@@ -26,6 +26,7 @@ builtins.listToAttrs (builtins.map (device: {
           {
             nixpkgs.config.allowUnfree = true;
             home-manager = {
+              backupFileExtension = "bak";
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {
