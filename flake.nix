@@ -127,8 +127,12 @@
         user = "servius";
         isNix = true;
         monitors = {
-          primary = "DP-3";
+          #  Gigabyte fo27q3
+          primary = "HDMI-A-1";
+          # Acer XV272U
           secondary = "DP-1";
+          # Gigabyte M27Q
+          tertiary = "DP-3";
         };
       }
       {
