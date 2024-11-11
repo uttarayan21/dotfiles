@@ -52,10 +52,10 @@ in rec {
               "openapikey" (
                 if pkgs.stdenv.isDarwin
                 then ''
-                  ${pkgs._1password-cli}/bin/op item get 'OpenAI API Token' --fields label='api key'
+                  ${pkgs._1password-cli}/bin/op item get 'OpenAI API Token' --fields label='api key' --reveal
                 ''
                 else ''
-                  /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key'
+                  /run/wrappers/bin/op item get 'OpenAI API Token' --fields label='api key' --reveal
                 ''
               )}'';
         };
