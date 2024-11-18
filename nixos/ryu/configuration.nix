@@ -134,6 +134,8 @@
     };
   };
 
+  services.openssh.enable = true;
+
   networking = {
     hostName = "ryu"; # Define your hostname.
     nameservers = ["1.1.1.1" "8.8.8.8"];
@@ -156,7 +158,6 @@
     # List services that you want to enable:
 
     # Enable the OpenSSH daemon.
-    services.openssh.enable = true;
 
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
