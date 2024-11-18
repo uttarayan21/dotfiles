@@ -101,6 +101,7 @@ in {
       hasklig
       pfetch-rs
       hotedit
+      _1password-cli
     ]
     ++ lib.optionals device.isLinux [
       rr
@@ -352,7 +353,6 @@ in {
     };
 
     home-manager = {enable = true;};
-    # _1password-cli.enable = true;
   };
 
   fonts.fontconfig.enable = true;
