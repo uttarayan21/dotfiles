@@ -46,7 +46,13 @@
 
   services = {
     mullvad-vpn.enable = true;
-    resolved.enable = true;
+    resolved = {
+      enable = true;
+      dnssec = "true";
+      domains = ["~."];
+      fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+      dnsovertls = "true";
+    };
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
@@ -139,7 +145,8 @@
 
   networking = {
     hostName = "ryu"; # Define your hostname.
-    nameservers = ["1.1.1.1" "8.8.8.8"];
+    # nameservers = ["1.1.1.1" "8.8.8.8"];
+    nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
 
     # Configure network proxy if necessary
     # networking.proxy.default = "http://user:password@proxy:port/";
@@ -240,6 +247,7 @@
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";
     };
+    # etc
   };
 
   musnix.enable = true;
