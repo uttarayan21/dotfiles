@@ -7,6 +7,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./mirai.nix
+    ./docker.nix
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -35,11 +36,11 @@
 
   users.users.fs0c131y = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "docker"];
   };
 
   nixpkgs.config.allowUnfree = true;
-  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "mirai"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
