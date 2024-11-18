@@ -226,9 +226,9 @@ in rec {
         enable = true;
         settings = {
           defaults = {
-            layout_strategy = "vertical";
+            layout_strategy = "horizontal";
             layout_config = {
-              preview_height = 0.8;
+              # preview_height = 0.8;
               vertical = {
                 size = {
                   width = "99%";
