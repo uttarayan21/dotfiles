@@ -119,6 +119,7 @@
         system = "x86_64-linux";
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
+        isNix = true;
         isServer = true;
       }
       {
