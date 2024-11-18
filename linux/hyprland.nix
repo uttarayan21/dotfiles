@@ -18,6 +18,7 @@
     settings.wallpapers = {
       "${device.monitors.primary}" = wallpapers.skull;
       "${device.monitors.secondary}" = wallpapers.frieren_3;
+      "${device.monitors.tertiary}" = wallpapers.cloud;
     };
   };
   programs.hyprlock = {
@@ -34,7 +35,7 @@
         # ",highrr,auto,1"
         "${device.monitors.primary},       2560x1440@360, 0x0,     1, transform, 0"
         "${device.monitors.secondary},   2560x1440@170, -1440x-1120,1, transform, 1"
-        "${device.monitors.tertiary},   2560x1440@170, 4000x248,1, transform, 3"
+        "${device.monitors.tertiary},   2560x1440@170, 2560x-800,1, transform, 3"
         "Unknown-1,disable"
       ];
 

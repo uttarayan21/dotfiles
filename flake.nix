@@ -129,11 +129,11 @@
         isNix = true;
         monitors = {
           #  Gigabyte fo27q3
-          primary = "HDMI-A-1";
+          primary = "HDMI-A-3";
           # Acer XV272U
-          secondary = "DP-1";
+          secondary = "DP-2";
           # Gigabyte M27Q
-          tertiary = "DP-3";
+          tertiary = "DP-1";
         };
       }
       {
@@ -228,7 +228,7 @@
           hostname = "mirai";
           profiles.system = {
             sshUser = "fs0c131y";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.mirai;
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
             user = "fs0c131y";
           };
         };
