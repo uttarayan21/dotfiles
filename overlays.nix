@@ -273,5 +273,5 @@ in [
   inputs.nno.overlays.default
   # catppuccin
   inputs.rust-overlay.overlays.default
-  # inputs.hyprland.overlays.default
+  #inputs.hyprland.overlays.default
 ]
