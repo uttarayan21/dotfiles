@@ -229,7 +229,7 @@
           profiles.system = {
             sshUser = "fs0c131y";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
-            user = "fs0c131y";
+            user = "root";
           };
         };
         ryu = {
@@ -237,7 +237,7 @@
           profiles.system = {
             sshUser = "servius";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
-            user = "servius";
+            user = "root";
           };
         };
       };

@@ -9,9 +9,7 @@
     ./mirai.nix
     ./docker.nix
   ];
-  security = {
-    security.sudo.wheelNeedsPassword = false;
-  };
+  security.sudo.wheelNeedsPassword = false;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
