@@ -141,7 +141,7 @@ in {
         ''
           IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
         ''
-        + lib.strings.optionalString pkgs.stdenv.isLinux ''
+        + lib.strings.optionalString (pkgs.stdenv.isLinux && !device.isServer) ''
           IdentityAgent ~/.1password/agent.sock
         '';
     };
