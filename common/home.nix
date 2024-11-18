@@ -119,7 +119,7 @@ in {
   xdg.enable = true;
   xdg.userDirs = {
     enable = device.isLinux;
-    music = "${config.home.homeDirectory}/Nextcloud/Music";
+    # music = "${config.home.homeDirectory}/Nextcloud/Music";
   };
 
   programs = {

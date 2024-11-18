@@ -17,6 +17,8 @@ build:
 build:
     nixos-rebuild build --flake . --show-trace
 
+nix args:
+    nix --extra-experimental-features "nix-command flakes" {{args}}
 
 home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace
