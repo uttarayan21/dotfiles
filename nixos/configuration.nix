@@ -19,16 +19,31 @@
 
   nix = {
     settings = {
-      auto-optimise-store = true; # Did you read the comment?
+      auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];
     };
+    extraOptions = ''
+      build-users-group = nixbld
+      extra-nix-path = nixpkgs=flake:nixpkgs
+      builders-use-substitutes = true
+    '';
     gc = {
       automatic = true;
       dates = "daily";
       options = "--delete-older-than +5";
     };
     package = pkgs.nixVersions.latest;
+    buildMachines = [
+      {
+        hostName = "sh.darksailor.dev";
+        sshUser = "fs0c131y";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      }
+    ];
+    distributedBuilds = true;
   };
 
   services = {

@@ -11,8 +11,19 @@
     extraOptions = ''
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
+      builders-use-substitutes = true
     '';
     package = pkgs.nixVersions.latest;
+    buildMachines = [
+      {
+        hostName = "sh.darksailor.dev";
+        sshUser = "fs0c131y";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      }
+    ];
+    distributedBuilds = true;
   };
 
   # security.pam.enableSudoTouchIdAuth = true;
