@@ -49,9 +49,7 @@ in rec {
         enable = true;
         settings = {
           api_key_cmd = ''${pkgs.writeShellScript
-              "openapikey" ''
-                ${pkgs._1password-cli}/bin/op item get 'OpenAI API Token' --fields label='api key' --reveal
-              ''}'';
+              "openapikey" "op item get 'OpenAI API Token' --fields label='api key' --reveal"}'';
         };
       };
 

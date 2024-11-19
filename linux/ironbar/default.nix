@@ -73,13 +73,23 @@
           }
         ];
       };
+      "${device.monitors.tertiary}" = {
+        position = "bottom";
+        icon_theme = "Papirus-Dark";
+        start = [
+          {
+            type = "launcher";
+            show_names = false;
+            show_icons = true;
+          }
+          {type = "focused";}
+        ];
+        end = [
+          {type = "clock";}
+        ];
+      };
     };
     style = let
-      # mocha = fetchurl {
-      # url = "https://github.com/catppuccin/waybar/releases/download/v1.0/mocha.css";
-      # sha256 = pkgs.lib.fakeSha256;
-      # };
-      # TODO: Move to subflake
       catppuccin = pkgs.fetchFromGitHub {
         owner = "catppuccin";
         repo = "waybar";
