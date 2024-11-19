@@ -224,7 +224,6 @@
     csshacks = inputs.csshacks;
   };
 in [
-  inputs.subflakes.overlays.default
   libfprint
   zellij
   catppuccinThemes
