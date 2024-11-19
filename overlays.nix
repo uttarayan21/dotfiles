@@ -219,43 +219,10 @@
           final.doctest
         ];
     });
-    # fprintd = prev.fprintd.overrideAttrs (oldAttrs: rec {
-    #   version = "1.94.3";
-    #   src = final.fetchFromGitLab {
-    #     domain = "gitlab.freedesktop.org";
-    #     owner = "libfprint";
-    #     repo = "fprintd";
-    #     rev = "v${version}";
-    #     sha256 = "sha256-shH+ctQAx4fpTMWTmo3wB45ZS38Jf8RknryPabfZ6QE=";
-    #   };
-    #   patches = [];
-    #   mesonCheckFlags = [
-    #     "--no-suite"
-    #     "fprintd:PAM"
-    #     "--no-suite"
-    #     "fprintd:TestPamFprintd"
-    #   ];
-    # });
   };
-  # hyprwm = final: prev: {
-  #   # hyprland = prev.hyprland.overrideAttrs (oldAttrs: {
-  #   #   src = prev.fetchFromGitHub {
-  #   #     owner = "hyprwm";
-  #   #     repo = "hyprland";
-  #   #     rev = "76610d9fb0ba5a2d495a963773c38b717d76776f";
-  #   #     sha256 = "sha256-ghYa1VeYt90YFfqObVY87yESVEaO4RIGmQ8KsYX+6eY=";
-  #   #   };
-  #   #   buildInputs = oldAttrs.buildInputs ++ [final.pkgs.wlroots.dev];
-  #   # });
-  # };
-  # _1password = final: prev: {
-  #   _1password-gui = prev._1password-gui.override {
-  #     polkitPolicyOwners = ["servius"];
-  #   };
-  #   # _1password = prev._1password.override {
-  #   #   polkitPolicyOwners = ["servius"];
-  #   # };
-  # };
+  csshacks = final: prev: {
+    csshacks = inputs.csshacks;
+  };
 in [
   inputs.subflakes.overlays.default
   libfprint
@@ -274,4 +241,5 @@ in [
   # catppuccin
   inputs.rust-overlay.overlays.default
   #inputs.hyprland.overlays.default
+  csshacks
 ]

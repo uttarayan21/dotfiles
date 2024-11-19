@@ -62,12 +62,6 @@
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    subflakes = {
-      # TODO: Will eventualy move all the non-flake fetchFromGitHub urls to this flake
-      # As inputs for the flake that way I don't have to update the hashes manually
-      url = "path:./flakes";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -99,6 +93,10 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    csshacks = {
+      url = "github:MrOtherGuy/firefox-csshacks";
+      flake = false;
     };
   };
 
