@@ -11,6 +11,13 @@
   ];
   security.sudo.wheelNeedsPassword = false;
 
+  sops.defaultSopsFile = ../../secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/fs0c131y/.config/sops/age/keys.txt";
+  sops.secrets."nextcloud/adminpass" = {
+    owner = config.users.users.nextcloud.name;
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
