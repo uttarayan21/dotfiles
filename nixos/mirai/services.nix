@@ -20,6 +20,7 @@
     config.adminuser = "servius";
     config.adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
     configureRedis = true;
+    https = true;
   };
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
