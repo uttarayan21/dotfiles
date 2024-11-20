@@ -7,7 +7,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./mirai.nix
-    ./docker.nix
+    ./services.nix
   ];
   security.sudo.wheelNeedsPassword = false;
 
@@ -37,8 +37,9 @@
 
   users.users.fs0c131y = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker"];
+    extraGroups = ["wheel" "docker" "media"];
   };
+  users.groups.media = {};
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "mirai"; # Define your hostname.
