@@ -18,6 +18,7 @@ builtins.listToAttrs (builtins.map (device: {
       modules =
         [
           nur.nixosModules.nur
+          inputs.sops-nix.nixosModules.sops
           {nixpkgs.overlays = overlays;}
           ./${device.name}/configuration.nix
           home-manager.nixosModules.home-manager
