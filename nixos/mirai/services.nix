@@ -30,6 +30,15 @@
     configureRedis = true;
     https = true;
   };
+  services.llama-cpp = {
+    enable = true;
+    host = "127.0.0.1";
+    port = 3000;
+    model = builtins.fetchurl {
+      sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
+      url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
+    };
+  };
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
       addr = "127.0.0.1";
@@ -47,6 +56,9 @@
     '';
     virtualHosts."cloud.darksailor.dev".extraConfig = ''
       reverse_proxy localhost:8080
+    '';
+    virtualHosts."llama.darksailor.dev".extraConfig = ''
+      reverse_proxy localhost:3000
     '';
   };
 }
