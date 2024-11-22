@@ -18,7 +18,7 @@
     owner = config.users.users.nextcloud.name;
   };
   sops.secrets."llama/user" = {
-    owner = config.users.users.llama.name;
+        # owner = config.users.services.llama-cpp.name;
   };
 
   # Use the systemd-boot EFI boot loader.
