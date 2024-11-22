@@ -17,6 +17,11 @@
     secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
     secrets."llama/user".owner = config.services.caddy.user;
     secrets."builder/mirai/cache/private" = {};
+    secrets.users = {
+      sopsFile = ../../secrets/users.yaml;
+      format = "yaml";
+      key = "";
+    };
   };
 
   # Use the systemd-boot EFI boot loader.

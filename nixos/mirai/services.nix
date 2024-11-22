@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    factorio-headless
-  ];
   sops = {
     secrets = {
-      "authelia/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      "authelia/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "authelia/servers/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "authelia/servers/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "authelia/servers/darksailor/sessionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "authelia/users/servius".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      users.owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
     };
   };
   services = {
@@ -21,32 +21,42 @@
           authentication_backend = {
             password_reset.disable = false;
             file = {
-              path = "/etc/authelia/users.yml";
+              path = "/run/secrets/users";
             };
           };
           session = {
-            cookies = {
-              secure = true;
-              same_site = "Strict";
-            };
+            cookies = [
+              {
+                domain = "darksailor.dev";
+                authelia_url = "https://auth.darksailor.dev";
+                name = "authelia_session";
+              }
+            ];
           };
           access_control = {
             default_policy = "one_factor";
           };
           storage = {
             local = {
-              path = "/var/lib/authelia/darksailor.sqlite3";
+              path = "/var/lib/authelia-darksailor/authelia.sqlite3";
             };
           };
           theme = "dark";
-          notifier.filesystem.filename = "/var/log/authelia/notifications.txt";
+          notifier.filesystem.filename = "/var/lib/authelia-darksailor/authelia-notifier.log";
           server = {
             address = "127.0.0.1:5555";
+            endpoints.authz.forward-auth = {
+              implementation = "ForwardAuth";
+            };
           };
+          # log = {
+          #   file_path = "/tmp/authelia.log";
+          # };
         };
         secrets = {
-          jwtSecretFile = config.sops.secrets."authelia/darksailor/jwtSecret".path;
-          storageEncryptionKeyFile = config.sops.secrets."authelia/darksailor/storageEncryptionSecret".path;
+          jwtSecretFile = config.sops.secrets."authelia/servers/darksailor/jwtSecret".path;
+          storageEncryptionKeyFile = config.sops.secrets."authelia/servers/darksailor/storageEncryptionSecret".path;
+          sessionSecretFile = config.sops.secrets."authelia/servers/darksailor/sessionSecret".path;
         };
       };
     };
@@ -75,10 +85,6 @@
     };
     tailscale = {
       enable = true;
-    };
-    factorio = {
-      enable = true;
-      openFirewall = true;
     };
     navidrome = {
       enable = true;
@@ -131,6 +137,10 @@
         reverse_proxy localhost:8080
       '';
       virtualHosts."llama.darksailor.dev".extraConfig = ''
+        forward_auth localhost:5555 {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy localhost:3000
       '';
       virtualHosts."auth.darksailor.dev".extraConfig = ''
