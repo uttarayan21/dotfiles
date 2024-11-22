@@ -8,39 +8,48 @@
     factorio-headless
   ];
   sops = {
-    # secrets = {
-    #   "authelia/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-    #   "authelia/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-    # };
+    secrets = {
+      "authelia/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "authelia/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+    };
   };
   services = {
-    # authelia = {
-    #   instances.darksailor = {
-    #     enable = false;
-    #     settings = {
-    #       authentication_backend = {
-    #         password_reset.disable = false;
-    #         file = {};
-    #       };
-    #       access_control = {
-    #         default_policy = "one_factor";
-    #       };
-    #       storage = {
-    #         local = {
-    #           path = "/var/lib/authelia/darksailor.sqlite3";
-    #         };
-    #       };
-    #       theme = "dark";
-    #       server = {
-    #         address = "127.0.0.1:5555";
-    #       };
-    #     };
-    #     secrets = {
-    #       jwtSecretFile = config.sops.secrets."authelia/darksailor/jwtSecret".path;
-    #       storageEncryptionKeyFile = config.sops.secrets."authelia/darksailor/storageEncryptionSecret".path;
-    #     };
-    #   };
-    # };
+    authelia = {
+      instances.darksailor = {
+        enable = true;
+        settings = {
+          authentication_backend = {
+            password_reset.disable = false;
+            file = {
+              path = "/etc/authelia/users.yml";
+            };
+          };
+          session = {
+            cookies = {
+              secure = true;
+              same_site = "Strict";
+            };
+          };
+          access_control = {
+            default_policy = "one_factor";
+          };
+          storage = {
+            local = {
+              path = "/var/lib/authelia/darksailor.sqlite3";
+            };
+          };
+          theme = "dark";
+          notifier.filesystem.filename = "/var/log/authelia/notifications.txt";
+          server = {
+            address = "127.0.0.1:5555";
+          };
+        };
+        secrets = {
+          jwtSecretFile = config.sops.secrets."authelia/darksailor/jwtSecret".path;
+          storageEncryptionKeyFile = config.sops.secrets."authelia/darksailor/storageEncryptionSecret".path;
+        };
+      };
+    };
     fail2ban = {
       enable = true;
       bantime = "24h"; # Ban IPs for one day on the first ban
@@ -51,18 +60,18 @@
         maxtime = "168h"; # Do not ban for more than 1 week
         overalljails = true; # Calculate the bantime based on all the violations
       };
-      jails.apache-nohome-iptables.settings = {
-        # Block an IP address if it accesses a non-existent
-        # home directory more than 5 times in 10 minutes,
-        # since that indicates that it's scanning.
-        filter = "apache-nohome";
-        action = ''iptables-multiport[name=HTTP, port="http,https"]'';
-        logpath = "/var/log/httpd/error_log*";
-        backend = "auto";
-        findtime = 600;
-        bantime = 600;
-        maxretry = 5;
-      };
+      # jails.apache-nohome-iptables.settings = {
+      #   # Block an IP address if it accesses a non-existent
+      #   # home directory more than 5 times in 10 minutes,
+      #   # since that indicates that it's scanning.
+      #   filter = "apache-nohome";
+      #   action = ''iptables-multiport[name=HTTP, port="http,https"]'';
+      #   logpath = "/var/log/httpd/error_log*";
+      #   backend = "auto";
+      #   findtime = 600;
+      #   bantime = 600;
+      #   maxretry = 5;
+      # };
     };
     tailscale = {
       enable = true;
