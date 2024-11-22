@@ -4,6 +4,14 @@
   pkgs,
   ...
 }: {
+  environment.systemPackages = with pkgs; [
+    factorio-headless
+  ];
+  services.factorio = {
+    enable = true;
+    openFirewall = true;
+  };
+
   services.navidrome = {
     enable = true;
     settings = {
