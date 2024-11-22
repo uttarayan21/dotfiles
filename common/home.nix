@@ -148,7 +148,6 @@ in {
     };
     gh.enable = true;
     gh-dash.enable = true;
-    sketchybar.enable = device.isMac;
     atuin = {
       settings = {
         auto_sync = true;
