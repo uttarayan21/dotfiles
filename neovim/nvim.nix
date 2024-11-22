@@ -74,20 +74,22 @@ in rec {
       lualine = {
         enable = true;
         settings.sections = {
-          lualine_c =
-            rawLua
-            /*
-            lua
-            */
-            ''
-              function(bufnr)
-                  local opts = { highlight = true }
-                  return require'nvim-navic'.get_location(opts)
-              end,
-              cond = function()
-                  return require'nvim-navic'.is_available()
-              end
-            '';
+          lualine_c = 
+                rawLua
+                /*
+                lua
+                */
+                ''
+                {
+                  function(bufnr)
+                      local opts = { highlight = true }
+                      return require'nvim-navic'.get_location(opts)
+                  end,
+                  cond = function()
+                      return require'nvim-navic'.is_available()
+                  end
+                }
+                '';
         };
       };
 
