@@ -64,6 +64,9 @@
     '';
     virtualHosts."llama.darksailor.dev".extraConfig = ''
       reverse_proxy localhost:3000
+      basicauth / {
+        import htpasswd ${config.sops.secrets."llama/user".path}
+      }
     '';
   };
 }

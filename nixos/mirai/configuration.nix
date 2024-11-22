@@ -17,6 +17,9 @@
   sops.secrets."nextcloud/adminpass" = {
     owner = config.users.users.nextcloud.name;
   };
+  sops.secrets."llama/user" = {
+    owner = config.users.users.llama.name;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
