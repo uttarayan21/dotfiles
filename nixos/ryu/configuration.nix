@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   device,
   ...
 }: {
@@ -20,6 +21,8 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];
+      substituters = ["https://sh.darksailor.dev"];
+      trusted-public-keys = ["mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="];
     };
     extraOptions = ''
       build-users-group = nixbld

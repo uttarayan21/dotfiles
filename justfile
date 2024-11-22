@@ -24,7 +24,6 @@ home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace
 
 local:
-    nix flake update subflakes
     nix flake update neovim
 
 nvim:

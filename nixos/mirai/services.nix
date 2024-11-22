@@ -8,36 +8,32 @@
     factorio-headless
   ];
   sops = {
-    secrets = {
-      "authelia/darksailor/jwtSecret" = {
-        owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      };
-      "authelia/darksailor/storageEncryptionSecret" = {
-        owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      };
-    };
+    # secrets = {
+    #   "authelia/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+    #   "authelia/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+    # };
   };
   services = {
-    authelia = {
-      instances.darksailor = {
-        enable = true;
-        settings = {
-          # server = {
-          #   address = "unix:///run/authelia/authelia.sock";
-          # };
-          # session.domain = "auth.darksailor.dev";
-          access_control = {
-            rules = {
-            };
-          };
-          storage = "local";
-        };
-        secrets = {
-          jwtSecretFile = config.sops.secrets."authelia/darksailor/jwtSecret".path;
-          storageEncryptionKeyFile = config.sops.secrets."authelia/darksailor/storageEncryptionSecret".path;
-        };
-      };
-    };
+    # authelia = {
+    #   instances.darksailor = {
+    #     enable = false;
+    #     settings = {
+    #       # server = {
+    #       #   address = "unix:///run/authelia/authelia.sock";
+    #       # };
+    #       # session.domain = "auth.darksailor.dev";
+    #       access_control = {
+    #         rules = {
+    #         };
+    #       };
+    #       storage = "local";
+    #     };
+    #     secrets = {
+    #       jwtSecretFile = config.sops.secrets."authelia/darksailor/jwtSecret".path;
+    #       storageEncryptionKeyFile = config.sops.secrets."authelia/darksailor/storageEncryptionSecret".path;
+    #     };
+    #   };
+    # };
     tailscale = {
       enable = true;
     };

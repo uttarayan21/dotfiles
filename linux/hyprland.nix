@@ -145,7 +145,7 @@
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
         # "${pkgs.swayosd}/bin/swayosd-server"
-        # "${pkgs.nextcloud-client}/bin/nextcloud --background"
+        "${pkgs.nextcloud-client}/bin/nextcloud --background"
       ];
 
       "$mainMod" = "SUPER";

@@ -10,15 +10,13 @@
     ./services.nix
   ];
   security.sudo.wheelNeedsPassword = false;
-
-  sops.defaultSopsFile = ../../secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/fs0c131y/.config/sops/age/keys.txt";
-  sops.secrets."nextcloud/adminpass" = {
-    owner = config.users.users.nextcloud.name;
-  };
-  sops.secrets."llama/user" = {
-    owner = config.services.caddy.user;
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/fs0c131y/.config/sops/age/keys.txt";
+    secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
+    secrets."llama/user".owner = config.services.caddy.user;
+    secrets."builder/mirai/cache/private" = {};
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -35,6 +33,7 @@
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
       builders-use-substitutes = true
+      secret-key-files = ${config.sops.secrets."builder/mirai/cache/private".path}
     '';
     gc = {
       automatic = true;
