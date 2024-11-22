@@ -58,10 +58,10 @@ in rec {
         settings.skip_confirm_for_simple_edits = true;
       };
 
-      navic = {
-        enable = true;
-        settings.lsp.auto_attach = true;
-      };
+      # navic = {
+      #   enable = true;
+      #   settings.lsp.auto_attach = true;
+      # };
 
       mini = {
         enable = true;
@@ -73,24 +73,24 @@ in rec {
 
       lualine = {
         enable = true;
-        settings.sections = {
-          lualine_c = 
-                rawLua
-                /*
-                lua
-                */
-                ''
-                {
-                  function(bufnr)
-                      local opts = { highlight = true }
-                      return require'nvim-navic'.get_location(opts)
-                  end,
-                  cond = function()
-                      return require'nvim-navic'.is_available()
-                  end
-                }
-                '';
-        };
+        # settings.sections = {
+        #   lualine_c =
+        #         rawLua
+        #         /*
+        #         lua
+        #         */
+        #         ''
+        #         {
+        #           function(bufnr)
+        #               local opts = { highlight = true }
+        #               return require'nvim-navic'.get_location(opts)
+        #           end,
+        #           cond = function()
+        #               return require'nvim-navic'.is_available()
+        #           end
+        #         }
+        #         '';
+        # };
       };
 
       neotest = {
