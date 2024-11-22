@@ -233,10 +233,10 @@ in [
   shell-scipts
   misc-applications
   # inputs.neovim-nightly-overlay.overlays.default
-  inputs.nixvim.overlays.default
+  #inputs.nixvim.overlays.default
   inputs.nur.overlay
   inputs.neovim.overlays.default
-  inputs.nno.overlays.default
+  # inputs.nno.overlays.default
   # catppuccin
   inputs.rust-overlay.overlays.default
   #inputs.hyprland.overlays.default

@@ -6,6 +6,6 @@
   imports = [
     ./goread.nix
     ./hyprpaper.nix
-    ./sketchybar.nix
+    # ./sketchybar.nix
   ];
 }

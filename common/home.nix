@@ -35,16 +35,16 @@ in {
   imports =
     [
       inputs.nix-index-database.hmModules.nix-index
-      ./wezterm.nix
+      # ./wezterm.nix
       ./kitty.nix
       ./gui.nix
 
       ./auth.nix
       ./tmux.nix
       ./nvim.nix
-      ./goread.nix
+      # ./goread.nix
       ./ncmpcpp.nix
-      ./zellij.nix
+      # ./zellij.nix
       ../modules
     ]
     ++ lib.optionals device.isLinux [../linux]
