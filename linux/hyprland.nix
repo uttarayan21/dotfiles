@@ -67,9 +67,9 @@
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
         rounding = 10;
-        drop_shadow = true;
-        shadow_range = 4;
-        shadow_render_power = 3;
+        # drop_shadow = true;
+        # shadow_range = 4;
+        # shadow_render_power = 3;
         # col.shadow = "rgba(1a1a1aee)";
 
         blur = {
@@ -233,18 +233,17 @@
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-      # ${device.monitors.primary}
       workspace = [
         "1,  monitor:${device.monitors.primary}"
         "2,  monitor:${device.monitors.primary}"
         "3,  monitor:${device.monitors.primary}"
         "4,  monitor:${device.monitors.primary}"
-        "5,  monitor:${device.monitors.primary}"
-        "6,  monitor:${device.monitors.primary}"
-        "7,  monitor:${device.monitors.primary}"
-        "8,  monitor:${device.monitors.secondary}"
-        "9,  monitor:${device.monitors.secondary}"
-        "10, monitor:${device.monitors.secondary}"
+        "5,  monitor:${device.monitors.secondary}"
+        "6,  monitor:${device.monitors.secondary}"
+        "7,  monitor:${device.monitors.secondary}"
+        "8,  monitor:${device.monitors.tertiary}"
+        "9,  monitor:${device.monitors.tertiary}"
+        "10, monitor:${device.monitors.tertiary}"
       ];
     };
   };
