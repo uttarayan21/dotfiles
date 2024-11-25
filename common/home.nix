@@ -57,7 +57,6 @@ in {
       sd
       go
       pandoc
-      aichat
       nodejs
       deploy-rs
       vcpkg-tool
@@ -358,15 +357,15 @@ in {
           {
             type = "openai-compatible";
             name = "llama";
-            api_base = "https://llama.darksailor.dev/v1";
+            api_base = "https://llama.darksailor.dev/api/v1";
             models = [
               {
-                name = "minstral";
+                name = "chat";
               }
             ];
           }
         ];
-        model = "llama:minstral";
+        model = "llama:chat";
       };
     };
   };

@@ -11,6 +11,7 @@
       "authelia/servers/darksailor/sessionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       "authelia/users/servius".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       users.owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      "llama/api_key".owner = config.services.caddy.user;
     };
   };
   services = {
@@ -108,15 +109,17 @@
       enable = true;
       host = "127.0.0.1";
       port = 3000;
-      # model = builtins.fetchurl {
-      #   sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
-      #   url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
-      # };
       model = builtins.fetchurl {
-        name = "mistral-7b-claude-chat";
-        sha256 = "03458d74d3e6ed650d67e7800492354e5a8a33aaaeabc80c484e28766814085a";
-        url = "https://huggingface.co/TheBloke/Mistral-7B-Claude-Chat-GGUF/resolve/main/mistral-7b-claude-chat.Q8_0.gguf?download=true";
+        name = "qwen_2.5.1_coder_7b_instruct_gguf";
+        sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
+        url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
       };
+      # extraFlags = ["--" "--in-prefix" "<|im_start|>" "--in-suffix" "<|im_end|>"];
+      # model = builtins.fetchurl {
+      #   name = "mistral-7b-claude-chat";
+      #   sha256 = "03458d74d3e6ed650d67e7800492354e5a8a33aaaeabc80c484e28766814085a";
+      #   url = "https://huggingface.co/TheBloke/Mistral-7B-Claude-Chat-GGUF/resolve/main/mistral-7b-claude-chat.Q8_0.gguf?download=true";
+      # };
     };
     nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
       {
@@ -137,11 +140,18 @@
         reverse_proxy localhost:8080
       '';
       virtualHosts."llama.darksailor.dev".extraConfig = ''
-        forward_auth localhost:5555 {
-            uri /api/authz/forward-auth
-            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        handle /api/v1/* {
+            uri strip_prefix /api/v1
+            reverse_proxy localhost:3000
         }
-        reverse_proxy localhost:3000
+
+        handle {
+            forward_auth localhost:5555 {
+                uri /api/authz/forward-auth
+                copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+            }
+            reverse_proxy localhost:3000
+        }
       '';
       virtualHosts."auth.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:5555

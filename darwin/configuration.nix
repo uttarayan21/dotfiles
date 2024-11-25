@@ -7,6 +7,8 @@
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
       trusted-users = ["root" "fs0c131y"];
+      substituters = ["https://sh.darksailor.dev"];
+      trusted-public-keys = ["mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="];
     };
     extraOptions = ''
       build-users-group = nixbld
