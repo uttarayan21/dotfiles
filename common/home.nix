@@ -36,15 +36,14 @@ in {
     [
       inputs.nix-index-database.hmModules.nix-index
       # ./wezterm.nix
+      # ./goread.nix
+      # ./zellij.nix
       ./kitty.nix
       ./gui.nix
-
       ./auth.nix
       ./tmux.nix
       ./nvim.nix
-      # ./goread.nix
       ./ncmpcpp.nix
-      # ./zellij.nix
       ../modules
     ]
     ++ lib.optionals device.isLinux [../linux]
@@ -352,6 +351,24 @@ in {
     };
 
     home-manager = {enable = true;};
+    aichat = {
+      enable = true;
+      settings = {
+        clients = [
+          {
+            type = "openai-compatible";
+            name = "llama";
+            api_base = "https://llama.darksailor.dev/v1";
+            models = [
+              {
+                name = "minstral";
+              }
+            ];
+          }
+        ];
+        model = "llama:minstral";
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
