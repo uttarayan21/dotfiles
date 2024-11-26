@@ -356,8 +356,22 @@ in {
               }
             ];
           }
+          {
+            type = "openai";
+            name = "openai";
+            api_base = "https://api.openai.com/v1";
+            api_key_cmd = "op item get 'OpenAI API Token' --fields label='api key' --reveal";
+            models = [
+              {
+                name = "gpt-3.5-turbo";
+              }
+              {
+                name = "gpt-4o";
+              }
+            ];
+          }
         ];
-        model = "llama:qwen_2_5_1";
+        model = "openai:gpt-4o";
       };
     };
   };

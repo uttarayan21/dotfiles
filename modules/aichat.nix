@@ -81,8 +81,8 @@ in {
   };
 
   config = let
-    api_key_files = concatStringsSep " " (builtins.map (client: ''--run 'export ${lib.toUpper client.name}_API_KEY=`cat -v ${client.api_key_file}`' '') (builtins.filter (client: (builtins.hasAttr "api_key_file" client)) cfg.settings.clients));
-    api_key_cmds = concatStringsSep " " (builtins.map (client: ''--run 'export ${lib.toUpper client.name}_API_KEY=`${client.api_key_cmd}`' '') (builtins.filter (client: (builtins.hasAttr "api_key_cmd" client)) cfg.settings.clients));
+    api_key_files = concatStringsSep " " (builtins.map (client: ''--run "export ${lib.toUpper client.name}_API_KEY=\`cat -v ${client.api_key_file}\`"'') (builtins.filter (client: (builtins.hasAttr "api_key_file" client)) cfg.settings.clients));
+    api_key_cmds = concatStringsSep " " (builtins.map (client: ''--run "export ${lib.toUpper client.name}_API_KEY=\`${client.api_key_cmd}\`"'') (builtins.filter (client: (builtins.hasAttr "api_key_cmd" client)) cfg.settings.clients));
 
     aichat-wrapped = pkgs.symlinkJoin {
       name = "aichat";
