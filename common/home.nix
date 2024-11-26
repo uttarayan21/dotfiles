@@ -231,7 +231,6 @@ in {
       shellAliases =
         {
           g = "git";
-          aichat = "op plugin run -- aichat";
         }
         // lib.optionalAttrs pkgs.stdenv.isLinux {
           kmpv = "mpv --vo-kitty-use-shm=yes --vo=kitty --really-quiet";
@@ -244,15 +243,6 @@ in {
       # ${pkgs.spotify-player}/bin/spotify_player generate fish | source
       interactiveShellInit = ''
         ${pkgs.pfetch-rs}/bin/pfetch
-        function _aichat_fish
-            set -l _old (commandline)
-            if test -n $_old
-                echo -n "⌛"
-                commandline -f repaint
-                commandline (aichat -e $_old)
-            end
-        end
-        bind \co _aichat_fish
         ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
       '';
     };
@@ -352,20 +342,22 @@ in {
     home-manager = {enable = true;};
     aichat = {
       enable = true;
+      enableFishIntegration = true;
       settings = {
         clients = [
           {
             type = "openai-compatible";
             name = "llama";
             api_base = "https://llama.darksailor.dev/api/v1";
+            api_key_cmd = "op item get llama-api --fields label=credential --reveal";
             models = [
               {
-                name = "chat";
+                name = "qwen_2_5_1";
               }
             ];
           }
         ];
-        model = "llama:chat";
+        model = "llama:qwen_2_5_1";
       };
     };
   };
