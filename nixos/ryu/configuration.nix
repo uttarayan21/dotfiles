@@ -12,7 +12,7 @@
   security = {
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
-    pam.services.greetd.enableGnomeKeyring = true;
+    # pam.services.greetd.enableGnomeKeyring = true;
     rtkit.enable = true;
   };
 
@@ -61,18 +61,18 @@
     udisks2.enable = true;
     gnome.gnome-keyring.enable = true;
 
-    greetd = let
-      tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-      hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-    in {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
-          user = "greeter";
-        };
-      };
-    };
+    # greetd = let
+    #   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    #   hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
+    # in {
+    #   enable = true;
+    #   settings = {
+    #     default_session = {
+    #       command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
+    #       user = "greeter";
+    #     };
+    #   };
+    # };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
@@ -83,6 +83,7 @@
       layout = "us";
       variant = "";
     };
+    xserver.displayManager.gdm.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -109,16 +110,16 @@
     bootspec.enable = true;
   };
 
-  systemd.services.greetd.serviceConfig = {
-    Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
-    StandardError = "journal"; # Without this errors will spam on screen
-    # Without these bootlogs will spam on screen
-    TTYReset = true;
-    TTYVHangup = true;
-    TTYVTDisallocate = true;
-  };
+  # systemd.services.greetd.serviceConfig = {
+  #   Type = "idle";
+  #   StandardInput = "tty";
+  #   StandardOutput = "tty";
+  #   StandardError = "journal"; # Without this errors will spam on screen
+  #   # Without these bootlogs will spam on screen
+  #   TTYReset = true;
+  #   TTYVHangup = true;
+  #   TTYVTDisallocate = true;
+  # };
   hardware = {
     keyboard.qmk.enable = true;
     # services.wireplumber.configPackages = with pkgs; [ bluez ];
