@@ -15,6 +15,30 @@
     };
   };
   services = {
+    home-assistant = {
+      enable = true;
+      extraComponents = [
+        "esphome"
+        "met"
+        "radio_browser"
+        "wiz"
+        # "auth_header"
+      ];
+      customComponents = [
+        pkgs.home-assistant-custom-components.auth-header
+      ];
+      config = {
+        default_config = {};
+        http = {
+          server_host = "::1";
+          trusted_proxies = ["::1"];
+          use_x_forwarded_for = true;
+        };
+        auth_header = {
+          username_header = "Remote-User";
+        };
+      };
+    };
     authelia = {
       instances.darksailor = {
         enable = true;
@@ -36,6 +60,12 @@
           };
           access_control = {
             default_policy = "one_factor";
+            rules = [
+              {
+                domain = "darksailor.dev";
+                policy = "one_factor";
+              }
+            ];
           };
           storage = {
             local = {
@@ -155,6 +185,14 @@
       '';
       virtualHosts."auth.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:5555
+      '';
+      virtualHosts."home.darksailor.dev".extraConfig = ''
+        forward_auth localhost:5555 {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
+        reverse_proxy localhost:8123
+
       '';
     };
   };

@@ -8,6 +8,7 @@
     # Include the results of the hardware scan.
     ./mirai.nix
     ./services.nix
+    ./docker.nix
   ];
   security.sudo.wheelNeedsPassword = false;
   sops = {
