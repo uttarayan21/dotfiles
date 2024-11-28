@@ -39,6 +39,9 @@
         };
       };
     };
+    jellyfin = {
+      enable = true;
+    };
     authelia = {
       instances.darksailor = {
         enable = true;
@@ -193,6 +196,9 @@
         }
         reverse_proxy localhost:8123
 
+      '';
+      virtualHosts."media.darksailor.dev".extraConfig = ''
+        reverse_proxy localhost:8096
       '';
     };
   };
