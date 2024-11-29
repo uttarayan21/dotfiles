@@ -23,7 +23,6 @@
         "wiz"
         "google_assistant"
         "google_translate"
-        # "auth_header"
       ];
       customComponents = [
         pkgs.home-assistant-custom-components.auth-header
