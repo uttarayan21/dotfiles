@@ -22,6 +22,8 @@
         "met"
         "radio_browser"
         "wiz"
+        "google_assistant"
+        "google_translate"
         # "auth_header"
       ];
       customComponents = [
