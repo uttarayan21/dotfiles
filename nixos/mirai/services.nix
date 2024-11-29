@@ -140,6 +140,15 @@
       configureRedis = true;
       https = true;
     };
+    ollama = {
+      enable = true;
+      loadModels = ["RobinBially/nomic-embed-text-8k" "minstral"];
+      port = 11434;
+      host = "0.0.0.0";
+      environmentVariables = {
+        OLLAMA_ORIGINS = "*";
+      };
+    };
     llama-cpp = {
       enable = true;
       host = "127.0.0.1";
@@ -149,12 +158,6 @@
         sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
         url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
       };
-      # extraFlags = ["--" "--in-prefix" "<|im_start|>" "--in-suffix" "<|im_end|>"];
-      # model = builtins.fetchurl {
-      #   name = "mistral-7b-claude-chat";
-      #   sha256 = "03458d74d3e6ed650d67e7800492354e5a8a33aaaeabc80c484e28766814085a";
-      #   url = "https://huggingface.co/TheBloke/Mistral-7B-Claude-Chat-GGUF/resolve/main/mistral-7b-claude-chat.Q8_0.gguf?download=true";
-      # };
     };
     nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
       {
@@ -178,6 +181,11 @@
         handle /api/v1/* {
             uri strip_prefix /api/v1
             reverse_proxy localhost:3000
+        }
+
+        handle /api/ollama/* {
+            uri strip_prefix /api/ollama
+            reverse_proxy localhost:11434
         }
 
         handle {
@@ -204,4 +212,41 @@
       '';
     };
   };
+
+  # containers.llama = {
+  #   autoStart = true;
+  #   privateNetwork = true;
+  #   hostAddress = "192.168.100.10";
+  #   localAddress = "192.168.100.11";
+  #   hostAddress6 = "fc00::1";
+  #   localAddress6 = "fc00::2";
+  #   config = {
+  #     config,
+  #     pkgs,
+  #     libs,
+  #     ...
+  #   }: {
+  #     system.stateVersion = "24.11";
+  #     networking = {
+  #       firewall = {
+  #         enable = true;
+  #         allowedTCPPorts = [4000];
+  #       };
+  #       # Use systemd-resolved inside the container
+  #       # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
+  #       useHostResolvConf = lib.mkForce false;
+  #     };
+  #     services.resolved.enable = true;
+  #     services.llama-cpp = {
+  #       enable = true;
+  #       host = "127.0.0.1";
+  #       port = 4000;
+  #       model = builtins.fetchurl {
+  #         name = "qwen_2.5.1_coder_7b_instruct_gguf";
+  #         sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
+  #         url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
+  #       };
+  #     };
+  #   };
+  # };
 }

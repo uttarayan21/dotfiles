@@ -357,6 +357,22 @@ in {
             ];
           }
           {
+            type = "openai-compatible";
+            name = "ollama";
+            api_base = "https://llama.darksailor.dev/api/ollama/v1";
+            api_key_cmd = "op item get llama-api --fields label=credential --reveal";
+            models = [
+              {
+                name = "RobinBially/nomic-embed-text-8k";
+                type = "embedding";
+                default_chunk_size = 8000;
+              }
+              {
+                name = "codellama:minstral";
+              }
+            ];
+          }
+          {
             type = "openai";
             name = "openai";
             api_base = "https://api.openai.com/v1";
@@ -371,6 +387,7 @@ in {
             ];
           }
         ];
+        rag_embedding_model = "ollama:RobinBially/nomic-embed-text-8k";
         model = "openai:gpt-4o";
       };
     };
