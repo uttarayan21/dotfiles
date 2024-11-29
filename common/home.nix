@@ -344,6 +344,9 @@ in {
       enable = true;
       enableFishIntegration = true;
       settings = {
+        save_session = true;
+        model = "openai:gpt-4o";
+        rag_embedding_model = "ollama:RobinBially/nomic-embed-text-8k";
         clients = [
           {
             type = "openai-compatible";
@@ -368,7 +371,7 @@ in {
                 default_chunk_size = 8000;
               }
               {
-                name = "codellama:minstral";
+                name = "mistral";
               }
             ];
           }
@@ -387,8 +390,6 @@ in {
             ];
           }
         ];
-        rag_embedding_model = "ollama:RobinBially/nomic-embed-text-8k";
-        model = "openai:gpt-4o";
       };
     };
   };

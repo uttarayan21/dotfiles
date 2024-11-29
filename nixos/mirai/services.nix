@@ -11,7 +11,6 @@
       "authelia/servers/darksailor/sessionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       "authelia/users/servius".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       users.owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      "llama/api_key".owner = config.services.caddy.user;
     };
   };
   services = {
@@ -142,7 +141,7 @@
     };
     ollama = {
       enable = true;
-      loadModels = ["RobinBially/nomic-embed-text-8k" "minstral"];
+      loadModels = ["RobinBially/nomic-embed-text-8k" "mistral"];
       port = 11434;
       host = "0.0.0.0";
       environmentVariables = {
@@ -181,11 +180,45 @@
         handle /api/v1/* {
             uri strip_prefix /api/v1
             reverse_proxy localhost:3000
+
+            @apikey {
+                header Authorization "Bearer {env.LLAMA_API_KEY}"
+            }
+
+            handle @apikey {
+                header {
+                    # Set response headers or proxy to a different service if API key is valid
+                    Access-Control-Allow-Origin *
+                    -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
+                }
+                reverse_proxy localhost:11434
+            }
+
+            handle {
+                respond "Unauthorized" 403
+            }
         }
 
         handle /api/ollama/* {
             uri strip_prefix /api/ollama
             reverse_proxy localhost:11434
+
+            @apikey {
+                header Authorization "Bearer {env.LLAMA_API_KEY}"
+            }
+
+            handle @apikey {
+                header {
+                    # Set response headers or proxy to a different service if API key is valid
+                    Access-Control-Allow-Origin *
+                    -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
+                }
+                reverse_proxy localhost:11434
+            }
+
+            handle {
+                respond "Unauthorized" 403
+            }
         }
 
         handle {
@@ -212,41 +245,9 @@
       '';
     };
   };
-
-  # containers.llama = {
-  #   autoStart = true;
-  #   privateNetwork = true;
-  #   hostAddress = "192.168.100.10";
-  #   localAddress = "192.168.100.11";
-  #   hostAddress6 = "fc00::1";
-  #   localAddress6 = "fc00::2";
-  #   config = {
-  #     config,
-  #     pkgs,
-  #     libs,
-  #     ...
-  #   }: {
-  #     system.stateVersion = "24.11";
-  #     networking = {
-  #       firewall = {
-  #         enable = true;
-  #         allowedTCPPorts = [4000];
-  #       };
-  #       # Use systemd-resolved inside the container
-  #       # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
-  #       useHostResolvConf = lib.mkForce false;
-  #     };
-  #     services.resolved.enable = true;
-  #     services.llama-cpp = {
-  #       enable = true;
-  #       host = "127.0.0.1";
-  #       port = 4000;
-  #       model = builtins.fetchurl {
-  #         name = "qwen_2.5.1_coder_7b_instruct_gguf";
-  #         sha256 = "61834b88c1a1ce5c277028a98c4a0c94a564210290992a7ba301bbef96ef8eba";
-  #         url = "https://huggingface.co/bartowski/Qwen2.5.1-Coder-7B-Instruct-GGUF/resolve/main/Qwen2.5.1-Coder-7B-Instruct-Q8_0.gguf?download=true";
-  #       };
-  #     };
-  #   };
-  # };
+  systemd.services.caddy = {
+    serviceConfig = {
+      EnvironmentFile = config.sops.templates."LLAMA_API_KEY.env".path;
+    };
+  };
 }

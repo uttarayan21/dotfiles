@@ -18,10 +18,17 @@
     secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
     secrets."llama/user".owner = config.services.caddy.user;
     secrets."builder/mirai/cache/private" = {};
+    secrets."llama/api_key".owner = config.services.caddy.user;
     secrets.users = {
       sopsFile = ../../secrets/users.yaml;
       format = "yaml";
       key = "";
+    };
+    templates = {
+      "LLAMA_API_KEY.env".content = ''
+        LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
+      '';
+      api_key_env.owner = config.services.caddy.user;
     };
   };
 
