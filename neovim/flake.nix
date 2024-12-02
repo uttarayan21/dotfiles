@@ -50,6 +50,10 @@
       url = "github:IndianBoy42/tree-sitter-just";
       flake = false;
     };
+    tree-sitter-slint = {
+      url = "github:slint-ui/tree-sitter-slint";
+      flake = false;
+    };
     d2 = {
       url = "github:terrastruct/d2-vim";
       flake = false;

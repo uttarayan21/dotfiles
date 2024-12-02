@@ -208,6 +208,7 @@ in rec {
             tree-sitter-just
             tree-sitter-nu
             tree-sitter-d2
+            tree-sitter-slint
           ])
           ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
       };
@@ -349,6 +350,7 @@ in rec {
           ast_grep.enable = true;
           sqls.enable = true;
           pyright.enable = true;
+          slint_lsp.enable = true;
           rust_analyzer = {
             enable = true;
             package = null;
@@ -692,11 +694,11 @@ in rec {
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
         })
 
-         -- vim.filetype.add({
-         --   extension = {
-         --     http = "http",
-         --   },
-         -- })
+         vim.filetype.add({
+            extension = {
+               slint = "slint",
+            },
+         })
 
          vim.filetype.add({
              filename = {

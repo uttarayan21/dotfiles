@@ -1811,11 +1811,12 @@
         "rest-nvim": "rest-nvim",
         "systems": "systems_12",
         "tree-sitter-d2": "tree-sitter-d2",
-        "tree-sitter-just": "tree-sitter-just"
+        "tree-sitter-just": "tree-sitter-just",
+        "tree-sitter-slint": "tree-sitter-slint"
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-zBrA+662PqLuRrkX7nGzewiOyWnhj3eZ1MKP050fbvM=",
+        "narHash": "sha256-jcGDQxNvo9hLGOcoVWLaAD4N0S9hWjzmudCr4n84YOo=",
         "path": "./neovim",
         "type": "path"
       },
@@ -2991,6 +2992,22 @@
       "original": {
         "owner": "IndianBoy42",
         "repo": "tree-sitter-just",
+        "type": "github"
+      }
+    },
+    "tree-sitter-slint": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1728016694,
+        "narHash": "sha256-cEitYvrK9P5McbqQAH/PmbD5W0pYULwj3eP9lKXSOTE=",
+        "owner": "slint-ui",
+        "repo": "tree-sitter-slint",
+        "rev": "4e2765d4cac1f03ada6f635eeb6008d1d0aff5a3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "slint-ui",
+        "repo": "tree-sitter-slint",
         "type": "github"
       }
     },

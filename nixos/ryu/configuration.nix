@@ -48,6 +48,9 @@
   };
 
   services = {
+    tailscale = {
+      enable = true;
+    };
     mullvad-vpn.enable = true;
     resolved = {
       enable = true;
