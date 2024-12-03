@@ -14,6 +14,9 @@
     };
   };
   services = {
+    nix-serve = {
+      enable = true;
+    };
     home-assistant = {
       enable = true;
       extraComponents = [

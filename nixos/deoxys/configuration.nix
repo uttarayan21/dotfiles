@@ -15,8 +15,37 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+      extra-experimental-features = "nix-command flakes auto-allocate-uids";
+      trusted-users = ["root" "servius" "fs0c131y"];
+    };
+    extraOptions = ''
+      build-users-group = nixbld
+      extra-nix-path = nixpkgs=flake:nixpkgs
+      builders-use-substitutes = true
+    '';
+    gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than +5";
+    };
+    package = pkgs.nixVersions.latest;
+    buildMachines = [
+      {
+        hostName = "sh.darksailor.dev";
+        sshUser = "fs0c131y";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      }
+    ];
+    distributedBuilds = true;
+  };
+
+  networking.hostName = "deoxys"; # Define your hostname.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -49,6 +78,7 @@
     xkbVariant = "";
   };
 
+  security.sudo.wheelNeedsPassword = false;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.servius = {
     isNormalUser = true;
