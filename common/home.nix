@@ -128,6 +128,11 @@ in {
           user = "git";
           host = "github.com";
         };
+        deoxys = {
+          user = "servius";
+          hostname = "deoxys";
+          forwardAgent = true;
+        };
         mirai = {
           user = "fs0c131y";
           hostname = "sh.darksailor.dev";
