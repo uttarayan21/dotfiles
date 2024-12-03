@@ -131,20 +131,14 @@
         };
       }
       {
-        name = "genzai";
-        system = "x86_64-linux";
-        user = "fs0c131y";
-        hasGui = false; # Don't wan't to run GUI apps on a headless server
-      }
-      {
         name = "Uttarayans-MacBook-Pro";
         system = "aarch64-darwin";
         user = "fs0c131y";
       }
       {
-        name = "Serviuss-iMac-Pro";
-        system = "x86_64-darwin";
-        user = "servius";
+        name = "deoxys";
+        system = "x86_64-linux";
+        user = "fs0c131y";
         hasGui = false; # It's a vm so no GUI apps are used
       }
       {
@@ -239,6 +233,14 @@
           profiles.system = {
             sshUser = "fs0c131y";
             path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
+          };
+        };
+        deoxys = {
+          hostname = "deoxys";
+          profiles.system = {
+            sshUser = "servius";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.deoxys;
+            user = "root";
           };
         };
       };
