@@ -136,6 +136,7 @@
         user = "servius";
         hasGui = false; # It's a vm so no GUI apps are used
         isNix = true;
+        isServer = true;
       }
       {
         name = "Uttarayans-MacBook-Pro";
