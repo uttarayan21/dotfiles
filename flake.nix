@@ -131,15 +131,16 @@
         };
       }
       {
+        name = "deoxys";
+        system = "x86_64-linux";
+        user = "servius";
+        hasGui = false; # It's a vm so no GUI apps are used
+        isNix = true;
+      }
+      {
         name = "Uttarayans-MacBook-Pro";
         system = "aarch64-darwin";
         user = "fs0c131y";
-      }
-      {
-        name = "deoxys";
-        system = "x86_64-linux";
-        user = "fs0c131y";
-        hasGui = false; # It's a vm so no GUI apps are used
       }
       {
         name = "SteamDeck";
