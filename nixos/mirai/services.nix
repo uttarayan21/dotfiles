@@ -164,6 +164,11 @@
         OLLAMA_ORIGINS = "*";
       };
     };
+    nextjs-ollama-llm-ui = {
+      enable = true;
+      port = 5096;
+      ollamaUrl = "https://llama.darksailor.dev/api/ollama";
+    };
     llama-cpp = {
       enable = false;
       host = "127.0.0.1";
@@ -246,7 +251,7 @@
                 uri /api/authz/forward-auth
                 copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
             }
-            reverse_proxy localhost:3000
+            reverse_proxy localhost:5096
         }
       '';
       virtualHosts."auth.darksailor.dev".extraConfig = ''
