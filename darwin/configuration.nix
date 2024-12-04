@@ -49,6 +49,7 @@
   programs.fish.enable = true;
 
   services.nix-daemon.enable = true;
+  services.tailscale.enable = true;
   system.stateVersion = 4;
 
   system.keyboard.enableKeyMapping = true;
