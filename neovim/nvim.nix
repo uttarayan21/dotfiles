@@ -68,6 +68,24 @@ in rec {
         enable = true;
         settings.skip_confirm_for_simple_edits = true;
       };
+      yazi = {
+        enable = true;
+        settings = {
+          open_for_directories = true;
+          keymaps = {
+            show_help = "<f1>";
+            open_file_in_vertical_split = "<c-v>";
+            open_file_in_horizontal_split = "<c-x>";
+            open_file_in_tab = "<c-t>";
+            grep_in_directory = "<c-s>";
+            replace_in_directory = "<c-g>";
+            cycle_open_buffers = "<tab>";
+            copy_relative_path_to_selected_files = "<c-y>";
+            send_to_quickfix_list = "<c-q>";
+            change_working_directory = "<c-c>";
+          };
+        };
+      };
 
       # navic = {
       #   enable = true;
@@ -507,7 +525,8 @@ in rec {
         "<leader>bb" = "require'dap'.toggle_breakpoint";
         "<leader>du" = "require'dapui'.toggle";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-        "<leader>ff" = "require'telescope.builtin'.find_files";
+        "<leader>ff" = "require'yazi'.yazi";
+        "<leader>fg" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
         "zR" = "require'ufo'.openAllFolds";

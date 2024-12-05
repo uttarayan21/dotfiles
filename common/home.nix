@@ -53,64 +53,57 @@ in {
 
   home.packages = with pkgs;
     [
-      # spotify-player
-      sd
-      go
-      pandoc
-      nodejs
+      _1password-cli
+      alejandra
+      ast-grep
+      bottom
+      btop
+      cachix
+      d2
       deploy-rs
-      vcpkg-tool
+      dust
+      fd
+      file
+      fzf
+      gnupg
+      go
+      gpg-tui
+      hasklig
+      hotedit
+      jq
+      jujutsu
       just
-      yarn
+      macchina
+      p7zip
+      pandoc
+      pfetch-rs
+      pkg-config
+      ripgrep
+      sd
+      tldr
+      vcpkg-tool
+      yt-dlp
+    ]
+    ++ lib.optionals (!device.isServer) [
+      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "NerdFontsSymbolsOnly"];})
       clang
       cmake
-      alejandra
-      pkg-config
       devenv
-      ra-multiplex
-      d2
-      jujutsu
-      # openapi-tui
-
-      # Misc
-      ttyper
-      qmk
-      ast-grep
-      p7zip
-      yt-dlp
-      # spotdl
-      picat
-      davis
-      gnupg
-      gpg-tui
-
-      file
-      jq
-      tldr
-      bottom
-      macchina
-      ripgrep
-      fd
-      dust
-      cachix
-      fzf
-      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "NerdFontsSymbolsOnly"];})
       monaspace
-      hasklig
-      pfetch-rs
-      hotedit
-      _1password-cli
+      qmk
+      ttyper
+      yarn
     ]
     ++ lib.optionals device.isLinux [
-      rr
-      sbctl
-      gptfdisk
       dig
-      usbutils
+      gptfdisk
       handlr-regex
       handlr-xdg
       lsof
       ncpamixer
+      rr
+      sbctl
+      usbutils
     ]
     ++ lib.optionals device.isMac [];
 
