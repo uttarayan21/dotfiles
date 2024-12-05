@@ -24,8 +24,6 @@
         "met"
         "radio_browser"
         "wiz"
-        "google_assistant"
-        "google_translate"
       ];
       customComponents = [
         pkgs.home-assistant-custom-components.auth-header
