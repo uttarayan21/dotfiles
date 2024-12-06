@@ -148,6 +148,7 @@
         system = "x86_64-linux";
         user = "deck";
         hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
+        isServer = true;
       }
     ];
 
@@ -207,8 +208,23 @@
     homeConfigurations = let
       devices = linux_devices;
     in
-      import ./linux/device.nix {
+      (import ./linux/device.nix {
         inherit devices inputs nixpkgs home-manager overlays;
+      })
+      // {
+        deck = let
+          pkgs = import inputs.nixpkgs {
+            inherit overlays;
+            system = "x86_64-linux";
+          };
+        in
+          home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+            modules = [{nixpkgs.config.allowUnfree = true;} ./deck.nix];
+          };
       };
 
     packages = inputs.neovim.packages;
@@ -243,6 +259,14 @@
             sshUser = "servius";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.deoxys;
             user = "root";
+          };
+        };
+        deck = {
+          hostname = "192.168.1.52";
+          profiles.system = {
+            sshUser = "deck";
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
+            user = "deck";
           };
         };
       };

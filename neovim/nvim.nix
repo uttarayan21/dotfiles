@@ -525,8 +525,8 @@ in rec {
         "<leader>bb" = "require'dap'.toggle_breakpoint";
         "<leader>du" = "require'dapui'.toggle";
         "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-        "<leader>ff" = "require'yazi'.yazi";
-        "<leader>fg" = "require'telescope.builtin'.find_files";
+        "<leader>fg" = "require'yazi'.yazi";
+        "<leader>ff" = "require'telescope.builtin'.find_files";
         "<leader>gg" = "require'telescope.builtin'.live_grep";
         "<leader>;" = "require'telescope.builtin'.buffers";
         "zR" = "require'ufo'.openAllFolds";

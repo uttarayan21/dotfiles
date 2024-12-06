@@ -38,13 +38,14 @@ in {
       # ./wezterm.nix
       # ./goread.nix
       # ./zellij.nix
-      ./kitty.nix
-      ./gui.nix
-      ./auth.nix
-      ./tmux.nix
-      ./nvim.nix
-      ./ncmpcpp.nix
       ../modules
+      ./auth.nix
+      ./gui.nix
+      ./kitty.nix
+      ./ncmpcpp.nix
+      ./nvim.nix
+      ./sops.nix
+      ./tmux.nix
     ]
     ++ lib.optionals device.isLinux [../linux]
     # ++ lib.optionals.device.isMac [../macos]
@@ -350,7 +351,7 @@ in {
             type = "openai-compatible";
             name = "llama";
             api_base = "https://llama.darksailor.dev/api/v1";
-            api_key_cmd = "op item get llama-api --fields label=credential --reveal";
+            api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
             models = [
               {
                 name = "qwen_2_5_1";
@@ -361,7 +362,7 @@ in {
             type = "openai-compatible";
             name = "ollama";
             api_base = "https://llama.darksailor.dev/api/ollama/v1";
-            api_key_cmd = "op item get llama-api --fields label=credential --reveal";
+            api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
             models = [
               {
                 name = "RobinBially/nomic-embed-text-8k";
@@ -377,7 +378,7 @@ in {
             type = "openai";
             name = "openai";
             api_base = "https://api.openai.com/v1";
-            api_key_cmd = "op item get 'OpenAI API Token' --fields label='api key' --reveal";
+            api_key_cmd = "cat ${config.sops.secrets."openai/api_key".path}";
             models = [
               {
                 name = "gpt-3.5-turbo";
