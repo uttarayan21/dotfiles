@@ -66,10 +66,6 @@
       url = "github:zaghaghi/openapi-tui";
       flake = false;
     };
-    cachix-deploy-flake = {
-      url = "github:cachix/cachix-deploy-flake";
-      inputs.home-manager.follows = "home-manager";
-    };
     onepassword-shell-plugins = {
       url = "github:uttarayan21/shell-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -289,11 +285,12 @@
             user = "root";
           };
         };
-        mbpro = {
-          hostname = "Uttarayans-MacBook-Pro.local";
+        kuro = {
+          hostname = "kuro";
           profiles.system = {
             sshUser = "fs0c131y";
-            path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.Uttarayans-MacBook-Pro;
+            path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
+            user = "root";
           };
         };
         deoxys = {
@@ -305,7 +302,7 @@
           };
         };
         deck = {
-          hostname = "192.168.1.52";
+          hostname = "deck";
           profiles.system = {
             sshUser = "deck";
             path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
