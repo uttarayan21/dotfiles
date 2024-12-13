@@ -62,10 +62,6 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim = {
-      url = "path:./neovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     openapi-tui = {
       url = "github:zaghaghi/openapi-tui";
       flake = false;
@@ -92,6 +88,54 @@
     };
     csshacks = {
       url = "github:MrOtherGuy/firefox-csshacks";
+      flake = false;
+    };
+    nno = {
+      url = "github:nvim-neorg/nixpkgs-neorg-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    pets = {
+      url = "github:giusgad/pets.nvim";
+      flake = false;
+    };
+    neorg = {
+      url = "github:nvim-neorg/neorg/v9.1.1";
+      flake = false;
+    };
+    neorg-telescope = {
+      url = "github:nvim-neorg/neorg-telescope";
+      flake = false;
+    };
+    rest-nvim = {
+      url = "github:rest-nvim/rest.nvim";
+      flake = false;
+    };
+    neogit = {
+      url = "github:NeogitOrg/neogit/nightly";
+      flake = false;
+    };
+    tree-sitter-d2 = {
+      url = "github:ravsii/tree-sitter-d2";
+      flake = false;
+    };
+    tree-sitter-just = {
+      url = "github:IndianBoy42/tree-sitter-just";
+      flake = false;
+    };
+    tree-sitter-slint = {
+      url = "github:slint-ui/tree-sitter-slint";
+      flake = false;
+    };
+    d2 = {
+      url = "github:terrastruct/d2-vim";
+      flake = false;
+    };
+    navigator = {
+      url = "github:ray-x/navigator.lua";
+      flake = false;
+    };
+    guihua = {
+      url = "github:ray-x/guihua.lua";
       flake = false;
     };
   };
@@ -227,7 +271,6 @@
           };
       };
 
-    packages = inputs.neovim.packages;
     deploy = {
       nodes = {
         mirai = {
@@ -270,10 +313,6 @@
           };
         };
       };
-    };
-
-    devshells.default = {
-      packages = packages;
     };
   };
 }

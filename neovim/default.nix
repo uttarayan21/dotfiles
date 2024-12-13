@@ -20,7 +20,6 @@
       ${lua}
     '';
   };
-in rec {
   neovim = (pkgs.nixvim.makeNixvim config) // {config = config;};
   config = {
     plugins = {
@@ -802,4 +801,6 @@ in rec {
     extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
     extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
   };
+in {
+  home.packages = [neovim];
 }

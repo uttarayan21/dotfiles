@@ -43,9 +43,9 @@ in {
       ./gui.nix
       ./kitty.nix
       ./ncmpcpp.nix
-      ./nvim.nix
       ./sops.nix
       ./tmux.nix
+      ../neovim
     ]
     ++ lib.optionals device.isLinux [../linux]
     # ++ lib.optionals.device.isMac [../macos]
