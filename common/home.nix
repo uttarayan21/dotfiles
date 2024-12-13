@@ -86,7 +86,9 @@ in {
       yt-dlp
     ]
     ++ lib.optionals (!device.isServer) [
-      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "NerdFontsSymbolsOnly"];})
+      nerd-fonts.fira-code
+      nerd-fonts.hasklug
+      nerd-fonts.symbols-only
       clang
       cmake
       devenv
