@@ -183,7 +183,7 @@
         isServer = true;
       }
       {
-        name = "Uttarayans-MacBook-Pro";
+        name = "kuro";
         system = "aarch64-darwin";
         user = "fs0c131y";
       }

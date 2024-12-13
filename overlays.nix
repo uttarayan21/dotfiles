@@ -233,7 +233,7 @@ in
     nix-index-db
     shell-scipts
     misc-applications
-    inputs.nur.overlay
+    inputs.nur.overlays.default
     inputs.rust-overlay.overlays.default
     csshacks
   ]

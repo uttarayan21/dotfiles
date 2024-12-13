@@ -2,11 +2,11 @@ set dotenv-load
 
 # clean := `git diff-index --quiet --cached HEAD --`
 [macos]
-install: local
-    darwin-rebuild switch --flake .
+install: 
+    nix run nix-darwin -- switch --flake .
 
 [linux]
-install: local
+install:
 	NIX_BUILD_CORES=0 sudo nixos-rebuild switch --flake .
 
 [macos]
@@ -23,8 +23,6 @@ nix args:
 home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake . --show-trace
 
-local:
-    nix flake update neovim
 
 nvim:
     nix run .#neovim
