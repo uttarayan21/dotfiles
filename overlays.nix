@@ -9,12 +9,10 @@
     };
   };
   misc-applications = final: prev: {
-    # kitty = inputs.nixpkgs-master.legacyPackages.kitty;
     goread = final.pkgs.buildGoModule {
       pname = "goread";
       version = "v1.6.4";
       vendorHash = "sha256-/kxEnw8l9S7WNMcPh1x7xqiQ3L61DSn6DCIvJlyrip0";
-      # TODO: Move to subflake
       src = final.pkgs.fetchFromGitHub {
         owner = "TypicalAM";
         repo = "goread";
@@ -26,7 +24,6 @@
     };
     music-player-git = inputs.music-player.packages.${prev.system}.default;
     davis = let
-      # TODO: Move to subflake
       davis-src = final.pkgs.fetchFromGitHub {
         owner = "SimonPersson";
         repo = "davis";
@@ -66,9 +63,7 @@
         cargoLock = {lockFile = "${inputs.openapi-tui}/Cargo.lock";};
         buildInputs = with final;
           pkgs.lib.optionals pkgs.stdenv.isDarwin [
-            pkgs.darwin.apple_sdk.frameworks.SystemConfiguration
-            pkgs.darwin.apple_sdk.frameworks.Security
-            pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+            pkgs.apple-sdk_13
           ]
           ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
             pkgs.openssl
@@ -77,8 +72,6 @@
         nativeBuildINputs = with final; [pkgs.pkg-config];
       };
     picat = let
-      # https://github.com/SimonPersson/picat
-      # TODO: Move to subflake
       picat-src = final.pkgs.fetchFromGitHub {
         owner = "SimonPersson";
         repo = "picat";
@@ -94,12 +87,6 @@
         src = picat-src;
         cargoLock = {lockFile = "${picat-src}/Cargo.lock";};
       };
-    pylyzer = prev.pylyzer.override {
-      rustPlatform = final.makeRustPlatform {
-        rustc = final.pkgs.rust-bin.stable."1.75.0".default;
-        cargo = final.pkgs.cargo;
-      };
-    };
     psst =
       if final.pkgs.stdenv.isLinux
       then
@@ -114,19 +101,15 @@
         final.rustPlatform.buildRustPackage rec {
           pname = "psst";
           version = "1";
-          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
-            # https://github.com/jpochyla/psst
             owner = "jpochyla";
             repo = "psst";
             rev = "master";
             sha256 = "sha256-W+MFToyvYDQuC/8DqigvENxzJ6QGQOAeAdmdWG6+qZk";
           };
           buildInputs = with final; [
-            pkgs.darwin.apple_sdk.frameworks.CoreAudio
-            pkgs.darwin.apple_sdk.frameworks.AudioUnit
+            pkgs.apple-sdk_13
           ];
-          # nativeBuildInputs = buildInputs;
           cargoLock = {
             lockFile = "${src}/Cargo.lock";
             outputHashes = {

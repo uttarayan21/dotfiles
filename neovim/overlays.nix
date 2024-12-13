@@ -21,7 +21,6 @@
         };
         nvim-dap-rr = final.pkgs.vimUtils.buildVimPlugin {
           name = "nvim-dap-rr";
-          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "jonboh";
             repo = "nvim-dap-rr";
@@ -31,7 +30,6 @@
         };
         sqls-nvim = final.pkgs.vimUtils.buildVimPlugin {
           name = "sqls-nvim";
-          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "nanotee";
             repo = "sqls.nvim";
@@ -41,7 +39,6 @@
         };
         outline-nvim = final.pkgs.vimUtils.buildVimPlugin {
           name = "outline-nvim";
-          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "hedyhli";
             repo = "outline.nvim";
@@ -78,7 +75,6 @@
         tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
           language = "nu";
           version = "0.0.1";
-          # TODO: Move to subflake
           src = final.pkgs.fetchFromGitHub {
             owner = "nushell";
             repo = "tree-sitter-nu";
@@ -88,52 +84,9 @@
         };
       };
   };
-  # rest-nvim-overlay = final: prev: let
-  #   rest-nvim-src = inputs.rest-nvim;
-  #   rest-nvim-luaPackage-override = luaself: luaprev: {
-  #     rest-nvim = luaself.callPackage (
-  #       {
-  #         luaOlder,
-  #         buildLuarocksPackage,
-  #         lua,
-  #         nvim-nio,
-  #         luarocks-nix,
-  #         lua-curl,
-  #         mimetypes,
-  #         xml2lua,
-  #       }:
-  #         buildLuarocksPackage {
-  #           pname = "rest.nvim";
-  #           version = "scm-1";
-  #           knownRockspec = "${rest-nvim-src}/rest.nvim-scm-1.rockspec";
-  #           src = rest-nvim-src;
-  #           propagatedBuildInputs = [lua luarocks-nix nvim-nio lua-curl mimetypes xml2lua];
-  #           disable = luaOlder "5.1";
-  #         }
-  #     ) {};
-  #   };
-  #   lua5_1 = prev.lua5_1.override {
-  #     packageOverrides = rest-nvim-luaPackage-override;
-  #   };
-  #   lua51Packages = final.lua5_1.pkgs;
-  # in {
-  #   inherit lua5_1 lua51Packages;
-  #   # vimPlugins =
-  #   #   prev.vimPlugins
-  #   #   // {
-  #   #     rest-nvim = final.neovimUtils.buildNeovimPlugin {
-  #   #       pname = "rest.nvim";
-  #   #       version = "scm-1";
-  #   #       src = rest-nvim-src;
-  #   #     };
-  #   #   };
-  #   # rest-nvim = final.vimPlugins.rest-nvim;
-  # };
 in [
-  # inputs.nnn.overlays.default
   inputs.nno.overlays.default
   inputs.nixvim.overlays.default
   vimPlugins
   tree-sitter-grammars
-  # rest-nvim-overlay
 ]
