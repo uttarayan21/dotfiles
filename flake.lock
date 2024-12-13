@@ -2998,11 +2998,11 @@
     "tree-sitter-slint": {
       "flake": false,
       "locked": {
-        "lastModified": 1728016694,
-        "narHash": "sha256-cEitYvrK9P5McbqQAH/PmbD5W0pYULwj3eP9lKXSOTE=",
+        "lastModified": 1733902418,
+        "narHash": "sha256-T9nbS65yktZdPGTK8YZVws5d506QQYgsgA5mFPM0tUI=",
         "owner": "slint-ui",
         "repo": "tree-sitter-slint",
-        "rev": "4e2765d4cac1f03ada6f635eeb6008d1d0aff5a3",
+        "rev": "baf0eea12535caaab5e2b0e532299bb239409bad",
         "type": "github"
       },
       "original": {
