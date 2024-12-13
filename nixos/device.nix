@@ -16,7 +16,7 @@ builtins.listToAttrs (builtins.map (device: {
         lanzaboote = inputs.lanzaboote;
       };
       modules = [
-        nur.nixosModules.nur
+        nur.modules.nixos.default
         inputs.sops-nix.nixosModules.sops
         {nixpkgs.overlays = overlays;}
         ./${device.name}/configuration.nix
