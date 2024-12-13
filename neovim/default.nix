@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   mkMappings = mappings:
     []
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
@@ -20,8 +24,8 @@
       ${lua}
     '';
   };
-  neovim = (pkgs.nixvim.makeNixvim config) // {config = config;};
-  config = {
+  neovim = (pkgs.nixvim.makeNixvim nvim-config) // {config = nvim-config;};
+  nvim-config = {
     plugins = {
       fugitive.enable = true;
       gitsigns.enable = true;
@@ -58,8 +62,7 @@
       chatgpt = {
         enable = true;
         settings = {
-          api_key_cmd = ''${pkgs.writeShellScript
-              "openapikey" "op item get 'OpenAI API Token' --fields label='api key' --reveal"}'';
+          api_key_cmd = "cat ${config.sops.secrets."openai/api_key".path}";
         };
       };
 
