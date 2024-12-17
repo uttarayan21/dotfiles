@@ -78,8 +78,8 @@
           src = final.pkgs.fetchFromGitHub {
             owner = "nushell";
             repo = "tree-sitter-nu";
-            rev = "c5b7816043992b1cdc1462a889bc74dc08576fa6";
-            sha256 = "sha256-P+ixE359fAW7R5UJLwvMsmju7UFmJw5SN+kbMEw7Kz0=";
+            rev = "e36dde8d98549da7c9ef9e8f8698a3e77d4015ac";
+            sha256 = "sha256-mQ+fQ8F4yB+ApZ+R/DPy+NyDmkjzenwgFJknEu48jSQ=";
           };
         };
       };
