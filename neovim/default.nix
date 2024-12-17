@@ -621,17 +621,6 @@
            default_merge_method = "squash";
          })
 
-         -- local rr_dap = require('nvim-dap-rr')
-         -- rr_dap.setup({
-         --     mappings = {
-         --         continue = "<F7>"
-         --     },
-         -- })
-
-         -- local dap = require'dap';
-         -- dap.configurations.rust = { rr_dap.get_rust_config() }
-         -- dap.configurations.cpp = { rr_dap.get_config() }
-
          if not vim.g.neovide then
              require('neoscroll').setup()
              require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
@@ -643,20 +632,6 @@
          require('lspconfig.ui.windows').default_options.border = 'single'
 
          catcher(require('nvim_context_vt').setup)
-         -- catcher(function()
-         --     require('nvim-devdocs').setup({
-         --         ensure_installed = {"nix", "rust"},
-         --         float_win = {
-         --             relative = "editor",
-         --             height = 80,
-         --             width = 100,
-         --             border = "rounded",
-         --         },
-         --         after_open = function()
-         --             vim.o.conceallevel = 3
-         --         end,
-         --     })
-         -- end)
 
          vim.api.nvim_create_user_command('Reso',
              function()

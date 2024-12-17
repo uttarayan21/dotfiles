@@ -122,6 +122,10 @@
       url = "github:slint-ui/tree-sitter-slint";
       flake = false;
     };
+    tree-sitter-nu = {
+      url = "github:nushell/tree-sitter-nu";
+      flake = false;
+    };
     d2 = {
       url = "github:terrastruct/d2-vim";
       flake = false;

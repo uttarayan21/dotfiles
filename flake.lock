@@ -2013,6 +2013,7 @@
         "sops-nix": "sops-nix",
         "tree-sitter-d2": "tree-sitter-d2",
         "tree-sitter-just": "tree-sitter-just",
+        "tree-sitter-nu": "tree-sitter-nu",
         "tree-sitter-slint": "tree-sitter-slint",
         "zjstatus": "zjstatus"
       }
@@ -2411,6 +2412,22 @@
       "original": {
         "owner": "IndianBoy42",
         "repo": "tree-sitter-just",
+        "type": "github"
+      }
+    },
+    "tree-sitter-nu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1734405519,
+        "narHash": "sha256-mQ+fQ8F4yB+ApZ+R/DPy+NyDmkjzenwgFJknEu48jSQ=",
+        "owner": "nushell",
+        "repo": "tree-sitter-nu",
+        "rev": "e36dde8d98549da7c9ef9e8f8698a3e77d4015ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nushell",
+        "repo": "tree-sitter-nu",
         "type": "github"
       }
     },
