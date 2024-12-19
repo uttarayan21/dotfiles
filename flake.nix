@@ -94,14 +94,6 @@
       url = "github:giusgad/pets.nvim";
       flake = false;
     };
-    neorg = {
-      url = "github:nvim-neorg/neorg/v9.1.1";
-      flake = false;
-    };
-    neorg-telescope = {
-      url = "github:nvim-neorg/neorg-telescope";
-      flake = false;
-    };
     rest-nvim = {
       url = "github:rest-nvim/rest.nvim";
       flake = false;

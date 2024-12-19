@@ -60,19 +60,15 @@ in {
       bottom
       btop
       cachix
-      d2
       deploy-rs
       dust
       fd
       file
       fzf
       gnupg
-      go
       gpg-tui
-      hasklig
       hotedit
       jq
-      jujutsu
       just
       macchina
       p7zip
@@ -86,16 +82,21 @@ in {
       yt-dlp
     ]
     ++ lib.optionals (!device.isServer) [
+      clang
+      cmake
+      d2
+      devenv
+      go
+      hasklig
+      jujutsu
+      monaspace
       nerd-fonts.fira-code
       nerd-fonts.hasklug
       nerd-fonts.symbols-only
-      clang
-      cmake
-      devenv
-      monaspace
       qmk
       ttyper
       yarn
+      zed-editor
     ]
     ++ lib.optionals device.isLinux [
       dig
