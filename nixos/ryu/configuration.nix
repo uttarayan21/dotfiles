@@ -1,7 +1,6 @@
 {
   pkgs,
-  config,
-  device,
+  lib,
   ...
 }: {
   imports = [
@@ -9,6 +8,7 @@
     ./ryu.nix
   ];
 
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   security = {
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
@@ -247,7 +247,9 @@
         {})
       gnumake
       python3
-      (nerdfonts.override {fonts = ["FiraCode" "Hasklig" "NerdFontsSymbolsOnly"];})
+      nerd-fonts.fira-code
+      nerd-fonts.hasklug
+      nerd-fonts.symbols-only
       monaspace
     ];
     sessionVariables = {
