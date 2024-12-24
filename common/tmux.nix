@@ -5,7 +5,7 @@
     if [ "$(tmux display-message -p -F "#{session_name}")" = "scratch" ];then
         tmux detach-client
     else
-        tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux new -A -s scratch"
+        tmux popup -d '#{pane_current_path}' -xC -yC -w$width -h$height -E "tmux new -A -s scratch -d -c ''$(pwd)"
     fi
   '';
 in {
@@ -77,7 +77,7 @@ in {
         bind k select-pane -U
         bind l select-pane -R
 
-        bind-key -n C-\\ run-shell ${scratchpad}
+        bind-key -n C-\\ run-shell "${pkgs.tmux-float}/bin/tmux-float toggle"
 
         bind o set status
         bind C-n next-window

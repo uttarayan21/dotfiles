@@ -3,12 +3,8 @@
     skhd = {
       enable = true;
       skhdConfig = ''
-        alt - return : ${pkgs.lib.getExe pkgs.kitty} --single-instance --directory ~ 
-        # alt - return : $\{pkgs.wezterm}/bin/wezterm-gui
+        alt - return : ${pkgs.lib.getExe pkgs.kitty} --single-instance --directory ~
         shift + alt - return: pkill afplay
-
-        # open mpv
-        alt - m : open -na /Applications/mpv.app $(pbpaste)
 
         # close focused window
         # alt - w : yabai -m window --close

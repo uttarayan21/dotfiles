@@ -130,6 +130,10 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
+    tmux-float = {
+      url = "github:uttarayan21/tmux-float";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

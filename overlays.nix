@@ -143,6 +143,7 @@
           };
         };
       };
+    tmux-float = inputs.tmux-float.packages.${prev.system}.default;
   };
   catppuccinThemes = final: prev: {
     catppuccinThemes = import ./themes/catppuccin.nix {pkgs = final.pkgs;};
