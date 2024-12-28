@@ -9,17 +9,6 @@
   ...
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
-  programs = {
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = ["servius"];
-    };
-    alvr.enable = true;
-    alvr.openFirewall = true;
-    adb.enable = true;
-    steam.enable = true;
-  };
 
   hardware.graphics = {
     enable = true;
@@ -75,8 +64,20 @@
 
   boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = ["kvm-intel" "i2c-dev"];
   boot.extraModulePackages = [];
+  # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
+  services.udev.packages = [pkgs.via];
+  services.yubikey-agent.enable = true;
+  services.udev.extraRules = ''
+    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
+  '';
+
+  users.users.servius = {
+    isNormalUser = true;
+    description = "Uttarayan";
+    extraGroups = ["networkmanager" "wheel" "audio" "i2c"];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/11d8beef-2a63-4231-af35-b9b8d3a17e9b";

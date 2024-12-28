@@ -8,6 +8,32 @@
     ./ryu.nix
   ];
 
+  programs = {
+    _1password.enable = true;
+    _1password-gui = {
+      enable = true;
+      polkitPolicyOwners = ["servius"];
+    };
+    adb.enable = true;
+    alvr.enable = true;
+    alvr.openFirewall = true;
+    hyprland.enable = true;
+    hyprland.xwayland.enable = true;
+    yubikey-touch-detector.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        libglvnd
+      ];
+    };
+  };
+
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   security = {
     sudo.wheelNeedsPassword = false;
@@ -36,13 +62,13 @@
     };
     package = pkgs.nixVersions.latest;
     buildMachines = [
-      {
-        hostName = "sh.darksailor.dev";
-        sshUser = "fs0c131y";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      }
+      # {
+      #   hostName = "sh.darksailor.dev";
+      #   sshUser = "fs0c131y";
+      #   system = "x86_64-linux";
+      #   protocol = "ssh-ng";
+      #   supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      # }
     ];
     distributedBuilds = true;
   };
@@ -78,9 +104,6 @@
     # };
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
-    yubikey-agent.enable = true;
-
     # Configure keymap in X11
     xserver.xkb = {
       layout = "us";
@@ -98,7 +121,7 @@
   boot = {
     lanzaboote = {
       enable = true;
-      pkiBundle = "/etc/secureboot";
+      pkiBundle = "/var/lib/sbctl";
     };
     plymouth = {
       enable = true;
@@ -156,29 +179,16 @@
     nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
 
     # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    # proxy.default = "http://user:password@proxy:port/";
+    # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
     # Enable networking
     networkmanager.enable = true;
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
-
-    # List services that you want to enable:
-
-    # Enable the OpenSSH daemon.
-
     # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
+    # firewall.allowedTCPPorts = [ ... ];
+    # firewall.allowedUDPPorts = [ ... ];
+    # firewall.enable = false;
     firewall = {
       enable = true;
       allowedTCPPortRanges = [
@@ -219,11 +229,6 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.servius = {
-    isNormalUser = true;
-    description = "Uttarayan";
-    extraGroups = ["networkmanager" "wheel" "audio"];
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -251,6 +256,7 @@
       nerd-fonts.hasklug
       nerd-fonts.symbols-only
       monaspace
+      ddcutil
     ];
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -260,23 +266,6 @@
   };
 
   musnix.enable = true;
-  programs = {
-    hyprland.enable = true;
-    hyprland.xwayland.enable = true;
-    yubikey-touch-detector.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        libglvnd
-      ];
-    };
-  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
