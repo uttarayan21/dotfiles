@@ -165,7 +165,7 @@
           #  Gigabyte fo27q3
           primary = "HDMI-A-3";
           # Acer XV272U
-          secondary = "DP-2";
+          secondary = "DP-4";
           # Gigabyte M27Q
           tertiary = "DP-1";
         };
