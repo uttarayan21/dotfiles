@@ -28,33 +28,25 @@ lib.attrsets.optionalAttrs device.hasGui {
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
-      slack
-      via
-      webcord-vencord
-      bottles
-      # minecraft
-      jdk
-      ferdium
-      psst
-      sony-headphones-client
       abaddon
       catppuccinThemes.gtk
       catppuccinThemes.papirus-folders
-
-      signal-desktop
-
-      seahorse
+      ferdium
+      gparted
+      jdk
+      mullvad-closest
+      mullvad-vpn
       nautilus
       nextcloud-client
-      gparted
       polkit_gnome
-
-      mullvad-vpn
-      mullvad-closest
-      steam-run
-
-      webcord-vencord
+      psst
+      seahorse
+      signal-desktop
+      slack
+      sony-headphones-client
       spotify
+      steam-run
+      via
       wl-clipboard
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin [
