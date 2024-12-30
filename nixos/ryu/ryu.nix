@@ -73,12 +73,6 @@
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
 
-  users.users.servius = {
-    isNormalUser = true;
-    description = "Uttarayan";
-    extraGroups = ["networkmanager" "wheel" "audio" "i2c"];
-  };
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/11d8beef-2a63-4231-af35-b9b8d3a17e9b";
     fsType = "ext4";

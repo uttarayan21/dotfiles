@@ -47,7 +47,7 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];
-      substituters = ["https://sh.darksailor.dev"];
+      #substituters = ["https://sh.darksailor.dev"];
       trusted-public-keys = ["mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="];
     };
     extraOptions = ''
@@ -72,6 +72,13 @@
     ];
     distributedBuilds = true;
   };
+
+  users.users.servius = {
+    isNormalUser = true;
+    description = "Uttarayan";
+    extraGroups = ["networkmanager" "wheel" "audio" "i2c"];
+  };
+  users.groups.i2c = {};
 
   services = {
     tailscale = {
