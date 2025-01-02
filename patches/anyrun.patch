@@ -1,5 +1,5 @@
 diff --git a/anyrun/src/main.rs b/anyrun/src/main.rs
-index fb9f62e..ac006c1 100644
+index 59ff302..4a87ff3 100644
 --- a/anyrun/src/main.rs
 +++ b/anyrun/src/main.rs
 @@ -12,7 +12,11 @@ use std::{
@@ -76,8 +76,8 @@ index fb9f62e..ac006c1 100644
                  Inhibit(true)
              }
              // Handle when the selected match is "activated"
--            constants::Return => {
-+            (_, constants::Return) => {
+-            constants::Return | constants::KP_Enter => {
++            (_, constants::Return) | (_, constants::KP_Enter) => {
                  let mut _runtime_data_clone = runtime_data_clone.borrow_mut();
  
                  let (selected_match, plugin_view) = match _runtime_data_clone

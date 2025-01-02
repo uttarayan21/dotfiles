@@ -63,7 +63,7 @@
       '';
       "shell.ron".text = ''
         Config(
-            prefix: "",
+            prefix: "!",
             shell: None,
         )
       '';

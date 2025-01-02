@@ -57,11 +57,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1732002461,
-        "narHash": "sha256-Pw9qH16x8N2kiqWKFocccxwBH3ySLpa65B/L1SD6V3M=",
+        "lastModified": 1735828456,
+        "narHash": "sha256-8KMunZpsriSqguYzSz6V2pa/d7+C5HHn6V1B/nF6+fE=",
         "owner": "uttarayan21",
         "repo": "anyrun",
-        "rev": "1f0abf34252167320e213d5f62f481076c01ecf0",
+        "rev": "5b2081c595538915b4fd387bae347a17ea150513",
         "type": "github"
       },
       "original": {
