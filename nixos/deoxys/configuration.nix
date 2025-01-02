@@ -34,13 +34,13 @@
     };
     package = pkgs.nixVersions.latest;
     buildMachines = [
-      {
-        hostName = "sh.darksailor.dev";
-        sshUser = "fs0c131y";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      }
+      # {
+      #   hostName = "sh.darksailor.dev";
+      #   sshUser = "fs0c131y";
+      #   system = "x86_64-linux";
+      #   protocol = "ssh-ng";
+      #   supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      # }
     ];
     distributedBuilds = true;
   };
@@ -86,6 +86,7 @@
     description = "servius";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
 
   # Allow unfree packages

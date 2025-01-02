@@ -75,8 +75,8 @@
 
   users.users.servius = {
     isNormalUser = true;
-    description = "Uttarayan";
     extraGroups = ["networkmanager" "wheel" "audio" "i2c"];
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
   users.groups.i2c = {};
 
