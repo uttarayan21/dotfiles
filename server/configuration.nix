@@ -18,6 +18,7 @@
   #   efiInstallAsRemovable = true;
   # };
   services.openssh.enable = true;
+  networking.useDHCP = lib.mkDefault true;
 
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
