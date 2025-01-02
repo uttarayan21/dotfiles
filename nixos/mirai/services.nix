@@ -134,7 +134,7 @@
       enable = true;
     };
     navidrome = {
-      enable = true;
+      enable = false;
       settings = {
         MusicFolder = "/media/music";
         ReverseProxyUserHeader = "Remote-User";
