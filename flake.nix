@@ -172,7 +172,7 @@
           # Acer XV272U
           secondary = "DP-4";
           # Gigabyte M27Q
-          tertiary = "DP-1";
+          tertiary = "DP-2";
         };
       }
       {
