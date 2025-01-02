@@ -60,6 +60,7 @@
   users.users.fs0c131y = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker" "media"];
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
   users.groups.media = {};
 
