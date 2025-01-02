@@ -18,7 +18,7 @@
       enable = true;
     };
     home-assistant = {
-      enable = true;
+      enable = false;
       extraComponents = [
         "esphome"
         "met"
@@ -41,7 +41,7 @@
       };
     };
     jellyfin = {
-      enable = true;
+      enable = false;
     };
     authelia = {
       instances.darksailor = {
