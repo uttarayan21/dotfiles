@@ -168,11 +168,11 @@
         isNix = true;
         monitors = {
           #  Gigabyte fo27q3
-          primary = "HDMI-A-3";
+          primary = "HDMI-A-1";
           # Acer XV272U
-          secondary = "DP-4";
+          secondary = "DP-3";
           # Gigabyte M27Q
-          tertiary = "DP-2";
+          tertiary = "DP-1";
         };
       }
       {

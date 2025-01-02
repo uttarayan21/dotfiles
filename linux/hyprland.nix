@@ -33,9 +33,9 @@
       monitor = [
         # ",preferred,auto,auto"
         # ",highrr,auto,1"
-        "${device.monitors.primary},       2560x1440@120, 0x0,     1, transform, 0"
-        "${device.monitors.secondary},   2560x1440@60, -1440x-1120,1, transform, 1"
-        "${device.monitors.tertiary},   2560x1440@60, 2560x-1120,1, transform, 3"
+        "${device.monitors.primary},       2560x1440@360, 0x0,     1, transform, 0"
+        "${device.monitors.secondary},   2560x1440@170, -1440x-1120,1, transform, 1"
+        "${device.monitors.tertiary},   2560x1440@170, 2560x-1120,1, transform, 3"
         "Unknown-1,disable"
       ];
 
@@ -130,7 +130,7 @@
         "float, class:org.kde.kdeconnect.app"
       ];
 
-      "misc:vfr" = true;
+      # "misc:vfr" = true;
 
       env = [
         "XCURSOR_SIZE,24"

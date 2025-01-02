@@ -13,12 +13,13 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = [pkgs.intel-compute-runtime];
+    extraPackages = [pkgs.intel-compute-runtime pkgs.nvidia-vaapi-driver];
   };
 
   virtualisation.libvirtd.enable = true;
   users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
 
+  # options nvidia_drm modeset=1 fbdev=1
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1
     options kvm_intel emulate_invalid_guest_state=0
@@ -37,7 +38,7 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
@@ -50,7 +51,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
+    open = false;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -60,10 +61,16 @@
     package = config.boot.kernelPackages.nvidiaPackages.beta;
   };
 
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
+
   # hardware.bluetooth.settings = {
 
   boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_drm"];
   boot.kernelModules = ["kvm-intel" "i2c-dev"];
   boot.extraModulePackages = [];
   # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
