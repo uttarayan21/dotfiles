@@ -2032,7 +2032,7 @@
           "[13]",
           "[14]"
         ],
-        "bogo": 7585.25,
+        "bogo": 7585.36,
         "cache": 1024,
         "units": 16,
         "physical_id": 0,
@@ -2194,7 +2194,7 @@
         "unix_device_number": {
           "type": 98,
           "major": 259,
-          "minor": 1,
+          "minor": 3,
           "range": 0
         },
         "unix_device_names": [
@@ -2983,7 +2983,7 @@
           {
             "type": "mem",
             "base": 0,
-            "range": 66491928576,
+            "range": 66491920384,
             "enabled": true,
             "access": "read_write",
             "prefetch": "unknown"
@@ -3112,6 +3112,29 @@
     "network_interface": [
       {
         "index": 74,
+        "attached_to": 0,
+        "class_list": [
+          "network_interface"
+        ],
+        "base_class": {
+          "hex": "0107",
+          "name": "Network Interface",
+          "value": 263
+        },
+        "sub_class": {
+          "hex": "0000",
+          "name": "Loopback",
+          "value": 0
+        },
+        "model": "Loopback network interface",
+        "sysfs_id": "/class/net/lo",
+        "unix_device_name": "lo",
+        "unix_device_names": [
+          "lo"
+        ]
+      },
+      {
+        "index": 75,
         "attached_to": 44,
         "class_list": [
           "network_interface"
@@ -3150,29 +3173,6 @@
         ],
         "driver_modules": [
           "igb"
-        ]
-      },
-      {
-        "index": 75,
-        "attached_to": 0,
-        "class_list": [
-          "network_interface"
-        ],
-        "base_class": {
-          "hex": "0107",
-          "name": "Network Interface",
-          "value": 263
-        },
-        "sub_class": {
-          "hex": "0000",
-          "name": "Loopback",
-          "value": 0
-        },
-        "model": "Loopback network interface",
-        "sysfs_id": "/class/net/lo",
-        "unix_device_name": "lo",
-        "unix_device_names": [
-          "lo"
         ]
       }
     ],
@@ -3232,7 +3232,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 126,
+            "base": 121,
             "triggered": 0,
             "enabled": true
           },
@@ -3250,7 +3250,7 @@
           "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 126,
+          "irq": 121,
           "prog_if": 0
         },
         "driver": "snd_rpl_pci_acp6x",
