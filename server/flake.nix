@@ -22,7 +22,7 @@
     };
 
     # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
-    # nix run github:nix-community/nixos-anywhere -- --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json root@sh.darksailor.dev
+    # nix run github:nix-community/nixos-anywhere -- --flake .#facter --generate-hardware-config nixos-facter facter.json root@sh.darksailor.dev
     nixosConfigurations.facter = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

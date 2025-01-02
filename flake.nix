@@ -3,6 +3,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -230,86 +231,100 @@
     overlays = import ./overlays.nix {
       inherit inputs;
     };
-  in rec {
-    nixosConfigurations = let
-      devices = nixos_devices;
-    in
-      import ./nixos/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nur;
-      };
+  in
+    rec {
+      nixosConfigurations = let
+        devices = nixos_devices;
+      in
+        import ./nixos/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nur;
+        };
 
-    darwinConfigurations = let
-      devices = darwin_devices;
-    in
-      import ./darwin/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays nix-darwin;
-      };
+      darwinConfigurations = let
+        devices = darwin_devices;
+      in
+        import ./darwin/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays nix-darwin;
+        };
 
-    homeConfigurations = let
-      devices = linux_devices;
-    in
-      (import ./linux/device.nix {
-        inherit devices inputs nixpkgs home-manager overlays;
-      })
-      // {
-        deck = let
-          pkgs = import inputs.nixpkgs {
-            inherit overlays;
-            system = "x86_64-linux";
-          };
-        in
-          home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit inputs;
+      homeConfigurations = let
+        devices = linux_devices;
+      in
+        (import ./linux/device.nix {
+          inherit devices inputs nixpkgs home-manager overlays;
+        })
+        // {
+          deck = let
+            pkgs = import inputs.nixpkgs {
+              inherit overlays;
+              system = "x86_64-linux";
             };
-            modules = [{nixpkgs.config.allowUnfree = true;} ./deck.nix];
-          };
-      };
+          in
+            home-manager.lib.homeManagerConfiguration {
+              inherit pkgs;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+              modules = [{nixpkgs.config.allowUnfree = true;} ./deck.nix];
+            };
+        };
 
-    deploy = {
-      nodes = {
-        mirai = {
-          hostname = "mirai";
-          profiles.system = {
-            sshUser = "fs0c131y";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
-            user = "root";
+      deploy = {
+        nodes = {
+          mirai = {
+            hostname = "mirai";
+            profiles.system = {
+              sshUser = "fs0c131y";
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
+              user = "root";
+            };
           };
-        };
-        ryu = {
-          hostname = "ryu";
-          profiles.system = {
-            sshUser = "servius";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
-            user = "root";
+          ryu = {
+            hostname = "ryu";
+            profiles.system = {
+              sshUser = "servius";
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
+              user = "root";
+            };
           };
-        };
-        kuro = {
-          hostname = "kuro";
-          profiles.system = {
-            sshUser = "fs0c131y";
-            path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
-            user = "root";
+          kuro = {
+            hostname = "kuro";
+            profiles.system = {
+              sshUser = "fs0c131y";
+              path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
+              user = "root";
+            };
           };
-        };
-        deoxys = {
-          hostname = "deoxys";
-          profiles.system = {
-            sshUser = "servius";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.deoxys;
-            user = "root";
+          deoxys = {
+            hostname = "deoxys";
+            profiles.system = {
+              sshUser = "servius";
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.deoxys;
+              user = "root";
+            };
           };
-        };
-        deck = {
-          hostname = "deck";
-          profiles.system = {
-            sshUser = "deck";
-            path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
-            user = "deck";
+          deck = {
+            hostname = "deck";
+            profiles.system = {
+              sshUser = "deck";
+              path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
+              user = "deck";
+            };
           };
         };
       };
-    };
-  };
+    }
+    // flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = import nixpkgs {
+          inherit system;
+        };
+      in {
+        devShells = {
+          default = pkgs.mkShell {
+            packages = with pkgs; [sops just];
+          };
+        };
+      }
+    );
 }

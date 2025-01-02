@@ -1,7 +1,7 @@
 {
   pkgs,
   inputs,
-device,
+  device,
   ...
 }: {
   # import the home-manager module
@@ -12,7 +12,7 @@ device,
       enable = device.hasGui;
       # the specified packages as well as 1Password CLI will be
       # automatically installed and configured to use shell plugins
-      plugins = with pkgs; [awscli2 cachix cargo];
+      # plugins = with pkgs; [awscli2 cachix cargo];
     };
   };
 }

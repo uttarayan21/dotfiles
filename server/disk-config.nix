@@ -8,7 +8,7 @@
           type = "gpt";
           partitions = {
             boot = {
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "mdraid";
@@ -32,7 +32,7 @@
           type = "gpt";
           partitions = {
             boot = {
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type = "mdraid";
