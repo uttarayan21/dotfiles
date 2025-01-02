@@ -216,10 +216,6 @@
         if (builtins.hasAttr "monitors" device)
         then device.monitors
         else null;
-      live =
-        if (builtins.hasAttr "live" device)
-        then device.live
-        else false;
       system = device.system;
       name = device.name;
       user = device.user;
@@ -240,14 +236,14 @@
       nixosConfigurations = let
         devices = nixos_devices;
       in
-        import ./nixos/device.nix {
+        import ./nixos {
           inherit devices inputs nixpkgs home-manager overlays nur;
         };
 
       darwinConfigurations = let
         devices = darwin_devices;
       in
-        import ./darwin/device.nix {
+        import ./darwin {
           inherit devices inputs nixpkgs home-manager overlays nix-darwin;
         };
 
