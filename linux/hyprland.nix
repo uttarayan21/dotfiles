@@ -31,12 +31,9 @@
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       "render:explicit_sync" = true;
       monitor = [
-        # ",preferred,auto,auto"
-        # ",highrr,auto,1"
-        "${device.monitors.primary},       2560x1440@360, 0x0,     1, transform, 0"
-        "${device.monitors.secondary},   2560x1440@170, -1440x-1120,1, transform, 1"
-        "${device.monitors.tertiary},   2560x1440@170, 2560x-1120,1, transform, 3"
-        "Unknown-1,disable"
+        "${device.monitors.primary},    2560x1440@240,          0x0,     1, transform, 0"
+        "${device.monitors.secondary},  2560x1440@170,  -1440x-1120,     1, transform, 1"
+        "${device.monitors.tertiary},   2560x1440@170,   2560x-1120,     1, transform, 3"
       ];
 
       input = {
