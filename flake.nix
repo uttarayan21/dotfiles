@@ -167,7 +167,7 @@
         user = "servius";
         isNix = true;
         monitors = {
-          #  Gigabyte fo27q3
+          # Gigabyte FO27Q3
           primary = "HDMI-A-1";
           # Acer XV272U
           secondary = "DP-3";
