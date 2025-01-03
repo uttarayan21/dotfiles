@@ -108,6 +108,7 @@ in {
       rr
       sbctl
       usbutils
+      ddcbacklight
     ]
     ++ lib.optionals device.isMac [];
 

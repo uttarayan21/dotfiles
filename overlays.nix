@@ -119,6 +119,7 @@
             };
           };
         };
+    ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
   };
   anyrun-overlay = final: prev: {
     anyrun =

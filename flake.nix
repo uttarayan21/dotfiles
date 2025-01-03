@@ -139,6 +139,10 @@
       url = "github:uttarayan21/tmux-float";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ddcbacklight = {
+      url = "github:uttarayan21/ddcbacklight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
