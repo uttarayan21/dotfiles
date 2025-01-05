@@ -41,7 +41,8 @@
       };
     };
     jellyfin = {
-      enable = false;
+      enable = true;
+      openFirewall = true;
     };
     authelia = {
       instances.darksailor = {
@@ -70,6 +71,10 @@
                 policy = "one_factor";
               }
               {
+                domain = "media.darksailor.dev";
+                policy = "one_factor";
+              }
+              {
                 domain = "music.darksailor.dev";
                 policy = "one_factor";
               }
@@ -92,8 +97,13 @@
           notifier.filesystem.filename = "/var/lib/authelia-darksailor/authelia-notifier.log";
           server = {
             address = "127.0.0.1:5555";
-            endpoints.authz.forward-auth = {
-              implementation = "ForwardAuth";
+            endpoints.authz = {
+              forward-auth = {
+                implementation = "ForwardAuth";
+              };
+              auth-request = {
+                implementation = "AuthRequest";
+              };
             };
           };
           # log = {
@@ -193,6 +203,9 @@
         }
         reverse_proxy localhost:4533
       '';
+      virtualHosts."media.darksailor.dev".extraConfig = ''
+        reverse_proxy localhost:8096
+      '';
       virtualHosts."atuin.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:8888
       '';
@@ -262,9 +275,6 @@
         }
         reverse_proxy localhost:8123
 
-      '';
-      virtualHosts."media.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:8096
       '';
     };
   };

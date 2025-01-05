@@ -7,7 +7,7 @@
     ./goread.nix
     ./hyprpaper.nix
     ./aichat.nix
-    ./ghostty.nix
+    #./ghostty.nix
     # ./sketchybar.nix
   ];
 }

@@ -1,4 +1,4 @@
-{lib, ...}: {
+{...}: {
   disko.devices = {
     disk = {
       one = {
@@ -35,14 +35,6 @@
         content = {
           type = "gpt";
           partitions = {
-            # esp = {
-            #   size = "1G";
-            #   type = "EF00";
-            #   content = {
-            #     type = "mdraid";
-            #     name = "boot";
-            #   };
-            # };
             primary = {
               size = "100%";
               content = {
@@ -54,24 +46,12 @@
         };
       };
     };
-    # mdadm = {
-    #   esp = {
-    #     type = "mdadm";
-    #     level = 1;
-    #     metadata = "1.0";
-    #     content = {
-    #       type = "filesystem";
-    #       format = "vfat";
-    #       mountpoint = "/boot";
-    #     };
-    #   };
-    # };
     lvm_vg = {
       pool = {
         type = "lvm_vg";
         lvs = {
           root = {
-            size = "128G";
+            size = "64G";
             lvm_type = "mirror";
             content = {
               type = "filesystem";
@@ -82,13 +62,31 @@
               ];
             };
           };
+          nix = {
+            size = "256G";
+            lvm_type = "raid0";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/nix";
+            };
+          };
           home = {
-            size = "512G";
+            size = "256G";
             lvm_type = "raid0";
             content = {
               type = "filesystem";
               format = "ext4";
               mountpoint = "/home";
+            };
+          };
+          media = {
+            size = "100%";
+            lvm_type = "raid0";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/media";
             };
           };
         };

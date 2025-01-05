@@ -184,6 +184,21 @@
   csshacks = final: prev: {
     csshacks = inputs.csshacks;
   };
+  jellyfin = final: prev: {
+    jellyfin-web = prev.jellyfin-web.overrideAttrs (finalAttrs: previousAttrs: {
+      installPhase = ''
+        runHook preInstall
+
+        # this is the important line
+        sed -i "s#</head>#<script src=\"configurationpage?name=skip-intro-button.js\"></script></head>#" dist/index.html
+
+        mkdir -p $out/share
+        cp -a dist $out/share/jellyfin-web
+
+        runHook postInstall
+      '';
+    });
+  };
 in
   [
     libfprint
@@ -197,5 +212,6 @@ in
     inputs.nur.overlays.default
     inputs.rust-overlay.overlays.default
     csshacks
+    jellyfin
   ]
   ++ (import ./neovim/overlays.nix self)
