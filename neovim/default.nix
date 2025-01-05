@@ -235,11 +235,9 @@
           (with pkgs.tree-sitter-grammars; [
             tree-sitter-norg
             tree-sitter-norg-meta
-            # tree-sitter-http
             tree-sitter-just
             tree-sitter-nu
             tree-sitter-d2
-            tree-sitter-slint
           ])
           ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
       };

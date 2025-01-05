@@ -24,11 +24,6 @@
           version = "1";
           src = inputs.tree-sitter-d2;
         };
-        tree-sitter-slint = final.pkgs.tree-sitter.buildGrammar {
-          language = "slint";
-          version = "1";
-          src = inputs.tree-sitter-slint;
-        };
         tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
           language = "nu";
           version = "1";
