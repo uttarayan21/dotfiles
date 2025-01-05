@@ -6,8 +6,8 @@
 }: {
   imports = [
     # Include the results of the hardware scan.
+    ./services
     ./mirai.nix
-    ./services.nix
     ./docker.nix
   ];
   security.sudo.wheelNeedsPassword = false;
@@ -15,7 +15,6 @@
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
     age.keyFile = "/home/fs0c131y/.config/sops/age/keys.txt";
-    secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
     secrets."llama/user".owner = config.services.caddy.user;
     secrets."builder/mirai/cache/private" = {};
     secrets."llama/api_key".owner = config.services.caddy.user;

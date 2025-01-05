@@ -2032,7 +2032,7 @@
           "[13]",
           "[14]"
         ],
-        "bogo": 7585.36,
+        "bogo": 7585.32,
         "cache": 1024,
         "units": 16,
         "physical_id": 0,
@@ -3232,7 +3232,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 121,
+            "base": 126,
             "triggered": 0,
             "enabled": true
           },
@@ -3250,7 +3250,7 @@
           "command": 7,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 121,
+          "irq": 126,
           "prog_if": 0
         },
         "driver": "snd_rpl_pci_acp6x",
@@ -3712,7 +3712,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 48,
+            "base": 47,
             "triggered": 0,
             "enabled": true
           },
@@ -3730,7 +3730,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 48,
+          "irq": 47,
           "prog_if": 2
         },
         "driver": "nvme",
@@ -3795,7 +3795,7 @@
         "resources": [
           {
             "type": "irq",
-            "base": 47,
+            "base": 48,
             "triggered": 0,
             "enabled": true
           },
@@ -3813,7 +3813,7 @@
           "command": 1030,
           "header_type": 0,
           "secondary_bus": 0,
-          "irq": 47,
+          "irq": 48,
           "prog_if": 2
         },
         "driver": "nvme",
