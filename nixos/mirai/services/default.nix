@@ -6,7 +6,7 @@
     ./navidrome.nix
     ./llama.nix
     ./nextcloud.nix
-    # ./jellyfin.nix
+    ./jellyfin.nix
   ];
   services = {
     nix-serve = {
