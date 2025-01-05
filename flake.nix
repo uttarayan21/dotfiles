@@ -143,6 +143,9 @@
       url = "github:uttarayan21/ddcbacklight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs = {

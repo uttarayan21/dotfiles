@@ -24,9 +24,9 @@ lib.attrsets.optionalAttrs device.hasGui {
   #   "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
   # };
   home.packages = with pkgs;
-    [
-    ]
+    []
     ++ lib.optionals pkgs.stdenv.isLinux [
+      ghostty
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
       catppuccinThemes.gtk

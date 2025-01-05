@@ -120,6 +120,7 @@
           };
         };
     ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
+    ghostty = inputs.ghostty.packages.${prev.system}.default;
   };
   anyrun-overlay = final: prev: {
     anyrun =
