@@ -21,11 +21,11 @@
         reverse_proxy localhost:8080
       '';
     };
+    nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
+      {
+        addr = "127.0.0.1";
+        port = 8080; # NOT an exposed port
+      }
+    ];
   };
-  nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
-    {
-      addr = "127.0.0.1";
-      port = 8080; # NOT an exposed port
-    }
-  ];
 }
