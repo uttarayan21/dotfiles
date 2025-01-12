@@ -13,6 +13,7 @@
       hostName = "cloud.darksailor.dev";
       config.adminuser = "servius";
       config.adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
+      config.dbtype = "sqlite";
       configureRedis = true;
       https = true;
     };

@@ -23,6 +23,16 @@ lib.attrsets.optionalAttrs device.hasGui {
   # home.file = lib.optionalAttrs device.isMac {
   #   "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
   # };
+
+  # Only for checking markdown previews
+  vscode = {
+    enable = true;
+    package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      shd101wyy.markdown-preview-enhanced
+      asvetliakov.vscode-neovim
+    ];
+  };
   home.packages = with pkgs;
     []
     ++ lib.optionals pkgs.stdenv.isLinux [

@@ -159,10 +159,6 @@ in {
       enableFishIntegration = true;
       enableNushellIntegration = true;
     };
-    # thefuck = {
-    #   enable = true;
-    #   enableFishIntegration = true;
-    # };
     direnv = {
       enable = true;
       # enableFishIntegration = true; // Auto enabled
@@ -255,7 +251,6 @@ in {
       shellAliases = {
         cd = "z";
         yy = "yazi";
-        nv = "neovide";
         cat = "bat";
       };
       extraConfig = ''
@@ -330,16 +325,6 @@ in {
         };
       };
       # extraPackages = with pkgs.bat-extras; [batman batgrep batwatch];
-    };
-
-    # Only for checking markdown previews
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        shd101wyy.markdown-preview-enhanced
-        asvetliakov.vscode-neovim
-      ];
     };
 
     home-manager = {enable = true;};

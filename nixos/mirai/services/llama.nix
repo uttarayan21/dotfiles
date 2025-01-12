@@ -14,7 +14,7 @@
       };
     };
     nextjs-ollama-llm-ui = {
-      enable = true;
+      enable = false;
       port = 5096;
       ollamaUrl = "https://llama.darksailor.dev/api/ollama";
     };

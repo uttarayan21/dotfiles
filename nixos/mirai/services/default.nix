@@ -3,8 +3,8 @@
     ./atuin.nix
     ./authelia.nix
     ./home-assistant.nix
-    ./navidrome.nix
-    ./llama.nix
+    # ./navidrome.nix
+    # ./llama.nix
     ./nextcloud.nix
     ./jellyfin.nix
   ];
