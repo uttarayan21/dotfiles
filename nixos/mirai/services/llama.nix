@@ -2,6 +2,12 @@
   sops = {
     secrets."llama/api_key".owner = config.services.caddy.user;
     secrets."llama/user".owner = config.services.caddy.user;
+    templates = {
+      "LLAMA_API_KEY.env".content = ''
+        LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
+      '';
+      api_key_env.owner = config.services.caddy.user;
+    };
   };
   services = {
     ollama = {

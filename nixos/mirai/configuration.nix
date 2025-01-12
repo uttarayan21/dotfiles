@@ -21,12 +21,6 @@
       format = "yaml";
       key = "";
     };
-    templates = {
-      "LLAMA_API_KEY.env".content = ''
-        LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
-      '';
-      api_key_env.owner = config.services.caddy.user;
-    };
   };
 
   # Use the systemd-boot EFI boot loader.
