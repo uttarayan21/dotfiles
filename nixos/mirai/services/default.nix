@@ -2,7 +2,7 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    ./home-assistant.nix
+    # ./home-assistant.nix
     # ./navidrome.nix
     # ./llama.nix
     ./nextcloud.nix
