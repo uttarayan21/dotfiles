@@ -7,6 +7,7 @@
     # ./llama.nix
     ./nextcloud.nix
     ./jellyfin.nix
+    ./vscode.nix
   ];
   services = {
     nix-serve = {

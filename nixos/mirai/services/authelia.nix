@@ -35,6 +35,10 @@
                 domain = "darksailor.dev";
                 policy = "one_factor";
               }
+              {
+                domain = "code.darksailor.dev";
+                policy = "one_factor";
+              }
               # {
               #   domain = "media.darksailor.dev";
               #   policy = "one_factor";
