@@ -277,6 +277,7 @@
         };
 
       deploy = import ./deploy.nix {inherit inputs self;};
+      inherit devices;
     }
     // flake-utils.lib.eachDefaultSystem (
       system: let

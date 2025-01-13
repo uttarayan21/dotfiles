@@ -136,6 +136,11 @@ in {
           hostname = "sh.darksailor.dev";
           forwardAgent = true;
         };
+        ryu = {
+          user = "servius";
+          hostname = "ryu";
+          forwardAgent = false;
+        };
       };
       serverAliveInterval = 120;
       extraConfig =
