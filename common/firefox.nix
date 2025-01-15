@@ -18,6 +18,7 @@
       #   '';
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
+        violentmonkey
         tridactyl
         clearurls
         onepassword-password-manager

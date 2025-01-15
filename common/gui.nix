@@ -20,23 +20,29 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  # home.file = lib.optionalAttrs device.isMac {
-  #   "Applications/1Password.app".source = "${pkgs._1password-gui}/Applications/1Password.app";
-  # };
 
-  # Only for checking markdown previews
-  vscode = {
-    enable = true;
-    package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
-      shd101wyy.markdown-preview-enhanced
-      asvetliakov.vscode-neovim
-    ];
+  programs = {
+    # Only for checking markdown previews
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        shd101wyy.markdown-preview-enhanced
+        asvetliakov.vscode-neovim
+      ];
+    };
+    # ghostty = {
+    #   enable = true;
+    #   installBatSyntax = false;
+    #   package =
+    #     if pkgs.stdenv.isLinux
+    #     then pkgs.ghostty
+    #     else pkgs.hello;
+    # };
   };
   home.packages = with pkgs;
     []
     ++ lib.optionals pkgs.stdenv.isLinux [
-      ghostty
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
       catppuccinThemes.gtk
