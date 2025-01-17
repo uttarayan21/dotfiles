@@ -2263,6 +2263,8 @@
         "tree-sitter-just": "tree-sitter-just",
         "tree-sitter-nu": "tree-sitter-nu",
         "tree-sitter-slint": "tree-sitter-slint",
+        "typr": "typr",
+        "volt": "volt",
         "zjstatus": "zjstatus"
       }
     },
@@ -2730,11 +2732,11 @@
         "rust-overlay": "rust-overlay_8"
       },
       "locked": {
-        "lastModified": 1735044950,
-        "narHash": "sha256-8Au07voKXOa70Cq874FIPLi4Cj+4GdLMketKFwwuaas=",
+        "lastModified": 1737007026,
+        "narHash": "sha256-j1EwjCV2ttZC2Sm7gGHqhtgGPpRAv2Z+C+rQIOtRYnw=",
         "owner": "uttarayan21",
         "repo": "tmux-float",
-        "rev": "11b2cf83ebe8478135483d9a165e828e33fee038",
+        "rev": "f3ae743b473d4767e31d61a209c378d88dfddd7d",
         "type": "github"
       },
       "original": {
@@ -2849,6 +2851,22 @@
         "type": "github"
       }
     },
+    "typr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736915269,
+        "narHash": "sha256-iVLxQeQqpqohCPZAE3SxReEo3KmWAo+xGAiJJnRBbUE=",
+        "owner": "nvzone",
+        "repo": "typr",
+        "rev": "a60c7f237be94d4b39228a3bd2ced80fe9fe2781",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvzone",
+        "repo": "typr",
+        "type": "github"
+      }
+    },
     "utils": {
       "inputs": {
         "systems": "systems_5"
@@ -2864,6 +2882,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "volt": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1736777974,
+        "narHash": "sha256-2SO847Un74kNFGxARaebB+WCCgexnaJdjUkQLZ6ROQ8=",
+        "owner": "nvzone",
+        "repo": "volt",
+        "rev": "f02b065caf0327bf4d443ff6d91cb0edd6948ddb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvzone",
+        "repo": "volt",
         "type": "github"
       }
     },

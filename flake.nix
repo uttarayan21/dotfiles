@@ -146,6 +146,14 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+    typr = {
+      url = "github:nvzone/typr";
+      flake = false;
+    };
+    volt = {
+      url = "github:nvzone/volt";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -283,8 +291,15 @@
       system: let
         pkgs = import nixpkgs {
           inherit system;
+          overlays = import ./overlays.nix {
+            inherit inputs;
+          };
         };
       in {
+        packages = rec {
+          default = neovim;
+          neovim = pkgs.nixvim.makeNixvim (import ./neovim);
+        };
         devShells = {
           default = pkgs.mkShell {
             packages = with pkgs; [sops just];

@@ -20,6 +20,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
+  imports = [./kitty.nix];
 
   programs = {
     # Only for checking markdown previews
@@ -34,10 +35,10 @@ lib.attrsets.optionalAttrs device.hasGui {
     # ghostty = {
     #   enable = true;
     #   installBatSyntax = false;
-    #   package =
-    #     if pkgs.stdenv.isLinux
-    #     then pkgs.ghostty
-    #     else pkgs.hello;
+    #   settings = {
+    #     theme = "catppuccin-mocha";
+    #   };
+    #   package = pkgs.ghostty;
     # };
   };
   home.packages = with pkgs;

@@ -1,6 +1,6 @@
 {
   pkgs,
-  config,
+  # config,
   ...
 }: let
   mkMappings = mappings:
@@ -24,368 +24,281 @@
       ${lua}
     '';
   };
-  neovim = (pkgs.nixvim.makeNixvim nvim-config) // {config = nvim-config;};
-  nvim-config = {
-    plugins = {
-      fugitive.enable = true;
-      gitsigns.enable = true;
-      neogit.enable = true;
-      web-devicons.enable = true;
-      vim-surround.enable = true;
-      todo-comments.enable = true;
-      trouble.enable = true;
-      ts-context-commentstring.enable = true;
-      which-key.enable = true;
-      conform-nvim = {
-        enable = true;
-        settings = {
-          format_on_save =
-            /*
-            lua
-            */
-            ''
-              function(bufnr)
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-                  return
-                end
-                return { timeout_ms = 500, lsp_format = "fallback" }
-              end
-            '';
-          formatters_by_ft = {
-            d2 = ["d2"];
-            sql = ["sleek"];
-            toml = ["taplo"];
-            nix = ["alejandra"];
-          };
-        };
-      };
-      chatgpt = {
-        enable = true;
-        settings = {
-          api_key_cmd = "cat ${config.sops.secrets."openai/api_key".path}";
-        };
-      };
-
-      oil = {
-        enable = true;
-        settings.skip_confirm_for_simple_edits = true;
-      };
-      yazi = {
-        enable = true;
-        settings = {
-          open_for_directories = true;
-          keymaps = {
-            show_help = "<f1>";
-            open_file_in_vertical_split = "<c-v>";
-            open_file_in_horizontal_split = "<c-x>";
-            open_file_in_tab = "<c-t>";
-            grep_in_directory = "<c-s>";
-            replace_in_directory = "<c-g>";
-            cycle_open_buffers = "<tab>";
-            copy_relative_path_to_selected_files = "<c-y>";
-            send_to_quickfix_list = "<c-q>";
-            change_working_directory = "<c-c>";
-          };
-        };
-      };
-
-      # navic = {
-      #   enable = true;
-      #   settings.lsp.auto_attach = true;
-      # };
-
-      mini = {
-        enable = true;
-        modules = {
-          ai = {};
-          starter = {};
-        };
-      };
-
-      lualine = {
-        enable = true;
-        # settings.sections = {
-        #   lualine_c =
-        #         rawLua
-        #         /*
-        #         lua
-        #         */
-        #         ''
-        #         {
-        #           function(bufnr)
-        #               local opts = { highlight = true }
-        #               return require'nvim-navic'.get_location(opts)
-        #           end,
-        #           cond = function()
-        #               return require'nvim-navic'.is_available()
-        #           end
-        #         }
-        #         '';
-        # };
-      };
-
-      neotest = {
-        enable = false;
-        settings = {
-          # adapters = [
-          #   ''require('rustaceanvim.neotest')''
-          # ];
-        };
-      };
-      neorg = {
-        enable = true;
-        settings.load = {
-          "core.defaults" = {
-            __empty = null;
-          };
-          "core.completion" = {
-            config = {
-              engine = "nvim-cmp";
-              name = "[Norg]";
-            };
-          };
-          "core.concealer" = {
-            config = {
-              icon_preset = "diamond";
-            };
-          };
-          "core.keybinds" = {
-            config = {
-              default_keybinds = true;
-              neorg_leader = "<C-m>";
-            };
-          };
-          "core.integrations.treesitter" = {
-            config.install_parsers = false;
-            config.configure_parsers = false;
-          };
-
-          "core.integrations.image" = {
-            config.tmux_show_only_in_active_window = true;
-          };
-
-          "core.dirman" = {
-            config = {
-              default_workspace = "Notes";
-              workspaces = {
-                Notes = "~/Nextcloud/Notes";
-                Work = "~/Nextcloud/Work";
-              };
-            };
-          };
-        };
-      };
-
-      rest = {
-        enable = true;
-        enableTelescope = true;
-        settings.response.hooks.format = true;
-      };
-
-      comment = {
-        enable = true;
-        settings.pre_hook =
+in {
+  plugins = {
+    fugitive.enable = true;
+    gitsigns.enable = true;
+    neogit.enable = true;
+    web-devicons.enable = true;
+    vim-surround.enable = true;
+    todo-comments.enable = true;
+    trouble.enable = true;
+    ts-context-commentstring.enable = true;
+    which-key.enable = true;
+    conform-nvim = {
+      enable = true;
+      settings = {
+        format_on_save =
           /*
           lua
           */
           ''
-            require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+            function(bufnr)
+              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
+              end
+              return { timeout_ms = 500, lsp_format = "fallback" }
+            end
+          '';
+        formatters_by_ft = {
+          d2 = ["d2"];
+          sql = ["sleek"];
+          toml = ["taplo"];
+          nix = ["alejandra"];
+        };
+      };
+    };
+    chatgpt = {
+      enable = true;
+      settings = {
+        # api_key_cmd = "cat ${config.sops.secrets."openai/api_key".path}";
+      };
+    };
+
+    oil = {
+      enable = true;
+      settings.skip_confirm_for_simple_edits = true;
+    };
+    yazi = {
+      enable = true;
+      settings = {
+        open_for_directories = true;
+        keymaps = {
+          show_help = "<f1>";
+          open_file_in_vertical_split = "<c-v>";
+          open_file_in_horizontal_split = "<c-x>";
+          open_file_in_tab = "<c-t>";
+          grep_in_directory = "<c-s>";
+          replace_in_directory = "<c-g>";
+          cycle_open_buffers = "<tab>";
+          copy_relative_path_to_selected_files = "<c-y>";
+          send_to_quickfix_list = "<c-q>";
+          change_working_directory = "<c-c>";
+        };
+      };
+    };
+
+    # navic = {
+    #   enable = true;
+    #   settings.lsp.auto_attach = true;
+    # };
+
+    mini = {
+      enable = true;
+      modules = {
+        ai = {};
+        starter = {};
+      };
+    };
+
+    lualine = {
+      enable = true;
+      # settings.sections = {
+      #   lualine_c =
+      #         rawLua
+      #         /*
+      #         lua
+      #         */
+      #         ''
+      #         {
+      #           function(bufnr)
+      #               local opts = { highlight = true }
+      #               return require'nvim-navic'.get_location(opts)
+      #           end,
+      #           cond = function()
+      #               return require'nvim-navic'.is_available()
+      #           end
+      #         }
+      #         '';
+      # };
+    };
+
+    neotest = {
+      enable = false;
+      settings = {
+        # adapters = [
+        #   ''require('rustaceanvim.neotest')''
+        # ];
+      };
+    };
+    neorg = {
+      enable = true;
+      settings.load = {
+        "core.defaults" = {
+          __empty = null;
+        };
+        "core.completion" = {
+          config = {
+            engine = "nvim-cmp";
+            name = "[Norg]";
+          };
+        };
+        "core.concealer" = {
+          config = {
+            icon_preset = "diamond";
+          };
+        };
+        "core.keybinds" = {
+          config = {
+            default_keybinds = true;
+            neorg_leader = "<C-m>";
+          };
+        };
+        "core.integrations.treesitter" = {
+          config.install_parsers = false;
+          config.configure_parsers = false;
+        };
+
+        "core.integrations.image" = {
+          config.tmux_show_only_in_active_window = true;
+        };
+
+        "core.dirman" = {
+          config = {
+            default_workspace = "Notes";
+            workspaces = {
+              Notes = "~/Nextcloud/Notes";
+              Work = "~/Nextcloud/Work";
+            };
+          };
+        };
+      };
+    };
+
+    rest = {
+      enable = true;
+      enableTelescope = true;
+      settings.response.hooks.format = true;
+    };
+
+    comment = {
+      enable = true;
+      settings.pre_hook =
+        /*
+        lua
+        */
+        ''
+          require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
+        '';
+    };
+
+    molten = {
+      enable = true;
+      settings.image_provider = "image.nvim";
+    };
+
+    markdown-preview = {
+      enable = true;
+    };
+
+    noice = {
+      enable = true;
+      settings = {
+        notify.enabled = false;
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+        presets = {
+          bottom_search = false;
+          command_palette = true;
+          long_message_to_split = true;
+          inc_rename = false;
+          lsp_doc_border = true;
+        };
+      };
+    };
+
+    treesitter = {
+      enable = true;
+      settings = {
+        indent.enable = true;
+        highlight = {
+          enable = true;
+          additional_vim_regex_highlighting = true;
+        };
+      };
+      folding = true;
+      grammarPackages =
+        (with pkgs.tree-sitter-grammars; [
+          tree-sitter-norg
+          tree-sitter-norg-meta
+          tree-sitter-just
+          tree-sitter-nu
+          tree-sitter-d2
+        ])
+        ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
+    };
+
+    telescope = {
+      enable = true;
+      settings = {
+        defaults = {
+          layout_strategy = "horizontal";
+          layout_config = {
+            # preview_height = 0.8;
+            vertical = {
+              size = {
+                width = "99%";
+                height = "99%";
+              };
+            };
+          };
+        };
+      };
+      extensions = {
+        undo.enable = true;
+        ui-select.enable = true;
+        fzf-native.enable = true;
+        file-browser.enable = true;
+      };
+    };
+
+    fidget = {
+      enable = true;
+      settings.notification.override_vim_notify = true;
+    };
+
+    dap = {
+      enable = true;
+      extensions = {
+        dap-ui.enable = true;
+        dap-virtual-text.enable = true;
+      };
+    };
+
+    nvim-ufo = {
+      enable = true;
+      settings = {
+        close_fold_kinds = null;
+        provider_selector =
+          /*
+          lua
+          */
+          ''
+            function(bufnr, filetype, buftype)
+                  return {'treesitter', 'indent'}
+            end
           '';
       };
-
-      molten = {
-        enable = true;
-        settings.image_provider = "image.nvim";
-      };
-
-      markdown-preview = {
-        enable = true;
-      };
-
-      noice = {
-        enable = true;
-        settings = {
-          notify.enabled = false;
-          lsp.override = {
-            "vim.lsp.util.convert_input_to_markdown_lines" = true;
-            "vim.lsp.util.stylize_markdown" = true;
-            "cmp.entry.get_documentation" = true;
-          };
-          presets = {
-            bottom_search = false;
-            command_palette = true;
-            long_message_to_split = true;
-            inc_rename = false;
-            lsp_doc_border = true;
-          };
-        };
-      };
-
-      treesitter = {
-        enable = true;
-        settings = {
-          indent.enable = true;
-          highlight = {
-            enable = true;
-            additional_vim_regex_highlighting = true;
-          };
-        };
-        folding = true;
-        grammarPackages =
-          (with pkgs.tree-sitter-grammars; [
-            tree-sitter-norg
-            tree-sitter-norg-meta
-            tree-sitter-just
-            tree-sitter-nu
-            tree-sitter-d2
-          ])
-          ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
-      };
-
-      telescope = {
-        enable = true;
-        settings = {
-          defaults = {
-            layout_strategy = "horizontal";
-            layout_config = {
-              # preview_height = 0.8;
-              vertical = {
-                size = {
-                  width = "99%";
-                  height = "99%";
-                };
-              };
-            };
-          };
-        };
-        extensions = {
-          undo.enable = true;
-          ui-select.enable = true;
-          fzf-native.enable = true;
-          file-browser.enable = true;
-        };
-      };
-
-      fidget = {
-        enable = true;
-        settings.notification.override_vim_notify = true;
-      };
-
-      dap = {
-        enable = true;
-        extensions = {
-          dap-ui.enable = true;
-          dap-virtual-text.enable = true;
-        };
-      };
-
-      nvim-ufo = {
-        enable = true;
-        settings = {
-          close_fold_kinds = null;
-          provider_selector =
-            /*
-            lua
-            */
-            ''
-              function(bufnr, filetype, buftype)
-                    return {'treesitter', 'indent'}
-              end
-            '';
-        };
-      };
-      rustaceanvim = {
-        enable = false;
-        settings = {
-          server = {
-            default_settings = {
-              rust-analyzer = {
-                inlayHints = {
-                  genericParameterHints = {
-                    lifetime.enable = true;
-                  };
-                  # implicitDrops.enable = true;
-                };
-                files = {
-                  excludeDirs = [
-                    ".cargo"
-                    ".direnv"
-                    ".git"
-                    ".vcpkg"
-                    "node_modules"
-                    "target"
-                  ];
-                };
-                diagnostics = {
-                  enable = true;
-                  styleLints.enable = true;
-                };
-
-                checkOnSave = true;
-                check = {
-                  command = "check";
-                  features = "all";
-                };
-              };
-            };
-          };
-          dap = let
-            vscode-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
-            liblldb =
-              if pkgs.stdenv.isLinux
-              then "${vscode-lldb.lldb}/lib/liblldb.so"
-              else if pkgs.stdenv.isDarwin
-              then "${vscode-lldb.lldb}/lib/liblldb.dylib"
-              else null;
-            codelldb = "${vscode-lldb.adapter}/bin/codelldb";
-          in {
-            autoload_configurations = false;
-            # adapter =
-            #   /*
-            #   lua
-            #   */
-            #   ''
-            #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
-            #   '';
-          };
-          tools = {
-            float_win_config = {border = "rounded";};
-            enable_clippy = false;
-          };
-        };
-      };
-
-      lsp = {
-        enable = true;
-        servers = {
-          taplo.enable = true;
-          gopls.enable = true;
-          nil_ls = {
-            enable = true;
-            settings.formatting.command = [
-              "${pkgs.alejandra}/bin/alejandra"
-            ];
-            # nix.flake.autoArchive = true;
-          };
-          marksman.enable = true;
-          neocmake.enable = true;
-          nushell.enable = true;
-          clangd.enable = true;
-          lua_ls.enable = true;
-          jsonls.enable = true;
-          html.enable = true;
-          htmx.enable = true;
-          elixirls.enable = true;
-          ast_grep.enable = true;
-          sqls.enable = true;
-          pyright.enable = true;
-          slint_lsp.enable = true;
-          rust_analyzer = {
-            enable = true;
-            package = null;
-            installCargo = false;
-            installRustc = false;
-            settings = {
+    };
+    rustaceanvim = {
+      enable = false;
+      settings = {
+        server = {
+          default_settings = {
+            rust-analyzer = {
               inlayHints = {
                 genericParameterHints = {
                   lifetime.enable = true;
@@ -415,368 +328,453 @@
             };
           };
         };
-        onAttach =
+        dap = let
+          vscode-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
+          liblldb =
+            if pkgs.stdenv.isLinux
+            then "${vscode-lldb.lldb}/lib/liblldb.so"
+            else if pkgs.stdenv.isDarwin
+            then "${vscode-lldb.lldb}/lib/liblldb.dylib"
+            else null;
+          codelldb = "${vscode-lldb.adapter}/bin/codelldb";
+        in {
+          autoload_configurations = false;
+          # adapter =
+          #   /*
+          #   lua
+          #   */
+          #   ''
+          #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
+          #   '';
+        };
+        tools = {
+          float_win_config = {border = "rounded";};
+          enable_clippy = false;
+        };
+      };
+    };
+
+    lsp = {
+      enable = true;
+      servers = {
+        taplo.enable = true;
+        gopls.enable = true;
+        nil_ls = {
+          enable = true;
+          settings.formatting.command = [
+            "${pkgs.alejandra}/bin/alejandra"
+          ];
+          # nix.flake.autoArchive = true;
+        };
+        marksman.enable = true;
+        neocmake.enable = true;
+        nushell.enable = true;
+        clangd.enable = true;
+        lua_ls.enable = true;
+        jsonls.enable = true;
+        html.enable = true;
+        htmx.enable = true;
+        elixirls.enable = true;
+        ast_grep.enable = true;
+        sqls.enable = true;
+        pyright.enable = true;
+        slint_lsp.enable = true;
+        rust_analyzer = {
+          enable = true;
+          package = null;
+          installCargo = false;
+          installRustc = false;
+          settings = {
+            inlayHints = {
+              genericParameterHints = {
+                lifetime.enable = true;
+              };
+              # implicitDrops.enable = true;
+            };
+            files = {
+              excludeDirs = [
+                ".cargo"
+                ".direnv"
+                ".git"
+                ".vcpkg"
+                "node_modules"
+                "target"
+              ];
+            };
+            diagnostics = {
+              enable = true;
+              styleLints.enable = true;
+            };
+
+            checkOnSave = true;
+            check = {
+              command = "check";
+              features = "all";
+            };
+          };
+        };
+      };
+      onAttach =
+        /*
+        lua
+        */
+        ''
+          if client.server_capabilities.inlayHintProvider then
+              vim.lsp.inlay_hint.enable(true)
+          end
+        '';
+    };
+    cmp = {
+      enable = true;
+      settings = {
+        autoEnableSources = true;
+        sources = [
+          {name = "buffer";}
+          {name = "buffer";}
+          {name = "cmdline";}
+          {name = "cmp-clippy";}
+          {name = "cmp-cmdline-history";}
+          {name = "crates";}
+          {name = "dap";}
+          # {name = "dictionary";}
+          {name = "fish";}
+          {name = "git";}
+          {name = "luasnip";}
+          {name = "nvim_lsp";}
+          {name = "nvim_lua";}
+          {name = "nvim_lsp_signature_help";}
+          {name = "nvim_lsp_document_symbol";}
+          {name = "path";}
+          {name = "rg";}
+          {name = "spell";}
+          {name = "tmux";}
+          {name = "treesitter";}
+        ];
+        view = {
+          entries = {
+            name = "custom";
+            selection_order = "near_cursor";
+          };
+        };
+        window = {
+          completion = {
+            inherit border;
+          };
+          documentation = {
+            inherit border;
+          };
+        };
+        mapping = {
+          # "<CR>" = "cmp.mapping.confirm({select = true})";
+          "<CR>" = "cmp.mapping.confirm()";
+          "<C-Space>" = "cmp.mapping.complete()";
+          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+        };
+        snippet.expand =
           /*
           lua
           */
           ''
-            if client.server_capabilities.inlayHintProvider then
-                vim.lsp.inlay_hint.enable(true)
+            function(args)
+                require('luasnip').lsp_expand(args.body)
             end
           '';
       };
-      cmp = {
-        enable = true;
-        settings = {
-          autoEnableSources = true;
-          sources = [
-            {name = "buffer";}
-            {name = "buffer";}
-            {name = "cmdline";}
-            {name = "cmp-clippy";}
-            {name = "cmp-cmdline-history";}
-            {name = "crates";}
-            {name = "dap";}
-            # {name = "dictionary";}
-            {name = "fish";}
-            {name = "git";}
-            {name = "luasnip";}
-            {name = "nvim_lsp";}
-            {name = "nvim_lua";}
-            {name = "nvim_lsp_signature_help";}
-            {name = "nvim_lsp_document_symbol";}
-            {name = "path";}
-            {name = "rg";}
-            {name = "spell";}
-            {name = "tmux";}
-            {name = "treesitter";}
-          ];
-          view = {
-            entries = {
-              name = "custom";
-              selection_order = "near_cursor";
-            };
-          };
-          window = {
-            completion = {
-              inherit border;
-            };
-            documentation = {
-              inherit border;
-            };
-          };
-          mapping = {
-            # "<CR>" = "cmp.mapping.confirm({select = true})";
-            "<CR>" = "cmp.mapping.confirm()";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-            "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-          };
-          snippet.expand =
-            /*
-            lua
-            */
-            ''
-              function(args)
-                  require('luasnip').lsp_expand(args.body)
-              end
-            '';
-        };
-      };
     };
-    globals = {
-      mapleader = " ";
-      localleader = " ";
-    };
-    colorschemes = {
-      catppuccin = {
-        enable = true;
-        settings.flavour = "mocha";
-      };
-    };
-    keymaps = mkMappings {
-      normal = {
-        "<C-l>" = "[[<cmd>Outline<cr>]]";
-        "<C-w>\"" = "[[<cmd>split<cr>]]";
-        "<C-w>%" = "[[<cmd>vsplit<cr>]]";
-        "gh" = "[[<cmd>Octo actions<cr>]]";
-        "<leader>\"" = ''[["+]]'';
-        "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
-        "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-        "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-        "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-        "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
-        "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
-        "<leader><leader>" = "'<c-^>'";
-        "<leader>n" = "[[<cmd>bnext<cr>]]";
-        "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
-        "<leader>p" = "[[<cmd>bprev<cr>]]";
-        "<leader>q" = "[[<cmd>bw<cr>]]";
-        "<leader>mm" = "[[<cmd>Neorg<cr>]]";
-        "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-
-        "<leader>rr" = "vim.lsp.buf.rename";
-        "<C-k>" = "vim.lsp.buf.definition";
-        "<C-\\>" = "require('FTerm').toggle";
-        # "F" = "function() vim.lsp.buf.format({ async = true }) end";
-        "F" = "require('conform').format";
-        "gi" = "require'telescope.builtin'.lsp_references";
-        "<leader>a" = "vim.lsp.buf.code_action";
-        "<leader>bb" = "require'dap'.toggle_breakpoint";
-        "<leader>du" = "require'dapui'.toggle";
-        "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-        "<leader>fg" = "require'yazi'.yazi";
-        "<leader>ff" = "require'telescope.builtin'.find_files";
-        "<leader>gg" = "require'telescope.builtin'.live_grep";
-        "<leader>;" = "require'telescope.builtin'.buffers";
-        "zR" = "require'ufo'.openAllFolds";
-        "zM" = "require'ufo'.closeAllFolds";
-
-        # Emulate tmux bindings with prefix <C-q> and tabs
-        "<C-q><C-q>" = "[[g<Tab>]]";
-        "<C-q>c" = "[[<cmd>tabnew<cr>]]";
-        "<C-q>x" = "[[<cmd>tabclose<cr>]]";
-        "<C-q>n" = "[[<cmd>tabnext<cr>]]";
-        "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
-      };
-      terminal = {
-        "<C-\\>" = "require('FTerm').toggle";
-      };
-      insert = {
-        "<C-\\>" = "require('FTerm').toggle";
-      };
-      visual = {
-        "L" = "[[:'<,'>!sort -u<cr>]]";
-      };
-    };
-
-    autoCmd = [
-      {
-        event = ["BufEnter" "BufWinEnter"];
-        pattern = "*.norg";
-        command = "set conceallevel=3";
-      }
-      # {
-      #   event = ["BufEnter" "BufWinEnter"];
-      #   pattern = "*.sql";
-      #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
-      # }
-      {
-        event = ["BufWinLeave"];
-        pattern = "?*";
-        command = "mkview!";
-      }
-      {
-        event = ["BufWinEnter"];
-        pattern = "?*";
-        command = "silent! loadview!";
-      }
-    ];
-
-    extraConfigLua =
-      /*
-      lua
-      */
-      ''
-         function catcher(callback)
-             do
-                 success, output = pcall(callback)
-                 if not success then
-                     print("Failed to setup: " .. output)
-                 end
-             end
-         end
-
-         require("copilot").setup({
-             suggestion = {
-                 enabled = true,
-                 auto_trigger = true,
-                 keymap = {
-                     accept = "<C-l>",
-                 }
-             },
-             panel = { enabled = true },
-         })
-
-         catcher(require('crates').setup)
-         catcher(require('outline').setup)
-         -- catcher(require('navigator').setup)
-
-         require('FTerm').setup({
-             border     = 'single',
-             dimensions = {
-                 height = 0.99,
-                 width = 0.95,
-             },
-             cmd        = "sh -c 'tmux new -As scratch'",
-             blend      = 10,
-         })
-
-         require('octo').setup({
-           use_local_fs = false,
-           enable_builtin = false,
-           default_remote = {"upstream", "origin"};
-           default_merge_method = "squash";
-         })
-
-         if not vim.g.neovide then
-             require('neoscroll').setup()
-             require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
-         else
-             vim.o.guifont = "Hasklug Nerd Font Mono:h13"
-             vim.g.neovide_cursor_vfx_mode = "railgun"
-         end
-
-         require('lspconfig.ui.windows').default_options.border = 'single'
-
-         catcher(require('nvim_context_vt').setup)
-
-         vim.api.nvim_create_user_command('Reso',
-             function()
-                 pcall(vim.cmd'source ~/.config/nvim/init.lua')
-             end,
-         {})
-
-         vim.api.nvim_create_user_command("FormatDisable", function(args)
-           if args.bang then
-             -- FormatDisable! will disable formatting just for this buffer
-             vim.b.disable_autoformat = true
-           else
-             vim.g.disable_autoformat = true
-           end
-         end, {
-           desc = "Disable autoformat-on-save",
-           bang = true,
-         })
-         vim.api.nvim_create_user_command("FormatEnable", function()
-           vim.b.disable_autoformat = false
-           vim.g.disable_autoformat = false
-         end, {
-           desc = "Re-enable autoformat-on-save",
-         })
-
-         vim.api.nvim_create_user_command('Sqlfmt',
-             function()
-                 pcall(vim.cmd'%!${pkgs.sleek}/bin/sleek')
-             end,
-         {})
-
-        local iron = require("iron.core")
-        iron.setup({
-          config = {
-            -- Whether a repl should be discarded or not
-            scratch_repl = true,
-            -- Your repl definitions come here
-            repl_definition = {
-              sh = {
-                -- Can be a table or a function that
-                -- returns a table (see below)
-                command = {"${pkgs.zsh}/bin/zsh"}
-              },
-              sql = {
-                command = function(meta)
-                    local db = os.getenv("DATABASE_PATH")
-                    if db == nil then
-                        return { '${pkgs.sqlite}/bin/sqlite3', ':memory:' }
-                    else
-                        return { '${pkgs.sqlite}/bin/sqlite3', db }
-                    end
-
-                end
-              },
-              rust = {
-                command = {"${pkgs.evcxr}/bin/evcxr"}
-              },
-            },
-            -- How the repl window will be displayed
-            -- See below for more information
-            repl_open_cmd = require('iron.view').right(60),
-          },
-          -- Iron doesn't set keymaps by default anymore.
-          -- You can set them here or manually add keymaps to the functions in iron.core
-          keymaps = {
-            send_motion = "<space>sc",
-            visual_send = "<space>sc",
-            send_file = "<space>sf",
-            send_line = "<space>sl",
-            send_until_cursor = "<space>su",
-            send_mark = "<space>sm",
-            mark_motion = "<space>mc",
-            mark_visual = "<space>mc",
-            remove_mark = "<space>md",
-            cr = "<space>s<cr>",
-            interrupt = "<space>s<space>",
-            exit = "<space>sq",
-            clear = "<space>cl",
-          },
-          -- If the highlight is on, you can change how it looks
-          -- For the available options, check nvim_set_hl
-          highlight = {
-            italic = true
-          },
-          ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-        })
-
-         vim.filetype.add({
-            extension = {
-               slint = "slint",
-            },
-         })
-
-         vim.filetype.add({
-             filename = {
-                 ['nurfile'] = "nu",
-             },
-         })
-
-      '';
-    # package = pkgs.neovim-unwrapped;
-    # pkgs.neovim;
-    opts = {
-      completeopt = "menu,menuone,popup,noselect";
-      expandtab = true;
-      foldenable = true;
-      foldlevel = 99;
-      foldlevelstart = 99;
-      hidden = true;
-      number = true;
-      relativenumber = true;
-      shell = "sh";
-      shiftwidth = 4;
-      signcolumn = "yes";
-      smartcase = true;
-      softtabstop = 4;
-      tabstop = 4;
-      termguicolors = true;
-      undofile = true;
-      viewoptions = "cursor,folds";
-      wrap = true;
-    };
-    extraPlugins = with pkgs.vimPlugins; [
-      FTerm-nvim
-      copilot-lua
-      crates-nvim
-      d2
-      image-nvim
-      iron-nvim
-      luasnip
-      neoscroll-nvim
-      nvim-web-devicons
-      nvim_context_vt
-      octo-nvim
-      outline-nvim
-      plenary-nvim
-      vim-abolish
-      vim-speeddating
-      webapi-vim
-      pkgs.tree-sitter-grammars.tree-sitter-just
-      pkgs.tree-sitter-grammars.tree-sitter-nu
-      pkgs.tree-sitter-grammars.tree-sitter-norg
-      pkgs.tree-sitter-grammars.tree-sitter-norg-meta
-    ];
-    extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-    extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
   };
-in {
-  home.packages = [neovim];
+  globals = {
+    mapleader = " ";
+    localleader = " ";
+  };
+  colorschemes = {
+    catppuccin = {
+      enable = true;
+      settings.flavour = "mocha";
+    };
+  };
+  keymaps = mkMappings {
+    normal = {
+      "<C-l>" = "[[<cmd>Outline<cr>]]";
+      "<C-w>\"" = "[[<cmd>split<cr>]]";
+      "<C-w>%" = "[[<cmd>vsplit<cr>]]";
+      "gh" = "[[<cmd>Octo actions<cr>]]";
+      "<leader>\"" = ''[["+]]'';
+      "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
+      "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
+      "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+      "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+      "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
+      "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
+      "<leader><leader>" = "'<c-^>'";
+      "<leader>n" = "[[<cmd>bnext<cr>]]";
+      "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
+      "<leader>p" = "[[<cmd>bprev<cr>]]";
+      "<leader>q" = "[[<cmd>bw<cr>]]";
+      "<leader>mm" = "[[<cmd>Neorg<cr>]]";
+      "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
+
+      "<leader>rr" = "vim.lsp.buf.rename";
+      "<C-k>" = "vim.lsp.buf.definition";
+      "<C-\\>" = "require('FTerm').toggle";
+      # "F" = "function() vim.lsp.buf.format({ async = true }) end";
+      "F" = "require('conform').format";
+      "gi" = "require'telescope.builtin'.lsp_references";
+      "<leader>a" = "vim.lsp.buf.code_action";
+      "<leader>bb" = "require'dap'.toggle_breakpoint";
+      "<leader>du" = "require'dapui'.toggle";
+      "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
+      "<leader>fg" = "require'yazi'.yazi";
+      "<leader>ff" = "require'telescope.builtin'.find_files";
+      "<leader>gg" = "require'telescope.builtin'.live_grep";
+      "<leader>;" = "require'telescope.builtin'.buffers";
+      "zR" = "require'ufo'.openAllFolds";
+      "zM" = "require'ufo'.closeAllFolds";
+
+      # Emulate tmux bindings with prefix <C-q> and tabs
+      "<C-q><C-q>" = "[[g<Tab>]]";
+      "<C-q>c" = "[[<cmd>tabnew<cr>]]";
+      "<C-q>x" = "[[<cmd>tabclose<cr>]]";
+      "<C-q>n" = "[[<cmd>tabnext<cr>]]";
+      "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
+    };
+    terminal = {
+      "<C-\\>" = "require('FTerm').toggle";
+    };
+    insert = {
+      "<C-\\>" = "require('FTerm').toggle";
+    };
+    visual = {
+      "L" = "[[:'<,'>!sort -u<cr>]]";
+    };
+  };
+
+  autoCmd = [
+    {
+      event = ["BufEnter" "BufWinEnter"];
+      pattern = "*.norg";
+      command = "set conceallevel=3";
+    }
+    # {
+    #   event = ["BufEnter" "BufWinEnter"];
+    #   pattern = "*.sql";
+    #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
+    # }
+    {
+      event = ["BufWinLeave"];
+      pattern = "?*";
+      command = "mkview!";
+    }
+    {
+      event = ["BufWinEnter"];
+      pattern = "?*";
+      command = "silent! loadview!";
+    }
+  ];
+
+  extraConfigLua =
+    /*
+    lua
+    */
+    ''
+       function catcher(callback)
+           do
+               success, output = pcall(callback)
+               if not success then
+                   print("Failed to setup: " .. output)
+               end
+           end
+       end
+
+       require("copilot").setup({
+           suggestion = {
+               enabled = true,
+               auto_trigger = true,
+               keymap = {
+                   accept = "<C-l>",
+               }
+           },
+           panel = { enabled = true },
+       })
+
+       catcher(require('crates').setup)
+       catcher(require('outline').setup)
+       -- catcher(require('navigator').setup)
+
+       require('FTerm').setup({
+           border     = 'single',
+           dimensions = {
+               height = 0.99,
+               width = 0.95,
+           },
+           cmd        = "sh -c 'tmux new -As scratch'",
+           blend      = 10,
+       })
+
+       require('octo').setup({
+         use_local_fs = false,
+         enable_builtin = false,
+         default_remote = {"upstream", "origin"};
+         default_merge_method = "squash";
+       })
+
+       if not vim.g.neovide then
+           require('neoscroll').setup()
+           require('image').setup({["backend"] = "kitty",["tmux_show_only_in_active_window"] = true})
+       else
+           vim.o.guifont = "Hasklug Nerd Font Mono:h13"
+           vim.g.neovide_cursor_vfx_mode = "railgun"
+       end
+
+       require('lspconfig.ui.windows').default_options.border = 'single'
+
+       catcher(require('nvim_context_vt').setup)
+
+       vim.api.nvim_create_user_command('Reso',
+           function()
+               pcall(vim.cmd'source ~/.config/nvim/init.lua')
+           end,
+       {})
+
+       vim.api.nvim_create_user_command("FormatDisable", function(args)
+         if args.bang then
+           -- FormatDisable! will disable formatting just for this buffer
+           vim.b.disable_autoformat = true
+         else
+           vim.g.disable_autoformat = true
+         end
+       end, {
+         desc = "Disable autoformat-on-save",
+         bang = true,
+       })
+       vim.api.nvim_create_user_command("FormatEnable", function()
+         vim.b.disable_autoformat = false
+         vim.g.disable_autoformat = false
+       end, {
+         desc = "Re-enable autoformat-on-save",
+       })
+
+       vim.api.nvim_create_user_command('Sqlfmt',
+           function()
+               pcall(vim.cmd'%!${pkgs.sleek}/bin/sleek')
+           end,
+       {})
+
+      local iron = require("iron.core")
+      iron.setup({
+        config = {
+          -- Whether a repl should be discarded or not
+          scratch_repl = true,
+          -- Your repl definitions come here
+          repl_definition = {
+            sh = {
+              -- Can be a table or a function that
+              -- returns a table (see below)
+              command = {"${pkgs.zsh}/bin/zsh"}
+            },
+            sql = {
+              command = function(meta)
+                  local db = os.getenv("DATABASE_PATH")
+                  if db == nil then
+                      return { '${pkgs.sqlite}/bin/sqlite3', ':memory:' }
+                  else
+                      return { '${pkgs.sqlite}/bin/sqlite3', db }
+                  end
+
+              end
+            },
+            rust = {
+              command = {"${pkgs.evcxr}/bin/evcxr"}
+            },
+          },
+          -- How the repl window will be displayed
+          -- See below for more information
+          repl_open_cmd = require('iron.view').right(60),
+        },
+        -- Iron doesn't set keymaps by default anymore.
+        -- You can set them here or manually add keymaps to the functions in iron.core
+        keymaps = {
+          send_motion = "<space>sc",
+          visual_send = "<space>sc",
+          send_file = "<space>sf",
+          send_line = "<space>sl",
+          send_until_cursor = "<space>su",
+          send_mark = "<space>sm",
+          mark_motion = "<space>mc",
+          mark_visual = "<space>mc",
+          remove_mark = "<space>md",
+          cr = "<space>s<cr>",
+          interrupt = "<space>s<space>",
+          exit = "<space>sq",
+          clear = "<space>cl",
+        },
+        -- If the highlight is on, you can change how it looks
+        -- For the available options, check nvim_set_hl
+        highlight = {
+          italic = true
+        },
+        ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
+      })
+
+       vim.filetype.add({
+          extension = {
+             slint = "slint",
+          },
+       })
+
+       vim.filetype.add({
+           filename = {
+               ['nurfile'] = "nu",
+           },
+       })
+
+    '';
+  # package = pkgs.neovim-unwrapped;
+  # pkgs.neovim;
+  opts = {
+    completeopt = "menu,menuone,popup,noselect";
+    expandtab = true;
+    foldenable = true;
+    foldlevel = 99;
+    foldlevelstart = 99;
+    hidden = true;
+    number = true;
+    relativenumber = true;
+    shell = "sh";
+    shiftwidth = 4;
+    signcolumn = "yes";
+    smartcase = true;
+    softtabstop = 4;
+    tabstop = 4;
+    termguicolors = true;
+    undofile = true;
+    viewoptions = "cursor,folds";
+    wrap = true;
+  };
+  extraPlugins = with pkgs.vimPlugins; [
+    FTerm-nvim
+    copilot-lua
+    crates-nvim
+    d2
+    image-nvim
+    iron-nvim
+    luasnip
+    neoscroll-nvim
+    nvim-web-devicons
+    nvim_context_vt
+    octo-nvim
+    outline-nvim
+    plenary-nvim
+    # typr
+    vim-abolish
+    vim-speeddating
+    webapi-vim
+
+    pkgs.tree-sitter-grammars.tree-sitter-just
+    pkgs.tree-sitter-grammars.tree-sitter-norg
+    pkgs.tree-sitter-grammars.tree-sitter-norg-meta
+    pkgs.tree-sitter-grammars.tree-sitter-nu
+  ];
+  extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
+  extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
 }

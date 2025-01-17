@@ -45,7 +45,7 @@ in {
       ./ncmpcpp.nix
       ./sops.nix
       ./tmux.nix
-      ../neovim
+      # ../neovim
     ]
     ++ lib.optionals device.isLinux [../linux]
     # ++ lib.optionals.device.isMac [../macos]
@@ -54,6 +54,7 @@ in {
 
   home.packages = with pkgs;
     [
+      (nixvim.makeNixvim (import ../neovim))
       _1password-cli
       alejandra
       ast-grep
