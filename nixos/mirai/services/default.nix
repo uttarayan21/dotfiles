@@ -8,6 +8,8 @@
     ./nextcloud.nix
     ./jellyfin.nix
     ./vscode.nix
+    ./tailscale.nix
+    # ./ldap.nix
   ];
   services = {
     nix-serve = {
@@ -23,11 +25,6 @@
         maxtime = "168h"; # Do not ban for more than 1 week
         overalljails = true; # Calculate the bantime based on all the violations
       };
-    };
-    tailscale = {
-      enable = true;
-      useRoutingFeatures = "server";
-      extraUpFlags = "--advertise-exit-node";
     };
     caddy = {
       enable = true;

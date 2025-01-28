@@ -32,18 +32,20 @@ lib.attrsets.optionalAttrs device.hasGui {
         asvetliakov.vscode-neovim
       ];
     };
-    # ghostty = {
-    #   enable = true;
-    #   installBatSyntax = false;
-    #   settings = {
-    #     theme = "catppuccin-mocha";
-    #   };
-    #   package = pkgs.ghostty;
-    # };
+    ghostty = {
+      enable = true;
+      installBatSyntax = false;
+      settings = {
+        theme = "catppuccin-mocha";
+      };
+      package = pkgs.ghostty;
+    };
   };
   home.packages = with pkgs;
     []
     ++ lib.optionals pkgs.stdenv.isLinux [
+      ghostty
+      discord
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
       catppuccinThemes.gtk
