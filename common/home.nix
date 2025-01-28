@@ -337,6 +337,7 @@ in {
     aichat = {
       enable = true;
       enableFishIntegration = true;
+      enableNushellIntegration = false;
       settings = {
         save_session = true;
         model = "openai:gpt-4o";

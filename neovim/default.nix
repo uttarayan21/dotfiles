@@ -25,6 +25,115 @@
     '';
   };
 in {
+  opts = {
+    completeopt = "menu,menuone,popup,noselect";
+    expandtab = true;
+    foldenable = true;
+    foldlevel = 99;
+    foldlevelstart = 99;
+    hidden = true;
+    number = true;
+    relativenumber = true;
+    shell = "sh";
+    shiftwidth = 4;
+    signcolumn = "yes";
+    smartcase = true;
+    softtabstop = 4;
+    tabstop = 4;
+    termguicolors = true;
+    undofile = true;
+    viewoptions = "cursor,folds";
+    wrap = true;
+  };
+  globals = {
+    mapleader = " ";
+    localleader = " ";
+  };
+  colorschemes = {
+    catppuccin = {
+      enable = true;
+      settings.flavour = "mocha";
+    };
+  };
+  keymaps = mkMappings {
+    normal = {
+      "<C-l>" = "[[<cmd>Outline<cr>]]";
+      "<C-w>\"" = "[[<cmd>split<cr>]]";
+      "<C-w>%" = "[[<cmd>vsplit<cr>]]";
+      "gh" = "[[<cmd>Octo actions<cr>]]";
+      "<leader>\"" = ''[["+]]'';
+      "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
+      "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
+      "<leader>ee" = "[[<cmd>Rest run<cr>]]";
+      "<leader>el" = "[[<cmd>Rest run last<cr>]]";
+      "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
+      "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
+      "<leader><leader>" = "'<c-^>'";
+      "<leader>n" = "[[<cmd>bnext<cr>]]";
+      "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
+      "<leader>p" = "[[<cmd>bprev<cr>]]";
+      "<leader>q" = "[[<cmd>bw<cr>]]";
+      "<leader>mm" = "[[<cmd>Neorg<cr>]]";
+      "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
+
+      "<leader>rr" = "vim.lsp.buf.rename";
+      "<C-k>" = "vim.lsp.buf.definition";
+      "<C-\\>" = "require('FTerm').toggle";
+      # "F" = "function() vim.lsp.buf.format({ async = true }) end";
+      "F" = "require('conform').format";
+      "gi" = "require'telescope.builtin'.lsp_references";
+      "<leader>a" = "vim.lsp.buf.code_action";
+      "<leader>bb" = "require'dap'.toggle_breakpoint";
+      "<leader>du" = "require'dapui'.toggle";
+      "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
+      "<leader>fg" = "require'yazi'.yazi";
+      "<leader>ff" = "require'telescope.builtin'.find_files";
+      "<leader>gg" = "require'telescope.builtin'.live_grep";
+      "<leader>;" = "require'telescope.builtin'.buffers";
+      "zR" = "require'ufo'.openAllFolds";
+      "zM" = "require'ufo'.closeAllFolds";
+
+      # Emulate tmux bindings with prefix <C-q> and tabs
+      "<C-q><C-q>" = "[[g<Tab>]]";
+      "<C-q>c" = "[[<cmd>tabnew<cr>]]";
+      "<C-q>x" = "[[<cmd>tabclose<cr>]]";
+      "<C-q>n" = "[[<cmd>tabnext<cr>]]";
+      "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
+    };
+    terminal = {
+      "<C-\\>" = "require('FTerm').toggle";
+    };
+    insert = {
+      "<C-\\>" = "require('FTerm').toggle";
+    };
+    visual = {
+      "L" = "[[:'<,'>!sort -u<cr>]]";
+    };
+  };
+
+  autoCmd = [
+    {
+      event = ["BufEnter" "BufWinEnter"];
+      pattern = "*.norg";
+      command = "set conceallevel=3";
+    }
+    # {
+    #   event = ["BufEnter" "BufWinEnter"];
+    #   pattern = "*.sql";
+    #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
+    # }
+    {
+      event = ["BufWinLeave"];
+      pattern = "?*";
+      command = "mkview!";
+    }
+    {
+      event = ["BufWinEnter"];
+      pattern = "?*";
+      command = "silent! loadview!";
+    }
+  ];
+
   plugins = {
     fugitive.enable = true;
     gitsigns.enable = true;
@@ -294,7 +403,7 @@ in {
       };
     };
     rustaceanvim = {
-      enable = false;
+      enable = true;
       settings = {
         server = {
           default_settings = {
@@ -307,12 +416,12 @@ in {
               };
               files = {
                 excludeDirs = [
-                  ".cargo"
-                  ".direnv"
-                  ".git"
-                  ".vcpkg"
-                  "node_modules"
-                  "target"
+                  ".cargo/"
+                  ".direnv/"
+                  ".git/"
+                  ".vcpkg/"
+                  "node_modules/"
+                  "target/"
                 ];
               };
               diagnostics = {
@@ -379,40 +488,40 @@ in {
         sqls.enable = true;
         pyright.enable = true;
         slint_lsp.enable = true;
-        rust_analyzer = {
-          enable = true;
-          package = null;
-          installCargo = false;
-          installRustc = false;
-          settings = {
-            inlayHints = {
-              genericParameterHints = {
-                lifetime.enable = true;
-              };
-              # implicitDrops.enable = true;
-            };
-            files = {
-              excludeDirs = [
-                ".cargo"
-                ".direnv"
-                ".git"
-                ".vcpkg"
-                "node_modules"
-                "target"
-              ];
-            };
-            diagnostics = {
-              enable = true;
-              styleLints.enable = true;
-            };
+        #  rust_analyzer = {
+        #    enable = false;
+        #    package = null;
+        #    installCargo = false;
+        #    installRustc = false;
+        #    settings = {
+        #      inlayHints = {
+        #        genericParameterHints = {
+        #          lifetime.enable = true;
+        #        };
+        #        # implicitDrops.enable = true;
+        #      };
+        #      files = {
+        #        excludeDirs = [
+        #          ".cargo"
+        #          ".direnv"
+        #          ".git"
+        #          ".vcpkg"
+        #          "node_modules"
+        #          "target"
+        #        ];
+        #      };
+        #      diagnostics = {
+        #        enable = true;
+        #        styleLints.enable = true;
+        #      };
 
-            checkOnSave = true;
-            check = {
-              command = "check";
-              features = "all";
-            };
-          };
-        };
+        #      checkOnSave = true;
+        #      check = {
+        #        command = "check";
+        #        features = "all";
+        #      };
+        #    };
+        #  };
       };
       onAttach =
         /*
@@ -483,95 +592,6 @@ in {
       };
     };
   };
-  globals = {
-    mapleader = " ";
-    localleader = " ";
-  };
-  colorschemes = {
-    catppuccin = {
-      enable = true;
-      settings.flavour = "mocha";
-    };
-  };
-  keymaps = mkMappings {
-    normal = {
-      "<C-l>" = "[[<cmd>Outline<cr>]]";
-      "<C-w>\"" = "[[<cmd>split<cr>]]";
-      "<C-w>%" = "[[<cmd>vsplit<cr>]]";
-      "gh" = "[[<cmd>Octo actions<cr>]]";
-      "<leader>\"" = ''[["+]]'';
-      "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
-      "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
-      "<leader>ee" = "[[<cmd>Rest run<cr>]]";
-      "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-      "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
-      "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
-      "<leader><leader>" = "'<c-^>'";
-      "<leader>n" = "[[<cmd>bnext<cr>]]";
-      "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
-      "<leader>p" = "[[<cmd>bprev<cr>]]";
-      "<leader>q" = "[[<cmd>bw<cr>]]";
-      "<leader>mm" = "[[<cmd>Neorg<cr>]]";
-      "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
-
-      "<leader>rr" = "vim.lsp.buf.rename";
-      "<C-k>" = "vim.lsp.buf.definition";
-      "<C-\\>" = "require('FTerm').toggle";
-      # "F" = "function() vim.lsp.buf.format({ async = true }) end";
-      "F" = "require('conform').format";
-      "gi" = "require'telescope.builtin'.lsp_references";
-      "<leader>a" = "vim.lsp.buf.code_action";
-      "<leader>bb" = "require'dap'.toggle_breakpoint";
-      "<leader>du" = "require'dapui'.toggle";
-      "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
-      "<leader>fg" = "require'yazi'.yazi";
-      "<leader>ff" = "require'telescope.builtin'.find_files";
-      "<leader>gg" = "require'telescope.builtin'.live_grep";
-      "<leader>;" = "require'telescope.builtin'.buffers";
-      "zR" = "require'ufo'.openAllFolds";
-      "zM" = "require'ufo'.closeAllFolds";
-
-      # Emulate tmux bindings with prefix <C-q> and tabs
-      "<C-q><C-q>" = "[[g<Tab>]]";
-      "<C-q>c" = "[[<cmd>tabnew<cr>]]";
-      "<C-q>x" = "[[<cmd>tabclose<cr>]]";
-      "<C-q>n" = "[[<cmd>tabnext<cr>]]";
-      "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
-    };
-    terminal = {
-      "<C-\\>" = "require('FTerm').toggle";
-    };
-    insert = {
-      "<C-\\>" = "require('FTerm').toggle";
-    };
-    visual = {
-      "L" = "[[:'<,'>!sort -u<cr>]]";
-    };
-  };
-
-  autoCmd = [
-    {
-      event = ["BufEnter" "BufWinEnter"];
-      pattern = "*.norg";
-      command = "set conceallevel=3";
-    }
-    # {
-    #   event = ["BufEnter" "BufWinEnter"];
-    #   pattern = "*.sql";
-    #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
-    # }
-    {
-      event = ["BufWinLeave"];
-      pattern = "?*";
-      command = "mkview!";
-    }
-    {
-      event = ["BufWinEnter"];
-      pattern = "?*";
-      command = "silent! loadview!";
-    }
-  ];
-
   extraConfigLua =
     /*
     lua
@@ -729,28 +749,6 @@ in {
        })
 
     '';
-  # package = pkgs.neovim-unwrapped;
-  # pkgs.neovim;
-  opts = {
-    completeopt = "menu,menuone,popup,noselect";
-    expandtab = true;
-    foldenable = true;
-    foldlevel = 99;
-    foldlevelstart = 99;
-    hidden = true;
-    number = true;
-    relativenumber = true;
-    shell = "sh";
-    shiftwidth = 4;
-    signcolumn = "yes";
-    smartcase = true;
-    softtabstop = 4;
-    tabstop = 4;
-    termguicolors = true;
-    undofile = true;
-    viewoptions = "cursor,folds";
-    wrap = true;
-  };
   extraPlugins = with pkgs.vimPlugins; [
     FTerm-nvim
     copilot-lua
