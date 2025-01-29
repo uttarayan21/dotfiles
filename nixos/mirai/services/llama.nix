@@ -12,7 +12,7 @@
   services = {
     ollama = {
       enable = true;
-      loadModels = ["RobinBially/nomic-embed-text-8k" "mistral"];
+      loadModels = ["RobinBially/nomic-embed-text-8k" "mistral" "hf.co/unsloth/DeepSeek-R1-GGUF:BF16"];
       port = 11434;
       host = "0.0.0.0";
       environmentVariables = {
