@@ -33,7 +33,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       ];
     };
     ghostty = {
-      enable = true;
+      enable = pkgs.stdenv.isLinux;
       installBatSyntax = false;
       settings = {
         theme = "catppuccin-mocha";
