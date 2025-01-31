@@ -8,7 +8,10 @@
   pkgs,
   ...
 }: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    # ./disk-config.nix
+  ];
 
   hardware.graphics = {
     enable = true;
@@ -71,8 +74,15 @@
 
   boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_drm"];
-  boot.kernelModules = ["kvm-intel" "i2c-dev"];
+  boot.kernelModules = [
+    # "vfio_pci"
+    # "vfio"
+
+    "kvm-intel"
+    "i2c-dev"
+  ];
   boot.extraModulePackages = [];
+  boot.kernelParams = ["intel_iommu=on"];
   # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
   services.udev.packages = [pkgs.via];
   services.yubikey-agent.enable = true;
@@ -100,6 +110,18 @@
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/d0835bd2-62fd-48d3-a0d1-8ae659f2e727";
     fsType = "ext4";
+  };
+
+  fileSystems."/media" = {
+    device = "/dev/storage/media";
+    fsType = "ext4";
+    options = ["users" "nofail"];
+  };
+
+  fileSystems."/games" = {
+    device = "/dev/storage/games";
+    fsType = "ext4";
+    options = ["users" "nofail"];
   };
 
   swapDevices = [];

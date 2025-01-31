@@ -5,6 +5,9 @@ default: just
 just:
 	just
 
+build:
+	sudo nixos-rebuild build --flake . --show-trace
+
 local:
 	just local
 

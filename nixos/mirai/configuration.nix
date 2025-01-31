@@ -52,6 +52,10 @@
     extraGroups = ["wheel" "docker" "media"];
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
+  users.users.remotebuilder = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [../../secrets/remotebuilder.pub];
+  };
   users.groups.media = {};
 
   nixpkgs.config.allowUnfree = true;

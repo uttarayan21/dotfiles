@@ -32,6 +32,7 @@
         libglvnd
       ];
     };
+    gnome-disks.enable = true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
@@ -61,24 +62,25 @@
       options = "--delete-older-than +5";
     };
     package = pkgs.nixVersions.latest;
-    buildMachines = [
-      {
-        hostName = "sh.darksailor.dev";
-        sshUser = "fs0c131y";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      }
-    ];
+    # buildMachines = [
+    #   {
+    #     hostName = "sh.darksailor.dev";
+    #     sshUser = "nixbuilder";
+    #     system = "x86_64-linux";
+    #     protocol = "ssh-ng";
+    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+    #   }
+    # ];
     distributedBuilds = true;
   };
 
   users.users.servius = {
     isNormalUser = true;
-    extraGroups = ["networkmanager" "wheel" "audio" "i2c"];
+    extraGroups = ["wheel" "audio" "i2c" "media"];
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
   users.groups.i2c = {};
+  users.groups.media = {};
 
   services = {
     tailscale = {
@@ -109,7 +111,6 @@
     #     };
     #   };
     # };
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Configure keymap in X11
     xserver.xkb = {
@@ -193,6 +194,9 @@
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+    # useDHCP = true;
+
+    hostId = "1349f9f0";
     # Enable networking
     networkmanager.enable = true;
 
@@ -250,8 +254,7 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
+      quickemu
       (nixvim.makeNixvim (import ../../neovim))
       qpwgraph
       hyprland
