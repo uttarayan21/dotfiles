@@ -120,6 +120,7 @@
           };
         };
     ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
+    intel-vaapi-driver = prev.pkgs.intel-vaapi-driver.override {enableHybridCodec = true;};
     # ghostty = inputs.ghostty.packages.${prev.system}.default;
   };
   anyrun-overlay = final: prev: {
