@@ -121,7 +121,7 @@
   fileSystems."/games" = {
     device = "/dev/storage/games";
     fsType = "ext4";
-    options = ["users" "nofail"];
+    options = ["nofail"];
   };
 
   swapDevices = [];
