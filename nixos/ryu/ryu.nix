@@ -28,26 +28,7 @@ in {
     ];
   };
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
-        enable = true;
-        packages = [
-          (pkgs.OVMF.override {
-            secureBoot = true;
-            tpmSupport = true;
-          })
-          .fd
-        ];
-      };
-    };
-  };
-
-  users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
+  users.extraUsers.servius.extraGroups = ["adbusers"];
 
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1
@@ -108,9 +89,7 @@ in {
   };
 
   boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = [
-  ];
-  boot.kernelModules =
+  boot.initrd.kernelModules =
     lib.optionals passthrough [
       "vfio_pci"
       "vfio"

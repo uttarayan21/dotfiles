@@ -6,6 +6,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./ryu.nix
+    ./kvm.nix
   ];
 
   programs = {
