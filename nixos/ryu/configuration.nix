@@ -62,15 +62,15 @@
       options = "--delete-older-than +5";
     };
     package = pkgs.nixVersions.latest;
-    # buildMachines = [
-    #   {
-    #     hostName = "sh.darksailor.dev";
-    #     sshUser = "nixbuilder";
-    #     system = "x86_64-linux";
-    #     protocol = "ssh-ng";
-    #     supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-    #   }
-    # ];
+    buildMachines = [
+      {
+        hostName = "sh.darksailor.dev";
+        sshUser = "remotebuilder";
+        system = "x86_64-linux";
+        protocol = "ssh-ng";
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+      }
+    ];
     distributedBuilds = true;
   };
 
@@ -85,6 +85,12 @@
   services = {
     tailscale = {
       enable = true;
+    };
+    sunshine = {
+      enable = true;
+      openFirewall = true;
+      capSysAdmin = true;
+      # applications = {};
     };
     mullvad-vpn.enable = true;
     resolved = {

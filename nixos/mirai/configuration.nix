@@ -30,7 +30,7 @@
     settings = {
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
-      trusted-users = ["root" "servius" "fs0c131y"];
+      trusted-users = ["root" "fs0c131y" "remotebuilder"];
     };
     extraOptions = ''
       build-users-group = nixbld
@@ -54,7 +54,7 @@
   };
   users.users.remotebuilder = {
     isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [../../secrets/remotebuilder.pub];
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
   users.groups.media = {};
 

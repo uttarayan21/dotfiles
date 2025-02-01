@@ -16,13 +16,19 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = [pkgs.intel-compute-runtime pkgs.nvidia-vaapi-driver];
+    extraPackages = with pkgs; [
+      intel-compute-runtime
+      # intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      # vpl-gpu-rt # for newer GPUs on NixOS >24.05 or unstable
+      # libvdpau-va-gl
+      nvidia-vaapi-driver
+    ];
   };
 
   virtualisation.libvirtd.enable = true;
   users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
 
-  # options nvidia_drm modeset=1 fbdev=1
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1
     options kvm_intel emulate_invalid_guest_state=0
