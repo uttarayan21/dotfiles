@@ -1,7 +1,12 @@
 {...}: {
   imports = [
     ./samba.nix
+    ./sunshine.nix
   ];
-  # services = {
-  # };
+  services = {
+    tailscale = {
+      enable = true;
+    };
+    mullvad-vpn.enable = true;
+  };
 }

@@ -84,16 +84,6 @@
   users.groups.media = {};
 
   services = {
-    tailscale = {
-      enable = true;
-    };
-    sunshine = {
-      enable = true;
-      openFirewall = true;
-      capSysAdmin = true;
-      # applications = {};
-    };
-    mullvad-vpn.enable = true;
     resolved = {
       enable = true;
       dnssec = "true";
@@ -105,19 +95,6 @@
     gvfs.enable = true;
     udisks2.enable = true;
     gnome.gnome-keyring.enable = true;
-
-    # greetd = let
-    #   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    #   hyprland-session = "${pkgs.hyprland}/share/wayland-sessions";
-    # in {
-    #   enable = true;
-    #   settings = {
-    #     default_session = {
-    #       command = "${tuigreet} --time --remember --remember-session --sessions ${hyprland-session}";
-    #       user = "greeter";
-    #     };
-    #   };
-    # };
 
     # Configure keymap in X11
     xserver.xkb = {
