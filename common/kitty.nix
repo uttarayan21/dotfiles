@@ -8,9 +8,9 @@
     enable = device.hasGui;
     # enable = false;
     font = {
-      name = "FiraCode Nerd Font Mono";
+      # name = "FiraCode Nerd Font Mono";
       # name = "Hasklug Nerd Font Mono";
-      # name = "Monaspace Krypton Var Light";
+      name = "Monaspace Krypton Var Light";
       size = 13;
     };
     settings = {

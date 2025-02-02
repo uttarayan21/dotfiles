@@ -37,6 +37,9 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.tmpfiles.rules = [
+    "L+ /run/gdm/.config/monitors.xml - - - - ${./monitors.xml}"
+  ];
   security = {
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
@@ -94,14 +97,19 @@
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    gnome.gnome-keyring.enable = true;
-
-    # Configure keymap in X11
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
+    gnome = {
+      gnome-keyring.enable = true;
+      gnome-settings-daemon.enable = true;
     };
-    xserver.displayManager.gdm.enable = true;
+    xserver = {
+      # Configure keymap in X11
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -263,6 +271,23 @@
       NIXOS_OZONE_WL = "1";
     };
     # etc
+    gnome.excludePackages = with pkgs; [
+      atomix # puzzle game
+      cheese # webcam tool
+      epiphany # web browser
+      evince # document viewer
+      geary # email reader
+      gedit # text editor
+      gnome-characters
+      gnome-music
+      gnome-photos
+      gnome-terminal
+      gnome-tour
+      hitori # sudoku game
+      iagno # go game
+      tali # poker game
+      totem # video player
+    ];
   };
 
   musnix.enable = true;

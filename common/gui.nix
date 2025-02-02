@@ -20,7 +20,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  imports = [./kitty.nix];
+  imports = [./kitty.nix ./ghostty.nix];
 
   programs = {
     # Only for checking markdown previews
@@ -31,14 +31,6 @@ lib.attrsets.optionalAttrs device.hasGui {
         shd101wyy.markdown-preview-enhanced
         asvetliakov.vscode-neovim
       ];
-    };
-    ghostty = {
-      enable = pkgs.stdenv.isLinux;
-      installBatSyntax = false;
-      settings = {
-        theme = "catppuccin-mocha";
-      };
-      package = pkgs.ghostty;
     };
   };
   home.packages = with pkgs;
