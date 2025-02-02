@@ -4,6 +4,7 @@
     ./sunshine.nix
   ];
   services = {
+    hardware.openrgb.enable = true;
     tailscale = {
       enable = true;
     };
