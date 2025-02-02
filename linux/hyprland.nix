@@ -121,7 +121,7 @@
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
       windowrulev2 = [
-        "float, title:^(Steam)$"
+        # "float, title:^(Steam)$"
         "float, title:^(Archetype.*)$"
         "float, class:(.*nextcloud.*)"
         "float, class:org.kde.kdeconnect.app"
