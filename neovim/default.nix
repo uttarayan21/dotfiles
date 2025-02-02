@@ -345,7 +345,7 @@ in {
           tree-sitter-norg-meta
           tree-sitter-just
           tree-sitter-nu
-          tree-sitter-d2
+          # tree-sitter-d2
         ])
         ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
@@ -379,13 +379,9 @@ in {
       settings.notification.override_vim_notify = true;
     };
 
-    dap = {
-      enable = true;
-      extensions = {
-        dap-ui.enable = true;
-        dap-virtual-text.enable = true;
-      };
-    };
+    dap.enable = true;
+    dap-ui.enable = true;
+    dap-virtual-text.enable = true;
 
     nvim-ufo = {
       enable = true;
@@ -774,7 +770,7 @@ in {
     FTerm-nvim
     copilot-lua
     crates-nvim
-    d2
+    # d2
     image-nvim
     iron-nvim
     luasnip
