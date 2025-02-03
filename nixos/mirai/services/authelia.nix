@@ -36,6 +36,10 @@
                 policy = "one_factor";
               }
               {
+                domain = "cloud.darksailor.dev";
+                policy = "one_factor";
+              }
+              {
                 domain = "code.darksailor.dev";
                 policy = "one_factor";
               }

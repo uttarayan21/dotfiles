@@ -5,7 +5,7 @@
   ];
 
   services.sunshine = {
-    enable = false;
+    enable = true;
     openFirewall = true;
     capSysAdmin = true;
     autoStart = true;
@@ -20,7 +20,7 @@
           name = "Steam Big Picture";
           icon = "steam";
           # detached = ["setsid steam steam://open/gamepadui"];
-          detached = ["${pkgs.util-linux}/bin/setsid ${pkgs.steam}/bin/steam steam://open/gamepadui"];
+          detached = ["/run/wrappers/bin/sudo -u servius ${pkgs.util-linux}/bin/setsid ${pkgs.steam}/bin/steam steam://open/gamepadui"];
           exclude-global-prep-cmd = "false";
           auto-detach = "true";
         }
@@ -31,7 +31,7 @@
           exclude-global-prep-cmd = "false";
           prep-cmd = [];
           # detached = ["setsid steam steam://rungameid/1086940"];
-          detached = ["${pkgs.util-linux}/bin/setsid ${pkgs.steam}/bin/steam steam://rungameid/1086940"];
+          detached = ["/run/wrappers/bin/sudo -u servius ${pkgs.util-linux}/bin/setsid ${pkgs.steam}/bin/steam steam://rungameid/1086940"];
           wait-all = true;
           exit-timeout = 5;
         }
