@@ -5,7 +5,7 @@
     # ./home-assistant.nix
     # ./navidrome.nix
     # ./llama.nix
-    ./nextcloud.nix
+    # ./nextcloud.nix
     ./minecraft.nix
     ./jellyfin.nix
     ./vscode.nix
