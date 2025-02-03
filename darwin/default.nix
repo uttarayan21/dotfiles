@@ -11,15 +11,13 @@ builtins.listToAttrs (builtins.map (device: {
     value = nix-darwin.lib.darwinSystem {
       system = device.system;
       modules = [
-        {
-          nixpkgs.overlays = overlays;
-          # nixpkgs.hostPlatform.config = device.system;
-        }
+        {nixpkgs.overlays = overlays;}
         ./configuration.nix
         home-manager.darwinModules.home-manager
         {
           nixpkgs.config.allowUnfree = true;
           home-manager = {
+            backupFileExtension = "bak";
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
