@@ -2,8 +2,10 @@
   # sops = {
   #   # secrets."nextcloud/adminpass".owner = config.users.users..name;
   # };
+  nixpkgs.config.allowBroken = true;
   services = {
     seafile = {
+      group = config.services.caddy.group;
       enable = false;
       adminEmail = "admin@uttarayan.me";
       initialAdminPassword = "foobar";
@@ -33,6 +35,9 @@
           # the administrator needs to manually activate this user.
           REMOTE_USER_ACTIVATE_USER_AFTER_CREATION = True
         '';
+      ccnetSettings = {
+        General.SERVICE_URL = "https://cloud.darksailor.dev";
+      };
     };
     caddy = {
       virtualHosts."cloud.darksailor.dev".extraConfig = ''

@@ -121,6 +121,20 @@
         };
     ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
     # ghostty = inputs.ghostty.packages.${prev.system}.default;
+    python312 = prev.python312.override {
+      packageOverrides = final: prev: {
+        pysaml2 = prev.pysaml2.overridePythonAttrs (orig: {
+          doCheck = false;
+          # disabledTests =
+          #   orig.disabledTests
+          #   ++ [
+          #     "test_encrypted_response_6"
+          #     "test_validate_cert_chains"
+          #     "test_validate_with_root_cert"
+          #   ];
+        });
+      };
+    };
   };
   anyrun-overlay = final: prev: {
     anyrun =

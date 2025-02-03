@@ -2,11 +2,11 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    ./seafile.nix
     # ./home-assistant.nix
     # ./navidrome.nix
     # ./llama.nix
     # ./nextcloud.nix
+    # ./seafile.nix
     ./minecraft.nix
     ./jellyfin.nix
     ./vscode.nix
