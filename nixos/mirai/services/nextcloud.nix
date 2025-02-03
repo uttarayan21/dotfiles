@@ -8,7 +8,7 @@
   };
   services = {
     nextcloud = {
-      enable = true;
+      enable = false;
       package = pkgs.nextcloud30;
       hostName = "cloud.darksailor.dev";
       config.adminuser = "servius";
@@ -16,6 +16,7 @@
       config.dbtype = "sqlite";
       configureRedis = true;
       https = true;
+      datadir = "/media/nextcloud";
     };
     caddy = {
       virtualHosts."cloud.darksailor.dev".extraConfig = ''
