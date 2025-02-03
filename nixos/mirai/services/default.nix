@@ -6,6 +6,7 @@
     # ./navidrome.nix
     # ./llama.nix
     ./nextcloud.nix
+    ./minecraft.nix
     ./jellyfin.nix
     ./vscode.nix
     ./tailscale.nix
