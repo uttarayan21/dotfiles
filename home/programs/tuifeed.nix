@@ -1,5 +1,4 @@
 {...}: {
-  imports = [../modules/tuifeed.nix];
   programs.tuifeed = {
     enable = false;
     config = {

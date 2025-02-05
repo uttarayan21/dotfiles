@@ -4,7 +4,7 @@
   ...
 }: {
   programs.wezterm = {
-    enable = device.hasGui;
+    enable = true;
     extraConfig =
       /*
       lua

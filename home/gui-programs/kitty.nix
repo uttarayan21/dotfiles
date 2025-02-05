@@ -5,7 +5,7 @@
   ...
 }: {
   programs.kitty = {
-    enable = device.hasGui;
+    enable = true;
     # enable = false;
     font = {
       # name = "FiraCode Nerd Font Mono";

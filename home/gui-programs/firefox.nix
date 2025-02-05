@@ -4,7 +4,7 @@
   ...
 }: {
   programs.firefox = {
-    enable = device.hasGui;
+    enable = pkgs.stdenv.isLinux;
     profiles.default = {
       # userChrome =
       #   /*

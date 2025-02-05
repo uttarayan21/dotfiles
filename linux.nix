@@ -20,23 +20,18 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  imports = [./kitty.nix ./ghostty.nix];
+  imports = [
+    ./kitty.nix
+    ./firefox.nix
+    ./ghostty.nix
+    ./cursor.nix
+    ./vscodium.nix
+    ./wezterm.nix
+  ];
 
-  programs = {
-    # Only for checking markdown previews
-    vscode = {
-      enable = true;
-      package = pkgs.vscodium;
-      extensions = with pkgs.vscode-extensions; [
-        shd101wyy.markdown-preview-enhanced
-        asvetliakov.vscode-neovim
-      ];
-    };
-  };
   home.packages = with pkgs;
     []
     ++ lib.optionals pkgs.stdenv.isLinux [
-      ghostty
       discord
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
@@ -59,6 +54,7 @@ lib.attrsets.optionalAttrs device.hasGui {
       steam-run
       via
       wl-clipboard
+      zed-editor
     ]
     ++ lib.optionals pkgs.stdenv.isDarwin [
     ];
