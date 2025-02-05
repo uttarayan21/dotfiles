@@ -5,9 +5,9 @@
     ./jellyfin.nix
     ./llama.nix
     ./minecraft.nix
-    ./nextcloud.nix
     ./tailscale.nix
     ./vscode.nix
+    # ./nextcloud.nix
     # ./seafile.nix
     # ./navidrome.nix
     # ./ldap.nix
