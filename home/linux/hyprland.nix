@@ -4,11 +4,11 @@
   ...
 }: {
   imports = [
-    ../modules/hyprpaper.nix
+    ../../modules/hyprpaper.nix
   ];
 
   programs.hyprpaper = let
-    wallpapers = import ../utils/wallhaven.nix {inherit pkgs;};
+    wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
   in {
     enable = device.hasGui;
     # enable = true;
@@ -157,6 +157,7 @@
         "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
         "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
+        "$mainModShift, s, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
         # "$mainMod, M, exit,"
         "$mainMod, t, togglefloating,"
         "$mainMod, f, fullscreen,"

@@ -34,7 +34,7 @@ builtins.listToAttrs (builtins.map (device: {
               inherit inputs;
               inherit device;
             };
-            users.${device.user}.imports = [../common/home.nix];
+            users.${device.user}.imports = [../home];
           };
         }
       ];

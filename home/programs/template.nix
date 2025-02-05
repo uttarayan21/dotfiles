@@ -1,0 +1,9 @@
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {
+  programs = {
+  };
+}
