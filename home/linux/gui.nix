@@ -20,23 +20,13 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-  imports = [
-    ./kitty.nix
-    ./firefox.nix
-    ./ghostty.nix
-    ./cursor.nix
-    ./vscodium.nix
-    ./wezterm.nix
-  ];
 
   home.packages = with pkgs;
     []
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals device.hasGui [
       discord
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
-      catppuccinThemes.gtk
-      catppuccinThemes.papirus-folders
       ferdium
       gparted
       jdk
@@ -55,7 +45,5 @@ lib.attrsets.optionalAttrs device.hasGui {
       via
       wl-clipboard
       zed-editor
-    ]
-    ++ lib.optionals pkgs.stdenv.isDarwin [
     ];
 }

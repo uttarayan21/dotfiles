@@ -12,6 +12,7 @@
       ./ironbar
       ./foot.nix
       ./mpd.nix
+      ./gui.nix
     ]);
 
   services.kdeconnect.enable = device.hasGui;

@@ -4,7 +4,7 @@
   ...
 }: {
   gtk = {
-    enable = device.hasGui;
+    enable = true;
     theme = {
       name = "catppuccin-mocha-mauve-standard+normal";
       package = pkgs.adwaita-icon-theme;
@@ -32,4 +32,8 @@
     gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
+  home.packages = [
+    pkgs.catppuccinThemes.gtk
+    pkgs.catppuccinThemes.papirus-folders
+  ];
 }
