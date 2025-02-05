@@ -2,16 +2,18 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    # ./home-assistant.nix
+    ./jellyfin.nix
+    ./llama.nix
+    ./minecraft.nix
+    ./nextcloud.nix
+    ./tailscale.nix
+    ./vscode.nix
+    # ./seafile.nix
     # ./navidrome.nix
+    # ./ldap.nix
+    # ./home-assistant.nix
     # ./llama.nix
     # ./nextcloud.nix
-    # ./seafile.nix
-    ./minecraft.nix
-    ./jellyfin.nix
-    ./vscode.nix
-    ./tailscale.nix
-    # ./ldap.nix
   ];
   services = {
     nix-serve = {
