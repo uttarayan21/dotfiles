@@ -5,14 +5,11 @@
   nixpkgs.config.allowBroken = true;
   services = {
     seafile = {
-      group = config.services.caddy.group;
-      enable = false;
+      enable = true;
+      # group = config.services.caddy.group;
       adminEmail = "admin@uttarayan.me";
       initialAdminPassword = "foobar";
 
-      seafileSettings = {
-        fileserver.host = "unix:/run/seafile/server.sock";
-      };
       seahubExtraConf =
         /*
         python
@@ -21,7 +18,7 @@
           ENABLE_REMOTE_USER_AUTHENTICATION = True
           # Optional, HTTP header, which is configured in your web server conf file,
           # used for Seafile to get user's unique id, default value is 'HTTP_REMOTE_USER'.
-          REMOTE_USER_HEADER = 'HTTP_REMOTE_USER'
+          REMOTE_USER_HEADER = 'HTTP_EMAIL'
           # Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
           # Seafile will build a email-like unique id from the value of 'REMOTE_USER_HEADER'
           # and this domain, e.g. user1@example.com.
@@ -45,7 +42,7 @@
             uri /api/authz/forward-auth
             copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
         }
-        reverse_proxy unix//run/seafile/server.sock
+        reverse_proxy unix//run/seahub/gunicorn.sock
       '';
     };
   };

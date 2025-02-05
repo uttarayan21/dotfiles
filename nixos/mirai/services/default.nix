@@ -7,8 +7,9 @@
     ./minecraft.nix
     ./tailscale.nix
     ./vscode.nix
-    # ./nextcloud.nix
     # ./seafile.nix
+
+    # ./nextcloud.nix
     # ./navidrome.nix
     # ./ldap.nix
     # ./home-assistant.nix
