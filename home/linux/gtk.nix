@@ -7,7 +7,7 @@
     enable = true;
     theme = {
       name = "catppuccin-mocha-mauve-standard+normal";
-      package = pkgs.adwaita-icon-theme;
+      package = pkgs.catppuccinThemes.gtk;
       # package = pkgs.catppuccin-gtk.override {
       #   variant = "mocha";
       #   size = "standard";
@@ -33,7 +33,7 @@
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
   home.packages = [
-    pkgs.catppuccinThemes.gtk
+    # pkgs.catppuccinThemes.gtk
     pkgs.catppuccinThemes.papirus-folders
   ];
 }

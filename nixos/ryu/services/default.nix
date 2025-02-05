@@ -2,6 +2,7 @@
   imports = [
     ./samba.nix
     ./sunshine.nix
+    ./ollama.nix
   ];
   services = {
     hardware.openrgb.enable = true;

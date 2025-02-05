@@ -38,6 +38,14 @@
       builders-use-substitutes = true
       secret-key-files = ${config.sops.secrets."builder/mirai/cache/private".path}
     '';
+    substituters = [
+      "https://nix-community.cachix.org"
+      # "https://sh.darksailor.dev"
+    ];
+    trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
+    ];
     gc = {
       automatic = true;
       dates = "daily";

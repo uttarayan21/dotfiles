@@ -45,5 +45,6 @@ lib.attrsets.optionalAttrs device.hasGui {
       via
       wl-clipboard
       zed-editor
+      webcord
     ];
 }
