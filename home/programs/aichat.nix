@@ -17,19 +17,8 @@
       clients = [
         {
           type = "openai-compatible";
-          name = "llama";
-          api_base = "https://llama.darksailor.dev/api/v1";
-          api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
-          models = [
-            {
-              name = "qwen_2_5_1";
-            }
-          ];
-        }
-        {
-          type = "openai-compatible";
           name = "ollama";
-          api_base = "https://llama.darksailor.dev/api/ollama/v1";
+          api_base = "https://ollama.darksailor.dev/v1";
           api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
           models = [
             {
@@ -38,7 +27,12 @@
               default_chunk_size = 8000;
             }
             {
-              name = "mistral";
+              name = "deepseek-r1:7b";
+              type = "chat";
+            }
+            {
+              name = "deepseek-r1:14b";
+              type = "chat";
             }
           ];
         }

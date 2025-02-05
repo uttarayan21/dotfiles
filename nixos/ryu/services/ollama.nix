@@ -1,16 +1,17 @@
 {pkgs, ...}: {
   services = {
     ollama = {
-      enable = true;
+      enable = false;
       host = "127.0.0.1";
+      loadModels = ["deepseek-r1:7b" "deepseek-r1:14b"];
       port = 11434;
       package = pkgs.ollama-cuda;
+      # acceleration = "cuda";
     };
     open-webui = {
-      enable = true;
+      enable = false;
       environment = {
-        "OLLAMA_API_BASE_URL" = "http://127.0.0.1:11434/api";
-        "OLLAMA_BASE_URL" = "http://127.0.0.1:11434";
+        OLLAMA_BASE_URL = "http://127.0.0.1:11434";
         WEBUI_AUTH = "False";
         ENABLE_LOGIN_FORM = "False";
       };
