@@ -37,10 +37,10 @@
         WEBUI_AUTH = "False";
         ENABLE_LOGIN_FORM = "False";
         WEBUI_URL = "https://llama.darksailor.dev";
-        OLLAMA_BASE_URL = "https://ollama.darksailor.dev";
-        OPENAI_BASE_URL = "https://api.openai.com/v1";
+        # OLLAMA_BASE_URL = "https://ollama.darksailor.dev/v1";
+        OPENAI_BASE_URL = "https://ollama.darksailor.dev/v1";
       };
-      # environmentFile = "${config.sops.templates."OPENAI_API_KEY.env".path}";
+      environmentFile = "${config.sops.templates."LLAMA_API_KEY.env".path}";
     };
 
     caddy = {
@@ -52,7 +52,20 @@
         reverse_proxy localhost:7070
       '';
       virtualHosts."ollama.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:11434
+        @apikey {
+            header Authorization "Bearer {env.LLAMA_API_KEY}"
+        }
+
+        handle @apikey {
+          header {
+            # Set response headers or proxy to a different service if API key is valid
+            Access-Control-Allow-Origin *
+            -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
+          }
+          reverse_proxy localhost:11434
+        }
+
+        respond "Unauthorized" 403
       '';
     };
   };
