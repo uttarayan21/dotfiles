@@ -35,7 +35,7 @@
   };
 
   users.users.remotebuilder = {
-    isNormalUser = true;
+    # isNormalUser = true;
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
 

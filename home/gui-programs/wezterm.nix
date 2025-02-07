@@ -34,7 +34,11 @@
                 top = 2,
                 bottom = 0,
             },
-            window_decorations = ${if pkgs.stdenv.isLinux then "NONE" else "RESIZE"},
+            window_decorations = "${
+          if pkgs.stdenv.isLinux
+          then "NONE"
+          else "RESIZE"
+        }",
             use_ime = false,
         }
       '';
