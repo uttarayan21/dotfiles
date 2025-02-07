@@ -30,7 +30,7 @@
       };
     };
     shiro = {
-      hostname = "kuro";
+      hostname = "shiro";
       interactiveSudo = true;
       profiles.system = {
         sshUser = "servius";

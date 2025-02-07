@@ -34,6 +34,10 @@
     distributedBuilds = true;
   };
 
+  users.users.servius = {
+    # isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
+  };
   users.users.remotebuilder = {
     # isNormalUser = true;
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
