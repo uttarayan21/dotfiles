@@ -495,40 +495,7 @@ in {
         sqls.enable = true;
         pyright.enable = true;
         slint_lsp.enable = true;
-        #  rust_analyzer = {
-        #    enable = false;
-        #    package = null;
-        #    installCargo = false;
-        #    installRustc = false;
-        #    settings = {
-        #      inlayHints = {
-        #        genericParameterHints = {
-        #          lifetime.enable = true;
-        #        };
-        #        # implicitDrops.enable = true;
-        #      };
-        #      files = {
-        #        excludeDirs = [
-        #          ".cargo"
-        #          ".direnv"
-        #          ".git"
-        #          ".vcpkg"
-        #          "node_modules"
-        #          "target"
-        #        ];
-        #      };
-        #      diagnostics = {
-        #        enable = true;
-        #        styleLints.enable = true;
-        #      };
-
-        #      checkOnSave = true;
-        #      check = {
-        #        command = "check";
-        #        features = "all";
-        #      };
-        #    };
-        #  };
+        sourcekit.enable = true;
       };
       onAttach =
         /*
