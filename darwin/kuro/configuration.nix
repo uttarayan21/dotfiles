@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [./yabai.nix ./skhd.nix];
+  imports = [./services];
 
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
@@ -11,8 +11,14 @@
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
       trusted-users = ["root" "fs0c131y"];
-      substituters = ["https://sh.darksailor.dev"];
-      trusted-public-keys = ["mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="];
+      substituters = [
+        "https://nix-community.cachix.org"
+        "https://sh.darksailor.dev"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
+      ];
     };
     extraOptions = ''
       build-users-group = nixbld
@@ -53,7 +59,6 @@
   programs.fish.enable = true;
 
   services.nix-daemon.enable = true;
-  services.tailscale.enable = true;
   system.stateVersion = 4;
 
   system.keyboard.enableKeyMapping = true;

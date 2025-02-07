@@ -12,7 +12,7 @@ builtins.listToAttrs (builtins.map (device: {
       system = device.system;
       modules = [
         {nixpkgs.overlays = overlays;}
-        ./configuration.nix
+        ./${device.name}/configuration.nix
         home-manager.darwinModules.home-manager
         {
           nixpkgs.config.allowUnfree = true;
