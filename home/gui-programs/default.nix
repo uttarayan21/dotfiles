@@ -12,6 +12,5 @@
       ./kitty.nix
       ./vscodium.nix
       ./wezterm.nix
-      ./raycast.nix
     ]);
 }

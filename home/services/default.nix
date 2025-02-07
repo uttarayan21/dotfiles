@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./syncthing.nix
+    # ./syncthing.nix
   ];
 }
