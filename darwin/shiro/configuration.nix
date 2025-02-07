@@ -35,6 +35,13 @@
         protocol = "ssh-ng";
         supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
       }
+      # {
+      #   hostName = "shiro";
+      #   sshUser = "remotebuilder";
+      #   system = "aarch64-darwin";
+      #   protocol = "ssh-ng";
+      #   supportedFeatures = ["benchmark" "big-parallel" "kvm"];
+      # }
     ];
     distributedBuilds = true;
   };

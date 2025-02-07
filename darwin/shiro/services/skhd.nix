@@ -4,7 +4,7 @@
       enable = true;
       skhdConfig = ''
         # alt - return : ${pkgs.lib.getExe pkgs.kitty} --single-instance --directory ~
-        alt - return : ${pkgs.lib.getExe pkgs.wezterm}
+        alt - return : open ${pkgs.wezterm}/Applications/Wezterm.app
         shift + alt - return: pkill afplay
 
         # close focused window
