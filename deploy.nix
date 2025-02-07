@@ -29,6 +29,15 @@
         user = "root";
       };
     };
+    shiro = {
+      hostname = "kuro";
+      interactiveSudo = true;
+      profiles.system = {
+        sshUser = "servius";
+        path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.shiro;
+        user = "root";
+      };
+    };
     deoxys = {
       hostname = "deoxys";
       profiles.system = {

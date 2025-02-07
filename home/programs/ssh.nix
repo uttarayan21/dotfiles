@@ -26,6 +26,16 @@
         hostname = "ryu";
         forwardAgent = false;
       };
+      kuro = {
+        user = "fs0c131y";
+        hostname = "kuro";
+        forwardAgent = false;
+      };
+      shiro = {
+        user = "servius";
+        hostname = "shiro";
+        forwardAgent = false;
+      };
     };
     serverAliveInterval = 120;
     extraConfig =
