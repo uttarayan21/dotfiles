@@ -167,17 +167,7 @@ in {
         };
       };
     };
-    chatgpt = {
-      enable = true;
-      settings = {
-        # api_key_cmd = "cat ${config.sops.secrets."openai/api_key".path}";
-      };
-    };
 
-    oil = {
-      enable = true;
-      settings.skip_confirm_for_simple_edits = true;
-    };
     yazi = {
       enable = true;
       settings = {
@@ -276,8 +266,8 @@ in {
           config = {
             default_workspace = "Notes";
             workspaces = {
-              Notes = "~/Nextcloud/Notes";
-              Work = "~/Nextcloud/Work";
+              Notes = "~/Sync/Notes";
+              Work = "~/Sync/Work";
             };
           };
         };
