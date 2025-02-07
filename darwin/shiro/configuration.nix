@@ -28,22 +28,15 @@
     '';
     package = pkgs.nixVersions.latest;
     buildMachines = [
-      {
-        hostName = "sh.darksailor.dev";
-        sshUser = "remotebuilder";
-        system = "x86_64-linux";
-        protocol = "ssh-ng";
-        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-      }
-      # {
-      #   hostName = "shiro";
-      #   sshUser = "remotebuilder";
-      #   system = "aarch64-darwin";
-      #   protocol = "ssh-ng";
-      #   supportedFeatures = ["benchmark" "big-parallel" "kvm"];
-      # }
+      ../../builders/mirai.nix
+      ../../builders/shiro.nix
     ];
     distributedBuilds = true;
+  };
+
+  users.users.remotebuilder = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
 
   # security.pam.enableSudoTouchIdAuth = true;
