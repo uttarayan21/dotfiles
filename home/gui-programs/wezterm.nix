@@ -10,7 +10,6 @@
       lua
       */
       ''
-        local wezterm = require 'wezterm';
         return {
             term = "wezterm",
             font = wezterm.font_with_fallback({
@@ -18,12 +17,16 @@
                  "Symbols Nerd Font Mono"
             }),
             color_scheme = "Catppuccin Mocha",
+            colors = {
+                background = "#1e1e1e",
+            },
             font_size = 16,
             initial_cols = 200,
             hide_tab_bar_if_only_one_tab = true,
             window_background_opacity = 0.8,
-            cursor_blink_rate = 8,
-            # default_cursor_style = "BlinkingBlock",
+            -- background = {{source = {Color = "black"}}},
+            -- cursor_blink_rate = 8,
+            -- default_cursor_style = "BlinkingBlock",
             default_prog = { "${pkgs.fish}/bin/fish", "-l" },
             window_padding = {
                 left = 2,

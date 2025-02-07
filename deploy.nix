@@ -22,6 +22,7 @@
     };
     kuro = {
       hostname = "kuro";
+      interactiveSudo = true;
       profiles.system = {
         sshUser = "fs0c131y";
         path = inputs.deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
