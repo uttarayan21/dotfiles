@@ -14,6 +14,7 @@
       ./gui-programs
       ./programs
       ./scripts.nix
+      ./services
     ]
     ++ lib.optionals device.isLinux [./linux];
   # ++ lib.optionals.device.isMac [./macos];

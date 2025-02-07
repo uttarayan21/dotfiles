@@ -34,6 +34,7 @@
   ];
   home.packages = with pkgs;
     [
+      nb
       (nixvim.makeNixvim (import ../../neovim))
       _1password-cli
       alejandra

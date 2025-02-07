@@ -7,6 +7,7 @@
     ./minecraft.nix
     ./tailscale.nix
     ./vscode.nix
+    # ./syncthing.nix
     # ./seafile.nix
 
     # ./nextcloud.nix
