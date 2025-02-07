@@ -34,7 +34,7 @@
       shiro = {
         user = "servius";
         hostname = "shiro";
-        forwardAgent = false;
+        forwardAgent = true;
       };
     };
     serverAliveInterval = 120;

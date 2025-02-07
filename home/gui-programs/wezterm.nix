@@ -18,7 +18,7 @@
             }),
             color_scheme = "Catppuccin Mocha",
             colors = {
-                background = "#1e1e1e",
+                background = "#000000",
             },
             font_size = 16,
             initial_cols = 200,
@@ -34,7 +34,7 @@
                 top = 2,
                 bottom = 0,
             },
-            window_decorations = "RESIZE",
+            window_decorations = ${if pkgs.stdenv.isLinux then "NONE" else "RESIZE"},
             use_ime = false,
         }
       '';

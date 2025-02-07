@@ -349,11 +349,11 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1735943174,
-        "narHash": "sha256-zaIej6m1Hk+JfBLzDDGSis36CSkF0aZ8smqgOds469s=",
+        "lastModified": 1738962130,
+        "narHash": "sha256-QwBW2n07mBaQJbaFaBe9BcYe9lDFn+/yaqDFKGuPA5o=",
         "owner": "uttarayan21",
         "repo": "ddcbacklight",
-        "rev": "43b0aac9f8f0be12a0aac749f3ba89b2f66809b8",
+        "rev": "08a922be3b662453c5d046ed3f4373de2beb0708",
         "type": "github"
       },
       "original": {
