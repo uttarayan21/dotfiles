@@ -28,7 +28,6 @@ lib.attrsets.optionalAttrs device.hasGui {
       (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
       ferdium
-      gparted
       jdk
       mullvad-closest
       mullvad-vpn

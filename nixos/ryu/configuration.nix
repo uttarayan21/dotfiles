@@ -247,6 +247,7 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
+      gparted
       nvtopPackages.nvidia
       quickemu
       (nixvim.makeNixvim (import ../../neovim))
