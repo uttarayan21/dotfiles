@@ -12,5 +12,6 @@
       ./kitty.nix
       ./vscodium.nix
       ./wezterm.nix
+      ./mpv.nix
     ]);
 }
