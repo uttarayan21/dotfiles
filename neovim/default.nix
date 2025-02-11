@@ -167,6 +167,7 @@ in {
         };
       };
     };
+    codecompanion.enable = true;
 
     yazi = {
       enable = true;

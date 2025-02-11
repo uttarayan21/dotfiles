@@ -24,7 +24,7 @@
       ryu = {
         user = "servius";
         hostname = "ryu";
-        forwardAgent = false;
+        forwardAgent = true;
       };
       kuro = {
         user = "fs0c131y";
