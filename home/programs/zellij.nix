@@ -95,7 +95,7 @@
         };
       };
     };
-    # enableFishIntegration = true;
+    enableFishIntegration = false;
   };
   xdg.configFile."zellij/layouts/default.kdl" = {
     text =

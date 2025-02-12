@@ -3,7 +3,6 @@
   services = {
     jellyfin = {
       enable = false;
-      # openFirewall = true;
     };
     # caddy = {
     #   virtualHosts."media.darksailor.dev".extraConfig = ''

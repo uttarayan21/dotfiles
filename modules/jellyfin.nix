@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.services.jellyfin;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.jellyfin;
+in {
   options.services.jellyfin = {
     enable = mkEnableOption "Jellyfin Media Server";
 
@@ -16,17 +17,17 @@ in
       description = "The package to use for Jellyfin";
     };
 
-    user = mkOption {
-      type = types.str;
-      default = "jellyfin";
-      description = "User account under which Jellyfin runs.";
-    };
-
-    group = mkOption {
-      type = types.str;
-      default = "jellyfin";
-      description = "Group under which Jellyfin runs.";
-    };
+    # user = mkOption {
+    #   type = types.str;
+    #   default = "jellyfin";
+    #   description = "User account under which Jellyfin runs.";
+    # };
+    #
+    # group = mkOption {
+    #   type = types.str;
+    #   default = "jellyfin";
+    #   description = "Group under which Jellyfin runs.";
+    # };
 
     dataDir = mkOption {
       type = types.path;
@@ -36,39 +37,40 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = [ cfg.package ];
+    users.users.jellyfin = {
+      name = "jellyfin";
+      uid = mkDefault 601;
+      gid = mkDefault config.users.groups.jellyfin.gid;
+      home = cfg.dataDir;
+      createHome = true;
+      shell = "/bin/bash";
+      description = "Jellyfin runner user account";
+    };
+    users.groups.jellyfin = {
+      name = "jellyfin";
+      gid = mkDefault 602;
+      description = "Jellyfin runner group";
+    };
+
+    environment.systemPackages = [cfg.package];
 
     launchd.daemons.jellyfin = {
-      command = "${lib.getExe cfg.package} --datadir '${cfg.dataDir}'";
+      environment = {
+        HOME = cfg.dataDir;
+      };
+      path = [cfg.package pkgs.coreutils pkgs.darwin.DarwinTools];
+      command = "${lib.getExe cfg.package}";
       serviceConfig = {
+        # ProcessType = "Background";
         Label = "org.jellyfin.server";
         RunAtLoad = true;
-        KeepAlive = true;
-        UserName = cfg.user;
-        GroupName = cfg.group;
+        # KeepAlive = true;
+        UserName = "${config.users.users.jellyfin.name}";
+        GroupName = "${config.users.groups.jellyfin.name}";
+        StandardOutPath = "${cfg.dataDir}/log/jellyfin.log";
+        StandardErrorPath = "${cfg.dataDir}/log/jellyfin.error.log";
         WorkingDirectory = cfg.dataDir;
-        StandardOutPath = "/var/log/jellyfin.log";
-        StandardErrorPath = "/var/log/jellyfin.error.log";
       };
     };
-
-    users.users = mkIf (cfg.user == "jellyfin") {
-      jellyfin = {
-        isSystemUser = true;
-        group = cfg.group;
-        home = cfg.dataDir;
-        createHome = true;
-      };
-    };
-
-    users.groups = mkIf (cfg.group == "jellyfin") {
-      jellyfin = {};
-    };
-
-    # Create necessary directories and set permissions
-    system.activationScripts.preActivation.text = ''
-      mkdir -p ${cfg.dataDir}
-      chown ${cfg.user}:${cfg.group} ${cfg.dataDir}
-    '';
   };
 }
