@@ -45,5 +45,6 @@ lib.attrsets.optionalAttrs device.hasGui {
       wl-clipboard
       zed-editor
       webcord
+      prismlauncher
     ];
 }

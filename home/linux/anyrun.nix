@@ -107,6 +107,13 @@
         }"),
         )
       '';
+      "hyprwin.ron".text = ''
+        Config(
+            icons: {
+                "org.wezfurlong.wezterm": "wezterm",
+            }
+        )
+      '';
     };
 
     extraCss = ''
