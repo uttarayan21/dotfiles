@@ -39,7 +39,11 @@
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
   users.users.remotebuilder = {
-    # isNormalUser = true;
+    name = "remotebuilder";
+    uid = 700;
+    home = "/var/lib/remotebuilder";
+    createHome = true;
+    shell = "/bin/bash";
     openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
   };
 
