@@ -25,7 +25,6 @@ lib.attrsets.optionalAttrs device.hasGui {
     []
     ++ lib.optionals device.hasGui [
       discord
-      (mpv-unwrapped.wrapper {mpv = mpv-unwrapped.override {sixelSupport = true;};})
       abaddon
       ferdium
       jdk
