@@ -203,24 +203,6 @@ in {
 
     lualine = {
       enable = true;
-      # settings.sections = {
-      #   lualine_c =
-      #         rawLua
-      #         /*
-      #         lua
-      #         */
-      #         ''
-      #         {
-      #           function(bufnr)
-      #               local opts = { highlight = true }
-      #               return require'nvim-navic'.get_location(opts)
-      #           end,
-      #           cond = function()
-      #               return require'nvim-navic'.is_available()
-      #           end
-      #         }
-      #         '';
-      # };
     };
 
     neotest = {
@@ -594,7 +576,8 @@ in {
 
        catcher(require('crates').setup)
        catcher(require('outline').setup)
-       -- catcher(require('navigator').setup)
+
+
 
        require('FTerm').setup({
            border     = 'single',
