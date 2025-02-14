@@ -5,8 +5,12 @@
   config,
   ...
 }: {
-  programs.
-    aichat = {
+  sops = {
+    secrets."llama/api_key" = {};
+    secrets."openai/api_key" = {};
+    secrets."openrouter/api_key" = {};
+  };
+  programs.aichat = {
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = false;
@@ -32,6 +36,18 @@
             }
             {
               name = "deepseek-r1:14b";
+              type = "chat";
+            }
+          ];
+        }
+        {
+          type = "openai-compatible";
+          name = "openrouter";
+          api_base = "https://openrouter.ai/api/v1";
+          #api_key_cmd = "cat ${config.sops.secrets."openrouter/api_key".path}";
+          models = [
+            {
+              name = "deepseek/deepseek-r1:free";
               type = "chat";
             }
           ];
