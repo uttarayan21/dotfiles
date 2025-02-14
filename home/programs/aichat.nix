@@ -44,7 +44,7 @@
           type = "openai-compatible";
           name = "openrouter";
           api_base = "https://openrouter.ai/api/v1";
-          #api_key_cmd = "cat ${config.sops.secrets."openrouter/api_key".path}";
+          api_key_cmd = "cat ${config.sops.secrets."openrouter/api_key".path}";
           models = [
             {
               name = "deepseek/deepseek-r1:free";
