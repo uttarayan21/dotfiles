@@ -247,6 +247,11 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
+      # Wine
+      wine-wayland
+      winetricks
+      wineWowPackages.waylandFull
+
       gparted
       nvtopPackages.nvidia
       quickemu
