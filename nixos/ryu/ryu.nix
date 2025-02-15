@@ -78,17 +78,29 @@
 
   # hardware.bluetooth.settings = {
 
-  boot.initrd.availableKernelModules = ["vmd" "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["nvidia" "nvidia_modeset" "nvidia_drm"];
+  boot.initrd.availableKernelModules = [
+    "vmd"
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
   boot.kernelModules = [
-    # "vfio_pci"
-    # "vfio"
-
     "kvm-intel"
     "i2c-dev"
   ];
+  boot.initrd.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+  ];
+  boot.kernelParams = [
+    "intel_iommu=on"
+    "vfio-pci.ids="
+  ];
   boot.extraModulePackages = [];
-  boot.kernelParams = ["intel_iommu=on"];
   # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
   services.udev.packages = [pkgs.via];
   services.yubikey-agent.enable = true;

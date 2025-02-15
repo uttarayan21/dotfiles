@@ -7,6 +7,7 @@
     # Include the results of the hardware scan.
     ./ryu.nix
     ./services
+    # ./vms
   ];
 
   programs = {
