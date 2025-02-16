@@ -4,6 +4,6 @@
     ./skhd.nix
     ./tailscale.nix
     ./jellyfin.nix
-    ./samba.nix
+    # ./samba.nix
   ];
 }
