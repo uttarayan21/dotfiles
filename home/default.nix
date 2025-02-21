@@ -73,7 +73,7 @@
         then "open"
         else "xdg-open";
     };
-    sessionPath = ["${config.home.homeDirectory}/.cargo/bin"];
+    sessionPath = ["${config.home.homeDirectory}/.cargo/bin" "${config.home.homeDirectory}/.local/bin"];
 
     stateVersion = "23.11";
   };

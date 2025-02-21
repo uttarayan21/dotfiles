@@ -1,13 +1,12 @@
 set dotenv-load
 
-# clean := `git diff-index --quiet --cached HEAD --`
 [macos]
 install: 
     nix run nix-darwin -- switch --flake .
 
 [linux]
 install:
-	NIX_BUILD_CORES=0 sudo nixos-rebuild switch --flake .
+	sudo nixos-rebuild switch --flake .
 
 [macos]
 build:
