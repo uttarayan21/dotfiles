@@ -25,22 +25,18 @@ lib.attrsets.optionalAttrs device.hasGui {
     []
     ++ lib.optionals device.hasGui [
       discord
-      abaddon
-      ferdium
       jdk
       mullvad-closest
       mullvad-vpn
       nautilus
-      nextcloud-client
+      totem
+      ffmpegthumbnailer
       polkit_gnome
-      psst
       seahorse
       signal-desktop
-      slack
       sony-headphones-client
       spotify
       steam-run
-      via
       wl-clipboard
       zed-editor
       webcord

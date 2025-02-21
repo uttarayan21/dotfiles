@@ -52,10 +52,6 @@
           [net]
           git-fetch-with-cli = true
 
-          # [target.aarch64-apple-darwin]
-          # linker = "clang"
-          # rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
-
           [registries.catscii]
           index = "https://git.shipyard.rs/catscii/crate-index.git"
 

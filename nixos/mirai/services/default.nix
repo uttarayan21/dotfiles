@@ -7,8 +7,8 @@
     ./minecraft.nix
     ./tailscale.nix
     ./vscode.nix
+    ./seafile.nix
     # ./syncthing.nix
-    # ./seafile.nix
 
     # ./nextcloud.nix
     # ./navidrome.nix

@@ -1,6 +1,6 @@
 {config, ...}: {
   # sops = {
-  #   # secrets."nextcloud/adminpass".owner = config.users.users..name;
+  #   secrets."nextcloud/adminpass".owner = config.users.users.caddy.name;
   # };
   nixpkgs.config.allowBroken = true;
   services = {
