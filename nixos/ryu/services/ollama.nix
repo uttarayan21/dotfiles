@@ -5,8 +5,7 @@
       host = "127.0.0.1";
       loadModels = ["deepseek-r1:7b" "deepseek-r1:14b"];
       port = 11434;
-      package = pkgs.ollama-cuda;
-      # acceleration = "cuda";
+      acceleration = "cuda";
     };
     open-webui = {
       enable = false;

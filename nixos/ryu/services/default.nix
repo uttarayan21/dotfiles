@@ -3,6 +3,7 @@
     ./samba.nix
     ./sunshine.nix
     ./ollama.nix
+    ./rsyncd.nix
   ];
   services = {
     hardware.openrgb.enable = true;

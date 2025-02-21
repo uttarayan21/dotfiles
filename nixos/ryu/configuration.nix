@@ -54,11 +54,11 @@
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];
       substituters = [
-        "https://nix-community.cachix.org"
+        # "https://nix-community.cachix.org"
         # "https://sh.darksailor.dev"
       ];
       trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
       ];
     };
@@ -241,6 +241,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.cudaSupport = true;
 
   fonts.fontconfig.enable = true;
   fonts.fontDir.enable = true;
@@ -253,6 +254,7 @@
       winetricks
       wineWowPackages.waylandFull
 
+      virt-manager
       gparted
       nvtopPackages.nvidia
       quickemu
