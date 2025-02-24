@@ -16,7 +16,7 @@
       #     @import url(${pkgs.csshacks}/chrome/linux_gtk_window_control_patch.css);
       #     @import url(${pkgs.csshacks}/chrome/window_control_placeholder_support.css);
       #   '';
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         violentmonkey
         tridactyl
