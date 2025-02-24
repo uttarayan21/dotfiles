@@ -19,5 +19,6 @@
         esc = ["collapse_selection" "keep_primary_selection"];
       };
     };
+    package = pkgs.evil-helix;
   };
 }
