@@ -10,7 +10,7 @@
       ./firefox.nix
       ./ghostty.nix
       ./kitty.nix
-      ./vscodium.nix
+      ./vscode.nix
       ./wezterm.nix
       ./mpv.nix
     ]);
