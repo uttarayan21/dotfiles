@@ -34,6 +34,7 @@
   ];
   home.packages = with pkgs;
     [
+      aria2
       nb
       (nixvim.makeNixvim (import ../../neovim))
       _1password-cli
