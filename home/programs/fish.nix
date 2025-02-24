@@ -35,7 +35,7 @@
     interactiveShellInit = ''
       ${pkgs.pfetch-rs}/bin/pfetch
       ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
-      ${lib.optionalString device.isNix
+      ${lib.optionalString (device.isNix && device.hasGui)
         ''          if not set -q HYPRLAND_INSTANCE_SIGNATURE
                         set -x HYPRLAND_INSTANCE_SIGNATURE (hyprctl instances | head -1 | cut -d ' ' -f2 | tr -d :)
                     end
