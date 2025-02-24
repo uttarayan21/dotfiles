@@ -11,12 +11,13 @@
       inputs.nix-index-database.hmModules.nix-index
       ../modules
       ./auth.nix
-      ./gui-programs
       ./programs
       ./scripts.nix
       ./services
     ]
-    ++ lib.optionals device.isLinux [./linux];
+    ++ lib.optionals device.isLinux [./linux]
+    ++ lib.optionals device.hasGui [./gui-programs];
+
   # ++ lib.optionals.device.isMac [./macos];
 
   xdg.enable = true;
