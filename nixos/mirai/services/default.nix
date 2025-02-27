@@ -6,10 +6,11 @@
     ./llama.nix
     ./minecraft.nix
     ./tailscale.nix
-    ./vscode.nix
-    ./seafile.nix
-    # ./syncthing.nix
+    # ./polaris.nix
 
+    # ./seafile.nix
+    # ./syncthing.nix
+    # ./vscode.nix
     # ./nextcloud.nix
     # ./navidrome.nix
     # ./ldap.nix

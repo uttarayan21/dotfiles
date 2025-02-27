@@ -18,11 +18,11 @@
           ENABLE_REMOTE_USER_AUTHENTICATION = True
           # Optional, HTTP header, which is configured in your web server conf file,
           # used for Seafile to get user's unique id, default value is 'HTTP_REMOTE_USER'.
-          REMOTE_USER_HEADER = 'HTTP_EMAIL'
+          REMOTE_USER_HEADER = 'REMOTE_USER'
           # Optional, when the value of HTTP_REMOTE_USER is not a valid email address，
           # Seafile will build a email-like unique id from the value of 'REMOTE_USER_HEADER'
           # and this domain, e.g. user1@example.com.
-          REMOTE_USER_DOMAIN = 'uttarayan.me'
+          # REMOTE_USER_DOMAIN = 'uttarayan.me'
           # Optional, whether to create new user in Seafile system, default value is True.
           # If this setting is disabled, users doesn't preexist in the Seafile DB cannot login.
           # The admin has to first import the users from external systems like LDAP.
@@ -42,8 +42,30 @@
             uri /api/authz/forward-auth
             copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
         }
+
         reverse_proxy unix//run/seahub/gunicorn.sock
       '';
+    };
+    authelia = {
+      instances.darksailor = {
+        settings = {
+          access_control = {
+            rules = [
+              {
+                domain = "cloud.darksailor.dev";
+                policy = "one_factor";
+              }
+              {
+                domain = "cloud.darksailor.dev";
+                policy = "bypass";
+                resources = [
+                  "^/(api2|seafhttp)([/?].*)?$"
+                ];
+              }
+            ];
+          };
+        };
+      };
     };
   };
 }
