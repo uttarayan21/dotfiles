@@ -5,6 +5,7 @@
 }: {
   programs.firefox = {
     enable = pkgs.stdenv.isLinux;
+    package = pkgs.firefox;
     profiles.default = {
       # userChrome =
       #   /*
