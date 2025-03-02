@@ -266,9 +266,9 @@
       git
       fish
       nushell
-      (pkgs.wrapFirefox
-        (pkgs.firefox-unwrapped.override {pipewireSupport = true;})
-        {})
+      # (pkgs.wrapFirefox
+      #   (pkgs.firefox-unwrapped.override {pipewireSupport = true;})
+      #   {})
       gnumake
       python3
       nerd-fonts.fira-code

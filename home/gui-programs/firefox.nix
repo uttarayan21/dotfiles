@@ -2,21 +2,10 @@
   device,
   pkgs,
   ...
-}: {
-  programs.firefox = {
+}: let
+  config = {
     enable = pkgs.stdenv.isLinux;
-    package = pkgs.librewolf;
     profiles.default = {
-      # userChrome =
-      #   /*
-      #   css
-      #   */
-      #   ''
-      #     @import url(${pkgs.csshacks}/chrome/toolbars_below_content.css);
-      #     @import url(${pkgs.csshacks}/chrome/scrollable_menupopups.css);
-      #     @import url(${pkgs.csshacks}/chrome/linux_gtk_window_control_patch.css);
-      #     @import url(${pkgs.csshacks}/chrome/window_control_placeholder_support.css);
-      #   '';
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         violentmonkey
@@ -62,4 +51,7 @@
       };
     };
   };
+in {
+  programs.librewolf = config;
+  programs.firefox = config;
 }
