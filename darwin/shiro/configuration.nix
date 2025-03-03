@@ -67,7 +67,7 @@
   programs.zsh.enable = true;
   programs.fish.enable = true;
 
-  services.nix-daemon.enable = true;
+  # services.nix-daemon.enable = true;
   system.stateVersion = 4;
 
   system.keyboard.enableKeyMapping = true;
