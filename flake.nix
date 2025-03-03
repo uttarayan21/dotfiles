@@ -154,6 +154,10 @@
       url = "github:nvzone/volt";
       flake = false;
     };
+    arion = {
+      url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

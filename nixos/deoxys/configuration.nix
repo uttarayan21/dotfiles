@@ -9,6 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./deoxys.nix
+    ./services
   ];
 
   # Bootloader.
