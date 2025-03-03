@@ -4,16 +4,11 @@
   device,
   ...
 }: {
-  imports = [./services];
+  imports = [./services ./homebrew.nix];
 
-  homebrew = {
-    enable = true;
-    brews = [
-      "docker"
-    ];
-  };
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
+    enable = false;
     settings = {
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
