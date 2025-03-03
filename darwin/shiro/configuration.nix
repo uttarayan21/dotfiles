@@ -6,6 +6,12 @@
 }: {
   imports = [./services];
 
+  homebrew = {
+    enable = true;
+    brews = [
+      "docker"
+    ];
+  };
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
     settings = {
