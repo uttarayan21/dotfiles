@@ -8,6 +8,8 @@
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerSocket.enable = true;
   users.extraUsers.servius.extraGroups = ["podman"];
+  networking.firewall.allowedTCPPorts = [21063 21064];
+  networking.firewall.allowedUDPPorts = [5353];
 
   virtualisation.arion = {
     backend = "docker";
