@@ -23,6 +23,20 @@ If you want to try my neovim config just do
 nix run github:uttarayan21/dotfiles#neovim
 ```
 
+### Install nix
+```sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+### Install this
+```
+#either this for macos
+nix run nix-darwin -- switch --flake .#name
+#or this for nixos
+nixos-rebuild switch --flake .#name
+```
+
+
+
 
 ### For nix
 

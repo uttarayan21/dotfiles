@@ -3,11 +3,13 @@
   pkgs,
   ...
 }: {
-  imports = [./services];
+  imports = [./services ./homebrew.nix];
 
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
+    enable = true;
     settings = {
+      # ids.gids.nixbld = 30000;
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
       trusted-users = ["root" "fs0c131y"];
@@ -59,7 +61,7 @@
   programs.fish.enable = true;
 
   # services.nix-daemon.enable = true;
-  system.stateVersion = 4;
+  system.stateVersion = 5;
 
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
