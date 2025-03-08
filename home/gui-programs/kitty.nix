@@ -5,7 +5,7 @@
   ...
 }: {
   programs.kitty = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     # enable = false;
     font = {
       # name = "FiraCode Nerd Font Mono";

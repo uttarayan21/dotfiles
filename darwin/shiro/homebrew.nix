@@ -11,7 +11,6 @@
       "kunkun" # Soon
       "lunar"
       "virtual-desktop-streamer"
-      "sunshine"
     ];
   };
 }
