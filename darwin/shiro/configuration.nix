@@ -37,7 +37,10 @@
 
   users.users.servius = {
     # isNormalUser = true;
-    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
+    openssh.authorizedKeys.keyFiles = [
+      ../../secrets/id_ed25519.pub
+      ../../secrets/id_ios.pub
+    ];
   };
   users.users.remotebuilder = {
     name = "remotebuilder";
@@ -45,7 +48,10 @@
     home = "/var/lib/remotebuilder";
     createHome = true;
     shell = "/bin/bash";
-    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
+    openssh.authorizedKeys.keyFiles = [
+      ../../secrets/id_ed25519.pub
+      ../../secrets/id_ios.pub
+    ];
   };
 
   # security.pam.enableSudoTouchIdAuth = true;

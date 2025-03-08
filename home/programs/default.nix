@@ -17,8 +17,8 @@
     ./git.nix
     ./goread.nix
     ./helix.nix
-    ./ncmpcpp.nix
-    ./neomutt.nix
+    # ./ncmpcpp.nix
+    # ./neomutt.nix
     # ./newsboat.nix
     ./nix-index.nix
     ./nushell.nix

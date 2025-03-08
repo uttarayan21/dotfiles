@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.neomutt = {
-    enable = true;
+    enable = false;
     vimKeys = true;
     editor = "nvim";
     # sidebar = {

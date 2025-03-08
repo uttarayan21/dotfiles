@@ -83,7 +83,10 @@
   users.users.servius = {
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "i2c" "media"];
-    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
+    openssh.authorizedKeys.keyFiles = [
+      ../../secrets/id_ed25519.pub
+      ../../secrets/id_ios.pub
+    ];
   };
   users.groups.i2c = {};
   users.groups.media = {};
@@ -180,6 +183,10 @@
   services.openssh.enable = true;
 
   networking = {
+    interfaces.eno1.wakeOnLan = {
+      policy = ["magic"];
+      enable = true;
+    };
     hostName = "ryu"; # Define your hostname.
     # nameservers = ["1.1.1.1" "8.8.8.8"];
     nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];

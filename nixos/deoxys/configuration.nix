@@ -89,7 +89,10 @@
     description = "servius";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [];
-    openssh.authorizedKeys.keyFiles = [../../secrets/id_ed25519.pub];
+    openssh.authorizedKeys.keyFiles = [
+      ../../secrets/id_ed25519.pub
+      ../../secrets/id_ios.pub
+    ];
   };
 
   # Allow unfree packages
