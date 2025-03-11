@@ -56,8 +56,8 @@
   #     '')
   # ];
 
-  # programs.bash.enable = true;
-  programs.zsh.enable = true;
+  programs.bash.enable = false;
+  programs.zsh.enable = false;
   programs.fish.enable = true;
 
   # services.nix-daemon.enable = true;

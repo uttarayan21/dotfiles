@@ -11,6 +11,11 @@
       yy = "yazi";
       cat = "bat";
     };
+    plugins = with pkgs.nushellPlugins; [
+      formats
+      polars
+      highlight
+    ];
     extraConfig = ''
       ${pkgs.pfetch-rs}/bin/pfetch
     '';
