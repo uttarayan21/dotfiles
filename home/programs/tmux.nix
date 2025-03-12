@@ -19,6 +19,7 @@ in {
       tmuxPlugins.better-mouse-mode
       tmuxPlugins.tmux-fzf
       tmuxPlugins.fzf-tmux-url
+      tmuxPlugins.battery
       {
         plugin = tmuxPlugins.tmux-thumbs;
         extraConfig =
@@ -34,30 +35,27 @@ in {
               set -g @thumbs-command 'echo -n {} | wl-copy'
             '';
       }
-      # {
-      #   plugin = tmuxPlugins.tmux-super-fingers;
-      #   extraConfig = "set -g @super-fingers-key i";
-      # }
       {
         plugin = tmuxPlugins.catppuccin;
         extraConfig =
-          # tmux
+          /*
+          tmux
+          */
           ''
-            set -g @catppuccin_flavour 'mocha'
-            set -g @catppuccin_window_default_text ''''''
-          '';
-      }
-      {
-        plugin = tmuxPlugins.battery;
-        extraConfig =
-          # tmux
-          ''
-            set -g @catppuccin_status_modules_right "battery application session date_time"
+            set -g @catppuccin_flavor 'mocha' # latte, frappe, macchiato or mocha
+            set -g @catppuccin_window_status_style "rounded"
+            set -g status-left ""
+            set -g status-right "#{E:@catppuccin_status_application}"
+            set -ag status-right "#{E:@catppuccin_status_session}"
+            set -ag status-right "#{E:@catppuccin_status_uptime}"
+            set -agF status-right "#{E:@catppuccin_status_battery}"
           '';
       }
     ];
     extraConfig =
-      # tmux
+      /*
+      tmux
+      */
       ''
         set -gw mode-keys vi
         set -g status-keys vi
