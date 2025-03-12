@@ -18,7 +18,7 @@
     ++ lib.optionals device.isLinux [./linux]
     ++ lib.optionals device.hasGui [./gui-programs];
 
-  # ++ lib.optionals.device.isMac [./macos];
+  # ++ lib.optionals.device.isDarwin [./macos];
 
   xdg.enable = true;
   xdg.userDirs = {
@@ -35,7 +35,7 @@
   home = {
     username = device.user;
     homeDirectory =
-      if device.isMac
+      if device.isDarwin
       then lib.mkForce "/Users/${device.user}"
       else lib.mkForce "/home/${device.user}";
 
@@ -66,7 +66,7 @@
       SHELL = "${pkgs.bash}/bin/bash";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
       BROWSER =
-        if device.isMac
+        if device.isDarwin
         then "open"
         else "xdg-open";
     };

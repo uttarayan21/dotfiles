@@ -5,6 +5,7 @@
     ];
     casks = [
       "firefox"
+      "vlc"
       "librewolf"
       "raycast"
       "kunkun" # Soon

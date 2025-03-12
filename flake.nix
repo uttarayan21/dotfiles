@@ -232,7 +232,7 @@
         if (builtins.hasAttr "isNix" device)
         then device.isNix
         else false;
-      isMac = !isNull (builtins.match ".*-darwin" device.system);
+      isDarwin = !isNull (builtins.match ".*-darwin" device.system);
       hasGui =
         if (builtins.hasAttr "hasGui" device)
         then device.hasGui
@@ -251,7 +251,7 @@
 
     nixos_devices = builtins.filter (x: x.isNix) devices;
     linux_devices = builtins.filter (x: x.isLinux) devices;
-    darwin_devices = builtins.filter (x: x.isMac) devices;
+    darwin_devices = builtins.filter (x: x.isDarwin) devices;
 
     overlays = import ./overlays.nix {
       inherit inputs;

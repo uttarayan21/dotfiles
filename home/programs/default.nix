@@ -92,5 +92,5 @@
       usbutils
       ddcbacklight
     ]
-    ++ lib.optionals device.isMac [];
+    ++ lib.optionals device.isDarwin [];
 }
