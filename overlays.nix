@@ -215,7 +215,7 @@
   };
 in
   [
-    libfprint
+    # libfprint
     zellij
     catppuccinThemes
     tmuxPlugins
