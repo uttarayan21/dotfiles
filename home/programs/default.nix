@@ -31,6 +31,7 @@
     # ./zellij.nix
     ./zoxide.nix
     #./template.nix
+    ./gimp.nix
   ];
   home.packages = with pkgs;
     [

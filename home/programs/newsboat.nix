@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.newsboat = {
-    enable = false;
+    enable = true;
     urls = [
       {
         title = "r/rust";
