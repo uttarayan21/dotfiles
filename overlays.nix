@@ -177,24 +177,24 @@
       zjstatus = inputs.zjstatus.packages.${prev.system}.default;
     };
   };
-  libfprint = final: prev: {
-    libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
-      version = "git";
-      src = final.fetchFromGitHub {
-        owner = "ericlinagora";
-        repo = "libfprint-CS9711";
-        rev = "058851c20d1e98d7c8ba82e6bfc9da08f791593f";
-        sha256 = "sha256-LCXKQmOzi/l4jQ40qkgL2gqMtmu0n30Yo6HMgUpW+uI";
-      };
-      nativeBuildInputs =
-        oldAttrs.nativeBuildInputs
-        ++ [
-          final.opencv
-          final.cmake
-          final.doctest
-        ];
-    });
-  };
+  # libfprint = final: prev: {
+  #   libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
+  #     version = "git";
+  #     src = final.fetchFromGitHub {
+  #       owner = "ericlinagora";
+  #       repo = "libfprint-CS9711";
+  #       rev = "058851c20d1e98d7c8ba82e6bfc9da08f791593f";
+  #       sha256 = "sha256-LCXKQmOzi/l4jQ40qkgL2gqMtmu0n30Yo6HMgUpW+uI";
+  #     };
+  #     nativeBuildInputs =
+  #       oldAttrs.nativeBuildInputs
+  #       ++ [
+  #         final.opencv
+  #         final.cmake
+  #         final.doctest
+  #       ];
+  #   });
+  # };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;
   };
