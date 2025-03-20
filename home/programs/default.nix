@@ -35,11 +35,6 @@
   ];
   home.packages = with pkgs;
     [
-      (bambu-studio.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.cudatoolkit];
-        buildInputs = oldAttrs.buildInputs ++ [pkgs.cudatoolkit];
-      }))
-      opencv4
       aria2
       nb
       (nixvim.makeNixvim (import ../../neovim))
@@ -84,7 +79,6 @@
       qmk
       ttyper
       yarn
-      zed-editor
     ]
     ++ lib.optionals device.isLinux [
       dig

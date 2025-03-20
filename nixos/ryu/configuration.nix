@@ -82,7 +82,7 @@
 
   users.users.servius = {
     isNormalUser = true;
-    extraGroups = ["wheel" "audio" "i2c" "media"];
+    extraGroups = ["wheel" "audio" "i2c" "media" "openrazer"];
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub
@@ -165,6 +165,7 @@
   # };
   hardware = {
     keyboard.qmk.enable = true;
+    openrazer.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -256,6 +257,8 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
+      polychromatic
+      openrazer-daemon
       cudatoolkit
       # Wine
       wine-wayland

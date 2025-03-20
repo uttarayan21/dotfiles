@@ -16,7 +16,7 @@
       ./services
     ]
     ++ lib.optionals device.isLinux [./linux]
-    ++ lib.optionals device.hasGui [./gui-programs];
+    ++ lib.optionals device.hasGui [./gui-programs ./apps];
 
   # ++ lib.optionals.device.isDarwin [./macos];
 
