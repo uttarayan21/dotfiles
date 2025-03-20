@@ -1,0 +1,5 @@
+{...}: {
+  services = {
+    caddy.enable = true;
+  };
+}

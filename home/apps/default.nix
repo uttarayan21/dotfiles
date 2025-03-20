@@ -2,7 +2,8 @@
   imports = [
     ./guitarix.nix
     ./bambu-studio.nix
-    ./guitar.nix
+    ./zed.nix
+    ./obs-studio.nix
   ];
   home.packages = [
   ];
