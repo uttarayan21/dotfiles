@@ -11,6 +11,10 @@
   ];
 
   programs = {
+    localsend = {
+      enable = true;
+      openFirewall = true;
+    };
     _1password.enable = true;
     _1password-gui = {
       enable = true;
