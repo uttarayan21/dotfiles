@@ -5,6 +5,7 @@
     ./zed.nix
     ./obs-studio.nix
     ./zathura.nix
+    ./vlc.nix
   ];
   # home.packages = [];
 }
