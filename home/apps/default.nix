@@ -1,15 +1,21 @@
 {
-  pkgs,
   lib,
+  device,
   ...
 }: {
   imports = [
-    ./guitarix.nix
     ./bambu-studio.nix
-    ./zed.nix
+    ./cursor.nix
+    ./firefox.nix
+    ./ghostty.nix
+    ./guitarix.nix
+    ./kitty.nix
+    ./mpv.nix
     ./obs-studio.nix
-    ./zathura.nix
     ./vlc.nix
+    ./vscode.nix
+    ./wezterm.nix
+    ./zathura.nix
+    ./zed.nix
   ];
-  # home.packages = [];
 }
