@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.obs-studio = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     # enableVirtualCamera = true;
     plugins = [pkgs.obs-studio-plugins.wlrobs];
   };
