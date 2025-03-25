@@ -18,5 +18,6 @@ lib.optionalAttrs device.hasGui {
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix
+    ./gimp.nix
   ];
 }

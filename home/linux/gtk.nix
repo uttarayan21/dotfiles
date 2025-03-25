@@ -1,10 +1,11 @@
 {
   pkgs,
+  lib,
   device,
   ...
 }: {
   gtk = {
-    enable = true;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
     theme = {
       name = "catppuccin-mocha-mauve-standard+normal";
       package = pkgs.catppuccinThemes.gtk;
@@ -32,8 +33,11 @@
     gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
-  home.packages = [
-    # pkgs.catppuccinThemes.gtk
-    pkgs.catppuccinThemes.papirus-folders
-  ];
+  home.packages =
+    lib.optionals
+    (device.hasGui
+      && pkgs.stdenv.isLinux) [
+      # pkgs.catppuccinThemes.gtk
+      pkgs.catppuccinThemes.papirus-folders
+    ];
 }

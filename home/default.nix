@@ -14,7 +14,7 @@
     ./linux
     ./programs
     ./scripts.nix
-    ./services
+    # ./services
   ];
 
   xdg.enable = true;

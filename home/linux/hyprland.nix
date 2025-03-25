@@ -10,7 +10,7 @@
   programs.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
   in {
-    enable = device.hasGui;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
     # enable = true;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
@@ -22,10 +22,10 @@
     };
   };
   programs.hyprlock = {
-    enable = device.hasGui;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
   };
   wayland.windowManager.hyprland = {
-    enable = device.hasGui;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";

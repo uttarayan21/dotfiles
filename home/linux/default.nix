@@ -1,24 +1,22 @@
 {
-  lib,
-  device,
   pkgs,
+  device,
   ...
-}:
-lib.optionalAttrs (pkgs.stdenv.isLinux && device.hasGui) {
+}: let
+  linux_gui = device.hasGui && pkgs.stdenv.isLinux;
+in {
   imports = [
     ./hyprland.nix
     ./gtk.nix
     ./anyrun.nix
     ./ironbar
-    ./foot.nix
-    ./mpd.nix
     ./gui.nix
   ];
 
-  services.kdeconnect.enable = device.hasGui;
-  services.kdeconnect.indicator = device.hasGui;
-  services.swayosd.enable = device.hasGui;
-  services.swaync.enable = device.hasGui;
+  services.kdeconnect.enable = linux_gui;
+  services.kdeconnect.indicator = linux_gui;
+  services.swayosd.enable = linux_gui;
+  services.swaync.enable = linux_gui;
   # services.nextcloud-client = {
   #   enable = device.hasGui;
   #   startInBackground = true;

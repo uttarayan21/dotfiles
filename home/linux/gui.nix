@@ -3,8 +3,7 @@
   device,
   lib,
   ...
-}:
-lib.attrsets.optionalAttrs device.hasGui {
+}: {
   systemd.user.services.onepassword-gui = lib.optionalAttrs pkgs.stdenv.isLinux {
     Unit = {
       Description = "1Password GUI";
@@ -20,10 +19,8 @@ lib.attrsets.optionalAttrs device.hasGui {
       WantedBy = ["graphical-session.target"];
     };
   };
-
   home.packages = with pkgs;
-    []
-    ++ lib.optionals device.hasGui [
+    lib.optionals pkgs.stdenv.isLinux [
       discord
       jdk
       mullvad-closest
