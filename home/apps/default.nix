@@ -2,7 +2,8 @@
   lib,
   device,
   ...
-}: {
+}:
+lib.optionalAttrs device.hasGui {
   imports = [
     ./bambu-studio.nix
     ./cursor.nix

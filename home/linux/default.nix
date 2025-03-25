@@ -1,19 +1,19 @@
 {
   lib,
   device,
+  pkgs,
   ...
-}: {
-  imports =
-    []
-    ++ (lib.optionals device.hasGui [
-      ./hyprland.nix
-      ./gtk.nix
-      ./anyrun.nix
-      ./ironbar
-      ./foot.nix
-      ./mpd.nix
-      ./gui.nix
-    ]);
+}:
+lib.optionalAttrs (pkgs.stdenv.isLinux && device.hasGui) {
+  imports = [
+    ./hyprland.nix
+    ./gtk.nix
+    ./anyrun.nix
+    ./ironbar
+    ./foot.nix
+    ./mpd.nix
+    ./gui.nix
+  ];
 
   services.kdeconnect.enable = device.hasGui;
   services.kdeconnect.indicator = device.hasGui;

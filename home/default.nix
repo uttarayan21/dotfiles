@@ -6,19 +6,16 @@
   device,
   ...
 }: {
-  imports =
-    [
-      inputs.nix-index-database.hmModules.nix-index
-      ../modules
-      ./auth.nix
-      ./programs
-      ./scripts.nix
-      ./services
-    ]
-    ++ lib.optionals device.isLinux [./linux]
-    ++ lib.optionals device.hasGui [./gui-programs ./apps];
-
-  # ++ lib.optionals.device.isDarwin [./macos];
+  imports = [
+    inputs.nix-index-database.hmModules.nix-index
+    ../modules
+    ./apps
+    ./auth.nix
+    ./linux
+    ./programs
+    ./scripts.nix
+    ./services
+  ];
 
   xdg.enable = true;
   xdg.userDirs = {
