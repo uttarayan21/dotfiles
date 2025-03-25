@@ -16,7 +16,7 @@
     systemd.target = "hyprland-session.target";
     settings.preload = wallpapers.all;
     settings.wallpapers = {
-      "${device.monitors.primary}" = wallpapers.skull;
+      "${device.monitors.primary}" = wallpapers.moon;
       "${device.monitors.secondary}" = wallpapers.frieren_3;
       "${device.monitors.tertiary}" = wallpapers.cloud;
     };

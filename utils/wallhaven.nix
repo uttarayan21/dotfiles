@@ -7,6 +7,10 @@
 in rec {
   inherit getWall;
   # Some predefined wallpapers
+  moon = getWall {
+    url = "https://w.wallhaven.cc/full/6o/wallhaven-6o1zp7.png";
+    sha256 = "07c1yc3haa25ik3icqm85ppb5x888adxcyh9pmyz79n7ma8z7sil";
+  };
   lights = getWall {
     url = "https://w.wallhaven.cc/full/p2/wallhaven-p2el93.jpg";
     sha256 = "1fzxqdrxh7mbd18lgq1kqnzwf1nsgl7rj04idaq35cgf2fh0914v";
@@ -29,5 +33,5 @@ in rec {
   };
 
   anime = [frieren_3];
-  all = [lights shapes cloud skull] ++ anime;
+  all = [lights shapes cloud skull moon] ++ anime;
 }
