@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.thunderbird = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     profiles = {
     };
   };
