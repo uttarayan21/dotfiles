@@ -52,6 +52,6 @@
     };
   };
 in {
-  programs.librewolf = config // {package = pkgs.firefox-nightly;};
+  programs.librewolf = config;
   programs.firefox = config;
 }
