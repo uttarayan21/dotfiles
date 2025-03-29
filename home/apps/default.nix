@@ -19,5 +19,7 @@ lib.optionalAttrs device.hasGui {
     ./zathura.nix
     ./zed.nix
     ./gimp.nix
+    ./kicad.nix
+    ./chromium.nix
   ];
 }
