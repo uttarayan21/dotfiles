@@ -5,12 +5,12 @@
   ...
 }: {
   programs.kitty = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
     # enable = false;
     font = {
       # name = "FiraCode Nerd Font Mono";
-      # name = "Hasklug Nerd Font Mono";
-      name = "Monaspace Krypton Var Light";
+      name = "Hasklug Nerd Font Mono";
+      # name = "Monaspace Krypton Var Light";
       size = 13;
     };
     settings = {
