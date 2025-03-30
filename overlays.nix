@@ -195,17 +195,10 @@
           final.doctest
         ];
     });
-    fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
-    # fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
-    #   version = "git";
-    #   src = final.fetchFromGitHub {
-    #     owner = "ericlinagora";
-    #     repo = "fprintd-CS9711";
-    #     rev = "03ace5b20146eb01c77fb3ea63e1909984d6d377";
-    #     sha256 = "sha256-gr3UvFB6D04he/9zawvQIuwfv0B7fEZb6BGiNAbLids";
-    #   };
-    #   buildInputs = oldAttrs.buildInputs ++ [final.libfprint];
-    # });
+    # fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
+    fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
+      src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
+    });
   };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;
