@@ -13,7 +13,7 @@
       "virtual-desktop-streamer"
       "kicad"
       "bambu-studio"
-      "orcaslicer"
+      # "orcaslicer"
     ];
   };
 }
