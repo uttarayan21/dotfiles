@@ -12,6 +12,7 @@
       "lunar"
       "virtual-desktop-streamer"
       "1password"
+      "bambu-studio"
     ];
   };
 }
