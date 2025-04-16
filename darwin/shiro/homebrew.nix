@@ -12,8 +12,8 @@
       "lunar"
       "virtual-desktop-streamer"
       "kicad"
-      "bambu-studio"
-      # "orcaslicer"
+      "shapr3d"
+      "orcaslicer"
     ];
   };
 }

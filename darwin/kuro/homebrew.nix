@@ -12,7 +12,8 @@
       "lunar"
       "virtual-desktop-streamer"
       "1password"
-      "bambu-studio"
+      "shapr3d"
+      "orcaslicer"
     ];
   };
 }
