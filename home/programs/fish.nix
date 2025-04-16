@@ -34,7 +34,7 @@
     # ${pkgs.spotify-player}/bin/spotify_player generate fish | source
     interactiveShellInit = ''
       ${pkgs.pfetch-rs}/bin/pfetch
-      ${pkgs.nb}/bin/nb t
+      ${pkgs.nb}/bin/nb todo undone
       ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
       ${lib.optionalString (device.isNix && device.hasGui)
         ''

@@ -22,5 +22,6 @@ lib.optionalAttrs device.hasGui {
     ./kicad.nix
     ./chromium.nix
     ./thunderbird.nix
+    ./neovide.nix
   ];
 }
