@@ -2,13 +2,14 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    ./jellyfin.nix
     ./llama.nix
     ./minecraft.nix
     ./tailscale.nix
     ./caddy.nix
     ./fail2ban.nix
+    ./gitea.nix
 
+    # ./jellyfin.nix
     # ./polaris.nix
     # ./seafile.nix
     # ./syncthing.nix
