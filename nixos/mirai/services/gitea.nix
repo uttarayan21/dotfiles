@@ -4,10 +4,12 @@
       enable = true;
       settings = {
         service = {
-          DISABLE_REGISTRATION = false;
+          # DISABLE_REGISTRATION = false;
           ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
-          REVERSE_PROXY_AUTHENTICATION_USER = "REMOTE-USER";
           ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
+        };
+        security = {
+          REVERSE_PROXY_AUTHENTICATION_USER = "REMOTE-USER";
         };
       };
     };
