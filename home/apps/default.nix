@@ -23,5 +23,6 @@ lib.optionalAttrs device.hasGui {
     ./chromium.nix
     ./thunderbird.nix
     ./neovide.nix
+    ./openscad.nix
   ];
 }
