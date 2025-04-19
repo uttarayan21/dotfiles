@@ -13,6 +13,7 @@ builtins.listToAttrs (builtins.map (device: {
       system = device.system;
       specialArgs = {
         inherit device;
+        stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
         lanzaboote = inputs.lanzaboote;
       };
       modules = [
@@ -34,6 +35,7 @@ builtins.listToAttrs (builtins.map (device: {
             extraSpecialArgs = {
               inherit inputs;
               inherit device;
+              stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
             };
             users.${device.user}.imports = [../home];
           };

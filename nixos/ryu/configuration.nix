@@ -237,6 +237,7 @@
     defaultLocale = "en_US.UTF-8";
 
     extraLocaleSettings = {
+      LC_ALL = "en_US.UTF-8";
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
       LC_MEASUREMENT = "en_US.UTF-8";
@@ -253,7 +254,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 
   fonts.fontconfig.enable = true;
   fonts.fontDir.enable = true;
