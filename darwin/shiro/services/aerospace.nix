@@ -21,8 +21,10 @@
               # alt-enter = "exec-and-forget open -n /System/Applications/Utilities/Terminal.app";
               alt-enter = "exec-and-forget ${pkgs.lib.getExe pkgs.kitty} --single-instance --directory ~";
               # See: https://nikitabobko.github.io/AeroSpace/commands#layout
-              alt-slash = "layout tiles horizontal vertical";
+              alt-v = "layout tiles horizontal vertical";
               alt-comma = "layout accordion horizontal vertical";
+              alt-f = "layout floating tiling";
+              alt-r = "flatten-workspace-tree";
 
               # See: https://nikitabobko.github.io/AeroSpace/commands#focus
               alt-h = "focus left";
@@ -71,12 +73,12 @@
           "2" = "main";
           "3" = "main";
           "4" = "main";
-          "5" = "main";
-          "6" = "main";
+          "5" = ["secondary" "main"];
+          "6" = ["secondary" "main"];
           "7" = ["secondary" "main"];
-          "8" = ["secondary" "main"];
-          "9" = ["secondary" "main"];
-          "10" = ["secondary" "main"];
+          "8" = ["tertiary" "secondary" "main"];
+          "9" = ["tertiary" "secondary" "main"];
+          "10" = ["tertiary" "secondary" "main"];
         };
       };
     };
