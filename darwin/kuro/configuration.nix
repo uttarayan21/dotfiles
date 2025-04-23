@@ -41,6 +41,7 @@
   };
 
   # security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
   # system.patches = [
   #   (pkgs.writeText "pam-reattach.patch"
   #     # diff
