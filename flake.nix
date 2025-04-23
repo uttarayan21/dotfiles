@@ -212,7 +212,7 @@
         name = "shiro";
         system = "aarch64-darwin";
         user = "servius";
-        isServer = true;
+        isServer = false;
       }
       {
         name = "SteamDeck";

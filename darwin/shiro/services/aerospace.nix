@@ -69,16 +69,16 @@
           };
         };
         workspace-to-monitor-force-assignment = {
-          "1" = "main";
-          "2" = "main";
-          "3" = "main";
-          "4" = "main";
-          "5" = ["secondary" "main"];
-          "6" = ["secondary" "main"];
-          "7" = ["secondary" "main"];
-          "8" = ["tertiary" "secondary" "main"];
-          "9" = ["tertiary" "secondary" "main"];
-          "10" = ["tertiary" "secondary" "main"];
+          "1" = "AORUS FO27Q3";
+          "2" = "AORUS FO27Q3";
+          "3" = "AORUS FO27Q3";
+          "4" = "AORUS FO27Q3";
+          "5" = ["XV272U KV" "AORUS FO27Q3"];
+          "6" = ["XV272U KV" "AORUS FO27Q3"];
+          "7" = ["XV272U KV" "AORUS FO27Q3"];
+          "8" = ["M27Q" "XV272U" "AORUS FO27Q3"];
+          "9" = ["M27Q" "XV272U" "AORUS FO27Q3"];
+          "10" = ["M27Q" "XV272U" "AORUS FO27Q3"];
         };
       };
     };
