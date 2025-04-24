@@ -479,6 +479,7 @@ in {
         pyright.enable = true;
         slint_lsp.enable = true;
         sourcekit.enable = true;
+        openscad_lsp.enable = true;
       };
       onAttach =
         /*
