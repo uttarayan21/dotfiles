@@ -108,6 +108,10 @@
       url = "github:NeogitOrg/neogit/nightly";
       flake = false;
     };
+    d2 = {
+      url = "github:terrastruct/d2-vim";
+      flake = false;
+    };
     tree-sitter-d2 = {
       url = "github:ravsii/tree-sitter-d2";
       flake = false;
@@ -122,10 +126,6 @@
     };
     tree-sitter-nu = {
       url = "github:nushell/tree-sitter-nu";
-      flake = false;
-    };
-    d2 = {
-      url = "github:terrastruct/d2-vim";
       flake = false;
     };
     navigator = {
@@ -270,7 +270,7 @@
         devices = darwin_devices;
       in
         import ./darwin {
-          inherit devices inputs nixpkgs home-manager overlays nix-darwin;
+          inherit devices inputs nixpkgs home-manager overlays nur nix-darwin;
         };
 
       homeConfigurations = let

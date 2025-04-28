@@ -2718,11 +2718,11 @@
     "tree-sitter-d2": {
       "flake": false,
       "locked": {
-        "lastModified": 1742503579,
-        "narHash": "sha256-h/h2f6YC6tYqE3Ql3HCaeBP+gJ/PhgIAiZjMCvPFO/Y=",
+        "lastModified": 1744179289,
+        "narHash": "sha256-vKe01QAWFh+HAWJx2Vg3IYFJAr5PfJ6qxu9h09EIuRA=",
         "owner": "ravsii",
         "repo": "tree-sitter-d2",
-        "rev": "d3c424de131315077716b87cfae05178d6f7a207",
+        "rev": "2ad34f2733b0df2d4b361733de814842b760dcc1",
         "type": "github"
       },
       "original": {

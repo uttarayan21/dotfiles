@@ -218,19 +218,53 @@
       '';
     });
   };
-in
-  [
-    libfprint
-    zellij
-    catppuccinThemes
-    tmuxPlugins
-    anyrun-overlay
-    nix-index-db
-    shell-scipts
-    misc-applications
-    inputs.nur.overlays.default
-    inputs.rust-overlay.overlays.default
-    csshacks
-    jellyfin
-  ]
-  ++ (import ./neovim/overlays.nix self)
+  vimPlugins = final: prev: {
+    vimPlugins =
+      prev.vimPlugins
+      // {
+        d2 = final.pkgs.vimUtils.buildVimPlugin {
+          name = "d2";
+          version = "1";
+          src = inputs.d2;
+        };
+      };
+  };
+  tree-sitter-grammars = final: prev: {
+    tree-sitter-grammars =
+      prev.tree-sitter-grammars
+      // {
+        # tree-sitter-just = final.pkgs.tree-sitter.buildGrammar {
+        #   language = "just";
+        #   version = "1";
+        #   src = inputs.tree-sitter-just;
+        # };
+        # tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
+        #   language = "nu";
+        #   version = "1";
+        #   src = inputs.tree-sitter-nu;
+        # };
+        tree-sitter-d2 = final.pkgs.tree-sitter.buildGrammar {
+          language = "d2";
+          version = "1";
+          src = inputs.tree-sitter-d2;
+        };
+      };
+  };
+in [
+  anyrun-overlay
+  catppuccinThemes
+  csshacks
+  inputs.nixvim.overlays.default
+  inputs.nno.overlays.default
+  inputs.nur.overlays.default
+  inputs.rust-overlay.overlays.default
+  jellyfin
+  libfprint
+  misc-applications
+  nix-index-db
+  shell-scipts
+  tmuxPlugins
+  # tree-sitter-grammars
+  # vimPlugins
+  zellij
+]

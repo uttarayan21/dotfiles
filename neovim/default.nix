@@ -318,7 +318,7 @@ in {
           tree-sitter-norg-meta
           tree-sitter-just
           tree-sitter-nu
-          # tree-sitter-d2
+          pkgs.tree-sitter-grammars.tree-sitter-d2
         ])
         ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
@@ -731,6 +731,7 @@ in {
     pkgs.tree-sitter-grammars.tree-sitter-norg
     pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     pkgs.tree-sitter-grammars.tree-sitter-nu
+    # pkgs.tree-sitter-grammars.tree-sitter-d2
   ];
   extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
   extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
