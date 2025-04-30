@@ -34,9 +34,9 @@
       };
 
       extraConfig = ''
-        yabai -m rule --add app='System Preferences' manage=off
-        yabai -m rule --add app="choose" manage=off
-        yabai -m rule --add app="barrier" manage=off
+        # yabai -m rule --add app='System Preferences' manage=off
+        # yabai -m rule --add app="choose" manage=off
+        # yabai -m rule --add app="barrier" manage=off
       '';
     };
   };

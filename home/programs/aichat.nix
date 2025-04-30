@@ -9,6 +9,7 @@
     secrets."llama/api_key" = {};
     secrets."openai/api_key" = {};
     secrets."openrouter/api_key" = {};
+    secrets."gemini/api_key" = {};
   };
   programs.aichat = {
     enable = true;
@@ -36,6 +37,18 @@
             }
             {
               name = "deepseek-r1:14b";
+              type = "chat";
+            }
+          ];
+        }
+        {
+          type = "gemini";
+          name = "gemini";
+          api_base = "https://generativelanguage.googleapis.com/v1beta";
+          api_key_cmd = "cat ${config.sops.secrets."gemini/api_key".path}";
+          models = [
+            {
+              name = "gemini-2.5-flash-preview-04-17";
               type = "chat";
             }
           ];
