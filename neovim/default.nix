@@ -318,7 +318,7 @@ in {
           tree-sitter-norg-meta
           tree-sitter-just
           tree-sitter-nu
-          pkgs.tree-sitter-grammars.tree-sitter-d2
+          # pkgs.tree-sitter-grammars.tree-sitter-d2
         ])
         ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
     };
