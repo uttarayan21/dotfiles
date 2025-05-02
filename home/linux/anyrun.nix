@@ -5,7 +5,7 @@
   # osConfig,
   ...
 }: {
-  imports = [inputs.anyrun.homeManagerModules.default];
+  # imports = [inputs.anyrun.homeManagerModules.default];
   programs.anyrun = {
     enable = device.hasGui && pkgs.stdenv.isLinux;
     config = {
