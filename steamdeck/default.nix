@@ -3,7 +3,9 @@
   config,
   ...
 }: {
-  imports = [./tailscale.nix];
+  imports = [
+    ./tailscale.nix
+  ];
   programs = {home-manager.enable = true;};
   home = {
     username = "deck";
@@ -11,6 +13,7 @@
     packages = with pkgs; [
       _1password-cli
       tailscale
+      (nixvim.makeNixvim (import ../neovim))
     ];
     stateVersion = "24.11";
   };
