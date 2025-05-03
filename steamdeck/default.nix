@@ -3,6 +3,7 @@
   config,
   ...
 }: {
+  imports = [./tailscale.nix];
   programs = {home-manager.enable = true;};
   home = {
     username = "deck";
