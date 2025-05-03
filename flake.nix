@@ -291,7 +291,10 @@
               extraSpecialArgs = {
                 inherit inputs;
               };
-              modules = [{nixpkgs.config.allowUnfree = true;} ./steamdeck];
+              modules = [
+                {nixpkgs.config.allowUnfree = true;}
+                ./steamdeck
+              ];
             };
         };
 
