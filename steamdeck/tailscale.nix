@@ -3,13 +3,8 @@
   config,
   ...
 }: {
-  home.packages = [
-    (pkgs.tailscale.overrideAttrs (old: {
-      postInstall =
-        old.postInstall
-        + ''
-          cp -r $out/lib $out/etc
-        '';
-    }))
+  imports = [
+    ../modules/home/tailscale.nix
   ];
+  services.tailscale.enable = true;
 }
