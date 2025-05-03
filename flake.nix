@@ -276,7 +276,7 @@
       homeConfigurations = let
         devices = linux_devices;
       in
-        (import ./linux/device.nix {
+        (import ./home/linux/device.nix {
           inherit devices inputs nixpkgs home-manager overlays;
         })
         // {
