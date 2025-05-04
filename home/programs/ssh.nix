@@ -36,6 +36,11 @@
         hostname = "shiro";
         forwardAgent = true;
       };
+      deck = {
+        user = "deck";
+        hostname = "steamdeck";
+        forwardAgent = true;
+      };
     };
     serverAliveInterval = 120;
     extraConfig =
