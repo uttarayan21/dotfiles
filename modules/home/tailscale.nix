@@ -5,24 +5,24 @@
   ...
 }:
 with lib; let
-  cfg = config.services.aichat;
+  cfg = config.services.tailscale;
 in {
   options = {
-    services.aichat = {
-      enable = mkEnableOption "aichat";
-      package = mkPackageOption pkgs "aichat" {};
+    services.tailscale = {
+      enable = mkEnableOption "tailscale";
+      package = mkPackageOption pkgs "tailscale" {};
     };
   };
 
   config = {
     home.packages = mkIf cfg.enable [cfg.package];
-    home.activation.runTailscaleActivation = let
-      tailscaleLib = "${cfg.package}/lib";
+    # This doesn't work since we don't have root
+    home.activation.copyTailscaledService = mkIf cfg.enable (let
+      tailscaleService = "${cfg.package}/lib/systemd/system/tailscaled.service";
     in
-      lib.hm.dag.entryAfter ["writeBoundary"] ''
-        cp -r ${tailscaleLib} /etc/
-        systemctl reload-daemon
-        systemctl enable --now tailscaled
-      '';
+      lib.hm.dag.entryAfter ["installPackages"] ''
+        verboseEcho Copying the tailscale systemd files to /etc
+        run cp ${tailscaleService} /etc/systemd/system/tailscaled.service
+      '');
   };
 }

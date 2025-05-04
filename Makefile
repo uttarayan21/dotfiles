@@ -22,5 +22,9 @@ home:
 nixos:
 	sudo nixos-rebuild switch --flake .
 
+deck:
+	nix run home-manager/master -- switch --flake .#deck
+	
+
 test_nixos:
 	sudo nixos-rebuild test --fast --flake .

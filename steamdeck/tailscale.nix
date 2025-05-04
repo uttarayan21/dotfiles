@@ -6,5 +6,11 @@
   imports = [
     ../modules/home/tailscale.nix
   ];
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = false;
+  };
+
+  home.packages = [
+    pkgs.tailscale
+  ];
 }
