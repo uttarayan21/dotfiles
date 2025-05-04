@@ -20,7 +20,7 @@
   services = {
     ollama = {
       enable = true;
-      loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k"];
+      loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "Qwen/Qwen3-8B"];
       port = 11434;
       host = "0.0.0.0";
       environmentVariables = {

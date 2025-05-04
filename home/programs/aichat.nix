@@ -39,6 +39,10 @@
               name = "deepseek-r1:14b";
               type = "chat";
             }
+            {
+              name = "Qwen/Qwen3-8B";
+              type = "chat";
+            }
           ];
         }
         {
