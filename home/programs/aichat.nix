@@ -40,7 +40,7 @@
               type = "chat";
             }
             {
-              name = "Qwen/Qwen3-8B";
+              name = "qwen3:8b";
               type = "chat";
             }
           ];
