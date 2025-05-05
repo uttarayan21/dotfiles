@@ -5,6 +5,7 @@
     ./llama.nix
     ./minecraft.nix
     ./tailscale.nix
+    ./zerotier.nix
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
