@@ -4,12 +4,11 @@
     ./sunshine.nix
     ./ollama.nix
     ./rsyncd.nix
+    ./tailscale.nix
+    ./zerotier.nix
   ];
   services = {
     hardware.openrgb.enable = true;
-    tailscale = {
-      enable = true;
-    };
     mullvad-vpn.enable = true;
   };
 }
