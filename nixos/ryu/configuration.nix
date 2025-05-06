@@ -10,6 +10,12 @@
     # ./vms
   ];
 
+  sops = {
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
+    age.keyFile = "/home/servius/.config/sops/age/keys.txt";
+  };
+
   programs = {
     localsend = {
       enable = true;

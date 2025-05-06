@@ -159,6 +159,10 @@
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zeronsd = {
+      url = "github:uttarayan21/zeronsd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

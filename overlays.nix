@@ -136,17 +136,12 @@
       };
     };
     zeronsd = let
-      src = final.pkgs.fetchFromGitHub {
-        owner = "uttarayan21";
-        repo = "zeronsd";
-        rev = "6690ef46ef3dc112ab2c378d96af717e850f699f";
-        sha256 = "sha256-Vpz9iNsBvUFjmXgwbv0aGtG6dHWTtgIS8vrT9wHfZpA=";
-      };
+      src = inputs.zeronsd;
     in
       final.rustPlatform.buildRustPackage {
         inherit src;
         pname = "zeronsd";
-        version = "0.5.2";
+        version = "0.6";
 
         strictDeps = true;
         buildInputs = [final.pkgs.openssl];
