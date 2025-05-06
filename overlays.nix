@@ -135,6 +135,28 @@
         });
       };
     };
+    zeronsd = let
+      src = final.pkgs.fetchFromGitHub {
+        owner = "uttarayan21";
+        repo = "zeronsd";
+        rev = "6690ef46ef3dc112ab2c378d96af717e850f699f";
+        sha256 = "sha256-Vpz9iNsBvUFjmXgwbv0aGtG6dHWTtgIS8vrT9wHfZpA=";
+      };
+    in
+      final.rustPlatform.buildRustPackage {
+        inherit src;
+        pname = "zeronsd";
+        version = "0.5.2";
+
+        strictDeps = true;
+        buildInputs = [final.pkgs.openssl];
+        nativeBuildInputs = [final.pkgs.pkg-config];
+
+        doCheck = false;
+        RUSTFMT = "${final.pkgs.rustfmt}/bin/rustfmt";
+
+        cargoLock = {lockFile = "${src}/Cargo.lock";};
+      };
   };
   anyrun-overlay = final: prev: {
     anyrun =
