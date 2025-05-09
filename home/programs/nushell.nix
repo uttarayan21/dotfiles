@@ -14,7 +14,7 @@
     plugins = with pkgs.nushellPlugins; [
       formats
       polars
-      highlight
+      # highlight
     ];
     extraConfig = ''
       ${pkgs.pfetch-rs}/bin/pfetch

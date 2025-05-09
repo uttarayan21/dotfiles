@@ -29,8 +29,11 @@
     adb.enable = true;
     alvr.enable = true;
     alvr.openFirewall = true;
-    hyprland.enable = true;
-    hyprland.xwayland.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      xwayland.enable = true;
+    };
     yubikey-touch-detector.enable = true;
     steam = {
       enable = true;

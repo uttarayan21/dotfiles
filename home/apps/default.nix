@@ -24,5 +24,7 @@ lib.optionalAttrs device.hasGui {
     ./thunderbird.nix
     ./neovide.nix
     ./openscad.nix
+    ./bottles.nix
+    ./hyprpicker.nix
   ];
 }

@@ -7,6 +7,25 @@
     ../../modules/hyprpaper.nix
   ];
 
+  services.hyprpolkitagent.enable = true;
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+      listener = [
+        {
+          timeout = 900;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
+  services.hyprsunset = {
+    enable = true;
+  };
   programs.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
   in {
@@ -26,12 +45,13 @@
   };
   wayland.windowManager.hyprland = {
     enable = device.hasGui && pkgs.stdenv.isLinux;
+    systemd.enable = false;
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       "render:explicit_sync" = true;
       monitor = [
-        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, cm, hdredid"
+        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, cm, hdr"
         "${device.monitors.secondary},  2560x1440@170,  -1440x-1120,     1, transform, 1"
         "${device.monitors.tertiary},   2560x1440@170,   2560x-1120,     1, transform, 3"
       ];
@@ -137,7 +157,7 @@
       ];
       exec-once = [
         # "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
-        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
+        # "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         # "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"

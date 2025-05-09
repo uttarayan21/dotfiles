@@ -168,6 +168,20 @@ in {
       };
     };
     codecompanion.enable = true;
+    copilot-lua = {
+      enable = true;
+      settings = {
+        panel = {
+          enabled = true;
+        };
+        suggestion = {
+          enabled = true;
+          keymap = {
+            accept = "<C-l>";
+          };
+        };
+      };
+    };
 
     yazi = {
       enable = true;
@@ -564,16 +578,16 @@ in {
            end
        end
 
-       require("copilot").setup({
-           suggestion = {
-               enabled = true,
-               auto_trigger = true,
-               keymap = {
-                   accept = "<C-l>",
-               }
-           },
-           panel = { enabled = true },
-       })
+       -- require("copilot").setup({
+       --     suggestion = {
+       --         enabled = true,
+       --         auto_trigger = true,
+       --         keymap = {
+       --             accept = "<C-l>",
+       --         }
+       --     },
+       --     panel = { enabled = true },
+       -- })
 
        catcher(require('crates').setup)
        catcher(require('outline').setup)
@@ -710,7 +724,7 @@ in {
     '';
   extraPlugins = with pkgs.vimPlugins; [
     FTerm-nvim
-    copilot-lua
+    # copilot-lua
     crates-nvim
     # d2
     image-nvim
