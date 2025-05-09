@@ -160,7 +160,7 @@
         "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         # "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
-        "${pkgs.ironbar}/bin/ironbar"
+        # "${pkgs.ironbar}/bin/ironbar"
         # "${pkgs.swayosd}/bin/swayosd-server"
         # "${pkgs.nextcloud-client}/bin/nextcloud --background"
       ];

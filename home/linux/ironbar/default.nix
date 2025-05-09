@@ -7,6 +7,7 @@
   imports = [inputs.ironbar.homeManagerModules.default];
   programs.ironbar = {
     enable = device.hasGui && pkgs.stdenv.isLinux;
+    systemd = true;
     config.monitors = {
       "${device.monitors.secondary}" = {
         position = "bottom";
