@@ -178,7 +178,7 @@
   # };
   hardware = {
     keyboard.qmk.enable = true;
-    openrazer.enable = true;
+    # openrazer.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
