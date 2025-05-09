@@ -7,7 +7,7 @@
     ../../modules/hyprpaper.nix
   ];
 
-  services.hyprpolkitagent.enable = true;
+  # services.hyprpolkitagent.enable = true;
   services.hypridle = {
     enable = true;
     settings = {
@@ -157,7 +157,7 @@
       ];
       exec-once = [
         # "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
-        # "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
+        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         # "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         "${pkgs.ironbar}/bin/ironbar"
@@ -182,6 +182,7 @@
         # "$mainMod, M, exit,"
         "$mainMod, t, togglefloating,"
         "$mainMod, f, fullscreen,"
+        "$mainMod, g, fullscreenstate,0,2"
         "$mainMod, d, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, Space, exec, ${pkgs.anyrun}/bin/anyrun"
         "$mainMod, p, pseudo, # dwindle"
