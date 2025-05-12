@@ -31,7 +31,7 @@
     alvr.openFirewall = true;
     hyprland = {
       enable = true;
-      withUWSM = true;
+      # withUWSM = true;
       xwayland.enable = true;
     };
     yubikey-touch-detector.enable = true;

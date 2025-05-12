@@ -45,7 +45,7 @@
   };
   wayland.windowManager.hyprland = {
     enable = device.hasGui && pkgs.stdenv.isLinux;
-    systemd.enable = false;
+    systemd.enable = true;
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";

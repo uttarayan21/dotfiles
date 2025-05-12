@@ -5,26 +5,27 @@
 }:
 lib.optionalAttrs device.hasGui {
   imports = [
-    ./bambu-studio.nix
+    ./audacity.nix
+    ./bottles.nix
+    ./chromium.nix
     ./cursor.nix
     ./firefox.nix
     ./ghostty.nix
+    ./gimp.nix
     ./guitarix.nix
+    ./hyprpicker.nix
+    ./kicad.nix
     ./kitty.nix
     ./mpv.nix
+    ./neovide.nix
     ./obs-studio.nix
+    ./openscad.nix
+    ./orcaslicer.nix
+    ./thunderbird.nix
     ./vlc.nix
     ./vscode.nix
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix
-    ./gimp.nix
-    ./kicad.nix
-    ./chromium.nix
-    ./thunderbird.nix
-    ./neovide.nix
-    ./openscad.nix
-    ./bottles.nix
-    ./hyprpicker.nix
   ];
 }

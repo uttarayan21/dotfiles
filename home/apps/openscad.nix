@@ -4,6 +4,6 @@
   ...
 }: {
   home.packages = [
-    pkgs.openscad
+    pkgs.openscad-unstable
   ];
 }
