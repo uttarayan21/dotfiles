@@ -1,9 +1,9 @@
 {
   pkgs,
-  device,
+  lib,
   ...
 }: {
-  home.packages = [
+  home.packages = lib.optionals pkgs.stdenv.isLinux [
     pkgs.hyprpicker
   ];
 }

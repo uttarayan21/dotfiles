@@ -1,15 +1,18 @@
 {
   pkgs,
   device,
+  lib,
   ...
-}: {
+}:
+# lib.optionalAttrs device.isNix
+{
   imports = [
     ../../modules/hyprpaper.nix
   ];
 
   # services.hyprpolkitagent.enable = true;
   services.hypridle = {
-    enable = true;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -24,7 +27,7 @@
     };
   };
   services.hyprsunset = {
-    enable = true;
+    enable = device.hasGui && pkgs.stdenv.isLinux;
   };
   programs.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
