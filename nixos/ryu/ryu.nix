@@ -102,8 +102,11 @@
   ];
   boot.extraModulePackages = [];
   # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
-  services.udev.packages = [pkgs.via];
-  services.yubikey-agent.enable = true;
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+
+  # services.udev.packages = [pkgs.via];
+  # services.yubikey-agent.enable = true;
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';

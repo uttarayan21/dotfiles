@@ -27,5 +27,7 @@ lib.optionalAttrs device.hasGui {
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix
+    ./discord.nix
+    ./slack.nix
   ];
 }

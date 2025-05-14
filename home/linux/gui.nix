@@ -21,8 +21,6 @@
   };
   home.packages = with pkgs;
     lib.optionals pkgs.stdenv.isLinux [
-      discord
-      jdk
       mullvad-closest
       mullvad-vpn
       nautilus
