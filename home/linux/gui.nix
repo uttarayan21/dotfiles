@@ -34,7 +34,6 @@
       steam-run
       wl-clipboard
       zed-editor
-      webcord
       prismlauncher
     ];
 }

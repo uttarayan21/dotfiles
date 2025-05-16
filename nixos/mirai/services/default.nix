@@ -9,6 +9,7 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
+    ./appflowy.nix
 
     # ./jellyfin.nix
     # ./polaris.nix

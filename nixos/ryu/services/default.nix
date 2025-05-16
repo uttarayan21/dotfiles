@@ -1,14 +1,15 @@
 {...}: {
   imports = [
-    # ./sunshine.nix
     # ./ollama.nix
     # ./rsyncd.nix
-    ./samba.nix
-    ./tailscale.nix
+    # ./sunshine.nix
     # ./zerotier.nix
+    ./tailscale.nix
+    ./samba.nix
+    ./mullvad.nix
+    ./openrgb.nix
   ];
   services = {
     # hardware.openrgb.enable = true;
-    mullvad-vpn.enable = true;
   };
 }

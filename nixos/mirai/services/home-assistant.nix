@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services = {
     home-assistant = {
-      enable = false;
+      enable = true;
       extraComponents = [
         "esphome"
         "met"
