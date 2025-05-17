@@ -32,6 +32,7 @@
     ./zoxide.nix
     #./template.nix
     ./mpd.nix
+    ./mpris-scrobbler.nix
   ];
   home.packages = with pkgs;
     [
