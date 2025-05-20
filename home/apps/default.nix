@@ -29,5 +29,6 @@ lib.optionalAttrs device.hasGui {
     ./zed.nix
     ./discord.nix
     ./slack.nix
+    ./rpcs3.nix
   ];
 }
