@@ -1,6 +1,6 @@
 {...}: {
   programs.tuifeed = {
-    enable = false;
+    enable = true;
     config = {
       sources = {
         "r/rust" = "https://www.reddit.com/r/rust/.rss";
