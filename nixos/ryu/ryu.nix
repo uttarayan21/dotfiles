@@ -98,7 +98,7 @@
   ];
   boot.kernelParams = [
     "intel_iommu=on"
-    "vfio-pci.ids="
+    # "vfio-pci.ids="
   ];
   boot.extraModulePackages = [];
   # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
@@ -158,4 +158,5 @@
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.firmware = [pkgs.linux-firmware];
 }

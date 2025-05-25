@@ -8,6 +8,7 @@
     ./ryu.nix
     ./services
     ./programs
+    ./apps
     # ./vms
   ];
 
@@ -36,8 +37,6 @@
       polkitPolicyOwners = ["servius"];
     };
     adb.enable = true;
-    alvr.enable = true;
-    alvr.openFirewall = true;
     hyprland = {
       enable = true;
       # withUWSM = true;

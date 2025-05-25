@@ -19,14 +19,14 @@
     ./helix.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
-    # ./newsboat.nix
+    ./newsboat.nix
     ./nix-index.nix
     ./nushell.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
-    # ./tuifeed.nix
+    ./tuifeed.nix
     ./yazi.nix
     # ./zellij.nix
     ./zoxide.nix
