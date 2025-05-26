@@ -203,11 +203,6 @@ in {
       };
     };
 
-    # navic = {
-    #   enable = true;
-    #   settings.lsp.auto_attach = true;
-    # };
-
     mini = {
       enable = true;
       modules = {
@@ -579,21 +574,8 @@ in {
            end
        end
 
-       -- require("copilot").setup({
-       --     suggestion = {
-       --         enabled = true,
-       --         auto_trigger = true,
-       --         keymap = {
-       --             accept = "<C-l>",
-       --         }
-       --     },
-       --     panel = { enabled = true },
-       -- })
-
        catcher(require('crates').setup)
        catcher(require('outline').setup)
-
-
 
        require('FTerm').setup({
            border     = 'single',
@@ -725,9 +707,7 @@ in {
     '';
   extraPlugins = with pkgs.vimPlugins; [
     FTerm-nvim
-    # copilot-lua
     crates-nvim
-    # d2
     image-nvim
     iron-nvim
     luasnip
@@ -737,7 +717,6 @@ in {
     octo-nvim
     outline-nvim
     plenary-nvim
-    # typr
     vim-abolish
     vim-speeddating
     webapi-vim
@@ -746,8 +725,7 @@ in {
     pkgs.tree-sitter-grammars.tree-sitter-norg
     pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     pkgs.tree-sitter-grammars.tree-sitter-nu
-    # pkgs.tree-sitter-grammars.tree-sitter-d2
   ];
   extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-  extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl];
+  extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl pkgs.sqls];
 }

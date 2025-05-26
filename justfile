@@ -2,7 +2,7 @@ set dotenv-load
 
 [macos]
 install: 
-    nix run nix-darwin -- switch --flake .
+    sudo nix run nix-darwin -- switch --flake .
 
 [linux]
 install:

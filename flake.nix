@@ -163,10 +163,10 @@
       url = "github:uttarayan21/zeronsd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    alvr = {
-      url = "git+file:/home/servius/Projects/ALVR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # alvr = {
+    #   url = "git+file:/home/servius/Projects/ALVR";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {

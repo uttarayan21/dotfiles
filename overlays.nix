@@ -152,7 +152,7 @@
 
         cargoLock = {lockFile = "${src}/Cargo.lock";};
       };
-    alvr-master = inputs.alvr.packages.${prev.system}.default;
+    # alvr-master = inputs.alvr.packages.${prev.system}.default;
   };
   anyrun-overlay = final: prev: {
     anyrun =
