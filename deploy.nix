@@ -47,7 +47,7 @@
       };
     };
     deck = {
-      hostname = "192.168.0.183";
+      hostname = "steamdeck";
       profiles.system = {
         sshUser = "deck";
         path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
