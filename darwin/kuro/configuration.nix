@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  imports = [./services ./homebrew.nix];
+  imports = [./services ./homebrew.nix ./programs];
 
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {

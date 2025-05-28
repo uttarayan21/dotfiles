@@ -17,9 +17,9 @@
     ./git.nix
     ./goread.nix
     ./helix.nix
-    # ./ncmpcpp.nix
-    # ./neomutt.nix
+    ./mpd.nix
     ./newsboat.nix
+    ./nh.nix
     ./nix-index.nix
     ./nushell.nix
     ./sops.nix
@@ -28,11 +28,12 @@
     ./tmux.nix
     ./tuifeed.nix
     ./yazi.nix
-    # ./zellij.nix
     ./zoxide.nix
-    #./template.nix
-    ./mpd.nix
     ./mpris-scrobbler.nix
+    # ./ncmpcpp.nix
+    # ./neomutt.nix
+    # ./zellij.nix
+    #./template.nix
   ];
   home.packages = with pkgs;
     [
