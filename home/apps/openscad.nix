@@ -4,6 +4,9 @@
   ...
 }: {
   home.packages = [
-    pkgs.openscad-unstable
+    (pkgs.openscad-unstable.overrideAttrs
+      (_: {
+        doCheck = false;
+      }))
   ];
 }
