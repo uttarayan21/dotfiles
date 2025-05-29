@@ -5,6 +5,5 @@
         nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.cudatoolkit];
         buildInputs = oldAttrs.buildInputs ++ [pkgs.cudatoolkit];
       }))
-      # (pkgs.callPackage ./orca.nix {})
     ];
 }

@@ -329,7 +329,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.cudaSupport = true;
+  # nixpkgs.config.cudaSupport = true;
 
   fonts.fontconfig.enable = true;
   fonts.fontDir.enable = true;

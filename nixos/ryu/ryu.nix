@@ -10,20 +10,44 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    # ./disk-config.nix
   ];
+  # services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        intel-vaapi-driver
+        # nvidia-vaapi-driver
+        # vaapiVdpau
+        # libvdpau-va-gl
+      ];
+    };
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      open = false;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+    cpu.intel.updateMicrocode =
+      lib.mkDefault config.hardware.enableRedistributableFirmware;
+    firmware = [pkgs.linux-firmware];
+  };
+  # nixpkgs.config.cudaSupport = true;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      intel-compute-runtime
-      # intel-media-driver # LIBVA_DRIVER_NAME=iHD
-      # intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
-      # vpl-gpu-rt # for newer GPUs on NixOS >24.05 or unstable
-      # libvdpau-va-gl
-      nvidia-vaapi-driver
-    ];
+  services.fprintd.enable = true;
+  services.sshd.enable = true;
+  boot.loader.systemd-boot.consoleMode = "max";
+
+  environment.sessionVariables = {
+    # LIBVA_DRIVER_NAME = "i965";
+    __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    NVD_BACKEND = "direct";
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NIXOS_OZONE_WL = "1";
   };
 
   virtualisation.libvirtd.enable = true;
@@ -34,47 +58,6 @@
     options kvm_intel emulate_invalid_guest_state=0
     options kvm ignore_msrs=1
   '';
-
-  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
-  services.fprintd.enable = true;
-  services.sshd.enable = true;
-  boot.loader.systemd-boot.consoleMode = "max";
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
-    powerManagement.enable = true;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
-
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
 
   # hardware.bluetooth.settings = {
 
@@ -97,16 +80,13 @@
     "nvidia_drm"
   ];
   boot.kernelParams = [
-    "intel_iommu=on"
+    # "intel_iommu=on"
     # "vfio-pci.ids="
   ];
   boot.extraModulePackages = [];
-  # services.udev.packages = [pkgs.yubikey-personalization pkgs.yubikey-personalization-gui pkgs.via];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
 
-  # services.udev.packages = [pkgs.via];
-  # services.yubikey-agent.enable = true;
   services.udev.extraRules = ''
     KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
@@ -156,7 +136,4 @@
   # networking.interfaces.wlp4s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
-  hardware.firmware = [pkgs.linux-firmware];
 }
