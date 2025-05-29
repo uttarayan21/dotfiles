@@ -35,7 +35,6 @@
       lib.mkDefault config.hardware.enableRedistributableFirmware;
     firmware = [pkgs.linux-firmware];
   };
-  nixpkgs.config.cudaSupport = true;
 
   services.fprintd.enable = true;
   services.sshd.enable = true;
@@ -43,9 +42,9 @@
 
   environment.sessionVariables = {
     # LIBVA_DRIVER_NAME = "i965";
-    __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
-    NVD_BACKEND = "direct";
+    # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
     LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     NIXOS_OZONE_WL = "1";
   };
@@ -58,8 +57,6 @@
     options kvm_intel emulate_invalid_guest_state=0
     options kvm ignore_msrs=1
   '';
-
-  # hardware.bluetooth.settings = {
 
   boot.initrd.availableKernelModules = [
     "vmd"
@@ -80,7 +77,7 @@
     "nvidia_drm"
   ];
   boot.kernelParams = [
-    # "intel_iommu=on"
+    "intel_iommu=on"
     # "vfio-pci.ids="
   ];
   boot.extraModulePackages = [];
