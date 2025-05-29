@@ -35,7 +35,7 @@
       lib.mkDefault config.hardware.enableRedistributableFirmware;
     firmware = [pkgs.linux-firmware];
   };
-  # nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = true;
 
   services.fprintd.enable = true;
   services.sshd.enable = true;
