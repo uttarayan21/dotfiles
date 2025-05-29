@@ -11,14 +11,14 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-  # services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
+  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
   hardware = {
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
         intel-vaapi-driver
-        # nvidia-vaapi-driver
+        nvidia-vaapi-driver
         # vaapiVdpau
         # libvdpau-va-gl
       ];
