@@ -1,9 +1,10 @@
 {
   pkgs,
   device,
+  lib,
   ...
 }: {
-  home.packages = [
+  home.packages = lib.optionals pkgs.stdenv.isLinux [
     (pkgs.openscad-unstable.overrideAttrs
       (_: {
         doCheck = false;

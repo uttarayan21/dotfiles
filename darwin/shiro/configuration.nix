@@ -75,6 +75,7 @@
   programs.fish.enable = true;
 
   # services.nix-daemon.enable = true;
+  system.primaryUser = "servius";
   system.stateVersion = 4;
 
   system.keyboard.enableKeyMapping = true;
