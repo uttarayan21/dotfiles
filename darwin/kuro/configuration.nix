@@ -63,6 +63,7 @@
 
   # services.nix-daemon.enable = true;
   system.stateVersion = 5;
+  system.primaryUser = "fs0c131y";
 
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
