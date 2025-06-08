@@ -30,6 +30,6 @@ lib.optionalAttrs device.hasGui {
     ./discord.nix
     ./slack.nix
     ./rpcs3.nix
-    ./rpcs2.nix
+    ./pcsx2.nix
   ];
 }
