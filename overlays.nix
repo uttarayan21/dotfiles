@@ -9,6 +9,7 @@
     };
   };
   misc-applications = final: prev: {
+    # ironbar = inputs.ironbar.packages.${prev.system}.default;
     goread = final.pkgs.buildGoModule {
       pname = "goread";
       version = "v1.6.4";
