@@ -4,7 +4,7 @@
       sessions = [
         {
           name = "mirai-socks";
-          extraArguments = "-N -D 1080 -M 0";
+          extraArguments = "-N -D 1080";
           user = "fs0c131y";
         }
       ];
