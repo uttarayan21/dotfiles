@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  mkScript = scriptFile: deps: (pkgs.writeShellApplication {
+    runtimeInputs = deps;
+    name = builtins.baseNameOf scriptFile;
+    text = builtins.readFile scriptFile;
+  });
+in {
   home.packages = [
     (pkgs.writeShellApplication
       {
@@ -26,5 +32,7 @@
           exec $EDITOR "$1"
         '';
       })
+    (mkScript ../scripts/yt-dlp.sh (with pkgs; [yt-dlp]))
+    (mkScript ../scripts/autossh.sh (with pkgs; [autossh openssh]))
   ];
 }

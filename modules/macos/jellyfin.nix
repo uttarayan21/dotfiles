@@ -37,39 +37,40 @@ in {
   };
 
   config = mkIf cfg.enable {
-    users.users.jellyfin = {
-      name = "jellyfin";
-      uid = mkDefault 601;
-      gid = mkDefault config.users.groups.jellyfin.gid;
-      home = cfg.dataDir;
-      createHome = true;
-      shell = "/bin/bash";
-      description = "Jellyfin runner user account";
-    };
-    users.groups.jellyfin = {
-      name = "jellyfin";
-      gid = mkDefault 602;
-      description = "Jellyfin runner group";
-    };
+    # users.users.jellyfin = {
+    #   name = "jellyfin";
+    #   uid = mkDefault 601;
+    #   gid = mkDefault config.users.groups.jellyfin.gid;
+    #   home = cfg.dataDir;
+    #   createHome = true;
+    #   shell = "/bin/bash";
+    #   description = "Jellyfin runner user account";
+    # };
+    # users.groups.jellyfin = {
+    #   name = "jellyfin";
+    #   gid = mkDefault 602;
+    #   description = "Jellyfin runner group";
+    # };
 
     environment.systemPackages = [cfg.package];
 
     launchd.daemons.jellyfin = {
-      environment = {
-        HOME = cfg.dataDir;
-      };
+      # environment = {
+      #   HOME = cfg.dataDir;
+      # };
       path = [cfg.package pkgs.coreutils pkgs.darwin.DarwinTools];
       command = "${lib.getExe cfg.package}";
       serviceConfig = {
+        UserName = "servius";
         # ProcessType = "Background";
-        Label = "org.jellyfin.server";
-        RunAtLoad = true;
-        # KeepAlive = true;
-        UserName = "${config.users.users.jellyfin.name}";
-        GroupName = "${config.users.groups.jellyfin.name}";
-        StandardOutPath = "${cfg.dataDir}/log/jellyfin.log";
-        StandardErrorPath = "${cfg.dataDir}/log/jellyfin.error.log";
-        WorkingDirectory = cfg.dataDir;
+        # Label = "org.jellyfin.server";
+        # RunAtLoad = true;
+        KeepAlive = true;
+        # UserName = "${config.users.users.jellyfin.name}";
+        # GroupName = "${config.users.groups.jellyfin.name}";
+        # StandardOutPath = "${cfg.dataDir}/log/jellyfin.log";
+        # StandardErrorPath = "${cfg.dataDir}/log/jellyfin.error.log";
+        # WorkingDirectory = cfg.dataDir;
       };
     };
   };
