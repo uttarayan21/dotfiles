@@ -5,6 +5,7 @@
     ./tailscale.nix
     ./zerotier.nix
     ./jellyfin.nix
+    ./autossh.nix
     # ./aerospace.nix
   ];
 }
