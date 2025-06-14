@@ -9,6 +9,7 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
+    ./home-assistant.nix
     # ./appflowy.nix
 
     # ./jellyfin.nix
@@ -19,7 +20,6 @@
     # ./nextcloud.nix
     # ./navidrome.nix
     # ./ldap.nix
-    # ./home-assistant.nix
     # ./llama.nix
     # ./nextcloud.nix
   ];

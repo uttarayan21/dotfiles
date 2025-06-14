@@ -6,6 +6,7 @@
     ./zerotier.nix
     ./jellyfin.nix
     ./autossh.nix
+    # ./homeassistant.nix
     # ./aerospace.nix
   ];
 }

@@ -30,8 +30,15 @@
             copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
         }
         reverse_proxy localhost:8123
-
       '';
     };
   };
+  networking.firewall.allowedTCPPorts = [5555 5353 1900 51827 48784 38989 18555];
+  networking.firewall.allowedUDPPorts = [5555];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 21063;
+      to = 21070;
+    }
+  ];
 }
