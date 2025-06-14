@@ -31,5 +31,6 @@ lib.optionalAttrs device.hasGui {
     ./slack.nix
     ./rpcs3.nix
     ./pcsx2.nix
+    ./seafile.nix
   ];
 }
