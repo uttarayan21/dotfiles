@@ -9,12 +9,12 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
-    ./home-assistant.nix
     # ./appflowy.nix
+    # ./home-assistant.nix
 
     # ./jellyfin.nix
     # ./polaris.nix
-    # ./seafile.nix
+    ./seafile.nix
     # ./syncthing.nix
     # ./vscode.nix
     # ./nextcloud.nix
