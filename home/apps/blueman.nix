@@ -7,6 +7,5 @@
     pkgs.blueman
     pkgs.webcord
   ];
-  # services.blueman.enable = true;
-  services.blueman-applet.enable = true;
+  services.blueman-applet.enable = pkgs.stdenv.isLinux;
 }
