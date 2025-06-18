@@ -167,7 +167,6 @@ in {
         };
       };
     };
-    codecompanion.enable = true;
     copilot-lua = {
       enable = true;
       settings = {
@@ -231,7 +230,7 @@ in {
         };
         "core.completion" = {
           config = {
-            engine = "nvim-cmp";
+            engine = "blink-cmp";
             name = "[Norg]";
           };
         };
@@ -501,64 +500,94 @@ in {
           end
         '';
     };
-    cmp = {
+    blink-cmp = {
       enable = true;
       settings = {
-        autoEnableSources = true;
-        sources = [
-          {name = "buffer";}
-          {name = "buffer";}
-          {name = "cmdline";}
-          {name = "cmp-clippy";}
-          {name = "cmp-cmdline-history";}
-          {name = "crates";}
-          {name = "dap";}
-          # {name = "dictionary";}
-          {name = "fish";}
-          {name = "git";}
-          {name = "luasnip";}
-          {name = "nvim_lsp";}
-          {name = "nvim_lua";}
-          {name = "nvim_lsp_signature_help";}
-          {name = "nvim_lsp_document_symbol";}
-          {name = "path";}
-          {name = "rg";}
-          {name = "spell";}
-          {name = "tmux";}
-          {name = "treesitter";}
-        ];
-        view = {
-          entries = {
-            name = "custom";
-            selection_order = "near_cursor";
+        sources = {
+          cmdline = [];
+          default = ["dictionary" "path" "lsp" "buffer"];
+          providers = {
+            buffer = {
+              score_offset = -7;
+            };
+            lsp = {
+              fallbacks = [];
+            };
+            path = {};
+            dictionary = {
+              module = "blink-cmp-dictionary";
+              name = "Dict";
+              min_keyword_length = 3;
+              opts = {
+              };
+            };
           };
         };
-        window = {
-          completion = {
-            inherit border;
-          };
-          documentation = {
-            inherit border;
-          };
-        };
-        mapping = {
-          # "<CR>" = "cmp.mapping.confirm({select = true})";
-          "<CR>" = "cmp.mapping.confirm()";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-        };
-        snippet.expand =
-          /*
-          lua
-          */
-          ''
-            function(args)
-                require('luasnip').lsp_expand(args.body)
-            end
-          '';
       };
     };
+    blink-cmp-dictionary.enable = true;
+    blink-cmp-git.enable = true;
+    blink-cmp-copilot.enable = true;
+    blink-cmp-spell.enable = true;
+    blink-compat.enable = true;
+    #cmp = {
+    #  enable = true;
+    #  settings = {
+    #    autoEnableSources = true;
+    #    sources = [
+    #      {name = "buffer";}
+    #      {name = "buffer";}
+    #      {name = "cmdline";}
+    #      {name = "cmp-clippy";}
+    #      {name = "cmp-cmdline-history";}
+    #      {name = "crates";}
+    #      {name = "dap";}
+    #      # {name = "dictionary";}
+    #      {name = "fish";}
+    #      {name = "git";}
+    #      {name = "luasnip";}
+    #      {name = "nvim_lsp";}
+    #      {name = "nvim_lua";}
+    #      {name = "nvim_lsp_signature_help";}
+    #      {name = "nvim_lsp_document_symbol";}
+    #      {name = "path";}
+    #      {name = "rg";}
+    #      {name = "spell";}
+    #      {name = "tmux";}
+    #      {name = "treesitter";}
+    #    ];
+    #    view = {
+    #      entries = {
+    #        name = "custom";
+    #        selection_order = "near_cursor";
+    #      };
+    #    };
+    #    window = {
+    #      completion = {
+    #        inherit border;
+    #      };
+    #      documentation = {
+    #        inherit border;
+    #      };
+    #    };
+    #    mapping = {
+    #      # "<CR>" = "cmp.mapping.confirm({select = true})";
+    #      "<CR>" = "cmp.mapping.confirm()";
+    #      "<C-Space>" = "cmp.mapping.complete()";
+    #      "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+    #      "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+    #    };
+    #    snippet.expand =
+    #      /*
+    #      lua
+    #      */
+    #      ''
+    #        function(args)
+    #            require('luasnip').lsp_expand(args.body)
+    #        end
+    #      '';
+    #  };
+    #};
   };
   extraConfigLua =
     /*
