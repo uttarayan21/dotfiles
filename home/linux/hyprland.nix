@@ -202,7 +202,6 @@
         # Screenshot
         # "$mainMod,Print, exec, grim"
         # "$mainModShift,Print, exec, grim -g "$(slurp)""
-        "$mainModShift,s, exec, ${pkgs.watershot}/bin/watershot"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"

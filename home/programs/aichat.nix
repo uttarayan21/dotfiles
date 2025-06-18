@@ -1,16 +1,11 @@
-{
-  pkgs,
-  lib,
-  device,
-  config,
-  ...
-}: {
+{config, ...}: {
   sops = {
     secrets."llama/api_key" = {};
     secrets."openai/api_key" = {};
     secrets."openrouter/api_key" = {};
     secrets."gemini/api_key" = {};
   };
+  imports = [../../modules/aichat.nix];
   programs.aichat = {
     enable = true;
     enableFishIntegration = true;
@@ -50,6 +45,7 @@
           name = "gemini";
           api_base = "https://generativelanguage.googleapis.com/v1beta";
           api_key_cmd = "cat ${config.sops.secrets."gemini/api_key".path}";
+          # api_key_file = "${config.sops.secrets."gemini/api_key".path}";
           models = [
             {
               name = "gemini-2.5-flash-preview-04-17";

@@ -29,7 +29,7 @@ with lib; let
     $env.config.keybindings = ($env.config.keybindings | append {
             name: aichat_integration
             modifier: control
-            keycode: char_g
+            keycode: char_o
             mode: [emacs, vi_insert]
             event:[
                 {

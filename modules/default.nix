@@ -6,7 +6,7 @@
   imports = [
     ./goread.nix
     ./hyprpaper.nix
-    ./aichat.nix
+    # ./aichat.nix
     ./tuifeed.nix
     #./ghostty.nix
     # ./sketchybar.nix

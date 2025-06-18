@@ -5,7 +5,7 @@
 }: {
   imports = [
     ../../modules
-    ./aichat.nix
+    # ./aichat.nix
     ./atuin.nix
     ./bat.nix
     ./carapace.nix
