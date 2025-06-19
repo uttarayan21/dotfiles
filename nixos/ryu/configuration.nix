@@ -191,9 +191,9 @@
         layout = "us";
         variant = "";
       };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
     };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;

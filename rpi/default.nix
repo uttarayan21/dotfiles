@@ -1,18 +1,30 @@
 {
+  nixpkgs,
   devices,
   inputs,
   overlays,
   home-manager,
-  nix-darwin,
+  nur,
+  nixos-rpi,
   ...
 }: (builtins.mapAttrs (
     name: device:
-      nix-darwin.lib.darwinSystem {
+      nixpkgs.lib.nixosSystem {
         system = device.system;
+        specialArgs = {
+          inherit device;
+          stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
+        };
         modules = [
+          nur.modules.nixos.default
+          inputs.sops-nix.nixosModules.sops
+          inputs.disko.nixosModules.disko
           {nixpkgs.overlays = overlays;}
           ./${device.name}/configuration.nix
-          home-manager.darwinModules.home-manager
+          home-manager.nixosModules.home-manager
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.musnix.nixosModules.musnix
+          inputs.arion.nixosModules.arion
           {
             nixpkgs.config.allowUnfree = true;
             home-manager = {
@@ -22,6 +34,7 @@
               extraSpecialArgs = {
                 inherit inputs;
                 inherit device;
+                stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
               };
               users.${device.user}.imports = [../home];
             };

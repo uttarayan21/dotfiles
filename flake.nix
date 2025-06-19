@@ -167,6 +167,9 @@
     #   url = "git+file:/home/servius/Projects/ALVR";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    nixos-rpi = {
+      url = "github:nvmd/nixos-raspberrypi/main";
+    };
   };
 
   outputs = {
@@ -178,18 +181,19 @@
     anyrun,
     nur,
     deploy-rs,
+    nixos-rpi,
     ...
   } @ inputs: let
-    config_devices = [
-      {
+    devices = {
+      mirai = mkDevice {
         name = "mirai";
         system = "x86_64-linux";
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
         isNix = true;
         isServer = true;
-      }
-      {
+      };
+      ryu = mkDevice {
         name = "ryu";
         system = "x86_64-linux";
         user = "servius";
@@ -202,36 +206,44 @@
           # Gigabyte M27Q
           tertiary = "DP-1";
         };
-      }
-      {
+      };
+      deoxys = mkDevice {
         name = "deoxys";
         system = "x86_64-linux";
         user = "servius";
         hasGui = false; # It's a vm so no GUI apps are used
         isNix = true;
         isServer = true;
-      }
-      {
+      };
+      rpi = mkDevice {
+        name = "rpi";
+        system = "aarch64-linux";
+        user = "servius";
+        hasGui = false;
+        isNix = true;
+        isServer = true;
+      };
+      kuro = mkDevice {
         name = "kuro";
         system = "aarch64-darwin";
         user = "fs0c131y";
-      }
-      {
+      };
+      shiro = mkDevice {
         name = "shiro";
         system = "aarch64-darwin";
         user = "servius";
         isServer = false;
-      }
-      {
+      };
+      deck = mkDevice {
         name = "SteamDeck";
         system = "x86_64-linux";
         user = "deck";
         hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
         isServer = true;
-      }
-    ];
+      };
+    };
 
-    mkDevice = {device}: {
+    mkDevice = device: {
       isLinux = !isNull (builtins.match ".*-linux" device.system);
       isServer =
         if (builtins.hasAttr "isServer" device)
@@ -255,24 +267,27 @@
       user = device.user;
     };
 
-    devices =
-      builtins.map (device: mkDevice {inherit device;}) config_devices;
-
-    nixos_devices = builtins.filter (x: x.isNix) devices;
-    linux_devices = builtins.filter (x: x.isLinux) devices;
-    darwin_devices = builtins.filter (x: x.isDarwin) devices;
+    nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;
+    linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
+    darwin_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isDarwin) devices;
+    rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: n == "rpi") devices;
 
     overlays = import ./overlays.nix {
       inherit inputs;
     };
   in
     rec {
-      nixosConfigurations = let
-        devices = nixos_devices;
-      in
-        import ./nixos {
-          inherit devices inputs nixpkgs home-manager overlays nur;
-        };
+      nixosConfigurations =
+        (import ./nixos {
+          inherit inputs nixpkgs home-manager overlays nur;
+          devices = nixos_devices;
+        })
+        // (
+          import ./rpi {
+            inherit inputs nixpkgs home-manager overlays nur nixos-rpi;
+            devices = rpi_devices;
+          }
+        );
 
       darwinConfigurations = let
         devices = darwin_devices;
