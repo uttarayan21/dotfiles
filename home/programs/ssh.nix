@@ -7,6 +7,10 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
+      rpi = {
+        user = "servius";
+        hostname = "rpi";
+      };
       github = {
         user = "git";
         host = "github.com";

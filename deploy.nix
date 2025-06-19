@@ -12,6 +12,13 @@
         user = "root";
       };
     };
+    rpi = {
+      hostname = "rpi";
+      profiles.system = {
+        sshUser = "servius";
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.rpi;
+      };
+    };
     ryu = {
       hostname = "ryu";
       profiles.system = {
