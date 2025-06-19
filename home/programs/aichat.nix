@@ -5,8 +5,10 @@
     secrets."openrouter/api_key" = {};
     secrets."gemini/api_key" = {};
   };
-  imports = [../../modules/aichat.nix];
-  programs.aichat = {
+  imports = [
+    ../../modules/aichat.nix
+  ];
+  programs.mayichat = {
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = false;

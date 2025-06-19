@@ -505,7 +505,7 @@ in {
       settings = {
         sources = {
           cmdline = [];
-          default = ["dictionary" "path" "lsp" "buffer"];
+          default = ["lsp" "dictionary" "snippets" "path" "buffer"];
           providers = {
             buffer = {
               score_offset = -7;
