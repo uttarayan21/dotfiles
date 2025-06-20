@@ -9,13 +9,21 @@
   ...
 }: (builtins.mapAttrs (
     name: device:
-      nixpkgs.lib.nixosSystem {
+      nixos-rpi.lib.nixosSystemFull {
+        inherit nixpkgs;
         system = device.system;
         specialArgs = {
           inherit device;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
         };
         modules = [
+          {
+            imports = with nixos-rpi.nixosModules; [
+              raspberry-pi-5.base
+              raspberry-pi-5.display-vc4
+              raspberry-pi-5.bluetooth
+            ];
+          }
           {nixpkgs.overlays = overlays;}
           nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
