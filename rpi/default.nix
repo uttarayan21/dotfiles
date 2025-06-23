@@ -19,16 +19,19 @@
         modules = [
           {
             imports = with nixos-rpi.nixosModules; [
+              nixos-raspberrypi.lib.inject-overlays
               raspberry-pi-5.base
               raspberry-pi-5.display-vc4
               raspberry-pi-5.bluetooth
+              trusted-nix-caches
+              nixpkgs-rpi
+              nixos-raspberrypi.lib.inject-overlays-global
             ];
           }
           {nixpkgs.overlays = overlays;}
           nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
-          inputs.lanzaboote.nixosModules.lanzaboote
           inputs.arion.nixosModules.arion
           ./configuration.nix
           {
