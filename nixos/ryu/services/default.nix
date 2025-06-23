@@ -8,6 +8,7 @@
     ./samba.nix
     ./mullvad.nix
     ./openrgb.nix
+    ./command-runner.nix
   ];
   services = {
     # hardware.openrgb.enable = true;

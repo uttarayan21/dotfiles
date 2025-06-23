@@ -170,6 +170,11 @@
     nixos-rpi = {
       url = "github:nvmd/nixos-raspberrypi/main";
     };
+    command-runner = {
+      # url = "github:uttarayan21/command-runner";
+      url = "git+file:/home/servius/Projects/command-runner";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

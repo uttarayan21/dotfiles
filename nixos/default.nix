@@ -22,9 +22,10 @@
           {nixpkgs.overlays = overlays;}
           ./${device.name}/configuration.nix
           home-manager.nixosModules.home-manager
+          inputs.arion.nixosModules.arion
+          inputs.command-runner.nixosModules.command-runner
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix
-          inputs.arion.nixosModules.arion
           {
             nixpkgs.config.allowUnfree = true;
             home-manager = {
