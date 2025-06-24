@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  networking.hostName = "xatu";
+  networking.hostName = "ude";
   networking.filrewall.logRefusedConnections = lib.mkDefault false;
   networking.useNetworkd = true;
   systemd.services.NetworkManager-wait-online.enable = false;

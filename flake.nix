@@ -226,8 +226,8 @@
         isNix = true;
         isServer = true;
       };
-      rpi = mkDevice {
-        name = "rpi";
+      ude = mkDevice {
+        name = "ude";
         system = "aarch64-linux";
         user = "servius";
         hasGui = false;
@@ -265,6 +265,7 @@
         then device.isNix
         else false;
       isDarwin = !isNull (builtins.match ".*-darwin" device.system);
+      isArm = !isNull (builtins.match "aarch64-.*" device.system);
       hasGui =
         if (builtins.hasAttr "hasGui" device)
         then device.hasGui
@@ -281,7 +282,7 @@
     nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;
     linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
     darwin_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isDarwin) devices;
-    rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: n == "rpi") devices;
+    rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isArm && x.isLinux) devices;
 
     overlays = import ./overlays.nix {
       inherit inputs;
@@ -294,7 +295,7 @@
           devices = nixos_devices;
         })
         // (
-          import ./rpi {
+          import ./nixos/ude {
             inherit inputs nixpkgs home-manager overlays nur nixos-rpi;
             devices = rpi_devices;
           }
