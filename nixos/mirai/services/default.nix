@@ -9,8 +9,8 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
-    ./navidrome.nix
 
+    # ./navidrome.nix
     # ./home-assistant.nix
     # ./jellyfin.nix
     # ./polaris.nix
