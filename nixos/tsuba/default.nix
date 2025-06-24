@@ -27,13 +27,15 @@
               nixpkgs-rpi
               nixos-raspberrypi.lib.inject-overlays-global
             ];
+            networking.hostName = name;
           }
+          ./configuration.nix
+          ./${name}.nix
           {nixpkgs.overlays = overlays;}
           nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           inputs.arion.nixosModules.arion
-          ./configuration.nix
           {
             nixpkgs.config.allowUnfree = true;
           }

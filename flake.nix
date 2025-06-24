@@ -226,8 +226,8 @@
         isNix = true;
         isServer = true;
       };
-      ude = mkDevice {
-        name = "ude";
+      tsuba = mkDevice {
+        name = "tsuba";
         system = "aarch64-linux";
         user = "servius";
         hasGui = false;
@@ -295,7 +295,7 @@
           devices = nixos_devices;
         })
         // (
-          import ./nixos/ude {
+          import ./nixos/tsuba {
             inherit inputs nixpkgs home-manager overlays nur nixos-rpi;
             devices = rpi_devices;
           }
