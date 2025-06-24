@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./tailscale.nix
+    ../home/programs/ssh.nix
   ];
   programs = {
     home-manager.enable = true;
@@ -17,6 +18,7 @@
     packages = with pkgs; [
       _1password-cli
       (nixvim.makeNixvim (import ../neovim))
+      just
     ];
     stateVersion = "24.11";
   };
