@@ -1,0 +1,8 @@
+jobs:
+  nix_check:
+    name: Build Nix targets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@main

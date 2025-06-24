@@ -277,15 +277,15 @@
       "locked": {
         "lastModified": 1750536858,
         "narHash": "sha256-bcftbYApVuB4bUqP6Z0frUh2b9+yiAkyy+EXijZcoc4=",
-        "ref": "refs/heads/master",
+        "owner": "uttarayan21",
+        "repo": "command-runner",
         "rev": "534df9bd86329544d3be74faf1e47996da912b2f",
-        "revCount": 27,
-        "type": "git",
-        "url": "file:/home/servius/Projects/command-runner"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:/home/servius/Projects/command-runner"
+        "owner": "uttarayan21",
+        "repo": "command-runner",
+        "type": "github"
       }
     },
     "crane": {

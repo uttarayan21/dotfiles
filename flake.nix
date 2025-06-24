@@ -157,10 +157,10 @@
       url = "github:uttarayan21/anyrun-rink";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # onepassword-shell-plugins = {
-    #   url = "github:uttarayan21/shell-plugins";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    onepassword-shell-plugins = {
+      url = "github:uttarayan21/shell-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zeronsd = {
       url = "github:uttarayan21/zeronsd";
       inputs.nixpkgs.follows = "nixpkgs";
