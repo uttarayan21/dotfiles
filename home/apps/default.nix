@@ -33,5 +33,6 @@ lib.optionalAttrs device.hasGui {
     ./pcsx2.nix
     ./seafile.nix
     ./blueman.nix
+    ./zen.nix
   ];
 }

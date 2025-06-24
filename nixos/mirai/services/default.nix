@@ -9,19 +9,18 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
-    # ./appflowy.nix
-    # ./home-assistant.nix
+    ./navidrome.nix
 
+    # ./home-assistant.nix
     # ./jellyfin.nix
     # ./polaris.nix
-    ./seafile.nix
     # ./syncthing.nix
     # ./vscode.nix
     # ./nextcloud.nix
-    # ./navidrome.nix
     # ./ldap.nix
     # ./llama.nix
     # ./nextcloud.nix
+    # ./seafile.nix
   ];
   services = {
     nix-serve = {
