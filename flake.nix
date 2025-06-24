@@ -17,21 +17,8 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun = {
-      # My fork of anyrun that allows up / down with <C-n> / <C-p>
-      url = "github:uttarayan21/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    anyrun-hyprwin = {
-      url = "github:uttarayan21/anyrun-hyprwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    anyrun-rink = {
-      url = "github:uttarayan21/anyrun-rink";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
@@ -71,10 +58,6 @@
     openapi-tui = {
       url = "github:zaghaghi/openapi-tui";
       flake = false;
-    };
-    onepassword-shell-plugins = {
-      url = "github:uttarayan21/shell-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix = {
       url = "github:musnix/musnix";
@@ -136,14 +119,6 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
-    tmux-float = {
-      url = "github:uttarayan21/tmux-float";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ddcbacklight = {
-      url = "github:uttarayan21/ddcbacklight";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
@@ -159,21 +134,8 @@
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zeronsd = {
-      url = "github:uttarayan21/zeronsd";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    # alvr = {
-    #   url = "git+file:/home/servius/Projects/ALVR";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nixos-rpi = {
       url = "github:nvmd/nixos-raspberrypi/main";
-    };
-    command-runner = {
-      # url = "github:uttarayan21/command-runner";
-      url = "git+file:/home/servius/Projects/command-runner";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -181,6 +143,44 @@
       # to have it up-to-date or simply don't specify the nixpkgs input
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    anyrun = {
+      # My fork of anyrun that allows up / down with <C-n> / <C-p>
+      url = "github:uttarayan21/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anyrun-hyprwin = {
+      url = "github:uttarayan21/anyrun-hyprwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anyrun-rink = {
+      url = "github:uttarayan21/anyrun-rink";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # onepassword-shell-plugins = {
+    #   url = "github:uttarayan21/shell-plugins";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    zeronsd = {
+      url = "github:uttarayan21/zeronsd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tmux-float = {
+      url = "github:uttarayan21/tmux-float";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ddcbacklight = {
+      url = "github:uttarayan21/ddcbacklight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    command-runner = {
+      url = "github:uttarayan21/command-runner";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # alvr = {
+    #   url = "git+file:/home/servius/Projects/ALVR";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = {
