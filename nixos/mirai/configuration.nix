@@ -67,7 +67,6 @@
     isNormalUser = true;
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
-      ../../secrets/id_ios.pub
     ];
   };
   users.groups.media = {};

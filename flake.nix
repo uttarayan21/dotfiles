@@ -17,21 +17,8 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun = {
-      # My fork of anyrun that allows up / down with <C-n> / <C-p>
-      url = "github:uttarayan21/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    anyrun-hyprwin = {
-      url = "github:uttarayan21/anyrun-hyprwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     anyrun-nixos-options = {
       url = "github:n3oney/anyrun-nixos-options";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    anyrun-rink = {
-      url = "github:uttarayan21/anyrun-rink";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
@@ -71,10 +58,6 @@
     openapi-tui = {
       url = "github:zaghaghi/openapi-tui";
       flake = false;
-    };
-    onepassword-shell-plugins = {
-      url = "github:uttarayan21/shell-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     musnix = {
       url = "github:musnix/musnix";
@@ -136,14 +119,6 @@
       url = "github:ray-x/guihua.lua";
       flake = false;
     };
-    tmux-float = {
-      url = "github:uttarayan21/tmux-float";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ddcbacklight = {
-      url = "github:uttarayan21/ddcbacklight";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
@@ -159,8 +134,47 @@
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-rpi = {
+      url = "github:nvmd/nixos-raspberrypi/main";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    anyrun = {
+      # My fork of anyrun that allows up / down with <C-n> / <C-p>
+      url = "github:uttarayan21/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anyrun-hyprwin = {
+      url = "github:uttarayan21/anyrun-hyprwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    anyrun-rink = {
+      url = "github:uttarayan21/anyrun-rink";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    onepassword-shell-plugins = {
+      url = "github:uttarayan21/shell-plugins";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zeronsd = {
       url = "github:uttarayan21/zeronsd";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tmux-float = {
+      url = "github:uttarayan21/tmux-float";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    ddcbacklight = {
+      url = "github:uttarayan21/ddcbacklight";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    command-runner = {
+      url = "github:uttarayan21/command-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # alvr = {
@@ -178,18 +192,19 @@
     anyrun,
     nur,
     deploy-rs,
+    nixos-rpi,
     ...
   } @ inputs: let
-    config_devices = [
-      {
+    devices = {
+      mirai = mkDevice {
         name = "mirai";
         system = "x86_64-linux";
         user = "fs0c131y";
         hasGui = false; # Don't wan't to run GUI apps on a headless server
         isNix = true;
         isServer = true;
-      }
-      {
+      };
+      ryu = mkDevice {
         name = "ryu";
         system = "x86_64-linux";
         user = "servius";
@@ -202,36 +217,44 @@
           # Gigabyte M27Q
           tertiary = "DP-1";
         };
-      }
-      {
+      };
+      deoxys = mkDevice {
         name = "deoxys";
         system = "x86_64-linux";
         user = "servius";
         hasGui = false; # It's a vm so no GUI apps are used
         isNix = true;
         isServer = true;
-      }
-      {
+      };
+      tsuba = mkDevice {
+        name = "tsuba";
+        system = "aarch64-linux";
+        user = "servius";
+        hasGui = false;
+        isNix = true;
+        isServer = true;
+      };
+      kuro = mkDevice {
         name = "kuro";
         system = "aarch64-darwin";
         user = "fs0c131y";
-      }
-      {
+      };
+      shiro = mkDevice {
         name = "shiro";
         system = "aarch64-darwin";
         user = "servius";
         isServer = false;
-      }
-      {
+      };
+      deck = mkDevice {
         name = "SteamDeck";
         system = "x86_64-linux";
         user = "deck";
         hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
         isServer = true;
-      }
-    ];
+      };
+    };
 
-    mkDevice = {device}: {
+    mkDevice = device: {
       isLinux = !isNull (builtins.match ".*-linux" device.system);
       isServer =
         if (builtins.hasAttr "isServer" device)
@@ -242,6 +265,7 @@
         then device.isNix
         else false;
       isDarwin = !isNull (builtins.match ".*-darwin" device.system);
+      isArm = !isNull (builtins.match "aarch64-.*" device.system);
       hasGui =
         if (builtins.hasAttr "hasGui" device)
         then device.hasGui
@@ -255,24 +279,27 @@
       user = device.user;
     };
 
-    devices =
-      builtins.map (device: mkDevice {inherit device;}) config_devices;
-
-    nixos_devices = builtins.filter (x: x.isNix) devices;
-    linux_devices = builtins.filter (x: x.isLinux) devices;
-    darwin_devices = builtins.filter (x: x.isDarwin) devices;
+    nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;
+    linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
+    darwin_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isDarwin) devices;
+    rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isArm && x.isLinux) devices;
 
     overlays = import ./overlays.nix {
       inherit inputs;
     };
   in
     rec {
-      nixosConfigurations = let
-        devices = nixos_devices;
-      in
-        import ./nixos {
-          inherit devices inputs nixpkgs home-manager overlays nur;
-        };
+      nixosConfigurations =
+        (import ./nixos {
+          inherit inputs nixpkgs home-manager overlays nur;
+          devices = nixos_devices;
+        })
+        // (
+          import ./nixos/tsuba {
+            inherit inputs nixpkgs home-manager overlays nur nixos-rpi;
+            devices = rpi_devices;
+          }
+        );
 
       darwinConfigurations = let
         devices = darwin_devices;
@@ -306,6 +333,12 @@
             };
         };
 
+      installerImages = let
+        nixos = self.nixosConfigurations;
+        mkImage = nixosConfig: nixosConfig.config.system.build.sdImage;
+      in {
+        tsuba = mkImage nixos.tsuba;
+      };
       deploy = import ./deploy.nix {inherit inputs self;};
       inherit devices;
     }

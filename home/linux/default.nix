@@ -11,6 +11,7 @@ in {
     ./anyrun.nix
     ./ironbar
     ./gui.nix
+    ./eww.nix
   ];
 
   services.kdeconnect.enable = linux_gui;

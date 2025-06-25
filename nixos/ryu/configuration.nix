@@ -22,60 +22,6 @@
     appimage = {
       enable = true;
       binfmt = true;
-      package = pkgs.appimage-run.override {
-        extraPkgs = pkgs:
-          with pkgs; [
-            # gst_all_1.gstreamer
-            # gst_all_1.gst-plugins-base
-            # gst_all_1.gst-plugins-bad
-            # gst_all_1.gst-plugins-good
-            binutils
-            (boost186.override {
-              enableShared = true;
-              enableStatic = false;
-              extraFeatures = [
-                "log"
-                "thread"
-                "filesystem"
-              ];
-            })
-            boost186.dev
-            cereal
-            cgal
-            curl
-            dbus
-            eigen
-            expat
-            ffmpeg
-            gcc-unwrapped
-            glew
-            glfw
-            glib
-            glib-networking
-            gmp
-            gst_all_1.gstreamer
-            gst_all_1.gst-plugins-base
-            gst_all_1.gst-plugins-bad
-            gst_all_1.gst-plugins-good
-            gtk3
-            hicolor-icon-theme
-            ilmbase
-            libpng
-            mpfr
-            nlopt
-            opencascade-occt_7_6
-            openvdb
-            pcre
-            tbb_2021_11
-            # webkitgtk_4_0
-            webkitgtk_4_1
-            libspnav
-            # wxGTK'
-            xorg.libX11
-            opencv
-            libnoise
-          ];
-      };
     };
     localsend = {
       enable = true;
@@ -155,6 +101,7 @@
     buildMachines = [
       ../../builders/mirai.nix
       ../../builders/shiro.nix
+      ../../builders/tsuba.nix
     ];
     distributedBuilds = true;
   };
@@ -191,9 +138,9 @@
         layout = "us";
         variant = "";
       };
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
     };
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;

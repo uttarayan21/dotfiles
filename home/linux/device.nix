@@ -4,10 +4,8 @@
   overlays,
   home-manager,
   ...
-}:
-builtins.listToAttrs (builtins.map (device: {
-    name = device.name;
-    value = let
+}: (builtins.mapAttrs (
+    name: device: let
       pkgs = import inputs.nixpkgs {
         inherit overlays;
         system = device.system;
@@ -20,6 +18,6 @@ builtins.listToAttrs (builtins.map (device: {
           inherit device;
         };
         modules = [{nixpkgs.config.allowUnfree = true;} ../common/home.nix];
-      };
-  })
+      }
+  )
   devices)

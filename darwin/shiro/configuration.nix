@@ -29,7 +29,7 @@
     '';
     package = pkgs.nixVersions.latest;
     buildMachines = [
-      # ../../builders/mirai.nix
+      ../../builders/mirai.nix
       # ../../builders/shiro.nix
     ];
     distributedBuilds = true;

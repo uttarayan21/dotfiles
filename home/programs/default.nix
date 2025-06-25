@@ -30,6 +30,7 @@
     ./yazi.nix
     ./zoxide.nix
     ./mpris-scrobbler.nix
+    ./omnix.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
     # ./zellij.nix
