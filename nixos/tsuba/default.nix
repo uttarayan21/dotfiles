@@ -14,6 +14,7 @@
         system = device.system;
         specialArgs = {
           inherit device;
+          nixos-raspberrypi = inputs.nixos-raspberrypi;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
         };
         modules = [

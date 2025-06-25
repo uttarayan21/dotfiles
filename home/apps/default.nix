@@ -29,10 +29,11 @@ lib.optionalAttrs device.hasGui {
     ./zed.nix
     ./discord.nix
     ./slack.nix
-    ./rpcs3.nix
+    # ./rpcs3.nix
     ./pcsx2.nix
+    # ./shadps4.nix
+    # ./seafile.nix
     ./blueman.nix
     ./zen.nix
-    # ./seafile.nix
   ];
 }

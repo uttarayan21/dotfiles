@@ -333,6 +333,12 @@
             };
         };
 
+      installerImages = let
+        nixos = self.nixosConfigurations;
+        mkImage = nixosConfig: nixosConfig.config.system.build.sdImage;
+      in {
+        tsuba = mkImage nixos.tsuba;
+      };
       deploy = import ./deploy.nix {inherit inputs self;};
       inherit devices;
     }
