@@ -7,7 +7,7 @@
     inputs.zen-browser.homeModules.beta
   ];
   programs.zen-browser = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     profiles.default = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
