@@ -174,8 +174,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     command-runner = {
-      # url = "github:uttarayan21/command-runner";
-      url = "path:/home/servius/Projects/command-runner";
+      url = "github:uttarayan21/command-runner";
+      # url = "path:/home/servius/Projects/command-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # alvr = {
