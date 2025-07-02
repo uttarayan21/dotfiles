@@ -3,9 +3,9 @@
     ./yabai.nix
     ./skhd.nix
     ./tailscale.nix
-    ./zerotier.nix
-    ./jellyfin.nix
     ./autossh.nix
+    # ./zerotier.nix
+    # ./jellyfin.nix
     # ./homeassistant.nix
     # ./aerospace.nix
   ];
