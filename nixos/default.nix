@@ -23,7 +23,7 @@
           ./${device.name}/configuration.nix
           home-manager.nixosModules.home-manager
           inputs.arion.nixosModules.arion
-          inputs.command-runner.nixosModules.command-runner
+          # inputs.command-runner.nixosModules.command-runner
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix
           {
@@ -37,7 +37,9 @@
                 inherit device;
                 stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
               };
-              users.${device.user}.imports = [../home];
+              users.${device.user}.imports = [
+                ../home
+              ];
             };
           }
         ];

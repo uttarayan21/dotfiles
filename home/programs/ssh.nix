@@ -11,6 +11,10 @@
         user = "servius";
         hostname = "rpi";
       };
+      tsuba = {
+        user = "servius";
+        hostname = "tsuba";
+      };
       github = {
         user = "git";
         host = "github.com";

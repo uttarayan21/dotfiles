@@ -275,17 +275,14 @@
         "rust-overlay": "rust-overlay_3"
       },
       "locked": {
-        "lastModified": 1750536858,
-        "narHash": "sha256-bcftbYApVuB4bUqP6Z0frUh2b9+yiAkyy+EXijZcoc4=",
-        "owner": "uttarayan21",
-        "repo": "command-runner",
-        "rev": "534df9bd86329544d3be74faf1e47996da912b2f",
-        "type": "github"
+        "lastModified": 1751306389,
+        "narHash": "sha256-7AL2SENMyjXTiedkNvvBfxh6JxNTm/UmDmp66ovwEIY=",
+        "path": "/home/servius/Projects/command-runner",
+        "type": "path"
       },
       "original": {
-        "owner": "uttarayan21",
-        "repo": "command-runner",
-        "type": "github"
+        "path": "/home/servius/Projects/command-runner",
+        "type": "path"
       }
     },
     "crane": {

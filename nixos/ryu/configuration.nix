@@ -108,7 +108,7 @@
 
   users.users.servius = {
     isNormalUser = true;
-    extraGroups = ["wheel" "audio" "i2c" "media" "openrazer"];
+    extraGroups = ["wheel" "audio" "i2c" "media" "openrazer" "video"];
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub
@@ -284,6 +284,7 @@
     # List packages installed in system profile. To search, run:
     # $ nix search wget
     systemPackages = with pkgs; [
+      v4l-utils
       polychromatic
       openrazer-daemon
       cudatoolkit

@@ -8,15 +8,20 @@
   };
   services = {
     nextcloud = {
-      enable = false;
+      enable = true;
       package = pkgs.nextcloud30;
+      # extraApps = {
+      #   inherit (config.services.nextcloud.package.packages.apps) news contacts calendar;
+      # };
+      # extraAppsEnable = true;
       hostName = "cloud.darksailor.dev";
       config.adminuser = "servius";
       config.adminpassFile = config.sops.secrets."nextcloud/adminpass".path;
       config.dbtype = "sqlite";
       configureRedis = true;
-      https = true;
-      datadir = "/media/nextcloud";
+      https = false;
+      # datadir = "/media/nextcloud";
+      home = "/media/nextcloud";
     };
     caddy = {
       virtualHosts."cloud.darksailor.dev".extraConfig = ''

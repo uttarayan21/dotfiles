@@ -31,6 +31,7 @@
     ./zoxide.nix
     ./mpris-scrobbler.nix
     ./omnix.nix
+    # ./magika.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
     # ./zellij.nix

@@ -9,6 +9,7 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
+    # ./nextcloud.nix
 
     # ./navidrome.nix
     # ./home-assistant.nix
@@ -16,7 +17,6 @@
     # ./polaris.nix
     # ./syncthing.nix
     # ./vscode.nix
-    # ./nextcloud.nix
     # ./ldap.nix
     # ./llama.nix
     # ./nextcloud.nix
