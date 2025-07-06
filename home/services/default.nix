@@ -1,6 +1,6 @@
 {...}: {
   imports = [
     # ./syncthing.nix
-    ./command-runner.nix
+    # ./command-runner.nix
   ];
 }
