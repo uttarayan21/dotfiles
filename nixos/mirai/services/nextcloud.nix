@@ -10,10 +10,10 @@
     nextcloud = {
       enable = true;
       package = pkgs.nextcloud30;
-      # extraApps = {
-      #   inherit (config.services.nextcloud.package.packages.apps) news contacts calendar;
-      # };
-      # extraAppsEnable = true;
+      extraApps = {
+        inherit (config.services.nextcloud.package.packages.apps) news contacts calendar;
+      };
+      extraAppsEnable = true;
       hostName = "cloud.darksailor.dev";
       config.adminuser = "servius";
       config.adminpassFile = config.sops.secrets."nextcloud/adminpass".path;

@@ -9,6 +9,7 @@
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
+    ./homepage.nix
     # ./nextcloud.nix
 
     # ./navidrome.nix

@@ -8,6 +8,11 @@
           ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
           ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
         };
+        mailer = {
+          ENABLED = true;
+          PROTOCOL = "sendmail";
+          # SENDMAIL_PATH = "sendmail";
+        };
         security = {
           REVERSE_PROXY_AUTHENTICATION_USER = "REMOTE-USER";
         };
