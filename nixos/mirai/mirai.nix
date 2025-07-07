@@ -18,6 +18,13 @@
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
 
+  fileSystems."/var/lib/nextcloud" = {
+    device = "/media/nextcloud";
+    options = [
+      "bind"
+    ];
+  };
+
   # fileSystems."/" = {
   #   device = "/dev/disk/by-uuid/8f805d1b-a469-4db8-9ee1-b98ea220714a";
   #   fsType = "ext4";

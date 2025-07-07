@@ -10,7 +10,7 @@
     ./fail2ban.nix
     ./gitea.nix
     ./homepage.nix
-    # ./nextcloud.nix
+    ./nextcloud.nix
 
     # ./navidrome.nix
     # ./home-assistant.nix

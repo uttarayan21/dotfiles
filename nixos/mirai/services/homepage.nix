@@ -67,7 +67,7 @@
             }
             {
               "Nextcloud" = {
-                description = "Nextcloud Cloud Storage";
+                description = "Nextcloud Suite";
                 href = "https://cloud.darksailor.dev";
               };
             }
