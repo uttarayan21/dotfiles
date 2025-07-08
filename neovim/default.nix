@@ -250,16 +250,16 @@ in {
           config.configure_parsers = false;
         };
 
-        "core.integrations.image" = {
-          config.tmux_show_only_in_active_window = true;
-        };
+        # "core.integrations.image" = {
+        #   config.tmux_show_only_in_active_window = true;
+        # };
 
         "core.dirman" = {
           config = {
             default_workspace = "Notes";
             workspaces = {
-              Notes = "~/Sync/Notes";
-              Work = "~/Sync/Work";
+              Notes = "~/Nextcloud/Notes";
+              Work = "~/Nextcloud/Work";
             };
           };
         };
