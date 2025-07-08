@@ -32,7 +32,7 @@ lib.optionalAttrs device.hasGui {
     # ./rpcs3.nix
     ./pcsx2.nix
     # ./shadps4.nix
-    # ./seafile.nix
+    ./nextcloud.nix
     ./blueman.nix
     ./zen.nix
   ];
