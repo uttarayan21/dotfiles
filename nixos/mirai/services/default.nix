@@ -2,26 +2,27 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    ./llama.nix
-    ./minecraft.nix
-    ./tailscale.nix
-    ./zerotier.nix
     ./caddy.nix
     ./fail2ban.nix
     ./gitea.nix
     ./homepage.nix
+    ./llama.nix
+    ./minecraft.nix
     ./nextcloud.nix
+    ./tailscale.nix
+    ./zerotier.nix
 
-    # ./navidrome.nix
     # ./home-assistant.nix
     # ./jellyfin.nix
-    # ./polaris.nix
-    # ./syncthing.nix
-    # ./vscode.nix
     # ./ldap.nix
     # ./llama.nix
+    # ./navidrome.nix
     # ./nextcloud.nix
+    # ./paperless.nix
+    # ./polaris.nix
     # ./seafile.nix
+    # ./syncthing.nix
+    # ./vscode.nix
   ];
   services = {
     nix-serve = {

@@ -5,9 +5,9 @@ Wants=network-pre.target
 After=network-pre.target NetworkManager.service systemd-resolved.service
 
 [Service]
-ExecStartPre=/nix/store/6qcxjfd0s079l634ivg9bi65zry3iada-tailscale-1.82.5/bin/tailscaled --cleanup
-ExecStart=/nix/store/6qcxjfd0s079l634ivg9bi65zry3iada-tailscale-1.82.5/bin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=41641
-ExecStopPost=/nix/store/6qcxjfd0s079l634ivg9bi65zry3iada-tailscale-1.82.5/bin/tailscaled --cleanup
+ExecStartPre=/usr/bin/tailscaled --cleanup
+ExecStart=/usr/bin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=41641
+ExecStopPost=/usr/bin/tailscaled --cleanup
 
 Restart=on-failure
 

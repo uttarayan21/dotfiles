@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  home-manager,
   ...
 }: {
   imports = [
@@ -19,5 +20,8 @@
       (nixvim.makeNixvim (import ../neovim))
     ];
     stateVersion = "24.11";
+    activation.tailscale-service = home-manager.dag.entryAfter ["writeBoundary"] ''
+      ${builtins.replaceStrings (builtins.readFile ./tailscaled.service)}
+    '';
   };
 }

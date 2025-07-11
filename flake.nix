@@ -178,6 +178,7 @@
       # url = "path:/home/servius/Projects/command-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # alvr = {
     #   url = "path:/home/servius/Projects/ALVR";
     #   inputs.nixpkgs.follows = "nixpkgs";

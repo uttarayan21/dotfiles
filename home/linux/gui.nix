@@ -21,8 +21,6 @@
   };
   home.packages = with pkgs;
     lib.optionals pkgs.stdenv.isLinux [
-      mullvad-closest
-      mullvad-vpn
       nautilus
       totem
       ffmpegthumbnailer
@@ -33,7 +31,14 @@
       spotify
       steam-run
       wl-clipboard
-      zed-editor
-      prismlauncher
+      (prismlauncher.override {
+        additionalPrograms = [ffmpeg zenity];
+        jdks = [
+          graalvm-ce
+          zulu8
+          zulu17
+          zulu
+        ];
+      })
     ];
 }

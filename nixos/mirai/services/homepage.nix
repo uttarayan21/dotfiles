@@ -44,6 +44,12 @@
               };
             }
             {
+              "Prowlarr" = {
+                description = "Prowlarr";
+                href = "https://prowlarr.tsuba.darksailor.dev";
+              };
+            }
+            {
               "Jackett" = {
                 description = "Jackett";
                 href = "https://jackett.tsuba.darksailor.dev";

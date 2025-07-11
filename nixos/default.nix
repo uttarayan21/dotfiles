@@ -26,6 +26,7 @@
           # inputs.command-runner.nixosModules.command-runner
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix
+          inputs.nix-minecraft.nixosModules.minecraft-servers
           {
             nixpkgs.config.allowUnfree = true;
             home-manager = {
