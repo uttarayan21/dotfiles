@@ -13,8 +13,7 @@
       };
     };
     tsuba = {
-      hostname = "192.168.0.125";
-      # hostname = "tsuba.darksailor.dev";
+      hostname = "tsuba.darksailor.dev";
       profiles.system = {
         sshUser = "servius";
         path = inputs.deploy-rs.lib.aarch64-linux.activate.nixos self.nixosConfigurations.tsuba;

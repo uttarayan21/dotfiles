@@ -31,6 +31,8 @@
     ./zoxide.nix
     ./mpris-scrobbler.nix
     ./omnix.nix
+    # ./ddcbacklight.nix
+    ./yt-dlp.nix
     # ./magika.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
@@ -66,35 +68,13 @@
       sd
       tldr
       vcpkg-tool
-      yt-dlp
     ]
     ++ lib.optionals (!device.isServer) [
-      clang
-      cmake
-      d2
-      devenv
-      go
-      hasklig
-      jujutsu
       monaspace
       nerd-fonts.fira-code
       nerd-fonts.hasklug
       nerd-fonts.symbols-only
-      qmk
-      ttyper
-      yarn
     ]
-    ++ lib.optionals device.isLinux [
-      dig
-      gptfdisk
-      handlr-regex
-      handlr-xdg
-      lsof
-      ncpamixer
-      rr
-      sbctl
-      usbutils
-      ddcbacklight
-    ]
+    ++ lib.optionals device.isLinux []
     ++ lib.optionals device.isDarwin [];
 }

@@ -17,7 +17,7 @@
       homeassistant.settings.services = {
         homeassistant = {
           service.image = "ghcr.io/home-assistant/home-assistant:stable";
-          service.volumes = ["/etc/localtime:/etc/localtime:ro" "/run/dbus:/run/dbus:ro"];
+          service.volumes = ["/etc/localtime:/etc/localtime:ro" "/run/dbus:/run/dbus:ro" "/var/lib/homeassistant:/config"];
           service.privileged = true;
           service.network_mode = "host";
           service.restart = "unless-stopped";

@@ -9,5 +9,6 @@
     # ./radarr.nix
     # ./prowlarr.nix
     ./deluge.nix
+    ./homeassistant.nix
   ];
 }

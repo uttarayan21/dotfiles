@@ -13,6 +13,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -189,6 +193,7 @@
     self,
     nixpkgs,
     home-manager,
+    home-manager-stable,
     nix-darwin,
     flake-utils,
     anyrun,
@@ -298,7 +303,7 @@
         })
         // (
           import ./nixos/tsuba {
-            inherit inputs nixpkgs home-manager overlays nur nixos-raspberrypi;
+            inherit inputs nixpkgs home-manager-stable overlays nur nixos-raspberrypi;
             devices = rpi_devices;
           }
         );
@@ -359,7 +364,7 @@
         };
         devShells = {
           default = pkgs.mkShell {
-            packages = with pkgs; [sops just];
+            packages = with pkgs; [sops just clang];
           };
         };
       }

@@ -4,9 +4,9 @@
     ./skhd.nix
     ./tailscale.nix
     ./autossh.nix
+    ./homeassistant.nix
     # ./zerotier.nix
     # ./jellyfin.nix
-    # ./homeassistant.nix
     # ./aerospace.nix
   ];
 }

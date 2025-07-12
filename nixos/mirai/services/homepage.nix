@@ -50,12 +50,6 @@
               };
             }
             {
-              "Jackett" = {
-                description = "Jackett";
-                href = "https://jackett.tsuba.darksailor.dev";
-              };
-            }
-            {
               "Home Assistant" = {
                 description = "Home Automation";
                 href = "https://home.darksailor.dev";

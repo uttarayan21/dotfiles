@@ -27,11 +27,11 @@
   #     ];
   #   };
   # };
-  hardware.raspberry-pi.extra-config = ''
-    [all]
-    dtparam=pciex1
-    dtparam=pciex1_gen=2
-  '';
+  # hardware.raspberry-pi.extra-config = ''
+  #   [all]
+  #   dtparam=pciex1
+  #   dtparam=pciex1_gen=2
+  # '';
 }
 # ({
 #   config,

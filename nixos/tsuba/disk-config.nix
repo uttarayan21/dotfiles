@@ -133,6 +133,9 @@ in {
               type = "filesystem";
               format = "ext4";
               mountpoint = "/volumes/media";
+              mountOptions = [
+                "nofail"
+              ];
             };
           };
         };

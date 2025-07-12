@@ -20,6 +20,7 @@
                 propagation_timeout -1
                 propagation_delay 120s
                 dns hetzner {env.HETZNER_API_KEY}
+                resolvers 1.1.1.1
             }
         }
       '';

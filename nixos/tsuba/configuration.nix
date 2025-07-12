@@ -44,7 +44,7 @@
   };
   users.users.${device.user} = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "media"];
     initialPassword = "aaa";
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
@@ -57,6 +57,7 @@
       ../../secrets/id_ed25519.pub
     ];
   };
+  users.groups.media = {};
   system.stateVersion = "25.05";
   services.openssh.enable = true;
 }
