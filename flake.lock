@@ -2061,11 +2061,11 @@
     "nixos-images": {
       "inputs": {
         "nixos-stable": [
-          "nixos-rpi",
+          "nixos-raspberrypi",
           "nixpkgs"
         ],
         "nixos-unstable": [
-          "nixos-rpi",
+          "nixos-raspberrypi",
           "nixpkgs"
         ]
       },
@@ -2084,7 +2084,7 @@
         "type": "github"
       }
     },
-    "nixos-rpi": {
+    "nixos-raspberrypi": {
       "inputs": {
         "argononed": "argononed",
         "nixos-images": "nixos-images",
@@ -2589,7 +2589,7 @@
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",
-        "nixos-rpi": "nixos-rpi",
+        "nixos-raspberrypi": "nixos-raspberrypi",
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",

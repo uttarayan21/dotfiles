@@ -1,11 +1,12 @@
 {
   config,
   pkgs,
+  device,
   lib,
   ...
 }: {
-  # networking.hostName = "tsuba";
-  networking.filrewall.logRefusedConnections = lib.mkDefault false;
+  networking.hostName = device.name;
+  networking.firewall.logRefusedConnections = lib.mkDefault false;
   networking.useNetworkd = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network.wait-online.enable = false;
@@ -18,16 +19,37 @@
     config.boot.kernelPackages.kernel.version
   ];
 
-  hardware.raspberry-pi.config = {
-    dtparam = "audio=on";
-    camera_auto_detect = 0;
-    display_auto_detect = 0;
-    auto_initramfs = 1;
-    disable_fw_kms_setup = 1;
-    arm_boost = 1;
-    arm_64bit = 1;
-    all = {
-      usb_max_current_enable = 1;
-    };
-  };
+  # hardware.raspberry-pi.config = {
+  #   all = {
+  #     "dtparam" = [
+  #       "pciex1"
+  #       "pciex1_gen=2"
+  #     ];
+  #   };
+  # };
+  hardware.raspberry-pi.extra-config = ''
+    [all]
+    dtparam=pciex1
+    dtparam=pciex1_gen=2
+  '';
 }
+# ({
+#   config,
+#   pkgs,
+#   lib,
+#   ...
+# }: {
+#
+#   system.nixos.tags = let
+#     cfg = config.boot.loader.raspberryPi;
+#   in [
+#     "raspberry-pi-${cfg.variant}"
+#     cfg.bootloader
+#     config.boot.kernelPackages.kernel.version
+#   ];
+#   # hardware.raspberry-pi.config = {
+#   # };
+#   system.stateVersion = "25.05";
+#   services.openssh.enable = true;
+# })
+

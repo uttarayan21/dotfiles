@@ -17,6 +17,7 @@
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   fileSystems."/var/lib/nextcloud" = {
     device = "/media/nextcloud";

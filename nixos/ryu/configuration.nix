@@ -101,7 +101,7 @@
     buildMachines = [
       ../../builders/mirai.nix
       ../../builders/shiro.nix
-      ../../builders/tsuba.nix
+      # ../../builders/tsuba.nix
     ];
     distributedBuilds = true;
   };

@@ -134,7 +134,7 @@
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-rpi = {
+    nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
     };
     zen-browser = {
@@ -194,7 +194,7 @@
     anyrun,
     nur,
     deploy-rs,
-    nixos-rpi,
+    nixos-raspberrypi,
     ...
   } @ inputs: let
     devices = {
@@ -298,7 +298,7 @@
         })
         // (
           import ./nixos/tsuba {
-            inherit inputs nixpkgs home-manager overlays nur nixos-rpi;
+            inherit inputs nixpkgs home-manager overlays nur nixos-raspberrypi;
             devices = rpi_devices;
           }
         );

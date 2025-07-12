@@ -5,41 +5,33 @@
   overlays,
   home-manager,
   nur,
-  nixos-rpi,
+  nixos-raspberrypi,
   ...
 }: (builtins.mapAttrs (
     name: device:
-      nixos-rpi.lib.nixosSystemFull {
-        inherit nixpkgs;
+      nixos-raspberrypi.lib.nixosSystem {
+        specialArgs =
+          inputs
+          // {
+            inherit device;
+          };
         system = device.system;
-        specialArgs = {
-          inherit device;
-          nixos-raspberrypi = inputs.nixos-raspberrypi;
-          stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
-        };
         modules = [
+          inputs.disko.nixosModules.disko
+          nur.modules.nixos.default
+          inputs.sops-nix.nixosModules.sops
           {
-            imports = with nixos-rpi.nixosModules; [
-              nixos-raspberrypi.lib.inject-overlays
+            nixpkgs.overlays = overlays;
+            imports = with nixos-raspberrypi.nixosModules; [
               raspberry-pi-5.base
               raspberry-pi-5.display-vc4
               raspberry-pi-5.bluetooth
-              trusted-nix-caches
-              nixpkgs-rpi
-              nixos-raspberrypi.lib.inject-overlays-global
             ];
-            networking.hostName = name;
           }
           ./configuration.nix
+          ./disk-config.nix
+          ./services
           ./${name}.nix
-          {nixpkgs.overlays = overlays;}
-          nur.modules.nixos.default
-          inputs.sops-nix.nixosModules.sops
-          home-manager.nixosModules.home-manager
-          inputs.arion.nixosModules.arion
-          {
-            nixpkgs.config.allowUnfree = true;
-          }
         ];
       }
   )
