@@ -1,6 +1,10 @@
-{...}: {
+{unstablePkgs, ...}: {
   services = {
-    sonarr.enable = true;
+    sonarr = {
+      enable = true;
+      package = unstablePkgs.sonarr;
+    };
+
     caddy = {
       virtualHosts."sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner

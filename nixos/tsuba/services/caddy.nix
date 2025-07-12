@@ -18,7 +18,7 @@
         (hetzner) {
             tls {
                 propagation_timeout -1
-                propagation_delay 30s
+                propagation_delay 120s
                 dns hetzner {env.HETZNER_API_KEY}
             }
         }

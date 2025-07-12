@@ -14,6 +14,7 @@
           inputs
           // {
             inherit device;
+            unstablePkgs = inputs.nixpkgs.legacyPackages.${device.system};
           };
         system = device.system;
         modules = [
@@ -29,8 +30,8 @@
             ];
           }
           ./configuration.nix
-          ./disk-config.nix
           ./services
+          ./disk-config.nix
           ./${name}.nix
         ];
       }

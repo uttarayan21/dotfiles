@@ -1,6 +1,9 @@
 {...}: {
   services = {
-    deluge.enable = true;
+    deluge = {
+      enable = true;
+      web.enable = true;
+    };
     caddy = {
       virtualHosts."deluge.tsuba.darksailor.dev".extraConfig = ''
         import hetzner

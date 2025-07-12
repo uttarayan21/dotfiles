@@ -1,6 +1,9 @@
-{...}: {
+{unstablePkgs, ...}: {
   services = {
-    prowlarr.enable = true;
+    prowlarr = {
+      enable = true;
+      package = unstablePkgs.prowlarr;
+    };
     caddy = {
       virtualHosts."prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
