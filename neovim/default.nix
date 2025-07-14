@@ -381,7 +381,7 @@ in {
       };
     };
     rustaceanvim = {
-      enable = true;
+      enable = false;
       settings = {
         server = {
           on_attach = rawLua ''
@@ -489,6 +489,25 @@ in {
         slint_lsp.enable = true;
         sourcekit.enable = true;
         openscad_lsp.enable = true;
+        rust_analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+          settings = {
+            inlayHints = {
+              typeHints.enable = true;
+            };
+            files.exclude = [
+              ".cargo/"
+              ".direnv/"
+              ".git/"
+              ".vcpkg/"
+              "node_modules/"
+              "target/"
+              "vendor/"
+            ];
+          };
+        };
       };
       onAttach =
         /*

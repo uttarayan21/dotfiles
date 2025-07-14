@@ -29,7 +29,7 @@
     ./tuifeed.nix
     ./yazi.nix
     ./zoxide.nix
-    ./mpris-scrobbler.nix
+    # ./mpris-scrobbler.nix
     ./omnix.nix
     # ./ddcbacklight.nix
     ./yt-dlp.nix
