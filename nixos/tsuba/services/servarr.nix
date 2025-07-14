@@ -22,10 +22,10 @@ in {
       package = unstablePkgs.radarr;
       group = "media";
     };
-    prowlarr = {
-      enable = true;
-      package = unstablePkgs.prowlarr;
-    };
+    # prowlarr = {
+    #   enable = true;
+    #   package = unstablePkgs.prowlarr;
+    # };
     caddy.virtualHosts = {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
@@ -37,7 +37,7 @@ in {
       '';
       "prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        reverse_proxy localhost:${builtins.toString config.services.prowlarr.settings.server.port}
+        reverse_proxy mirai.darksailor.dev:9696
       '';
     };
   };

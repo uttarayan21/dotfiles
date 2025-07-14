@@ -118,13 +118,6 @@
   users.groups.media = {};
 
   services = {
-    resolved = {
-      enable = true;
-      dnssec = "true";
-      domains = ["~."];
-      fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
-      dnsovertls = "true";
-    };
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;

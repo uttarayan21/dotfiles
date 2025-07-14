@@ -11,6 +11,7 @@
     ./nextcloud.nix
     ./tailscale.nix
     ./zerotier.nix
+    ./prowlarr.nix
 
     # ./home-assistant.nix
     # ./jellyfin.nix

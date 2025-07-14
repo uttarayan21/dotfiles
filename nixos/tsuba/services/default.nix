@@ -5,10 +5,9 @@
     ./jellyfin.nix
     ./caddy.nix
     ./servarr.nix
-    # ./sonarr.nix
-    # ./radarr.nix
-    # ./prowlarr.nix
     ./deluge.nix
     ./homeassistant.nix
+    # ./dnscrypt.nix
+    ./resolved.nix
   ];
 }

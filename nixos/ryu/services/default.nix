@@ -9,6 +9,8 @@
     ./mullvad.nix
     ./openrgb.nix
     ./command-runner.nix
+    ./resolved.nix
+    # ./dnscrypt.nix
   ];
   services = {
     # hardware.openrgb.enable = true;
