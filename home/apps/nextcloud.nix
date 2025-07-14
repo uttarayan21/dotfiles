@@ -4,7 +4,7 @@
   ...
 }: {
   services.nextcloud-client = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     startInBackground = true;
   };
 }
