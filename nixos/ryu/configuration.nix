@@ -21,13 +21,6 @@
       # withUWSM = true;
       xwayland.enable = true;
     };
-    nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        libglvnd
-      ];
-    };
-    gnome-disks.enable = true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;

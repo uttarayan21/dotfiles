@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
     ./adb.nix
     ./steam.nix
@@ -10,5 +6,7 @@
     ./localsend.nix
     ./appimage.nix
     ./obs-studio.nix
+    ./gnome-disks.nix
+    ./nix-ld.nix
   ];
 }
