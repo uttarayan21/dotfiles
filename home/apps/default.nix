@@ -11,7 +11,7 @@ lib.optionalAttrs device.hasGui {
     ./cursor.nix
     ./firefox.nix
     ./ghostty.nix
-    ./gimp.nix
+    # ./gimp.nix
     ./guitarix.nix
     ./hyprpicker.nix
     ./kicad.nix
