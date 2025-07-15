@@ -4,12 +4,9 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./ryu.nix
     ./services
     ./programs
-    ./apps
-    # ./vms
   ];
 
   sops = {
@@ -19,39 +16,10 @@
   };
 
   programs = {
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
-    localsend = {
-      enable = true;
-      openFirewall = true;
-    };
-    obs-studio = {
-      enable = true;
-      enableVirtualCamera = true;
-      plugins = [
-        pkgs.obs-studio-plugins.wlrobs
-        pkgs.obs-studio-plugins.droidcam-obs
-      ];
-    };
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = ["servius"];
-    };
-    adb.enable = true;
     hyprland = {
       enable = true;
       # withUWSM = true;
       xwayland.enable = true;
-    };
-    yubikey-touch-detector.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
     };
     nix-ld = {
       enable = true;
