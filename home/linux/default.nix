@@ -16,8 +16,8 @@ in {
 
   services.kdeconnect.enable = linux_gui;
   services.kdeconnect.indicator = linux_gui;
-  services.swayosd.enable = linux_gui;
-  services.swaync.enable = linux_gui;
+  # services.swayosd.enable = linux_gui;
+  # services.swaync.enable = linux_gui;
   # services.nextcloud-client = {
   #   enable = device.hasGui;
   #   startInBackground = true;

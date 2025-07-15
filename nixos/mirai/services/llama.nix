@@ -28,7 +28,7 @@
       };
     };
     open-webui = {
-      enable = true;
+      enable = false;
       port = 7070;
       environment = {
         SCARF_NO_ANALYTICS = "True";
@@ -44,13 +44,13 @@
     };
 
     caddy = {
-      virtualHosts."llama.darksailor.dev".extraConfig = ''
-        forward_auth localhost:5555 {
-            uri /api/authz/forward-auth
-            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-        }
-        reverse_proxy localhost:7070
-      '';
+      # virtualHosts."llama.darksailor.dev".extraConfig = ''
+      #   forward_auth localhost:5555 {
+      #       uri /api/authz/forward-auth
+      #       copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+      #   }
+      #   reverse_proxy localhost:7070
+      # '';
       virtualHosts."ollama.darksailor.dev".extraConfig = ''
         @apikey {
             header Authorization "Bearer {env.LLAMA_API_KEY}"
