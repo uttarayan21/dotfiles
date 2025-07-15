@@ -1,8 +1,9 @@
 {config, ...}: {
-  virtualisation.docker.enable = true;
-  sops = {
-    secrets."gitea/token" = {};
-  };
+  # virtualisation.docker.enable = true;
+  # sops = {
+  #   # secrets."gitea/token".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
+  #   secrets."gitea/token" = {};
+  # };
   services = {
     gitea = {
       enable = true;
@@ -24,19 +25,19 @@
         };
       };
     };
-    gitea-actions-runner = {
-      instances = {
-        mirai = {
-          name = "mirai";
-          enable = true;
-          url = "https://git.darksailor.dev";
-          labels = [
-            "ubuntu-latest:docker://node:18-bullseye"
-          ];
-          tokenFile = config.sops.secrets."gitea/token".path;
-        };
-      };
-    };
+    # gitea-actions-runner = {
+    #   instances = {
+    #     mirai = {
+    #       name = "mirai";
+    #       enable = true;
+    #       url = "https://git.darksailor.dev";
+    #       labels = [
+    #         "ubuntu-latest:docker://node:18-bullseye"
+    #       ];
+    #       tokenFile = config.sops.secrets."gitea/token".path;
+    #     };
+    #   };
+    # };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
         forward_auth localhost:5555 {
