@@ -495,7 +495,7 @@ in {
           installRustc = false;
           settings = {
             inlayHints = {
-              typeHints.enable = true;
+              typeHints.enable = false;
             };
             files.exclude = [
               ".cargo/"

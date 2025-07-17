@@ -26,6 +26,12 @@
               };
             }
             {
+              "Jellyseerr" = {
+                description = "Jellyseerr Media Server";
+                href = "https://jellyseerr.tsuba.darksailor.dev";
+              };
+            }
+            {
               "Sonarr" = {
                 description = "Sonarr";
                 href = "https://sonarr.tsuba.darksailor.dev";
