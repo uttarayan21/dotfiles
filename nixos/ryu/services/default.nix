@@ -10,6 +10,7 @@
     ./openrgb.nix
     ./command-runner.nix
     ./resolved.nix
+    ./weylus.nix
     # ./dnscrypt.nix
   ];
   services = {
