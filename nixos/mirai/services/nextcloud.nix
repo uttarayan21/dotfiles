@@ -17,7 +17,7 @@
       enable = true;
       package = pkgs.nextcloud31;
       extraApps = {
-        inherit (config.services.nextcloud.package.packages.apps) contacts calendar;
+        inherit (config.services.nextcloud.package.packages.apps) contacts calendar bookmarks;
       };
       extraAppsEnable = true;
       hostName = "cloud.darksailor.dev";
