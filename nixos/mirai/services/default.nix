@@ -12,6 +12,7 @@
     ./tailscale.nix
     ./zerotier.nix
     ./prowlarr.nix
+    ./flaresolverr.nix
 
     # ./home-assistant.nix
     # ./jellyfin.nix

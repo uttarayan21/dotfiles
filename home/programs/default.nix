@@ -15,10 +15,10 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
-    ./goread.nix
-    ./helix.nix
+    # ./goread.nix
+    # ./helix.nix
     ./mpd.nix
-    ./newsboat.nix
+    # ./newsboat.nix
     ./nh.nix
     ./nix-index.nix
     ./nushell.nix
@@ -29,10 +29,12 @@
     ./tuifeed.nix
     ./yazi.nix
     ./zoxide.nix
-    # ./mpris-scrobbler.nix
     ./omnix.nix
-    # ./ddcbacklight.nix
     ./yt-dlp.nix
+    ./ryujinx.nix
+    ./ddcbacklight.nix
+    # ./neovim.nix
+    # ./mpris-scrobbler.nix
     # ./magika.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix

@@ -1,6 +1,6 @@
 {...}: {
   services = {
-    prowlarr = {
+    flaresolverr = {
       enable = true;
     };
   };

@@ -9,5 +9,6 @@
     ./homeassistant.nix
     # ./dnscrypt.nix
     ./resolved.nix
+    ./flaresolverr.nix
   ];
 }
