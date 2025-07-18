@@ -30,7 +30,6 @@
   security = {
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
-    # pam.services.greetd.enableGnomeKeyring = true;
     rtkit.enable = true;
   };
 

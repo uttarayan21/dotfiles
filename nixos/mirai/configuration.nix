@@ -31,7 +31,7 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "fs0c131y" "remotebuilder"];
-      substituters = [
+      trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://nixos-raspberrypi.cachix.org"
         # "https://sh.darksailor.dev"
