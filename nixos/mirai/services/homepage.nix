@@ -38,6 +38,12 @@
               };
             }
             {
+              "Lidarr" = {
+                description = "Lidarr";
+                href = "https://lidarr.tsuba.darksailor.dev";
+              };
+            }
+            {
               "Radarr" = {
                 description = "Radarr";
                 href = "https://radarr.tsuba.darksailor.dev";

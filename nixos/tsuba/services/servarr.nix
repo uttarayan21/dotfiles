@@ -25,6 +25,7 @@ in {
     lidarr = {
       enable = true;
       package = unstablePkgs.lidarr;
+      group = "media";
     };
     caddy.virtualHosts = {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
