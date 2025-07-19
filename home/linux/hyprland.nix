@@ -178,9 +178,9 @@
       ];
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        # "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
-        "$mainMod, Return, exec, ${pkgs.wezterm}/bin/wezterm"
-        "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
+        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
+        "$mainModShift, Return, exec, ${pkgs.wezterm}/bin/wezterm"
+        # "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
         "$mainModShift, s, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
         # "$mainMod, M, exit,"

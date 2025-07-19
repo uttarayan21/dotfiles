@@ -33,7 +33,7 @@
         inherit whitelist;
         enable = true;
         jvmOpts = "-Xmx4G -Xms4G";
-        package = pkgs.fabricServers.fabric-1_21_7;
+        package = pkgs.fabricServers.fabric-1_21_8;
         serverProperties = {
           motd = "Servius's Fabric Minecraft Server";
           server-port = 25567;
