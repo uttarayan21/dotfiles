@@ -35,5 +35,6 @@ lib.optionalAttrs device.hasGui {
     ./nextcloud.nix
     ./blueman.nix
     ./zen.nix
+    ./jellyflix.nix
   ];
 }
