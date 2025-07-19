@@ -10,5 +10,6 @@
     # ./dnscrypt.nix
     ./resolved.nix
     ./flaresolverr.nix
+    ./minecraft.nix
   ];
 }
