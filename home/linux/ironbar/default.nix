@@ -64,8 +64,8 @@
               "3" = "icon:firefox";
               "4" = "icon:slack";
               "5" = "icon:steam";
-              "6" = "icon:misc";
-              "7" = "icon:misc";
+              "6" = "icon:foot";
+              "7" = "icon:foot";
               "8" = "icon:firefox";
               "9" = "icon:discord";
               "10" = "icon:spotify";

@@ -4,14 +4,14 @@
     # ./rsyncd.nix
     # ./sunshine.nix
     # ./zerotier.nix
+    # ./dnscrypt.nix
     ./tailscale.nix
     ./samba.nix
     ./mullvad.nix
     ./openrgb.nix
     ./command-runner.nix
     ./resolved.nix
-    ./weylus.nix
-    # ./dnscrypt.nix
+    ./minecraft.nix
   ];
   services = {
     # hardware.openrgb.enable = true;
