@@ -1,8 +1,13 @@
 {config, ...}: {
   virtualisation.docker.enable = true;
   sops = {
-    secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
-    # secrets."gitea/registration" = {};
+    # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
+    secrets."gitea/registration" = {};
+    templates = {
+      "GITEA_REGISTRATION_TOKEN.env".content = ''
+        TOKEN=${config.sops.placeholder."gitea/registration"}
+      '';
+    };
   };
   services = {
     gitea = {
@@ -34,7 +39,7 @@
           labels = [
             "ubuntu-latest:docker://node:18-bullseye"
           ];
-          tokenFile = config.sops.secrets."gitea/registration".path;
+          tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
         };
       };
     };
