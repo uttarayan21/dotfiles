@@ -33,8 +33,8 @@
     gitea-actions-runner = {
       instances = {
         mirai = {
+          enable = false;
           name = "mirai";
-          enable = true;
           url = "https://git.darksailor.dev";
           labels = [
             "ubuntu-latest:docker://node:18-bullseye"
@@ -60,6 +60,13 @@
               {
                 domain = "git.darksailor.dev";
                 policy = "one_factor";
+              }
+              {
+                domain = "git.darksailor.dev";
+                policy = "bypass";
+                resources = [
+                  "^/api([/?].*)?$"
+                ];
               }
             ];
           };

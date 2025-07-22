@@ -31,10 +31,10 @@
           access_control = {
             default_policy = "one_factor";
             rules = [
-              {
-                domain = "darksailor.dev";
-                policy = "one_factor";
-              }
+              # {
+              #   domain = "darksailor.dev";
+              #   policy = "one_factor";
+              # }
               # {
               #   domain = "cloud.darksailor.dev";
               #   policy = "one_factor";
@@ -47,18 +47,18 @@
               #   domain = "media.darksailor.dev";
               #   policy = "one_factor";
               # }
-              {
-                domain = "music.darksailor.dev";
-                policy = "one_factor";
-              }
-              {
-                domain = "music.darksailor.dev";
-                policy = "bypass";
-                resources = [
-                  "^/rest([/?].*)?$"
-                  "^/share([/?].*)?$"
-                ];
-              }
+              # {
+              #   domain = "music.darksailor.dev";
+              #   policy = "one_factor";
+              # }
+              # {
+              #   domain = "music.darksailor.dev";
+              #   policy = "bypass";
+              #   resources = [
+              #     "^/rest([/?].*)?$"
+              #     "^/share([/?].*)?$"
+              #   ];
+              # }
             ];
           };
           storage = {
