@@ -497,6 +497,9 @@ in {
             inlayHints = {
               typeHints.enable = false;
             };
+            check = {
+              features = ["default"];
+            };
             files.exclude = [
               ".cargo/"
               ".direnv/"
@@ -509,15 +512,15 @@ in {
           };
         };
       };
-      onAttach =
-        /*
-        lua
-        */
-        ''
-          if client.server_capabilities.inlayHintProvider then
-              vim.lsp.inlay_hint.enable(true)
-          end
-        '';
+      # onAttach =
+      #   /*
+      #   lua
+      #   */
+      #   ''
+      #     if client.server_capabilities.inlayHintProvider then
+      #         vim.lsp.inlay_hint.enable(true)
+      #     end
+      #   '';
     };
     # blink-cmp = {
     #   enable = false;

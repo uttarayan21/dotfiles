@@ -16,9 +16,10 @@ in {
 
   services.kdeconnect.enable = linux_gui;
   services.kdeconnect.indicator = linux_gui;
-  home.packages = with pkgs; [
-    ncpamixer
-  ];
+  home.packages = with pkgs;
+    lib.optionals linux_gui [
+      ncpamixer
+    ];
   # services.swayosd.enable = linux_gui;
   # services.swaync.enable = linux_gui;
   # services.nextcloud-client = {

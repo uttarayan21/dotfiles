@@ -1,6 +1,6 @@
-{...}: {
+{device, ...}: {
   services.swaync = {
-    enable = true;
+    enable = device.name == "ryu";
     settings = {
       notification-inline-replies = true;
       cssPriority = "user";
