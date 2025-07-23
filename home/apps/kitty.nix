@@ -19,6 +19,7 @@
       shell = "${pkgs.fish}/bin/fish";
       hide_window_decorations = "yes";
       cursor_trail = 3;
+      close_on_child_death = "yes";
     };
     shellIntegration.enableFishIntegration = true;
     darwinLaunchOptions = [
