@@ -12,6 +12,7 @@
     ./command-runner.nix
     ./resolved.nix
     ./minecraft.nix
+    ./fwupd.nix
   ];
   services = {
     # hardware.openrgb.enable = true;
