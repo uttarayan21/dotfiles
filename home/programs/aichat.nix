@@ -50,7 +50,7 @@
           # api_key_file = "${config.sops.secrets."gemini/api_key".path}";
           models = [
             {
-              name = "gemini-2.5-flash-preview-04-17";
+              name = "gemini-2.5-pro";
               type = "chat";
             }
           ];

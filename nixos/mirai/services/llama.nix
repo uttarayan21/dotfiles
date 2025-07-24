@@ -37,7 +37,6 @@
         WEBUI_AUTH = "False";
         ENABLE_LOGIN_FORM = "False";
         WEBUI_URL = "https://llama.darksailor.dev";
-        # OLLAMA_BASE_URL = "https://ollama.darksailor.dev/v1";
         OPENAI_BASE_URL = "https://ollama.darksailor.dev/v1";
       };
       environmentFile = "${config.sops.templates."LLAMA_API_KEY.env".path}";
