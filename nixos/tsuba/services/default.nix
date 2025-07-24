@@ -8,7 +8,8 @@
     ./deluge.nix
     ./homeassistant.nix
     # ./dnscrypt.nix
-    ./resolved.nix
+    # ./resolved.nix
+    ./blocky.nix
     ./flaresolverr.nix
   ];
 }

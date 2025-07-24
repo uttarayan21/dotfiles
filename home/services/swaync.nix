@@ -9,7 +9,7 @@
   xdg.configFile = {
     "swaync/style.css".text = ''
       .floating-notifications {
-          background: rgba(0, 0, 0, 0.3);
+          background: rgba(0, 0, 0, 0.0);
       }
     '';
   };
