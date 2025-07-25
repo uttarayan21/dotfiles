@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  systemd.user.services.onepassword-gui = lib.optionalAttrs (pkgs.stdenv.isLinux && device.hasGui) {
+  systemd.user.services.onepassword-gui = lib.optionalAttrs (device.is "ryu") {
     Unit = {
       Description = "1Password GUI";
       BindsTo = ["graphical-session.target"];
@@ -20,7 +20,7 @@
     };
   };
   home.packages = with pkgs;
-    lib.optionals (pkgs.stdenv.isLinux && device.hasGui) [
+    lib.optionals (device.is "ryu") [
       nautilus
       totem
       ffmpegthumbnailer

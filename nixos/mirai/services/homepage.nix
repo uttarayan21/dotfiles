@@ -21,48 +21,56 @@
           "Tsuba" = [
             {
               "Jellyfin" = {
+                icon = "jellyfin.png";
                 description = "Jellyfin Media Server";
                 href = "https://jellyfin.tsuba.darksailor.dev";
               };
             }
             {
               "Jellyseerr" = {
+                icon = "jellyseerr.png";
                 description = "Jellyseerr Media Server";
                 href = "https://jellyseerr.tsuba.darksailor.dev";
               };
             }
             {
               "Sonarr" = {
+                icon = "sonarr.png";
                 description = "Sonarr";
                 href = "https://sonarr.tsuba.darksailor.dev";
               };
             }
             {
               "Lidarr" = {
+                icon = "lidarr.png";
                 description = "Lidarr";
                 href = "https://lidarr.tsuba.darksailor.dev";
               };
             }
             {
               "Radarr" = {
+                icon = "radarr.png";
                 description = "Radarr";
                 href = "https://radarr.tsuba.darksailor.dev";
               };
             }
             {
               "Deluge" = {
+                icon = "deluge.png";
                 description = "Deluge";
                 href = "https://deluge.tsuba.darksailor.dev";
               };
             }
             {
               "Prowlarr" = {
+                icon = "prowlarr.png";
                 description = "Prowlarr";
                 href = "https://prowlarr.tsuba.darksailor.dev";
               };
             }
             {
               "Home Assistant" = {
+                icon = "home-assistant.png";
                 description = "Home Automation";
                 href = "https://home.darksailor.dev";
               };
@@ -73,21 +81,62 @@
           "Mirai" = [
             {
               "Gitea" = {
+                icon = "gitea.png";
                 description = "Gitea Code Hosting";
                 href = "https://git.darksailor.dev";
               };
             }
             {
               "Nextcloud" = {
+                icon = "nextcloud.png";
                 description = "Nextcloud Suite";
                 href = "https://cloud.darksailor.dev";
               };
             }
             {
               "Open WebUI" = {
+                icon = "open-webui.png";
                 description = "Open WebUI for self hosted llms";
                 href = "https://llama.darksailor.dev";
               };
+            }
+          ];
+        }
+      ];
+      bookmarks = [
+        {
+          "Nix" = [
+            {
+              "Nixpkgs" = [
+                {
+                  abbr = "pkgs";
+                  href = "https://search.nixos.org/packages?channel=unstable";
+                }
+              ];
+            }
+            {
+              "NixOS" = [
+                {
+                  abbr = "nixos";
+                  href = "https://search.nixos.org/options?channel=unstable";
+                }
+              ];
+            }
+            {
+              "Home Manager" = [
+                {
+                  abbr = "hm";
+                  href = "https://home-manager-options.extranix.com";
+                }
+              ];
+            }
+            {
+              "NixVim" = [
+                {
+                  abbr = "nixvim";
+                  href = "https://nix-community.github.io/nixvim/search";
+                }
+              ];
             }
           ];
         }

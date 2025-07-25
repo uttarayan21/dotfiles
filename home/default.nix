@@ -11,7 +11,6 @@
     ../modules
     ./apps
     ./auth.nix
-    ./linux
     ./programs
     ./scripts.nix
     ./services

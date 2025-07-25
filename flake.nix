@@ -261,7 +261,7 @@
       };
     };
 
-    mkDevice = device: {
+    mkDevice = device: rec {
       isLinux = !isNull (builtins.match ".*-linux" device.system);
       isServer =
         if (builtins.hasAttr "isServer" device)
@@ -273,6 +273,7 @@
         else false;
       isDarwin = !isNull (builtins.match ".*-darwin" device.system);
       isArm = !isNull (builtins.match "aarch64-.*" device.system);
+      isDesktopLinux = isLinux && hasGui;
       hasGui =
         if (builtins.hasAttr "hasGui" device)
         then device.hasGui
@@ -284,6 +285,7 @@
       system = device.system;
       name = device.name;
       user = device.user;
+      is = name: device.name == name;
     };
 
     nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;

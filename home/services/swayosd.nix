@@ -1,3 +1,3 @@
 {device, ...}: {
-  services.swayosd.enable = device.name == "ryu";
+  services.swayosd.enable = device.is "ryu";
 }

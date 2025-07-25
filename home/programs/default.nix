@@ -9,45 +9,45 @@
     ./atuin.nix
     ./bat.nix
     ./carapace.nix
+    ./ddcbacklight.nix
     ./direnv.nix
     ./eza.nix
     ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
-    # ./goread.nix
-    # ./helix.nix
     ./mpd.nix
-    # ./newsboat.nix
+    ./ncpamixer.nix
     ./nh.nix
     ./nix-index.nix
     ./nushell.nix
+    ./omnix.nix
+    ./ryujinx.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
     ./tmux.nix
     ./tuifeed.nix
     ./yazi.nix
-    ./zoxide.nix
-    ./omnix.nix
     ./yt-dlp.nix
-    ./ryujinx.nix
-    ./ddcbacklight.nix
-    # ./neovim.nix
-    # ./mpris-scrobbler.nix
+    ./zoxide.nix
+
+    # ./goread.nix
+    # ./helix.nix
     # ./magika.nix
+    # ./mpris-scrobbler.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
+    # ./neovim.nix
+    # ./newsboat.nix
+    # ./template.nix
     # ./zellij.nix
-    #./template.nix
   ];
   home.packages = with pkgs;
     [
-      aria2
-      nb
-      (nixvim.makeNixvim (import ../../neovim))
       _1password-cli
       alejandra
+      aria2
       ast-grep
       bottom
       btop
@@ -62,6 +62,8 @@
       jq
       just
       macchina
+      nb
+      (nixvim.makeNixvim (import ../../neovim))
       p7zip
       pandoc
       pfetch-rs
