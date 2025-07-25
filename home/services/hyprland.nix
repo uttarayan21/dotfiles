@@ -53,9 +53,10 @@
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       "render:explicit_sync" = true;
+      "render:cm_fs_passthrough" = 1;
       monitor = [
-        # "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, bitdepth, 10, cm, hdr" # Washed out colors and can't record with obs
-        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0"
+        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, bitdepth, 10, cm, hdr, sdrbrightness, 1.3, sdrsaturation, 1.0"
+        # "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0"
         "${device.monitors.secondary},  2560x1440@170,  -1440x-1120,     1, transform, 1"
         "${device.monitors.tertiary},   2560x1440@170,   2560x-1120,     1, transform, 3"
       ];
