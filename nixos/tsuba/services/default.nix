@@ -9,7 +9,7 @@
     ./homeassistant.nix
     # ./dnscrypt.nix
     # ./resolved.nix
-    ./blocky.nix
+    # ./blocky.nix
     ./flaresolverr.nix
   ];
 }

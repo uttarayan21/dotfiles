@@ -62,4 +62,5 @@
   users.groups.media = {};
   system.stateVersion = "25.05";
   services.openssh.enable = true;
+  time.timeZone = "Asia/Kolkata";
 }

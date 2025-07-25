@@ -3,14 +3,7 @@
   config,
   lib,
   ...
-}: let
-  mkCaddy = name: {
-    caddy.virtualHosts."${name}.tsuba.darksailor.dev".extraConfig = ''
-      import hetzner
-      reverse_proxy localhost:${builtins.toString config.services.${name}.settings.server.port}
-    '';
-  };
-in {
+}: {
   services = {
     sonarr = {
       enable = true;
@@ -27,6 +20,11 @@ in {
       package = unstablePkgs.lidarr;
       group = "media";
     };
+    bazarr = {
+      enable = true;
+      package = unstablePkgs.bazarr;
+      group = "media";
+    };
     caddy.virtualHosts = {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
@@ -39,6 +37,10 @@ in {
       "lidarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
         reverse_proxy localhost:${builtins.toString config.services.lidarr.settings.server.port}
+      '';
+      "bazarr.tsuba.darksailor.dev".extraConfig = ''
+        import hetzner
+        reverse_proxy localhost:${builtins.toString config.services.bazarr.listenPort}
       '';
       "prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner

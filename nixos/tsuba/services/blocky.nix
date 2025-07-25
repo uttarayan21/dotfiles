@@ -1,6 +1,6 @@
 {...}: {
   services.blocky = {
-    enable = true;
+    enable = false;
     settings = {
       ports.dns = 53; # Port for incoming DNS Queries.
       upstreams.groups.default = [

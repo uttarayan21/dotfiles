@@ -29,42 +29,49 @@
             {
               "Jellyseerr" = {
                 icon = "jellyseerr.png";
-                description = "Jellyseerr Media Server";
+                description = "Jellyseerr: Media Request Management";
                 href = "https://jellyseerr.tsuba.darksailor.dev";
               };
             }
             {
               "Sonarr" = {
                 icon = "sonarr.png";
-                description = "Sonarr";
+                description = "Sonarr: TV Series Management";
                 href = "https://sonarr.tsuba.darksailor.dev";
+              };
+            }
+            {
+              "Bazarr" = {
+                icon = "bazarr.png";
+                description = "Bazarr: Subtitles and Metadata";
+                href = "https://bazarr.tsuba.darksailor.dev";
               };
             }
             {
               "Lidarr" = {
                 icon = "lidarr.png";
-                description = "Lidarr";
+                description = "Lidarr: Music Management";
                 href = "https://lidarr.tsuba.darksailor.dev";
               };
             }
             {
               "Radarr" = {
                 icon = "radarr.png";
-                description = "Radarr";
+                description = "Radarr: Movie Management";
                 href = "https://radarr.tsuba.darksailor.dev";
               };
             }
             {
               "Deluge" = {
                 icon = "deluge.png";
-                description = "Deluge";
+                description = "Deluge: Torrent Client";
                 href = "https://deluge.tsuba.darksailor.dev";
               };
             }
             {
               "Prowlarr" = {
                 icon = "prowlarr.png";
-                description = "Prowlarr";
+                description = "Prowlarr: Indexer Manager";
                 href = "https://prowlarr.tsuba.darksailor.dev";
               };
             }

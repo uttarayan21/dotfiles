@@ -10,7 +10,6 @@
     ./minecraft.nix
     ./nextcloud.nix
     ./tailscale.nix
-    ./zerotier.nix
     ./prowlarr.nix
     ./flaresolverr.nix
     ./searxng.nix
@@ -26,6 +25,7 @@
     # ./seafile.nix
     # ./syncthing.nix
     # ./vscode.nix
+    # ./zerotier.nix
   ];
   services = {
     nix-serve = {
