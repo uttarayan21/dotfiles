@@ -4,6 +4,6 @@
     dnssec = "true";
     dnsovertls = "true";
     domains = ["lemur-newton.ts.net"];
-    fallbackDns = ["192.168.0.125"];
+    fallbackDns = ["1.1.1.1"];
   };
 }
