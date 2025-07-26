@@ -7,9 +7,10 @@
     ./servarr.nix
     ./deluge.nix
     ./homeassistant.nix
+    ./flaresolverr.nix
+    ./immich.nix
     # ./dnscrypt.nix
     # ./resolved.nix
     # ./blocky.nix
-    ./flaresolverr.nix
   ];
 }
