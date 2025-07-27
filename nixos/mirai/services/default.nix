@@ -13,6 +13,7 @@
     ./prowlarr.nix
     ./flaresolverr.nix
     ./searxng.nix
+    ./immich.nix
 
     # ./home-assistant.nix
     # ./jellyfin.nix

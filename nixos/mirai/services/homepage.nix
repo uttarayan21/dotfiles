@@ -145,6 +145,14 @@
                 }
               ];
             }
+            {
+              "Tailscale" = [
+                {
+                  abbr = "ts";
+                  href = "https://login.tailscale.com";
+                }
+              ];
+            }
           ];
         }
       ];
