@@ -28,7 +28,7 @@
       servers.fabric = {
         inherit whitelist;
         enable = true;
-        enableRcon = true;
+        # enable-rcon = true;
         jvmOpts = "-Xmx4G -Xms4G";
         package = pkgs.fabricServers.fabric-1_21_1;
         serverProperties = {
