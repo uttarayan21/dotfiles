@@ -9,10 +9,10 @@
       ldap_user_dn = "admin";
       ldap_base_dn = "dc=darksailor,dc=dev";
       ldap_user_email = "admin@darksailor.dev";
-      http_host = "0.0.0.0";
+      http_host = "127.0.0.1";
       http_port = 5090;
       ldap_port = 389;
-      ldap_host = "0.0.0.0";
+      ldap_host = "::";
       environment = {
         LLDAP_JWT_SECRET_FILE = config.sops.secrets."lldap/jwt".path;
         LLDAP_KEY_SEED_FILE = config.sops.secrets."lldap/seed".path;
