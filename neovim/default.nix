@@ -381,30 +381,35 @@ in {
       };
     };
     rustaceanvim = {
-      enable = false;
+      enable = true;
       settings = {
         server = {
-          on_attach = rawLua ''
-            function(client, bufnr)
-                vim.keymap.set(
-                  "n",
-                  "<leader>a",
-                  function()
-                    vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
-                    -- or vim.lsp.buf.codeAction() if you don't want grouping.
-                  end,
-                  { silent = true, buffer = bufnr }
-                )
-                vim.keymap.set(
-                  "n",
-                  "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-                  function()
-                    vim.cmd.RustLsp({'hover', 'actions'})
-                  end,
-                  { silent = true, buffer = bufnr }
-                )
-            end
-          '';
+          on_attach =
+            rawLua
+            /*
+            lua
+            */
+            ''
+              function(client, bufnr)
+                  vim.keymap.set(
+                    "n",
+                    "<leader>a",
+                    function()
+                      vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+                      -- or vim.lsp.buf.codeAction() if you don't want grouping.
+                    end,
+                    { silent = true, buffer = bufnr }
+                  )
+                  vim.keymap.set(
+                    "n",
+                    "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+                    function()
+                      vim.cmd.RustLsp({'hover', 'actions'})
+                    end,
+                    { silent = true, buffer = bufnr }
+                  )
+              end
+            '';
           default_settings = {
             rust-analyzer = {
               inlayHints = {
@@ -490,7 +495,7 @@ in {
         sourcekit.enable = true;
         openscad_lsp.enable = true;
         rust_analyzer = {
-          enable = true;
+          enable = false;
           installCargo = false;
           installRustc = false;
           settings = {

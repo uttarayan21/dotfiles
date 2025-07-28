@@ -14,6 +14,7 @@
       "1password"
       "shapr3d"
       "orcaslicer"
+      "zed"
     ];
   };
 }

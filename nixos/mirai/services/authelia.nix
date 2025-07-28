@@ -1,11 +1,14 @@
 {config, ...}: {
   sops = {
-    secrets = {
-      "authelia/servers/darksailor/jwtSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      "authelia/servers/darksailor/storageEncryptionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      "authelia/servers/darksailor/sessionSecret".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      "authelia/users/servius".owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
-      users.owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+    secrets = let
+      user = config.systemd.services.authelia-darksailor.serviceConfig.User;
+    in {
+      "authelia/servers/darksailor/jwtSecret".owner = user;
+      "authelia/servers/darksailor/storageEncryptionSecret".owner = user;
+      "authelia/servers/darksailor/sessionSecret".owner = user;
+      "authelia/users/servius".owner = user;
+      "authelia/oidc/immich".owner = user;
+      users.owner = user;
     };
   };
   services = {
@@ -17,6 +20,40 @@
             password_reset.disable = false;
             file = {
               path = "/run/secrets/users";
+            };
+          };
+          identity_providers = {
+            odic = {
+              clients = [
+                {
+                  client_id = "immich";
+                  client_name = "immich";
+                  client_secret = ''{{ fileContent "${config.sops.secrets."authelia/oidc/immich".path}" }}'';
+                  public = false;
+                  authorization_policy = "two_factor";
+                  require_pkce = false;
+                  pkce_challenge_method = "";
+                  redirect_uris = [
+                    "https://photos.darksailor.dev/auth/login"
+                    "https://photos.darksailor.dev/user-settings"
+                    "app.immich:///oauth-callback"
+                  ];
+                  scopes = [
+                    "openid"
+                    "profile"
+                    "email"
+                  ];
+                  response_types = [
+                    "code"
+                  ];
+                  grant_types = [
+                    "authorization_code"
+                  ];
+                  access_token_signed_response_alg = "none";
+                  userinfo_signed_response_alg = "none";
+                  token_endpoint_auth_method = "client_secret_post";
+                }
+              ];
             };
           };
           session = {
@@ -79,9 +116,6 @@
               };
             };
           };
-          # log = {
-          #   file_path = "/tmp/authelia.log";
-          # };
         };
         secrets = {
           jwtSecretFile = config.sops.secrets."authelia/servers/darksailor/jwtSecret".path;
