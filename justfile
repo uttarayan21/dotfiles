@@ -25,3 +25,8 @@ home:
 
 nvim:
     nix run .#neovim
+
+
+[linux]
+rollback:
+	sudo nixos-rebuild switch --rollback --flake .

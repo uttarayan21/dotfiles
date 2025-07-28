@@ -7,9 +7,9 @@
     pkgs.zed-editor
   ];
 
-  zed-editor = {
-    enable = true;
-  };
+  # zed-editor = {
+  #   enable = true;
+  # };
   # xdg.configFile = {
   #   "zed/keymaps.json" = '''';
   #   "zed/settings.json".source = '''';

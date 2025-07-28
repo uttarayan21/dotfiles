@@ -43,13 +43,13 @@
     };
 
     caddy = {
-      # virtualHosts."llama.darksailor.dev".extraConfig = ''
-      #   forward_auth localhost:5555 {
-      #       uri /api/authz/forward-auth
-      #       copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-      #   }
-      #   reverse_proxy localhost:7070
-      # '';
+      virtualHosts."llama.darksailor.dev".extraConfig = ''
+        forward_auth localhost:5555 {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
+        reverse_proxy localhost:${builtins.toString config.services.open-webui.port}
+      '';
       virtualHosts."ollama.darksailor.dev".extraConfig = ''
         @apikey {
             header Authorization "Bearer {env.LLAMA_API_KEY}"
@@ -61,11 +61,25 @@
             Access-Control-Allow-Origin *
             -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
           }
-          reverse_proxy localhost:11434
+          reverse_proxy localhost:${builtins.toString config.services.ollama.port}
         }
 
         respond "Unauthorized" 403
       '';
+    };
+    authelia = {
+      instances.darksailor = {
+        settings = {
+          access_control = {
+            rules = [
+              {
+                domain = "llama.darksailor.dev";
+                policy = "one_factor";
+              }
+            ];
+          };
+        };
+      };
     };
   };
   systemd.services.caddy = {

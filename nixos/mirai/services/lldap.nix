@@ -6,23 +6,24 @@
   services.lldap = {
     enable = true;
     settings = {
-      # ldap_user_dn = "admin";
+      ldap_user_dn = "admin";
       ldap_base_dn = "dc=darksailor,dc=dev";
-      # ldap_user_email = "admin@darksailor.dev";
-      # http_host = "127.0.0.1";
+      ldap_user_email = "admin@darksailor.dev";
+      http_host = "127.0.0.1";
       http_port = 5090;
       ldap_port = 389;
-      # ldap_host = "::";
-      environment = {
-        LLDAP_JWT_SECRET_FILE = config.sops.secrets."lldap/jwt".path;
-        LLDAP_KEY_SEED_FILE = config.sops.secrets."lldap/seed".path;
-        # LLDAP_LDAP_USER_PASS_FILE = config.sops.secrets."lldap/admin".path;
-        LLDAP_LDAP_USER_PASS = "foobar123";
-      };
+      ldap_host = "::";
+      # environment = {
+      # };
+      environmentFile = ''
+        LLDAP_LDAP_USER_PASS_FILE = ${config.sops.secrets."lldap/admin".path};
+        LLDAP_JWT_SECRET_FILE = ${config.sops.secrets."lldap/jwt".path};
+        LLDAP_KEY_SEED_FILE = ${config.sops.secrets."lldap/seed".path};
+      '';
     };
   };
   services.caddy = {
-    virtualHosts."console.darksailor.dev".extraConfig = ''
+    virtualHosts."ldap.darksailor.dev".extraConfig = ''
       reverse_proxy localhost:5090
     '';
   };
@@ -34,15 +35,12 @@
   };
   users.groups.lldap = {};
 
-  # systemd.services.sops-install-secrets = {
-  #   after = ["lldap.service"];
-  # };
-
   systemd.services.lldap = {
-    # wants = ["sops-install-secrets.service"];
     serviceConfig = {
       AmbientCapabilities = "CAP_NET_BIND_SERVICE";
       DynamicUser = lib.mkForce false;
+      User = "lldap";
+      Group = "lldap";
     };
   };
   sops = {

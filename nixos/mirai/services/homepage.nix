@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   services = {
     homepage-dashboard = {
       enable = true;
@@ -107,6 +107,13 @@
                 href = "https://llama.darksailor.dev";
               };
             }
+            {
+              "Immich" = {
+                icon = "immich.png";
+                description = "Immich: Self-hosted Photo and Video Backup";
+                href = "https://photos.darksailor.dev";
+              };
+            }
           ];
         }
       ];
@@ -163,8 +170,22 @@
             uri /api/authz/forward-auth
             copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
         }
-        reverse_proxy localhost:8082
+        reverse_proxy localhost:${builtins.toString config.services.homepage-dashboard.listenPort}
       '';
+    };
+    authelia = {
+      instances.darksailor = {
+        settings = {
+          access_control = {
+            rules = [
+              {
+                domain = "dashboard.darksailor.dev";
+                policy = "one_factor";
+              }
+            ];
+          };
+        };
+      };
     };
   };
 }

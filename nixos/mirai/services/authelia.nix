@@ -7,8 +7,9 @@
       "authelia/servers/darksailor/storageEncryptionSecret".owner = user;
       "authelia/servers/darksailor/sessionSecret".owner = user;
       "authelia/users/servius".owner = user;
-      "authelia/oidc/immich".owner = user;
+      "lldap/users/authelia".owner = user;
       users.owner = user;
+      "authelia/oidc/jwks".owner = user;
     };
   };
   services = {
@@ -18,44 +19,22 @@
         settings = {
           authentication_backend = {
             password_reset.disable = false;
-            file = {
-              path = "/run/secrets/users";
+            password_change.disable = false;
+            # file = {
+            #   path = "/run/secrets/users";
+            # };
+            ldap = {
+              address = "ldap://localhost:389";
+              timeout = "5s";
+              # start_tls = false;
+              base_dn = "dc=darksailor,dc=dev";
+              user = "cn=authelia,ou=people,dc=darksailor,dc=dev";
+              users_filter = "(&({username_attribute}={input})(objectClass=person))";
+              groups_filter = "(&(member={dn})(objectClass=groupOfNames))";
+              additional_users_dn = "OU=people";
+              additional_groups_dn = "OU=groups";
             };
           };
-          # identity_providers = {
-          #   oidc = {
-          #     clients = [
-          #       {
-          #         client_id = "immich";
-          #         client_name = "immich";
-          #         client_secret = ''{{ fileContent "${config.sops.secrets."authelia/oidc/immich".path}" }}'';
-          #         public = false;
-          #         authorization_policy = "two_factor";
-          #         require_pkce = false;
-          #         pkce_challenge_method = "";
-          #         redirect_uris = [
-          #           "https://photos.darksailor.dev/auth/login"
-          #           "https://photos.darksailor.dev/user-settings"
-          #           "app.immich:///oauth-callback"
-          #         ];
-          #         scopes = [
-          #           "openid"
-          #           "profile"
-          #           "email"
-          #         ];
-          #         response_types = [
-          #           "code"
-          #         ];
-          #         grant_types = [
-          #           "authorization_code"
-          #         ];
-          #         access_token_signed_response_alg = "none";
-          #         userinfo_signed_response_alg = "none";
-          #         token_endpoint_auth_method = "client_secret_post";
-          #       }
-          #     ];
-          #   };
-          # };
           session = {
             cookies = [
               {
@@ -91,6 +70,11 @@
           jwtSecretFile = config.sops.secrets."authelia/servers/darksailor/jwtSecret".path;
           storageEncryptionKeyFile = config.sops.secrets."authelia/servers/darksailor/storageEncryptionSecret".path;
           sessionSecretFile = config.sops.secrets."authelia/servers/darksailor/sessionSecret".path;
+          oidcHmacSecretFile = config.sops.secrets."authelia/servers/darksailor/sessionSecret".path;
+          oidcIssuerPrivateKeyFile = config.sops.secrets."authelia/oidc/jwks".path;
+        };
+        environmentVariables = {
+          AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE = config.sops.secrets."lldap/users/authelia".path;
         };
       };
     };
