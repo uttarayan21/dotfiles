@@ -3,10 +3,12 @@
     secrets."authelia/oidc/immich/client_id" = {
       owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       mode = "0440";
+      restartUnits = ["immich-server.service" "authelia-darksailor.service"];
     };
     secrets."authelia/oidc/immich/client_secret" = {
       owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
       mode = "0440";
+      restartUnits = ["immich-server.service" "authelia-darksailor.service"];
     };
     templates = {
       "immich-config.json" = {
@@ -36,10 +38,10 @@
           '';
         mode = "0400";
         owner = "immich";
+        restartUnits = ["immich-server.service" "authelia-darksailor.service"];
       };
     };
   };
-  users.users.immich.extraGroups = [config.systemd.services.authelia-darksailor.serviceConfig.Group];
   services.immich = {
     enable = true;
     mediaLocation = "/media/photos/immich";

@@ -4,26 +4,37 @@
   lib,
   ...
 }: {
-  services = {
+  services = let
+    settings = {
+      auth = {
+        authentication_enabled = true;
+        authentication_method = "External";
+      };
+    };
+  in {
     sonarr = {
       enable = true;
       package = unstablePkgs.sonarr;
       group = "media";
+      inherit settings;
     };
     radarr = {
       enable = true;
       package = unstablePkgs.radarr;
       group = "media";
+      inherit settings;
     };
     lidarr = {
       enable = true;
       package = unstablePkgs.lidarr;
       group = "media";
+      inherit settings;
     };
     bazarr = {
       enable = true;
       package = unstablePkgs.bazarr;
       group = "media";
+      # settings.AuthenticationMethod = "External";
     };
     caddy.virtualHosts = {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''

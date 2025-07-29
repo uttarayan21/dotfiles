@@ -13,8 +13,6 @@
       http_port = 5090;
       ldap_port = 389;
       ldap_host = "::";
-      # environment = {
-      # };
       environmentFile = ''
         LLDAP_LDAP_USER_PASS_FILE = ${config.sops.secrets."lldap/admin".path};
         LLDAP_JWT_SECRET_FILE = ${config.sops.secrets."lldap/jwt".path};
