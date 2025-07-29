@@ -43,6 +43,35 @@
           ];
         }
         {
+          type = "openai-compatible";
+          name = "ryu";
+          api_base = "https://ollama.ryu.darksailor.dev/v1";
+          api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
+          models = [
+            {
+              name = "RobinBially/nomic-embed-text-8k";
+              type = "embedding";
+              default_chunk_size = 8000;
+            }
+            {
+              name = "deepseek-r1:7b";
+              type = "chat";
+            }
+            {
+              name = "deepseek-r1:14b";
+              type = "chat";
+            }
+            {
+              name = "qwen3:8b";
+              type = "chat";
+            }
+            {
+              name = "qwen3:14b";
+              type = "chat";
+            }
+          ];
+        }
+        {
           type = "gemini";
           name = "gemini";
           api_base = "https://generativelanguage.googleapis.com/v1beta";
