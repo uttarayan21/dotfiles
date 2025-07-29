@@ -1,10 +1,10 @@
 {...}: {
   imports = [
-    # ./ollama.nix
     # ./rsyncd.nix
     # ./sunshine.nix
     # ./zerotier.nix
     # ./dnscrypt.nix
+    ./ollama.nix
     ./tailscale.nix
     ./samba.nix
     ./mullvad.nix
@@ -14,7 +14,4 @@
     ./minecraft.nix
     ./fwupd.nix
   ];
-  services = {
-    # hardware.openrgb.enable = true;
-  };
 }

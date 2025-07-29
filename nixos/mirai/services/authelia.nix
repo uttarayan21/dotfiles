@@ -20,13 +20,9 @@
           authentication_backend = {
             password_reset.disable = false;
             password_change.disable = false;
-            # file = {
-            #   path = "/run/secrets/users";
-            # };
             ldap = {
               address = "ldap://localhost:389";
               timeout = "5s";
-              # start_tls = false;
               base_dn = "dc=darksailor,dc=dev";
               user = "cn=authelia,ou=people,dc=darksailor,dc=dev";
               users_filter = "(&({username_attribute}={input})(objectClass=person))";
@@ -46,6 +42,32 @@
           };
           access_control = {
             default_policy = "one_factor";
+            rules = let
+              bypass_api = domain: [
+                {
+                  domain = domain;
+                  policy = "one_factor";
+                }
+                {
+                  domain = domain;
+                  policy = "bypass";
+                  resources = [
+                    "^/api([/?].*)?$"
+                  ];
+                }
+              ];
+            in
+              (bypass_api "sonarr.tsuba.darksailor.dev")
+              ++ (bypass_api "radarr.tsuba.darksailor.dev")
+              ++ (bypass_api "lidarr.tsuba.darksailor.dev")
+              ++ (bypass_api "bazarr.tsuba.darksailor.dev")
+              ++ (bypass_api "prowlarr.tsuba.darksailor.dev")
+              ++ [
+                {
+                  domain = "llama.ryu.darksailor.dev";
+                  policy = "one_factor";
+                }
+              ];
           };
           storage = {
             local = {

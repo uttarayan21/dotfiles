@@ -8,6 +8,9 @@
       enable = true;
       package = unstablePkgs.jellyseerr;
     };
+    jellyfin = {
+      enable = true;
+    };
     caddy = {
       virtualHosts."jellyseerr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner

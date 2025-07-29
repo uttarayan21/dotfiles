@@ -1,19 +1,55 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   services = {
     ollama = {
-      enable = false;
+      enable = true;
       host = "127.0.0.1";
       loadModels = ["deepseek-r1:7b" "deepseek-r1:14b"];
       port = 11434;
       acceleration = "cuda";
+      environmentVariables = {
+        OLLAMA_LLM_LIBRARY = "cuda";
+        LD_LIBRARY_PATH = "run/opengl-driver/lib";
+      };
     };
     open-webui = {
-      enable = false;
+      enable = true;
       environment = {
         OLLAMA_BASE_URL = "http://127.0.0.1:11434";
         WEBUI_AUTH = "False";
         ENABLE_LOGIN_FORM = "False";
       };
+    };
+    caddy = {
+      virtualHosts."llama.ryu.darksailor.dev".extraConfig = ''
+        import hetzner
+        forward_auth mirai:5555 {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
+        reverse_proxy localhost:${builtins.toString config.services.open-webui.port}
+      '';
+      virtualHosts."ollama.ryu.darksailor.dev".extraConfig = ''
+        import hetzner
+        @apikey {
+            header Authorization "Bearer {env.LLAMA_API_KEY}"
+        }
+
+        handle @apikey {
+          header {
+            # Set response headers or proxy to a different service if API key is valid
+            Access-Control-Allow-Origin *
+            -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
+          }
+          reverse_proxy localhost:${builtins.toString config.services.ollama.port}
+        }
+
+        respond "Unauthorized" 403
+      '';
     };
   };
 }
