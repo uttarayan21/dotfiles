@@ -36,25 +36,47 @@
       group = "media";
       # settings.AuthenticationMethod = "External";
     };
-    caddy.virtualHosts = {
+    caddy.virtualHosts = let
+      forwardAuth = "auth.darksailor.dev";
+    in {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
+        forward_auth ${forwardAuth} {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy localhost:${builtins.toString config.services.sonarr.settings.server.port}
       '';
       "radarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
+        forward_auth ${forwardAuth} {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy localhost:${builtins.toString config.services.radarr.settings.server.port}
       '';
       "lidarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
+        forward_auth ${forwardAuth} {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy localhost:${builtins.toString config.services.lidarr.settings.server.port}
       '';
       "bazarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
+        forward_auth ${forwardAuth} {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy localhost:${builtins.toString config.services.bazarr.listenPort}
       '';
       "prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
+        forward_auth ${forwardAuth} {
+            uri /api/authz/forward-auth
+            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+        }
         reverse_proxy mirai.darksailor.dev:9696
       '';
     };

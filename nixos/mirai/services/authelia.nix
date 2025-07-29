@@ -80,7 +80,9 @@
     };
     caddy = {
       virtualHosts."auth.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:5555
+        reverse_proxy localhost:5555 {
+            trusted_proxies static 100.87.221.59/32
+        }
       '';
     };
   };
