@@ -15,6 +15,7 @@
     ./searxng.nix
     ./immich.nix
     ./lldap.nix
+    ./resolved.nix
 
     # ./home-assistant.nix
     # ./jellyfin.nix

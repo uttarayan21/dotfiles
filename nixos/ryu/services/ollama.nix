@@ -14,6 +14,7 @@
       environmentVariables = {
         OLLAMA_LLM_LIBRARY = "cuda";
         LD_LIBRARY_PATH = "run/opengl-driver/lib";
+        OLLAMA_ORIGINS = "*";
       };
     };
     open-webui = {
@@ -35,20 +36,7 @@
       '';
       virtualHosts."ollama.ryu.darksailor.dev".extraConfig = ''
         import hetzner
-        @apikey {
-            header Authorization "Bearer {env.LLAMA_API_KEY}"
-        }
-
-        handle @apikey {
-          header {
-            # Set response headers or proxy to a different service if API key is valid
-            Access-Control-Allow-Origin *
-            -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
-          }
-          reverse_proxy localhost:${builtins.toString config.services.ollama.port}
-        }
-
-        respond "Unauthorized" 403
+        reverse_proxy localhost:${builtins.toString config.services.ollama.port}
       '';
     };
   };

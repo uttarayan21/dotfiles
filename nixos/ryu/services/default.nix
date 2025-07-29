@@ -13,5 +13,6 @@
     ./resolved.nix
     ./minecraft.nix
     ./fwupd.nix
+    ./caddy.nix
   ];
 }

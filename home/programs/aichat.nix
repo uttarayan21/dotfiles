@@ -46,7 +46,6 @@
           type = "openai-compatible";
           name = "ryu";
           api_base = "https://ollama.ryu.darksailor.dev/v1";
-          api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
           models = [
             {
               name = "RobinBially/nomic-embed-text-8k";
