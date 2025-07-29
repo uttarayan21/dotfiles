@@ -55,7 +55,7 @@
           theme = "dark";
           notifier.filesystem.filename = "/var/lib/authelia-darksailor/authelia-notifier.log";
           server = {
-            address = "127.0.0.1:5555";
+            address = "0.0.0.0:5555";
             endpoints.authz = {
               forward-auth = {
                 implementation = "ForwardAuth";
@@ -80,9 +80,7 @@
     };
     caddy = {
       virtualHosts."auth.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:5555 {
-            trusted_proxies 100.87.221.59/32
-        }
+        reverse_proxy localhost:5555
       '';
     };
   };

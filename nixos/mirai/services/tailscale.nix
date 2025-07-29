@@ -4,4 +4,7 @@
     useRoutingFeatures = "server";
     extraUpFlags = "--advertise-exit-node";
   };
+  networking.firewall.trustedInterfaces = [
+    "tailscale0"
+  ];
 }
