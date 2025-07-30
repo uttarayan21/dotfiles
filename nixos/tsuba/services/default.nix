@@ -9,6 +9,7 @@
     ./homeassistant.nix
     ./flaresolverr.nix
     ./caddy.nix
+    ./grafana.nix
     # ./dnscrypt.nix
     # ./resolved.nix
     # ./blocky.nix
