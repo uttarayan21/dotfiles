@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   sops = {
     secrets."authelia/oidc/immich/client_id" = {
       owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
@@ -42,12 +46,28 @@
       };
     };
   };
+  virtualisation.oci-containers = {
+    backend = "docker";
+    containers = {
+      immich-machine-learning = {
+        image = "ghcr.io/immich-app/immich-machine-learning:v${pkgs.immich.version}";
+        ports = [
+          "127.0.0.1:3003:3003"
+        ];
+        volumes = [
+          "model-cache:/cache"
+        ];
+      };
+    };
+  };
   services.immich = {
     enable = true;
     mediaLocation = "/media/photos/immich";
+    accelerationDevices = null;
     environment = {
       IMMICH_CONFIG_FILE = config.sops.templates."immich-config.json".path;
     };
+    package = pkgs.immich;
   };
   services.caddy = {
     virtualHosts."photos.darksailor.dev".extraConfig = ''
