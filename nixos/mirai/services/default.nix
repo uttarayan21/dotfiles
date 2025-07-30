@@ -17,6 +17,7 @@
     ./resolved.nix
     ./searxng.nix
     ./tailscale.nix
+    ./grafana.nix
 
     # ./ldap.nix
     # ./llama.nix

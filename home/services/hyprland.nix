@@ -54,8 +54,8 @@
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       # "render:cm_fs_passthrough" = 1;
       monitor = [
-        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, bitdepth, 10, cm, hdr, sdrbrightness, 1.1, sdrsaturation, 1.2"
-        # "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0"
+        # "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, bitdepth, 10, cm, hdr, sdrbrightness, 1.1, sdrsaturation, 1.2"
+        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0"
         "${device.monitors.secondary},  2560x1440@170,  -1440x-1120,     1, transform, 1"
         "${device.monitors.tertiary},   2560x1440@170,   2560x-1120,     1, transform, 3"
       ];

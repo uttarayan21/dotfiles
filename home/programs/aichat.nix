@@ -111,6 +111,9 @@
             {
               name = "gpt-4o";
             }
+            {
+              name = "o4-mini-high";
+            }
           ];
         }
       ];

@@ -42,7 +42,6 @@
            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
         }
       '';
-      # auth = "";
     in {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
