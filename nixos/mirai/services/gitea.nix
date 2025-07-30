@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   virtualisation.docker.enable = true;
   sops = {
     # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
@@ -33,7 +37,7 @@
     gitea-actions-runner = {
       instances = {
         mirai = {
-          enable = false;
+          enable = true;
           name = "mirai";
           url = "https://git.darksailor.dev";
           labels = [
@@ -59,14 +63,14 @@
             rules = [
               {
                 domain = "git.darksailor.dev";
-                policy = "one_factor";
-              }
-              {
-                domain = "git.darksailor.dev";
                 policy = "bypass";
                 resources = [
                   "^/api([/?].*)?$"
                 ];
+              }
+              {
+                domain = "git.darksailor.dev";
+                policy = "one_factor";
               }
             ];
           };

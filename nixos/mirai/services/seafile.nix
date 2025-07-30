@@ -52,14 +52,14 @@
             rules = [
               {
                 domain = "cloud.darksailor.dev";
-                policy = "one_factor";
-              }
-              {
-                domain = "cloud.darksailor.dev";
                 policy = "bypass";
                 resources = [
                   "^/(api2|seafhttp)([/?].*)?$"
                 ];
+              }
+              {
+                domain = "cloud.darksailor.dev";
+                policy = "one_factor";
               }
             ];
           };

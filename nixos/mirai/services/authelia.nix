@@ -46,14 +46,14 @@
               bypass_api = domain: [
                 {
                   domain = domain;
-                  policy = "one_factor";
-                }
-                {
-                  domain = domain;
                   policy = "bypass";
                   resources = [
                     "^/api([/?].*)?$"
                   ];
+                }
+                {
+                  domain = domain;
+                  policy = "one_factor";
                 }
               ];
             in
