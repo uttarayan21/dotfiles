@@ -40,6 +40,10 @@
         import hetzner
         reverse_proxy localhost:8096
       '';
+      virtualHosts."media.darksailor.dev".extraConfig = ''
+        import hetzner
+        reverse_proxy localhost:8096
+      '';
     };
   };
 }

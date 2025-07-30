@@ -18,7 +18,6 @@
     ./searxng.nix
     ./tailscale.nix
 
-    # ./jellyfin.nix
     # ./ldap.nix
     # ./llama.nix
     # ./navidrome.nix

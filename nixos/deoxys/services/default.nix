@@ -1,5 +1,3 @@
 {...}: {
-  imports = [
-    ./homeassistant.nix
-  ];
+  imports = [];
 }
