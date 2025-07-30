@@ -5,6 +5,11 @@
   device,
   ...
 }: {
+  virtualisation.docker.enable = true;
+  virtualisation.oci-containers.backend = "docker";
+  users.extraUsers.servius.extraGroups = ["docker"];
+  networking.firewall.enable = false;
+
   nixpkgs.config.allowUnfree = true;
   security.sudo.wheelNeedsPassword = false;
   sops = {
