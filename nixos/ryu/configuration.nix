@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  device,
   ...
 }: {
   imports = [
@@ -12,7 +13,13 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/servius/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${device.user}/.config/sops/age/keys.txt";
+  };
+
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
   };
 
   programs = {
@@ -66,9 +73,9 @@
     distributedBuilds = true;
   };
 
-  users.users.servius = {
+  users.users.${device.user} = {
     isNormalUser = true;
-    extraGroups = ["wheel" "audio" "i2c" "media" "openrazer" "video"];
+    extraGroups = ["wheel" "audio" "i2c" "media" "openrazer" "video" "tss"];
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub
