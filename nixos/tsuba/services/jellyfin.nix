@@ -7,10 +7,11 @@
     containers = {
       jellyfin = {
         image = "jellyfin/jellyfin:latest";
-        ports = ["127.0.0.1:8097:8096"];
-        volumes = ["/var/lib/jellyfin:/config"];
-        user = "jellyfin:jellyfin";
+        ports = ["127.0.0.1:8096:8096"];
+        volumes = ["/var/lib/jellyfin:/config" "/volumes/media:/media" "/volumes/media/.cache:/cache"];
         environment = {
+          PUID = toString config.users.users.jellyfin.uid;
+          PGID = toString config.users.groups.jellyfin.gid;
           TZ = config.time.timeZone;
         };
       };
