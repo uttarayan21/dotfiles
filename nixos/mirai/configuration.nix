@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  device,
   ...
 }: {
   imports = [
@@ -9,6 +10,18 @@
     ./mirai.nix
     # ./docker.nix
   ];
+
+  virtualisation.docker.enable = true;
+  # virtualisation.podman = {
+  #   enable = true;
+  #   dockerSocket.enable = true;
+  #   defaultNetwork.dnsname.enable = true;
+  # };
+  users.extraUsers.${device.user}.extraGroups = ["docker"];
+  environment.systemPackages = with pkgs; [
+    arion
+  ];
+
   security.sudo.wheelNeedsPassword = false;
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;

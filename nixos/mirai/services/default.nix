@@ -3,21 +3,21 @@
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
+    ./excalidraw.nix
     ./fail2ban.nix
+    ./flaresolverr.nix
     ./gitea.nix
     ./homepage.nix
+    ./immich.nix
     ./llama.nix
+    ./lldap.nix
     ./minecraft.nix
     ./nextcloud.nix
-    ./tailscale.nix
     ./prowlarr.nix
-    ./flaresolverr.nix
-    ./searxng.nix
-    ./immich.nix
-    ./lldap.nix
     ./resolved.nix
+    ./searxng.nix
+    ./tailscale.nix
 
-    # ./home-assistant.nix
     # ./jellyfin.nix
     # ./ldap.nix
     # ./llama.nix
