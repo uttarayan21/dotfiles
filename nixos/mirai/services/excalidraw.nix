@@ -1,17 +1,4 @@
 {...}: {
-  # virtualisation.arion = {
-  #   projects = {
-  #     excalidraw = {
-  #       excalidraw = {
-  #         service.image = "ghcr.io/excalidraw/excalidraw:latest";
-  #         service.volumes = [
-  #           "/etc/localtime:/etc/localtime:ro"
-  #           "/run/dbus:/run/dbus:ro"
-  #         ];
-  #       };
-  #     };
-  #   };
-  # };
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
