@@ -12,9 +12,9 @@
         };
       };
     };
-    prometheus = {
-      enable = true;
-    };
+    # prometheus = {
+    #   enable = true;
+    # };
     caddy = {
       virtualHosts."grafana.darksailor.dev".extraConfig = ''
         forward_auth localhost:5555 {
