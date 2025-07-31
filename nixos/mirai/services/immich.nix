@@ -37,6 +37,15 @@
               },
               "server": {
                 "externalDomain": "https://photos.darksailor.dev"
+              },
+              {
+                "machineLearning": {
+                    "enabled": true,
+                    "urls": [
+                        "http://ryu:3003"
+                        "http://localhost:3003",
+                    ],
+                }
               }
             }
           '';
