@@ -42,8 +42,8 @@
                 "machineLearning": {
                     "enabled": true,
                     "urls": [
-                        "http://ryu:3003"
-                        "http://localhost:3003",
+                        "http://ryu:3003",
+                        "http://localhost:3003"
                     ],
                 }
               }
