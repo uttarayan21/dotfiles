@@ -45,10 +45,7 @@
 
     caddy = {
       virtualHosts."llama.darksailor.dev".extraConfig = ''
-        forward_auth localhost:5555 {
-            uri /api/authz/forward-auth
-            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-        }
+        import auth
         reverse_proxy localhost:${builtins.toString config.services.open-webui.port}
       '';
       virtualHosts."ollama.darksailor.dev".extraConfig = ''

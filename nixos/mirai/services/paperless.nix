@@ -18,10 +18,7 @@
     };
     caddy = {
       virtualHosts."paperless.darksailor.dev".extraConfig = ''
-        forward_auth localhost:5555 {
-            uri /api/authz/forward-auth
-            copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-        }
+        import auth
         reverse_proxy localhost:28981
       '';
     };

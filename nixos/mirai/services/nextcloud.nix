@@ -5,7 +5,7 @@
 }: {
   sops = {
     secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
-    secrets."authelia/oidc/nextcloud/client_id".owner = config.users.users.nextcloud.name;
+    # secrets."authelia/oidc/nextcloud/client_id".owner = config.users.users.nextcloud.name;
     secrets."authelia/oidc/nextcloud/client_secret".owner = config.users.users.nextcloud.name;
   };
   imports = [
@@ -47,57 +47,58 @@
     #     port = 8080; # NOT an exposed port
     #   }
     # ];
-    authelia.instances.darksailor = {
-      settings = {
-        definitions = {
-          user_attributes = {
-            is_nextcloud_admin = {
-              expression = ''"nextcloud-admins" in groups"'';
-            };
-          };
-        };
-        identity_providers = {
-          oidc = {
-            claims_policies = {
-              custom_claims = {
-                is_nextcloud_admin = {};
-              };
-            };
-            scopes = {
-              nextcloud_userinfo = {
-                claims = ["is_nextcloud_admin"];
-              };
-            };
-            clients = [
-              {
-                client_name = "Nextcloud";
-                client_id = "nextcloud";
-                client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/nextcloud/client_secret".path}" }}'';
-                public = false;
-                authorization_policy = "one_factor";
-                require_pkce = true;
-                pkce_challenge_method = "S256";
-                claims_policy = "nextcloud_userinfo";
-                redirect_uris = [
-                  "https://cloud.darksailor.dev/apps/oidc_login/oidc"
-                ];
-                scopes = [
-                  "openid"
-                  "profile"
-                  "email"
-                  "groups"
-                  "nextcloud_userinfo"
-                ];
-                response_types = ["code"];
-                grant_types = ["authorization_code"];
-                # access_token_signed_response_alg = "none";
-                userinfo_signed_response_alg = "none";
-                token_endpoint_auth_method = "client_secret_basic";
-              }
-            ];
-          };
-        };
-      };
-    };
+
+    # authelia.instances.darksailor = {
+    #   settings = {
+    #     definitions = {
+    #       user_attributes = {
+    #         is_nextcloud_admin = {
+    #           expression = ''"nextcloud-admins" in groups"'';
+    #         };
+    #       };
+    #     };
+    #     identity_providers = {
+    #       oidc = {
+    #         claims_policies = {
+    #           custom_claims = {
+    #             is_nextcloud_admin = {};
+    #           };
+    #         };
+    #         scopes = {
+    #           nextcloud_userinfo = {
+    #             claims = ["is_nextcloud_admin"];
+    #           };
+    #         };
+    #         clients = [
+    #           {
+    #             client_name = "Nextcloud";
+    #             client_id = "nextcloud";
+    #             client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/nextcloud/client_secret".path}" }}'';
+    #             public = false;
+    #             authorization_policy = "one_factor";
+    #             require_pkce = true;
+    #             pkce_challenge_method = "S256";
+    #             claims_policy = "nextcloud_userinfo";
+    #             redirect_uris = [
+    #               "https://cloud.darksailor.dev/apps/oidc_login/oidc"
+    #             ];
+    #             scopes = [
+    #               "openid"
+    #               "profile"
+    #               "email"
+    #               "groups"
+    #               "nextcloud_userinfo"
+    #             ];
+    #             response_types = ["code"];
+    #             grant_types = ["authorization_code"];
+    #             # access_token_signed_response_alg = "none";
+    #             userinfo_signed_response_alg = "none";
+    #             token_endpoint_auth_method = "client_secret_basic";
+    #           }
+    #         ];
+    #       };
+    #     };
+    #   };
+    # };
   };
 }

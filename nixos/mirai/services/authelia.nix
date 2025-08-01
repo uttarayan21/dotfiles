@@ -45,14 +45,14 @@
             rules = let
               bypass_api = domain: [
                 {
-                  domain = domain;
+                  inherit domain;
                   policy = "bypass";
                   resources = [
                     "^/api([/?].*)?$"
                   ];
                 }
                 {
-                  domain = domain;
+                  inherit domain;
                   policy = "one_factor";
                 }
               ];
@@ -61,13 +61,7 @@
               ++ (bypass_api "radarr.tsuba.darksailor.dev")
               ++ (bypass_api "lidarr.tsuba.darksailor.dev")
               ++ (bypass_api "bazarr.tsuba.darksailor.dev")
-              ++ (bypass_api "prowlarr.tsuba.darksailor.dev")
-              ++ [
-                {
-                  domain = "llama.ryu.darksailor.dev";
-                  policy = "one_factor";
-                }
-              ];
+              ++ (bypass_api "prowlarr.tsuba.darksailor.dev");
           };
           storage = {
             local = {

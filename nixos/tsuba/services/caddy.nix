@@ -12,6 +12,11 @@
     };
   };
   services = {
+    tailscaleAuth = {
+      enable = true;
+      user = config.services.caddy.user;
+      group = config.services.caddy.group;
+    };
     caddy = {
       enable = true;
       extraConfig = ''
@@ -24,10 +29,20 @@
             }
         }
         (auth) {
-           forward_auth auth.darksailor.dev {
-               uri /api/authz/forward_auth?rd=https://auth.darksailor.dev
-               copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
-           }
+           forward_auth unix/${config.services.tailscaleAuth.socketPath} {
+                uri /auth
+                header_up Remote-Addr {remote_host}
+                header_up Remote-Port {remote_port}
+                header_up Original-URI {uri}
+                copy_headers {
+                    Tailscale-User>X-Webauth-User
+                    Tailscale-Name>X-Webauth-Name
+                    Tailscale-Login>X-Webauth-Login
+                    Tailscale-Tailnet>X-Webauth-Tailnet
+                    Tailscale-Profile-Picture>X-Webauth-Profile-Picture
+                }
+            }
+
         }
       '';
       package = pkgs.caddy.withPlugins {

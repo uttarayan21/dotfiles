@@ -10,10 +10,7 @@
     };
   };
   services.caddy.virtualHosts."draw.darksailor.dev".extraConfig = ''
-    forward_auth localhost:5555 {
-        uri /api/authz/forward-auth
-        copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-    }
+    import auth
     reverse_proxy localhost:5959
   '';
   services.authelia = {
