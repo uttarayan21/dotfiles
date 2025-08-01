@@ -42,7 +42,7 @@
                 "machineLearning": {
                     "enabled": true,
                     "urls": [
-                        "http://ryu:3003",
+                        "http://ryu.darksailor.dev:3003",
                         "http://localhost:3003"
                     ],
                 }
@@ -51,7 +51,7 @@
           '';
         mode = "0400";
         owner = "immich";
-        restartUnits = ["immich-server.service" "authelia-darksailor.service"];
+        restartUnits = ["immich-server.service"];
       };
     };
   };
@@ -73,6 +73,7 @@
     enable = true;
     mediaLocation = "/media/photos/immich";
     accelerationDevices = null;
+    machine-learning.enable = false;
     environment = {
       IMMICH_CONFIG_FILE = config.sops.templates."immich-config.json".path;
     };

@@ -8,6 +8,7 @@
     ./ryu.nix
     ./services
     ./programs
+    ./containers
   ];
 
   sops = {
