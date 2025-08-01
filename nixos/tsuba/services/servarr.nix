@@ -35,37 +35,30 @@
       package = unstablePkgs.bazarr;
       group = "media";
     };
-    caddy.virtualHosts = let
-      auth = ''
-        forward_auth mirai:5555 {
-           uri /api/authz/forward-auth
-           copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
-        }
-      '';
-    in {
+    caddy.virtualHosts = {
       "sonarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        ${auth}
+        import auth
         reverse_proxy localhost:${builtins.toString config.services.sonarr.settings.server.port}
       '';
       "radarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        ${auth}
+        import auth
         reverse_proxy localhost:${builtins.toString config.services.radarr.settings.server.port}
       '';
       "lidarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        ${auth}
+        import auth
         reverse_proxy localhost:${builtins.toString config.services.lidarr.settings.server.port}
       '';
       "bazarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        ${auth}
+        import auth
         reverse_proxy localhost:${builtins.toString config.services.bazarr.listenPort}
       '';
       "prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
-        ${auth}
+        import auth
         reverse_proxy mirai.darksailor.dev:9696
       '';
     };

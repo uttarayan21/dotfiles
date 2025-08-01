@@ -23,6 +23,12 @@
                 resolvers 1.1.1.1
             }
         }
+        (auth) {
+           forward_auth auth.darksailor.dev {
+               uri /api/authz/forward_auth?rd=https://auth.darksailor.dev
+               copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
+           }
+        }
       '';
       package = pkgs.caddy.withPlugins {
         plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
