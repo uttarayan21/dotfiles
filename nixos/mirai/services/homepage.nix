@@ -114,6 +114,13 @@
                 href = "https://photos.darksailor.dev";
               };
             }
+            {
+              "Excalidraw" = {
+                icon = "excalidraw.png";
+                description = "Excalidraw: Self-hosted Collaborative Whiteboard";
+                href = "https://draw.darksailor.dev";
+              };
+            }
           ];
         }
       ];
