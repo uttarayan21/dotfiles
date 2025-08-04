@@ -67,7 +67,7 @@
         craftmine-v2 = {
           inherit whitelist;
           enable = true;
-          jvmOpts = "-Xmx16G -Xms4G";
+          jvmOpts = "-Xmx16G -Xms8G";
           package = let
             getJavaVersion = v: (builtins.getAttr "openjdk${toString v}" pkgs.javaPackages.compiler).headless;
           in
