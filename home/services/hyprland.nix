@@ -12,7 +12,7 @@
 
   # services.hyprpolkitagent.enable = true;
   services.hypridle = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
@@ -27,12 +27,12 @@
     };
   };
   services.hyprsunset = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
   };
   programs.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
   in {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     # enable = true;
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
@@ -44,10 +44,10 @@
     };
   };
   programs.hyprlock = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
   };
   wayland.windowManager.hyprland = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     systemd.enable = true;
 
     settings = {

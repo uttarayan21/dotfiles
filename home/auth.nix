@@ -9,7 +9,7 @@
   programs = {
     _1password-shell-plugins = {
       # enable 1Password shell plugins for bash, zsh, and fish shell
-      enable = device.hasGui;
+      enable = device.is "ryu";
       # the specified packages as well as 1Password CLI will be
       # automatically installed and configured to use shell plugins
       # plugins = with pkgs; [awscli2 cachix cargo];

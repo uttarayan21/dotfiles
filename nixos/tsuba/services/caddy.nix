@@ -25,7 +25,7 @@
         }
         (auth) {
             forward_auth https://auth.darksailor.dev {
-               header_up X-Forwarded-Host {upstream_hostport}
+               # header_up X-Forwarded-Host {upstream_hostport}
                uri /api/authz/forward-auth
                copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
             }

@@ -9,6 +9,7 @@
   virtualisation.oci-containers.backend = "docker";
   users.extraUsers.servius.extraGroups = ["docker"];
   networking.firewall.enable = false;
+  services.openssh.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   security.sudo.wheelNeedsPassword = false;
@@ -66,6 +67,5 @@
   };
   users.groups.media = {};
   system.stateVersion = "25.05";
-  services.openssh.enable = true;
   time.timeZone = "Asia/Kolkata";
 }

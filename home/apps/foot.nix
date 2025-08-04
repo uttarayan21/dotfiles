@@ -4,7 +4,7 @@
   ...
 }: {
   programs.foot = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     server.enable = true;
     settings = {
       main = {

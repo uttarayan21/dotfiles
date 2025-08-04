@@ -6,7 +6,7 @@
 }: {
   imports = [inputs.ironbar.homeManagerModules.default];
   programs.ironbar = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     package = inputs.ironbar.packages.${pkgs.system}.default;
     systemd = true;
     config.monitors = {

@@ -12,7 +12,7 @@
   };
 in {
   programs.eww = {
-    enable = device.hasGui && pkgs.stdenv.isLinux;
+    enable = device.is "ryu";
     enableFishIntegration = true;
     configDir = activate_linux;
   };
