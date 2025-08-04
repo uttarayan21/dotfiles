@@ -75,7 +75,7 @@
       };
       terminal = {
         shell = {
-          program = "/etc/profiles/per-user/fs0c131y/bin/fish";
+          program = "${pkgs.fish}/bin/fish";
         };
       };
     };

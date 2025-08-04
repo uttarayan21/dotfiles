@@ -3,7 +3,6 @@
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
-    ./excalidraw.nix
     ./fail2ban.nix
     ./flaresolverr.nix
     ./gitea.nix
@@ -19,6 +18,8 @@
     ./tailscale.nix
     ./grafana.nix
 
+    ./excalidraw.nix
+    ./desmos.nix
     # ./ldap.nix
     # ./llama.nix
     # ./navidrome.nix
