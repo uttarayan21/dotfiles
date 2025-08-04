@@ -182,6 +182,27 @@ in {
         };
       };
     };
+    avante = {
+      enable = true;
+      settings = {
+        provider = "copilot";
+        providers = {
+          ollama = {
+            endpoint = "https://ollama.ryu.darksailor.dev";
+            model = "qwen3:30b-a3b";
+          };
+        };
+        input = {
+          provider = "snacks";
+          provider_opts = {
+            #  Additional snacks.input options
+            title = "Avante Input";
+            icon = " ";
+          };
+        };
+      };
+    };
+    snacks.enable = true;
 
     yazi = {
       enable = true;

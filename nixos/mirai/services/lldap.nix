@@ -20,11 +20,11 @@
       '';
     };
   };
-  services.caddy = {
-    virtualHosts."ldap.darksailor.dev".extraConfig = ''
-      reverse_proxy localhost:5090
-    '';
-  };
+  # services.caddy = {
+  #   # virtualHosts."ldap.darksailor.dev".extraConfig = ''
+  #   #   reverse_proxy localhost:5090
+  #   # '';
+  # };
   users.users.lldap = {
     name = "lldap";
     group = "lldap";
