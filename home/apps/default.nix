@@ -3,7 +3,7 @@
   device,
   ...
 }:
-lib.optionalAttrs (device.is "ryu") {
+lib.optionalAttrs device.hasGui {
   imports = [
     # ./audacity.nix
     ./blueman.nix

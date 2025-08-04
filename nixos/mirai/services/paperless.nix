@@ -8,7 +8,7 @@
   };
   services = {
     paperless = {
-      enable = true;
+      enable = false;
       passwordFile = config.sops.secrets."paperless/adminpass".path;
       environmentFile = pkgs.writeText "paperless.env" ''
         PAPERLESS_ENABLE_HTTP_REMOTE_USER=true

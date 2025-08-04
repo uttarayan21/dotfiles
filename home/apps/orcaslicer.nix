@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   device,
+  lib,
   ...
 }: let
   pkgs' = pkgs.applyPatches {
@@ -11,7 +12,7 @@
   };
   pkgsPatched = import pkgs' {system = device.system;};
 in {
-  home.packages = [
+  home.packages = lib.mkIf device.isLinux [
     pkgsPatched.orca-slicer
   ];
 }
