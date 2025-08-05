@@ -9,38 +9,32 @@
 
   programs.zed-editor = {
     enable = true;
-    userKeymaps =
-      builtins.fromJSON
-      /*
-      json
-      */
-      ''
-        [
-            {
-              "context": "Workspace",
-              "bindings": {
-                "ctrl-\\": "workspace::ToggleBottomDock",
-                "ctrl-k": "editor::GoToDefinition"
-              }
-            },
-            {
-              "context": "Editor",
-              "use_key_equivalents": true,
-              "bindings": {
-                "ctrl-k": "editor::GoToDefinition",
-                "ctrl-t": "pane::GoBack",
-                "ctrl-l": "editor::AcceptEditPrediction"
-              }
-            },
-            {
-              "context": "vim_mode == insert",
-              "bindings": {
-                "ctrl-k": "editor::GoToDefinition",
-                "ctrl-l": "editor::AcceptEditPrediction"
-              }
-            }
-        ]
-      '';
+    extensions = ["catppuccin" "toml" "json" "yaml" "markdown" "python" "javascript" "typescript"];
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+          "ctrl-\\" = "workspace::ToggleBottomDock";
+          "ctrl-k" = "editor::GoToDefinition";
+        };
+      }
+      {
+        context = "Editor";
+        use_key_equivalents = true;
+        bindings = {
+          "ctrl-k" = "editor::GoToDefinition";
+          "ctrl-t" = "pane::GoBack";
+          "ctrl-l" = "editor::AcceptEditPrediction";
+        };
+      }
+      {
+        context = "vim_mode == insert";
+        bindings = {
+          "ctrl-k" = "editor::GoToDefinition";
+          "ctrl-l" = "editor::AcceptEditPrediction";
+        };
+      }
+    ];
     userSettings = {
       features = {
         edit_prediction_provider = "copilot";
@@ -78,6 +72,7 @@
           program = "${pkgs.fish}/bin/fish";
         };
       };
+      theme = "Catppuccin Mocha";
     };
   };
 }
