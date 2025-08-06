@@ -187,6 +187,11 @@
     #   url = "path:/home/servius/Projects/ALVR";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
+    ik_llama = {
+      url = "github:ikawrakow/ik_llama.cpp?submodules=1";
+      # submodules = true;
+      flake = false;
+    };
   };
 
   outputs = {

@@ -36,5 +36,6 @@ lib.optionalAttrs device.hasGui {
     ./zathura.nix
     ./zed.nix
     ./zen.nix
+    ./lmstudio.nix
   ];
 }

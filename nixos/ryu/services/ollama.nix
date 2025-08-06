@@ -17,6 +17,18 @@
         LD_LIBRARY_PATH = "run/opengl-driver/lib";
         HTTP_PROXY = "https://ollama.ryu.darksailor.dev";
       };
+      package = pkgs.ollama.overrideAttrs {
+        version = "0.11.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "ollama";
+          repo = "ollama";
+          tag = "v0.11.0";
+          hash = "sha256-po7BxJAj9eOpOaXsLDmw6/1RyjXPtXza0YUv0pVojZ0=";
+          fetchSubmodules = true;
+        };
+        doCheck = false;
+        vendorHash = "sha256-SlaDsu001TUW+t9WRp7LqxUSQSGDF1Lqu9M1bgILoX4=";
+      };
     };
     # open-webui = {
     #   enable = false;

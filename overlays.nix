@@ -70,7 +70,7 @@
             pkgs.openssl
           ];
         PKG_CONFIG_PATH = with final; pkgs.lib.makeSearchPath "lib/pkgconfig" [pkgs.openssl.dev];
-        nativeBuildINputs = with final; [pkgs.pkg-config];
+        nativeBuildInputs = with final; [pkgs.pkg-config];
       };
     picat = let
       picat-src = final.pkgs.fetchFromGitHub {

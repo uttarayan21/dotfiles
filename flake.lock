@@ -1698,6 +1698,22 @@
         "type": "github"
       }
     },
+    "ik_llama": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1753582432,
+        "narHash": "sha256-jEty/2inFD+OgarlWojwJQgP3sn8SkkFW81ZXhJyoBg=",
+        "owner": "ikawrakow",
+        "repo": "ik_llama.cpp",
+        "rev": "ae0ba31fd078282fe6ac675176862ed6955c52dc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ikawrakow",
+        "repo": "ik_llama.cpp",
+        "type": "github"
+      }
+    },
     "ironbar": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -2602,6 +2618,7 @@
         "home-manager-stable": "home-manager-stable",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
+        "ik_llama": "ik_llama",
         "ironbar": "ironbar",
         "lanzaboote": "lanzaboote",
         "music-player": "music-player",
