@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   sops = {
@@ -18,6 +19,15 @@
     };
   };
   services = {
+    llama-cpp = {
+      enable = true;
+      port = 11435;
+      model = pkgs.fetchurl {
+        url = "https://huggingface.co/unsloth/gpt-oss-20b-GGUF/resolve/main/gpt-oss-20b-F16.gguf";
+        sha256 = "sha256-vE1SpG4diQiP88u0viGnyZ8LtotTUU19UGecnwfjOkE=";
+      };
+      package = pkgs.ik_llama;
+    };
     ollama = {
       enable = true;
       loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b"];

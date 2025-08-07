@@ -8,14 +8,12 @@
   services = {
     llama-cpp = {
       enable = true;
+      port = 11435;
       model = pkgs.fetchurl {
         url = "https://huggingface.co/unsloth/gpt-oss-20b-GGUF/resolve/main/gpt-oss-20b-F16.gguf";
-        sha256 = "b93a63c42fc2432396b56031bb1a4aa5f598af1de369de397a900888032cad64";
+        sha256 = "sha256-vE1SpG4diQiP88u0viGnyZ8LtotTUU19UGecnwfjOkE=";
       };
-      # package = pkgs.llama-cpp.overrideAttrs (old: {
-      #   src = inputs.ik_llama;
-      #   version = "5995";
-      # });
+      package = pkgs.ik_llama;
     };
     # caddy = {
     #   virtualHosts."llama.ryu.darksailor.dev".extraConfig = ''

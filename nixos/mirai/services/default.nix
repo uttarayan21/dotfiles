@@ -19,7 +19,7 @@
     ./grafana.nix
 
     ./excalidraw.nix
-    ./desmos.nix
+    # ./desmos.nix
     # ./ldap.nix
     # ./llama.nix
     # ./navidrome.nix

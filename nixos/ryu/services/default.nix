@@ -5,7 +5,7 @@
     # ./zerotier.nix
     # ./dnscrypt.nix
     # ./ollama.nix
-    # ./llama.nix
+    ./llama.nix
     ./tailscale.nix
     ./samba.nix
     ./mullvad.nix

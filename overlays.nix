@@ -121,7 +121,10 @@
           };
         };
     ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
-    # ghostty = inputs.ghostty.packages.${prev.system}.default;
+    ik_llama = prev.llama-cpp.overrideAttrs (oldAttrs: {
+      src = inputs.ik_llama;
+      version = "5995";
+    });
     python312 = prev.python312.override {
       packageOverrides = final: prev: {
         pysaml2 = prev.pysaml2.overridePythonAttrs (orig: {
