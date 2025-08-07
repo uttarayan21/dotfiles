@@ -100,6 +100,17 @@
           ];
         }
         {
+          type = "openai-compatible";
+          name = "LMStudio";
+          api_base = "http://localhost:1234/v1";
+          models = [
+            {
+              name = "openai/gpt-oss-20b";
+              type = "chat";
+            }
+          ];
+        }
+        {
           type = "openai";
           name = "openai";
           api_base = "https://api.openai.com/v1";

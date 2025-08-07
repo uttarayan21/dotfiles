@@ -15,11 +15,11 @@
       trusted-users = ["root" "fs0c131y"];
       substituters = [
         "https://nix-community.cachix.org"
-        "https://sh.darksailor.dev"
+        # "https://sh.darksailor.dev"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
+        # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
       ];
     };
     extraOptions = ''

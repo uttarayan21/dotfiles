@@ -495,10 +495,12 @@ in {
         gopls.enable = true;
         nil_ls = {
           enable = true;
-          settings.formatting.command = [
-            "${pkgs.alejandra}/bin/alejandra"
-          ];
-          # nix.flake.autoArchive = true;
+          settings = {
+            formatting.command = [
+              "${pkgs.alejandra}/bin/alejandra"
+            ];
+            nix.flake.autoArchive = true;
+          };
         };
         marksman.enable = true;
         neocmake.enable = true;
