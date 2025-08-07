@@ -4,7 +4,7 @@
   pkgs,
   ...
 }:
-lib.optionalAttrs device.hasGui {
+lib.mkIf (device.is "ryu") {
   home.packages = with pkgs; [
     lmstudio
   ];
