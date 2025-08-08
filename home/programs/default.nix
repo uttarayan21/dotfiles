@@ -32,6 +32,7 @@
     ./yt-dlp.nix
     ./zoxide.nix
     ./sxiv.nix
+    ./bluetui.nix
 
     # ./goread.nix
     # ./helix.nix
