@@ -31,6 +31,8 @@
         server = {
           ROOT_URL = "https://git.darksailor.dev";
           DOMAIN = "git.darksailor.dev";
+          LFS_START_SERVER = true;
+          LFS_ALLOW_PURE_SSH = true;
         };
       };
     };
