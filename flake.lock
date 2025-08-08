@@ -1790,6 +1790,23 @@
         "type": "github"
       }
     },
+    "llama-cpp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754628423,
+        "narHash": "sha256-KZpYyDBCg/qZGpzCFILDdV8x7wgPetJsZp8i6o0u63E=",
+        "owner": "ggml-org",
+        "repo": "llama.cpp",
+        "rev": "aaa3d07ae749b781d6135eaff23c7fa8a4ab404a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ggml-org",
+        "ref": "b6116",
+        "repo": "llama.cpp",
+        "type": "github"
+      }
+    },
     "music-player": {
       "inputs": {
         "advisory-db": "advisory-db_4",
@@ -2621,6 +2638,7 @@
         "ik_llama": "ik_llama",
         "ironbar": "ironbar",
         "lanzaboote": "lanzaboote",
+        "llama-cpp": "llama-cpp",
         "music-player": "music-player",
         "musnix": "musnix",
         "navigator": "navigator",

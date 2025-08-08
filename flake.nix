@@ -192,6 +192,11 @@
       # submodules = true;
       flake = false;
     };
+    llama-cpp = {
+      # url = "https://github.com/ggml-org/llama.cpp";
+      url = "github:ggml-org/llama.cpp/b6116?submodules=1";
+      flake = false;
+    };
   };
 
   outputs = {

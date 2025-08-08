@@ -125,6 +125,10 @@
       src = inputs.ik_llama;
       version = "5995";
     });
+    llama-cpp = prev.llama-cpp.overrideAttrs (oldAttrs: {
+      src = inputs.llama-cpp;
+      version = "b6116";
+    });
     python312 = prev.python312.override {
       packageOverrides = final: prev: {
         pysaml2 = prev.pysaml2.overridePythonAttrs (orig: {
