@@ -4,7 +4,7 @@
     # ./sunshine.nix
     # ./zerotier.nix
     # ./dnscrypt.nix
-    # ./ollama.nix
+    ./ollama.nix
     ./llama.nix
     ./tailscale.nix
     ./samba.nix
