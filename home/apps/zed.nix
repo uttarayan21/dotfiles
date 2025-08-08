@@ -3,10 +3,7 @@
   lib,
   ...
 }: {
-  # home.packages = lib.optionals pkgs.stdenv.isLinux [
-  #   pkgs.zed-editor
-  # ];
-
+  home.packages = with pkgs; [nixd nil sleek];
   programs.zed-editor = {
     enable = true;
     extensions = ["catppuccin" "toml" "json" "yaml" "markdown" "python" "javascript" "typescript"];
@@ -74,5 +71,6 @@
       };
       theme = "Catppuccin Mocha";
     };
+    extraPackages = with pkgs; [nixd nil sleek];
   };
 }

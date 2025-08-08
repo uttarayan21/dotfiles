@@ -19,27 +19,27 @@
       clients = [
         {
           type = "openai-compatible";
-          name = "ollama";
+          name = "mirai";
           api_base = "https://ollama.darksailor.dev/v1";
           api_key_cmd = "cat ${config.sops.secrets."llama/api_key".path}";
           models = [
+            # {
+            #   name = "RobinBially/nomic-embed-text-8k";
+            #   type = "embedding";
+            #   default_chunk_size = 8000;
+            # }
             {
-              name = "RobinBially/nomic-embed-text-8k";
-              type = "embedding";
-              default_chunk_size = 8000;
-            }
-            {
-              name = "deepseek-r1:7b";
+              name = "gpt-oss-20b";
               type = "chat";
             }
-            {
-              name = "deepseek-r1:14b";
-              type = "chat";
-            }
-            {
-              name = "qwen3:8b";
-              type = "chat";
-            }
+            # {
+            #   name = "deepseek-r1:14b";
+            #   type = "chat";
+            # }
+            # {
+            #   name = "qwen3:8b";
+            #   type = "chat";
+            # }
           ];
         }
         {
