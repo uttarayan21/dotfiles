@@ -16,6 +16,7 @@
   services = {
     gitea = {
       enable = true;
+      lfs.enable = true;
       settings = {
         service = {
           ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
@@ -31,7 +32,7 @@
         server = {
           ROOT_URL = "https://git.darksailor.dev";
           DOMAIN = "git.darksailor.dev";
-          LFS_START_SERVER = true;
+          # LFS_START_SERVER = true;
           LFS_ALLOW_PURE_SSH = true;
         };
       };
