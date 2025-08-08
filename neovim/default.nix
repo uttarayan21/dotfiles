@@ -402,7 +402,7 @@ in {
       };
     };
     rustaceanvim = {
-      enable = true;
+      enable = false;
       settings = {
         server = {
           on_attach =
@@ -518,7 +518,7 @@ in {
         sourcekit.enable = true;
         openscad_lsp.enable = true;
         rust_analyzer = {
-          enable = false;
+          enable = true;
           installCargo = false;
           installRustc = false;
           settings = {
