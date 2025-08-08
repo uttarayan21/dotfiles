@@ -69,7 +69,7 @@
             Access-Control-Allow-Origin *
             -Authorization "Bearer {env.LLAMA_API_KEY}"  # Remove the header after validation
           }
-          reverse_proxy localhost:${builtins.toString config.services.ollama.port}
+          reverse_proxy localhost:${builtins.toString config.services.llama-cpp.port}
         }
 
         respond "Unauthorized" 403
