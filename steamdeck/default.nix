@@ -1,7 +1,7 @@
 {
   pkgs,
   config,
-  home-manager,
+  lib,
   ...
 }: {
   imports = [
@@ -20,8 +20,11 @@
       (nixvim.makeNixvim (import ../neovim))
     ];
     stateVersion = "24.11";
-    activation.tailscale-service = home-manager.dag.entryAfter ["writeBoundary"] ''
-      ${builtins.replaceStrings (builtins.readFile ./tailscaled.service)}
-    '';
+    activation.tailscale-service = let
+      tailscale_service = pkgs.writeText "tailscaled.service" (builtins.replaceStrings ["/usr/bin/tailscaled"] ["${pkgs.tailscale}/bin/tailscaled"] (builtins.readFile ./tailscaled.service));
+    in
+      lib.hm.dag.entryAfter ["writeBoundary"] ''
+        run cp ${tailscale_service} /etc/systemd/system/tailscaled.service
+      '';
   };
 }

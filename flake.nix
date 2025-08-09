@@ -327,30 +327,24 @@
           inherit devices inputs nixpkgs home-manager overlays nur nix-darwin;
         };
 
-      homeConfigurations = let
-        devices = linux_devices;
-      in
-        (import ./home/linux/device.nix {
-          inherit devices inputs nixpkgs home-manager overlays;
-        })
-        // {
-          deck = let
-            pkgs = import inputs.nixpkgs {
-              inherit overlays;
-              system = "x86_64-linux";
+      homeConfigurations = {
+        deck = let
+          pkgs = import inputs.nixpkgs {
+            inherit overlays;
+            system = "x86_64-linux";
+          };
+        in
+          home-manager.lib.homeManagerConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs;
             };
-          in
-            home-manager.lib.homeManagerConfiguration {
-              inherit pkgs;
-              extraSpecialArgs = {
-                inherit inputs;
-              };
-              modules = [
-                {nixpkgs.config.allowUnfree = true;}
-                ./steamdeck
-              ];
-            };
-        };
+            modules = [
+              {nixpkgs.config.allowUnfree = true;}
+              ./steamdeck
+            ];
+          };
+      };
 
       installerImages = let
         nixos = self.nixosConfigurations;
