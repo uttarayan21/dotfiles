@@ -128,6 +128,12 @@
     llama-cpp = prev.llama-cpp.overrideAttrs (oldAttrs: {
       src = inputs.llama-cpp;
       version = "b6116";
+      cmakeFlags =
+        oldAttrs.cmakeFlags
+        ++ [
+          "-DLLAMA_CUDA=ON"
+          "-DGGML_CUDA_FORCE_CUBLAS=ON"
+        ];
     });
     python312 = prev.python312.override {
       packageOverrides = final: prev: {

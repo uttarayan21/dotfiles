@@ -1701,11 +1701,11 @@
     "ik_llama": {
       "flake": false,
       "locked": {
-        "lastModified": 1754576781,
-        "narHash": "sha256-DeXIbHb5RtPn70Tg+s90oxq7EDxHRlB1wi8UuJ1v00E=",
+        "lastModified": 1754653098,
+        "narHash": "sha256-GyIIE9uSUv7Ipljk6lPJobtiHqEZNsl8bcO1MDq42DI=",
         "owner": "ikawrakow",
         "repo": "ik_llama.cpp",
-        "rev": "58f3bda0ae66e2ddf9e09ed7fe2b6242b0f8bb73",
+        "rev": "293f4aa433d1d38811d0f23328fa05289dbc30d6",
         "type": "github"
       },
       "original": {

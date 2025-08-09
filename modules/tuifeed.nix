@@ -17,7 +17,7 @@ in {
           type = attrsOf str;
           default = {};
           description = ''
-            Urls that will be fetched ~/.config/tuifeed/urls.yml
+            Sources that will be fetched
           '';
           example = {};
         };
@@ -29,7 +29,7 @@ in {
             "show-timestamp" = true;
           };
           description = ''
-            Urls that will be fetched ~/.config/tuifeed/urls.yml
+            Options for article titles, such as showing the author and timestamp.
           '';
           example = {};
         };

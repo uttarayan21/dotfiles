@@ -45,33 +45,37 @@
         {
           type = "openai-compatible";
           name = "ryu";
-          api_base = "https://ollama.ryu.darksailor.dev/v1";
+          api_base = "https://llama.ryu.darksailor.dev/v1";
           models = [
             {
-              name = "RobinBially/nomic-embed-text-8k";
-              type = "embedding";
-              default_chunk_size = 8000;
-            }
-            {
-              name = "deepseek-r1:7b";
+              name = "gpt-oss-20b";
               type = "chat";
             }
-            {
-              name = "qwen3:30b-a3b";
-              type = "chat";
-            }
-            {
-              name = "deepseek-r1:14b";
-              type = "chat";
-            }
-            {
-              name = "qwen3:8b";
-              type = "chat";
-            }
-            {
-              name = "qwen3:14b";
-              type = "chat";
-            }
+            # {
+            #   name = "RobinBially/nomic-embed-text-8k";
+            #   type = "embedding";
+            #   default_chunk_size = 8000;
+            # }
+            # {
+            #   name = "deepseek-r1:7b";
+            #   type = "chat";
+            # }
+            # {
+            #   name = "qwen3:30b-a3b";
+            #   type = "chat";
+            # }
+            # {
+            #   name = "deepseek-r1:14b";
+            #   type = "chat";
+            # }
+            # {
+            #   name = "qwen3:8b";
+            #   type = "chat";
+            # }
+            # {
+            #   name = "qwen3:14b";
+            #   type = "chat";
+            # }
           ];
         }
         {

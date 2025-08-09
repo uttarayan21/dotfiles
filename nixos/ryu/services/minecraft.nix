@@ -5,7 +5,7 @@
   ...
 }: {
   sops = {
-    secrets."minecraft/craftmine".owner = "minecraft";
+    secrets."minecraft/craftmine" = {};
     templates = {
       "craftmine.env".content = ''
         CRAFTMINE_RCON_PASSWORD=${config.sops.placeholder."minecraft/craftmine"}
@@ -22,7 +22,7 @@
     };
   in {
     minecraft-servers = {
-      enable = true;
+      enable = false;
       eula = true;
       openFirewall = true;
       environmentFile = config.sops.templates."craftmine.env".path;
@@ -66,7 +66,7 @@
         # };
         craftmine-v2 = {
           inherit whitelist;
-          enable = true;
+          enable = false;
           jvmOpts = "-Xmx16G -Xms8G";
           package = let
             getJavaVersion = v: (builtins.getAttr "openjdk${toString v}" pkgs.javaPackages.compiler).headless;
