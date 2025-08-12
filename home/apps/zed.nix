@@ -69,6 +69,18 @@
           program = "${pkgs.fish}/bin/fish";
         };
       };
+      lsp = {
+        nixd = {
+          binary = {
+            path = "${pkgs.nixd}/bin/nixd";
+          };
+        };
+        nil = {
+          binary = {
+            path = "${pkgs.nil}/bin/nil";
+          };
+        };
+      };
       theme = "Catppuccin Mocha";
     };
     extraPackages = with pkgs; [nixd nil sleek];
