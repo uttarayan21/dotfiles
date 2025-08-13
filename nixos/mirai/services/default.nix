@@ -1,11 +1,12 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
     ./fail2ban.nix
     ./flaresolverr.nix
-    ./gitea.nix
+    # ./gitea.nix
     ./homepage.nix
     ./immich.nix
     ./llama.nix

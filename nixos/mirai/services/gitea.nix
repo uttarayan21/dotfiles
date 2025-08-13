@@ -2,15 +2,25 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   virtualisation.docker.enable = true;
   sops = {
     # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
-    secrets."gitea/registration" = {};
+    secrets."gitea/registration" = { };
+    secrets."authelia/oidc/gitea/client_secret" = {
+      owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      mode = "0440";
+      restartUnits = [
+        "gitea.service"
+        "authelia-darksailor.service"
+      ];
+    };
     templates = {
       "GITEA_REGISTRATION_TOKEN.env".content = ''
         TOKEN=${config.sops.placeholder."gitea/registration"}
       '';
+
     };
   };
   services = {
@@ -35,6 +45,11 @@
           # LFS_START_SERVER = true;
           LFS_ALLOW_PURE_SSH = true;
         };
+        oauth2_client = {
+          ENABLE_AUTO_REGISTRATION = true;
+          ACCOUNT_LINKING = "auto";
+          OPENID_CONNECT_SCOPES = "openid profile email";
+        };
       };
     };
     gitea-actions-runner = {
@@ -52,27 +67,53 @@
     };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
-        import auth
+        # import auth
         reverse_proxy localhost:3000
       '';
     };
     authelia = {
       instances.darksailor = {
         settings = {
-          access_control = {
-            rules = [
-              {
-                domain = "git.darksailor.dev";
-                policy = "bypass";
-                resources = [
-                  "^/api([/?].*)?$"
-                ];
-              }
-              {
-                domain = "git.darksailor.dev";
-                policy = "one_factor";
-              }
-            ];
+          # access_control = {
+          #   rules = [
+          #     {
+          #       domain = "git.darksailor.dev";
+          #       policy = "bypass";
+          #       resources = [
+          #         "^/api([/?].*)?$"
+          #       ];
+          #     }
+          #     {
+          #       domain = "git.darksailor.dev";
+          #       policy = "one_factor";
+          #     }
+          #   ];
+          # };
+          identity_providers = {
+            oidc = {
+              clients = [
+                {
+                  client_name = "gitea";
+                  client_id = "gitea";
+                  client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/gitea/client_secret".path}" }}'';
+                  public = false;
+                  authorization_policy = "one_factor";
+                  require_pkce = false;
+                  redirect_uris = [
+                    "https://git.darksailor.dev/user/oauth2/authelia/callback"
+                  ];
+                  scopes = [
+                    "openid"
+                    "profile"
+                    "email"
+                  ];
+                  response_types = [ "code" ];
+                  grant_types = [ "authorization_code" ];
+                  userinfo_signed_response_alg = "none";
+                  token_endpoint_auth_method = "client_secret_post";
+                }
+              ];
+            };
           };
         };
       };
