@@ -8,6 +8,7 @@
     ./aichat.nix
     ./atuin.nix
     ./bat.nix
+    ./bluetui.nix
     ./carapace.nix
     ./ddcbacklight.nix
     ./direnv.nix
@@ -26,13 +27,13 @@
     ./sops.nix
     ./ssh.nix
     ./starship.nix
+    ./sxiv.nix
+    ./tea.nix
     ./tmux.nix
     ./tuifeed.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./sxiv.nix
-    ./bluetui.nix
 
     # ./goread.nix
     # ./helix.nix
