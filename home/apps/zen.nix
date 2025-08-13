@@ -9,7 +9,6 @@
   ];
   programs.zen-browser = {
     enable = true;
-    package = lib.mkDefault null;
     profiles.default = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
