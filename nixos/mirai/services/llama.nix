@@ -3,11 +3,12 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   sops = {
     secrets."llama/api_key".owner = config.services.caddy.user;
     secrets."llama/user".owner = config.services.caddy.user;
-    secrets."openai/api_key" = {};
+    secrets."openai/api_key" = { };
     templates = {
       "LLAMA_API_KEY.env".content = ''
         LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
@@ -20,7 +21,7 @@
   };
   services = {
     llama-cpp = {
-      enable = true;
+      enable = false;
       port = 11435;
       model = pkgs.fetchurl {
         url = "https://huggingface.co/lmstudio-community/gpt-oss-20b-GGUF/resolve/main/gpt-oss-20b-MXFP4.gguf";
@@ -30,7 +31,12 @@
     };
     ollama = {
       enable = true;
-      loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b"];
+      loadModels = [
+        "deepseek-r1:7b"
+        "deepseek-r1:14b"
+        "RobinBially/nomic-embed-text-8k"
+        "qwen3:8b"
+      ];
       port = 11434;
       host = "0.0.0.0";
       environmentVariables = {
