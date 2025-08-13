@@ -1,13 +1,15 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
     inputs.zen-browser.homeModules.beta
   ];
   programs.zen-browser = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
+    package = lib.mkDefault null;
     profiles.default = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
@@ -21,11 +23,24 @@
         sponsorblock
       ];
     };
+    nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {
+      AutofillAddressEnabled = true;
+      AutofillCreditCardEnabled = false;
+      DisableAppUpdate = true;
+      DisableFeedbackCommands = true;
+      DisableFirefoxStudies = true;
       DisablePocket = true;
       DisableTelemetry = true;
-      FeatureRecommendations = false;
-      SkipOnboarding = true;
+      DontCheckDefaultBrowser = true;
+      NoDefaultBookmarks = true;
+      OfferToSaveLogins = false;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
     };
   };
 }

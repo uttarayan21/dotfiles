@@ -27,20 +27,20 @@
       openFirewall = true;
       environmentFile = config.sops.templates."craftmine.env".path;
       servers = {
-        # fabric = {
-        #   inherit whitelist;
-        #   enable = true;
-        #   # enable-rcon = true;
-        #   jvmOpts = "-Xmx4G -Xms4G";
-        #   package = pkgs.fabricServers.fabric-1_21_1;
-        #   serverProperties = {
-        #     motd = "Servius's Fabric Minecraft Server";
-        #     server-port = 25567;
-        #     level-seed = "4504535438041489910";
-        #     view-distance = 24;
-        #     white-list = true;
-        #   };
-        # };
+        fabric = {
+          inherit whitelist;
+          enable = true;
+          # enable-rcon = true;
+          jvmOpts = "-Xmx4G -Xms4G";
+          package = pkgs.fabricServers.fabric-1_21_1;
+          serverProperties = {
+            motd = "Servius's Fabric Minecraft Server";
+            server-port = 25567;
+            level-seed = "4504535438041489910";
+            view-distance = 24;
+            white-list = true;
+          };
+        };
         # craftmine = {
         #   inherit whitelist;
         #   enable = true;
