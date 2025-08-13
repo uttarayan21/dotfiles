@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./atuin.nix
     ./authelia.nix

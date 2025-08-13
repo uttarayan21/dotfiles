@@ -20,7 +20,6 @@
       "GITEA_REGISTRATION_TOKEN.env".content = ''
         TOKEN=${config.sops.placeholder."gitea/registration"}
       '';
-
     };
   };
   services = {
@@ -29,6 +28,9 @@
       lfs.enable = true;
       settings = {
         service = {
+          DISABLE_REGISTRATION = false;
+          ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
+          SHOW_REGISTRATION_BUTTON = false;
           ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
           ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
         };
@@ -55,7 +57,7 @@
     gitea-actions-runner = {
       instances = {
         mirai = {
-          enable = true;
+          enable = false;
           name = "mirai";
           url = "https://git.darksailor.dev";
           labels = [
@@ -67,7 +69,6 @@
     };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
-        # import auth
         reverse_proxy localhost:3000
       '';
     };
@@ -93,24 +94,25 @@
             oidc = {
               clients = [
                 {
-                  client_name = "gitea";
+                  client_name = "Gitea: Darksailor";
                   client_id = "gitea";
                   client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/gitea/client_secret".path}" }}'';
                   public = false;
                   authorization_policy = "one_factor";
                   require_pkce = false;
+                  # pkce_challenge_method = "S256";
                   redirect_uris = [
                     "https://git.darksailor.dev/user/oauth2/authelia/callback"
                   ];
                   scopes = [
                     "openid"
-                    "profile"
                     "email"
+                    "profile"
                   ];
                   response_types = [ "code" ];
                   grant_types = [ "authorization_code" ];
                   userinfo_signed_response_alg = "none";
-                  token_endpoint_auth_method = "client_secret_post";
+                  token_endpoint_auth_method = "client_secret_basic";
                 }
               ];
             };

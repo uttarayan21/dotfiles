@@ -2,7 +2,8 @@
   pkgs,
   device,
   ...
-}: {
+}:
+{
   imports = [
     ../../modules
     ./aichat.nix
@@ -17,7 +18,6 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
-    ./gitea.nix
     ./mpd.nix
     ./ncpamixer.nix
     ./nh.nix
@@ -48,7 +48,8 @@
     # ./template.nix
     # ./zellij.nix
   ];
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       _1password-cli
       alejandra
@@ -84,6 +85,6 @@
       nerd-fonts.hasklug
       nerd-fonts.symbols-only
     ]
-    ++ lib.optionals device.isLinux []
-    ++ lib.optionals device.isDarwin [];
+    ++ lib.optionals device.isLinux [ ]
+    ++ lib.optionals device.isDarwin [ ];
 }
