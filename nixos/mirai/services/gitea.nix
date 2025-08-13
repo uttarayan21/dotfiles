@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 {
@@ -16,9 +17,21 @@
         "authelia-darksailor.service"
       ];
     };
+    secrets."authelia/oidc/gitea/client_id" = {
+      owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
+      mode = "0440";
+      restartUnits = [
+        "gitea.service"
+        "authelia-darksailor.service"
+      ];
+    };
     templates = {
       "GITEA_REGISTRATION_TOKEN.env".content = ''
         TOKEN=${config.sops.placeholder."gitea/registration"}
+      '';
+      "GITEA_OAUTH_SETUP.env".content = ''
+        CLIENT_ID=${config.sops.placeholder."authelia/oidc/gitea/client_id"}
+        CLIENT_SECRET=${config.sops.placeholder."authelia/oidc/gitea/client_secret"}
       '';
     };
   };
@@ -31,8 +44,9 @@
           DISABLE_REGISTRATION = false;
           ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
           SHOW_REGISTRATION_BUTTON = false;
-          ENABLE_REVERSE_PROXY_AUTHENTICATION = true;
-          ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = true;
+          ENABLE_REVERSE_PROXY_AUTHENTICATION = false;
+          ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false;
+          ENABLE_PASSWORD_SIGNIN_FORM = false;
         };
         mailer = {
           ENABLED = true;
@@ -52,12 +66,17 @@
           ACCOUNT_LINKING = "auto";
           OPENID_CONNECT_SCOPES = "openid profile email";
         };
+        openid = {
+          ENABLE_OPENID_SIGNIN = false;
+          ENABLE_OPENID_SIGNUP = true;
+          WHITELISTED_URIS = "auth.darksailor.dev";
+        };
       };
     };
     gitea-actions-runner = {
       instances = {
         mirai = {
-          enable = false;
+          enable = true;
           name = "mirai";
           url = "https://git.darksailor.dev";
           labels = [
@@ -95,7 +114,7 @@
               clients = [
                 {
                   client_name = "Gitea: Darksailor";
-                  client_id = "gitea";
+                  client_id = ''{{ secret "${config.sops.secrets."authelia/oidc/gitea/client_id".path}" }}'';
                   client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/gitea/client_secret".path}" }}'';
                   public = false;
                   authorization_policy = "one_factor";
@@ -112,7 +131,7 @@
                   response_types = [ "code" ];
                   grant_types = [ "authorization_code" ];
                   userinfo_signed_response_alg = "none";
-                  token_endpoint_auth_method = "client_secret_basic";
+                  token_endpoint_auth_method = "client_secret_post";
                 }
               ];
             };
@@ -121,4 +140,36 @@
       };
     };
   };
+
+  systemd.services.gitea-oauth-setup =
+    let
+      name = "authelia";
+      gitea_oauth_script = pkgs.writeShellApplication {
+        name = "gitea_oauth2_script";
+        runtimeInputs = [ config.services.gitea.package ];
+        text = ''
+          gitea admin auth delete --id "$(gitea admin auth list | grep "${name}" | cut -d "$(printf '\t')" -f1)"
+          gitea admin auth add-oauth --provider=openidConnect --name=${name} --key="$CLIENT_ID" --secret="$CLIENT_SECRET" --auto-discover-url=https://auth.darksailor.dev/.well-known/openid-configuration --scopes='openid email profile'
+        '';
+      };
+    in
+    {
+      description = "Configure Gitea OAuth with Authelia";
+      after = [ "gitea.service" ];
+      wants = [ "gitea.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        User = config.services.gitea.user;
+        Group = config.services.gitea.group;
+        RemainAfterExit = true;
+        ExecStart = "${lib.getExe gitea_oauth_script}";
+        WorkingDirectory = config.services.gitea.stateDir;
+        EnvironmentFile = config.sops.templates."GITEA_OAUTH_SETUP.env".path;
+      };
+      environment = {
+        GITEA_WORK_DIR = config.services.gitea.stateDir;
+        GITEA_CUSTOM = config.services.gitea.customDir;
+      };
+    };
 }
