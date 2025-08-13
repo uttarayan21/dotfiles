@@ -17,6 +17,7 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gitea.nix
     ./mpd.nix
     ./ncpamixer.nix
     ./nh.nix
@@ -34,6 +35,7 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
+    ./television.nix
 
     # ./goread.nix
     # ./helix.nix

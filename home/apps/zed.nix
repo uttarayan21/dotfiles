@@ -8,7 +8,6 @@
     nil
     sleek
   ];
-  programs.television.enable = true;
   programs.zed-editor = {
     enable = true;
     extensions = [
