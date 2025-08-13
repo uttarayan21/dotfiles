@@ -20,6 +20,7 @@
         i-dont-care-about-cookies
         keepa
         sponsorblock
+        floccus
       ];
     };
     nativeMessagingHosts = [pkgs.tridactyl-native];

@@ -2,12 +2,11 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   virtualisation.docker.enable = true;
   sops = {
     # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
-    secrets."gitea/registration" = { };
+    secrets."gitea/registration" = {};
     templates = {
       "GITEA_REGISTRATION_TOKEN.env".content = ''
         TOKEN=${config.sops.placeholder."gitea/registration"}
@@ -72,9 +71,6 @@
               {
                 domain = "git.darksailor.dev";
                 policy = "one_factor";
-                resources = [
-                  "/user/settings"
-                ];
               }
             ];
           };
