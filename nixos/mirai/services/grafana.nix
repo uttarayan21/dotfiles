@@ -188,5 +188,11 @@
   environment.etc = {
     "grafana/dashboards/system-dashboard.json".source = ./grafana/system-dashboard.json;
     "grafana/dashboards/processes-dashboard.json".source = ./grafana/processes-dashboard.json;
+    "grafana/dashboards/multi-device-system-dashboard.json".source =
+      ./grafana/multi-device-system-dashboard.json;
+    "grafana/dashboards/multi-device-processes-dashboard.json".source =
+      ./grafana/multi-device-processes-dashboard.json;
+    "grafana/dashboards/device-specific-system-dashboard.json".source =
+      ./grafana/device-specific-system-dashboard.json;
   };
 }
