@@ -5,7 +5,8 @@
   lib,
   device,
   ...
-}: {
+}:
+{
   imports = [
     inputs.nix-index-database.homeModules.nix-index
     ../modules
@@ -23,7 +24,9 @@
   };
 
   programs = {
-    home-manager = {enable = true;};
+    home-manager = {
+      enable = true;
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -31,16 +34,12 @@
   home = {
     username = device.user;
     homeDirectory =
-      if device.isDarwin
-      then lib.mkForce "/Users/${device.user}"
-      else lib.mkForce "/home/${device.user}";
+      if device.isDarwin then lib.mkForce "/Users/${device.user}" else lib.mkForce "/home/${device.user}";
 
     file = {
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
       ".cargo/config.toml".text =
-        /*
-        toml
-        */
+        # toml
         ''
           [alias]
           lldb = ["with", "rust-lldb", "--"]
@@ -61,12 +60,12 @@
       EDITOR = "nvim";
       SHELL = "${pkgs.bash}/bin/bash";
       CARGO_TARGET_DIR = "${config.xdg.cacheHome}/cargo/target";
-      BROWSER =
-        if device.isDarwin
-        then "open"
-        else "xdg-open";
+      BROWSER = if device.isDarwin then "open" else "xdg-open";
     };
-    sessionPath = ["${config.home.homeDirectory}/.cargo/bin" "${config.home.homeDirectory}/.local/bin"];
+    sessionPath = [
+      "${config.home.homeDirectory}/.cargo/bin"
+      "${config.home.homeDirectory}/.local/bin"
+    ];
 
     stateVersion = "23.11";
   };

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   home.packages = with pkgs; [
     nixd
     nil
@@ -40,6 +41,13 @@
             "task::Spawn"
             {
               task_name = "live_grep";
+              reveal_target = "center";
+            }
+          ];
+          "space f g" = [
+            "task::Spawn"
+            {
+              task_name = "file_manager";
               reveal_target = "center";
             }
           ];
@@ -119,21 +127,34 @@
     userTasks = [
       {
         label = "file_finder";
-        command = "${lib.getExe pkgs.zed-editor} \"$(tv files)\"";
+        command = "${lib.getExe pkgs.zed-editor} \"$(${lib.getExe pkgs.television} files)\"";
         hide = "always";
         allow_concurrent_runs = true;
         use_new_terminal = true;
       }
       {
         label = "live_grep";
-        command = "tv text | read -alz res; and ${lib.getExe pkgs.zed-editor} $res";
+        command = "${lib.getExe pkgs.television} text | read -alz res; and ${lib.getExe pkgs.zed-editor} $res";
         hide = "always";
         allow_concurrent_runs = false;
         use_new_terminal = false;
         shell = {
           with_arguments = {
             program = "fish";
-            args = ["--no-config"];
+            args = [ "--no-config" ];
+          };
+        };
+      }
+      {
+        label = "file_manager";
+        command = "${lib.getExe pkgs.yazi} --chooser-file /dev/stdout | read -alz res;and ${lib.getExe pkgs.zed-editor} $res";
+        hide = "always";
+        allow_concurrent_runs = false;
+        use_new_terminal = false;
+        shell = {
+          with_arguments = {
+            program = "fish";
+            args = [ "--no-config" ];
           };
         };
       }

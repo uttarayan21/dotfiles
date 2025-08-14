@@ -2,29 +2,40 @@
   pkgs,
   # config,
   ...
-}: let
-  mkMappings = mappings:
-    []
+}:
+let
+  mkMappings =
+    mappings:
+    [ ]
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "terminal" mappings) (mkMode mappings.terminal "t"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "visual" mappings) (mkMode mappings.visual "v"))
     ++ (pkgs.lib.optionals (builtins.hasAttr "global" mappings) (mkMode mappings.global ""));
-  mkMode = mappings: mode:
-    pkgs.lib.mapAttrsToList
-    (key: value: {
+  mkMode =
+    mappings: mode:
+    pkgs.lib.mapAttrsToList (key: value: {
       key = key;
       action = rawLua value;
       mode = mode;
-    })
-    mappings;
-  border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+    }) mappings;
+  border = [
+    "╭"
+    "─"
+    "╮"
+    "│"
+    "╯"
+    "─"
+    "╰"
+    "│"
+  ];
   rawLua = lua: {
     "__raw" = ''
       ${lua}
     '';
   };
-in {
+in
+{
   opts = {
     completeopt = "menu,menuone,popup,noselect";
     expandtab = true;
@@ -113,7 +124,10 @@ in {
 
   autoCmd = [
     {
-      event = ["BufEnter" "BufWinEnter"];
+      event = [
+        "BufEnter"
+        "BufWinEnter"
+      ];
       pattern = "*.norg";
       command = "set conceallevel=3";
     }
@@ -123,12 +137,12 @@ in {
     #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
     # }
     {
-      event = ["BufWinLeave"];
+      event = [ "BufWinLeave" ];
       pattern = "?*";
       command = "mkview!";
     }
     {
-      event = ["BufWinEnter"];
+      event = [ "BufWinEnter" ];
       pattern = "?*";
       command = "silent! loadview!";
     }
@@ -148,9 +162,7 @@ in {
       enable = true;
       settings = {
         format_on_save =
-          /*
-          lua
-          */
+          # lua
           ''
             function(bufnr)
               if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -160,10 +172,10 @@ in {
             end
           '';
         formatters_by_ft = {
-          d2 = ["d2"];
-          sql = ["sleek"];
-          toml = ["taplo"];
-          nix = ["alejandra"];
+          d2 = [ "d2" ];
+          sql = [ "sleek" ];
+          toml = [ "taplo" ];
+          nix = [ "alejandra" ];
         };
       };
     };
@@ -182,27 +194,6 @@ in {
         };
       };
     };
-    avante = {
-      enable = true;
-      settings = {
-        provider = "copilot";
-        providers = {
-          ollama = {
-            endpoint = "https://ollama.ryu.darksailor.dev";
-            model = "qwen3:30b-a3b";
-          };
-        };
-        input = {
-          provider = "snacks";
-          provider_opts = {
-            #  Additional snacks.input options
-            title = "Avante Input";
-            icon = " ";
-          };
-        };
-      };
-    };
-    snacks.enable = true;
 
     yazi = {
       enable = true;
@@ -226,8 +217,8 @@ in {
     mini = {
       enable = true;
       modules = {
-        ai = {};
-        starter = {};
+        ai = { };
+        starter = { };
       };
     };
 
@@ -296,9 +287,7 @@ in {
     comment = {
       enable = true;
       settings.pre_hook =
-        /*
-        lua
-        */
+        # lua
         ''
           require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook()
         '';
@@ -391,9 +380,7 @@ in {
       settings = {
         close_fold_kinds = null;
         provider_selector =
-          /*
-          lua
-          */
+          # lua
           ''
             function(bufnr, filetype, buftype)
                   return {'treesitter', 'indent'}
@@ -407,30 +394,28 @@ in {
         server = {
           on_attach =
             rawLua
-            /*
-            lua
-            */
-            ''
-              function(client, bufnr)
-                  vim.keymap.set(
-                    "n",
-                    "<leader>a",
-                    function()
-                      vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
-                      -- or vim.lsp.buf.codeAction() if you don't want grouping.
-                    end,
-                    { silent = true, buffer = bufnr }
-                  )
-                  vim.keymap.set(
-                    "n",
-                    "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
-                    function()
-                      vim.cmd.RustLsp({'hover', 'actions'})
-                    end,
-                    { silent = true, buffer = bufnr }
-                  )
-              end
-            '';
+              # lua
+              ''
+                function(client, bufnr)
+                    vim.keymap.set(
+                      "n",
+                      "<leader>a",
+                      function()
+                        vim.cmd.RustLsp('codeAction') -- supports rust-analyzer's grouping
+                        -- or vim.lsp.buf.codeAction() if you don't want grouping.
+                      end,
+                      { silent = true, buffer = bufnr }
+                    )
+                    vim.keymap.set(
+                      "n",
+                      "K",  -- Override Neovim's built-in hover keymap with rustaceanvim's hover actions
+                      function()
+                        vim.cmd.RustLsp({'hover', 'actions'})
+                      end,
+                      { silent = true, buffer = bufnr }
+                    )
+                end
+              '';
           default_settings = {
             rust-analyzer = {
               inlayHints = {
@@ -462,27 +447,32 @@ in {
             };
           };
         };
-        dap = let
-          vscode-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
-          liblldb =
-            if pkgs.stdenv.isLinux
-            then "${vscode-lldb.lldb}/lib/liblldb.so"
-            else if pkgs.stdenv.isDarwin
-            then "${vscode-lldb.lldb}/lib/liblldb.dylib"
-            else null;
-          codelldb = "${vscode-lldb.adapter}/bin/codelldb";
-        in {
-          autoload_configurations = false;
-          # adapter =
-          #   /*
-          #   lua
-          #   */
-          #   ''
-          #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
-          #   '';
-        };
+        dap =
+          let
+            vscode-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
+            liblldb =
+              if pkgs.stdenv.isLinux then
+                "${vscode-lldb.lldb}/lib/liblldb.so"
+              else if pkgs.stdenv.isDarwin then
+                "${vscode-lldb.lldb}/lib/liblldb.dylib"
+              else
+                null;
+            codelldb = "${vscode-lldb.adapter}/bin/codelldb";
+          in
+          {
+            autoload_configurations = false;
+            # adapter =
+            #   /*
+            #   lua
+            #   */
+            #   ''
+            #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
+            #   '';
+          };
         tools = {
-          float_win_config = {border = "rounded";};
+          float_win_config = {
+            border = "rounded";
+          };
           enable_clippy = false;
         };
       };
@@ -526,7 +516,7 @@ in {
               typeHints.enable = false;
             };
             check = {
-              features = ["default"];
+              features = [ "default" ];
             };
             files.exclude = [
               ".cargo/"
@@ -585,26 +575,26 @@ in {
       settings = {
         autoEnableSources = true;
         sources = [
-          {name = "buffer";}
-          {name = "buffer";}
-          {name = "cmdline";}
-          {name = "cmp-clippy";}
-          {name = "cmp-cmdline-history";}
-          {name = "crates";}
-          {name = "dap";}
+          { name = "buffer"; }
+          { name = "buffer"; }
+          { name = "cmdline"; }
+          { name = "cmp-clippy"; }
+          { name = "cmp-cmdline-history"; }
+          { name = "crates"; }
+          { name = "dap"; }
           # {name = "dictionary";}
-          {name = "fish";}
-          {name = "git";}
-          {name = "luasnip";}
-          {name = "nvim_lsp";}
-          {name = "nvim_lua";}
-          {name = "nvim_lsp_signature_help";}
-          {name = "nvim_lsp_document_symbol";}
-          {name = "path";}
-          {name = "rg";}
-          {name = "spell";}
-          {name = "tmux";}
-          {name = "treesitter";}
+          { name = "fish"; }
+          { name = "git"; }
+          { name = "luasnip"; }
+          { name = "nvim_lsp"; }
+          { name = "nvim_lua"; }
+          { name = "nvim_lsp_signature_help"; }
+          { name = "nvim_lsp_document_symbol"; }
+          { name = "path"; }
+          { name = "rg"; }
+          { name = "spell"; }
+          { name = "tmux"; }
+          { name = "treesitter"; }
         ];
         view = {
           entries = {
@@ -628,9 +618,7 @@ in {
           "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
         };
         snippet.expand =
-          /*
-          lua
-          */
+          # lua
           ''
             function(args)
                 require('luasnip').lsp_expand(args.body)
@@ -640,9 +628,7 @@ in {
     };
   };
   extraConfigLua =
-    /*
-    lua
-    */
+    # lua
     ''
        function catcher(callback)
            do
@@ -802,6 +788,18 @@ in {
     pkgs.tree-sitter-grammars.tree-sitter-norg-meta
     pkgs.tree-sitter-grammars.tree-sitter-nu
   ];
-  extraLuaPackages = luaPkgs: with luaPkgs; [lua-utils-nvim nvim-nio pathlib-nvim];
-  extraPackages = [pkgs.lldb pkgs.taplo pkgs.d2 pkgs.sleek pkgs.graphqurl pkgs.sqls];
+  extraLuaPackages =
+    luaPkgs: with luaPkgs; [
+      lua-utils-nvim
+      nvim-nio
+      pathlib-nvim
+    ];
+  extraPackages = [
+    pkgs.lldb
+    pkgs.taplo
+    pkgs.d2
+    pkgs.sleek
+    pkgs.graphqurl
+    pkgs.sqls
+  ];
 }

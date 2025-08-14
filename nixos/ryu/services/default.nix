@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     # ./rsyncd.nix
     # ./sunshine.nix
@@ -15,5 +16,6 @@
     ./minecraft.nix
     ./fwupd.nix
     ./caddy.nix
+    ./monitoring.nix
   ];
 }

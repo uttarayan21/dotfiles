@@ -75,6 +75,26 @@
           static_configs = [
             {
               targets = [ "127.0.0.1:9100" ];
+              labels = {
+                device = "mirai";
+                type = "server";
+              };
+            }
+            {
+              targets = [ "tsuba:9100" ];
+              labels = {
+                device = "tsuba";
+                type = "server";
+                arch = "aarch64";
+              };
+            }
+            {
+              targets = [ "ryu:9100" ];
+              labels = {
+                device = "ryu";
+                type = "desktop";
+                arch = "x86_64";
+              };
             }
           ];
         }
@@ -83,6 +103,26 @@
           static_configs = [
             {
               targets = [ "127.0.0.1:9256" ];
+              labels = {
+                device = "mirai";
+                type = "server";
+              };
+            }
+            {
+              targets = [ "tsuba:9256" ];
+              labels = {
+                device = "tsuba";
+                type = "server";
+                arch = "aarch64";
+              };
+            }
+            {
+              targets = [ "ryu:9256" ];
+              labels = {
+                device = "ryu";
+                type = "desktop";
+                arch = "x86_64";
+              };
             }
           ];
         }
@@ -91,6 +131,9 @@
           static_configs = [
             {
               targets = [ "127.0.0.1:9090" ];
+              labels = {
+                device = "mirai";
+              };
             }
           ];
         }
@@ -112,13 +155,13 @@
         settings = {
           access_control = {
             rules = [
-              # {
-              #   domain = "grafana.darksailor.dev";
-              #   policy = "bypass";
-              #   resources = [
-              #     "^/api([/?].*)?$"
-              #   ];
-              # }
+              {
+                domain = "grafana.darksailor.dev";
+                policy = "bypass";
+                resources = [
+                  "^/api([/?].*)?$"
+                ];
+              }
               {
                 domain = "grafana.darksailor.dev";
                 policy = "one_factor";
@@ -144,7 +187,6 @@
   # Provision dashboards directly
   environment.etc = {
     "grafana/dashboards/system-dashboard.json".source = ./grafana/system-dashboard.json;
-    "grafana/dashboards/services-dashboard.json".source = ./grafana/services-dashboard.json;
     "grafana/dashboards/processes-dashboard.json".source = ./grafana/processes-dashboard.json;
   };
 }

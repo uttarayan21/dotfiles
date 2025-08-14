@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./tailscale.nix
     ./samba.nix
@@ -9,6 +10,7 @@
     ./homeassistant.nix
     ./flaresolverr.nix
     ./caddy.nix
+    ./monitoring.nix
     # ./grafana.nix
     # ./dnscrypt.nix
     # ./resolved.nix
