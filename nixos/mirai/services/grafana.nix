@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   services = {
     grafana = {
       enable = true;
@@ -112,7 +111,7 @@
           settings.process_names = [
             {
               name = "{{.Comm}}";
-              cmdline = [ ".*" ];
+              cmdline = [".*"];
             }
           ];
         };
@@ -122,14 +121,14 @@
           job_name = "node";
           static_configs = [
             {
-              targets = [ "127.0.0.1:9100" ];
+              targets = ["127.0.0.1:9100"];
               labels = {
                 device = "mirai";
                 type = "server";
               };
             }
             {
-              targets = [ "tsuba:9100" ];
+              targets = ["tsuba:9100"];
               labels = {
                 device = "tsuba";
                 type = "server";
@@ -137,7 +136,7 @@
               };
             }
             {
-              targets = [ "ryu:9100" ];
+              targets = ["ryu:9100"];
               labels = {
                 device = "ryu";
                 type = "desktop";
@@ -150,14 +149,14 @@
           job_name = "process";
           static_configs = [
             {
-              targets = [ "127.0.0.1:9256" ];
+              targets = ["127.0.0.1:9256"];
               labels = {
                 device = "mirai";
                 type = "server";
               };
             }
             {
-              targets = [ "tsuba:9256" ];
+              targets = ["tsuba:9256"];
               labels = {
                 device = "tsuba";
                 type = "server";
@@ -165,7 +164,7 @@
               };
             }
             {
-              targets = [ "ryu:9256" ];
+              targets = ["ryu:9256"];
               labels = {
                 device = "ryu";
                 type = "desktop";
@@ -178,7 +177,7 @@
           job_name = "prometheus";
           static_configs = [
             {
-              targets = [ "127.0.0.1:9090" ];
+              targets = ["127.0.0.1:9090"];
               labels = {
                 device = "mirai";
               };

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     # ./rsyncd.nix
     # ./sunshine.nix

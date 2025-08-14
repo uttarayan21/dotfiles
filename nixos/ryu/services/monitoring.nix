@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   services = {
     prometheus = {
       exporters = {
@@ -24,7 +23,7 @@
           settings.process_names = [
             {
               name = "{{.Comm}}";
-              cmdline = [ ".*" ];
+              cmdline = [".*"];
             }
           ];
         };

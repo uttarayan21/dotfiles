@@ -3,12 +3,11 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   sops = {
     secrets."llama/api_key".owner = config.services.caddy.user;
     secrets."llama/user".owner = config.services.caddy.user;
-    secrets."openai/api_key" = { };
+    secrets."openai/api_key" = {};
     templates = {
       "LLAMA_API_KEY.env".content = ''
         LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
