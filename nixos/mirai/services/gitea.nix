@@ -79,7 +79,10 @@
           name = "mirai";
           url = "https://git.darksailor.dev";
           labels = [
-            "ubuntu-latest:docker://node:18-bullseye"
+            "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
+            "ubuntu-22.04:docker://catthehacker/ubuntu:full-22.04"
+            "ubuntu-20.04:docker://catthehacker/ubuntu:full-20.04"
+            "native:host"
           ];
           tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
         };

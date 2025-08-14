@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   lib,
   ...
 }: {
@@ -24,9 +23,23 @@
         Description = "Nextcloud Client";
       };
       Service = {
+        Type = "oneshot";
         ExecStart = "${pkgs.nextcloud-client}/bin/nextcloudcmd -n /home/deck/Nextcloud https://cloud.darksailor.dev";
-        Restart = "on-failure";
-        RestartSec = "5s";
+      };
+    };
+  };
+
+  systemd.user.timers = {
+    nextcloudcmd = {
+      Unit = {
+        Description = "Run Nextcloud Client every 5 minutes";
+      };
+      Timer = {
+        OnCalendar = "*:0/5";
+        Persistent = true;
+      };
+      Install = {
+        WantedBy = ["timers.target"];
       };
     };
   };
