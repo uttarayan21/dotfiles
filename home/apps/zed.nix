@@ -116,6 +116,15 @@
           };
         };
         nil = {
+          initialization_options = {
+            formatting = {
+              command = [
+                "${lib.getExe pkgs.alejandra}"
+                "--quiet"
+                "--"
+              ];
+            };
+          };
           binary = {
             path = "${pkgs.nil}/bin/nil";
           };
