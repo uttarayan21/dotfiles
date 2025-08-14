@@ -17,7 +17,7 @@
     ./resolved.nix
     ./searxng.nix
     ./tailscale.nix
-    ./grafana.nix
+    # ./grafana.nix
 
     ./excalidraw.nix
     # ./desmos.nix

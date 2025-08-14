@@ -2,9 +2,23 @@
 
 This directory contains Grafana dashboards configured to monitor multiple NixOS devices: `mirai`, `tsuba`, and `ryu`.
 
-## Dashboard Overview
+## Homepage Dashboard
 
-### 1. Multi-Device System Metrics (`multi-device-system-dashboard.json`)
+When you access Grafana at `grafana.darksailor.dev`, you'll be greeted with the **Monitoring Hub Homepage** that provides:
+
+- **Device Status Overview**: Real-time status table showing CPU, memory, disk usage, and uptime for all devices
+- **Dashboard Navigation**: Color-coded tiles linking to all monitoring dashboards
+- **Quick Actions**: Direct links to Prometheus targets, dashboard management, and documentation
+- **Organized Layout**: Dashboards are grouped by category for easy navigation
+
+## Dashboard Organization
+
+Dashboards are organized into folders for better management:
+
+### **📊 Multi-Device Monitoring**
+Located in `multi-device/` folder:
+
+#### 1. Multi-Device System Metrics
 - **Purpose**: Compare system metrics across all devices on a single dashboard
 - **Features**:
   - Device filtering via template variable (can select one, multiple, or all devices)
@@ -16,17 +30,7 @@ This directory contains Grafana dashboards configured to monitor multiple NixOS 
   - System uptime tracking
   - Load average trends
 
-### 2. Device-Specific System Dashboard (`device-specific-system-dashboard.json`)
-- **Purpose**: Detailed system monitoring for a single selected device
-- **Features**:
-  - Device selection via template variable
-  - Detailed CPU, memory, and disk metrics
-  - Network and disk I/O operations
-  - System status indicators
-  - Load average trends (1m, 5m, 15m)
-  - Enhanced visualizations with thresholds and color coding
-
-### 3. Multi-Device Process Monitoring (`multi-device-processes-dashboard.json`)
+#### 2. Multi-Device Process Monitoring
 - **Purpose**: Monitor processes across all devices
 - **Features**:
   - Device filtering for process metrics
@@ -36,7 +40,21 @@ This directory contains Grafana dashboards configured to monitor multiple NixOS 
   - Process I/O throughput monitoring
   - Process count tracking per device
 
-### 4. Legacy Dashboards
+### **🔍 Device-Specific**
+Located in `device-specific/` folder:
+
+#### Device-Specific System Dashboard
+- **Purpose**: Detailed system monitoring for a single selected device
+- **Features**:
+  - Device selection via template variable
+  - Detailed CPU, memory, and disk metrics
+  - Network and disk I/O operations
+  - System status indicators
+  - Load average trends (1m, 5m, 15m)
+  - Enhanced visualizations with thresholds and color coding
+
+### **📚 Legacy Dashboards**
+Located in `legacy/` folder:
 - `system-dashboard.json`: Original single-device system dashboard
 - `processes-dashboard.json`: Original single-device process dashboard
 
@@ -76,13 +94,20 @@ All multi-device dashboards include a `$device` template variable that allows:
 
 The variable automatically populates with available devices based on Prometheus metrics.
 
-## Usage Tips
+## Usage Guide
 
-1. **Quick Overview**: Start with the multi-device system dashboard to get an overview of all devices
-2. **Detailed Analysis**: Use device-specific dashboards for in-depth analysis of a particular device
-3. **Process Monitoring**: Use the multi-device process dashboard to track resource-intensive processes across devices
-4. **Filtering**: Use the device template variable to focus on specific devices of interest
+### Getting Started
+1. **Homepage First**: Visit `grafana.darksailor.dev` to see the homepage with device overview
+2. **Dashboard Navigation**: Click on the colored tiles to access different dashboard categories
+3. **Quick Status Check**: Use the device status table on the homepage for immediate health overview
+
+### Dashboard Navigation Tips
+1. **Multi-Device Comparison**: Start with multi-device dashboards to compare all systems
+2. **Deep Dive Analysis**: Use device-specific dashboards for detailed single-device monitoring
+3. **Process Troubleshooting**: Use multi-device process dashboard to identify resource issues
+4. **Template Variables**: Use the device dropdown to filter by specific devices
 5. **Time Ranges**: Adjust time ranges based on your monitoring needs (default: last 1 hour)
+6. **Folder Organization**: Browse dashboards by category using the folder structure
 
 ## Customization
 
@@ -115,3 +140,24 @@ All dashboard queries use the `device=~"$device"` filter to support multi-device
 - Limit the number of devices selected simultaneously for better performance
 - Adjust refresh rates if dashboards become slow
 - Consider shorter time ranges for detailed analysis
+
+## Homepage Features
+
+### Device Status Table
+- Real-time overview of all monitored devices
+- Color-coded status indicators (UP/DOWN)
+- CPU, memory, and disk usage percentages
+- System uptime tracking
+- Automatically updates every 30 seconds
+
+### Dashboard Categories
+- **Blue**: Multi-Device System monitoring
+- **Green**: Device-Specific detailed monitoring  
+- **Purple**: Multi-Device Process monitoring
+- **Orange**: Legacy single-device dashboards
+
+### Quick Actions
+- **Prometheus Targets**: Direct link to check scrape target health
+- **Dashboard Management**: Access to Grafana's dashboard browser
+- **Data Sources**: Manage Prometheus and other data sources
+- **Documentation**: Link to setup and usage documentation

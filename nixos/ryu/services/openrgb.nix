@@ -1,5 +1,6 @@
-{...}: {
+{ ... }:
+{
   services = {
-    hardware.openrgb.enable = false;
+    hardware.openrgb.enable = true;
   };
 }

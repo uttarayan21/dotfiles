@@ -8,8 +8,26 @@
           http_port = 3011;
         };
         "auth.proxy" = {
-          enabled = true;
+          enabled = false;
           header_name = "Remote-User";
+          header_property = "username";
+          auto_sign_up = true;
+          sync_ttl = 60;
+          whitelist = "127.0.0.1";
+          headers = "Name:Remote-Name Email:Remote-Email";
+          enable_login_token = false;
+        };
+        users = {
+          default_theme = "dark";
+          home_page = "d/monitoring-homepage";
+          auto_assign_org = true;
+          auto_assign_org_id = 1;
+          auto_assign_org_role = "Admin";
+        };
+        security = {
+          allow_embedding = true;
+          cookie_secure = false;
+          disable_gravatar = true;
         };
       };
       provision = {
@@ -26,14 +44,44 @@
         ];
         dashboards.settings.providers = [
           {
-            name = "system";
+            name = "homepage";
             orgId = 1;
-            folder = "System";
+            folder = "";
             type = "file";
             disableDeletion = false;
             updateIntervalSeconds = 10;
             allowUiUpdates = true;
-            options.path = "/etc/grafana/dashboards";
+            options.path = "/etc/grafana/dashboards/homepage";
+          }
+          {
+            name = "multi-device";
+            orgId = 1;
+            folder = "Multi-Device Monitoring";
+            type = "file";
+            disableDeletion = false;
+            updateIntervalSeconds = 10;
+            allowUiUpdates = true;
+            options.path = "/etc/grafana/dashboards/multi-device";
+          }
+          {
+            name = "device-specific";
+            orgId = 1;
+            folder = "Device-Specific";
+            type = "file";
+            disableDeletion = false;
+            updateIntervalSeconds = 10;
+            allowUiUpdates = true;
+            options.path = "/etc/grafana/dashboards/device-specific";
+          }
+          {
+            name = "legacy";
+            orgId = 1;
+            folder = "Legacy Dashboards";
+            type = "file";
+            disableDeletion = false;
+            updateIntervalSeconds = 10;
+            allowUiUpdates = true;
+            options.path = "/etc/grafana/dashboards/legacy";
           }
         ];
       };
@@ -157,13 +205,6 @@
             rules = [
               {
                 domain = "grafana.darksailor.dev";
-                policy = "bypass";
-                resources = [
-                  "^/api([/?].*)?$"
-                ];
-              }
-              {
-                domain = "grafana.darksailor.dev";
                 policy = "one_factor";
               }
               # {
@@ -184,15 +225,25 @@
     };
   };
 
-  # Provision dashboards directly
+  # Provision dashboards in organized folders
   environment.etc = {
-    "grafana/dashboards/system-dashboard.json".source = ./grafana/system-dashboard.json;
-    "grafana/dashboards/processes-dashboard.json".source = ./grafana/processes-dashboard.json;
-    "grafana/dashboards/multi-device-system-dashboard.json".source =
-      ./grafana/multi-device-system-dashboard.json;
-    "grafana/dashboards/multi-device-processes-dashboard.json".source =
-      ./grafana/multi-device-processes-dashboard.json;
-    "grafana/dashboards/device-specific-system-dashboard.json".source =
-      ./grafana/device-specific-system-dashboard.json;
+    # Homepage dashboard (root level)
+    "grafana/dashboards/homepage/homepage-dashboard.json".source =
+      ./grafana/homepage/homepage-dashboard.json;
+
+    # Multi-device dashboards
+    "grafana/dashboards/multi-device/multi-device-system-dashboard.json".source =
+      ./grafana/multi-device/multi-device-system-dashboard.json;
+    "grafana/dashboards/multi-device/multi-device-processes-dashboard.json".source =
+      ./grafana/multi-device/multi-device-processes-dashboard.json;
+
+    # Device-specific dashboards
+    "grafana/dashboards/device-specific/device-specific-system-dashboard.json".source =
+      ./grafana/device-specific/device-specific-system-dashboard.json;
+
+    # Legacy dashboards
+    "grafana/dashboards/legacy/system-dashboard.json".source = ./grafana/legacy/system-dashboard.json;
+    "grafana/dashboards/legacy/processes-dashboard.json".source =
+      ./grafana/legacy/processes-dashboard.json;
   };
 }
