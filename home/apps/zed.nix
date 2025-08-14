@@ -2,8 +2,7 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   home.packages = with pkgs; [
     nixd
     nil
@@ -124,37 +123,44 @@
       };
       theme = "Catppuccin Mocha";
     };
-    userTasks = [
+    userTasks = let
+      zed =
+        if pkgs.stdenv.isDarwin
+        then "zed"
+        else "${lib.getExe pkgs.zed-editor}";
+      tv = "${lib.getExe pkgs.television}";
+      yazi = "${lib.getExe pkgs.yazi}";
+    in [
       {
         label = "file_finder";
-        command = "${lib.getExe pkgs.zed-editor} \"$(${lib.getExe pkgs.television} files)\"";
+        command = "${zed} \"$(${tv} files)\"";
         hide = "always";
         allow_concurrent_runs = true;
         use_new_terminal = true;
       }
       {
         label = "live_grep";
-        command = "${lib.getExe pkgs.television} text | read -alz res; and ${lib.getExe pkgs.zed-editor} $res";
+        command = "${tv} text | read -alz res; and ${zed} $res";
         hide = "always";
         allow_concurrent_runs = false;
         use_new_terminal = false;
         shell = {
           with_arguments = {
             program = "fish";
-            args = [ "--no-config" ];
+            args = ["--no-config"];
           };
         };
       }
       {
         label = "file_manager";
-        command = "${lib.getExe pkgs.yazi} --chooser-file /dev/stdout | read -alz res;and ${lib.getExe pkgs.zed-editor} $res";
+        command = "${yazi} --chooser-file /dev/stdout | read -alz res;and ${zed} $res";
         hide = "always";
         allow_concurrent_runs = false;
         use_new_terminal = false;
         shell = {
           with_arguments = {
             program = "fish";
-            args = [ "--no-config" ];
+            args = ["--no-config"];
           };
         };
       }
