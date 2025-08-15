@@ -12,8 +12,6 @@
     home-manager.enable = true;
     bash = {
       enable = true;
-      settings = {
-      };
     };
   };
 
@@ -51,7 +49,7 @@
       _1password-cli
       just
     ];
-    home.file.".ssh/rc".text = ''
+    file.".ssh/rc".text = ''
       export PATH="/nix/var/nix/profiles/default/bin:$PATH"
     '';
     activation.tailscale-service = let
