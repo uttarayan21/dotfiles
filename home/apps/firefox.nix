@@ -53,5 +53,5 @@
   };
 in {
   programs.librewolf = config;
-  programs.firefox = config;
+  # programs.firefox = config;
 }
