@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
-      url = "github:JakeStanger/ironbar";
+      url = "github:da-x/ironbar/correct-gdk-monitor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -182,6 +182,10 @@
       # url = "path:/home/servius/Projects/command-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # hyprmonitors = {
+    #   url = "https://git.darksailor.dev/servius/hyprmonitors";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # alvr = {
     #   url = "path:/home/servius/Projects/ALVR";

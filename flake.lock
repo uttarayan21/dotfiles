@@ -1724,15 +1724,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1753113164,
-        "narHash": "sha256-sNTL9jCM7bJQy992d7TfHe8ZCIik9e0psZNurUyAf7E=",
-        "owner": "JakeStanger",
+        "lastModified": 1754481180,
+        "narHash": "sha256-C/G8srY5c0sffbsLbr79VC9UaTaucLSz8QUo0TzlC6o=",
+        "owner": "da-x",
         "repo": "ironbar",
-        "rev": "106e23e3116db02d57c548820024163c38491370",
+        "rev": "111d5d546f310bfd46c410254b3fa031aa8f5115",
         "type": "github"
       },
       "original": {
-        "owner": "JakeStanger",
+        "owner": "da-x",
+        "ref": "correct-gdk-monitor",
         "repo": "ironbar",
         "type": "github"
       }
