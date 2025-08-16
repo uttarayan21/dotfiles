@@ -182,10 +182,11 @@
       # url = "path:/home/servius/Projects/command-runner";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # hyprmonitors = {
-    #   url = "https://git.darksailor.dev/servius/hyprmonitors";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    hyprmonitors = {
+      # url = "git+ssh://gitea@git.darksailor.dev/servius/hyprmonitors";
+      url = "path:/home/servius/Projects/hyprmonitors";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # alvr = {
     #   url = "path:/home/servius/Projects/ALVR";

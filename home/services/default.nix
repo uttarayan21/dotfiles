@@ -9,5 +9,6 @@
     ./ironbar
     ./gui.nix
     ./eww.nix
+    ./hyprmon.nix
   ];
 }
