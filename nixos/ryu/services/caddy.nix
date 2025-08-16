@@ -35,6 +35,8 @@
   systemd.services.caddy = {
     serviceConfig = {
       EnvironmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
+      Requires = ["sops.service"];
+      After = ["sops.service"];
     };
   };
 }

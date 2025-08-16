@@ -131,6 +131,26 @@
             }
           ];
         }
+        {
+          type = "openai-compatible";
+          name = "copilot";
+          api_key = "xxx"; # exchange your `ghu_` token at https://api.github.com/copilot_internal/v2/token with Bearer token
+          api_base = "https://api.githubcopilot.com";
+          patch = {
+            # Patch api
+            chat_completions = {
+              # Api type, possible values: chat_completions, embeddings, and rerank
+              ".*" = {
+                # The regex to match model names, e.g. '.*' 'gpt-4o' 'gpt-4o|gpt-4-.*'
+                headers = {
+                  # Patch request headers
+                  "Copilot-Integration-Id" = "vscode-chat";
+                  "Editor-Version:" = "aichat/0.1.0"; # optional
+                };
+              };
+            };
+          };
+        }
       ];
     };
   };
