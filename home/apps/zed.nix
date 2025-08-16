@@ -20,15 +20,33 @@
       "javascript"
       "typescript"
     ];
-    userKeymaps = [
-      {
-        context = "Workspace";
-        bindings = {
+    userKeymaps = let
+      # keymaps should be like this:
+      # ```nix
+      # {
+      #   "Workspace" = {
+      #    "ctrl-\\" = "workspace::ToggleBottomDock";
+      #    "ctrl-h" = "editor::Backspace";
+      #   };
+      # }
+      # ```
+      mkMap = keymaps:
+        lib.mapAttrsToList (context: bindings: {
+          inherit context;
+          inherit bindings;
+          # use_key_equivalents = true;
+        })
+        keymaps;
+    in
+      mkMap {
+        "Workspace" = {
           "ctrl-\\" = "workspace::ToggleBottomDock";
           "ctrl-shift-r" = "workspace::ToggleRightDock";
+          "ctrl-b" = "workspace::ToggleLeftDock";
           "ctrl-k" = "editor::GoToDefinition";
           "ctrl-n" = null;
           "ctrl-p" = null;
+          "ctrl-shift-h" = null;
           "space f f" = [
             "task::Spawn"
             {
@@ -51,26 +69,26 @@
             }
           ];
         };
-      }
-      {
-        context = "Editor";
-        use_key_equivalents = true;
-        bindings = {
-          "ctrl-shift-r" = "workspace::ToggleRightDock";
+        "Editor" = {
           "ctrl-k" = "editor::GoToDefinition";
           "ctrl-t" = "pane::GoBack";
           "ctrl-l" = "editor::AcceptEditPrediction";
           "ctrl-\\" = "workspace::ToggleBottomDock";
+          "ctrl-b" = "workspace::ToggleLeftDock";
+          "space n" = "pane::ActivateNextItem";
+          "space p" = "pane::ActivatePreviousItem";
+          "space space" = "pane::ActivateLastItem";
+          "space q" = "pane::CloseActiveItem";
         };
-      }
-      {
-        context = "vim_mode == insert";
-        bindings = {
+        "vim_mode == insert" = {
           "ctrl-k" = "editor::GoToDefinition";
           "ctrl-l" = "editor::AcceptEditPrediction";
+          "ctrl-h" = "editor::Backspace";
+          "space f f" = null;
+          "space f g" = null;
+          "space g g" = null;
         };
-      }
-    ];
+      };
     userSettings = {
       features = {
         edit_prediction_provider = "copilot";
