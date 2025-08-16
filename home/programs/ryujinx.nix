@@ -5,6 +5,6 @@
   ...
 }: {
   home.packages = lib.optionals (device.name == "ryu") [
-    pkgs.ryujinx
+    pkgs.ryubing
   ];
 }
