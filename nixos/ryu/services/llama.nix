@@ -7,7 +7,7 @@
 }: {
   services = {
     llama-cpp = {
-      enable = true;
+      enable = false;
       port = 11435;
       model = pkgs.fetchurl {
         url = "https://huggingface.co/lmstudio-community/gpt-oss-20b-GGUF/resolve/main/gpt-oss-20b-MXFP4.gguf";
