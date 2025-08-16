@@ -11,6 +11,7 @@
     ./llama.nix
     ./lldap.nix
     ./minecraft.nix
+
     ./nextcloud.nix
     ./prowlarr.nix
     ./resolved.nix

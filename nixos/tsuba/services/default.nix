@@ -10,7 +10,7 @@
     ./flaresolverr.nix
     ./caddy.nix
     ./monitoring.nix
-    # ./grafana.nix
+
     # ./dnscrypt.nix
     # ./resolved.nix
     # ./blocky.nix

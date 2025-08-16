@@ -17,7 +17,7 @@ This repository manages **7 devices** across multiple platforms and architecture
 ### Server Infrastructure
 | Device | Architecture | Role | Services |
 |--------|-------------|------|----------|
-| **mirai** | x86_64-linux | Main Server | Nextcloud, Gitea, Grafana, Minecraft, Immich, Paperless, +20 more |
+| **mirai** | x86_64-linux | Main Server | Nextcloud, Gitea, Minecraft, Immich, Paperless, +20 more |
 | **deoxys** | x86_64-linux | VM Server | Testing & isolation environment |
 | **tsuba** | aarch64-linux | Raspberry Pi | ARM-based lightweight services |
 
@@ -125,7 +125,7 @@ just home
 ### Core Services
 - **Nextcloud**: File storage and synchronization
 - **Gitea**: Self-hosted Git server
-- **Grafana**: Monitoring and dashboards
+
 - **Immich**: Photo management and AI-powered search
 - **Paperless**: Document management and OCR
 

@@ -18,7 +18,6 @@ This document provides a comprehensive overview of all devices managed by this N
 - **Services**:
   - Nextcloud (file storage and sync)
   - Gitea (Git hosting)
-  - Grafana (monitoring and dashboards)
   - Minecraft server
   - Immich (photo management)
   - Paperless (document management)
@@ -201,7 +200,6 @@ kuro → mirai, shiro
 
 ## Monitoring and Observability
 
-- **Grafana**: Centralized monitoring on mirai
 - **System metrics**: Collected across all NixOS devices
 - **Shell history**: Synchronized via Atuin
 - **File synchronization**: Syncthing for selective sync

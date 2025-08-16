@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  device,
+  ...
+}: {
   imports = [
     # Import the hyprmonitors module
     inputs.hyprmonitors.homeManagerModules.hyprmonitors
@@ -6,7 +10,7 @@
 
   # Configure hyprmonitors service
   services.hyprmonitors = {
-    enable = true;
+    enable = device.is "ryu";
 
     # Optional: customize host and port (defaults shown)
     host = "0.0.0.0";
