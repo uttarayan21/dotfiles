@@ -21,15 +21,6 @@
       "typescript"
     ];
     userKeymaps = let
-      # keymaps should be like this:
-      # ```nix
-      # {
-      #   "Workspace" = {
-      #    "ctrl-\\" = "workspace::ToggleBottomDock";
-      #    "ctrl-h" = "editor::Backspace";
-      #   };
-      # }
-      # ```
       mkMap = keymaps:
         lib.mapAttrsToList (context: bindings: {
           inherit context;
@@ -47,6 +38,8 @@
           "ctrl-n" = null;
           "ctrl-p" = null;
           "ctrl-shift-h" = null;
+        };
+        "Workspace && vim_mode != insert && !Terminal" = {
           "space f f" = [
             "task::Spawn"
             {
@@ -75,6 +68,8 @@
           "ctrl-l" = "editor::AcceptEditPrediction";
           "ctrl-\\" = "workspace::ToggleBottomDock";
           "ctrl-b" = "workspace::ToggleLeftDock";
+        };
+        "Editor && vim_mode != insert && !Terminal" = {
           "space n" = "pane::ActivateNextItem";
           "space p" = "pane::ActivatePreviousItem";
           "space space" = "pane::ActivateLastItem";
@@ -84,9 +79,6 @@
           "ctrl-k" = "editor::GoToDefinition";
           "ctrl-l" = "editor::AcceptEditPrediction";
           "ctrl-h" = "editor::Backspace";
-          "space f f" = null;
-          "space f g" = null;
-          "space g g" = null;
         };
       };
     userSettings = {
@@ -107,21 +99,21 @@
         metrics = false;
       };
       buffer_font_size = 15;
-      language_models = {
-        ollama = {
-          api_url = "https://ollama.ryu.darksailor.dev";
-          available_models = [
-            {
-              name = "qwen3:30b-a3b";
-              display_name = "Qwen3 MoE (30b-a3b)";
-              max_tokens = 32768;
-              supports_tools = true;
-              supports_thinking = false;
-              supports_images = false;
-            }
-          ];
-        };
-      };
+      # language_models = {
+      #   ollama = {
+      #     api_url = "https://ollama.ryu.darksailor.dev";
+      #     available_models = [
+      #       {
+      #         name = "qwen3:30b-a3b";
+      #         display_name = "Qwen3 MoE (30b-a3b)";
+      #         max_tokens = 32768;
+      #         supports_tools = true;
+      #         supports_thinking = false;
+      #         supports_images = false;
+      #       }
+      #     ];
+      #   };
+      # };
       terminal = {
         shell = {
           program = "${pkgs.fish}/bin/fish";
@@ -180,7 +172,7 @@
       }
       {
         label = "file_manager";
-        command = "${yazi} --chooser-file /dev/stdout | read -alz res;and ${zed} $res";
+        command = "${yazi} --chooser-file /dev/stdout \"$ZED_DIRNAME\" | read -alz res;and ${zed} $res";
         hide = "always";
         allow_concurrent_runs = false;
         use_new_terminal = false;
