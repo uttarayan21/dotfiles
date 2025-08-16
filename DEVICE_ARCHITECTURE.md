@@ -67,6 +67,17 @@ This document provides a comprehensive overview of all devices managed by this N
   - Secure boot with Lanzaboote
   - TPM2 support
 
+#### shiro (Mac Mini)
+- **Architecture**: aarch64-darwin (Apple Silicon)
+- **User**: servius
+- **Role**: macOS desktop and build server
+- **Configuration**: nix-darwin + Home Manager
+- **Features**:
+  - ARM64 build server for distributed builds
+  - Samba file sharing
+  - Colima container runtime
+  - Aerospace window management
+
 ### 📱 Portable/Mobile Devices
 
 #### kuro (MacBook)
@@ -78,12 +89,6 @@ This document provides a comprehensive overview of all devices managed by this N
   - Touch ID for sudo authentication
   - Custom keyboard mappings
   - Homebrew integration
-
-#### shiro (MacBook)
-- **Architecture**: aarch64-darwin (Apple Silicon)
-- **User**: servius
-- **Role**: Secondary macOS machine
-- **Configuration**: nix-darwin + Home Manager
 
 #### SteamDeck (Gaming Handheld)
 - **Architecture**: x86_64-linux
@@ -166,10 +171,11 @@ kuro → mirai, shiro
 - **Containers**: Docker with custom mount points
 - **Emulation**: aarch64-linux binfmt support
 
-### macOS Devices (kuro, shiro)
-- **Authentication**: Touch ID integration
+### macOS Devices (kuro - MacBook, shiro - Mac Mini)
+- **Authentication**: Touch ID integration (kuro)
 - **Keyboard**: Custom modifier key mappings
 - **Package management**: Homebrew + Nix hybrid approach
+- **Build server**: shiro provides ARM64 builds for the network
 
 ## Security Features
 

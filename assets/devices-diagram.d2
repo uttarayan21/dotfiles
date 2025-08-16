@@ -66,6 +66,12 @@ workstations: Development Workstations {
       }
     }
   }
+
+  shiro: shiro {
+    shape: rectangle
+    style.fill: "#9ca3af"
+    label: "shiro\nMac Mini Desktop\naarch64-darwin\nUser: servius\nBuild Server"
+  }
 }
 
 mobile: Portable Devices {
@@ -77,12 +83,6 @@ mobile: Portable Devices {
     shape: rectangle
     style.fill: "#6b7280"
     label: "kuro\nMacBook\naarch64-darwin\nUser: fs0c131y"
-  }
-
-  shiro: shiro {
-    shape: rectangle
-    style.fill: "#9ca3af"
-    label: "shiro\nMacBook\naarch64-darwin\nUser: servius"
   }
 
   deck: SteamDeck {
@@ -170,7 +170,7 @@ mobile.kuro -> servers.mirai: SSH Deploy {
   style.stroke-width: 2
 }
 
-mobile.kuro -> mobile.shiro: SSH Deploy {
+mobile.kuro -> workstations.shiro: SSH Deploy {
   style.stroke: "#7c3aed"
   style.stroke-width: 2
 }
@@ -194,7 +194,7 @@ workstations.ryu -> network.zerotier
 workstations.ryu -> builders: Uses distributed builds
 mobile.kuro -> builders: Uses distributed builds
 servers.mirai -> builders: Build server
-mobile.shiro -> builders: Build server
+workstations.shiro -> builders: Build server
 
 # Configuration connections
 config_mgmt.nixos_flake -> servers.mirai
@@ -203,7 +203,7 @@ config_mgmt.nixos_flake -> servers.tsuba
 config_mgmt.nixos_flake -> workstations.ryu
 
 config_mgmt.darwin -> mobile.kuro
-config_mgmt.darwin -> mobile.shiro
+config_mgmt.darwin -> workstations.shiro
 
 config_mgmt.home_manager -> mobile.deck
 

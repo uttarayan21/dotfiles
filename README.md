@@ -8,7 +8,7 @@ This repository manages **7 devices** across multiple platforms and architecture
 
 - **3 Servers**: mirai (main), deoxys (VM), tsuba (Raspberry Pi)  
 - **1 Workstation**: ryu (primary desktop)
-- **3 Portable devices**: kuro & shiro (MacBooks), SteamDeck
+- **3 Portable devices**: kuro (MacBook), SteamDeck, and 1 desktop Mac Mini (shiro)
 
 > 📈 **Visual Architecture**: See [Device Architecture Diagram](assets/devices-diagram.svg) for a complete visual overview.
 
@@ -25,12 +25,12 @@ This repository manages **7 devices** across multiple platforms and architecture
 | Device | Architecture | Setup | Features |
 |--------|-------------|-------|----------|
 | **ryu** | x86_64-linux | Main Desktop | Hyprland+GNOME, 3-monitor setup, gaming, audio production |
+| **shiro** | aarch64-darwin | Mac Mini Desktop | nix-darwin + Home Manager, build server |
 
 ### Portable Devices  
 | Device | Architecture | Platform | Configuration |
 |--------|-------------|----------|---------------|
-| **kuro** | aarch64-darwin | macOS | nix-darwin + Home Manager |
-| **shiro** | aarch64-darwin | macOS | nix-darwin + Home Manager |
+| **kuro** | aarch64-darwin | MacBook | nix-darwin + Home Manager |
 | **SteamDeck** | x86_64-linux | SteamOS | Home Manager only |
 
 ## 🚀 Quick Start
@@ -160,11 +160,12 @@ just home
 
 ## 📱 Portable Configuration
 
-### macOS Features (kuro, shiro)
-- **Touch ID**: Sudo authentication integration
+### macOS Features (kuro - MacBook, shiro - Mac Mini)
+- **Touch ID**: Sudo authentication integration (kuro)
 - **Keyboard remapping**: Custom modifier key layouts
 - **Aerospace/Yabai**: Tiling window management
 - **Homebrew**: Package management for macOS-specific applications
+- **Build server**: shiro serves as ARM64 build machine
 
 ### SteamDeck Integration
 - **Home Manager**: User environment without system changes
