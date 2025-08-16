@@ -1648,14 +1648,17 @@
         "rust-overlay": "rust-overlay_5"
       },
       "locked": {
-        "lastModified": 1755355299,
-        "narHash": "sha256-JPc+WfLsakUALqfOaZ68xN3tf8qo61Ybfiq9FicFLEQ=",
-        "path": "/home/servius/Projects/hyprmonitors",
-        "type": "path"
+        "lastModified": 1755360211,
+        "narHash": "sha256-ZdHdkhn8COBJxTLrbgIsxTJ7NT0hCegrOYeYZv9vUqg=",
+        "ref": "refs/heads/master",
+        "rev": "4714208a0b1c9e6702112518378fb4833cc092d9",
+        "revCount": 8,
+        "type": "git",
+        "url": "ssh://gitea@git.darksailor.dev/servius/hyprmonitors"
       },
       "original": {
-        "path": "/home/servius/Projects/hyprmonitors",
-        "type": "path"
+        "type": "git",
+        "url": "ssh://gitea@git.darksailor.dev/servius/hyprmonitors"
       }
     },
     "hyprutils": {

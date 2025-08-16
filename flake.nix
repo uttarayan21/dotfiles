@@ -183,8 +183,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprmonitors = {
-      # url = "git+ssh://gitea@git.darksailor.dev/servius/hyprmonitors";
-      url = "path:/home/servius/Projects/hyprmonitors";
+      url = "git+ssh://gitea@git.darksailor.dev/servius/hyprmonitors";
+      # url = "path:/home/servius/Projects/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
