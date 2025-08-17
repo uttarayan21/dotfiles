@@ -18,7 +18,7 @@
       background = "#000000";
       shell = "${pkgs.fish}/bin/fish";
       hide_window_decorations = "yes";
-      cursor_trail = 3;
+      cursor_trail = 1;
       close_on_child_death = "yes";
     };
     shellIntegration.enableFishIntegration = true;
