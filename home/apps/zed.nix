@@ -74,6 +74,7 @@
           "space p" = "pane::ActivatePreviousItem";
           "space space" = "pane::ActivateLastItem";
           "space q" = "pane::CloseActiveItem";
+          "space r r" = "editor::Rename";
         };
         "vim_mode == insert" = {
           "ctrl-k" = "editor::GoToDefinition";
