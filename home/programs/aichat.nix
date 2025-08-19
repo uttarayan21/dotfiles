@@ -124,7 +124,7 @@
               name = "gpt-3.5-turbo";
             }
             {
-              name = "gpt-4o";
+              name = "gpt-5-nano";
             }
             {
               name = "o4-mini-high";
@@ -152,6 +152,18 @@
           };
         }
       ];
+    };
+    roles = {
+      "%git-commit%" =
+        /*
+        md
+        */
+        ''
+          ---
+          model: openai:gpt-4o
+          ---
+          Your task is to generate a concise and informative commit message based on the provided diff. Use the conventional commit format, which includes a type (feat, fix, chore, docs, style, refactor, perf, test) and an optional scope. The message should be in the imperative mood and should not exceed 72 characters in the subject line. Don't include any additional text or explanations, just the commit message.
+        '';
     };
   };
 }
