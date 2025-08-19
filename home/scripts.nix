@@ -32,6 +32,14 @@ in {
           exec $EDITOR "$1"
         '';
       })
+    (
+      pkgs.writeShellApplication {
+        name = "git-install-prepare-commit-msg";
+        text = ''
+          cp ${../scripts/prepare-commit-msg} .git/hooks/prepare-commit-msg
+        '';
+      }
+    )
     (mkScript ../scripts/yt-dlp.sh (with pkgs; [yt-dlp]))
     (mkScript ../scripts/autossh.sh (with pkgs; [autossh openssh]))
   ];

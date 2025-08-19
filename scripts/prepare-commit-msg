@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+if [[ -z "$COMMIT_SOURCE" ]]
+then
+  DIFF_OUTPUT=$(git diff --cached)
+  AI_CHAT_OUTPUT=$(echo "$DIFF_OUTPUT" | aichat --role %git-commit%)
+  CURRENT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+  {
+    echo "$AI_CHAT_OUTPUT"
+    echo
+    echo "$CURRENT_MSG"
+  } > "$COMMIT_MSG_FILE"
+fi
