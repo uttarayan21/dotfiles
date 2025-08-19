@@ -39,7 +39,7 @@
           "ctrl-p" = null;
           "ctrl-shift-h" = null;
         };
-        "Workspace && vim_mode != insert && !Terminal" = {
+        "Workspace && !(Editor && vim_mode == insert) && !Terminal" = {
           "space f f" = [
             "task::Spawn"
             {
@@ -75,6 +75,7 @@
           "space space" = "pane::ActivateLastItem";
           "space q" = "pane::CloseActiveItem";
           "space r r" = "editor::Rename";
+          "space a" = "editor::ToggleCodeActions";
         };
         "vim_mode == insert" = {
           "ctrl-k" = "editor::GoToDefinition";
