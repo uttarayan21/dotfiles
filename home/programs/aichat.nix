@@ -105,8 +105,19 @@
         }
         {
           type = "openai-compatible";
-          name = "LMStudio";
-          api_base = "http://localhost:1234/v1";
+          name = "kuro";
+          api_base = "http://kuro:1234/v1";
+          models = [
+            {
+              name = "openai/gpt-oss-20b";
+              type = "chat";
+            }
+          ];
+        }
+        {
+          type = "openai-compatible";
+          name = "shiro";
+          api_base = "http://shiro:1234/v1";
           models = [
             {
               name = "openai/gpt-oss-20b";
