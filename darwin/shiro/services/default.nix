@@ -4,7 +4,7 @@
     ./skhd.nix
     ./tailscale.nix
     ./autossh.nix
-    ./colima.nix
+    # ./colima.nix
     # ./zerotier.nix
     # ./aerospace.nix
   ];
