@@ -14,6 +14,10 @@
   services = {
     caddy = {
       enable = true;
+      environmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
+      globalConfig = ''
+        debug
+      '';
       extraConfig = ''
         (hetzner) {
             tls {
@@ -26,17 +30,8 @@
       '';
       package = pkgs.caddy.withPlugins {
         plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-        # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ=";
-        # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ="
         hash = "sha256-YUrprDZQL+cX3P8fVLKHouXTMG4rw3sCaQdGqiq37uA=";
       };
-    };
-  };
-  systemd.services.caddy = {
-    serviceConfig = {
-      EnvironmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
-      Requires = ["sops.service"];
-      After = ["sops.service"];
     };
   };
 }

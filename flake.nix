@@ -330,6 +330,7 @@
       in
         import ./darwin {
           inherit devices inputs nixpkgs home-manager overlays nur nix-darwin;
+          sops-nix = inputs.sops-nix;
         };
 
       homeConfigurations = {

@@ -9,9 +9,13 @@
     name: device:
       nix-darwin.lib.darwinSystem {
         system = device.system;
+        specialArgs = {
+          inherit device;
+        };
         modules = [
           {nixpkgs.overlays = overlays;}
           ./${device.name}/configuration.nix
+          inputs.sops-nix.darwinModules.sops
           home-manager.darwinModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;
