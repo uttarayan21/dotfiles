@@ -13,7 +13,7 @@
     ./minecraft.nix
 
     ./nextcloud.nix
-    ./paperless.nix
+    # ./paperless.nix
     ./prowlarr.nix
     ./resolved.nix
     ./searxng.nix
