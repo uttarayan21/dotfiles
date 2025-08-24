@@ -3,6 +3,7 @@
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
+    ./excalidraw.nix
     ./fail2ban.nix
     ./flaresolverr.nix
     ./gitea.nix
@@ -11,14 +12,13 @@
     ./llama.nix
     ./lldap.nix
     ./minecraft.nix
-
     ./nextcloud.nix
-    # ./paperless.nix
     ./prowlarr.nix
     ./resolved.nix
     ./searxng.nix
+    ./sigmabot.nix
     ./tailscale.nix
-    ./excalidraw.nix
+    # ./paperless.nix
   ];
   services = {
     nix-serve = {

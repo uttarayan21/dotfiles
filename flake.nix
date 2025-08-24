@@ -202,6 +202,11 @@
       url = "github:ggml-org/llama.cpp/b6178?submodules=1";
       flake = false;
     };
+    spotybooty = {
+      # url = "git+ssh://gitea@git.darksailor.dev/servius/SpotyBooty";
+      url = "path:/home/servius/Projects/SpotyBooty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -11,7 +11,7 @@
       nixpkgs.lib.nixosSystem {
         system = device.system;
         specialArgs = {
-          inherit device;
+          inherit device inputs;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
           lanzaboote = inputs.lanzaboote;
         };
