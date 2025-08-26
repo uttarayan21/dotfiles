@@ -11,13 +11,13 @@
     ./immich.nix
     ./llama.nix
     ./lldap.nix
-    ./minecraft.nix
     ./nextcloud.nix
     ./prowlarr.nix
     ./resolved.nix
     ./searxng.nix
     ./sigmabot.nix
     ./tailscale.nix
+    ./games
     # ./paperless.nix
   ];
   services = {

@@ -3125,8 +3125,8 @@
         "rust-overlay": "rust-overlay_9"
       },
       "locked": {
-        "lastModified": 1756059230,
-        "narHash": "sha256-9xvC8WYCB/JgYvYFJMxCPY98ZHzvf3/oema6HtBTRRU=",
+        "lastModified": 1756198947,
+        "narHash": "sha256-hQPFz3smC92uFvQqMbukYDIPcYpuA7Bs6TLI9V/yeH0=",
         "path": "/home/servius/Projects/SpotyBooty",
         "type": "path"
       },
