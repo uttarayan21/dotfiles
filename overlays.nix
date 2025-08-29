@@ -162,6 +162,10 @@
         cargoLock = {lockFile = "${src}/Cargo.lock";};
       };
     # alvr-master = inputs.alvr.packages.${prev.system}.default;
+    caddyWithHetzner = final.pkgs.caddy.withPlugins {
+      plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
+      hash = "sha256-eKnFJjil66nYjJszBRzJVFxEimvqKcJpTHBi5OsZHhM=";
+    };
   };
   anyrun-overlay = final: prev: {
     anyrun =

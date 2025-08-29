@@ -24,12 +24,13 @@
             }
         }
       '';
-      package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-        # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ=";
-        # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ="
-        hash = "sha256-YUrprDZQL+cX3P8fVLKHouXTMG4rw3sCaQdGqiq37uA=";
-      };
+      package = pkgs.caddyWithHetzner;
+      # package = pkgs.caddy.withPlugins {
+      #   plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
+      #   # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ=";
+      #   # hash = "sha256-9ea0CfOHG7JhejB73HjfXQpnonn+ZRBqLNz1fFRkcDQ="
+      #   hash = "sha256-YUrprDZQL+cX3P8fVLKHouXTMG4rw3sCaQdGqiq37uA=";
+      # };
     };
   };
   systemd.services.caddy = {

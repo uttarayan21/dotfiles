@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  stablePkgs,
+  ...
+}: {
   programs.thunderbird = {
     enable = pkgs.stdenv.isLinux;
-    profiles = {
-    };
+    profiles = {};
+    package = stablePkgs.thunderbird;
   };
 }

@@ -1,6 +1,7 @@
 {
   device,
   pkgs,
+  stablePkgs,
   ...
 }: let
   config = {
@@ -52,6 +53,6 @@
     };
   };
 in {
-  programs.librewolf = config;
+  programs.librewolf = config // {package = stablePkgs.librewolf;};
   # programs.firefox = config;
 }

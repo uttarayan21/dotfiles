@@ -6,11 +6,8 @@
 }: {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     matchBlocks = {
-      rpi = {
-        user = "servius";
-        hostname = "rpi";
-      };
       tsuba = {
         user = "servius";
         hostname = "tsuba";
@@ -49,8 +46,14 @@
         hostname = "steamdeck";
         forwardAgent = true;
       };
+      "*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        # compression = true;
+        # HashKnownHosts = "no";
+        serverAliveInterval = 60;
+      };
     };
-    serverAliveInterval = 120;
     extraConfig =
       lib.strings.optionalString (pkgs.stdenv.isDarwin && !device.isServer)
       ''
