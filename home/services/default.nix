@@ -10,5 +10,6 @@
     ./gui.nix
     ./eww.nix
     ./hyprmon.nix
+    ./xdg.nix
   ];
 }
