@@ -52,6 +52,9 @@
           [registries.catscii]
           index = "https://git.shipyard.rs/catscii/crate-index.git"
 
+          [registries.kellnr]
+          index = "https://kellnr.darksailor.dev/git/index"
+
           [http]
           user-agent = "shipyard J0/QFq2Sa5y6nTxJQAb8t+e/3qLSub1/sa3zn0leZv6LKG/zmQcoikT9U3xPwbzp8hQ="
         '';
