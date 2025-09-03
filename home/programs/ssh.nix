@@ -6,7 +6,6 @@
 }: {
   programs.ssh = {
     enable = true;
-    enableDefaultConfig = false;
     matchBlocks = {
       tsuba = {
         user = "servius";
@@ -46,13 +45,13 @@
         hostname = "steamdeck";
         forwardAgent = true;
       };
-      "*" = {
-        forwardAgent = false;
-        addKeysToAgent = "no";
-        # compression = true;
-        # HashKnownHosts = "no";
-        serverAliveInterval = 60;
-      };
+      # "*" = {
+      #   forwardAgent = false;
+      #   addKeysToAgent = "no";
+      #   # compression = true;
+      #   # HashKnownHosts = "no";
+      #   serverAliveInterval = 60;
+      # };
     };
     extraConfig =
       lib.strings.optionalString (pkgs.stdenv.isDarwin && !device.isServer)
@@ -63,4 +62,7 @@
         IdentityAgent ~/.1password/agent.sock
       '';
   };
+  # // lib.mkIf (!(device.is "tsuba")) {
+  #   enableDefaultConfig = false;
+  # };
 }

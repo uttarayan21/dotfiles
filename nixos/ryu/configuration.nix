@@ -11,11 +11,11 @@
     ./containers
   ];
 
-  sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/${device.user}/.config/sops/age/keys.txt";
-  };
+  # sops = {
+  #   defaultSopsFile = ../../secrets/secrets.yaml;
+  #   defaultSopsFormat = "yaml";
+  #   age.keyFile = "/home/${device.user}/.config/sops/age/keys.txt";
+  # };
 
   security.tpm2 = {
     enable = true;

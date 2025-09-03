@@ -24,9 +24,6 @@
 
   security.sudo.wheelNeedsPassword = false;
   sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/fs0c131y/.config/sops/age/keys.txt";
     secrets."builder/mirai/cache/private" = {};
     secrets.users = {
       sopsFile = ../../secrets/users.yaml;

@@ -13,11 +13,6 @@
 
   nixpkgs.config.allowUnfree = true;
   security.sudo.wheelNeedsPassword = false;
-  sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/servius/.config/sops/age/keys.txt";
-  };
   nix = {
     settings = {
       auto-optimise-store = true;

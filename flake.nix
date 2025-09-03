@@ -306,6 +306,10 @@
       name = device.name;
       user = device.user;
       is = name: device.name == name;
+      home =
+        if isDarwin
+        then "/Users/${device.user}"
+        else "/home/${device.user}";
     };
 
     nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;
@@ -373,6 +377,7 @@
           overlays = import ./overlays.nix {
             inherit inputs;
           };
+          config.allowUnfree = true;
         };
       in {
         packages = rec {

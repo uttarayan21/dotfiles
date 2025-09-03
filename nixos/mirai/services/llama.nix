@@ -43,7 +43,7 @@
       };
     };
     open-webui = {
-      enable = true;
+      enable = false;
       port = 7070;
       environment = {
         SCARF_NO_ANALYTICS = "True";

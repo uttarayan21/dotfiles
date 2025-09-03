@@ -20,7 +20,6 @@
           inputs.sops-nix.nixosModules.sops
           inputs.disko.nixosModules.disko
           {nixpkgs.overlays = overlays;}
-          ./${device.name}/configuration.nix
           home-manager.nixosModules.home-manager
           inputs.arion.nixosModules.arion
           # inputs.command-runner.nixosModules.command-runner
@@ -43,6 +42,8 @@
               ];
             };
           }
+          ../sops.nix
+          ./${device.name}/configuration.nix
         ];
       }
   )

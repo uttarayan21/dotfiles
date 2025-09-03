@@ -49,6 +49,7 @@
           ./services
           ./disk-config.nix
           ./${name}.nix
+          ../../sops.nix
         ];
       }
   )
