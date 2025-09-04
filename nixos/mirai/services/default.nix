@@ -15,7 +15,6 @@
     ./prowlarr.nix
     ./resolved.nix
     ./searxng.nix
-    ./sigmabot.nix
     ./tailscale.nix
     ./games
     # ./paperless.nix
