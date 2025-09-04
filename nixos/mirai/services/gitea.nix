@@ -143,33 +143,33 @@
     };
   };
 
-  systemd.services.gitea-oauth-setup = let
-    name = "authelia";
-    gitea_oauth_script = pkgs.writeShellApplication {
-      name = "gitea_oauth2_script";
-      runtimeInputs = [config.services.gitea.package];
-      text = ''
-        gitea admin auth delete --id "$(gitea admin auth list | grep "${name}" | cut -d "$(printf '\t')" -f1)"
-        gitea admin auth add-oauth --provider=openidConnect --name=${name} --key="$CLIENT_ID" --secret="$CLIENT_SECRET" --auto-discover-url=https://auth.darksailor.dev/.well-known/openid-configuration --scopes='openid email profile'
-      '';
-    };
-  in {
-    description = "Configure Gitea OAuth with Authelia";
-    after = ["gitea.service"];
-    wants = ["gitea.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      Type = "oneshot";
-      User = config.services.gitea.user;
-      Group = config.services.gitea.group;
-      RemainAfterExit = true;
-      ExecStart = "${lib.getExe gitea_oauth_script}";
-      WorkingDirectory = config.services.gitea.stateDir;
-      EnvironmentFile = config.sops.templates."GITEA_OAUTH_SETUP.env".path;
-    };
-    environment = {
-      GITEA_WORK_DIR = config.services.gitea.stateDir;
-      GITEA_CUSTOM = config.services.gitea.customDir;
-    };
-  };
+  # systemd.services.gitea-oauth-setup = let
+  #   name = "authelia";
+  #   gitea_oauth_script = pkgs.writeShellApplication {
+  #     name = "gitea_oauth2_script";
+  #     runtimeInputs = [config.services.gitea.package];
+  #     text = ''
+  #       gitea admin auth delete --id "$(gitea admin auth list | grep "${name}" | cut -d "$(printf '\t')" -f1)"
+  #       gitea admin auth add-oauth --provider=openidConnect --name=${name} --key="$CLIENT_ID" --secret="$CLIENT_SECRET" --auto-discover-url=https://auth.darksailor.dev/.well-known/openid-configuration --scopes='openid email profile'
+  #     '';
+  #   };
+  # in {
+  #   description = "Configure Gitea OAuth with Authelia";
+  #   after = ["gitea.service"];
+  #   wants = ["gitea.service"];
+  #   wantedBy = ["multi-user.target"];
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #     User = config.services.gitea.user;
+  #     Group = config.services.gitea.group;
+  #     RemainAfterExit = true;
+  #     ExecStart = "${lib.getExe gitea_oauth_script}";
+  #     WorkingDirectory = config.services.gitea.stateDir;
+  #     EnvironmentFile = config.sops.templates."GITEA_OAUTH_SETUP.env".path;
+  #   };
+  #   environment = {
+  #     GITEA_WORK_DIR = config.services.gitea.stateDir;
+  #     GITEA_CUSTOM = config.services.gitea.customDir;
+  #   };
+  # };
 }

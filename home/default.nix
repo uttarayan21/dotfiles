@@ -32,10 +32,7 @@
 
   home = {
     username = device.user;
-    homeDirectory =
-      if device.isDarwin
-      then lib.mkForce "/Users/${device.user}"
-      else lib.mkForce "/home/${device.user}";
+    homeDirectory = device.home;
 
     file = {
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
