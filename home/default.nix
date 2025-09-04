@@ -32,7 +32,7 @@
 
   home = {
     username = device.user;
-    homeDirectory = device.home;
+    homeDirectory = lib.mkForce device.home;
 
     file = {
       ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
