@@ -77,7 +77,7 @@
     environment = {
       IMMICH_CONFIG_FILE = config.sops.templates."immich-config.json".path;
     };
-    package = pkgs.immich-latest;
+    package = pkgs.immich;
   };
   services.caddy = {
     virtualHosts."photos.darksailor.dev".extraConfig = ''
