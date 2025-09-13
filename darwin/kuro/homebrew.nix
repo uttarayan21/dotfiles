@@ -13,7 +13,7 @@
       "vlc"
       "zed"
       "zen"
-      "lmstudio"
+      "lm-studio"
     ];
   };
 }

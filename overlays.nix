@@ -230,6 +230,7 @@
     fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
       src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
     });
+    kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
   };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;

@@ -26,6 +26,6 @@
       "--single-instance"
     ];
     themeFile = "Catppuccin-Mocha";
-    package = inputs.nixpkgs-master.legacyPackages.${device.system}.kitty;
+    # package = inputs.nixpkgs-stable.legacyPackages.${device.system}.kitty;
   };
 }
