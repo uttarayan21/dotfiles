@@ -232,6 +232,7 @@
     });
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
     immich-latest = prev.immich.overrideAttrs (oldAttrs: {
+      version = "v1.142.0";
       src = inputs.immich;
     });
   };
