@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   xdg.portal = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     # config = {
     #
     # };
