@@ -1777,6 +1777,23 @@
         "type": "github"
       }
     },
+    "immich": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1757619545,
+        "narHash": "sha256-0nStZuSnb8tJ0+Y247MHitmMURl8vTuPLAhUm+OHctE=",
+        "owner": "immich-app",
+        "repo": "immich",
+        "rev": "4153848c68d416329deecf8b671e02bd754b4dd7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "immich-app",
+        "ref": "v1.142.0",
+        "repo": "immich",
+        "type": "github"
+      }
+    },
     "ironbar": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -2731,6 +2748,7 @@
         "hyprlock": "hyprlock",
         "hyprmonitors": "hyprmonitors",
         "ik_llama": "ik_llama",
+        "immich": "immich",
         "ironbar": "ironbar",
         "lanzaboote": "lanzaboote",
         "llama-cpp": "llama-cpp",

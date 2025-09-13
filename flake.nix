@@ -202,6 +202,10 @@
       url = "github:ggml-org/llama.cpp/b6178?submodules=1";
       flake = false;
     };
+    immich = {
+      url = "github:immich-app/immich/v1.142.0";
+      flake = false;
+    };
   };
 
   outputs = {

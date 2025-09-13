@@ -231,6 +231,9 @@
       src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
     });
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
+    immich-latest = prev.immich.overrideAttrs (oldAttrs: {
+      src = inputs.immich;
+    });
   };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;
