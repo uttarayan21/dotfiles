@@ -35,6 +35,7 @@
     ./yt-dlp.nix
     ./zoxide.nix
     ./television.nix
+    ./himalaya.nix
 
     # ./goread.nix
     # ./helix.nix

@@ -14,6 +14,7 @@
     ./programs
     ./scripts.nix
     ./services
+    ./accounts
   ];
 
   xdg.enable = true;
