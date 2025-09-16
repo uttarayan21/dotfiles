@@ -231,6 +231,17 @@
       src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
     });
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
+    immich-latest = prev.immich.overrideAttrs (oldAttrs: {
+      version = "v1.142.0";
+      src = inputs.immich;
+    });
+    yabai = prev.yabai.overrideAttrs (oldAttrs: {
+      version = "7.2.16";
+      src = final.fetchzip {
+        url = "https://git.darksailor.dev/servius/yabai-bin/raw/commit/f236ad5aafb98a25fdd73384de1fd41524b53dfb/yabai-v7.2.16.tar.gz";
+        hash = "sha256-h+3Hnk+kVThz3JwxYjL40HsMhLyBNt66elVbUTw+Sko=";
+      };
+    });
   };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;

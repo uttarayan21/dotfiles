@@ -51,6 +51,7 @@
   home.packages = with pkgs;
     [
       _1password-cli
+      asciidoctor
       alejandra
       aria2
       ast-grep

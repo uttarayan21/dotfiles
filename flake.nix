@@ -206,6 +206,10 @@
       url = "github:immich-app/immich/v1.142.0";
       flake = false;
     };
+    yabai = {
+      url = "github:koekeishiya/yabai";
+      flake = false;
+    };
   };
 
   outputs = {
