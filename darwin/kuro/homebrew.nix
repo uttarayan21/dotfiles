@@ -5,7 +5,6 @@
     ];
     casks = [
       "1password"
-      "firefox"
       "lunar"
       "orcaslicer"
       "raycast"

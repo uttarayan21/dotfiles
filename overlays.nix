@@ -236,10 +236,10 @@
       src = inputs.immich;
     });
     yabai = prev.yabai.overrideAttrs (oldAttrs: {
-      version = "7.2.16";
+      version = "7.1.15";
       src = final.fetchzip {
-        url = "https://git.darksailor.dev/servius/yabai-bin/raw/commit/f236ad5aafb98a25fdd73384de1fd41524b53dfb/yabai-v7.2.16.tar.gz";
-        hash = "sha256-h+3Hnk+kVThz3JwxYjL40HsMhLyBNt66elVbUTw+Sko=";
+        url = "https://git.darksailor.dev/servius/yabai-bin/raw/commit/cedc50758c21844d71ad07a60515657baa9ea1e0/yabai-v7.1.15.tar.gz";
+        hash = "sha256-NVEPwMYyZ89JOyAWux9ClamDUGULWC8kQu3wak5m/IY=";
       };
     });
   };

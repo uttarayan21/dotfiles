@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   services = {
     aerospace = {
-      enable = true;
+      enable = false;
       settings = {
         key-mapping = {
           preset = "qwerty";

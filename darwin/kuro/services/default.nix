@@ -1,9 +1,9 @@
 {...}: {
   imports = [
     ./tailscale.nix
-    # ./aerospace.nix
+    ./aerospace.nix
     # ./ollama.nix
-    # ./skhd.nix
-    # ./yabai.nix
+    ./skhd.nix
+    ./yabai.nix
   ];
 }
