@@ -36,6 +36,7 @@
     ./zoxide.nix
     ./television.nix
     ./himalaya.nix
+    ./rustup.nix
 
     # ./goread.nix
     # ./helix.nix
