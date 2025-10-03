@@ -121,11 +121,11 @@
     fsType = "ext4";
   };
 
-  fileSystems."/media" = {
-    device = "/dev/storage/media";
-    fsType = "ext4";
-    options = ["users" "nofail"];
-  };
+  # fileSystems."/media" = {
+  #   device = "/dev/storage/media";
+  #   fsType = "ext4";
+  #   options = ["users" "nofail"];
+  # };
 
   fileSystems."/games" = {
     device = "/dev/storage/games";
