@@ -129,11 +129,6 @@
         new_status = "master";
       };
 
-      gestures = {
-        # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = false;
-      };
-
       # Example per-device config
       # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
       # "device:epic-mouse-v1" = { sensitivity = -0.5; };
