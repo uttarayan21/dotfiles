@@ -17,7 +17,7 @@
           host = "imap.fastmail.com";
           port = 993;
           tls.enable = true;
-          authentication = "login";
+          # authentication = "login";
         };
         smtp = {
           host = "smtp.fastmail.com";
