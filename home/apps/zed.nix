@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  device,
   ...
 }: {
   home.packages = with pkgs; [
@@ -9,7 +10,7 @@
     sleek
   ];
   programs.zed-editor = {
-    enable = true;
+    enable = (device.is "ryu") || (device.is "kuro");
     extensions = [
       "catppuccin"
       "toml"
