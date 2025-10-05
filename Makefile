@@ -20,7 +20,7 @@ home:
 	nix --extra-experimental-features "nix-command flakes" run home-manager/master -- switch --flake .#mirai -b backup
 
 nixos:
-	sudo nixos-rebuild switch --flake .
+	sudo nixos-rebuild switch --flake . -j 1
 
 deck:
 	nix run home-manager/master -- switch --flake .#deck

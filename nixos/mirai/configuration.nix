@@ -38,6 +38,8 @@
 
   nix = {
     settings = {
+      max-jobs = 1;
+      cores = 8;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "fs0c131y" "remotebuilder"];
