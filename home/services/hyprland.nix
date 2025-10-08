@@ -84,6 +84,9 @@
         "col.inactive_border" = "$crust";
       };
 
+      ecosystem = {
+        no_update_news = true;
+      };
       decoration = {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
