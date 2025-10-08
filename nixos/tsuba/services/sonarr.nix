@@ -1,8 +1,17 @@
-{unstablePkgs, ...}: {
+{
+  pkgs,
+  unstablePkgs,
+  ...
+}: {
   services = {
     sonarr = {
       enable = true;
       package = unstablePkgs.sonarr;
+    };
+    systemd.services.sonarr = {
+      serviceConfig = {
+        path = [pkgs.ffmpeg];
+      };
     };
 
     caddy = {
