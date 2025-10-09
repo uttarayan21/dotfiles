@@ -78,7 +78,7 @@
       ripgrep
       sd
       tldr
-      vcpkg-tool
+      # vcpkg-tool
     ]
     ++ lib.optionals (!device.isServer) [
       monaspace

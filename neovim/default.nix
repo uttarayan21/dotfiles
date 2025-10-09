@@ -499,7 +499,7 @@ in {
         sqls.enable = true;
         pyright.enable = true;
         slint_lsp.enable = true;
-        sourcekit.enable = true;
+        # sourcekit.enable = true;
         openscad_lsp.enable = true;
         rust_analyzer = {
           enable = true;
