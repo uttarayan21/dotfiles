@@ -235,11 +235,11 @@
       version = "v1.142.0";
       src = inputs.immich;
     });
-    yabai = prev.yabai.overrideAttrs (oldAttrs: {
-      version = "7.1.15";
+    yabai = prev.yabai.overrideAttrs (oldAttrs: rec {
+      version = "7.1.16";
       src = final.fetchzip {
-        url = "https://git.darksailor.dev/servius/yabai-bin/raw/commit/cedc50758c21844d71ad07a60515657baa9ea1e0/yabai-v7.1.15.tar.gz";
-        hash = "sha256-NVEPwMYyZ89JOyAWux9ClamDUGULWC8kQu3wak5m/IY=";
+        url = "https://github.com/koekeishiya/yabai/releases/download/v${version}/yabai-v${version}.tar.gz";
+        hash = "sha256-rEO+qcat6heF3qrypJ02Ivd2n0cEmiC/cNUN53oia4w=";
       };
     });
   };

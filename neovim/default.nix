@@ -486,7 +486,7 @@ in {
             nix.flake.autoArchive = true;
           };
         };
-        marksman.enable = true;
+        # marksman.enable = true;
         neocmake.enable = true;
         nushell.enable = true;
         clangd.enable = true;
