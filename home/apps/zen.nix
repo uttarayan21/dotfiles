@@ -1,14 +1,14 @@
 {
   pkgs,
   inputs,
-  lib,
+  device,
   ...
 }: {
   imports = [
     inputs.zen-browser.homeModules.beta
   ];
   programs.zen-browser = {
-    enable = true;
+    enable = device.isLinux;
     profiles.default = {
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
