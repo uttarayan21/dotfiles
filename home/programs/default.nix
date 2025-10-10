@@ -17,26 +17,27 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./himalaya.nix
     ./mpd.nix
     ./ncpamixer.nix
     ./nh.nix
     ./nix-index.nix
     ./nushell.nix
     ./omnix.nix
+    ./rustup.nix
     ./ryujinx.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
     ./sxiv.nix
     ./tea.nix
+    ./television.nix
     ./tmux.nix
     ./tuifeed.nix
+    ./xh.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./television.nix
-    ./himalaya.nix
-    ./rustup.nix
 
     # ./goread.nix
     # ./helix.nix
