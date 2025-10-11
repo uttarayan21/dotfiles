@@ -16,7 +16,7 @@ lib.optionalAttrs device.hasGui {
     # ./gimp.nix
     ./guitarix.nix
     ./hyprpicker.nix
-    # ./jellyflix.nix
+    ./jellyflix.nix
     ./kicad.nix
     ./kitty.nix
     ./mpv.nix

@@ -40,6 +40,7 @@
   };
   systemd.services.caddy = {
     serviceConfig = {
+      After = ["sops-install-secrets.service"];
       EnvironmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
     };
   };

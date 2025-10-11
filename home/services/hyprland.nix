@@ -52,12 +52,36 @@
 
     settings = {
       source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
-      # "render:cm_fs_passthrough" = 1;
-      monitor = [
-        # "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0, bitdepth, 10, cm, hdr, sdrbrightness, 1.1, sdrsaturation, 1.2"
-        "${device.monitors.primary},    2560x1440@360,          0x0,     1, transform, 0"
-        "${device.monitors.secondary},  2560x1440@170,  -1440x-1120,     1, transform, 1"
-        "${device.monitors.tertiary},   2560x1440@170,   2560x-1120,     1, transform, 3"
+      render = {
+        cm_fs_passthrough = 1;
+        cm_auto_hdr = 1;
+      };
+      monitorv2 = [
+        {
+          output = device.monitors.primary;
+          mode = "2560x1440@360";
+          position = "0x0";
+          scale = 1;
+          transform = 0;
+          # bitdepth = 10;
+          # cm = "hdr";
+          # sdrbrightness = 1.1;
+          # sdrsaturation = 1.2;
+        }
+        {
+          output = device.monitors.secondary;
+          mode = "2560x1440@170";
+          position = "-1440x-1120";
+          scale = 1;
+          transform = 1;
+        }
+        {
+          output = device.monitors.tertiary;
+          mode = "2560x1440@170";
+          position = "2560x-1120";
+          scale = 1;
+          transform = 3;
+        }
       ];
 
       input = {
