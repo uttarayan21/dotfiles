@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
-      url = "github:JakeStanger/ironbar";
+      url = "github:da-x/ironbar/correct-gdk-monitor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
