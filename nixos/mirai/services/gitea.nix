@@ -142,6 +142,11 @@
       };
     };
   };
+  systemd.services.gitea = {
+    serviceConfig = {
+      After = ["sops-install-secrets.service"];
+    };
+  };
 
   # systemd.services.gitea-oauth-setup = let
   #   name = "authelia";
