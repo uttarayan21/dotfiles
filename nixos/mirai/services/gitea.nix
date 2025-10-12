@@ -47,6 +47,9 @@
           ENABLE_REVERSE_PROXY_AUTO_REGISTRATION = false;
           ENABLE_PASSWORD_SIGNIN_FORM = false;
         };
+        repository = {
+          ENABLE_PUSH_CREATE_USER = true;
+        };
         mailer = {
           ENABLED = true;
           PROTOCOL = "sendmail";
