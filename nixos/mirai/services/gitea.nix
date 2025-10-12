@@ -148,6 +148,9 @@
   systemd.services.gitea = {
     after = ["sops-install-secrets.service"];
   };
+  systemd.services."gitea-actions-mirai" = {
+    after = ["gitea.service"];
+  };
 
   # systemd.services.gitea-oauth-setup = let
   #   name = "authelia";
