@@ -14,7 +14,7 @@
   in {
     minecraft-server = {
       inherit whitelist;
-      enable = true;
+      enable = false;
       openFirewall = true;
       eula = true;
       declarative = true;
