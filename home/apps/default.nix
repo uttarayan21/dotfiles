@@ -19,6 +19,7 @@ lib.optionalAttrs device.hasGui {
     ./jellyflix.nix
     ./kicad.nix
     ./kitty.nix
+    ./lmstudio.nix
     ./mpv.nix
     ./neovide.nix
     ./nextcloud.nix
@@ -36,6 +37,6 @@ lib.optionalAttrs device.hasGui {
     ./zathura.nix
     ./zed.nix
     ./zen.nix
-    ./lmstudio.nix
+    ./vial.nix
   ];
 }
