@@ -119,6 +119,7 @@
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/d0835bd2-62fd-48d3-a0d1-8ae659f2e727";
     fsType = "ext4";
+    neededForBoot = true;
   };
 
   # fileSystems."/media" = {
