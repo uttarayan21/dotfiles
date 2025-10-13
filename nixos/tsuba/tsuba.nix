@@ -10,6 +10,7 @@
   networking.useNetworkd = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network.wait-online.enable = false;
+  fileSystems."/home".neededForBoot = true;
 
   system.nixos.tags = let
     cfg = config.boot.loader.raspberryPi;
