@@ -1,3 +1,7 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [vial];
+{
+  pkgs,
+  device,
+  ...
+}: {
+  home.packages = with pkgs; lib.optionals (device.is "ryu") [vial];
 }
