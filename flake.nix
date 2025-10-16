@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun-nixos-options = {
-      url = "github:n3oney/anyrun-nixos-options";
+      url = "github:uttarayan21/anyrun-nixos-options/anyrun-update";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {

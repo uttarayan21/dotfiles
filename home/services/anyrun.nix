@@ -2,17 +2,20 @@
   inputs,
   pkgs,
   device,
-  # osConfig,
+  osConfig,
+  lib,
   ...
 }: {
-  # imports = [inputs.anyrun.homeManagerModules.default];
+  disabledModules = ["programs/anyrun.nix"];
+  imports = [inputs.anyrun.homeManagerModules.default];
   programs.anyrun = {
     enable = device.isDesktopLinux;
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
         inputs.anyrun-nixos-options.packages.${pkgs.system}.default
         inputs.anyrun-hyprwin.packages.${pkgs.system}.default
-        inputs.anyrun-rink.packages.${pkgs.system}.default
+        # inputs.anyrun-rink.packages.${pkgs.system}.default
+        rink
         applications
         websearch
         shell
@@ -31,10 +34,9 @@
 
     extraConfigFiles = {
       "nixos-options.ron".text = let
-        # nixos-options =
-        # pkgs.lib.optionalString device.isNix
-        # osConfig.system.build.manual.optionsJSON
-        # + "/share/doc/nixos/options.json";
+        nixos-options =
+          pkgs.lib.optionalString device.isNix osConfig.system.build.manual.optionsJSON
+          + "/share/doc/nixos/options.json";
         hm-options =
           inputs.home-manager.packages.${pkgs.system}.docs-json
           + "/share/doc/home-manager/options.json";
@@ -47,14 +49,11 @@
         #   ":something-else" = [some-other-option];
         #   ":nall" = [nixos-options hm-options some-other-option];
         # };
-        options = builtins.toJSON {
-          ":hm" = [hm-options];
-        };
-        # // (
-        #   if device.isNix
-        #   then {":nix" = [nixos-options];}
-        #   else {}
-        # ));
+        options = builtins.toJSON ({
+            ":hm" = [hm-options];
+          }
+          // (lib.mkIf device.isNix
+            {":nix" = [nixos-options];}));
       in ''
         Config(
             options: ${options},
@@ -115,36 +114,5 @@
         )
       '';
     };
-
-    extraCss = ''
-      window {
-          color: #ffffff;
-          background-color: rgba(15, 15, 15, .2);
-          border-color: #000000;
-      }
-
-      entry {
-          color: #ffffff;
-          background-color: rgba(40, 40, 40, .98);
-          padding: 14px;
-          font-size: 30px;
-          border-color: #000000;
-          border-radius: 10px;
-      }
-
-      #plugin {
-          color: #efefef;
-          border-color: #000000;
-          border-color: #000000;
-          border-radius: 5px;
-      }
-
-      #main {
-          color: #efefef;
-          border-color: #000000;
-          border-color: #000000;
-          border-radius: 5px;
-      }
-    '';
   };
 }
