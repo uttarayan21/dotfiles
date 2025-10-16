@@ -550,6 +550,7 @@ in {
           # "<C-Space>" = "cmp.mapping.complete()";
           # "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           # "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<CR>" = ["select_and_accept" "fallback"];
           "<C-n>" = [
             "select_next"
             "fallback"
@@ -605,62 +606,6 @@ in {
       enable = true;
       settings.impersonate_nvim_cmp = true;
     };
-    # cmp = {
-    #   enable = true;
-    #   settings = {
-    #     autoEnableSources = true;
-    #     sources = [
-    #       {name = "buffer";}
-    #       {name = "buffer";}
-    #       {name = "cmdline";}
-    #       {name = "cmp-clippy";}
-    #       {name = "cmp-cmdline-history";}
-    #       {name = "crates";}
-    #       {name = "dap";}
-    #       # {name = "dictionary";}
-    #       {name = "fish";}
-    #       {name = "git";}
-    #       {name = "luasnip";}
-    #       {name = "nvim_lsp";}
-    #       {name = "nvim_lua";}
-    #       {name = "nvim_lsp_signature_help";}
-    #       {name = "nvim_lsp_document_symbol";}
-    #       {name = "path";}
-    #       {name = "rg";}
-    #       {name = "spell";}
-    #       {name = "tmux";}
-    #       {name = "treesitter";}
-    #     ];
-    #     view = {
-    #       entries = {
-    #         name = "custom";
-    #         selection_order = "near_cursor";
-    #       };
-    #     };
-    #     window = {
-    #       completion = {
-    #         inherit border;
-    #       };
-    #       documentation = {
-    #         inherit border;
-    #       };
-    #     };
-    #     mapping = {
-    #       # "<CR>" = "cmp.mapping.confirm({select = true})";
-    #       "<CR>" = "cmp.mapping.confirm()";
-    #       "<C-Space>" = "cmp.mapping.complete()";
-    #       "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-    #       "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
-    #     };
-    #     snippet.expand =
-    #       # lua
-    #       ''
-    #         function(args)
-    #             require('luasnip').lsp_expand(args.body)
-    #         end
-    #       '';
-    #   };
-    # };
   };
   extraConfigLua =
     # lua
