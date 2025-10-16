@@ -534,92 +534,133 @@ in {
       #     end
       #   '';
     };
-    # blink-cmp = {
-    #   enable = false;
-    #   settings = {
-    #     sources = {
-    #       cmdline = [];
-    #       default = ["lsp" "dictionary" "snippets" "path" "buffer"];
-    #       providers = {
-    #         buffer = {
-    #           score_offset = -7;
-    #         };
-    #         lsp = {
-    #           fallbacks = [];
-    #         };
-    #         path = {};
-    #         dictionary = {
-    #           module = "blink-cmp-dictionary";
-    #           name = "Dict";
-    #           min_keyword_length = 3;
-    #           opts = {
-    #           };
-    #         };
-    #       };
-    #     };
-    #   };
-    # };
-    # blink-cmp-dictionary.enable = true;
-    # blink-cmp-git.enable = true;
-    # blink-cmp-copilot.enable = true;
-    # blink-cmp-spell.enable = true;
-    # blink-compat.enable = true;
-    cmp = {
+    blink-cmp = {
       enable = true;
       settings = {
-        autoEnableSources = true;
-        sources = [
-          {name = "buffer";}
-          {name = "buffer";}
-          {name = "cmdline";}
-          {name = "cmp-clippy";}
-          {name = "cmp-cmdline-history";}
-          {name = "crates";}
-          {name = "dap";}
-          # {name = "dictionary";}
-          {name = "fish";}
-          {name = "git";}
-          {name = "luasnip";}
-          {name = "nvim_lsp";}
-          {name = "nvim_lua";}
-          {name = "nvim_lsp_signature_help";}
-          {name = "nvim_lsp_document_symbol";}
-          {name = "path";}
-          {name = "rg";}
-          {name = "spell";}
-          {name = "tmux";}
-          {name = "treesitter";}
-        ];
-        view = {
-          entries = {
-            name = "custom";
-            selection_order = "near_cursor";
-          };
+        completion = {
+          documentation.window.border = "rounded";
+          menu.border = "rounded";
         };
-        window = {
-          completion = {
-            inherit border;
-          };
-          documentation = {
-            inherit border;
-          };
+        signature = {
+          window.border = "rounded";
         };
-        mapping = {
+        keymap = {
           # "<CR>" = "cmp.mapping.confirm({select = true})";
-          "<CR>" = "cmp.mapping.confirm()";
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          # "<CR>" = "cmp.mapping.confirm()";
+          # "<C-Space>" = "cmp.mapping.complete()";
+          # "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          # "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<C-n>" = [
+            "select_next"
+            "fallback"
+          ];
+          "<C-p>" = [
+            "select_prev"
+            "fallback"
+          ];
+          # "<c-l>" = [
+          #   "snippet_forward"
+          #   "fallback"
+          # ];
+          # "<c-h>" = [
+          #   "snippet_backward"
+          #   "fallback"
+          # ];
+          "<C-u>" = [
+            "scroll_documentation_up"
+            "fallback"
+          ];
+          "<C-d>" = [
+            "scroll_documentation_down"
+            "fallback"
+          ];
         };
-        snippet.expand =
-          # lua
-          ''
-            function(args)
-                require('luasnip').lsp_expand(args.body)
-            end
-          '';
+        sources = {
+          cmdline = [];
+          default = ["lsp" "dictionary" "snippets" "path" "buffer"];
+          providers = {
+            buffer = {
+              score_offset = -7;
+            };
+            lsp = {
+              fallbacks = [];
+            };
+            path = {};
+            dictionary = {
+              module = "blink-cmp-dictionary";
+              name = "Dict";
+              min_keyword_length = 3;
+              opts = {
+              };
+            };
+          };
+        };
       };
     };
+    blink-cmp-dictionary.enable = true;
+    blink-cmp-git.enable = true;
+    blink-cmp-copilot.enable = true;
+    blink-cmp-spell.enable = true;
+    blink-compat = {
+      enable = true;
+      settings.impersonate_nvim_cmp = true;
+    };
+    # cmp = {
+    #   enable = true;
+    #   settings = {
+    #     autoEnableSources = true;
+    #     sources = [
+    #       {name = "buffer";}
+    #       {name = "buffer";}
+    #       {name = "cmdline";}
+    #       {name = "cmp-clippy";}
+    #       {name = "cmp-cmdline-history";}
+    #       {name = "crates";}
+    #       {name = "dap";}
+    #       # {name = "dictionary";}
+    #       {name = "fish";}
+    #       {name = "git";}
+    #       {name = "luasnip";}
+    #       {name = "nvim_lsp";}
+    #       {name = "nvim_lua";}
+    #       {name = "nvim_lsp_signature_help";}
+    #       {name = "nvim_lsp_document_symbol";}
+    #       {name = "path";}
+    #       {name = "rg";}
+    #       {name = "spell";}
+    #       {name = "tmux";}
+    #       {name = "treesitter";}
+    #     ];
+    #     view = {
+    #       entries = {
+    #         name = "custom";
+    #         selection_order = "near_cursor";
+    #       };
+    #     };
+    #     window = {
+    #       completion = {
+    #         inherit border;
+    #       };
+    #       documentation = {
+    #         inherit border;
+    #       };
+    #     };
+    #     mapping = {
+    #       # "<CR>" = "cmp.mapping.confirm({select = true})";
+    #       "<CR>" = "cmp.mapping.confirm()";
+    #       "<C-Space>" = "cmp.mapping.complete()";
+    #       "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+    #       "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+    #     };
+    #     snippet.expand =
+    #       # lua
+    #       ''
+    #         function(args)
+    #             require('luasnip').lsp_expand(args.body)
+    #         end
+    #       '';
+    #   };
+    # };
   };
   extraConfigLua =
     # lua
