@@ -455,13 +455,13 @@ in {
           codelldb = "${vscode-lldb.adapter}/bin/codelldb";
         in {
           autoload_configurations = false;
-          # adapter =
-          #   /*
-          #   lua
-          #   */
-          #   ''
-          #     require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
-          #   '';
+          adapter =
+            /*
+            lua
+            */
+            ''
+              require('rustaceanvim.config').get_codelldb_adapter("${codelldb}", "${liblldb}")
+            '';
         };
         tools = {
           float_win_config = {
@@ -545,11 +545,6 @@ in {
           window.border = "rounded";
         };
         keymap = {
-          # "<CR>" = "cmp.mapping.confirm({select = true})";
-          # "<CR>" = "cmp.mapping.confirm()";
-          # "<C-Space>" = "cmp.mapping.complete()";
-          # "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
-          # "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
           "<CR>" = ["select_and_accept" "fallback"];
           "<C-n>" = [
             "select_next"
@@ -559,14 +554,6 @@ in {
             "select_prev"
             "fallback"
           ];
-          # "<c-l>" = [
-          #   "snippet_forward"
-          #   "fallback"
-          # ];
-          # "<c-h>" = [
-          #   "snippet_backward"
-          #   "fallback"
-          # ];
           "<C-u>" = [
             "scroll_documentation_up"
             "fallback"
@@ -578,7 +565,15 @@ in {
         };
         sources = {
           cmdline = [];
-          default = ["lsp" "dictionary" "snippets" "path" "buffer"];
+          default = [
+            "git"
+            "lsp"
+            "dictionary"
+            "snippets"
+            "path"
+            "buffer"
+            "ripgrep"
+          ];
           providers = {
             buffer = {
               score_offset = -7;
@@ -598,6 +593,7 @@ in {
         };
       };
     };
+    blink-ripgrep.enable = true;
     blink-cmp-dictionary.enable = true;
     blink-cmp-git.enable = true;
     blink-cmp-copilot.enable = true;
