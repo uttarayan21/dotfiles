@@ -358,7 +358,14 @@ in {
       extensions = {
         undo.enable = true;
         ui-select.enable = true;
-        fzf-native.enable = true;
+        fzf-native = {
+          enable = true;
+          settings = {
+            fuzzy = true;
+            override_generic_sorter = true;
+            override_file_sorter = true;
+          };
+        };
         file-browser.enable = true;
       };
     };
@@ -595,6 +602,11 @@ in {
               opts = {
                 # -- options for the blink-cmp-git
               };
+            };
+            ripgrep = {
+              module = "blink-ripgrep";
+              name = "Ripgrep";
+              opts = {};
             };
           };
         };
