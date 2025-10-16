@@ -589,13 +589,20 @@ in {
               opts = {
               };
             };
+            git = {
+              module = "blink-cmp-git";
+              name = "Git";
+              opts = {
+                # -- options for the blink-cmp-git
+              };
+            };
           };
         };
       };
     };
     blink-ripgrep.enable = true;
-    blink-cmp-dictionary.enable = true;
     blink-cmp-git.enable = true;
+    blink-cmp-dictionary.enable = true;
     blink-cmp-copilot.enable = true;
     blink-cmp-spell.enable = true;
     blink-compat = {
