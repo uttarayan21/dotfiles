@@ -224,11 +224,11 @@ in {
     };
 
     neotest = {
-      enable = false;
+      enable = true;
       settings = {
-        # adapters = [
-        #   ''require('rustaceanvim.neotest')''
-        # ];
+        adapters = [
+          ''require('rustaceanvim.neotest')''
+        ];
       };
     };
     neorg = {
@@ -393,7 +393,7 @@ in {
       };
     };
     rustaceanvim = {
-      enable = false;
+      enable = true;
       settings = {
         server = {
           on_attach =
@@ -509,7 +509,7 @@ in {
         # sourcekit.enable = true;
         openscad_lsp.enable = true;
         rust_analyzer = {
-          enable = true;
+          enable = false;
           installCargo = false;
           installRustc = false;
           settings = {
