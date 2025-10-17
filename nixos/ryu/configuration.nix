@@ -9,6 +9,7 @@
     ./services
     ./programs
     ./containers
+    ./apps
   ];
 
   # sops = {

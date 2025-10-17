@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
-    ./alvr.nix
+    # ./alvr.nix
+    ./easyeffects.nix
   ];
 }
