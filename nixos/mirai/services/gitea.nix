@@ -75,22 +75,22 @@
         };
       };
     };
-    gitea-actions-runner = {
-      instances = {
-        mirai = {
-          enable = true;
-          name = "mirai";
-          url = "https://git.darksailor.dev";
-          labels = [
-            "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
-            "ubuntu-22.04:docker://catthehacker/ubuntu:full-22.04"
-            "ubuntu-20.04:docker://catthehacker/ubuntu:full-20.04"
-            "native:host"
-          ];
-          tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
-        };
-      };
-    };
+    # gitea-actions-runner = {
+    #   instances = {
+    #     mirai = {
+    #       enable = true;
+    #       name = "mirai";
+    #       url = "https://git.darksailor.dev";
+    #       labels = [
+    #         "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
+    #         "ubuntu-22.04:docker://catthehacker/ubuntu:full-22.04"
+    #         "ubuntu-20.04:docker://catthehacker/ubuntu:full-20.04"
+    #         "native:host"
+    #       ];
+    #       tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
+    #     };
+    #   };
+    # };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:3000
@@ -148,9 +148,10 @@
   systemd.services.gitea = {
     after = ["sops-install-secrets.service"];
   };
-  systemd.services."gitea-actions-mirai" = {
-    after = ["gitea.service"];
-  };
+
+  # systemd.services."gitea-actions-mirai" = {
+  #   after = ["gitea.service"];
+  # };
 
   # systemd.services.gitea-oauth-setup = let
   #   name = "authelia";

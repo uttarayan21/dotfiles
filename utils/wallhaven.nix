@@ -11,6 +11,10 @@ in rec {
     url = "https://w.wallhaven.cc/full/8o/wallhaven-8ow3q1.jpg";
     sha256 = "1qn2rv4y4550ag3yjrcj70jry6vxakbqskpwanyrghw2lmlhy7rf";
   };
+  hornet = getWall {
+    url = "https://w.wallhaven.cc/full/6l/wallhaven-6ld5pl.jpg";
+    sha256 = "07dsizb6rzzbc97azhrih2ahxkjnv9qfvj0hfkhrc7wkjilhbk89";
+  };
   moon = getWall {
     url = "https://w.wallhaven.cc/full/6o/wallhaven-6o1zp7.png";
     sha256 = "07c1yc3haa25ik3icqm85ppb5x888adxcyh9pmyz79n7ma8z7sil";
