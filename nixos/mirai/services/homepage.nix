@@ -26,13 +26,6 @@
                 href = "https://jellyfin.tsuba.darksailor.dev";
               };
             }
-            # {
-            #   "Jellyseerr" = {
-            #     icon = "jellyseerr.png";
-            #     description = "Jellyseerr: Media Request Management";
-            #     href = "https://jellyseerr.tsuba.darksailor.dev";
-            #   };
-            # }
             {
               "Sonarr" = {
                 icon = "sonarr.png";
@@ -47,13 +40,6 @@
                 href = "https://bazarr.tsuba.darksailor.dev";
               };
             }
-            # {
-            #   "Lidarr" = {
-            #     icon = "lidarr.png";
-            #     description = "Lidarr: Music Management";
-            #     href = "https://lidarr.tsuba.darksailor.dev";
-            #   };
-            # }
             {
               "Radarr" = {
                 icon = "radarr.png";
