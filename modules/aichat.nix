@@ -5,7 +5,7 @@
   ...
 }:
 with lib; let
-  cfg = config.programs.mayichat;
+  cfg = config.programs.aichat;
   yamlFormat = pkgs.formats.yaml {};
   fishIntegration = ''
     function _aichat_fish
@@ -64,7 +64,7 @@ with lib; let
   '';
 in {
   options = {
-    programs.mayichat = {
+    programs.aichat = {
       enable = mkEnableOption "aichat";
       package = mkPackageOption pkgs "aichat" {};
 

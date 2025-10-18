@@ -3,13 +3,14 @@
     ./swaync.nix
     ./swayosd.nix
     ./kdeconnect.nix
-    ./hyprland.nix
     ./gtk.nix
     ./anyrun.nix
     ./ironbar
     ./gui.nix
     ./eww.nix
-    ./hyprmon.nix
     ./xdg.nix
+    ./hyprmon.nix
+    ./hyprland.nix
+    ./hyprpaper.nix
   ];
 }

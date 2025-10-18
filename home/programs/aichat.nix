@@ -8,7 +8,9 @@
   imports = [
     ../../modules/aichat.nix
   ];
-  programs.mayichat = {
+
+  disabledModules = ["programs/aichat.nix"];
+  programs.aichat = {
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = false;

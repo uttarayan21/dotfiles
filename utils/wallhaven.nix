@@ -40,6 +40,5 @@ in rec {
     sha256 = "11w5lfqg6ip6zhiwfw63gv08f55kqbfnhmv7iq07mfspny36w840";
   };
 
-  anime = [frieren_3];
-  all = [lights shapes cloud skull moon] ++ anime;
+  all = [lights shapes cloud skull moon hornet frieren_3];
 }

@@ -1,15 +1,10 @@
 {
   pkgs,
   device,
-  lib,
   ...
 }:
 # lib.optionalAttrs device.isNix
 {
-  imports = [
-    ../../modules/hyprpaper.nix
-  ];
-
   # services.hyprpolkitagent.enable = true;
   services.hypridle = {
     enable = device.is "ryu";
@@ -28,20 +23,6 @@
   };
   services.hyprsunset = {
     enable = device.is "ryu";
-  };
-  programs.hyprpaper = let
-    wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
-  in {
-    enable = device.is "ryu";
-    # enable = true;
-    systemd.enable = true;
-    systemd.target = "hyprland-session.target";
-    settings.preload = wallpapers.all;
-    settings.wallpapers = {
-      "${device.monitors.primary}" = wallpapers.hornet;
-      "${device.monitors.secondary}" = wallpapers.frieren_3;
-      "${device.monitors.tertiary}" = wallpapers.shapes;
-    };
   };
   programs.hyprlock = {
     enable = device.is "ryu";
