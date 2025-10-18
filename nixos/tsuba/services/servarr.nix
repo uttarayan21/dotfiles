@@ -1,9 +1,15 @@
 {
   unstablePkgs,
   config,
+  pkgs,
   lib,
   ...
 }: {
+  systemd.services.sonarr = {
+    serviceConfig = {
+      path = [pkgs.ffmpeg];
+    };
+  };
   services = let
     settings = {
       auth = {
@@ -24,12 +30,12 @@
       group = "media";
       inherit settings;
     };
-    lidarr = {
-      enable = true;
-      package = unstablePkgs.lidarr;
-      group = "media";
-      inherit settings;
-    };
+    # lidarr = {
+    #   enable = true;
+    #   package = unstablePkgs.lidarr;
+    #   group = "media";
+    #   inherit settings;
+    # };
     bazarr = {
       enable = true;
       package = unstablePkgs.bazarr;
