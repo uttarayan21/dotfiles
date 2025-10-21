@@ -8,4 +8,7 @@
       pkgs.proton-ge-bin
     ];
   };
+  environment.systemPackages = [
+    pkgs.protonup-qt
+  ];
 }
