@@ -38,5 +38,6 @@ lib.optionalAttrs device.hasGui {
     ./zed.nix
     ./zen.nix
     ./vial.nix
+    ./wallpaperengine.nix
   ];
 }

@@ -37,6 +37,9 @@
         cm_fs_passthrough = 1;
         cm_auto_hdr = 1;
       };
+      experimental = {
+        xx_color_management_v4 = true;
+      };
       monitorv2 = [
         {
           output = device.monitors.primary;
@@ -44,10 +47,12 @@
           position = "0x0";
           scale = 1;
           transform = 0;
-          # bitdepth = 10;
-          # cm = "hdr";
-          # sdrbrightness = 1.1;
-          # sdrsaturation = 1.2;
+          supports_wide_color = 1;
+          supports_hdr = 1;
+          bitdepth = 10;
+          cm = "hdr";
+          sdrbrightness = 0.005;
+          sdrsaturation = 200;
         }
         {
           output = device.monitors.secondary;
