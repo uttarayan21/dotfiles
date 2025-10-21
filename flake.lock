@@ -1787,11 +1787,11 @@
     "ik_llama": {
       "flake": false,
       "locked": {
-        "lastModified": 1761023568,
-        "narHash": "sha256-cIHz/S14XzefFGUUF94NrEKaNx5jZX4U08Mm/Rv3Z6I=",
+        "lastModified": 1761046190,
+        "narHash": "sha256-kDujswCMCC4YSgJ5d/KHmRviBLBfAoB4DwOsfTUZEHo=",
         "owner": "ikawrakow",
         "repo": "ik_llama.cpp",
-        "rev": "f5571e241e6e2624db19259608e099dca9f522a5",
+        "rev": "caf9759c9793965591c8ab626c763d4bcb150677",
         "type": "github"
       },
       "original": {
@@ -2297,11 +2297,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1761029815,
-        "narHash": "sha256-oGHKbmi0DbpAvXH2IjqEPvlht6dw9SKZKYENRBD5DNc=",
+        "lastModified": 1761059842,
+        "narHash": "sha256-8lTvs2qVqRmBYzDdEk05QnA/YD46cFmsJ2quLOOTrdU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d87cd3504be6a641c4b95fd3ef0ef5cf996c3d18",
+        "rev": "94e6ba8aabc211872ab51d9dbb47c2af1598dbc9",
         "type": "github"
       },
       "original": {
@@ -2592,11 +2592,11 @@
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
-        "lastModified": 1761019869,
-        "narHash": "sha256-ieaO94BvvJR54LYFyCJB1LB4nBt9ls4TtgXBdXENHCE=",
+        "lastModified": 1761057802,
+        "narHash": "sha256-I+/6oqGFCzLBho6IDJaePJyTb2Pk0MSkE5h6rXZRuks=",
         "owner": "nix-community",
         "repo": "nur",
-        "rev": "62c5aee56c07b4536f87d2a1dc1a9439ed577dc1",
+        "rev": "e0ebb94b9c8b636b877bc038ec936f1c942d8f65",
         "type": "github"
       },
       "original": {

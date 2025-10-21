@@ -12,7 +12,7 @@
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
   in {
-    enable = true;
+    enable = device.is "ryu";
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     settings.preload =
