@@ -12,5 +12,6 @@
     ./hyprmon.nix
     ./hyprland.nix
     ./hyprpaper.nix
+    ./wallpaperengine.nix
   ];
 }
