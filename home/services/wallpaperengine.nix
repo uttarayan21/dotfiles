@@ -19,7 +19,7 @@ lib.mkIf (device.is "ryu") {
       ];
       Type = "simple";
       ExecStartPre = "${pkgs.coreutils}/bin/sleep 3";
-      ExecStart = "${pkgs.linux-wallpaperengine}/bin/linux-wallpaperengine -s --scaling fill --screen-root HDMI-A-1 --bg 2780316434";
+      ExecStart = "${pkgs.linux-wallpaperengine}/bin/linux-wallpaperengine --silent --no-audio-processing -f 15 --scaling fill --screen-root HDMI-A-1 --bg 2780316434";
       Restart = "on-failure";
       RestartSec = 5;
       TimeoutStartSec = 30;

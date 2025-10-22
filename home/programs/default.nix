@@ -38,6 +38,7 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
+    ./retroarch.nix
 
     # ./goread.nix
     # ./helix.nix
