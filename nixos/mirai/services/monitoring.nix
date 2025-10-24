@@ -258,6 +258,10 @@
   # Create dashboard directory and copy dashboards
   systemd.tmpfiles.rules = [
     "d /var/lib/grafana/dashboards 0755 grafana grafana"
+    "C /var/lib/grafana/dashboards/tsuba-monitoring.json 0644 grafana grafana - ${./dashboards/tsuba-monitoring.json}"
+    "C /var/lib/grafana/dashboards/ryu-monitoring.json 0644 grafana grafana - ${./dashboards/ryu-monitoring.json}"
+    "C /var/lib/grafana/dashboards/mirai-monitoring.json 0644 grafana grafana - ${./dashboards/mirai-monitoring.json}"
+    "C /var/lib/grafana/dashboards/overview-monitoring.json 0644 grafana grafana - ${./dashboards/overview-monitoring.json}"
   ];
 
   # Open firewall ports
