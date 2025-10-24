@@ -157,15 +157,18 @@
           auth_url = "https://auth.darksailor.dev/api/oidc/authorization";
           token_url = "https://auth.darksailor.dev/api/oidc/token";
           api_url = "https://auth.darksailor.dev/api/oidc/userinfo";
-          login_attribute_path = "preferred_username";
+          login_attribute_path = "email";
           groups_attribute_path = "groups";
           name_attribute_path = "name";
+          email_attribute_path = "email";
+          username_attribute_path = "preferred_username";
           use_pkce = true;
           auto_login = true;
           allow_sign_up = true;
-          role_attribute_path = "";
+          role_attribute_path = "contains(groups[*], 'sso_admin') && 'Admin' || Viewer";
           use_refresh_token = false;
           id_token_attribute_name = "";
+          signout_redirect_url = "https://auth.darksailor.dev/logout";
         };
       };
 
