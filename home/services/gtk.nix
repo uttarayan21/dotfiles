@@ -4,18 +4,19 @@
   device,
   ...
 }: {
+  stylix.targets.gtk.enable = false;
   gtk = {
     enable = device.is "ryu";
-    # theme = {
-    #   name = "catppuccin-mocha-mauve-standard+normal";
-    #   package = pkgs.catppuccinThemes.gtk;
-    #   # package = pkgs.catppuccin-gtk.override {
-    #   #   variant = "mocha";
-    #   #   size = "standard";
-    #   #   accents = ["mauve"];
-    #   #   tweaks = ["normal"];
-    #   # };
-    # };
+    theme = {
+      name = "catppuccin-mocha-mauve-standard+normal";
+      package = pkgs.catppuccinThemes.gtk;
+      # package = pkgs.catppuccin-gtk.override {
+      #   variant = "mocha";
+      #   size = "standard";
+      #   accents = ["mauve"];
+      #   tweaks = ["normal"];
+      # };
+    };
 
     iconTheme = {
       name = "Papirus-Dark";
