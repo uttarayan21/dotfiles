@@ -1,14 +1,15 @@
 {
   pkgs,
-  lib,
-  device,
+  config,
   ...
 }: {
   programs.git = {
     enable = true;
     lfs.enable = true;
-    userName = "uttarayan21";
-    userEmail = "email@uttarayan.me";
+    settings = {
+      user.name = "uttarayan21";
+      user.email = config.accounts.email.accounts.fastmail.address;
+    };
     extraConfig = {
       color.ui = true;
       core.editor = "nvim";
