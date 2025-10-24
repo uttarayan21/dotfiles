@@ -7,7 +7,6 @@
     enable = device.is "ryu";
     installBatSyntax = false;
     settings = {
-      theme = "catppuccin-mocha";
       font-family = [
         "Hasklug Nerd Font Mono"
       ];

@@ -32,7 +32,7 @@
     systemd.enable = true;
 
     settings = {
-      source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
+      # source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       render = {
         direct_scanout = true;
         cm_fs_passthrough = 1;
@@ -91,8 +91,8 @@
         gaps_in = 5;
         gaps_out = 20;
         border_size = 2;
-        "col.active_border" = "$mauve $mauve 45deg";
-        "col.inactive_border" = "$crust";
+        # "col.active_border" = "$mauve $mauve 45deg";
+        # "col.inactive_border" = "$crust";
       };
 
       ecosystem = {

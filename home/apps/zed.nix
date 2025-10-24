@@ -101,7 +101,7 @@
       telemetry = {
         metrics = false;
       };
-      buffer_font_size = 15;
+      buffer_font_size = lib.mkDefault 15;
       # language_models = {
       #   ollama = {
       #     api_url = "https://ollama.ryu.darksailor.dev";
@@ -143,7 +143,7 @@
           };
         };
       };
-      theme = "Catppuccin Mocha";
+      theme = lib.mkDefault "Catppuccin Mocha";
     };
     userTasks = let
       zed =

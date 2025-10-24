@@ -1,10 +1,8 @@
 {
-  nixpkgs,
   devices,
   inputs,
+  nixpkgs,
   overlays,
-  home-manager,
-  nur,
   ...
 }: (builtins.mapAttrs (
     name: device:
@@ -16,35 +14,21 @@
           lanzaboote = inputs.lanzaboote;
         };
         modules = [
-          nur.modules.nixos.default
-          inputs.sops-nix.nixosModules.sops
-          inputs.disko.nixosModules.disko
-          inputs.stylix.nixosModules.stylix
-          {nixpkgs.overlays = overlays;}
-          home-manager.nixosModules.home-manager
           inputs.arion.nixosModules.arion
-          # inputs.command-runner.nixosModules.command-runner
+          inputs.disko.nixosModules.disko
+          inputs.home-manager.nixosModules.home-manager
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix
           inputs.nix-minecraft.nixosModules.minecraft-servers
-          {
-            nixpkgs.config.allowUnfree = true;
-            home-manager = {
-              backupFileExtension = "bak";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit device;
-                stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
-              };
-              users.${device.user}.imports = [
-                ../home
-              ];
-            };
-          }
-          ../sops.nix
+          inputs.nur.modules.nixos.default
+          inputs.sops-nix.nixosModules.sops
+          inputs.stylix.nixosModules.stylix
+
           ./${device.name}/configuration.nix
+          ../home/module.nix
+          {nixpkgs.overlays = overlays;}
+          ../sops.nix
+          ../stylix.nix
         ];
       }
   )

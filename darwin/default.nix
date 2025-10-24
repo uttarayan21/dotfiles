@@ -1,36 +1,27 @@
 {
   devices,
   inputs,
-  overlays,
-  home-manager,
   nix-darwin,
+  overlays,
   ...
 }: (builtins.mapAttrs (
     name: device:
       nix-darwin.lib.darwinSystem {
         system = device.system;
         specialArgs = {
-          inherit device;
+          inherit device inputs;
+          stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
         };
         modules = [
-          {nixpkgs.overlays = overlays;}
-          ./${device.name}/configuration.nix
+          inputs.home-manager.darwinModules.home-manager
           inputs.sops-nix.darwinModules.sops
           inputs.stylix.darwinModules.stylix
-          home-manager.darwinModules.home-manager
-          {
-            nixpkgs.config.allowUnfree = true;
-            home-manager = {
-              backupFileExtension = "bak";
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {
-                inherit inputs;
-                inherit device;
-              };
-              users.${device.user}.imports = [../home];
-            };
-          }
+
+          ./${device.name}/configuration.nix
+          ../home/module.nix
+          {nixpkgs.overlays = overlays;}
+          ../sops.nix
+          ../stylix.nix
         ];
       }
   )

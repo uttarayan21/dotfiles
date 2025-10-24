@@ -9,8 +9,8 @@
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;
-    theme = builtins.fromTOML (builtins.readFile "${pkgs.catppuccinThemes.yazi}/themes/mocha/catppuccin-mocha-mauve.toml");
-    settings = lib.mkIf (device.is "ryu") {
+    theme = lib.mkDefault builtins.fromTOML (builtins.readFile "${pkgs.catppuccinThemes.yazi}/themes/mocha.toml");
+    settings = {
       plugin = {
         prepend_preloaders = [
           {
