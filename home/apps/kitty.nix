@@ -5,18 +5,19 @@
   inputs,
   ...
 }: {
+  stylix.targets.kitty.enable = false;
   programs.kitty = {
     enable = true;
     # enable = false;
     font = {
       # name = "FiraCode Nerd Font Mono";
-      # name = "Hasklug Nerd Font Mono";
+      name = "Hasklug Nerd Font Mono";
       # name = "Monaspace Krypton Var Light";
-      size = lib.mkDefault 13;
+      size = lib.mkForce 13;
     };
     settings = {
-      background_opacity = lib.mkDefault "0.8";
-      background = lib.mkDefault "#000000";
+      background_opacity = lib.mkForce "0.8";
+      background = lib.mkForce "#000000";
       shell = "${pkgs.fish}/bin/fish";
       hide_window_decorations = "yes";
       cursor_trail = 1;
@@ -26,7 +27,7 @@
     darwinLaunchOptions = [
       "--single-instance"
     ];
-    themeFile = "Catppuccin-Mocha";
+    themeFile = lib.mkForce "Catppuccin-Mocha";
     # package = inputs.nixpkgs-stable.legacyPackages.${device.system}.kitty;
   };
 }

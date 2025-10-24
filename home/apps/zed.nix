@@ -143,7 +143,7 @@
           };
         };
       };
-      theme = lib.mkDefault "Catppuccin Mocha";
+      theme = lib.mkForce "Catppuccin Mocha";
     };
     userTasks = let
       zed =
