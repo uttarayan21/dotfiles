@@ -68,8 +68,8 @@ in {
   # https://github.com/catppuccin/yazi
   yazi = mkCatppuccin {
     item = "yazi";
-    rev = "0846aed69b2a62d29c98e100af0cf55ca729723d";
-    sha256 = "sha256-2T41qWMe++3Qxl9veRNHMeRI3eU4+LAueKTss02gYNk";
+    rev = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
+    sha256 = "sha256-zkL46h1+U9ThD4xXkv1uuddrlQviEQD3wNZFRgv7M8Y=";
   };
 
   gtk = pkgs.catppuccin-gtk.override {

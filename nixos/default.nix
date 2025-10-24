@@ -19,6 +19,7 @@
           nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
           inputs.disko.nixosModules.disko
+          inputs.stylix.nixosModules.stylix
           {nixpkgs.overlays = overlays;}
           home-manager.nixosModules.home-manager
           inputs.arion.nixosModules.arion

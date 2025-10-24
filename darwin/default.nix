@@ -16,6 +16,7 @@
           {nixpkgs.overlays = overlays;}
           ./${device.name}/configuration.nix
           inputs.sops-nix.darwinModules.sops
+          inputs.stylix.darwinModules.stylix
           home-manager.darwinModules.home-manager
           {
             nixpkgs.config.allowUnfree = true;
