@@ -153,6 +153,7 @@
           client_id = "grafana";
           client_secret = "$__file{${config.sops.secrets.oauth-client-secret-grafana.path}}";
           scopes = "openid profile email groups";
+          empty_scopes = false;
           auth_url = "https://auth.darksailor.dev/api/oidc/authorization";
           token_url = "https://auth.darksailor.dev/api/oidc/token";
           api_url = "https://auth.darksailor.dev/api/oidc/userinfo";
@@ -162,9 +163,9 @@
           use_pkce = true;
           auto_login = true;
           allow_sign_up = true;
-          # use_refresh_token = true;
-          # id_token_attribute_name = "id_token";
-          # role_attribute_path = "groups";
+          role_attribute_path = "";
+          use_refresh_token = false;
+          id_token_attribute_name = "";
         };
       };
 
@@ -237,7 +238,8 @@
                   response_types = ["code"];
                   grant_types = ["authorization_code"];
                   userinfo_signed_response_alg = "none";
-                  access_token_signed_response_alg = "none";
+                  id_token_signed_response_alg = "RS256";
+                  access_token_signed_response_alg = "RS256";
                   token_endpoint_auth_method = "client_secret_basic";
                 }
               ];
