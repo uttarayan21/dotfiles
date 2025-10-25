@@ -302,6 +302,7 @@ in [
   inputs.nur.overlays.default
   inputs.rust-overlay.overlays.default
   inputs.nix-minecraft.overlay
+  inputs.lfca.overlays.default
   jellyfin
   libfprint
   misc-applications

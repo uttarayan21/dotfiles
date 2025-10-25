@@ -214,6 +214,11 @@
       url = "github:koekeishiya/yabai";
       flake = false;
     };
+
+    lfca = {
+      url = "git+ssh://gitea@git.darksailor.dev/servius/lfca";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
