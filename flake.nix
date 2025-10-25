@@ -317,6 +317,10 @@
         if isDarwin
         then "/Users/${device.user}"
         else "/home/${device.user}";
+      # output =
+      #   if isDarwin
+      #   then self.darwinConfigurations."${device.name}"
+      #   else self.nixosConfigurations."${device.name}";
     };
 
     nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;

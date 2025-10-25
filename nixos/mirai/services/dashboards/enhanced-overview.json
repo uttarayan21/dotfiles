@@ -74,8 +74,12 @@
                 "value": null
               },
               {
+                "color": "yellow",
+                "value": 70
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 85
               }
             ]
           },
@@ -85,7 +89,7 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 24,
         "x": 0,
         "y": 0
       },
@@ -109,13 +113,35 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"ryu-node\",mode=\"idle\"}[5m])) * 100)",
-          "legendFormat": "CPU Usage",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"tsuba-node\",mode=\"idle\"}[5m])) * 100)",
+          "legendFormat": "Tsuba CPU Usage",
           "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"ryu-node\",mode=\"idle\"}[5m])) * 100)",
+          "legendFormat": "Ryu CPU Usage",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "100 - (avg by (instance) (irate(node_cpu_seconds_total{job=\"mirai-node\",mode=\"idle\"}[5m])) * 100)",
+          "legendFormat": "Mirai CPU Usage",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "title": "Ryu CPU Usage",
+      "title": "CPU Usage - All Devices",
       "type": "timeseries"
     },
     {
@@ -173,15 +199,15 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "percent"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 0
+        "w": 24,
+        "x": 0,
+        "y": 8
       },
       "id": 2,
       "options": {
@@ -203,8 +229,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "node_memory_MemTotal_bytes{job=\"ryu-node\"} - node_memory_MemAvailable_bytes{job=\"ryu-node\"}",
-          "legendFormat": "Used Memory",
+          "expr": "(node_memory_MemTotal_bytes{job=\"tsuba-node\"} - node_memory_MemAvailable_bytes{job=\"tsuba-node\"}) / node_memory_MemTotal_bytes{job=\"tsuba-node\"} * 100",
+          "legendFormat": "Tsuba Memory Usage",
           "range": true,
           "refId": "A"
         },
@@ -214,13 +240,24 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "node_memory_MemTotal_bytes{job=\"ryu-node\"}",
-          "legendFormat": "Total Memory",
+          "expr": "(node_memory_MemTotal_bytes{job=\"ryu-node\"} - node_memory_MemAvailable_bytes{job=\"ryu-node\"}) / node_memory_MemTotal_bytes{job=\"ryu-node\"} * 100",
+          "legendFormat": "Ryu Memory Usage",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "(node_memory_MemTotal_bytes{job=\"mirai-node\"} - node_memory_MemAvailable_bytes{job=\"mirai-node\"}) / node_memory_MemTotal_bytes{job=\"mirai-node\"} * 100",
+          "legendFormat": "Mirai Memory Usage",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "title": "Ryu Memory Usage",
+      "title": "Memory Usage - All Devices",
       "type": "timeseries"
     },
     {
@@ -249,8 +286,12 @@
                 "value": null
               },
               {
+                "color": "yellow",
+                "value": 5
+              },
+              {
                 "color": "red",
-                "value": 80
+                "value": 10
               }
             ]
           }
@@ -259,19 +300,25 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "Memory"
+              "options": "Failed Services"
             },
             "properties": [
               {
                 "id": "unit",
-                "value": "bytes"
+                "value": "short"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
               }
             ]
           },
           {
             "matcher": {
               "id": "byName",
-              "options": "Count"
+              "options": "Active Services"
             },
             "properties": [
               {
@@ -284,9 +331,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 24,
+        "w": 12,
         "x": 0,
-        "y": 8
+        "y": 16
       },
       "id": 3,
       "options": {
@@ -297,13 +344,7 @@
           "reducer": ["sum"],
           "show": false
         },
-        "showHeader": true,
-        "sortBy": [
-          {
-            "desc": true,
-            "displayName": "Memory"
-          }
-        ]
+        "showHeader": true
       },
       "pluginVersion": "10.0.0",
       "targets": [
@@ -313,7 +354,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "namedprocess_namegroup_memory_bytes{job=\"ryu-process\"} > 0",
+          "expr": "systemd_units{job=~\"tsuba-systemd|ryu-systemd|mirai-systemd\",state=\"active\"}",
           "format": "table",
           "legendFormat": "__auto",
           "range": true,
@@ -325,7 +366,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "namedprocess_namegroup_num_procs{job=\"ryu-process\"} > 0",
+          "expr": "systemd_units{job=~\"tsuba-systemd|ryu-systemd|mirai-systemd\",state=\"failed\"}",
           "format": "table",
           "hide": false,
           "legendFormat": "__auto",
@@ -333,7 +374,277 @@
           "refId": "B"
         }
       ],
-      "title": "Ryu Running Processes",
+      "title": "SystemD Service Status",
+      "transformations": [
+        {
+          "id": "merge",
+          "options": {}
+        },
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Value #A": {
+                "aggregations": ["sum"],
+                "operation": "aggregate"
+              },
+              "Value #B": {
+                "aggregations": ["sum"],
+                "operation": "aggregate"
+              },
+              "job": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "Value #A (sum)": "Active Services",
+              "Value #B (sum)": "Failed Services",
+              "job": "Device"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "vis": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 16
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "zfs_dataset_used_bytes{job=~\"tsuba-zfs|ryu-zfs|mirai-zfs\"} / zfs_dataset_available_bytes{job=~\"tsuba-zfs|ryu-zfs|mirai-zfs\"} * 100",
+          "legendFormat": "{{job}} - {{dataset}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "ZFS Pool Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 40
+              },
+              {
+                "color": "red",
+                "value": 60
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Temperature"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "celsius"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "gauge"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Health"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "0": {
+                        "color": "red",
+                        "index": 1,
+                        "text": "FAIL"
+                      },
+                      "1": {
+                        "color": "green",
+                        "index": 0,
+                        "text": "OK"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "id": 5,
+      "options": {
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
+        "showHeader": true
+      },
+      "pluginVersion": "10.0.0",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "smartctl_device_smart_healthy{job=~\"tsuba-smartctl|ryu-smartctl|mirai-smartctl\"}",
+          "format": "table",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "smartctl_device_temperature{job=~\"tsuba-smartctl|ryu-smartctl|mirai-smartctl\"}",
+          "format": "table",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Disk Health & Temperature",
       "transformations": [
         {
           "id": "merge",
@@ -345,19 +656,113 @@
             "excludeByName": {
               "__name__": true,
               "instance": true,
-              "job": true,
               "Time": true
             },
             "indexByName": {},
             "renameByName": {
-              "Value #A": "Memory",
-              "Value #B": "Count",
-              "groupname": "Process Name"
+              "Value #A": "Health",
+              "Value #B": "Temperature",
+              "device": "Device",
+              "job": "System"
             }
           }
         }
       ],
       "type": "table"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "vis": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "reqps"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 32
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "rate(nginx_http_requests_total{job=\"mirai-nginx\"}[5m])",
+          "legendFormat": "{{server}} - {{status}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Nginx Request Rate",
+      "type": "timeseries"
     },
     {
       "datasource": {
@@ -421,10 +826,10 @@
       "gridPos": {
         "h": 8,
         "w": 12,
-        "x": 0,
-        "y": 16
+        "x": 12,
+        "y": 32
       },
-      "id": 4,
+      "id": 7,
       "options": {
         "legend": {
           "calcs": [],
@@ -444,8 +849,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "node_load1{job=\"ryu-node\"}",
-          "legendFormat": "1m load",
+          "expr": "nginx_connections_active{job=\"mirai-nginx\"}",
+          "legendFormat": "Active Connections",
           "range": true,
           "refId": "A"
         },
@@ -455,8 +860,8 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "node_load5{job=\"ryu-node\"}",
-          "legendFormat": "5m load",
+          "expr": "nginx_connections_reading{job=\"mirai-nginx\"}",
+          "legendFormat": "Reading",
           "range": true,
           "refId": "B"
         },
@@ -466,104 +871,10 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "node_load15{job=\"ryu-node\"}",
-          "legendFormat": "15m load",
+          "expr": "nginx_connections_writing{job=\"mirai-nginx\"}",
+          "legendFormat": "Writing",
           "range": true,
           "refId": "C"
-        }
-      ],
-      "title": "Ryu System Load",
-      "type": "timeseries"
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisCenteredZero": false,
-            "axisColorMode": "text",
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 10,
-            "gradientMode": "none",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "vis": false
-            },
-            "insertNulls": false,
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": false,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "binBps"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
-        "y": 16
-      },
-      "id": 5,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "list",
-          "placement": "bottom",
-          "showLegend": true
-        },
-        "tooltip": {
-          "mode": "single",
-          "sort": "none"
-        }
-      },
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "rate(node_network_receive_bytes_total{job=\"ryu-node\",device!~\"lo|veth.*|docker.*|virbr.*|br-.*\"}[5m])",
-          "legendFormat": "{{device}} - Inbound",
-          "range": true,
-          "refId": "A"
         },
         {
           "datasource": {
@@ -571,20 +882,20 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "rate(node_network_transmit_bytes_total{job=\"ryu-node\",device!~\"lo|veth.*|docker.*|virbr.*|br-.*\"}[5m])",
-          "legendFormat": "{{device}} - Outbound",
+          "expr": "nginx_connections_waiting{job=\"mirai-nginx\"}",
+          "legendFormat": "Waiting",
           "range": true,
-          "refId": "B"
+          "refId": "D"
         }
       ],
-      "title": "Ryu Network I/O",
+      "title": "Nginx Connections",
       "type": "timeseries"
     }
   ],
   "refresh": "30s",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": ["monitoring", "ryu"],
+  "tags": ["monitoring", "overview", "enhanced"],
   "templating": {
     "list": []
   },
@@ -594,8 +905,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Ryu System Monitoring",
-  "uid": "ryu-monitoring",
+  "title": "Enhanced Infrastructure Overview",
+  "uid": "enhanced-overview",
   "version": 0,
   "weekStart": ""
 }

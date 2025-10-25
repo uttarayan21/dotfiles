@@ -2,6 +2,10 @@
   services = {
     prometheus = {
       exporters = {
+        systemd = {
+          enable = true;
+        };
+        nvidia-gpu.enable = true;
         node = {
           enable = true;
           enabledCollectors = [
@@ -16,7 +20,6 @@
             "uname"
             "vmstat"
           ];
-          port = 9100;
         };
         process = {
           enable = true;
@@ -29,13 +32,5 @@
         };
       };
     };
-  };
-
-  # Open firewall ports for Prometheus exporters
-  networking.firewall = {
-    allowedTCPPorts = [
-      9100 # node exporter
-      9256 # process exporter
-    ];
   };
 }

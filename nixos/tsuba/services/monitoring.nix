@@ -2,6 +2,10 @@
   services = {
     prometheus = {
       exporters = {
+        systemd = {
+          enable = true;
+          port = 9558;
+        };
         node = {
           enable = true;
           enabledCollectors = [
@@ -36,6 +40,9 @@
     allowedTCPPorts = [
       9100 # node exporter
       9256 # process exporter
+      9558 # systemd exporter
+      9134 # zfs exporter
+      9633 # smartctl exporter
     ];
   };
 }

@@ -304,9 +304,7 @@
         "footer": {
           "countRows": false,
           "fields": "",
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "showHeader": true,
@@ -325,7 +323,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "namedprocess_namegroup_cpu_seconds_total{job=\"tsuba-process\"}",
+          "expr": "rate(namedprocess_namegroup_cpu_seconds_total{job=\"tsuba-process\"}[5m]) * 100",
           "format": "table",
           "legendFormat": "__auto",
           "range": true,
@@ -337,12 +335,25 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "namedprocess_namegroup_memory_bytes{job=\"tsuba-process\"}",
+          "expr": "namedprocess_namegroup_num_procs{job=\"tsuba-process\"} > 0",
           "format": "table",
           "hide": false,
           "legendFormat": "__auto",
           "range": true,
           "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "editorMode": "code",
+          "expr": "namedprocess_namegroup_num_procs{job=\"tsuba-process\"}",
+          "format": "table",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
         }
       ],
       "title": "Tsuba Running Processes",
@@ -363,6 +374,7 @@
             "renameByName": {
               "Value #A": "CPU %",
               "Value #B": "Memory",
+              "Value #C": "Count",
               "groupname": "Process Name"
             }
           }
@@ -595,10 +607,7 @@
   "refresh": "30s",
   "schemaVersion": 38,
   "style": "dark",
-  "tags": [
-    "monitoring",
-    "tsuba"
-  ],
+  "tags": ["monitoring", "tsuba"],
   "templating": {
     "list": []
   },

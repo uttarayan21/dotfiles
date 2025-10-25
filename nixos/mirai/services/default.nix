@@ -8,7 +8,7 @@
     ./flaresolverr.nix
     ./gitea.nix
     ./homepage.nix
-    # ./immich.nix
+    ./immich.nix
     ./llama.nix
     ./lldap.nix
     ./monitoring.nix

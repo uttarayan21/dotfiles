@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  lib,
+  # devices,
   ...
 }: {
   sops.secrets = {
@@ -29,68 +31,16 @@
       port = 9090;
       listenAddress = "0.0.0.0";
 
-      scrapeConfigs = [
-        {
-          job_name = "tsuba-node";
-          static_configs = [
-            {
-              targets = ["tsuba:9100"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-        {
-          job_name = "tsuba-process";
-          static_configs = [
-            {
-              targets = ["tsuba:9256"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-        {
-          job_name = "ryu-node";
-          static_configs = [
-            {
-              targets = ["ryu:9100"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-        {
-          job_name = "ryu-process";
-          static_configs = [
-            {
-              targets = ["ryu:9256"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-        {
-          job_name = "mirai-node";
-          static_configs = [
-            {
-              targets = ["localhost:9100"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-        {
-          job_name = "mirai-process";
-          static_configs = [
-            {
-              targets = ["localhost:9256"];
-            }
-          ];
-          scrape_interval = "15s";
-          scrape_timeout = "10s";
-        }
-      ];
+      scrapeConfigs = [];
+      # ++ (lib.mapAttrsToList (name: cfg: {
+      #     job_name = "mirai-" + name;
+      #     static_configs = [
+      #       {
+      #         targets = [("localhost:" + (builtins.toString cfg.port))];
+      #       }
+      #     ];
+      #   })
+      #   (config.services.prometheus.exporters));
 
       retentionTime = "30d";
 
@@ -101,6 +51,22 @@
     };
 
     prometheus.exporters = {
+      ping = {
+        enable = true;
+        settings = {
+          targets = [
+            "1.1.1.1"
+            "ryu"
+            "tsuba"
+            "shiro"
+          ];
+          ping = {
+            interval = "5s";
+            timeout = "5s";
+          };
+        };
+        openFirewall = true;
+      };
       node = {
         enable = true;
         enabledCollectors = [
@@ -115,7 +81,7 @@
           "uname"
           "vmstat"
         ];
-        port = 9100;
+        openFirewall = true;
       };
       process = {
         enable = true;
@@ -125,6 +91,11 @@
             cmdline = [".*"];
           }
         ];
+        openFirewall = true;
+      };
+      systemd = {
+        enable = true;
+        openFirewall = true;
       };
     };
 
@@ -262,16 +233,12 @@
     "C /var/lib/grafana/dashboards/ryu-monitoring.json 0644 grafana grafana - ${./dashboards/ryu-monitoring.json}"
     "C /var/lib/grafana/dashboards/mirai-monitoring.json 0644 grafana grafana - ${./dashboards/mirai-monitoring.json}"
     "C /var/lib/grafana/dashboards/overview-monitoring.json 0644 grafana grafana - ${./dashboards/overview-monitoring.json}"
+    "C /var/lib/grafana/dashboards/enhanced-overview.json 0644 grafana grafana - ${./dashboards/enhanced-overview.json}"
+    "C /var/lib/grafana/dashboards/systemd-monitoring.json 0644 grafana grafana - ${./dashboards/systemd-monitoring.json}"
   ];
 
   # Open firewall ports
   networking.firewall = {
-    allowedTCPPorts = [
-      3000 # Grafana
-      9090 # Prometheus
-      9100 # Node exporter
-      9256 # Process exporter
-    ];
     # Allow Tailscale traffic for metrics scraping
     trustedInterfaces = ["tailscale0"];
   };
