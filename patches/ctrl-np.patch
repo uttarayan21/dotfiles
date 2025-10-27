@@ -1,0 +1,31 @@
+commit 36fe25b45f12dccadae0b9fb922f3b5c766b1782
+Author: uttarayan21 <email@uttarayan.me>
+Date:   Wed Oct 15 20:01:53 2025 +0530
+
+    feat: Use ctrl-n and ctrl-p for up down
+
+diff --git a/anyrun/src/config.rs b/anyrun/src/config.rs
+index 0c06353..1f7735e 100644
+--- a/anyrun/src/config.rs
++++ b/anyrun/src/config.rs
+@@ -127,6 +127,20 @@ impl Config {
+                 key: gdk::Key::Tab,
+                 action: Action::Down,
+             },
++            Keybind {
++                ctrl: true,
++                alt: false,
++                shift: false,
++                key: gdk::Key::p,
++                action: Action::Up,
++            },
++            Keybind {
++                ctrl: true,
++                alt: false,
++                shift: false,
++                key: gdk::Key::n,
++                action: Action::Down,
++            },
+         ]
+     }
+ }

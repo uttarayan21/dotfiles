@@ -154,7 +154,7 @@
 
     anyrun = {
       # My fork of anyrun that allows up / down with <C-n> / <C-p>
-      url = "github:uttarayan21/anyrun";
+      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     anyrun-hyprwin = {

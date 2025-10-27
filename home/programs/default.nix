@@ -24,6 +24,7 @@
     ./nix-index.nix
     ./nushell.nix
     ./omnix.nix
+    ./retroarch.nix
     ./rustup.nix
     ./ryujinx.nix
     ./sops.nix
@@ -34,11 +35,11 @@
     ./television.nix
     ./tmux.nix
     ./tuifeed.nix
+    ./uv.nix
     ./xh.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./retroarch.nix
 
     # ./goread.nix
     # ./helix.nix

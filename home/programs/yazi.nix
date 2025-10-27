@@ -1,11 +1,5 @@
-{
-  pkgs,
-  lib,
-  device,
-  ...
-}: {
-  programs.
-    yazi = {
+{...}: {
+  programs. yazi = {
     enable = true;
     enableFishIntegration = true;
     enableNushellIntegration = true;

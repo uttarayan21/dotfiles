@@ -1,0 +1,3 @@
+{...}: {
+  programs.uv.enable = true;
+}
