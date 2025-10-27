@@ -169,6 +169,7 @@ in {
             end
           '';
         formatters_by_ft = {
+          json = ["jq"];
           d2 = ["d2"];
           sql = ["sleek"];
           toml = ["taplo"];
@@ -760,6 +761,8 @@ in {
                ['nurfile'] = "nu",
            },
        })
+
+       vim.bo.formatexpr = "v:lua.require'conform'.formatexpr()"
 
     '';
   extraPlugins = with pkgs.vimPlugins; [
