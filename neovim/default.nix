@@ -143,6 +143,20 @@ in {
       pattern = "?*";
       command = "silent! loadview!";
     }
+    {
+      event = ["FileType"];
+      pattern = "json";
+      callback =
+        rawLua
+        /*
+        lua
+        */
+        ''
+          function(ev)
+              vim.bo[ev.buf].formatprg = "${pkgs.jq}/bin/jq"
+          end
+        '';
+    }
   ];
 
   plugins = {
@@ -799,5 +813,8 @@ in {
     pkgs.sleek
     pkgs.graphqurl
     pkgs.sqls
+    pkgs.lua
+    pkgs.ripgrep
+    pkgs.nodejs-slim
   ];
 }

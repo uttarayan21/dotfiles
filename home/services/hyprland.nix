@@ -1,6 +1,7 @@
 {
   pkgs,
   device,
+  lib,
   ...
 }:
 # lib.optionalAttrs device.isNix
@@ -187,28 +188,32 @@
       ];
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, ${pkgs.kitty}/bin/kitty"
-        "$mainModShift, Return, exec, ${pkgs.wezterm}/bin/wezterm"
+        "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
+        "$mainModShift, Return, exec, ${lib.getExe pkgs.wezterm}"
         # "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
-        "$mainModShift, s, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
+        "$mainModShift, s, exec, ${lib.getExe pkgs.hyprshot} -m region"
         # "$mainMod, M, exit,"
         "$mainModShift, f, togglefloating,"
         "$mainModShift, f, pin"
         "$mainModShift, f, alterzorder, top"
         "$mainMod, f, fullscreen,"
         "$mainMod, g, fullscreenstate,0,2"
-        "$mainMod, d, exec, ${pkgs.anyrun}/bin/anyrun"
-        "$mainMod, Space, exec, ${pkgs.anyrun}/bin/anyrun"
+        "$mainMod, d, exec, ${lib.getExe pkgs.anyrun}"
+        "$mainMod, Space, exec, ${lib.getExe pkgs.anyrun}"
         "$mainMod, p, pseudo, # dwindle"
         "$mainMod, v, togglesplit,"
         # "$mainMod, a, exec, swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
         ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle"
-        # ",xf86audioprev, exec, /home/fs0c131y/.cargo/bin/mctl prev"
-        # ",xf86audionext, exec, /home/fs0c131y/.cargo/bin/mctl next"
-        # ",xf86audioplay, exec, /home/fs0c131y/.cargo/bin/mctl toggle"
+        # replace with later
+        # https://github.com/uttarayan21/mctl-rs
+        ",xf86audioprev, exec, ${lib.getExe pkgs.playerctl} previous"
+        ",xf86audionext, exec, ${lib.getExe pkgs.playerctl} next"
+        ",xf86audioplay, exec, ${lib.getExe pkgs.playerctl} play-pause"
+        ",xf86monbrightnessup, exec, ${lib.getExe pkgs.ddcbacklight} inc 10"
+        ",xf86monbrightnessdown, exec, ${lib.getExe pkgs.ddcbacklight} dec 10"
 
         # Screenshot
         # "$mainMod,Print, exec, grim"
