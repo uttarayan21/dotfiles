@@ -10,6 +10,7 @@
   imports = [inputs.anyrun.homeManagerModules.default];
   programs.anyrun = {
     enable = device.isDesktopLinux;
+    package = inputs.anyrun.packages.${pkgs.system}.anyrun.overrideAttrs (finalAttrs: prevAttrs: {patches = [../../patches/ctrl-np.patch];});
     config = {
       plugins = with inputs.anyrun.packages.${pkgs.system}; [
         inputs.anyrun-nixos-options.packages.${pkgs.system}.default

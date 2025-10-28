@@ -24,7 +24,7 @@ lib.optionalAttrs device.hasGui {
     ./neovide.nix
     ./nextcloud.nix
     ./obs-studio.nix
-    ./openscad.nix
+    # ./openscad.nix
     ./orcaslicer.nix
     ./pcsx2.nix
     # ./rpcs3.nix

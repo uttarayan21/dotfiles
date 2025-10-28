@@ -104,7 +104,7 @@
       };
     };
     displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # desktopManager.gnome.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -283,23 +283,23 @@
       NIXOS_OZONE_WL = "1";
     };
     # etc
-    gnome.excludePackages = with pkgs; [
-      atomix # puzzle game
-      cheese # webcam tool
-      epiphany # web browser
-      evince # document viewer
-      geary # email reader
-      gedit # text editor
-      gnome-characters
-      gnome-music
-      gnome-photos
-      gnome-terminal
-      gnome-tour
-      hitori # sudoku game
-      iagno # go game
-      tali # poker game
-      totem # video player
-    ];
+    # gnome.excludePackages = with pkgs; [
+    #   atomix # puzzle game
+    #   cheese # webcam tool
+    #   epiphany # web browser
+    #   evince # document viewer
+    #   geary # email reader
+    #   gedit # text editor
+    #   gnome-characters
+    #   gnome-music
+    #   gnome-photos
+    #   gnome-terminal
+    #   gnome-tour
+    #   hitori # sudoku game
+    #   iagno # go game
+    #   tali # poker game
+    #   totem # video player
+    # ];
   };
 
   musnix.enable = true;

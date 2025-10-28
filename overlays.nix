@@ -164,7 +164,7 @@
     # alvr-master = inputs.alvr.packages.${prev.system}.default;
     caddyWithHetzner = final.pkgs.caddy.withPlugins {
       plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-      hash = "sha256-J9eusS/Cx3kwIwVE0VlkWp3biWK3a4Z9/i2ufGQ+gtY=";
+      hash = "sha256-OKzPdgF+tgsu9CxXr3kj9qXcXvyu3eJeajF90PKRatw=";
     };
   };
   anyrun-overlay = final: prev: {
