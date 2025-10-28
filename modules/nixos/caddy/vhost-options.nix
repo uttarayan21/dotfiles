@@ -1,16 +1,12 @@
-{ cfg }:
-{
+{cfg}: {
   config,
   lib,
   name,
   ...
-}:
-let
+}: let
   inherit (lib) literalExpression mkOption types;
-in
-{
+in {
   options = {
-
     hostName = mkOption {
       type = types.str;
       default = name;
@@ -19,7 +15,7 @@ in
 
     serverAliases = mkOption {
       type = with types; listOf str;
-      default = [ ];
+      default = [];
       example = [
         "www.example.org"
         "example.org"
@@ -34,7 +30,7 @@ in
       description = ''
         A list of host interfaces to bind to for this virtual host.
       '';
-      default = [ ];
+      default = [];
       example = [
         "127.0.0.1"
         "::1"
@@ -58,7 +54,7 @@ in
     logFormat = mkOption {
       type = types.lines;
       default = ''
-        output file ${cfg.logDir}/access-${lib.replaceStrings [ "/" " " ] [ "_" "_" ] config.hostName}.log
+        output file ${cfg.logDir}/access-${lib.replaceStrings ["/" " "] ["_" "_"] config.hostName}.log
       '';
       defaultText = ''
         output file ''${config.services.caddy.logDir}/access-''${hostName}.log
@@ -83,6 +79,5 @@ in
         automatically generated `Caddyfile`.
       '';
     };
-
   };
 }
