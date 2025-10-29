@@ -188,20 +188,29 @@
     # firewall.allowedTCPPorts = [ ... ];
     # firewall.allowedUDPPorts = [ ... ];
     # firewall.enable = false;
+    nftables.enable = true;
     firewall = {
       enable = true;
       allowedTCPPortRanges = [
         {
           from = 1714;
           to = 1764;
-        } # KDE Connect
+        }
       ];
       allowedUDPPortRanges = [
         {
           from = 1714;
           to = 1764;
-        } # KDE Connect
+        }
       ];
+      # extraInputRules = ''
+      #   table inet mullvad_tailscale {
+      #     chain output {
+      #       type route hook output priority 0; policy accept;
+      #       ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+      #     }
+      #   }
+      # '';
     };
   };
 

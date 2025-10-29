@@ -11,19 +11,18 @@
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
-  in {
+    silksongShadeLord = nextcloudWallpapers "silksong-shadelord.jpg";
+  in rec {
     enable = device.is "ryu";
     systemd.enable = true;
     systemd.target = "hyprland-session.target";
     settings.preload =
       wallpapers.all
-      ++ [
-        silksongFleas
-      ];
+      ++ pkgs.lib.mapAttrsToList (_: value: value) settings.wallpapers;
     settings.wallpapers = {
-      # "${device.monitors.primary}" = silksongFleas;
+      "${device.monitors.primary}" = silksongShadeLord;
       "${device.monitors.secondary}" = wallpapers.frieren_3;
-      "${device.monitors.tertiary}" = wallpapers.hornet;
+      "${device.monitors.tertiary}" = silksongFleas;
     };
   };
 }
