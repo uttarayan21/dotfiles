@@ -125,11 +125,11 @@
       src = inputs.ik_llama;
       version = "5995";
     });
-    llama-cpp = prev.llama-cpp.overrideAttrs (oldAttrs: {
-      src = inputs.llama-cpp;
-      version = "6178";
-      cmakeFlags = oldAttrs.cmakeFlags;
-    });
+    # llama-cpp = prev.llama-cpp.overrideAttrs (oldAttrs: {
+    #   src = inputs.llama-cpp;
+    #   version = "6178";
+    #   cmakeFlags = oldAttrs.cmakeFlags;
+    # });
     python312 = prev.python312.override {
       packageOverrides = final: prev: {
         pysaml2 = prev.pysaml2.overridePythonAttrs (orig: {
@@ -166,6 +166,7 @@
       plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
       hash = "sha256-OKzPdgF+tgsu9CxXr3kj9qXcXvyu3eJeajF90PKRatw=";
     };
+    nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
   };
   anyrun-overlay = final: prev: {
     anyrun =
@@ -303,6 +304,7 @@ in [
   inputs.rust-overlay.overlays.default
   inputs.nix-minecraft.overlay
   inputs.lfca.overlays.default
+  # inputs.ik_llama.overlays.default
   jellyfin
   libfprint
   misc-applications
