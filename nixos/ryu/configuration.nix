@@ -191,7 +191,14 @@
     nftables.enable = true;
     firewall = {
       enable = true;
-      allowedUDPPorts = [4950 4955]; # Warframe
+      trustedInterfaces = [
+        "tailscale0"
+      ];
+      allowedUDPPorts = [
+        4950
+        4955
+        3113
+      ]; # Warframe
       allowedTCPPortRanges = [
         {
           from = 1714;
