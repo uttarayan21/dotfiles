@@ -13,6 +13,7 @@
     ./ddcbacklight.nix
     ./direnv.nix
     ./eza.nix
+    ./fastfetch.nix
     ./fish.nix
     ./fzf.nix
     ./gh.nix
