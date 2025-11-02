@@ -102,21 +102,8 @@
         metrics = false;
       };
       buffer_font_size = lib.mkDefault 15;
-      # language_models = {
-      #   ollama = {
-      #     api_url = "https://ollama.ryu.darksailor.dev";
-      #     available_models = [
-      #       {
-      #         name = "qwen3:30b-a3b";
-      #         display_name = "Qwen3 MoE (30b-a3b)";
-      #         max_tokens = 32768;
-      #         supports_tools = true;
-      #         supports_thinking = false;
-      #         supports_images = false;
-      #       }
-      #     ];
-      #   };
-      # };
+      language_models = {
+      };
       terminal = {
         shell = {
           program = "${pkgs.fish}/bin/fish";

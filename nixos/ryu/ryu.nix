@@ -87,6 +87,7 @@
     "nvidia_modeset"
     "nvidia_drm"
     "dm-snapshot"
+    "dm-mirror"
   ];
   boot.kernelParams = [
     "intel_iommu=on"

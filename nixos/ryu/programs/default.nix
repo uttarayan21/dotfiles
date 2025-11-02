@@ -8,5 +8,6 @@
     ./obs-studio.nix
     ./gnome-disks.nix
     ./nix-ld.nix
+    ./gamemode.nix
   ];
 }

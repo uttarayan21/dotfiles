@@ -6,7 +6,7 @@
 }: {
   services = {
     ollama = {
-      enable = true;
+      enable = false;
       host = "0.0.0.0";
       # loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b" "qwen3:14b"];
       # loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b" "qwen3:14b"];

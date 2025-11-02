@@ -121,10 +121,10 @@
           };
         };
     ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
-    ik_llama = prev.llama-cpp.overrideAttrs (oldAttrs: {
-      src = inputs.ik_llama;
-      version = "5995";
-    });
+    # ik_llama = prev.llama-cpp.overrideAttrs (oldAttrs: {
+    #   src = inputs.ik_llama;
+    #   version = "5995";
+    # });
     # llama-cpp = prev.llama-cpp.overrideAttrs (oldAttrs: {
     #   src = inputs.llama-cpp;
     #   version = "6178";
@@ -304,14 +304,15 @@ in [
   inputs.rust-overlay.overlays.default
   inputs.nix-minecraft.overlay
   inputs.lfca.overlays.default
-  # inputs.ik_llama.overlays.default
   jellyfin
   libfprint
   misc-applications
   nix-index-db
   shell-scipts
   tmuxPlugins
+  zellij
+  # inputs.llama-cpp.overlays.default
+  # inputs.ik_llama.overlays.default
   # tree-sitter-grammars
   # vimPlugins
-  zellij
 ]
