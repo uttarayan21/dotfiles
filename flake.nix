@@ -119,6 +119,10 @@
       url = "github:nushell/tree-sitter-nu";
       flake = false;
     };
+    tree-sitter-pest = {
+      url = "github:pest-parser/tree-sitter-pest";
+      flake = false;
+    };
     navigator = {
       url = "github:ray-x/navigator.lua";
       flake = false;
@@ -401,7 +405,7 @@
       in {
         packages = rec {
           default = neovim;
-          neovim = pkgs.nixvim.makeNixvim (import ./neovim);
+          neovim = pkgs.nixvim.makeNixvim (pkgs.callPackage ./neovim);
         };
         devShells = {
           default = pkgs.mkShell {

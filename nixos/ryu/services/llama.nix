@@ -6,7 +6,7 @@
 }: {
   services = {
     llama-cpp = {
-      enable = true;
+      enable = false;
       port = 11345;
       model = "/nix/store/ch6z9di3l0k54ad29pzv8k3zv47q30d1-Qwen3-Coder-30B-A3B-Instruct-Q4_K_M.gguf";
       # model = pkgs.fetchurl {

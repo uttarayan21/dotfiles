@@ -41,6 +41,7 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
+    ./neovim.nix
 
     # ./goread.nix
     # ./helix.nix
@@ -74,7 +75,6 @@
       just
       macchina
       nb
-      (nixvim.makeNixvim (import ../../neovim))
       p7zip
       pandoc
       pfetch-rs

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  # config,
-  ...
-}: let
+{pkgs, ...}: let
   mkMappings = mappings:
     []
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
@@ -17,16 +13,16 @@
       mode = mode;
     })
     mappings;
-  border = [
-    "╭"
-    "─"
-    "╮"
-    "│"
-    "╯"
-    "─"
-    "╰"
-    "│"
-  ];
+  # border = [
+  #   "╭"
+  #   "─"
+  #   "╮"
+  #   "│"
+  #   "╯"
+  #   "─"
+  #   "╰"
+  #   "│"
+  # ];
   rawLua = lua: {
     "__raw" = ''
       ${lua}
@@ -349,9 +345,11 @@ in {
           tree-sitter-norg-meta
           tree-sitter-just
           tree-sitter-nu
-          # pkgs.tree-sitter-grammars.tree-sitter-d2
+          tree-sitter-pest
+          tree-sitter-slint
         ])
         ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
+      nixGrammars = true;
     };
 
     telescope = {
@@ -767,6 +765,12 @@ in {
        vim.filetype.add({
           extension = {
              slint = "slint",
+          },
+       })
+
+       vim.filetype.add({
+          extension = {
+             pest = "pest",
           },
        })
 

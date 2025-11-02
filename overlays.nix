@@ -168,6 +168,7 @@
     };
     nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
   };
+
   anyrun-overlay = final: prev: {
     anyrun =
       inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs
@@ -262,57 +263,21 @@
       '';
     });
   };
-  vimPlugins = final: prev: {
-    vimPlugins =
-      prev.vimPlugins
-      // {
-        d2 = final.pkgs.vimUtils.buildVimPlugin {
-          name = "d2";
-          version = "1";
-          src = inputs.d2;
-        };
-      };
-  };
-  tree-sitter-grammars = final: prev: {
-    tree-sitter-grammars =
-      prev.tree-sitter-grammars
-      // {
-        # tree-sitter-just = final.pkgs.tree-sitter.buildGrammar {
-        #   language = "just";
-        #   version = "1";
-        #   src = inputs.tree-sitter-just;
-        # };
-        # tree-sitter-nu = final.pkgs.tree-sitter.buildGrammar {
-        #   language = "nu";
-        #   version = "1";
-        #   src = inputs.tree-sitter-nu;
-        # };
-        tree-sitter-d2 = final.pkgs.tree-sitter.buildGrammar {
-          language = "d2";
-          version = "1";
-          src = inputs.tree-sitter-d2;
-        };
-      };
-  };
-in [
-  anyrun-overlay
-  catppuccinThemes
-  csshacks
-  inputs.nixvim.overlays.default
-  inputs.nno.overlays.default
-  inputs.nur.overlays.default
-  inputs.rust-overlay.overlays.default
-  inputs.nix-minecraft.overlay
-  inputs.lfca.overlays.default
-  jellyfin
-  libfprint
-  misc-applications
-  nix-index-db
-  shell-scipts
-  tmuxPlugins
-  zellij
-  # inputs.llama-cpp.overlays.default
-  # inputs.ik_llama.overlays.default
-  # tree-sitter-grammars
-  # vimPlugins
-]
+in
+  [
+    anyrun-overlay
+    catppuccinThemes
+    csshacks
+    inputs.lfca.overlays.default
+    inputs.nix-minecraft.overlay
+    inputs.nur.overlays.default
+    inputs.rust-overlay.overlays.default
+    jellyfin
+    libfprint
+    misc-applications
+    nix-index-db
+    shell-scipts
+    tmuxPlugins
+    zellij
+  ]
+  ++ (import ./neovim/overlays.nix {inherit inputs;})

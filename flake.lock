@@ -3110,6 +3110,7 @@
         "tree-sitter-d2": "tree-sitter-d2",
         "tree-sitter-just": "tree-sitter-just",
         "tree-sitter-nu": "tree-sitter-nu",
+        "tree-sitter-pest": "tree-sitter-pest",
         "tree-sitter-slint": "tree-sitter-slint",
         "typr": "typr",
         "volt": "volt",
@@ -3932,6 +3933,22 @@
       "original": {
         "owner": "nushell",
         "repo": "tree-sitter-nu",
+        "type": "github"
+      }
+    },
+    "tree-sitter-pest": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759743491,
+        "narHash": "sha256-S5qg/LLPlMmNtRTTi7vW8y/c+zcId7ADmMqIt0gqJBo=",
+        "owner": "pest-parser",
+        "repo": "tree-sitter-pest",
+        "rev": "c19629a0c50e6ca2485c3b154b1dde841a08d169",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pest-parser",
+        "repo": "tree-sitter-pest",
         "type": "github"
       }
     },

@@ -274,7 +274,7 @@
       gparted
       nvtopPackages.nvidia
       quickemu
-      (nixvim.makeNixvim (import ../../neovim))
+      # (nixvim.makeNixvim (import ../../neovim))
       qpwgraph
       hyprland
       xorg.xhost

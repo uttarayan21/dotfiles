@@ -14,6 +14,7 @@
       stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
     };
     users.${device.user}.imports = [
+      inputs.nixvim.homeModules.nixvim
       ./.
     ];
   };
