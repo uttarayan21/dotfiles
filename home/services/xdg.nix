@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}:
+lib.optionalAttrs (device.is "ryu") {
   xdg.portal = {
     enable = pkgs.stdenv.isLinux;
     # config = {

@@ -5,7 +5,7 @@
   ...
 }: {
   services.syncthing = {
-    enable = true;
+    enable = device.is "ryu";
     openDefaultPorts = true;
     # user = "${device.user}";
     # group = "${device.user}";

@@ -1,8 +1,11 @@
 {
   pkgs,
   config,
+  lib,
+  device,
   ...
-}: {
+}:
+lib.optionalAttrs (!(device.is "tsuba")) {
   programs.git = {
     enable = true;
     lfs.enable = true;

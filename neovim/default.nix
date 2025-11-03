@@ -13,16 +13,16 @@
       mode = mode;
     })
     mappings;
-  # border = [
-  #   "╭"
-  #   "─"
-  #   "╮"
-  #   "│"
-  #   "╯"
-  #   "─"
-  #   "╰"
-  #   "│"
-  # ];
+  border = [
+    "╭"
+    "─"
+    "╮"
+    "│"
+    "╯"
+    "─"
+    "╰"
+    "│"
+  ];
   rawLua = lua: {
     "__raw" = ''
       ${lua}
@@ -123,6 +123,14 @@ in {
       ];
       pattern = "*.norg";
       command = "set conceallevel=3";
+    }
+    {
+      event = [
+        "BufEnter"
+        "BufWinEnter"
+      ];
+      pattern = "*.pest";
+      command = "setlocal commentstring=//%s";
     }
     # {
     #   event = ["BufEnter" "BufWinEnter"];

@@ -3,8 +3,8 @@
   lib,
   device,
   ...
-}: {
-  stylix.targets.gtk.enable = false;
+}:
+lib.optionalAttrs (device.is "ryu") {
   gtk = {
     enable = device.is "ryu";
     theme = {
@@ -38,4 +38,5 @@
     # pkgs.catppuccinThemes.gtk
     pkgs.catppuccinThemes.papirus-folders
   ];
+  stylix.targets.gtk.enable = false;
 }

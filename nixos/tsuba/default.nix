@@ -21,7 +21,7 @@
           inputs.arion.nixosModules.arion
           inputs.disko.nixosModules.disko
           inputs.sops-nix.nixosModules.sops
-          inputs.stylix.nixosModules.stylix
+          inputs.stylix-stable.nixosModules.stylix
           inputs.nix-minecraft.nixosModules.minecraft-servers
           nur.modules.nixos.default
           home-manager-stable.nixosModules.home-manager
@@ -42,15 +42,18 @@
                 stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
               };
               users.${device.user}.imports = [
+                inputs.nixvim.homeModules.nixvim
                 ../../home
               ];
             };
           }
           ./configuration.nix
           ./services
+          ./programs
           ./disk-config.nix
           ./${name}.nix
           ../../sops.nix
+          ../../stylix.nix
         ];
       }
   )
