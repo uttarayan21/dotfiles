@@ -9,7 +9,7 @@
     ./gitea.nix
     ./homepage.nix
     ./immich.nix
-    ./llama.nix
+    # ./llama.nix
     ./lldap.nix
     ./monitoring.nix
     ./nextcloud.nix
