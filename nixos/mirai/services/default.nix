@@ -10,6 +10,7 @@
     ./homepage.nix
     ./immich.nix
     # ./llama.nix
+    # ./immich.nix
     ./lldap.nix
     ./monitoring.nix
     ./nextcloud.nix

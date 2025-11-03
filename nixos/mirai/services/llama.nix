@@ -29,7 +29,7 @@
       # package = pkgs.ik_llama;
     };
     ollama = {
-      enable = true;
+      enable = false;
       loadModels = [
         "deepseek-r1:7b"
         "deepseek-r1:14b"
