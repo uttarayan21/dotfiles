@@ -199,7 +199,7 @@ in {
       enable = true;
       settings = {
         panel = {
-          enabled = true;
+          enabled = false;
         };
         suggestion = {
           enabled = true;

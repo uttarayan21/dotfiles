@@ -53,6 +53,8 @@
     };
   };
 in {
+  stylix.targets.librewolf.profileNames = ["default"];
+  stylix.targets.zen-browser.profileNames = ["default"];
   programs.librewolf = config // {package = stablePkgs.librewolf;};
   # programs.firefox = config;
 }

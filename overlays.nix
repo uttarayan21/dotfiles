@@ -120,7 +120,7 @@
             };
           };
         };
-    ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
+    # ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
     # ik_llama = prev.llama-cpp.overrideAttrs (oldAttrs: {
     #   src = inputs.ik_llama;
     #   version = "5995";
@@ -167,6 +167,14 @@
       hash = "sha256-OKzPdgF+tgsu9CxXr3kj9qXcXvyu3eJeajF90PKRatw=";
     };
     nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
+    kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
+    yabai = prev.yabai.overrideAttrs (oldAttrs: rec {
+      version = "7.1.16";
+      src = final.fetchzip {
+        url = "https://github.com/koekeishiya/yabai/releases/download/v${version}/yabai-v${version}.tar.gz";
+        hash = "sha256-rEO+qcat6heF3qrypJ02Ivd2n0cEmiC/cNUN53oia4w=";
+      };
+    });
   };
 
   anyrun-overlay = final: prev: {
@@ -211,39 +219,27 @@
     };
   };
   libfprint = final: prev: {
-    libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
-      version = "git";
-      src = final.fetchFromGitHub {
-        owner = "ericlinagora";
-        repo = "libfprint-CS9711";
-        rev = "03ace5b20146eb01c77fb3ea63e1909984d6d377";
-        sha256 = "sha256-gr3UvFB6D04he/9zawvQIuwfv0B7fEZb6BGiNAbLids";
-      };
-      buildInputs = oldAttrs.buildInputs ++ [final.nss_latest];
-      nativeBuildInputs =
-        oldAttrs.nativeBuildInputs
-        ++ [
-          final.opencv
-          final.cmake
-          final.doctest
-        ];
-    });
-    # fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
-    fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
-      src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
-    });
-    kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
-    immich-latest = prev.immich.overrideAttrs (oldAttrs: {
-      version = "v1.142.0";
-      src = inputs.immich;
-    });
-    yabai = prev.yabai.overrideAttrs (oldAttrs: rec {
-      version = "7.1.16";
-      src = final.fetchzip {
-        url = "https://github.com/koekeishiya/yabai/releases/download/v${version}/yabai-v${version}.tar.gz";
-        hash = "sha256-rEO+qcat6heF3qrypJ02Ivd2n0cEmiC/cNUN53oia4w=";
-      };
-    });
+    # libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
+    #   version = "git";
+    #   src = final.fetchFromGitHub {
+    #     owner = "ericlinagora";
+    #     repo = "libfprint-CS9711";
+    #     rev = "03ace5b20146eb01c77fb3ea63e1909984d6d377";
+    #     sha256 = "sha256-gr3UvFB6D04he/9zawvQIuwfv0B7fEZb6BGiNAbLids";
+    #   };
+    #   buildInputs = oldAttrs.buildInputs ++ [final.nss_latest];
+    #   nativeBuildInputs =
+    #     oldAttrs.nativeBuildInputs
+    #     ++ [
+    #       final.opencv
+    #       final.cmake
+    #       final.doctest
+    #     ];
+    # });
+    # # fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
+    # fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
+    #   src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
+    # });
   };
   csshacks = final: prev: {
     csshacks = inputs.csshacks;
@@ -263,11 +259,18 @@
       '';
     });
   };
+  immich = final: prev: {
+    immich-latest = prev.immich.overrideAttrs (oldAttrs: {
+      version = "v1.142.0";
+      src = inputs.immich;
+    });
+  };
 in
   [
     anyrun-overlay
     catppuccinThemes
     csshacks
+    immich
     inputs.lfca.overlays.default
     inputs.nix-minecraft.overlay
     inputs.nur.overlays.default

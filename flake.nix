@@ -34,7 +34,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ironbar = {
-      url = "github:da-x/ironbar/correct-gdk-monitor";
+      url = "github:JakeStanger/ironbar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -174,7 +174,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     onepassword-shell-plugins = {
-      url = "github:uttarayan21/shell-plugins";
+      url = "github:1Password/shell-plugins";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zeronsd = {

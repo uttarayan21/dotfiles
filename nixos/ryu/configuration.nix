@@ -39,7 +39,7 @@
   nix = {
     settings = {
       max-jobs = 1;
-      cores = 12;
+      cores = 24;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "servius"];

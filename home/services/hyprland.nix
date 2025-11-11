@@ -192,7 +192,7 @@
         "$mainModShift, Return, exec, ${lib.getExe pkgs.wezterm}"
         # "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
-        "$mainModShift, s, exec, ${lib.getExe pkgs.hyprshot} -m region"
+        "$mainModShift, s, exec, ${lib.getExe pkgs.hyprshot} -m region -o ~/Pictures/Screenshots/"
         # "$mainMod, M, exit,"
         "$mainModShift, f, togglefloating,"
         "$mainModShift, f, pin"
@@ -212,8 +212,8 @@
         ",xf86audioprev, exec, ${lib.getExe pkgs.playerctl} previous"
         ",xf86audionext, exec, ${lib.getExe pkgs.playerctl} next"
         ",xf86audioplay, exec, ${lib.getExe pkgs.playerctl} play-pause"
-        ",xf86monbrightnessup, exec, ${lib.getExe pkgs.ddcbacklight} inc 10"
-        ",xf86monbrightnessdown, exec, ${lib.getExe pkgs.ddcbacklight} dec 10"
+        # ",xf86monbrightnessup, exec, ${lib.getExe pkgs.ddcbacklight} inc 10"
+        # ",xf86monbrightnessdown, exec, ${lib.getExe pkgs.ddcbacklight} dec 10"
 
         # Screenshot
         # "$mainMod,Print, exec, grim"

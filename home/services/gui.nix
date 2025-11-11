@@ -40,7 +40,7 @@
       (prismlauncher.override {
         additionalPrograms = [ffmpeg zenity];
         jdks = [
-          graalvm-ce
+          # graalvm-ce
           zulu8
           zulu17
           zulu

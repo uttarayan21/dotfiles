@@ -5,7 +5,7 @@
     ./kdeconnect.nix
     ./gtk.nix
     ./anyrun.nix
-    ./ironbar
+    # ./ironbar
     ./gui.nix
     ./eww.nix
     ./xdg.nix
