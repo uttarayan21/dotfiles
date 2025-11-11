@@ -10,7 +10,7 @@
     ./bat.nix
     ./bluetui.nix
     ./carapace.nix
-    # ./ddcbacklight.nix
+    ./ddcbacklight.nix
     ./direnv.nix
     ./eza.nix
     ./fastfetch.nix

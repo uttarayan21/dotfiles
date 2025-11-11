@@ -120,7 +120,7 @@
             };
           };
         };
-    # ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
+    ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
     # ik_llama = prev.llama-cpp.overrideAttrs (oldAttrs: {
     #   src = inputs.ik_llama;
     #   version = "5995";
