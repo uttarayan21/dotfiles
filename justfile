@@ -6,7 +6,7 @@ install:
 
 [linux]
 install:
-	NIX_BUILD_CORES=32 sudo nixos-rebuild switch --impure --flake . --builders ''
+	sudo nixos-rebuild switch --flake . --builders ''
 
 [macos]
 build:

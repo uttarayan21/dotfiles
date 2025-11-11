@@ -16,5 +16,6 @@
     ./fwupd.nix
     ./caddy.nix
     ./monitoring.nix
+    ./wivrn.nix
   ];
 }
