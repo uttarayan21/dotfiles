@@ -230,6 +230,14 @@
       url = "github:numtide/nix-auth";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-xr = {
+      url = "github:nix-community/nixpkgs-xr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    wivrn = {
+      url = "github:WiVRn/WiVRn/v25.11.1";
+      flake = false;
+    };
   };
 
   outputs = {

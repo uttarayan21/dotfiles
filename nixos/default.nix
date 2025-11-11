@@ -20,6 +20,7 @@
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix
           inputs.nix-minecraft.nixosModules.minecraft-servers
+          inputs.nixpkgs-xr.nixosModules.nixpkgs-xr
           inputs.nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix

@@ -265,8 +265,16 @@
       src = inputs.immich;
     });
   };
+  vr = final: prev: {
+    wivrn = prev.wivrn.overrideAttrs (oldAttrs: {
+      version = "v25.11.1";
+      src = inputs.wivrn;
+    });
+    # inputs.wivrn.packages.${prev.system}.default;
+  };
 in
   [
+    vr
     anyrun-overlay
     catppuccinThemes
     csshacks
