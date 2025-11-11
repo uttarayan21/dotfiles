@@ -203,7 +203,7 @@
         "$mainMod, Space, exec, ${lib.getExe pkgs.anyrun}"
         "$mainMod, p, pseudo, # dwindle"
         "$mainMod, v, togglesplit,"
-        "$mainMod, a, exec, swaync-client -t"
+        "$mainMod, a, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
         ",xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle"
