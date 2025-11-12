@@ -138,7 +138,7 @@
 
   fileSystems."/volumes/windows-games" = {
     device = "/dev/disk/by-partuuid/56359fb7-7d33-44d2-bebd-b0c53daeeb73";
-    fsType = "ntfs";
+    fsType = "ntfs3";
     options = ["nofail"];
   };
 

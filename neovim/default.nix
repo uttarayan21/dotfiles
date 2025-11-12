@@ -103,6 +103,7 @@ in {
       "<C-q>x" = "[[<cmd>tabclose<cr>]]";
       "<C-q>n" = "[[<cmd>tabnext<cr>]]";
       "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
+      "<c-.>" = "require('sidekick.cli').toggle";
     };
     terminal = {
       "<C-\\>" = "require('FTerm').toggle";
@@ -176,6 +177,11 @@ in {
 
     sidekick = {
       enable = true;
+      settings = {
+        nes = {
+          enabled = false;
+        };
+      };
     };
 
     conform-nvim = {
