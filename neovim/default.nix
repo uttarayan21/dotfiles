@@ -173,6 +173,11 @@ in {
     trouble.enable = true;
     ts-context-commentstring.enable = true;
     which-key.enable = true;
+
+    sidekick = {
+      enable = true;
+    };
+
     conform-nvim = {
       enable = true;
       settings = {

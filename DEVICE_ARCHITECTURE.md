@@ -30,13 +30,6 @@ This document provides a comprehensive overview of all devices managed by this N
   - Syncthing
   - And many more services
 
-#### deoxys (VM Server)
-- **Architecture**: x86_64-linux
-- **User**: servius
-- **Role**: Virtual machine server for testing and isolation
-- **Configuration**: NixOS + Home Manager
-- **Location**: Local network
-
 #### tsuba (Raspberry Pi)
 - **Architecture**: aarch64-linux
 - **User**: servius
@@ -100,7 +93,7 @@ This document provides a comprehensive overview of all devices managed by this N
 
 ### VPN Networks
 - **Tailscale**: Primary VPN connecting most devices
-  - Devices: mirai, deoxys, tsuba, deck
+  - Devices: mirai, tsuba, deck
 - **ZeroTier**: Secondary network layer
   - Devices: mirai, ryu
 
@@ -111,7 +104,7 @@ This document provides a comprehensive overview of all devices managed by this N
 ## Configuration Management
 
 ### NixOS Flake
-- **Manages**: mirai, deoxys, tsuba, ryu
+- **Manages**: mirai, tsuba, ryu
 - **Features**: Unified configuration across Linux devices
 - **Inputs**: Multiple flake inputs for extended functionality
 
@@ -147,7 +140,7 @@ This document provides a comprehensive overview of all devices managed by this N
 Using deploy-rs for automated deployments:
 
 ```
-ryu → mirai, deoxys, tsuba, deck
+ryu → mirai, tsuba, deck
 kuro → mirai, shiro
 ```
 

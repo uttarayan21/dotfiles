@@ -4,9 +4,9 @@ A comprehensive, multi-platform dotfiles repository managing Linux, macOS, and s
 
 ## 📊 Architecture Overview
 
-This repository manages **7 devices** across multiple platforms and architectures:
+This repository manages **6 devices** across multiple platforms and architectures:
 
-- **3 Servers**: mirai (main), deoxys (VM), tsuba (Raspberry Pi)  
+- **2 Servers**: mirai (main), tsuba (Raspberry Pi)  
 - **1 Workstation**: ryu (primary desktop)
 - **3 Portable devices**: kuro (MacBook), SteamDeck, and 1 desktop Mac Mini (shiro)
 
@@ -18,7 +18,6 @@ This repository manages **7 devices** across multiple platforms and architecture
 | Device | Architecture | Role | Services |
 |--------|-------------|------|----------|
 | **mirai** | x86_64-linux | Main Server | Nextcloud, Gitea, Minecraft, Immich, Paperless, +20 more |
-| **deoxys** | x86_64-linux | VM Server | Testing & isolation environment |
 | **tsuba** | aarch64-linux | Raspberry Pi | ARM-based lightweight services |
 
 ### Development Environment
@@ -61,7 +60,6 @@ nix run home-manager/master -- switch --flake .#deck
 ### Available Devices
 - `mirai` - Main server
 - `ryu` - Primary desktop  
-- `deoxys` - VM server
 - `tsuba` - Raspberry Pi
 - `kuro` - MacBook (fs0c131y)
 - `shiro` - MacBook (servius)
@@ -256,4 +254,4 @@ This repository contains configurations and scripts for personal use. Individual
 
 ---
 
-**Infrastructure Status**: 7 devices managed • 20+ services hosted • Multi-platform deployment ready
+**Infrastructure Status**: 6 devices managed • 20+ services hosted • Multi-platform deployment ready

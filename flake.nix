@@ -276,14 +276,6 @@
           tertiary = "DP-1";
         };
       };
-      deoxys = mkDevice {
-        name = "deoxys";
-        system = "x86_64-linux";
-        user = "servius";
-        hasGui = false; # It's a vm so no GUI apps are used
-        isNix = true;
-        isServer = true;
-      };
       tsuba = mkDevice {
         name = "tsuba";
         system = "aarch64-linux";
