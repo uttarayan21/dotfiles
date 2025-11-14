@@ -47,8 +47,6 @@
   # nixpkgs.localSystem = {system = "x86_64-linux";};
   # nixpkgs.crossSystem = {system = "aarch64-linux";};
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
-  services.fprintd.enable = true;
-  services.sshd.enable = true;
   boot.loader.systemd-boot.consoleMode = "max";
 
   environment.sessionVariables = {

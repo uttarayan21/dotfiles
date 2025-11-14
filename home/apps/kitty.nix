@@ -1,8 +1,8 @@
 {
   lib,
   pkgs,
-  device,
-  inputs,
+  # device,
+  # inputs,
   ...
 }: {
   stylix.targets.kitty.enable = false;

@@ -17,5 +17,7 @@
     ./caddy.nix
     ./monitoring.nix
     ./wivrn.nix
+    ./sshd.nix
+    ./fprintd.nix
   ];
 }
