@@ -164,7 +164,7 @@
     # alvr-master = inputs.alvr.packages.${prev.system}.default;
     caddyWithHetzner = final.pkgs.caddy.withPlugins {
       plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-      hash = "sha256-OKzPdgF+tgsu9CxXr3kj9qXcXvyu3eJeajF90PKRatw=";
+      hash = "sha256-AuBFjv7Qku+UeVMt+y3zHC7dyNnLf45b46MH6C0ukW8=";
     };
     nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;

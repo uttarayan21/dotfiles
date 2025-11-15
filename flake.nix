@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix = {
-      url = "github:nix-community/stylix";
+      url = "github:vidhanio/stylix/gnome-49";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix-stable = {
