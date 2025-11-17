@@ -283,6 +283,7 @@ in
     inputs.nix-minecraft.overlay
     inputs.nur.overlays.default
     inputs.rust-overlay.overlays.default
+    inputs.handoff.overlays.default
     jellyfin
     libfprint
     misc-applications

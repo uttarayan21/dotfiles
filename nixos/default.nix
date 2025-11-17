@@ -16,6 +16,7 @@
         modules = [
           inputs.arion.nixosModules.arion
           inputs.disko.nixosModules.disko
+          inputs.handoff.nixosModules.default
           inputs.home-manager.nixosModules.home-manager
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.musnix.nixosModules.musnix

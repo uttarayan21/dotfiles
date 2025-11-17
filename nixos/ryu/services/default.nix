@@ -19,5 +19,6 @@
     ./wivrn.nix
     ./sshd.nix
     ./fprintd.nix
+    ./handoff.nix
   ];
 }

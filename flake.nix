@@ -238,6 +238,11 @@
       url = "github:WiVRn/WiVRn/v25.11.1";
       flake = false;
     };
+    handoff = {
+      # url = "github:uttarayan21/handoff";
+      url = "path:/home/servius/Projects/handoff";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
