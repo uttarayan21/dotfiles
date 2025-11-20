@@ -345,7 +345,7 @@
     };
 
     nixos_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isNix) devices;
-    linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
+    # linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
     darwin_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isDarwin) devices;
     rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isArm && x.isLinux) devices;
 
@@ -353,7 +353,7 @@
       inherit inputs;
     };
   in
-    rec {
+    {
       nixosConfigurations =
         (import ./nixos {
           inherit inputs nixpkgs home-manager overlays nur;
