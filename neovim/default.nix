@@ -728,6 +728,12 @@ in {
            end,
        {})
 
+       vim.api.nvim_create_user_command('DapUiToggle',
+          function()
+            require('dapui').toggle()
+          end,
+       {})
+
       local iron = require("iron.core")
       iron.setup({
         config = {
@@ -839,5 +845,6 @@ in {
     pkgs.lua
     pkgs.ripgrep
     pkgs.nodejs-slim
+    pkgs.qwen-code
   ];
 }

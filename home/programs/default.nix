@@ -42,6 +42,7 @@
     ./yt-dlp.nix
     ./zoxide.nix
     ./neovim.nix
+    ./opencode.nix
 
     # ./goread.nix
     # ./helix.nix

@@ -51,7 +51,7 @@
           transform = 0;
           supports_wide_color = 1;
           supports_hdr = 1;
-          # bitdepth = 10;
+          bitdepth = 10;
           # cm = "hdr";
           # sdrbrightness = 0.005;
           # sdrsaturation = 200;

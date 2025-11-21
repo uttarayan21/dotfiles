@@ -1,7 +1,15 @@
-{device, ...}: {
+{
+  device,
+  config,
+  ...
+}: {
   programs.eww = {
     enable = device.is "ryu";
     enableFishIntegration = true;
-    configDir = ./eww;
   };
+  # xdg.configFile = {
+  #   eww = {
+  #     source = "${config.home.homeDirectory}/Projects/dotfiles/home/services/eww";
+  #   };
+  # };
 }
