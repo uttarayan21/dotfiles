@@ -37,14 +37,14 @@
       spotify
       steam-run
       wl-clipboard
-      (prismlauncher.override {
-        additionalPrograms = [ffmpeg zenity];
-        jdks = [
-          # graalvm-ce
-          zulu8
-          zulu17
-          zulu
-        ];
-      })
+      # (prismlauncher.override {
+      #   additionalPrograms = [ffmpeg zenity];
+      #   jdks = [
+      #     # graalvm-ce
+      #     zulu8
+      #     zulu17
+      #     zulu
+      #   ];
+      # })
     ];
 }

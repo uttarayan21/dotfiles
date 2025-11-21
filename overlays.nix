@@ -180,7 +180,7 @@
   anyrun-overlay = final: prev: {
     anyrun =
       inputs.anyrun.packages.${prev.system}.anyrun.overrideAttrs
-      (finalAttrs: prevAttrs: {cargoPatches = [./patches/ctrl-np.patch];});
+      (finalAttrs: prevAttrs: {patches = [./patches/ctrl-np.patch];});
     hyprwin = inputs.anyrun-hyprwin.packages.${prev.system}.hyprwin;
     nixos-options = inputs.anyrun-nixos-options.packages.${prev.system}.default;
     anyrun-rink = inputs.anyrun-rink.packages.${prev.system}.default;

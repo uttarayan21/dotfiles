@@ -1683,8 +1683,8 @@
         ]
       },
       "locked": {
-        "lastModified": 1763393243,
-        "narHash": "sha256-gJ76u+dVxYNn1EH1wG1saQD3CGHGSTR019GHMmaHkQU=",
+        "lastModified": 1763394035,
+        "narHash": "sha256-dsLCe/BTQXaogqAsTStl/SSIdf95hOALD3sCiD8eFZ0=",
         "path": "/home/servius/Projects/handoff",
         "type": "path"
       },
