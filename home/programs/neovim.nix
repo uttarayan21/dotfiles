@@ -1,13 +1,20 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  lib,
+  ...
+}: {
   stylix.targets.nixvim.enable = false;
-  programs.nixvim =
-    {
-      enable = true;
-      nixpkgs = {
-        config = {
-          allowUnfree = true;
+  programs = lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "mirai") {
+    nixvim =
+      {
+        enable = true;
+        nixpkgs = {
+          config = {
+            allowUnfree = true;
+          };
         };
-      };
-    }
-    // (import ./../../neovim {inherit pkgs;});
+      }
+      // (import ./../../neovim {inherit pkgs;});
+  };
 }

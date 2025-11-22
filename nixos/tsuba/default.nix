@@ -15,6 +15,7 @@
           // {
             inherit device;
             unstablePkgs = inputs.nixpkgs.legacyPackages.${device.system};
+            masterPkgs = inputs.nixpkgs-master.legacyPackages.${device.system};
           };
         system = device.system;
         modules = [

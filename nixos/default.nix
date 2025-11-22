@@ -11,6 +11,7 @@
         specialArgs = {
           inherit device inputs;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
+          masterPkgs = inputs.nixpkgs-master.legacyPackages.${device.system};
           lanzaboote = inputs.lanzaboote;
           cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
         };

@@ -10,7 +10,7 @@
     ./programs
     ./containers
     ./apps
-    ./vms
+    # ./vms
   ];
 
   security.tpm2 = {
