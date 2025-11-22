@@ -243,6 +243,7 @@
       url = "path:/home/servius/Projects/handoff";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    crates-nix.url = "github:uttarayan21/crates.nix";
   };
 
   outputs = {

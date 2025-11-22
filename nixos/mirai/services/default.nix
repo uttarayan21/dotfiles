@@ -6,11 +6,12 @@
     ./excalidraw.nix
     ./fail2ban.nix
     ./flaresolverr.nix
+    ./games
     ./gitea.nix
     ./homepage.nix
+    # ./immich.nix
     ./immich.nix
     # ./llama.nix
-    # ./immich.nix
     ./lldap.nix
     ./monitoring.nix
     ./nextcloud.nix
@@ -18,7 +19,6 @@
     ./resolved.nix
     ./searxng.nix
     ./tailscale.nix
-    ./games
     # ./paperless.nix
   ];
   services = {

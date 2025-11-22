@@ -12,6 +12,7 @@
           inherit device inputs;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
           lanzaboote = inputs.lanzaboote;
+          cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
         };
         modules = [
           inputs.arion.nixosModules.arion
