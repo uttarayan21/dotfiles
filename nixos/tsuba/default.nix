@@ -1,5 +1,4 @@
 {
-  nixpkgs,
   devices,
   inputs,
   overlays,

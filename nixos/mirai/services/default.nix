@@ -15,11 +15,13 @@
     ./lldap.nix
     ./monitoring.nix
     ./nextcloud.nix
+    # ./paperless.nix
     ./prowlarr.nix
     ./resolved.nix
     ./searxng.nix
     ./tailscale.nix
-    # ./paperless.nix
+    ./headscale.nix
+    ./shitpost.nix
   ];
   services = {
     nix-serve = {

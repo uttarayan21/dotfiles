@@ -17,10 +17,12 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # intel-vaapi-driver
+        vpl-gpu-rt
+        intel-media-driver
         nvidia-vaapi-driver
         # vaapiVdpau
         # libvdpau-va-gl
+        # nvidia-utils
       ];
     };
     nvidia = {
@@ -50,8 +52,6 @@
   boot.loader.systemd-boot.consoleMode = "max";
 
   environment.sessionVariables = {
-    # LIBVA_DRIVER_NAME = "i965";
-    # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
     LIBVA_DRIVER_NAME = "nvidia";
     NVD_BACKEND = "direct";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";

@@ -11,3 +11,31 @@
   :stacking "fg"
   :geometry (geometry :x "96px" :y "96px" :width "250px" :anchor "bottom right")
   (activate-linux))
+
+
+(defwidget bar []
+    (centerbox :orientation "h"
+        (workspaces)
+        (music)
+        (tray)))
+
+
+;; (defwidget tray []
+;;     (box :sclass "tray" :orientation "h" :space-evenly false :haligh "end"
+;;         (system-tray)
+;;         (battery)
+;;         (clock)))
+
+
+(defwidgets workspaces []
+    (box :class "workspaces" :orientation "h" :space-evenly true :halign "start" :spacing 10
+        (workspace-indicator :index 0)
+        (workspace-indicator :index 1)
+        (workspace-indicator :index 2)
+        (workspace-indicator :index 3)
+        (workspace-indicator :index 4)
+        (workspace-indicator :index 5)
+        (workspace-indicator :index 6)
+        (workspace-indicator :index 7)
+        (workspace-indicator :index 8)
+        (workspace-indicator :index 9)))

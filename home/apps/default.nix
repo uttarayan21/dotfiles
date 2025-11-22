@@ -13,7 +13,7 @@ lib.optionalAttrs device.hasGui {
     ./discord.nix
     ./firefox.nix
     ./ghostty.nix
-    # ./gimp.nix
+    ./gimp.nix
     ./guitarix.nix
     ./hyprpicker.nix
     ./jellyflix.nix

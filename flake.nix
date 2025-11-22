@@ -244,6 +244,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     crates-nix.url = "github:uttarayan21/crates.nix";
+    headplane = {
+      url = "github:tale/headplane";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

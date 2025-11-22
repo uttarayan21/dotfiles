@@ -284,6 +284,7 @@ in
     inputs.nur.overlays.default
     inputs.rust-overlay.overlays.default
     inputs.handoff.overlays.default
+    inputs.headplane.overlays.default
     jellyfin
     libfprint
     misc-applications
