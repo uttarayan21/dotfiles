@@ -4,10 +4,6 @@
   lib,
   ...
 }: {
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
-  virtualisation.libvirtd.qemu.swtpm.enable = true;
-
   # IOMMU and VFIO settings
   # boot.kernelParams = [
   #   "amd_iommu=on" # Use "intel_iommu=on" for Intel CPUs

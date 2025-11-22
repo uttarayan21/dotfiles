@@ -58,7 +58,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  virtualisation.libvirtd.enable = true;
   users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
 
   boot.extraModprobeConfig = ''
