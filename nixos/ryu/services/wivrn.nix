@@ -4,6 +4,10 @@
     openFirewall = true;
     defaultRuntime = true;
     autoStart = true;
-    package = pkgs.wivrn;
+    steam = {
+      importOXRRuntimes = true;
+    };
+    highPriority = true;
+    # package = pkgs.wivrn;
   };
 }

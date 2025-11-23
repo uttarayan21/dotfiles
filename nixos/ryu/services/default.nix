@@ -20,5 +20,6 @@
     ./sshd.nix
     ./fprintd.nix
     ./handoff.nix
+    ./gstreamer.nix
   ];
 }

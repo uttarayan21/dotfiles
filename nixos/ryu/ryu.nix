@@ -20,6 +20,7 @@
         vpl-gpu-rt
         intel-media-driver
         nvidia-vaapi-driver
+        cudatoolkit
         # vaapiVdpau
         # libvdpau-va-gl
         # nvidia-utils

@@ -9,6 +9,5 @@
     ./gnome-disks.nix
     ./nix-ld.nix
     ./gamemode.nix
-    ./wlx-overlays.nix
   ];
 }

@@ -259,17 +259,17 @@
       '';
     });
   };
-  immich = final: prev: {
-    immich-latest = prev.immich.overrideAttrs (oldAttrs: {
-      version = "v1.142.0";
-      src = inputs.immich;
-    });
-  };
+  # immich = final: prev: {
+  #   immich-latest = prev.immich.overrideAttrs (oldAttrs: {
+  #     version = "v1.142.0";
+  #     src = inputs.immich;
+  #   });
+  # };
   vr = final: prev: {
-    wivrn = prev.wivrn.overrideAttrs (oldAttrs: {
-      version = "v25.11.1";
-      src = inputs.wivrn;
-    });
+    # wivrn = prev.wivrn.overrideAttrs (oldAttrs: {
+    #   version = "v25.11.1";
+    #   src = inputs.wivrn;
+    # });
     # inputs.wivrn.packages.${prev.system}.default;
   };
 in
@@ -278,7 +278,6 @@ in
     anyrun-overlay
     catppuccinThemes
     csshacks
-    immich
     inputs.lfca.overlays.default
     inputs.nix-minecraft.overlay
     inputs.nur.overlays.default

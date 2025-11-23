@@ -2313,23 +2313,6 @@
         "type": "github"
       }
     },
-    "immich": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1757619545,
-        "narHash": "sha256-0nStZuSnb8tJ0+Y247MHitmMURl8vTuPLAhUm+OHctE=",
-        "owner": "immich-app",
-        "repo": "immich",
-        "rev": "4153848c68d416329deecf8b671e02bd754b4dd7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "immich-app",
-        "ref": "v1.142.0",
-        "repo": "immich",
-        "type": "github"
-      }
-    },
     "ironbar": {
       "inputs": {
         "flake-compat": "flake-compat_4",
@@ -3411,7 +3394,6 @@
         "hyprlock": "hyprlock",
         "hyprmonitors": "hyprmonitors",
         "ik_llama": "ik_llama",
-        "immich": "immich",
         "ironbar": "ironbar",
         "lanzaboote": "lanzaboote",
         "lfca": "lfca",
@@ -3448,7 +3430,6 @@
         "tree-sitter-slint": "tree-sitter-slint",
         "typr": "typr",
         "volt": "volt",
-        "wivrn": "wivrn",
         "yabai": "yabai",
         "zen-browser": "zen-browser",
         "zeronsd": "zeronsd",
@@ -4569,23 +4550,6 @@
       "original": {
         "owner": "nvzone",
         "repo": "volt",
-        "type": "github"
-      }
-    },
-    "wivrn": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1762796646,
-        "narHash": "sha256-pEKMeRdI9UhdZ+NksRBcF7yPC7Ys2haE+B4PPGQ4beE=",
-        "owner": "WiVRn",
-        "repo": "WiVRn",
-        "rev": "09031b9aa5296d3be45c996fada9347f5ccb6f66",
-        "type": "github"
-      },
-      "original": {
-        "owner": "WiVRn",
-        "ref": "v25.11.1",
-        "repo": "WiVRn",
         "type": "github"
       }
     },

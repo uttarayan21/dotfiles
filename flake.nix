@@ -214,10 +214,6 @@
       url = "github:ggml-org/llama.cpp/b6178?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    immich = {
-      url = "github:immich-app/immich/v1.142.0";
-      flake = false;
-    };
     yabai = {
       url = "github:koekeishiya/yabai";
       flake = false;
@@ -233,10 +229,6 @@
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    wivrn = {
-      url = "github:WiVRn/WiVRn/v25.11.1";
-      flake = false;
     };
     handoff = {
       # url = "github:uttarayan21/handoff";
