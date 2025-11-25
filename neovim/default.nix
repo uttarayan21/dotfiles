@@ -540,6 +540,7 @@ in {
         slint_lsp.enable = true;
         # sourcekit.enable = true;
         openscad_lsp.enable = true;
+        tinymist.enable = true;
         rust_analyzer = {
           enable = false;
           installCargo = false;

@@ -21,5 +21,6 @@
     ./fprintd.nix
     ./handoff.nix
     ./gstreamer.nix
+    ./dualsense.nix
   ];
 }
