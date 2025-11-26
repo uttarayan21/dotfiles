@@ -4,7 +4,7 @@
 {
   config,
   lib,
-  pkgs,
+  # pkgs,
   modulesPath,
   ...
 }: {
@@ -13,7 +13,7 @@
     ./disk-config.nix
   ];
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "sd_mod"];
   boot.initrd.kernelModules = ["dm-snapshot"];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];

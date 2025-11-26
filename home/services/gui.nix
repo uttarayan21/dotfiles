@@ -5,9 +5,6 @@
   inputs,
   ...
 }: {
-  # imports = [
-  #   inputs.lfca.homeManagerModules
-  # ];
   systemd.user.services.onepassword-gui = lib.optionalAttrs (device.is "ryu") {
     Unit = {
       Description = "1Password GUI";
