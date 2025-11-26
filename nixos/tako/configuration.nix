@@ -24,7 +24,7 @@
 
   security.sudo.wheelNeedsPassword = false;
   sops = {
-    secrets."builder/tako/cache/private" = {};
+    secrets."builder/mirai/cache/private" = {};
     secrets.users = {
       sopsFile = ../../secrets/users.yaml;
       format = "yaml";
@@ -58,7 +58,7 @@
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
       builders-use-substitutes = true
-      secret-key-files = ${config.sops.secrets."builder/tako/cache/private".path}
+      secret-key-files = ${config.sops.secrets."builder/mirai/cache/private".path}
     '';
     gc = {
       automatic = true;
@@ -69,7 +69,7 @@
     distributedBuilds = true;
   };
 
-  users.users.fs0c131y = {
+  users.users.${device.user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker" "media"];
     openssh.authorizedKeys.keyFiles = [
@@ -92,7 +92,7 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
+  time.timeZone = "Asia/Singapore";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

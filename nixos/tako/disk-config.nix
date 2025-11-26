@@ -3,7 +3,7 @@
     disk = {
       one = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -31,7 +31,7 @@
       };
       two = {
         type = "disk";
-        device = "/dev/nvme1n1";
+        device = "/dev/sdb";
         content = {
           type = "gpt";
           partitions = {
@@ -51,7 +51,7 @@
         type = "lvm_vg";
         lvs = {
           root = {
-            size = "64G";
+            size = "128G";
             lvm_type = "mirror";
             content = {
               type = "filesystem";
@@ -72,7 +72,7 @@
             };
           };
           home = {
-            size = "256G";
+            size = "64G";
             lvm_type = "raid0";
             content = {
               type = "filesystem";

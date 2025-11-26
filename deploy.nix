@@ -5,7 +5,7 @@
 }: {
   nodes = {
     mirai = {
-      hostname = "mirai";
+      hostname = "mirai.darksailor.dev";
       profiles.system = {
         sshUser = "fs0c131y";
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
@@ -25,6 +25,14 @@
       profiles.system = {
         sshUser = "servius";
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.ryu;
+        user = "root";
+      };
+    };
+    tako = {
+      hostname = "tako.darksailor.dev";
+      profiles.system = {
+        sshUser = "root";
+        path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tako;
         user = "root";
       };
     };
