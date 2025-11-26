@@ -6,7 +6,12 @@
         renice = 10;
       };
       custom = {
-        start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+        start = let
+          out = pkgs.writeScriptBin "gamemode-start" ''
+            ${pkgs.lmstudio}/bin/lms unload
+            ${pkgs.libnotify}/bin/notify-send 'GameMode started'
+          '';
+        in "${out}/bin/gamemode-start";
         end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
       };
     };

@@ -19,7 +19,8 @@
         "-c"
         "98304"
         "--jinja"
-        # "--chat-template-file"
+        "--chat-template-file"
+        "${../../../assets/chat.hbs}"
         # "/nix/store/4zk1p50hrzghp3jzzysz96pa64i2kmjl-promp.hbs"
       ];
       # package = inputs.llama-cpp.packages.${pkgs.system}.cuda;
