@@ -22,6 +22,7 @@
     ./tailscale.nix
     # ./headscale.nix
     # ./shitpost.nix
+    ./openssh.nix
   ];
   services = {
     nix-serve = {
