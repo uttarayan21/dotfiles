@@ -195,7 +195,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprmonitors = {
-      url = "git+ssh://gitea@git.darksailor.dev/servius/hyprmonitors";
+      url = "https://git.darksailor.dev/servius/hyprmonitors";
       # url = "path:/home/servius/Projects/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
