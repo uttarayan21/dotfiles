@@ -20,11 +20,9 @@
       WantedBy = ["graphical-session.target"];
     };
   };
-  # programs.linux-file-converter-addon.enable = true;
   home.packages = with pkgs;
     lib.optionals (device.is "ryu") [
       nautilus
-      linux-file-converter-addon
       totem
       ffmpegthumbnailer
       polkit_gnome
