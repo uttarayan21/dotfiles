@@ -13,9 +13,9 @@
     ./disk-config.nix
   ];
 
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci"];
   boot.initrd.kernelModules = ["dm-snapshot"];
-  boot.kernelModules = ["kvm-amd"];
+  boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
@@ -60,5 +60,5 @@
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
