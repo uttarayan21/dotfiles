@@ -231,8 +231,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     handoff = {
-      # url = "github:uttarayan21/handoff";
-      url = "path:/home/servius/Projects/handoff";
+      url = "github:xatuke/handoff";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     crates-nix.url = "github:uttarayan21/crates.nix";

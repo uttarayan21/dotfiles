@@ -1736,14 +1736,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1763394035,
-        "narHash": "sha256-dsLCe/BTQXaogqAsTStl/SSIdf95hOALD3sCiD8eFZ0=",
-        "path": "/home/servius/Projects/handoff",
-        "type": "path"
+        "lastModified": 1763671675,
+        "narHash": "sha256-MzYhN1iMSKJyVI7R0TTXXRNHzS2X6s66z5v5HvK8EMQ=",
+        "owner": "xatuke",
+        "repo": "handoff",
+        "rev": "4568bde6f19efe480bdc0e26058f49998bb58912",
+        "type": "github"
       },
       "original": {
-        "path": "/home/servius/Projects/handoff",
-        "type": "path"
+        "owner": "xatuke",
+        "repo": "handoff",
+        "type": "github"
       }
     },
     "haskell-flake": {
