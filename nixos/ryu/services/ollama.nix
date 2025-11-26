@@ -42,7 +42,7 @@
     caddy = {
       # virtualHosts."llama.ryu.darksailor.dev".extraConfig = ''
       #   import hetzner
-      #   forward_auth mirai:5555 {
+      #   forward_auth tako:5555 {
       #       uri /api/authz/forward-auth
       #       copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
       #   }

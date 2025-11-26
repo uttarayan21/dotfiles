@@ -264,6 +264,14 @@
         isNix = true;
         isServer = true;
       };
+      tako = mkDevice {
+        name = "tako";
+        system = "x86_64-linux";
+        user = "servius";
+        hasGui = false;
+        isNix = true;
+        isServer = true;
+      };
       ryu = mkDevice {
         name = "ryu";
         system = "x86_64-linux";

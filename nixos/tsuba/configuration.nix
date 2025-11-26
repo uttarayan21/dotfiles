@@ -40,7 +40,7 @@
     package = pkgs.nixVersions.latest;
     distributedBuilds = true;
     buildMachines = [
-      ../../builders/mirai.nix
+      ../../builders/tako.nix
       ../../builders/shiro.nix
       ../../builders/tsuba.nix
     ];

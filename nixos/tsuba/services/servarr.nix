@@ -59,7 +59,7 @@
       "prowlarr.tsuba.darksailor.dev".extraConfig = ''
         import hetzner
         import auth
-        reverse_proxy mirai.darksailor.dev:9696
+        reverse_proxy tako.darksailor.dev:9696
       '';
     };
   };

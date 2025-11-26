@@ -13,6 +13,7 @@
     ./immich.nix
     # ./llama.nix
     ./lldap.nix
+    ./monitoring.nix
     ./nextcloud.nix
     # ./paperless.nix
     ./prowlarr.nix
