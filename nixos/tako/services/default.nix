@@ -1,8 +1,8 @@
 {...}: {
   imports = [
-    # ./excalidraw.nix
+    ./excalidraw.nix
     # ./fail2ban.nix
-    # ./flaresolverr.nix
+    ./flaresolverr.nix
     # # ./games
     # ./gitea.nix
     # ./homepage.nix
@@ -10,7 +10,7 @@
     # # ./monitoring.nix
     # # ./nextcloud.nix
     # # ./paperless.nix
-    # ./prowlarr.nix
+    ./prowlarr.nix
     # ./resolved.nix
     # ./searxng.nix
     # ./headscale.nix
