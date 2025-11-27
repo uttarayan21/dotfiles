@@ -16,7 +16,8 @@
     enableNushellIntegration = false;
     settings = {
       save_session = true;
-      model = "openai:gpt-4o";
+      # model = "openai:gpt-4o";
+      model = "ryu:qwen3-coder-30b";
       rag_embedding_model = "ollama:RobinBially/nomic-embed-text-8k";
       clients = [
         {

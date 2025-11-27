@@ -6,7 +6,7 @@ install:
 
 [linux]
 install:
-	sudo nixos-rebuild switch --flake . --builders ''
+	sudo nixos-rebuild switch --flake . --builders '' --max-jobs 1
 
 [macos]
 build:

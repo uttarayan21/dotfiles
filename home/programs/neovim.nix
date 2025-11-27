@@ -1,6 +1,7 @@
 {
   pkgs,
   device,
+  stablePkgs,
   lib,
   ...
 }: {
@@ -15,6 +16,6 @@
           };
         };
       }
-      // (import ./../../neovim {inherit pkgs;});
+      // (import ./../../neovim {inherit pkgs stablePkgs;});
   };
 }

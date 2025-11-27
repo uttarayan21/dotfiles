@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  stablePkgs,
+  ...
+}: let
   mkMappings = mappings:
     []
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
@@ -251,6 +255,7 @@ in {
 
     lualine = {
       enable = true;
+      # package = stablePkgs.vimPlugins.lualine-nvim;
     };
 
     neotest = {
