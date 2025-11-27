@@ -7,7 +7,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./services
-    ./tako.nix
+    ./mirai.nix
     # ./docker.nix
   ];
 
@@ -24,7 +24,7 @@
 
   security.sudo.wheelNeedsPassword = false;
   sops = {
-    secrets."builder/tako/cache/private" = {};
+    secrets."builder/mirai/cache/private" = {};
     secrets.users = {
       sopsFile = ../../secrets/users.yaml;
       format = "yaml";
@@ -51,14 +51,14 @@
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-        # "tako:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
+        # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
       ];
     };
     extraOptions = ''
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
       builders-use-substitutes = true
-      secret-key-files = ${config.sops.secrets."builder/tako/cache/private".path}
+      secret-key-files = ${config.sops.secrets."builder/mirai/cache/private".path}
     '';
     gc = {
       automatic = true;
@@ -86,7 +86,7 @@
   users.groups.media = {};
 
   nixpkgs.config.allowUnfree = true;
-  networking.hostName = "tako"; # Define your hostname.
+  networking.hostName = "mirai"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.

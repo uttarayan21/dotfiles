@@ -1,26 +1,26 @@
 {...}: {
   imports = [
-    ./excalidraw.nix
-    # ./fail2ban.nix
-    ./flaresolverr.nix
-    # # ./games
-    # ./gitea.nix
-    ./homepage.nix
-    # # ./llama.nix
-    # # ./monitoring.nix
-    # # ./nextcloud.nix
-    # # ./paperless.nix
-    ./prowlarr.nix
-    # ./resolved.nix
-    ./searxng.nix
+    # ./games
     # ./headscale.nix
+    # ./llama.nix
+    # ./monitoring.nix
+    # ./paperless.nix
     # ./shitpost.nix
     ./atuin.nix
-    ./caddy.nix
     ./authelia.nix
+    ./caddy.nix
+    ./excalidraw.nix
+    ./fail2ban.nix
+    ./flaresolverr.nix
+    ./gitea.nix
+    ./homepage.nix
     ./immich.nix
     ./lldap.nix
+    ./nextcloud.nix
     ./openssh.nix
+    ./prowlarr.nix
+    ./resolved.nix
+    ./searxng.nix
     ./tailscale.nix
   ];
   services = {

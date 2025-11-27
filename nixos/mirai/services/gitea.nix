@@ -6,7 +6,7 @@
 }: {
   virtualisation.docker.enable = true;
   sops = {
-    # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-tako.serviceConfig.User;
+    # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-mirai.serviceConfig.User;
     secrets."gitea/registration" = {};
     secrets."authelia/oidc/gitea/client_secret" = {
       owner = config.systemd.services.authelia-darksailor.serviceConfig.User;
@@ -77,9 +77,9 @@
     };
     # gitea-actions-runner = {
     #   instances = {
-    #     tako = {
+    #     mirai = {
     #       enable = true;
-    #       name = "tako";
+    #       name = "mirai";
     #       url = "https://git.darksailor.dev";
     #       labels = [
     #         "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
@@ -149,7 +149,7 @@
     after = ["sops-install-secrets.service"];
   };
 
-  # systemd.services."gitea-actions-tako" = {
+  # systemd.services."gitea-actions-mirai" = {
   #   after = ["gitea.service"];
   # };
 
