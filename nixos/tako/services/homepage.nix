@@ -86,13 +86,13 @@
                 href = "https://cloud.darksailor.dev";
               };
             }
-            {
-              "Open WebUI" = {
-                icon = "open-webui.png";
-                description = "Open WebUI for self hosted llms";
-                href = "https://llama.darksailor.dev";
-              };
-            }
+            # {
+            #   "Open WebUI" = {
+            #     icon = "open-webui.png";
+            #     description = "Open WebUI for self hosted llms";
+            #     href = "https://llama.darksailor.dev";
+            #   };
+            # }
             {
               "Immich" = {
                 icon = "immich.png";
@@ -159,7 +159,7 @@
     };
     caddy = {
       virtualHosts."dashboard.darksailor.dev".extraConfig = ''
-        import auth
+        # import auth
         reverse_proxy localhost:${builtins.toString config.services.homepage-dashboard.listenPort}
       '';
     };

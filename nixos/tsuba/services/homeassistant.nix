@@ -36,7 +36,7 @@
 
   services.caddy = {
     virtualHosts."home.darksailor.dev".extraConfig = ''
-      import hetzner
+      import cloudflare
       reverse_proxy localhost:8123
     '';
   };

@@ -27,7 +27,7 @@
     };
     caddy = {
       virtualHosts."llama.ryu.darksailor.dev".extraConfig = ''
-        import hetzner
+        import cloudflare
         reverse_proxy localhost:${builtins.toString config.services.llama-cpp.port}
       '';
     };

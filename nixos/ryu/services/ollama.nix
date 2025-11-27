@@ -41,7 +41,7 @@
     # };
     caddy = {
       # virtualHosts."llama.ryu.darksailor.dev".extraConfig = ''
-      #   import hetzner
+      #   import cloudflare
       #   forward_auth tako:5555 {
       #       uri /api/authz/forward-auth
       #       copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
@@ -49,7 +49,7 @@
       #   reverse_proxy localhost:${builtins.toString config.services.open-webui.port}
       # '';
       virtualHosts."ollama.ryu.darksailor.dev".extraConfig = ''
-        import hetzner
+        import cloudflare
         reverse_proxy localhost:${builtins.toString config.services.ollama.port}
       '';
     };

@@ -7,7 +7,7 @@
     };
     caddy = {
       virtualHosts."deluge.tsuba.darksailor.dev".extraConfig = ''
-        import hetzner
+        import cloudflare
         reverse_proxy localhost:8112
       '';
     };

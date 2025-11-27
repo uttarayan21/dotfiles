@@ -1,7 +1,7 @@
 {...}: {
   services = {
     caddy.virtualHosts."lmstudio.shiro.darksailor.dev" = ''
-      import hetzner
+      import cloudflare
       reverse_proxy localhost:1234
     '';
   };

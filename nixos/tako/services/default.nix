@@ -5,14 +5,14 @@
     ./flaresolverr.nix
     # # ./games
     # ./gitea.nix
-    # ./homepage.nix
+    ./homepage.nix
     # # ./llama.nix
     # # ./monitoring.nix
     # # ./nextcloud.nix
     # # ./paperless.nix
     ./prowlarr.nix
     # ./resolved.nix
-    # ./searxng.nix
+    ./searxng.nix
     # ./headscale.nix
     # ./shitpost.nix
     ./atuin.nix

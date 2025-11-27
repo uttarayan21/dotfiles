@@ -4,31 +4,31 @@
   ...
 }: {
   sops = {
-    secrets."hetzner/api_key".owner = config.services.caddy.user;
+    secrets."cloudflare/api_key".owner = config.services.caddy.user;
     templates = {
-      "HETZNER_API_KEY.env".content = ''
-        HETZNER_API_KEY=${config.sops.placeholder."hetzner/api_key"}
+      "CLOUDFLARE_API_KEY.env".content = ''
+        CLOUDFLARE_API_KEY=${config.sops.placeholder."cloudflare/api_key"}
       '';
     };
   };
   services = {
     caddy = {
       enable = true;
-      environmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
+      environmentFile = config.sops.templates."CLOUDFLARE_API_KEY.env".path;
       globalConfig = ''
         debug
       '';
       extraConfig = ''
-        (hetzner) {
+        (cloudflare) {
             tls {
                 propagation_timeout -1
                 propagation_delay 120s
-                dns hetzner {env.HETZNER_API_KEY}
+                dns cloudflare {env.CLOUDFLARE_API_KEY}
                 resolvers 1.1.1.1
             }
         }
       '';
-      package = pkgs.caddyWithHetzner;
+      package = pkgs.caddyWithCloudflare;
     };
   };
 }

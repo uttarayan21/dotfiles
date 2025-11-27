@@ -162,9 +162,9 @@
         cargoLock = {lockFile = "${src}/Cargo.lock";};
       };
     # alvr-master = inputs.alvr.packages.${prev.system}.default;
-    caddyWithHetzner = final.pkgs.caddy.withPlugins {
-      plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-      hash = "sha256-KNKmbZ65NwbEbseo5S3O0HzKseJkm4ZPugNOjMai02s=";
+    caddyWithCloudflare = final.pkgs.caddy.withPlugins {
+      plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
+      hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
     };
     nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;

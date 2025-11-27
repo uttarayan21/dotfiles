@@ -4,10 +4,10 @@
   ...
 }: {
   sops = {
-    secrets."hetzner/api_key".owner = config.services.caddy.user;
+    secrets."cloudflare/api_key".owner = config.services.caddy.user;
     templates = {
-      "HETZNER_API_KEY.env".content = ''
-        HETZNER_API_KEY=${config.sops.placeholder."hetzner/api_key"}
+      "CLOUDFLARE_API_KEY.env".content = ''
+        CLOUDFLARE_API_KEY=${config.sops.placeholder."cloudflare/api_key"}
       '';
     };
   };
@@ -15,11 +15,11 @@
     caddy = {
       enable = true;
       extraConfig = ''
-        (hetzner) {
+        (cloudflare) {
             tls {
                 propagation_timeout -1
                 propagation_delay 120s
-                dns hetzner {env.HETZNER_API_KEY}
+                dns cloudflare {env.CLOUDFLARE_API_KEY}
                 resolvers 1.1.1.1
             }
         }
@@ -31,17 +31,13 @@
             }
         }
       '';
-      package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/hetzner@v1.0.0"];
-        hash = "sha256-Iwsu3s1qOwavcmmnd1w4GVeCkU1HhlWAJXMuc5NOc24=";
-      };
-      # package = pkgs.caddyWithHetzner;
+      package = pkgs.caddyWithCloudflare;
     };
   };
   systemd.services.caddy = {
     after = ["sops-install-secrets.service"];
     serviceConfig = {
-      EnvironmentFile = config.sops.templates."HETZNER_API_KEY.env".path;
+      EnvironmentFile = config.sops.templates."CLOUDFLARE_API_KEY.env".path;
     };
   };
 }
