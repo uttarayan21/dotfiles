@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    # ./caddy.nix
     # ./excalidraw.nix
     # ./fail2ban.nix
     # ./flaresolverr.nix
@@ -17,9 +16,10 @@
     # ./headscale.nix
     # ./shitpost.nix
     ./atuin.nix
-    # ./immich.nix
-    # ./lldap.nix
-    # ./authelia.nix
+    ./caddy.nix
+    ./authelia.nix
+    ./immich.nix
+    ./lldap.nix
     ./openssh.nix
     ./tailscale.nix
   ];

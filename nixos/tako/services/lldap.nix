@@ -6,6 +6,7 @@
   services.lldap = {
     enable = true;
     settings = {
+      force_ldap_user_pass_reset = "always";
       ldap_user_dn = "admin";
       ldap_base_dn = "dc=darksailor,dc=dev";
       ldap_user_email = "admin@darksailor.dev";
@@ -14,10 +15,12 @@
       ldap_port = 389;
       ldap_host = "::";
       ldap_user_pass_file = config.sops.secrets."lldap/admin".path;
-      environmentFile = ''
-        LLDAP_JWT_SECRET_FILE = ${config.sops.secrets."lldap/jwt".path};
-        LLDAP_KEY_SEED_FILE = ${config.sops.secrets."lldap/seed".path};
-      '';
+      jwt_secret_file = "${config.sops.secrets."lldap/jwt".path}";
+    };
+    environment = {
+      LLDAP_JWT_SECRET_FILE = "${config.sops.secrets."lldap/jwt".path}";
+      # LLDAP_FORCE_UPDATE_PRIVATE_KEY = "true";
+      # LLDAP_KEY_SEED_FILE = "${config.sops.secrets."lldap/seed".path}";
     };
   };
   users.users.lldap = {

@@ -41,8 +41,8 @@
     distributedBuilds = true;
     buildMachines = [
       ../../builders/tako.nix
+      ../../builders/mirai.nix
       ../../builders/shiro.nix
-      ../../builders/tsuba.nix
     ];
   };
   users.users.${device.user} = {

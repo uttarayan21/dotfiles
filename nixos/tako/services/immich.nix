@@ -26,14 +26,14 @@
                 "clientId": "${config.sops.placeholder."authelia/oidc/immich/client_id"}",
                 "clientSecret": "${config.sops.placeholder."authelia/oidc/immich/client_secret"}",
                 "enabled": true,
-                "autoLaunch": true,
+                "autoLaunch": false,
                 "autoRegister": true,
                 "buttonText": "Login with Authelia",
                 "scope": "openid email profile",
                 "issuerUrl": "https://auth.darksailor.dev"
               },
               "passwordLogin" : {
-                "enabled": false
+                "enabled": true
               },
               "server": {
                 "externalDomain": "https://photos.darksailor.dev"

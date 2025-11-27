@@ -1,4 +1,6 @@
-{config, ...}: {
+{config, ...}: let
+  port = 5555;
+in {
   sops = {
     secrets = let
       user = config.systemd.services.authelia-darksailor.serviceConfig.User;
@@ -71,7 +73,7 @@
           theme = "dark";
           notifier.filesystem.filename = "/var/lib/authelia-darksailor/authelia-notifier.log";
           server = {
-            address = "0.0.0.0:5555";
+            address = "0.0.0.0:${toString port}";
             endpoints.authz = {
               forward-auth = {
                 implementation = "ForwardAuth";
@@ -96,7 +98,7 @@
     };
     caddy = {
       virtualHosts."auth.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:5555 {
+        reverse_proxy localhost:${toString port} {
             # header_up Host {http.request.header.X-Forwarded-Host}
             # header_up X-Forwarded-Host {http.request.header.X-Forwarded-Host}
             # header_up X-Forwarded-Proto {http.request.header.X-Forwarded-Proto}

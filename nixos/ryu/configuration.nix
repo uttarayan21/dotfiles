@@ -43,7 +43,7 @@
       cores = 24;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
-      trusted-users = ["root" device.user];
+      trusted-users = [device.user];
       trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://nixos-raspberrypi.cachix.org"
