@@ -43,7 +43,7 @@
       cores = 24;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
-      trusted-users = ["root" "servius"];
+      trusted-users = ["root" device.user];
       trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://nixos-raspberrypi.cachix.org"
@@ -70,6 +70,7 @@
     package = pkgs.nixVersions.nix_2_31; # deploy-rs doesn't work with nix >= 2.32
     buildMachines = [
       ../../builders/tako.nix
+      ../../builders/mirai.nix
       ../../builders/shiro.nix
       # ../../builders/tsuba.nix
     ];

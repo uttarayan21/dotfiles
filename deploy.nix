@@ -31,7 +31,7 @@
     tako = {
       hostname = "tako.darksailor.dev";
       profiles.system = {
-        sshUser = "root";
+        sshUser = "servius";
         path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.tako;
         user = "root";
       };

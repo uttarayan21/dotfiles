@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    # ./authelia.nix
     # ./caddy.nix
     # ./excalidraw.nix
     # ./fail2ban.nix
@@ -9,7 +8,6 @@
     # ./gitea.nix
     # ./homepage.nix
     # # ./llama.nix
-    # ./lldap.nix
     # # ./monitoring.nix
     # # ./nextcloud.nix
     # # ./paperless.nix
@@ -19,7 +17,9 @@
     # ./headscale.nix
     # ./shitpost.nix
     ./atuin.nix
-    ./immich.nix
+    # ./immich.nix
+    # ./lldap.nix
+    # ./authelia.nix
     ./openssh.nix
     ./tailscale.nix
   ];

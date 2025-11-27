@@ -42,7 +42,7 @@
       cores = 8;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
-      trusted-users = ["root" "fs0c131y" "remotebuilder"];
+      trusted-users = ["root" device.user "remotebuilder"];
       trusted-substituters = [
         "https://nix-community.cachix.org"
         "https://nixos-raspberrypi.cachix.org"

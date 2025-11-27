@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  device,
   ...
 }: {
   imports = [./services ./homebrew.nix ./programs];
@@ -12,7 +13,7 @@
       # ids.gids.nixbld = 30000;
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
-      trusted-users = ["root" "fs0c131y"];
+      trusted-users = ["root" device.user];
       substituters = [
         "https://nix-community.cachix.org"
         # "https://sh.darksailor.dev"
@@ -58,7 +59,7 @@
 
   # services.nix-daemon.enable = true;
   system.stateVersion = 5;
-  system.primaryUser = "fs0c131y";
+  system.primaryUser = device.user;
 
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
