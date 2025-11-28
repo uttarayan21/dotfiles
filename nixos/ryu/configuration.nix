@@ -169,8 +169,6 @@
     };
   };
 
-  services.openssh.enable = true;
-
   networking = {
     interfaces.eno1.wakeOnLan = {
       policy = ["magic"];

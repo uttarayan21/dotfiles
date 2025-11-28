@@ -22,5 +22,6 @@
     ./handoff.nix
     ./gstreamer.nix
     ./dualsense.nix
+    ./openssh.nix
   ];
 }
