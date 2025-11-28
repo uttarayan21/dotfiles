@@ -278,6 +278,7 @@ in
     anyrun-overlay
     catppuccinThemes
     csshacks
+    inputs.deploy-rs.overlays.default
     inputs.nix-minecraft.overlay
     inputs.nur.overlays.default
     inputs.rust-overlay.overlays.default

@@ -65,7 +65,7 @@
       bottom
       btop
       cachix
-      deploy-rs
+      deploy-rs.deploy-rs
       dust
       fd
       file

@@ -399,7 +399,8 @@
       in {
         tsuba = mkImage nixos.tsuba;
       };
-      deploy = import ./deploy.nix {inherit inputs self;};
+      deploy = import ./deploy.nix {inherit inputs self deploy-rs;};
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
       inherit devices;
     }
     // flake-utils.lib.eachDefaultSystem (
