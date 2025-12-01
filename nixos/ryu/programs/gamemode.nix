@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  device,
+  ...
+}: {
   programs.gamemode = {
     enable = true;
     settings = {
@@ -16,4 +20,5 @@
       };
     };
   };
+  users.users.${device.user}.extraGroups = ["gamemode"];
 }
