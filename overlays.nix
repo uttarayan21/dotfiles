@@ -164,8 +164,8 @@
     # alvr-master = inputs.alvr.packages.${prev.system}.default;
     caddyWithCloudflare = final.pkgs.caddy.withPlugins {
       plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
-      # hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
-      hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
+      hash = "sha256-ea8PC/+SlPRdEVVF/I3c1CBprlVp1nrumKM5cMwJJ3U=";
+      # hash = "sha256-Z8nPh4OI3/R1nn667ZC5VgE+Q9vDenaQ3QPKxmqPNkc=";
     };
     nix-auth = inputs.nix-auth.packages.${prev.system}.nix-auth;
     kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
