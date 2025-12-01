@@ -2,6 +2,7 @@
 
 1. Ryu Dektop (Intel i9-14900KS / Nvidia 5090 / 64GB CL36@6000MTs) 
     ```
+    deploy -s .#ryu
     ```
 2. Mirai Server (AMD Ryzen 7 7700 / 64GB@5200MHz)
 3. Tako Server (Intel Xeon E-2236 / 64GB)
