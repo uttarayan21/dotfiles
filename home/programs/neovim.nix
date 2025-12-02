@@ -6,7 +6,7 @@
   ...
 }: {
   stylix.targets.nixvim.enable = false;
-  programs = lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "mirai" || device.is "tako") {
+  programs = lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "mirai" || device.is "tako" || device.is "shiro") {
     nixvim =
       {
         enable = true;
