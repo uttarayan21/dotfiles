@@ -1,4 +1,5 @@
 {
+  pkgs,
   inputs,
   device,
   ...
@@ -8,5 +9,8 @@
     enable = device.is "ryu";
     autoStart = true;
     extensions = [];
+    # package = pkgs.vicinae.overrideAttrs (old: {
+    #   patches = [../../patches/vicinae-ctrl-np.patch];
+    # });
   };
 }

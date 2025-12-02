@@ -1,0 +1,35 @@
+diff --git a/vicinae/src/services/keybinding/keybinding-service.hpp b/vicinae/src/services/keybinding/keybinding-service.hpp
+index 61b31590..1df8c548 100644
+--- a/vicinae/src/services/keybinding/keybinding-service.hpp
++++ b/vicinae/src/services/keybinding/keybinding-service.hpp
+@@ -22,28 +22,14 @@ public:
+     KeyBindingMode mode = getMode(keybinding);
+ 
+     if (!usesOnly(event, Qt::ControlModifier)) { return false; }
+-
+-    switch (mode) {
+-    case KeyBindingMode::Default:
+-      return event->key() == Qt::Key_J;
+-    case KeyBindingMode::Emacs:
+-      return event->key() == Qt::Key_N;
+-    }
+-    return false;
++    return (event->key() == Qt::Key_N);
+   }
+ 
+   static bool isUpKey(QKeyEvent *event, const QString &keybinding) {
+     KeyBindingMode mode = getMode(keybinding);
+ 
+     if (!usesOnly(event, Qt::ControlModifier)) { return false; }
+-
+-    switch (mode) {
+-    case KeyBindingMode::Default:
+-      return event->key() == Qt::Key_K;
+-    case KeyBindingMode::Emacs:
+-      return event->key() == Qt::Key_P;
+-    }
+-    return false;
++    return (event->key() == Qt::Key_P)
+   }
+ 
+   static bool isLeftKey(QKeyEvent *event, const QString &keybinding) {
