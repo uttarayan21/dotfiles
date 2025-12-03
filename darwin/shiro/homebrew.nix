@@ -6,14 +6,14 @@
     ];
     casks = [
       "docker"
-      "librewolf"
       "raycast"
-      "kunkun" # Soon
       "lunar"
       "virtual-desktop-streamer"
       "kicad"
       "shapr3d"
       "orcaslicer"
+      "zed"
+      "zen"
     ];
   };
 }
