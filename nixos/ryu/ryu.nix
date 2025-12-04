@@ -100,20 +100,19 @@
   '';
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/11d8beef-2a63-4231-af35-b9b8d3a17e9b";
+    device = "/dev/disk/by-uuid/7b488da9-49d3-44d1-b11b-bc6dcd418b1d";
     fsType = "ext4";
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/64099f91-d4d6-44fa-92d4-9e905b3e7829";
+    device = "/dev/disk/by-uuid/ef734595-a856-4207-8da1-1f0bde4bad61";
     fsType = "ext4";
-    neededForBoot = true;
-    options = ["noatime"];
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/4E27-DAC0";
     fsType = "vfat";
+    options = ["fmask=0007" "dmask=0007"];
   };
 
   fileSystems."/home" = {
@@ -121,12 +120,6 @@
     fsType = "ext4";
     neededForBoot = true;
   };
-
-  # fileSystems."/media" = {
-  #   device = "/dev/storage/media";
-  #   fsType = "ext4";
-  #   options = ["users" "nofail"];
-  # };
 
   fileSystems."/games" = {
     device = "/dev/storage/games";
