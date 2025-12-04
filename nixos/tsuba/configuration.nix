@@ -41,7 +41,6 @@
     distributedBuilds = true;
     buildMachines = [
       ../../builders/tako.nix
-      ../../builders/mirai.nix
       ../../builders/shiro.nix
     ];
   };

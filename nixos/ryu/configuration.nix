@@ -70,7 +70,6 @@
     package = pkgs.nixVersions.latest; # deploy-rs doesn't work with nix >= 2.32
     buildMachines = [
       ../../builders/tako.nix
-      ../../builders/mirai.nix
       ../../builders/shiro.nix
       # ../../builders/tsuba.nix
     ];
