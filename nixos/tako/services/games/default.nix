@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-    ./minecraft.nix
-    ./satisfactory.nix
-    ./terraria.nix
+    # ./minecraft.nix
+    # ./satisfactory.nix
+    # ./terraria.nix
   ];
 }

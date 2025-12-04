@@ -5,7 +5,7 @@
     # ./llama.nix
     # ./monitoring.nix
     # ./paperless.nix
-    # ./shitpost.nix
+    ./shitpost.nix
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
