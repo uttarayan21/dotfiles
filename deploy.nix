@@ -37,24 +37,24 @@
         user = "root";
       };
     };
-    # kuro = {
-    #   hostname = "kuro";
-    #   interactiveSudo = true;
-    #   profiles.system = {
-    #     sshUser = "fs0c131y";
-    #     path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
-    #     user = "root";
-    #   };
-    # };
-    # shiro = {
-    #   hostname = "shiro";
-    #   interactiveSudo = true;
-    #   profiles.system = {
-    #     sshUser = "servius";
-    #     path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.shiro;
-    #     user = "root";
-    #   };
-    # };
+    kuro = {
+      hostname = "kuro";
+      interactiveSudo = true;
+      profiles.system = {
+        sshUser = "fs0c131y";
+        path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.kuro;
+        user = "root";
+      };
+    };
+    shiro = {
+      hostname = "shiro";
+      interactiveSudo = true;
+      profiles.system = {
+        sshUser = "servius";
+        path = deploy-rs.lib.aarch64-darwin.activate.darwin self.darwinConfigurations.shiro;
+        user = "root";
+      };
+    };
     # deck = {
     #   hostname = "steamdeck";
     #   profiles.system = {

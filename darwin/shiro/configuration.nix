@@ -43,10 +43,10 @@
     ];
   };
   users.users.remotebuilder = {
-    isSystemUser = true;
+    # isSystemUser = true;
     description = "User for Nix remote builds";
-    uid = 700;
-    home = "/var/lib/remotebuilder";
+    # uid = 700;
+    home = "/var/remotebuilder";
     createHome = true;
     shell = "/bin/bash";
     openssh.authorizedKeys.keyFiles = [
