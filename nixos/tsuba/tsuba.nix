@@ -13,6 +13,7 @@
   boot.loader.raspberryPi.bootloader = "kernel";
 
   fileSystems."/home".neededForBoot = true;
+  boot.loader.raspberryPi.bootloader = "kernel";
 
   system.nixos.tags = let
     cfg = config.boot.loader.raspberryPi;
