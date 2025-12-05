@@ -43,7 +43,8 @@
     ];
   };
   users.users.remotebuilder = {
-    name = "remotebuilder";
+    isSystemUser = true;
+    description = "User for Nix remote builds";
     uid = 700;
     home = "/var/lib/remotebuilder";
     createHome = true;
