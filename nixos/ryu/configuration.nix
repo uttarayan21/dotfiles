@@ -198,10 +198,11 @@
         "tailscale0"
       ];
       allowedUDPPorts = [
-        4950
-        4955
-        3113
-      ]; # Warframe
+        9 # Wake on LAN
+        4950 # Warframe
+        4955 # Warframe
+        3113 # Other
+      ];
       allowedTCPPortRanges = [
         {
           from = 1714;
