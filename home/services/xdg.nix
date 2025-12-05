@@ -8,11 +8,13 @@ lib.optionalAttrs (device.is "ryu") {
   xdg.portal = {
     enable = pkgs.stdenv.isLinux;
     config = {
-      hyprland.default = ["hyprland" "kde"];
+      hyprland.default = ["kde" "hyprland"];
+      common.default = ["*" "hyprland"];
     };
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
       kdePackages.xdg-desktop-portal-kde
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
     ];
   };
 }

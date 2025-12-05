@@ -7,6 +7,7 @@
 lib.optionalAttrs (device.is "ryu") {
   gtk = {
     enable = device.is "ryu";
+    colorScheme = lib.mkForce "dark";
     theme = {
       name = "catppuccin-mocha-mauve-standard+normal";
       package = pkgs.catppuccinThemes.gtk;
@@ -38,5 +39,7 @@ lib.optionalAttrs (device.is "ryu") {
     # pkgs.catppuccinThemes.gtk
     pkgs.catppuccinThemes.papirus-folders
   ];
+  # stylix.targets.gtk.enable = false;
   stylix.targets.gtk.enable = false;
+  stylix.targets.gnome.enable = false;
 }

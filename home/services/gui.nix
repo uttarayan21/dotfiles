@@ -25,7 +25,7 @@
       nautilus
       totem
       ffmpegthumbnailer
-      polkit_gnome
+      # polkit_gnome
       seahorse
       signal-desktop
       # sony-headphones-client
