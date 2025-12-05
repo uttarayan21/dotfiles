@@ -8,7 +8,7 @@
 
   # environment.systemPackages = with pkgs; [nix neovim];
   nix = {
-    enable = false;
+    enable = true;
     settings = {
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
@@ -77,7 +77,7 @@
 
   # services.nix-daemon.enable = true;
   system.primaryUser = "servius";
-  system.stateVersion = 4;
+  system.stateVersion = 5;
 
   system.keyboard.enableKeyMapping = true;
   system.keyboard.remapCapsLockToControl = true;
