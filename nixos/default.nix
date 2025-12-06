@@ -31,6 +31,7 @@
 
           ./${device.name}/configuration.nix
           ../home/module.nix
+          ./documentation.nix
           {nixpkgs.overlays = overlays;}
           ../sops.nix
           ../stylix.nix

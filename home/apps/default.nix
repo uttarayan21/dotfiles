@@ -40,5 +40,6 @@ lib.optionalAttrs device.hasGui {
     ./zed.nix
     ./zen.nix
     ./vicinae.nix
+    ./ida.nix
   ];
 }
