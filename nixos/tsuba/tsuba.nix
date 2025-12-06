@@ -10,6 +10,8 @@
   networking.useNetworkd = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network.wait-online.enable = false;
+  boot.loader.raspberryPi.bootloader = "kernel";
+
   fileSystems."/home".neededForBoot = true;
 
   system.nixos.tags = let
@@ -31,5 +33,6 @@
   hardware.raspberry-pi.extra-config = ''
     [all]
     dtparam=pciex1_gen=2
+    os_prefix=nixos/default/
   '';
 }

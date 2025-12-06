@@ -9,17 +9,17 @@
     matchBlocks = {
       tsuba = {
         user = "servius";
-        hostname = "tsuba";
+        hostname = "tsuba.darksailor.dev";
       };
       github = {
         user = "git";
         host = "github.com";
       };
-      mirai = {
-        user = "fs0c131y";
-        hostname = "mirai.darksailor.dev";
-        forwardAgent = true;
-      };
+      # mirai = {
+      #   user = "fs0c131y";
+      #   hostname = "mirai.darksailor.dev";
+      #   forwardAgent = true;
+      # };
       tako = {
         user = "servius";
         hostname = "tako.darksailor.dev";
@@ -27,7 +27,7 @@
       };
       ryu = {
         user = "servius";
-        hostname = "ryu";
+        hostname = "ryu.darksailor.dev";
         forwardAgent = true;
       };
       kuro = {
