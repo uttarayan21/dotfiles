@@ -16,8 +16,8 @@
     enableNushellIntegration = false;
     settings = {
       save_session = true;
-      model = "openai:gpt-4o";
-      # model = "ryu:qwen3-coder-30b";
+      # model = "openai:gpt-4o";
+      model = "ryu:qwen3-coder-30b";
       rag_embedding_model = "ollama:RobinBially/nomic-embed-text-8k";
       clients = [
         {
@@ -174,7 +174,7 @@
         */
         ''
           ---
-          model: openai:gpt-4o
+          model: ryu:qwen3-coder-30b
           ---
           Your task is to generate a concise and informative commit message based on the provided diff. Use the conventional commit format, which includes a type (feat, fix, chore, docs, style, refactor, perf, test) and an optional scope. The message should be in the imperative mood and should not exceed 72 characters in the subject line. Do not under any circumstance include any additional text or explanations, just add the commit message.
         '';
