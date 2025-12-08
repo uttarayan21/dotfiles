@@ -56,11 +56,11 @@
         import auth
         reverse_proxy localhost:${builtins.toString config.services.bazarr.listenPort}
       '';
-      "prowlarr.tsuba.darksailor.dev".extraConfig = ''
-        import cloudflare
-        import auth
-        reverse_proxy tako.darksailor.dev:9696
-      '';
+      # "prowlarr.tsuba.darksailor.dev".extraConfig = ''
+      #   import cloudflare
+      #   import auth
+      #   reverse_proxy tako.darksailor.dev:9696
+      # '';
     };
   };
 }

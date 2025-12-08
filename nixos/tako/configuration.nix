@@ -86,7 +86,7 @@
   users.groups.media = {};
 
   nixpkgs.config.allowUnfree = true;
-  networking.hostName = "tako"; # Define your hostname.
+  networking.hostName = device.name;
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
