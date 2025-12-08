@@ -4,6 +4,6 @@
     wayvr-dashboard
     bs-manager
     monado-vulkan-layers
-    envision
+    # envision
   ];
 }
