@@ -10,9 +10,5 @@
     ./flaresolverr.nix
     ./caddy.nix
     ./monitoring.nix
-
-    # ./dnscrypt.nix
-    # ./resolved.nix
-    # ./blocky.nix
   ];
 }
