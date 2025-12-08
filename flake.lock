@@ -1041,6 +1041,24 @@
         "type": "github"
       }
     },
+    "flake-parts_10": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_4"
+      },
+      "locked": {
+        "lastModified": 1756770412,
+        "narHash": "sha256-+uWLQZccFHwqpGqr2Yt5VsW/PbeJVTn9Dk6SHWhNRPw=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "4524271976b625a4a605beefd893f270620fd751",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -2843,13 +2861,28 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/cc2f28000298e1269cea6612cd06ec9979dd5d7f.tar.gz"
       }
     },
+    "nixpkgs-lib_4": {
+      "locked": {
+        "lastModified": 1754788789,
+        "narHash": "sha256-x2rJ+Ovzq0sCMpgfgGaaqgBSwY+LST+WbZ6TytnT9Rk=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "a73b9c743612e4244d865a2fdee11865283c04e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1764224784,
-        "narHash": "sha256-YoXolZJMz/YZaQ7uEZrvo8d/vYA6/bXhJI33q6pTMYE=",
+        "lastModified": 1765217014,
+        "narHash": "sha256-SpH1eXfqGvsHjjnEY4Y9XljaARQsqpNOAmjNiTS3dX4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8749cb83a3a4fb33e70e3ef3cbfb5f216477398a",
+        "rev": "7fa37e4319faf3379e0c1964a7c4eb384b9d04fd",
         "type": "github"
       },
       "original": {
@@ -3441,6 +3474,7 @@
         "typr": "typr",
         "vicinae": "vicinae",
         "volt": "volt",
+        "wivrn": "wivrn",
         "yabai": "yabai",
         "zen-browser": "zen-browser",
         "zeronsd": "zeronsd",
@@ -4580,6 +4614,27 @@
       "original": {
         "owner": "nvzone",
         "repo": "volt",
+        "type": "github"
+      }
+    },
+    "wivrn": {
+      "inputs": {
+        "flake-parts": "flake-parts_10",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1765202729,
+        "narHash": "sha256-iy1XRSYuFZfw/zlCFLgpjWo9c0eO0Hcc8D9rj9aZINI=",
+        "owner": "wivrn",
+        "repo": "wivrn",
+        "rev": "281dd6000ed843605c24ec3abe766e72e2e31042",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wivrn",
+        "repo": "wivrn",
         "type": "github"
       }
     },

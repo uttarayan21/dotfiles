@@ -239,6 +239,10 @@
       url = "github:vicinaehq/vicinae";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    wivrn = {
+      url = "github:wivrn/wivrn?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

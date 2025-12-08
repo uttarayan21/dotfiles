@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  masterPkgs,
+  inputs,
+  ...
+}: {
   services.wivrn = {
     enable = true;
     openFirewall = true;
@@ -8,6 +13,5 @@
       importOXRRuntimes = true;
     };
     highPriority = true;
-    # package = pkgs.wivrn;
   };
 }
