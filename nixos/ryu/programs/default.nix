@@ -9,5 +9,6 @@
     ./gnome-disks.nix
     ./nix-ld.nix
     ./gamemode.nix
+    ./droidcam.nix
   ];
 }

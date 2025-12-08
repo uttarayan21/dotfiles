@@ -28,9 +28,9 @@
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
-  systemd.tmpfiles.rules = [
-    "L+ /run/gdm/.config/monitors.xml - - - - ${./monitors.xml}"
-  ];
+  # systemd.tmpfiles.rules = [
+  #   "L+ /etc/gdm/.config/monitors.xml - - - - ${./monitors.xml}"
+  # ];
   security = {
     sudo.wheelNeedsPassword = false;
     polkit.enable = true;
@@ -103,7 +103,7 @@
       };
     };
     displayManager.gdm.enable = true;
-    # desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -140,6 +140,7 @@
   # };
   # services.wireplumber.configPackages = with pkgs; [ bluez ];
 
+  environment.etc."xdg/monitors.xml".source = ./monitors.xml;
   # environment.etc = {
   #   "wireplumber/bluetooth.lua.d/51-bluez-config.lua".text = ''
   #     bluez_monitor.properties = {

@@ -7,6 +7,7 @@
           authentication_enabled = true;
           authentication_method = "External";
         };
+        server.port = 9696;
       };
     };
   };
