@@ -21,10 +21,13 @@
     ./himalaya.nix
     ./mpd.nix
     ./ncpamixer.nix
+    ./neomutt.nix
+    ./neovim.nix
     ./nh.nix
     ./nix-index.nix
     ./nushell.nix
     ./omnix.nix
+    ./opencode.nix
     ./retroarch.nix
     ./rustup.nix
     ./ryujinx.nix
@@ -41,8 +44,6 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./neovim.nix
-    ./opencode.nix
 
     # ./goread.nix
     # ./helix.nix

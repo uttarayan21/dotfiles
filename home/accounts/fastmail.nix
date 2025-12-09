@@ -35,5 +35,8 @@
       };
     };
   };
+  programs.mbsync.enable = true;
+  services.mbsync.enable = true;
+  # accounts.email.accounts.<name>.mbsync.create
   # services.mbsync.enable = true;
 }

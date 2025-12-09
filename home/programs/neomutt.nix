@@ -1,9 +1,20 @@
 {pkgs, ...}: {
   programs.neomutt = {
-    enable = false;
+    enable = true;
     vimKeys = true;
     editor = "nvim";
-    # sidebar = {
-    # };
+    sidebar = {
+      enable = true;
+    };
+  };
+  programs.notmuch = {
+    enable = true;
+  };
+  accounts.email.accounts.fastmail.neomutt = {
+    enable = true;
+  };
+  accounts.email.accounts.fastmail.notmuch = {
+    enable = true;
+    neomutt.enable = true;
   };
 }
