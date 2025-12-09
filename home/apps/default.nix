@@ -16,6 +16,7 @@ lib.optionalAttrs device.hasGui {
     ./gimp.nix
     # ./guitarix.nix
     ./hyprpicker.nix
+    ./ida.nix
     # ./jellyflix.nix
     # ./kicad.nix
     ./kitty.nix
@@ -27,19 +28,19 @@ lib.optionalAttrs device.hasGui {
     # ./openscad.nix
     ./orcaslicer.nix
     # ./pcsx2.nix
+    ./prismlauncher.nix
     # ./rpcs3.nix
     # ./shadps4.nix
     ./slack.nix
     # ./thunderbird.nix
     # ./tsukimi.nix
     # ./vial.nix
+    ./vicinae.nix
     ./vlc.nix
     ./vscode.nix
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix
     ./zen.nix
-    ./vicinae.nix
-    ./ida.nix
   ];
 }

@@ -6,30 +6,19 @@
 }: {
   services = {
     ollama = {
-      enable = false;
+      enable = true;
       host = "0.0.0.0";
       # loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b" "qwen3:14b"];
       # loadModels = ["deepseek-r1:7b" "deepseek-r1:14b" "RobinBially/nomic-embed-text-8k" "qwen3:8b" "qwen3:14b"];
       port = 11434;
-      acceleration = "cuda";
+      # acceleration = "cuda";
       environmentVariables = {
         OLLAMA_ORIGINS = "*";
         OLLAMA_LLM_LIBRARY = "cuda";
         LD_LIBRARY_PATH = "run/opengl-driver/lib";
         HTTP_PROXY = "https://ollama.ryu.darksailor.dev";
       };
-      # package = pkgs.ollama.overrideAttrs {
-      #   version = "0.11.0";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "ollama";
-      #     repo = "ollama";
-      #     tag = "v0.11.0";
-      #     hash = "sha256-po7BxJAj9eOpOaXsLDmw6/1RyjXPtXza0YUv0pVojZ0=";
-      #     fetchSubmodules = true;
-      #   };
-      #   doCheck = false;
-      #   vendorHash = "sha256-SlaDsu001TUW+t9WRp7LqxUSQSGDF1Lqu9M1bgILoX4=";
-      # };
+      package = pkgs.ollama-cuda;
     };
     # open-webui = {
     #   enable = false;

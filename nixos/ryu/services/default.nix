@@ -4,8 +4,8 @@
     # ./sunshine.nix
     # ./zerotier.nix
     # ./dnscrypt.nix
-    # ./ollama.nix
     ./llama.nix
+    ./ollama.nix
     ./tailscale.nix
     ./samba.nix
     ./mullvad.nix
