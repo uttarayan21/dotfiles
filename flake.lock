@@ -4556,15 +4556,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1765523700,
-        "narHash": "sha256-ijdukoAFu2IgaetB9vdDNAj7230LvqG0WZerg5Wf1WQ=",
-        "owner": "wivrn",
+        "lastModified": 1765545649,
+        "narHash": "sha256-RLeszcBAT7wWqokkfYMuru5acDlka+Mi5FgHhPB/RuU=",
+        "owner": "uttarayan21",
         "repo": "wivrn",
-        "rev": "225a0db69e0008710dd320e599ce203532125437",
+        "rev": "6230c3e9a6a0590f831a976303684501b018bd1f",
         "type": "github"
       },
       "original": {
-        "owner": "wivrn",
+        "owner": "uttarayan21",
         "repo": "wivrn",
         "type": "github"
       }

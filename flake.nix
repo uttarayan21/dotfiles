@@ -240,7 +240,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     wivrn = {
-      url = "github:wivrn/wivrn?submodules=1";
+      url = "github:uttarayan21/wivrn?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

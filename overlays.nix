@@ -267,11 +267,11 @@
   #   });
   # };
   vr = final: prev: {
-    # wivrn = prev.wivrn.overrideAttrs (oldAttrs: {
+    # wivrn-nightly = prev.wivrn.overrideAttrs (oldAttrs: {
     #   version = "v25.11.1";
     #   src = inputs.wivrn;
     # });
-    # inputs.wivrn.packages.${prev.system}.default;
+    wivrn-nightly = inputs.wivrn.packages.${prev.system}.default;
   };
 in
   [
