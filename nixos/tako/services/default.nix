@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    # ./games
+    ./games
     # ./headscale.nix
     # ./llama.nix
     # ./monitoring.nix

@@ -8,7 +8,7 @@
     ./aichat.nix
     ./atuin.nix
     ./bat.nix
-    ./bluetui.nix
+    # ./bluetui.nix
     ./carapace.nix
     ./ddcbacklight.nix
     ./direnv.nix

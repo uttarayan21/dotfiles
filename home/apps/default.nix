@@ -6,7 +6,7 @@
 lib.optionalAttrs device.hasGui {
   imports = [
     # ./audacity.nix
-    ./blueman.nix
+    # ./blueman.nix
     # ./bottles.nix
     ./chromium.nix
     # ./cursor.nix

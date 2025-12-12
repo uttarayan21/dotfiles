@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  masterPkgs,
+  ...
+}: {
   services = {
     prowlarr = {
       enable = true;
@@ -9,6 +13,7 @@
         };
         # server.port = 9696;
       };
+      package = masterPkgs.prowlarr;
     };
   };
   services.caddy.virtualHosts."prowlarr.darksailor.dev".extraConfig = ''
