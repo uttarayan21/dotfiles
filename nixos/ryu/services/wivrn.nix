@@ -13,6 +13,6 @@
       importOXRRuntimes = true;
     };
     highPriority = true;
-    package = pkgs.wivrn-nightly;
+    # package = pkgs.wivrn-nightly;
   };
 }
