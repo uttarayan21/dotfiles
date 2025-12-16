@@ -1,3 +1,6 @@
-{...}: {
-  services.tailscale.enable = true;
+{stablePkgs, ...}: {
+  services.tailscale = {
+    enable = true;
+    package = stablePkgs.tailscale;
+  };
 }

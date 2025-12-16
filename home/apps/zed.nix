@@ -2,6 +2,7 @@
   pkgs,
   lib,
   device,
+  stablePkgs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -174,6 +175,7 @@
         };
       }
     ];
+    package = stablePkgs.zed-editor;
     extraPackages = with pkgs; [
       nixd
       nil

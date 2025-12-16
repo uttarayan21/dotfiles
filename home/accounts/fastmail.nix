@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   sops = {
     secrets."accounts/mail/fastmail" = {};
   };
@@ -36,7 +40,7 @@
     };
   };
   programs.mbsync.enable = true;
-  services.mbsync.enable = true;
+  services.mbsync.enable = pkgs.stdenv.isLinux;
   # accounts.email.accounts.<name>.mbsync.create
   # services.mbsync.enable = true;
 }
