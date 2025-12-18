@@ -13,6 +13,7 @@ in {
       settings = {
         logo = lib.mkIf (device.is "ryu") {
           source = nextcloudWallpapers "hornet.png";
+          type = "kitty";
           width = 70;
         };
         modules = [
