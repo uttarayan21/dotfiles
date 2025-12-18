@@ -10,7 +10,6 @@
   networking.useNetworkd = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network.wait-online.enable = false;
-  boot.loader.raspberryPi.bootloader = "kernel";
 
   fileSystems."/home".neededForBoot = true;
   boot.loader.raspberryPi.bootloader = "kernel";
