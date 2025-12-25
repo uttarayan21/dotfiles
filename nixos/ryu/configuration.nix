@@ -187,14 +187,37 @@
     hostId = "1349f9f0";
     # Enable networking
     networkmanager.enable = true;
-
-    # Open ports in the firewall.
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # firewall.enable = false;
-    nftables.enable = true;
+    nftables = {
+      # Open ports in the firewall.
+      # firewall.allowedTCPPorts = [ ... ];
+      # firewall.allowedUDPPorts = [ ... ];
+      # firewall.enable = false;
+      enable = true;
+      flushRuleset = true;
+      tables = {
+        "mullvad_tailscale" = {
+          enable = true;
+          family = "inet";
+          content = ''
+            chain output {
+              type route hook output priority 0; policy accept;
+              ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+            }
+          '';
+        };
+      };
+      # ruleset = ''
+      #   table inet mullvad_tailscale {
+      #     chain output {
+      #       type route hook output priority 0; policy accept;
+      #       ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+      #     }
+      #   }
+      #
+      # '';
+    };
     firewall = {
-      enable = false;
+      enable = true;
       trustedInterfaces = [
         "tailscale0"
       ];
@@ -202,7 +225,10 @@
         9 # Wake on LAN
         4950 # Warframe
         4955 # Warframe
-        3113 # Other
+      ];
+      allowedTCPPorts = [
+        3113 # Hyprmonitors
+        11345 # lmstudio
       ];
       allowedTCPPortRanges = [
         {
@@ -216,14 +242,6 @@
           to = 1764;
         }
       ];
-      # extraInputRules = ''
-      #   table inet mullvad_tailscale {
-      #     chain output {
-      #       type route hook output priority 0; policy accept;
-      #       ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
-      #     }
-      #   }
-      # '';
     };
   };
 

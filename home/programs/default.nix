@@ -44,6 +44,7 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
+    ./eilmeldung.nix
 
     # ./goread.nix
     # ./helix.nix

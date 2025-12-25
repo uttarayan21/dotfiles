@@ -12,6 +12,7 @@
     ./hyprmon.nix
     ./hyprland.nix
     ./hyprpaper.nix
+    ./remmina.nix
     # ./wallpaperengine.nix
   ];
 }

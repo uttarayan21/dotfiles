@@ -286,6 +286,7 @@ in
     inputs.handoff.overlays.default
     inputs.headplane.overlays.default
     inputs.vicinae.overlays.default
+    inputs.eilmeldung.overlays.default
     jellyfin
     libfprint
     misc-applications

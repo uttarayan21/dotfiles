@@ -243,6 +243,10 @@
       url = "github:uttarayan21/wivrn?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    eilmeldung = {
+      url = "github:christo-auer/eilmeldung";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
