@@ -26,7 +26,7 @@ lib.optionalAttrs device.hasGui {
     ./nextcloud.nix
     ./obs-studio.nix
     # ./openscad.nix
-    ./orcaslicer.nix
+    # ./orcaslicer.nix
     # ./pcsx2.nix
     ./prismlauncher.nix
     # ./rpcs3.nix
