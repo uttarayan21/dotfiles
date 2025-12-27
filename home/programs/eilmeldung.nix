@@ -17,11 +17,11 @@
       };
 
       input_config.mappings = {
-        "q" = "quit";
-        "j" = "down";
-        "k" = "up";
-        "g g" = "gotofirst";
-        "G" = "gotolast";
+        "q" = ["quit"];
+        "j" = ["down"];
+        "k" = ["up"];
+        "g g" = ["gotofirst"];
+        "G" = ["gotolast"];
         "o" = ["open" "read" "nextunread"];
       };
 
