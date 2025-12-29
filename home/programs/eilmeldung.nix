@@ -1,9 +1,13 @@
-{inputs, ...}: {
+{
+  inputs,
+  device,
+  ...
+}: {
   imports = [
     inputs.eilmeldung.homeManager.default
   ];
   programs.eilmeldung = {
-    enable = true;
+    enable = device.is "ryu";
 
     settings = {
       refresh_fps = 60;

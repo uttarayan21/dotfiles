@@ -8,7 +8,9 @@
     extraCompatPackages = [
       pkgs.proton-ge-bin
       pkgs.gamescope
+      pkgs.gamescope-wsi
       pkgs.mangohud
+      pkgs.vulkan-tools
     ];
   };
   programs.gamescope = {
@@ -17,5 +19,8 @@
   };
   environment.systemPackages = [
     pkgs.protonup-qt
+    pkgs.vulkan-tools
+    pkgs.gamescope
+    pkgs.gamescope-wsi
   ];
 }

@@ -35,7 +35,7 @@
     distributedBuilds = true;
   };
 
-  users.users.servius = {
+  users.users.${device.user} = {
     # isNormalUser = true;
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub

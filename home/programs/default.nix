@@ -60,10 +60,8 @@
   home.packages = with pkgs;
     [
       _1password-cli
-      asciidoctor
       alejandra
       aria2
-      ast-grep
       bottom
       btop
       cachix
@@ -73,19 +71,14 @@
       file
       fzf
       gnupg
-      gpg-tui
       jq
       just
       macchina
-      nb
       p7zip
-      pandoc
       pfetch-rs
       pkg-config
       ripgrep
       sd
-      tldr
-      # vcpkg-tool
     ]
     ++ lib.optionals (!device.isServer) [
       monaspace

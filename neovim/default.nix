@@ -362,7 +362,7 @@ in {
           additional_vim_regex_highlighting = true;
         };
       };
-      folding = true;
+      folding.enable = true;
       grammarPackages =
         (with pkgs.tree-sitter-grammars; [
           tree-sitter-norg

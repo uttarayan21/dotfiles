@@ -10,5 +10,7 @@
     ./flaresolverr.nix
     ./caddy.nix
     ./monitoring.nix
+    ./pihole.nix
+    ./resolved.nix
   ];
 }

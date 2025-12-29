@@ -176,7 +176,7 @@
     };
     hostName = "ryu"; # Define your hostname.
     # nameservers = ["1.1.1.1" "8.8.8.8"];
-    nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    # nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";

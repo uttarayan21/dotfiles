@@ -86,13 +86,6 @@
                 href = "https://cloud.darksailor.dev";
               };
             }
-            # {
-            #   "Open WebUI" = {
-            #     icon = "open-webui.png";
-            #     description = "Open WebUI for self hosted llms";
-            #     href = "https://llama.darksailor.dev";
-            #   };
-            # }
             {
               "Immich" = {
                 icon = "immich.png";
@@ -105,6 +98,13 @@
                 icon = "excalidraw.png";
                 description = "Excalidraw: Self-hosted Collaborative Whiteboard";
                 href = "https://draw.darksailor.dev";
+              };
+            }
+            {
+              "Navidrome" = {
+                icon = "navidrome.png";
+                description = "A self-hosted music server and streamer.";
+                href = "https://music.darksailor.dev";
               };
             }
           ];
