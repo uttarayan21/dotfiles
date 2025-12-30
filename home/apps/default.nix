@@ -30,7 +30,7 @@ lib.optionalAttrs device.hasGui {
     # ./pcsx2.nix
     ./prismlauncher.nix
     # ./rpcs3.nix
-    # ./shadps4.nix
+    ./shadps4.nix
     ./slack.nix
     # ./thunderbird.nix
     # ./tsukimi.nix
