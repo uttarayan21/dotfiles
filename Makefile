@@ -1,9 +1,9 @@
-.PHONY: darwin home default nixos just
+.PHONY: darwin home default nixos install
 
-default: just
+default: install
 
-just:
-	just
+install:
+	sudo nixos-rebuild switch --flake . --builders '' --max-jobs 1
 
 build:
 	sudo nixos-rebuild build --flake . --show-trace
