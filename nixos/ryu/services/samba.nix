@@ -1,36 +1,30 @@
-{...}: {
-  # services = {
-  #   samba = {
-  #     enable = false;
-  #     openFirewall = true;
-  #     settings = {
-  #       global = {
-  #         "workgroup" = "WORKGROUP";
-  #         "server string" = "smbnix";
-  #         "netbios name" = "smbnix";
-  #         "security" = "user";
-  #         "hosts allow" = "192.168.11. 127.0.0.1 localhost";
-  #         "hosts deny" = "0.0.0.0/0";
-  #         "guest account" = "nobody";
-  #         "map to guest" = "bad user";
-  #       };
-  #
-  #       public = {
-  #         "path" = "/media";
-  #         "browseable" = "yes";
-  #         "read only" = "no";
-  #         "guest ok" = "yes";
-  #         "create mask" = "0644";
-  #         "directory mask" = "0755";
-  #         # "force user" = "username";
-  #         # "force group" = "groupname";
-  #       };
-  #     };
-  #   };
-  #   samba-wsdd = {
-  #     enable = true;
-  #     openFirewall = true;
-  #   };
-  # };
-  networking.firewall.allowPing = true;
+{
+  lib,
+  config,
+  device,
+  ...
+}: {
+  # networking.firewall.allowPing = true;
+  sops = {
+    secrets."nas/password" = {};
+    templates."nas-credentials".content = ''
+      username=${device.user}
+      domain=WORKGROUP
+      password=${config.sops.placeholder."nas/password"}
+    '';
+  };
+  fileSystems."/volumes/nas" = {
+    device = "//tsuba.darksailor.dev/nas";
+    fsType = "cifs";
+
+    options = let
+      options = "nofail,x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      uid = toString config.users.users.servius.uid;
+      gid = toString config.users.groups.servius.gid;
+      check = lib.asserts.assertMsg (
+        uid != "" && gid != ""
+      ) "User ${device.user} must have uid ang gid set to mount NAS as user.";
+    in
+      lib.optionals check ["${options},credentials=${config.sops.templates."nas-credentials".path},uid=${uid},gid=${gid}"];
+  };
 }

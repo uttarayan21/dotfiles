@@ -342,6 +342,14 @@
         if isDarwin
         then "/Users/${device.user}"
         else "/home/${device.user}";
+      uid =
+        if (builtins.hasAttr "uid" device)
+        then device.uid
+        else 1000;
+      gid =
+        if (builtins.hasAttr "gid" device)
+        then device.gid
+        else 1000;
       # output =
       #   if isDarwin
       #   then self.darwinConfigurations."${device.name}"

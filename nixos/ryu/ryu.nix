@@ -5,6 +5,7 @@
   config,
   lib,
   modulesPath,
+  device,
   pkgs,
   ...
 }: {
@@ -59,7 +60,7 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  users.extraUsers.servius.extraGroups = ["libvirtd" "adbusers" "kvm"];
+  users.extraUsers.${device.user}.extraGroups = ["libvirtd" "adbusers" "kvm"];
 
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1
@@ -133,7 +134,12 @@
   #   options = ["nofail"];
   # };
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 64 * 1024;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

@@ -77,6 +77,7 @@
   };
 
   users.users.${device.user} = {
+    uid = device.uid;
     isNormalUser = true;
     extraGroups = ["wheel" "audio" "i2c" "media" "video" "tss"];
     openssh.authorizedKeys.keyFiles = [
@@ -86,6 +87,10 @@
   };
   users.groups.i2c = {};
   users.groups.media = {};
+  users.groups.${device.user} = {
+    gid = device.gid;
+    members = [device.user];
+  };
 
   services = {
     devmon.enable = true;
