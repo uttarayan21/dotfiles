@@ -19,28 +19,28 @@
     ./gh.nix
     ./git.nix
     ./himalaya.nix
-    ./mpd.nix
+    # ./mpd.nix
     ./ncpamixer.nix
     ./neomutt.nix
     ./neovim.nix
-    ./nh.nix
+    # ./nh.nix
     ./nix-index.nix
     ./nushell.nix
-    ./omnix.nix
+    # ./omnix.nix
     ./opencode.nix
-    ./retroarch.nix
+    # ./retroarch.nix
     ./rustup.nix
-    ./ryujinx.nix
+    # ./ryujinx.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
-    ./sxiv.nix
-    ./tea.nix
+    # ./sxiv.nix
+    # ./tea.nix
     ./television.nix
     ./tmux.nix
-    ./tuifeed.nix
+    # ./tuifeed.nix
     ./uv.nix
-    ./xh.nix
+    # ./xh.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix

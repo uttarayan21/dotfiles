@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     wlx-overlay-s
     wayvr-dashboard
-    bs-manager
+    # bs-manager
     monado-vulkan-layers
     # envision
   ];

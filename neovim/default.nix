@@ -543,6 +543,7 @@ in {
         sqls.enable = true;
         pyright.enable = true;
         slint_lsp.enable = true;
+        wgsl_analyzer.enable = true;
         # sourcekit.enable = true;
         openscad_lsp.enable = true;
         tinymist.enable = true;
@@ -851,6 +852,5 @@ in {
     pkgs.lua
     pkgs.ripgrep
     pkgs.nodejs-slim
-    pkgs.qwen-code
   ];
 }

@@ -13,10 +13,10 @@ lib.optionalAttrs device.hasGui {
     ./discord.nix
     ./firefox.nix
     ./ghostty.nix
-    ./gimp.nix
+    # ./gimp.nix
     # ./guitarix.nix
     ./hyprpicker.nix
-    ./ida.nix
+    # ./ida.nix
     # ./jellyflix.nix
     # ./kicad.nix
     ./kitty.nix
@@ -37,7 +37,7 @@ lib.optionalAttrs device.hasGui {
     # ./vial.nix
     ./vicinae.nix
     ./vlc.nix
-    ./vscode.nix
+    # ./vscode.nix
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix
