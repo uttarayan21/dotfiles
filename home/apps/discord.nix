@@ -8,8 +8,8 @@
       withOpenASAR = true;
       withVencord = true;
     })
-    pkgs.vesktop
-    pkgs.discord-canary
-    pkgs.discord-ptb
+    # pkgs.vesktop
+    # pkgs.discord-canary
+    # pkgs.discord-ptb
   ];
 }

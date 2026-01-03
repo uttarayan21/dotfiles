@@ -4,10 +4,10 @@
   config,
   ...
 }: {
-  imports = [
-    ../../modules/hyprpaper.nix
-  ];
-  programs.hyprpaper = let
+  # imports = [
+  #   ../../modules/hyprpaper.nix
+  # ];
+  services.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
