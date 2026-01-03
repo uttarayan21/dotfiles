@@ -52,6 +52,8 @@
   # nixpkgs.crossSystem = {system = "aarch64-linux";};
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
   boot.loader.systemd-boot.consoleMode = "max";
+  boot.loader.systemd-boot.netbootxyz.enable = true;
+  boot.loader.systemd-boot.memtest86.enable = true;
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";

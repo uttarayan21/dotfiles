@@ -4,10 +4,10 @@
   ...
 }: {
   imports = [
-    ./goread.nix
-    ./hyprpaper.nix
+    # ./goread.nix
+    # ./hyprpaper.nix
     # ./aichat.nix
-    ./tuifeed.nix
+    # ./tuifeed.nix
     #./ghostty.nix
     # ./sketchybar.nix
   ];
