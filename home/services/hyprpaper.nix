@@ -4,25 +4,31 @@
   config,
   ...
 }: {
-  # imports = [
-  #   ../../modules/hyprpaper.nix
-  # ];
   services.hyprpaper = let
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
     silksongShadeLord = nextcloudWallpapers "silksong-shadelord.jpg";
-  in rec {
+  in {
     enable = device.is "ryu";
-    systemd.enable = true;
-    systemd.target = "hyprland-session.target";
-    settings.preload =
-      wallpapers.all
-      ++ pkgs.lib.mapAttrsToList (_: value: value) settings.wallpapers;
-    settings.wallpapers = {
-      "${device.monitors.primary}" = silksongShadeLord;
-      "${device.monitors.secondary}" = wallpapers.frieren_3;
-      "${device.monitors.tertiary}" = silksongFleas;
+    settings = {
+      wallpaper = [
+        {
+          monitor = device.monitors.primary;
+          path = silksongShadeLord;
+          fit_mode = "cover";
+        }
+        {
+          monitor = device.monitors.secondary;
+          path = wallpapers.frieren_3;
+          fit_mode = "cover";
+        }
+        {
+          monitor = device.monitors.tertiary;
+          path = silksongFleas;
+          fit_mode = "cover";
+        }
+      ];
     };
   };
 }
