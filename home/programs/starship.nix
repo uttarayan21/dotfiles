@@ -3,8 +3,8 @@
   lib,
   device,
   ...
-}: {
-  stylix.targets.starship.enable = false;
+}:
+{
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
@@ -29,4 +29,7 @@
       // builtins.fromTOML (builtins.readFile
         (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
   };
+}
+// lib.optionalAttrs (!(device.is "tsuba")) {
+  stylix.targets.starship.enable = false;
 }

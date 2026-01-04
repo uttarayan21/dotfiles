@@ -4,8 +4,8 @@
   device,
   config,
   ...
-}: {
-  stylix.targets.fish.enable = false;
+}:
+{
   programs.fish = {
     enable = true;
     shellAbbrs = {
@@ -40,4 +40,7 @@
       ''}
     '';
   };
+}
+// lib.optionalAttrs (!(device.is "tsuba")) {
+  stylix.targets.fish.enable = false;
 }

@@ -1,6 +1,6 @@
-{...}: {
+{device, ...}: {
   services.remmina = {
-    enable = true;
+    enable = device.is "ryu";
     systemdService.enable = true;
     addRdpMimeTypeAssoc = true;
   };
