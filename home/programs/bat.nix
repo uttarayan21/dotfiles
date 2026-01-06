@@ -1,11 +1,5 @@
-{
-  pkgs,
-  lib,
-  device,
-  ...
-}: {
-  programs.
-    bat = {
+{...}: {
+  programs.bat = {
     enable = true;
     # extraPackages = with pkgs.bat-extras; [batman batgrep batwatch];
   };

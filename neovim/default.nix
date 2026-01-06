@@ -330,9 +330,20 @@ in {
       settings.image_provider = "image.nvim";
     };
 
-    markdown-preview = {
-      enable = true;
-    };
+    # markdown-preview = {
+    #   enable = true;
+    #   package = pkgs.vimUtils.buildVimPlugin {
+    #     pname = "markdown-preview.nvim";
+    #     version = "0.0.10-unstable-2026-1-4";
+    #     src = pkgs.fetchFromGitHub {
+    #       owner = "iamcco";
+    #       repo = "markdown-preview.nvim";
+    #       rev = "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee";
+    #       hash = "sha256-TBXdG/Ih5DusAYZJyn37zVqHcMD85VkjrCoLyTo/KBg=";
+    #     };
+    #     patches = [../patches/markdown-preview.patch];
+    #   };
+    # };
 
     noice = {
       enable = true;

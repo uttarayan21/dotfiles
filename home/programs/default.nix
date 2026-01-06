@@ -8,10 +8,10 @@
     ./aichat.nix
     ./atuin.nix
     ./bat.nix
-    # ./bluetui.nix
     ./carapace.nix
     ./ddcbacklight.nix
     ./direnv.nix
+    ./eilmeldung.nix
     ./eza.nix
     ./fastfetch.nix
     ./fish.nix
@@ -19,42 +19,43 @@
     ./gh.nix
     ./git.nix
     ./himalaya.nix
-    # ./mpd.nix
+    ./hyprshade.nix
     ./ncpamixer.nix
     ./neomutt.nix
     ./neovim.nix
-    # ./nh.nix
     ./nix-index.nix
     ./nushell.nix
-    # ./omnix.nix
     ./opencode.nix
-    # ./retroarch.nix
     ./rustup.nix
-    # ./ryujinx.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
-    # ./sxiv.nix
-    # ./tea.nix
     ./television.nix
     ./tmux.nix
-    # ./tuifeed.nix
     ./uv.nix
-    # ./xh.nix
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./eilmeldung.nix
 
+    # ./bluetui.nix
     # ./goread.nix
     # ./helix.nix
     # ./magika.nix
+    # ./mpd.nix
     # ./mpris-scrobbler.nix
     # ./ncmpcpp.nix
     # ./neomutt.nix
     # ./neovim.nix
     # ./newsboat.nix
+    # ./nh.nix
+    # ./omnix.nix
+    # ./retroarch.nix
+    # ./ryujinx.nix
+    # ./sxiv.nix
+    # ./tea.nix
     # ./template.nix
+    # ./tuifeed.nix
+    # ./xh.nix
     # ./zellij.nix
   ];
   home.packages = with pkgs;
