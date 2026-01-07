@@ -10,8 +10,8 @@ lib.optionalAttrs (!(device.is "tsuba")) {
     enable = true;
     lfs.enable = true;
     settings = {
-      user.name = "uttarayan21";
-      user.email = config.accounts.email.accounts.fastmail.address;
+      user.name = "servius";
+      user.email = builtins.elemAt config.accounts.email.accounts.fastmail.aliases 0;
       user.signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJfKKrX8yeIHUUury0aPwMY6Ha+BJyUR7P0Gqid90ik/";
       color.ui = true;
       core.editor = "nvim";

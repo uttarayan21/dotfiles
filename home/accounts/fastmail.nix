@@ -15,6 +15,7 @@
         };
         primary = true;
         address = "email@uttarayan.me";
+        aliases = ["servius@darksailor.dev"];
         userName = address;
         realName = "Uttarayan Mondal";
         imap = {
