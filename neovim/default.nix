@@ -1,8 +1,4 @@
-{
-  pkgs,
-  stablePkgs,
-  ...
-}: let
+{pkgs, ...}: let
   mkMappings = mappings:
     []
     ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
@@ -17,16 +13,6 @@
       mode = mode;
     })
     mappings;
-  border = [
-    "╭"
-    "─"
-    "╮"
-    "│"
-    "╯"
-    "─"
-    "╰"
-    "│"
-  ];
   rawLua = lua: {
     "__raw" = ''
       ${lua}
@@ -60,7 +46,20 @@ in {
   colorschemes = {
     catppuccin = {
       enable = true;
-      settings.flavour = "mocha";
+      settings = {
+        flavour = "mocha";
+        integrations = {
+          cmp = true;
+          gitsigns = true;
+          nvimtree = true;
+          treesitter = true;
+          notify = true;
+          mini = {
+            enabled = true;
+            indentscope_color = "";
+          };
+        };
+      };
     };
   };
   keymaps = mkMappings {
