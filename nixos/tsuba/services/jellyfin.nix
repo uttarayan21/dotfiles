@@ -1,5 +1,5 @@
 {
-  unstablePkgs,
+  pkgs,
   config,
   ...
 }: {
@@ -44,6 +44,26 @@
         import cloudflare
         reverse_proxy localhost:8096
       '';
+    };
+  };
+  systemd.services.jellyfin-image-update = {
+    description = "Pull latest Jellyfin Docker image";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.docker}/bin/docker pull ghcr.io/jellyfin/jellyfin:latest";
+      ExecStartPost = "${pkgs.systemd}/bin/systemctl restart docker-jellyfin.service";
+    };
+  };
+
+  # Systemd timer to run the update service every 5 days
+  systemd.timers.jellyfin-image-update = {
+    description = "Timer for Jellyfin image updates";
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "Mon *-*-* 02:00:00";
+      OnUnitInactiveSec = "5d";
+      Persistent = true;
+      RandomizedDelaySec = "1h";
     };
   };
 }
