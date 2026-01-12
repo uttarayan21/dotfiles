@@ -175,7 +175,7 @@
         };
       }
     ];
-    package = stablePkgs.zed-editor;
+    package = pkgs.zed-editor;
     extraPackages = with pkgs; [
       nixd
       nil
