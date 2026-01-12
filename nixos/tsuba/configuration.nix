@@ -5,8 +5,6 @@
   device,
   ...
 }: {
-  virtualisation.docker.enable = true;
-  virtualisation.oci-containers.backend = "docker";
   users.extraUsers.servius.extraGroups = ["docker"];
   networking.firewall.enable = false;
   services.openssh.enable = true;

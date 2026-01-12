@@ -50,7 +50,7 @@
     description = "Pull latest Jellyfin Docker image";
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.docker}/bin/docker pull ghcr.io/jellyfin/jellyfin:latest";
+      ExecStart = "${pkgs.docker}/bin/docker pull jellyfin/jellyfin:latest";
       ExecStartPost = "${pkgs.systemd}/bin/systemctl restart docker-jellyfin.service";
     };
   };

@@ -12,5 +12,6 @@
     ./monitoring.nix
     ./pihole.nix
     ./resolved.nix
+    ./docker.nix
   ];
 }
