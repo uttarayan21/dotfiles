@@ -219,24 +219,25 @@
     };
   };
   libfprint = final: prev: {
-    # libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
-    #   version = "git";
-    #   src = final.fetchFromGitHub {
-    #     owner = "ericlinagora";
-    #     repo = "libfprint-CS9711";
-    #     rev = "03ace5b20146eb01c77fb3ea63e1909984d6d377";
-    #     sha256 = "sha256-gr3UvFB6D04he/9zawvQIuwfv0B7fEZb6BGiNAbLids";
-    #   };
-    #   buildInputs = oldAttrs.buildInputs ++ [final.nss_latest];
-    #   nativeBuildInputs =
-    #     oldAttrs.nativeBuildInputs
-    #     ++ [
-    #       final.opencv
-    #       final.cmake
-    #       final.doctest
-    #     ];
-    # });
-    # # fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
+    libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
+      version = "git";
+      # https://github.com/archeYR/libfprint-CS9711/commits/cs9711-rebase/
+      src = final.fetchFromGitHub {
+        owner = "archeYR";
+        repo = "libfprint-CS9711";
+        rev = "c2d163fbb06d33e80a5177815bb0b8ca2f01739f";
+        sha256 = "sha256-JygOJ3SybXKR3CjLxLbAZDaYCl9LuQYDQfFC8Si5oaw";
+      };
+      buildInputs = oldAttrs.buildInputs ++ [final.nss_latest];
+      nativeBuildInputs =
+        oldAttrs.nativeBuildInputs
+        ++ [
+          final.opencv
+          final.cmake
+          final.doctest
+        ];
+    });
+    # fprintd = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd;
     # fprintd = prev.fprintd.overrideAttrs (oldAttrs: {
     #   src = inputs.nixpkgs-stable.legacyPackages.${prev.system}.fprintd.src;
     # });
