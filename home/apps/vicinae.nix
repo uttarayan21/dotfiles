@@ -12,4 +12,7 @@
       autoStart = true;
     };
   };
+  home.packages = with pkgs; [
+    pulseaudio
+  ];
 }
