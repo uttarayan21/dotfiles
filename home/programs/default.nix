@@ -73,6 +73,7 @@
     # ./xh.nix
     # ./zellij.nix
     ./dysk.nix
+    ./binwalk.nix
   ];
   # home.packages = with pkgs;
   #   []
