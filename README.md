@@ -1,6 +1,6 @@
 # Machines
 
-1. Ryu Dektop (Intel i9-14900KS / Nvidia 5090 / DDR5 64GB CL36@6000MTs) 
+1. Ryu Dektop (Intel i9-14900KS / Nvidia RTX 5090 / DDR5 64GB CL36@6000MTs) 
     ```
     deploy -s .#ryu
     ```

@@ -8,11 +8,8 @@
       "lunar"
       "orcaslicer"
       "raycast"
-      "shapr3d"
-      "vlc"
       "zed"
       "zen"
-      "lm-studio"
     ];
   };
 }

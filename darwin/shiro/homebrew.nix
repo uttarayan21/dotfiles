@@ -5,12 +5,10 @@
       "docker-compose"
     ];
     casks = [
+      "1password"
       "docker"
       "raycast"
       "lunar"
-      "virtual-desktop-streamer"
-      "kicad"
-      "shapr3d"
       "orcaslicer"
       "zed"
       "zen"
