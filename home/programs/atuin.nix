@@ -35,4 +35,23 @@
       # Environment = lib.mkForce "ATUIN_DATA_DIR=${device.home}/.local/share/atuin";
     };
   };
+  launchd.agents.atuin-daemon = {
+    enable = true;
+    config = {
+      # A label for the service
+      Label = "dev.darksailor.atuin-daemon";
+      # The command to run
+      ProgramArguments = [
+        "${pkgs.atuin}/bin/atuin"
+        "daemon"
+      ];
+      # Run the service when you log in
+      RunAtLoad = true;
+      # Keep the process alive, or restart if it dies
+      KeepAlive = true;
+      # Log files
+      StandardOutPath = "${device.home}/Library/Logs/atuin-daemon.log";
+      StandardErrorPath = "${device.home}/Library/Logs/atuin-daemon.error.log";
+    };
+  };
 }
