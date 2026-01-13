@@ -431,7 +431,7 @@
         # };
         devShells = {
           default = pkgs.mkShell {
-            packages = with pkgs; [sops just openssl];
+            packages = with pkgs; [sops just openssl ast-grep];
           };
         };
       }

@@ -5,28 +5,46 @@
 }: {
   imports = [
     ../../modules
+    ./1password-cli.nix
     ./aichat.nix
+    ./alejandra.nix
+    ./aria2.nix
+    ./ast-grep.nix
     ./atuin.nix
     ./bat.nix
+    ./bottom.nix
+    ./btop.nix
+    ./cachix.nix
     ./carapace.nix
     ./ddcbacklight.nix
+    ./deploy-rs.nix
     ./direnv.nix
+    ./dust.nix
     ./eilmeldung.nix
     ./eza.nix
     ./fastfetch.nix
+    ./fd.nix
+    ./file.nix
     ./fish.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./gnupg.nix
     ./himalaya.nix
     ./hyprshade.nix
+    ./jq.nix
+    ./just.nix
     ./ncpamixer.nix
     ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
     ./nushell.nix
     ./opencode.nix
+    ./p7zip.nix
+    ./pkg-config.nix
+    ./ripgrep.nix
     ./rustup.nix
+    ./sd.nix
     ./sops.nix
     ./ssh.nix
     ./starship.nix
@@ -59,28 +77,7 @@
     # ./zellij.nix
   ];
   home.packages = with pkgs;
-    [
-      _1password-cli
-      alejandra
-      aria2
-      bottom
-      btop
-      cachix
-      deploy-rs.deploy-rs
-      dust
-      fd
-      file
-      fzf
-      gnupg
-      jq
-      just
-      macchina
-      p7zip
-      pfetch-rs
-      pkg-config
-      ripgrep
-      sd
-    ]
+    []
     ++ lib.optionals (!device.isServer) [
       monaspace
       nerd-fonts.fira-code
