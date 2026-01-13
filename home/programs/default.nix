@@ -54,7 +54,6 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-
     # ./bluetui.nix
     # ./goread.nix
     # ./helix.nix
@@ -62,8 +61,6 @@
     # ./mpd.nix
     # ./mpris-scrobbler.nix
     # ./ncmpcpp.nix
-    # ./neomutt.nix
-    # ./neovim.nix
     # ./newsboat.nix
     # ./nh.nix
     # ./omnix.nix
@@ -75,22 +72,11 @@
     # ./tuifeed.nix
     # ./xh.nix
     # ./zellij.nix
+    ./dysk.nix
   ];
-  home.packages = with pkgs;
-    []
-    ++ lib.optionals (!device.isServer) [
-      monaspace
-      nerd-fonts.fira-code
-      nerd-fonts.hasklug
-      nerd-fonts.symbols-only
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-color-emoji
-      liberation_ttf
-      fira-code
-      fira-code-symbols
-      mplus-outline-fonts.githubRelease
-    ]
-    ++ lib.optionals device.isLinux []
-    ++ lib.optionals device.isDarwin [];
+  # home.packages = with pkgs;
+  #   []
+  #   ++ lib.optionals (!device.isServer) []
+  #   ++ lib.optionals device.isLinux []
+  #   ++ lib.optionals device.isDarwin [];
 }
