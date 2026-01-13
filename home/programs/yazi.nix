@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs. yazi = {
     enable = true;
     enableFishIntegration = true;
@@ -12,6 +12,9 @@
             run = "noop";
           }
         ];
+      };
+      preview = {
+        cache_dir = config.home.homeDirectory + "/.cache/yazi/previews";
       };
     };
   };
