@@ -34,8 +34,9 @@ rollback:
 
 add program:
     echo '{pkgs, ...}: { home.packages = [pkgs.{{program}}];}' > home/programs/{{program}}.nix
+    # https://ast-grep.github.io/advanced/pattern-parse.html#incomplete-pattern-code
+    # Since the imports doesn't match the whole pattern we need to use the selector binding and the attr expression to match it properly.
     ast-grep run -p '{ imports = [$$$ITEMS] }' --selector binding --rewrite 'imports = [$$$ITEMS ./{{program}}.nix ]' home/programs/default.nix -i
     alejandra fmt home/programs/{{program}}.nix home/programs/default.nix
     git add home/programs/{{program}}.nix 
 
-    
