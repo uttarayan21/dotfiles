@@ -10,5 +10,6 @@
     ./nix-ld.nix
     ./gamemode.nix
     ./droidcam.nix
+    ./wireshark.nix
   ];
 }

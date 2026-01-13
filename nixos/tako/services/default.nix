@@ -2,7 +2,7 @@
   imports = [
     ./games
     # ./headscale.nix
-    # ./llama.nix
+    ./llms.nix
     # ./monitoring.nix
     # ./paperless.nix
     ./navidrome.nix
