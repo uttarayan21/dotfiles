@@ -75,9 +75,4 @@
     ./dysk.nix
     ./binwalk.nix
   ];
-  # home.packages = with pkgs;
-  #   []
-  #   ++ lib.optionals (!device.isServer) []
-  #   ++ lib.optionals device.isLinux []
-  #   ++ lib.optionals device.isDarwin [];
 }

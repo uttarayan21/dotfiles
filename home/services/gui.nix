@@ -2,24 +2,8 @@
   pkgs,
   device,
   lib,
-  inputs,
   ...
 }: {
-  systemd.user.services.onepassword-gui = lib.optionalAttrs (device.is "ryu") {
-    Unit = {
-      Description = "1Password GUI";
-      BindsTo = ["graphical-session.target"];
-      After = ["graphical-session-pre.target"];
-    };
-
-    Service = {
-      ExecStart = "${pkgs._1password-gui}/bin/1password";
-      Restart = "always";
-    };
-    Install = {
-      WantedBy = ["graphical-session.target"];
-    };
-  };
   home.packages = with pkgs;
     lib.optionals (device.is "ryu") [
       nautilus
