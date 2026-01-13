@@ -35,7 +35,7 @@ rollback:
 add program:
     echo '{pkgs, ...}: { home.packages = [pkgs.{{program}}];}' > home/programs/{{program}}.nix
     ast-grep run -p '{ imports = [$$$ITEMS] }' --selector binding --rewrite 'imports = [$$$ITEMS ./{{program}}.nix ]' home/programs/default.nix -i
-    git add home/programs/{{program}}.nix 
     alejandra fmt home/programs/{{program}}.nix home/programs/default.nix
+    git add home/programs/{{program}}.nix 
 
     
