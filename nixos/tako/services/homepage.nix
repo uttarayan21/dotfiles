@@ -107,6 +107,13 @@
                 href = "https://music.darksailor.dev";
               };
             }
+            {
+              "OpenwebUI" = {
+                icon = "openwebui.png";
+                description = "OpenwebUI: Self-hosted AI chat interface";
+                href = "https://chat.darksailor.dev";
+              };
+            }
           ];
         }
       ];

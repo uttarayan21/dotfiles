@@ -18,8 +18,8 @@
         ANONYMIZED_TELEMETRY = "False";
         WEBUI_AUTH = "False";
         ENABLE_LOGIN_FORM = "False";
-        WEBUI_URL = "https://llama.darksailor.dev";
-        OLLAMA_API_BASE_URL = "https://ollama.darksailor.dev";
+        WEBUI_URL = "https://chat.darksailor.dev";
+        OLLAMA_BASE_URL = "https://ollama.darksailor.dev";
       };
       environmentFile = "${config.sops.templates."LLAMA_API_KEY.env".path}";
     };
