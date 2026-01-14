@@ -6,22 +6,25 @@
   port = 8899;
   domain = "crates.darksailor.dev";
 in {
+  sops = {
+  };
   virtualisation.oci-containers = {
     backend = "docker";
     containers = {
-      excalidraw = {
+      kellnr = {
         image = "ghcr.io/kellnr/kellnr:5";
         ports = ["127.0.0.1:${toString port}:8000"];
         volumes = [
           "/var/lib/kellnr:/opt/kdata"
         ];
         environment = {
-          "KELLNR_ORIGIN__HOSTNAME" = domain;
+          KELLNR_ORIGIN__HOSTNAME = domain;
+          KELLNR_DOCS__ENABLED = "true";
         };
       };
     };
   };
-  services.caddy.virtualHosts.domain.extraConfig = ''
+  services.caddy.virtualHosts."${domain}".extraConfig = ''
     import auth
     reverse_proxy localhost:${toString port}
   '';
