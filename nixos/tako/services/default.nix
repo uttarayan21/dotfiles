@@ -23,6 +23,7 @@
     ./resolved.nix
     ./searxng.nix
     ./tailscale.nix
+    ./kellnr.nix
   ];
   services = {
     nix-serve = {
