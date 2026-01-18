@@ -25,6 +25,8 @@
         OLLAMA_LLM_LIBRARY = "cuda";
         LD_LIBRARY_PATH = "run/opengl-driver/lib";
         HTTP_PROXY = "https://ollama.darksailor.dev";
+        OLLAMA_CONTEXT_LENGTH = "32000";
+        OLLAMA_KEEP_ALIVE = "30m";
       };
       package = pkgs.ollama-cuda;
     };

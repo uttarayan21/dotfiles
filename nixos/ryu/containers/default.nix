@@ -1,6 +1,6 @@
 {device, ...}: {
   imports = [
-    # ./immich-machine-learning.nix
+    ./immich-machine-learning.nix
   ];
   virtualisation = {
     docker.enable = true;

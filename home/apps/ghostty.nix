@@ -12,10 +12,25 @@
         "Hasklug Nerd Font Mono"
       ];
       window-decoration = false;
-      title = "";
+      title = "ghostty";
       command = "fish";
       background-opacity = 0.8;
       theme = "catppuccin-mocha";
+      custom-shader = "~/.config/ghostty/shader.glsl";
+      # custom-shader = toString (pkgs.writeText "shader.glsl"
+      #   /*
+      #   glsl
+      #   */
+      #   ''
+      #     void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+      #         vec2 uv = fragCoord / iResolution.xy;
+      #         vec3 col = vec3(0.0);
+      #         col.r = 0.1 + 0.9 * uv.x;
+      #         col.g = 0.1 + 0.9 * uv.y;
+      #         col.b = 0.2;
+      #         fragColor = vec4(col, 1.0);
+      #     }
+      #   '');
     };
     systemd.enable = true;
     themes = {

@@ -3,8 +3,9 @@
     secrets."llama/api_key".owner = config.services.caddy.user;
     secrets."openai/api_key" = {};
     templates = {
-      "LLAMA_API_KEY.env".content = ''
+      "ollama.env".content = ''
         LLAMA_API_KEY=${config.sops.placeholder."llama/api_key"}
+        OPENAI_API_KEYS=${config.sops.placeholder."openai/api_key"}
       '';
     };
   };
@@ -21,7 +22,7 @@
         WEBUI_URL = "https://chat.darksailor.dev";
         OLLAMA_BASE_URL = "https://ollama.darksailor.dev";
       };
-      environmentFile = "${config.sops.templates."LLAMA_API_KEY.env".path}";
+      environmentFile = "${config.sops.templates."ollama.env".path}";
     };
 
     caddy = {
@@ -47,7 +48,7 @@
   };
   systemd.services.caddy = {
     serviceConfig = {
-      EnvironmentFile = config.sops.templates."LLAMA_API_KEY.env".path;
+      EnvironmentFile = config.sops.templates."ollama.env".path;
     };
   };
 }
