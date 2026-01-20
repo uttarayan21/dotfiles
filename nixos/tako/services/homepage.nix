@@ -24,6 +24,7 @@
                 icon = "jellyfin.png";
                 description = "Jellyfin Media Server";
                 href = "https://jellyfin.tsuba.darksailor.dev";
+                ping = "jellyfin.tsuba.darksailor.dev";
               };
             }
             {
@@ -31,6 +32,7 @@
                 icon = "sonarr.png";
                 description = "Sonarr: TV Series Management";
                 href = "https://sonarr.tsuba.darksailor.dev";
+                ping = "sonarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -38,6 +40,7 @@
                 icon = "bazarr.png";
                 description = "Bazarr: Subtitles and Metadata";
                 href = "https://bazarr.tsuba.darksailor.dev";
+                ping = "bazarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -45,6 +48,7 @@
                 icon = "radarr.png";
                 description = "Radarr: Movie Management";
                 href = "https://radarr.tsuba.darksailor.dev";
+                ping = "radarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -52,13 +56,15 @@
                 icon = "deluge.png";
                 description = "Deluge: Torrent Client";
                 href = "https://deluge.tsuba.darksailor.dev";
+                ping = "deluge.tsuba.darksailor.dev";
               };
             }
             {
               "Prowlarr" = {
                 icon = "prowlarr.png";
                 description = "Prowlarr: Indexer Manager";
-                href = "https://prowlarr.tsuba.darksailor.dev";
+                href = "https://prowlarr.darksailor.dev";
+                ping = "prowlarr.darksailor.dev";
               };
             }
             {
@@ -66,6 +72,7 @@
                 icon = "home-assistant.png";
                 description = "Home Automation";
                 href = "https://home.darksailor.dev";
+                ping = "home.darksailor.dev";
               };
             }
           ];
@@ -77,6 +84,7 @@
                 icon = "gitea.png";
                 description = "Gitea Code Hosting";
                 href = "https://git.darksailor.dev";
+                ping = "git.darksailor.dev";
               };
             }
             {
@@ -84,6 +92,7 @@
                 icon = "nextcloud.png";
                 description = "Nextcloud Suite";
                 href = "https://cloud.darksailor.dev";
+                ping = "cloud.darksailor.dev";
               };
             }
             {
@@ -91,6 +100,7 @@
                 icon = "immich.png";
                 description = "Immich: Self-hosted Photo and Video Backup";
                 href = "https://photos.darksailor.dev";
+                ping = "photos.darksailor.dev";
               };
             }
             {
@@ -98,6 +108,7 @@
                 icon = "excalidraw.png";
                 description = "Excalidraw: Self-hosted Collaborative Whiteboard";
                 href = "https://draw.darksailor.dev";
+                ping = "draw.darksailor.dev";
               };
             }
             {
@@ -105,13 +116,15 @@
                 icon = "navidrome.png";
                 description = "A self-hosted music server and streamer.";
                 href = "https://music.darksailor.dev";
+                ping = "music.darksailor.dev";
               };
             }
             {
               "OpenwebUI" = {
-                icon = "openwebui.png";
+                icon = "open-webui.png";
                 description = "OpenwebUI: Self-hosted AI chat interface";
                 href = "https://chat.darksailor.dev";
+                ping = "chat.darksailor.dev";
               };
             }
           ];
@@ -166,23 +179,22 @@
     };
     caddy = {
       virtualHosts."dashboard.darksailor.dev".extraConfig = ''
-        # import auth
         reverse_proxy localhost:${builtins.toString config.services.homepage-dashboard.listenPort}
       '';
     };
-    authelia = {
-      instances.darksailor = {
-        settings = {
-          access_control = {
-            rules = [
-              {
-                domain = "dashboard.darksailor.dev";
-                policy = "one_factor";
-              }
-            ];
-          };
-        };
-      };
-    };
+    # authelia = {
+    #   instances.darksailor = {
+    #     settings = {
+    #       access_control = {
+    #         rules = [
+    #           {
+    #             domain = "dashboard.darksailor.dev";
+    #             policy = "one_factor";
+    #           }
+    #         ];
+    #       };
+    #     };
+    #   };
+    # };
   };
 }
