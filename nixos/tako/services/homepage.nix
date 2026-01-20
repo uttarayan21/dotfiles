@@ -24,7 +24,7 @@
                 icon = "jellyfin.png";
                 description = "Jellyfin Media Server";
                 href = "https://jellyfin.tsuba.darksailor.dev";
-                ping = "jellyfin.tsuba.darksailor.dev";
+                siteMonitor = "https://jellyfin.tsuba.darksailor.dev";
               };
             }
             {
@@ -32,7 +32,7 @@
                 icon = "sonarr.png";
                 description = "Sonarr: TV Series Management";
                 href = "https://sonarr.tsuba.darksailor.dev";
-                ping = "sonarr.tsuba.darksailor.dev";
+                siteMonitor = "https://sonarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -40,7 +40,7 @@
                 icon = "bazarr.png";
                 description = "Bazarr: Subtitles and Metadata";
                 href = "https://bazarr.tsuba.darksailor.dev";
-                ping = "bazarr.tsuba.darksailor.dev";
+                siteMonitor = "https://bazarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -48,7 +48,7 @@
                 icon = "radarr.png";
                 description = "Radarr: Movie Management";
                 href = "https://radarr.tsuba.darksailor.dev";
-                ping = "radarr.tsuba.darksailor.dev";
+                siteMonitor = "https://radarr.tsuba.darksailor.dev";
               };
             }
             {
@@ -56,23 +56,16 @@
                 icon = "deluge.png";
                 description = "Deluge: Torrent Client";
                 href = "https://deluge.tsuba.darksailor.dev";
-                ping = "deluge.tsuba.darksailor.dev";
+                siteMonitor = "https://deluge.tsuba.darksailor.dev";
               };
             }
-            {
-              "Prowlarr" = {
-                icon = "prowlarr.png";
-                description = "Prowlarr: Indexer Manager";
-                href = "https://prowlarr.darksailor.dev";
-                ping = "prowlarr.darksailor.dev";
-              };
-            }
+
             {
               "Home Assistant" = {
                 icon = "home-assistant.png";
                 description = "Home Automation";
                 href = "https://home.darksailor.dev";
-                ping = "home.darksailor.dev";
+                siteMonitor = "https://home.darksailor.dev";
               };
             }
           ];
@@ -84,7 +77,7 @@
                 icon = "gitea.png";
                 description = "Gitea Code Hosting";
                 href = "https://git.darksailor.dev";
-                ping = "git.darksailor.dev";
+                siteMonitor = "https://git.darksailor.dev";
               };
             }
             {
@@ -92,7 +85,7 @@
                 icon = "nextcloud.png";
                 description = "Nextcloud Suite";
                 href = "https://cloud.darksailor.dev";
-                ping = "cloud.darksailor.dev";
+                siteMonitor = "https://cloud.darksailor.dev";
               };
             }
             {
@@ -100,7 +93,7 @@
                 icon = "immich.png";
                 description = "Immich: Self-hosted Photo and Video Backup";
                 href = "https://photos.darksailor.dev";
-                ping = "photos.darksailor.dev";
+                siteMonitor = "https://photos.darksailor.dev";
               };
             }
             {
@@ -108,7 +101,7 @@
                 icon = "excalidraw.png";
                 description = "Excalidraw: Self-hosted Collaborative Whiteboard";
                 href = "https://draw.darksailor.dev";
-                ping = "draw.darksailor.dev";
+                siteMonitor = "https://draw.darksailor.dev";
               };
             }
             {
@@ -116,7 +109,7 @@
                 icon = "navidrome.png";
                 description = "A self-hosted music server and streamer.";
                 href = "https://music.darksailor.dev";
-                ping = "music.darksailor.dev";
+                siteMonitor = "https://music.darksailor.dev";
               };
             }
             {
@@ -124,7 +117,15 @@
                 icon = "open-webui.png";
                 description = "OpenwebUI: Self-hosted AI chat interface";
                 href = "https://chat.darksailor.dev";
-                ping = "chat.darksailor.dev";
+                siteMonitor = "https://chat.darksailor.dev";
+              };
+            }
+            {
+              "Prowlarr" = {
+                icon = "prowlarr.png";
+                description = "Prowlarr: Indexer Manager";
+                href = "https://prowlarr.darksailor.dev";
+                siteMonitor = "https://prowlarr.darksailor.dev";
               };
             }
           ];

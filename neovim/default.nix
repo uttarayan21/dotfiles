@@ -548,6 +548,7 @@ in {
         pyright.enable = true;
         slint_lsp.enable = true;
         wgsl_analyzer.enable = true;
+        glsl_analyzer.enable = true;
         # sourcekit.enable = true;
         openscad_lsp.enable = true;
         tinymist.enable = true;
