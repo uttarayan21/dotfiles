@@ -22,13 +22,51 @@
       #   glsl
       #   */
       #   ''
+      #     const float CURSOR_ANIMATION_SPEED = 150.0; // ms
+      #     const float TRAILING_CURSORS = 3.0;
+      #     bool at_pos(vec2 fragCoord, vec2 pos, vec2 size) {
+      #         return (pos.x <= fragCoord.x && fragCoord.x <= pos.x + size.x &&
+      #             pos.y - size.y <= fragCoord.y && fragCoord.y <= pos.y);
+      #     }
       #     void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+      #         // Normalized pixel coordinates (from 0 to 1)
       #         vec2 uv = fragCoord / iResolution.xy;
-      #         vec3 col = vec3(0.0);
-      #         col.r = 0.1 + 0.9 * uv.x;
-      #         col.g = 0.1 + 0.9 * uv.y;
-      #         col.b = 0.2;
-      #         fragColor = vec4(col, 1.0);
+      #         vec2 current_cursor = iCurrentCursor.xy;
+      #         vec2 previous_cursor = iPreviousCursor.xy;
+      #         float time_passed = (iTime - iTimeCursorChange) * 1000.0; // in ms
+      #
+      #         if (time_passed > CURSOR_ANIMATION_SPEED) {
+      #             // No animation, just render normally
+      #             fragColor = texture(iChannel0, uv);
+      #             return;
+      #         }
+      #         // Animate cursor meovement
+      #         vec4 col = texture(iChannel0, uv);
+      #         // linear interpolation between current and previous cursor position based on time passed
+      #         vec2 animated_cursor_pos = mix(previous_cursor, current_cursor, time_passed / CURSOR_ANIMATION_SPEED);
+      #         // make 3 trailing cursors for smoother animation
+      #         for (int i = 1; i <= int(TRAILING_CURSORS); i++) {
+      #             float t = float(i) / TRAILING_CURSORS;
+      #             vec2 trail_pos = mix(previous_cursor, current_cursor, (time_passed / CURSOR_ANIMATION_SPEED) * t);
+      #             if (at_pos(fragCoord, trail_pos, iCurrentCursor.zw)) {
+      #                 col = mix(col, iCurrentCursorColor, t);
+      #             }
+      #         }
+      #
+      #         // vec4 cursor_color = mix(iPreviousCursorColor, iCurrentCursorColor, time_passed / CURSOR_ANIMATION_SPEED);
+      #         vec4 cursor_color = iCurrentCursorColor; // no color animation for now
+      #         vec2 cursor_size = iCurrentCursor.zw;
+      #         // check if fragCoord is within the animated cursor rectangle
+      #         // y is in the negative direction
+      #         // if (animated_cursor_pos.x <= fragCoord.x && fragCoord.x <= animated_cursor_pos.x + cursor_size.x &&
+      #         //         animated_cursor_pos.y - cursor_size.y <= fragCoord.y && fragCoord.y <= animated_cursor_pos.y) {
+      #         //     col = cursor_color;
+      #         // }
+      #         if (at_pos(fragCoord, animated_cursor_pos, cursor_size)) {
+      #             col = cursor_color;
+      #         }
+      #
+      #         fragColor = col;
       #     }
       #   '');
     };

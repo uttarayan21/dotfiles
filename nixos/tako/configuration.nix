@@ -65,7 +65,7 @@
       dates = "daily";
       options = "--delete-older-than 5d";
     };
-    package = pkgs.nixVersions.latest; # deploy-rs doesn't work with nix >= 2.32
+    package = pkgs.nixVersions.nix_2_32; # deploy-rs doesn't work with nix >= 2.32
     distributedBuilds = true;
   };
 

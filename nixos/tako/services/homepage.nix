@@ -59,13 +59,20 @@
                 siteMonitor = "https://deluge.tsuba.darksailor.dev";
               };
             }
-
             {
               "Home Assistant" = {
                 icon = "home-assistant.png";
                 description = "Home Automation";
                 href = "https://home.darksailor.dev";
                 siteMonitor = "https://home.darksailor.dev";
+              };
+            }
+            {
+              "Pi Hole" = {
+                icon = "pi-hole.png";
+                description = "Pi-hole: Network-wide Ad Blocker";
+                href = "https://pihole.darksailor.dev";
+                siteMonitor = "https://pihole.darksailor.dev";
               };
             }
           ];
@@ -99,7 +106,7 @@
             {
               "Excalidraw" = {
                 icon = "excalidraw.png";
-                description = "Excalidraw: Self-hosted Collaborative Whiteboard";
+                description = "Excalidraw: Self-hosted Whiteboard";
                 href = "https://draw.darksailor.dev";
                 siteMonitor = "https://draw.darksailor.dev";
               };

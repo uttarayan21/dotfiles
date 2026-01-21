@@ -190,8 +190,8 @@
       ];
       bind = [
         # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-        "$mainMod, Return, exec, ${lib.getExe pkgs.wezterm}"
-        "$mainModShift, Return, exec, ${lib.getExe pkgs.kitty}"
+        "$mainMod, Return, exec, ${lib.getExe pkgs.kitty}"
+        "$mainModShift, Return, exec, ${lib.getExe pkgs.ghostty}"
         # "$mainModShift, Return, exec, ${pkgs.foot}/bin/foot"
         "$mainModShift, Q, killactive,"
         "$mainModShift, s, exec, ${lib.getExe pkgs.hyprshot} -m region -o ~/Pictures/Screenshots/"

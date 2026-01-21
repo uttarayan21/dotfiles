@@ -67,7 +67,7 @@
       dates = "daily";
       options = "--delete-older-than +5";
     };
-    package = pkgs.nixVersions.latest; # deploy-rs doesn't work with nix >= 2.32
+    package = pkgs.nixVersions.nix_2_32; # deploy-rs doesn't work with nix >= 2.33
     buildMachines = [
       ../../builders/tako.nix
       ../../builders/shiro.nix
