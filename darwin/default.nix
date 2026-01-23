@@ -3,6 +3,7 @@
   inputs,
   nix-darwin,
   overlays,
+  nixpkgs,
   ...
 }: (builtins.mapAttrs (
     name: device:
@@ -11,6 +12,7 @@
         specialArgs = {
           inherit device inputs;
           stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
+          cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
         };
         modules = [
           inputs.home-manager.darwinModules.home-manager

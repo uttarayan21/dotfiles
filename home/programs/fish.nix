@@ -6,6 +6,9 @@
   ...
 }:
 {
+  home.file = {
+    ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
+  };
   programs.fish = {
     enable = true;
     shellAbbrs = {

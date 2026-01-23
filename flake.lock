@@ -595,10 +595,10 @@
     "crates-io-index_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1763363725,
-        "narHash": "sha256-cxr5xIKZFP45yV1ZHFTB1sHo5YGiR3FA8D9vAfDizMo=",
+        "lastModified": 1769156654,
+        "narHash": "sha256-sARuZUnbpOTz6FBpO1j1TlLdA4Wj7bcZc0vTLJhOBzc=",
         "ref": "refs/heads/master",
-        "rev": "0382002e816a4cbd17d8d5b172f08b848aa22ff6",
+        "rev": "fa8b4a3aa55113e4e9e504aaae8d6b7ebd0db564",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/rust-lang/crates.io-index"
@@ -632,7 +632,9 @@
     },
     "crates-nix_2": {
       "inputs": {
-        "crates-io-index": "crates-io-index_2"
+        "crates-io-index": [
+          "crates-io-index"
+        ]
       },
       "locked": {
         "lastModified": 1763364255,
@@ -3492,6 +3494,7 @@
         "anyrun-rink": "anyrun-rink",
         "arion": "arion",
         "command-runner": "command-runner",
+        "crates-io-index": "crates-io-index_2",
         "crates-nix": "crates-nix_2",
         "csshacks": "csshacks",
         "d2": "d2",

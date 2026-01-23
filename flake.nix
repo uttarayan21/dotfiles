@@ -230,7 +230,14 @@
       url = "github:xatuke/handoff";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    crates-nix.url = "github:uttarayan21/crates.nix";
+    crates-io-index = {
+      url = "git+https://github.com/rust-lang/crates.io-index?shallow=1";
+      flake = false;
+    };
+    crates-nix = {
+      url = "github:uttarayan21/crates.nix";
+      inputs.crates-io-index.follows = "crates-io-index";
+    };
     headplane = {
       url = "github:tale/headplane";
       inputs.nixpkgs.follows = "nixpkgs";

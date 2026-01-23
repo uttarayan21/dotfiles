@@ -74,5 +74,6 @@
     # ./zellij.nix
     ./dysk.nix
     ./binwalk.nix
+    ./cargo.nix
   ];
 }

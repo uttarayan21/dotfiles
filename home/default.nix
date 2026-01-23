@@ -35,26 +35,6 @@
     username = device.user;
     homeDirectory = lib.mkForce device.home;
 
-    file = {
-      ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
-      ".cargo/config.toml".text =
-        # toml
-        ''
-          [alias]
-          lldb = ["with", "rust-lldb", "--"]
-          t = ["nextest", "run"]
-
-          [net]
-          git-fetch-with-cli = true
-
-          [registries.catscii]
-          index = "https://git.shipyard.rs/catscii/crate-index.git"
-
-          [http]
-          user-agent = "shipyard J0/QFq2Sa5y6nTxJQAb8t+e/3qLSub1/sa3zn0leZv6LKG/zmQcoikT9U3xPwbzp8hQ="
-        '';
-    };
-
     sessionVariables = {
       EDITOR = "nvim";
       SHELL = "${pkgs.bash}/bin/bash";
