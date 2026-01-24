@@ -11,6 +11,7 @@
     ./containers
     ./apps
     ./vms
+    ./games
   ];
 
   security.tpm2 = {

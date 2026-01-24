@@ -11,5 +11,6 @@
     ./gamemode.nix
     ./droidcam.nix
     ./wireshark.nix
+    ./flatpak.nix
   ];
 }
