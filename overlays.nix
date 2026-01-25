@@ -273,8 +273,12 @@
     # });
     wivrn-nightly = inputs.wivrn.packages.${prev.system}.default;
   };
+  games = final: prev: {
+    hytale-launcher = inputs.hytale-launcher.packages.${prev.system}.default;
+  };
 in
   [
+    games
     vr
     anyrun-overlay
     catppuccinThemes

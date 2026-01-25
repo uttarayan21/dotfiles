@@ -3,6 +3,7 @@
   inputs,
   overlays,
   home-manager-stable,
+  nixpkgs,
   nur,
   nixos-raspberrypi,
   ...
@@ -15,6 +16,7 @@
             inherit device;
             unstablePkgs = inputs.nixpkgs.legacyPackages.${device.system};
             masterPkgs = inputs.nixpkgs-master.legacyPackages.${device.system};
+            cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
           };
         system = device.system;
         modules = [
@@ -40,6 +42,7 @@
                 inherit inputs;
                 inherit device;
                 stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
+                cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
               };
               users.${device.user}.imports = [
                 inputs.nixvim.homeModules.nixvim

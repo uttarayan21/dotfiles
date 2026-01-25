@@ -1,4 +1,10 @@
-{cratesNix, ...}: {
+{
+  lib,
+  device,
+  cratesNix,
+  ...
+}:
+lib.mkIf (!device.isServer) {
   home.file.".cargo/config.toml".text =
     # toml
     ''
