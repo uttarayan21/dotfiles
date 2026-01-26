@@ -358,17 +358,17 @@ in {
         };
       };
       folding.enable = true;
-      grammarPackages =
-        (with pkgs.tree-sitter-grammars; [
-          tree-sitter-norg
-          tree-sitter-norg-meta
-          tree-sitter-just
-          tree-sitter-nu
-          tree-sitter-pest
-          tree-sitter-slint
-        ])
-        ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
-      nixGrammars = true;
+      # grammarPackages =
+      #   (with pkgs.tree-sitter-grammars; [
+      #     tree-sitter-norg
+      #     tree-sitter-norg-meta
+      #     tree-sitter-just
+      #     tree-sitter-nu
+      #     tree-sitter-pest
+      #     tree-sitter-slint
+      #   ])
+      #   ++ pkgs.vimPlugins.nvim-treesitter.allGrammars;
+      # nixGrammars = true;
     };
 
     telescope = {
