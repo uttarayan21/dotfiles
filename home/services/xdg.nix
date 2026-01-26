@@ -5,7 +5,7 @@
   ...
 }: {
   xdg.portal = {
-    enable = true;
+    enable = device.is "ryu";
     config = {
       hyprland.default = ["hyprland"];
       common.default = ["*" "hyprland"];
