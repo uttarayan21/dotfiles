@@ -189,11 +189,6 @@
       url = "github:uttarayan21/ddcbacklight";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    command-runner = {
-      url = "github:uttarayan21/command-runner";
-      # url = "path:/home/servius/Projects/command-runner";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     hyprmonitors = {
       url = "git+https://git.darksailor.dev/servius/hyprmonitors";
       # url = "path:/home/servius/Projects/hyprmonitors";

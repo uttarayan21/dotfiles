@@ -26,6 +26,7 @@
       withUWSM = true;
       xwayland.enable = true;
     };
+    uwsm.enable = true;
   };
 
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;

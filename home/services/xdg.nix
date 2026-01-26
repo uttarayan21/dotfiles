@@ -3,12 +3,11 @@
   lib,
   device,
   ...
-}:
-lib.optionalAttrs (device.is "ryu") {
+}: {
   xdg.portal = {
-    enable = pkgs.stdenv.isLinux;
+    enable = true;
     config = {
-      hyprland.default = ["kde" "hyprland"];
+      hyprland.default = ["hyprland"];
       common.default = ["*" "hyprland"];
     };
     extraPortals = with pkgs; [
