@@ -81,6 +81,14 @@ in {
         type = lib.types.attrsOf lib.types.str;
         description = "Roles for the AI chat clients";
       };
+      extraPackages = mkOption {
+        type = lib.types.listOf lib.types.package;
+        default = [];
+        example = literalExpression "with pkgs; [ jq yek ];";
+        description = ''
+          Additional packages to install.
+        '';
+      };
     };
   };
 
@@ -99,7 +107,7 @@ in {
       '';
     };
   in {
-    home.packages = mkIf cfg.enable [aichat-wrapped];
+    home.packages = mkIf cfg.enable ([aichat-wrapped] ++ cfg.extraPackages);
 
     programs.fish.interactiveShellInit = mkIf cfg.enableFishIntegration fishIntegration;
     programs.bash.initExtra = mkIf cfg.enableBashIntegration bashIntegration;
