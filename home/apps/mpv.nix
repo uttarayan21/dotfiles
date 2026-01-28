@@ -1,6 +1,6 @@
-{...}: {
+{pkgs, ...}: {
   programs.mpv = {
-    enable = true;
+    enable = pkgs.stdenv.isLinux;
     config = {
       vo = "gpu-next";
       gpu-api = "vulkan";
