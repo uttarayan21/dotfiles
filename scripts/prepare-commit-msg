@@ -7,7 +7,7 @@ SHA1=$3
 if [[ -z "$COMMIT_SOURCE" ]]
 then
   DIFF_OUTPUT=$(git diff --cached)
-  AI_CHAT_OUTPUT=$(echo "$DIFF_OUTPUT" | aichat --role %git-commit%)
+  AI_CHAT_OUTPUT=$(echo "$DIFF_OUTPUT" | aichat --role git-commit)
   CURRENT_MSG=$(cat "$COMMIT_MSG_FILE")
 
   {
