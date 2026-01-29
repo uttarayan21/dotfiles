@@ -75,5 +75,6 @@
     ./dysk.nix
     ./binwalk.nix
     ./cargo.nix
+    ./blobdrop.nix
   ];
 }
