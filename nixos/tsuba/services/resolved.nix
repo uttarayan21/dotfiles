@@ -1,11 +1,6 @@
 {...}: {
-  # services.resolved = {
-  #   enable = false;
-  #   settings = {
-  #     Resolve = {
-  #       FallbackDNS = [];
-  #     };
-  #   };
-  # };
+  services.resolved = {
+    enable = false;
+  };
   networking.nameservers = [];
 }
