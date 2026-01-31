@@ -1,9 +1,13 @@
 {...}: {
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    dnsovertls = "true";
-    domains = ["lemur-newton.ts.net"];
-    fallbackDns = ["1.1.1.1"];
+    settings = {
+      Resolve = {
+        DNSSEC = "true";
+        DNSoverTLS = "true";
+        Domains = ["lemur-newton.ts.net"];
+        FallbackDNS = [];
+      };
+    };
   };
 }
