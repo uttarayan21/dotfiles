@@ -33,6 +33,16 @@
               name = "gpt-oss:20b";
               type = "chat";
             }
+            # {
+            #   name = "gpt-oss:20b-instruct";
+            #   type = "chat";
+            #   real_name = "gpt-oss:20b";
+            #   patch = {
+            #     body = {
+            #       think = "low";
+            #     };
+            #   };
+            # }
             {
               name = "qwen3:30b-a3b";
               type = "chat";

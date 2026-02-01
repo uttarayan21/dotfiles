@@ -276,7 +276,19 @@ sessionVariables = {
 - Secrets are managed with SOPS (Secrets OPerationS)
 - Encrypted secrets in `secrets/` directory
 - Configuration in `.sops.yaml`
-- Access secrets via `config.sops.secrets."path/to/secret".path`
+- Access secrets via `config.sops.secrets."secret/value".path` which corresponds to following in yaml.
+    ```yaml
+    foo:
+        bar: somesecret
+    ```
+    The path is the file that contains `somesecret`
+- Add new secrets using `sops set` 
+  Example
+  ```bash
+    openssl rand -hex 32 | tr -d '\n' | jq -sR | sops set --value-stdin secrets/secrets.yaml '["foo"]["bar"]'
+  ```
+  This will add a randomly generated secret to the sops file
+
 
 ## Common Patterns
 
