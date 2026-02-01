@@ -2,6 +2,11 @@
   services = {
     caddy = {
       enable = true;
+      globalConfig = ''
+        servers {
+          metrics
+        }
+      '';
       extraConfig = ''
         (auth) {
            forward_auth localhost:5555 {

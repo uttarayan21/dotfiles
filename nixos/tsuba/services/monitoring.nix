@@ -1,10 +1,35 @@
-{...}: {
+{pkgs, ...}: let
+  # Port configurations
+  ports = {
+    # System exporters
+    node = 9100;
+    systemd = 9558;
+    process = 9256;
+
+    # Infrastructure exporters
+    cadvisor = 8080;
+    caddy = 2019;
+
+    # Media exporters
+    jellyfin = 9220;
+    pihole = 9617;
+
+    # Servarr exporters (via exportarr)
+    sonarr = 9707;
+    radarr = 9708;
+    lidarr = 9709;
+    bazarr = 9710;
+
+    # Torrent
+    deluge = 9354;
+  };
+in {
   services = {
     prometheus = {
       exporters = {
         systemd = {
           enable = true;
-          port = 9558;
+          port = ports.systemd;
         };
         node = {
           enable = true;
@@ -19,8 +44,10 @@
             "time"
             "uname"
             "vmstat"
+            "diskstats"
+            "cpu"
           ];
-          port = 9100;
+          port = ports.node;
         };
         process = {
           enable = true;
@@ -35,14 +62,128 @@
     };
   };
 
+  # Docker cAdvisor for container metrics
+  virtualisation.oci-containers.containers.cadvisor = {
+    image = "gcr.io/cadvisor/cadvisor:v0.49.1";
+    ports = ["${toString ports.cadvisor}:8080"];
+    volumes = [
+      "/:/rootfs:ro"
+      "/var/run:/var/run:ro"
+      "/sys:/sys:ro"
+      "/var/lib/docker/:/var/lib/docker:ro"
+      "/dev/disk/:/dev/disk:ro"
+    ];
+    extraOptions = [
+      "--privileged"
+      "--device=/dev/kmsg"
+    ];
+  };
+
+  # Jellyfin - use built-in metrics endpoint at http://localhost:8096/metrics
+  # No separate exporter needed - Prometheus will scrape directly
+
+  # Home Assistant - has built-in Prometheus integration
+  # Configure in Home Assistant configuration.yaml:
+  # prometheus:
+  #   namespace: homeassistant
+
+  # Pi-hole exporter
+  systemd.services.pihole-exporter = {
+    description = "Pi-hole Prometheus Exporter";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.prometheus-pihole-exporter}/bin/pihole_exporter -pihole_hostname localhost -pihole_port 8053 -port ${toString ports.pihole}";
+      Restart = "on-failure";
+    };
+  };
+
+  # Exportarr for Sonarr
+  systemd.services.exportarr-sonarr = {
+    description = "Exportarr Prometheus Exporter for Sonarr";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.exportarr}/bin/exportarr sonarr --port ${toString ports.sonarr} --url http://localhost:8989";
+      Restart = "on-failure";
+    };
+  };
+
+  # Exportarr for Radarr
+  systemd.services.exportarr-radarr = {
+    description = "Exportarr Prometheus Exporter for Radarr";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.exportarr}/bin/exportarr radarr --port ${toString ports.radarr} --url http://localhost:7878";
+      Restart = "on-failure";
+    };
+  };
+
+  # Exportarr for Lidarr
+  systemd.services.exportarr-lidarr = {
+    description = "Exportarr Prometheus Exporter for Lidarr";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.exportarr}/bin/exportarr lidarr --port ${toString ports.lidarr} --url http://localhost:8686";
+      Restart = "on-failure";
+    };
+  };
+
+  # Exportarr for Bazarr
+  systemd.services.exportarr-bazarr = {
+    description = "Exportarr Prometheus Exporter for Bazarr";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.exportarr}/bin/exportarr bazarr --port ${toString ports.bazarr} --url http://localhost:6767";
+      Restart = "on-failure";
+    };
+  };
+
+  # Deluge exporter
+  systemd.services.deluge-exporter = {
+    description = "Deluge Prometheus Exporter";
+    wantedBy = ["multi-user.target"];
+    after = ["network.target"];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.prometheus-deluge-exporter}/bin/deluge-exporter localhost:58846 --addr :${toString ports.deluge}";
+      Restart = "on-failure";
+    };
+  };
+
+  # Samba exporter - using a simple script to expose smbstatus metrics
+  # For now, we'll skip this and can add later if needed
+
   # Open firewall ports for Prometheus exporters
   networking.firewall = {
-    allowedTCPPorts = [
-      9100 # node exporter
-      9256 # process exporter
-      9558 # systemd exporter
-      9134 # zfs exporter
-      9633 # smartctl exporter
+    # Allow from Tailscale network
+    interfaces."tailscale0".allowedTCPPorts = [
+      ports.node
+      ports.systemd
+      ports.process
+      ports.cadvisor
+      ports.caddy
+      ports.jellyfin
+      ports.pihole
+      ports.sonarr
+      ports.radarr
+      ports.lidarr
+      ports.bazarr
+      ports.deluge
     ];
   };
 }

@@ -3,7 +3,7 @@
     ./games
     # ./headscale.nix
     ./llms.nix
-    # ./monitoring.nix
+    ./monitoring.nix
     # ./paperless.nix
     ./navidrome.nix
     ./shitpost.nix

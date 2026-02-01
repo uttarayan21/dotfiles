@@ -88,6 +88,14 @@
               };
             }
             {
+              "Grafana" = {
+                icon = "grafana.png";
+                description = "Grafana Monitoring & Metrics";
+                href = "https://grafana.darksailor.dev";
+                siteMonitor = "https://grafana.darksailor.dev";
+              };
+            }
+            {
               "Nextcloud" = {
                 icon = "nextcloud.png";
                 description = "Nextcloud Suite";

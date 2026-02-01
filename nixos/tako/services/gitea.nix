@@ -63,6 +63,10 @@
           # LFS_START_SERVER = true;
           LFS_ALLOW_PURE_SSH = true;
         };
+        metrics = {
+          ENABLED = true;
+          TOKEN = "";
+        };
         oauth2_client = {
           ENABLE_AUTO_REGISTRATION = true;
           ACCOUNT_LINKING = "auto";

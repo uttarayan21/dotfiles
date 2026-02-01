@@ -14,6 +14,11 @@
   services = {
     caddy = {
       enable = true;
+      globalConfig = ''
+        servers {
+          metrics
+        }
+      '';
       extraConfig = ''
         (cloudflare) {
             tls {
