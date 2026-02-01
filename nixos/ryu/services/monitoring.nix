@@ -6,7 +6,7 @@
     systemd = 9558;
     process = 9256;
     nvidiagpu = 9835;
-    
+
     # Infrastructure exporters
     cadvisor = 8080;
     caddy = 2019;
@@ -53,7 +53,7 @@ in {
       };
     };
   };
-  
+
   # Docker cAdvisor for container metrics
   virtualisation.oci-containers.containers.cadvisor = {
     image = "gcr.io/cadvisor/cadvisor:v0.49.1";
@@ -70,7 +70,7 @@ in {
       "--device=/dev/kmsg"
     ];
   };
-  
+
   # Open firewall ports for Prometheus exporters
   networking.firewall = {
     # Allow from Tailscale network
