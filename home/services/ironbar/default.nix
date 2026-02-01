@@ -13,13 +13,14 @@
       "${device.monitors.secondary}" = {
         position = "bottom";
         start = [
-          {
-            type = "launcher";
-            favourites = ["firefox" "discord"];
-            show_names = false;
-            show_icons = true;
-          }
-          {type = "focused";}
+          {type = "tray";}
+          # {
+          #   type = "launcher";
+          #   favourites = ["firefox" "discord"];
+          #   show_names = false;
+          #   show_icons = true;
+          # }
+          # {type = "focused";}
         ];
         end = [
           {
@@ -53,25 +54,24 @@
               # networks= 3;
             };
           }
-          {type = "tray";}
         ];
         start = [
           {
             type = "workspaces";
             name_map = {
-              "1" = "icon:foot";
+              "1" = "icon:kitty";
               "2" = "icon:code";
               "3" = "icon:firefox";
               "4" = "icon:slack";
-              "5" = "icon:steam";
-              "6" = "icon:foot";
-              "7" = "icon:foot";
-              "8" = "icon:firefox";
-              "9" = "icon:discord";
-              "10" = "icon:spotify";
+              # "5" = "icon:steam";
+              # "6" = "icon:foot";
+              # "7" = "icon:foot";
+              # "8" = "icon:firefox";
+              # "9" = "icon:discord";
+              # "10" = "icon:spotify";
             };
             favorites = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
-            all_monitors = true;
+            all_monitors = false;
           }
         ];
       };
