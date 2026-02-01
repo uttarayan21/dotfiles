@@ -244,9 +244,9 @@ in {
         static_configs = [
           {
             targets = [
-              "tsuba:9100"
-              "tsuba:9558"
-              "tsuba:9256"
+              "tsuba:9100" # node
+              "tsuba:9558" # systemd
+              "tsuba:9256" # process
             ];
             labels = {
               instance = "tsuba";
