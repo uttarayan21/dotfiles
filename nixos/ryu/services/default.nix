@@ -4,7 +4,6 @@
     # ./zerotier.nix
     # ./dnscrypt.nix
     ./caddy.nix
-    ./command-runner.nix
     ./dualsense.nix
     ./fprintd.nix
     ./fwupd.nix
