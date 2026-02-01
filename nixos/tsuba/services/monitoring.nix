@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  config,
+  ...
+}: let
   # Port configurations
   ports = {
     # System exporters
@@ -24,6 +28,7 @@
     deluge = 9354;
   };
 in {
+  sops.secrets."pihole/password" = {};
   services = {
     prometheus = {
       exporters = {
@@ -88,69 +93,83 @@ in {
   #   namespace: homeassistant
 
   # Pi-hole exporter
+  # Uses sops-managed API token for authentication with Pi-hole v6
+  # To set the token: edit secrets/secrets.yaml and replace the placeholder at pihole.api_token
   systemd.services.pihole-exporter = {
     description = "Pi-hole Prometheus Exporter";
     wantedBy = ["multi-user.target"];
-    after = ["network.target"];
+    after = ["network.target" "sops-nix.service"];
     serviceConfig = {
       Type = "simple";
       DynamicUser = true;
-      ExecStart = "${pkgs.prometheus-pihole-exporter}/bin/pihole_exporter -pihole_hostname localhost -pihole_port 8053 -port ${toString ports.pihole}";
+      # Load API token from sops secret file
+      LoadCredential = "ppassword:${config.sops.secrets."pihole/password".path}";
+      ExecStart = ''
+        ${pkgs.bash}/bin/bash -c '${pkgs.prometheus-pihole-exporter}/bin/pihole-exporter \
+          -pihole_hostname pihole.darksailor.dev \
+          -pihole_port 8053 \
+          -port ${toString ports.pihole} \
+          -pihole_password $(cat ''${CREDENTIALS_DIRECTORY}/ppassword)'
+      '';
       Restart = "on-failure";
     };
   };
 
   # Exportarr for Sonarr
-  systemd.services.exportarr-sonarr = {
-    description = "Exportarr Prometheus Exporter for Sonarr";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      ExecStart = "${pkgs.exportarr}/bin/exportarr sonarr --port ${toString ports.sonarr} --url http://localhost:8989";
-      Restart = "on-failure";
-    };
-  };
+  # Disabled: needs API key configuration
+  # systemd.services.exportarr-sonarr = {
+  #   description = "Exportarr Prometheus Exporter for Sonarr";
+  #   wantedBy = ["multi-user.target"];
+  #   after = ["network.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     DynamicUser = true;
+  #     ExecStart = "${pkgs.exportarr}/bin/exportarr sonarr --port ${toString ports.sonarr} --url http://localhost:8989";
+  #     Restart = "on-failure";
+  #   };
+  # };
 
   # Exportarr for Radarr
-  systemd.services.exportarr-radarr = {
-    description = "Exportarr Prometheus Exporter for Radarr";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      ExecStart = "${pkgs.exportarr}/bin/exportarr radarr --port ${toString ports.radarr} --url http://localhost:7878";
-      Restart = "on-failure";
-    };
-  };
+  # Disabled: needs API key configuration
+  # systemd.services.exportarr-radarr = {
+  #   description = "Exportarr Prometheus Exporter for Radarr";
+  #   wantedBy = ["multi-user.target"];
+  #   after = ["network.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     DynamicUser = true;
+  #     ExecStart = "${pkgs.exportarr}/bin/exportarr radarr --port ${toString ports.radarr} --url http://localhost:7878";
+  #     Restart = "on-failure";
+  #   };
+  # };
 
   # Exportarr for Lidarr
-  systemd.services.exportarr-lidarr = {
-    description = "Exportarr Prometheus Exporter for Lidarr";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      ExecStart = "${pkgs.exportarr}/bin/exportarr lidarr --port ${toString ports.lidarr} --url http://localhost:8686";
-      Restart = "on-failure";
-    };
-  };
+  # Disabled: needs API key configuration
+  # systemd.services.exportarr-lidarr = {
+  #   description = "Exportarr Prometheus Exporter for Lidarr";
+  #   wantedBy = ["multi-user.target"];
+  #   after = ["network.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     DynamicUser = true;
+  #     ExecStart = "${pkgs.exportarr}/bin/exportarr lidarr --port ${toString ports.lidarr} --url http://localhost:8686";
+  #     Restart = "on-failure";
+  #   };
+  # };
 
   # Exportarr for Bazarr
-  systemd.services.exportarr-bazarr = {
-    description = "Exportarr Prometheus Exporter for Bazarr";
-    wantedBy = ["multi-user.target"];
-    after = ["network.target"];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      ExecStart = "${pkgs.exportarr}/bin/exportarr bazarr --port ${toString ports.bazarr} --url http://localhost:6767";
-      Restart = "on-failure";
-    };
-  };
+  # Disabled: needs API key configuration
+  # systemd.services.exportarr-bazarr = {
+  #   description = "Exportarr Prometheus Exporter for Bazarr";
+  #   wantedBy = ["multi-user.target"];
+  #   after = ["network.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     DynamicUser = true;
+  #     ExecStart = "${pkgs.exportarr}/bin/exportarr bazarr --port ${toString ports.bazarr} --url http://localhost:6767";
+  #     Restart = "on-failure";
+  #   };
+  # };
 
   # Deluge exporter
   systemd.services.deluge-exporter = {
@@ -179,10 +198,10 @@ in {
       ports.caddy
       ports.jellyfin
       ports.pihole
-      ports.sonarr
-      ports.radarr
-      ports.lidarr
-      ports.bazarr
+      # ports.sonarr  # Disabled - needs API key
+      # ports.radarr  # Disabled - needs API key
+      # ports.lidarr  # Disabled - needs API key
+      # ports.bazarr  # Disabled - needs API key
       ports.deluge
     ];
   };

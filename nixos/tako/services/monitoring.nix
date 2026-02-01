@@ -78,42 +78,23 @@ in {
       ];
 
       # Provision popular community dashboards
-      dashboards.path = let
-        # Define dashboard files with proper hashes
-        nodeExporterFull = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/1860/revisions/37/download";
-          sha256 = "0qza4j8lywrj08bqbww52dgh2p2b9rkhq5p313g72i57lrlkacfl";
+      dashboards = {
+        settings = {
+          apiVersion = 1;
+          providers = [
+            {
+              name = "default";
+              orgId = 1;
+              folder = "";
+              type = "file";
+              disableDeletion = false;
+              updateIntervalSeconds = 10;
+              allowUiUpdates = true;
+              options.path = "/var/lib/grafana/dashboards";
+            }
+          ];
         };
-        nvidiaDashboard = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/14574/revisions/9/download";
-          sha256 = "170ijap5i99sapkxlf3k0lnvwmb6g9jkk7q66nwjwswkj2a7rqbr";
-        };
-        postgresqlDashboard = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/9628/revisions/7/download";
-          sha256 = "0xmk68kqb9b8aspjj2f8wxv2mxiqk9k3xs0yal4szmzbv65c6k66";
-        };
-        redisDashboard = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/11835/revisions/1/download";
-          sha256 = "15lbn4i8j5hiypl4dsg0d72jgrgjwpagkf5kcwx66gyps17jcrxx";
-        };
-        dockerDashboard = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/193/revisions/1/download";
-          sha256 = "1lxbbl91fh0yfh8x53205b7nw5ivghlpfb0m308z2p6fzvz2iq2m";
-        };
-        caddyDashboard = pkgs.fetchurl {
-          url = "https://grafana.com/api/dashboards/14280/revisions/1/download";
-          sha256 = "0j3q68cq1nj8gcxkqz5h1kn1ds5kgq4jlkw73xp6yc88mbm5nyh4";
-        };
-      in
-        pkgs.runCommand "grafana-dashboards" {} ''
-          mkdir -p $out
-          cp ${nodeExporterFull} $out/node-exporter-full.json
-          cp ${nvidiaDashboard} $out/nvidia-gpu.json
-          cp ${postgresqlDashboard} $out/postgresql.json
-          cp ${redisDashboard} $out/redis.json
-          cp ${dockerDashboard} $out/docker-cadvisor.json
-          cp ${caddyDashboard} $out/caddy.json
-        '';
+      };
     };
   };
 
@@ -418,24 +399,74 @@ in {
   };
 
   # Link dashboard files from Nix store to Grafana's expected location
-  # systemd.tmpfiles.rules = let
-  #   dashboardPath = config.services.grafana.provision.dashboards.path;
-  # in [
-  #   "L+ /var/lib/grafana/dashboards/node-exporter-full.json - - - - ${dashboardPath}/node-exporter-full.json"
-  #   "L+ /var/lib/grafana/dashboards/nvidia-gpu.json - - - - ${dashboardPath}/nvidia-gpu.json"
-  #   "L+ /var/lib/grafana/dashboards/postgresql.json - - - - ${dashboardPath}/postgresql.json"
-  #   "L+ /var/lib/grafana/dashboards/redis.json - - - - ${dashboardPath}/redis.json"
-  #   "L+ /var/lib/grafana/dashboards/docker-cadvisor.json - - - - ${dashboardPath}/docker-cadvisor.json"
-  #   "L+ /var/lib/grafana/dashboards/caddy.json - - - - ${dashboardPath}/caddy.json"
-  # ];
+  systemd.tmpfiles.rules = let
+    # Define dashboard files with proper hashes
+    nodeExporterFull = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/1860/revisions/37/download";
+      sha256 = "0qza4j8lywrj08bqbww52dgh2p2b9rkhq5p313g72i57lrlkacfl";
+    };
+    nvidiaDashboardRaw = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/14574/revisions/9/download";
+      sha256 = "170ijap5i99sapkxlf3k0lnvwmb6g9jkk7q66nwjwswkj2a7rqbr";
+    };
+    # Fix NVIDIA dashboard to use our Prometheus datasource
+    nvidiaDashboard = pkgs.runCommand "nvidia-gpu-fixed.json" {} ''
+      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${nvidiaDashboardRaw} > $out
+    '';
+    postgresqlDashboardRaw = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/9628/revisions/7/download";
+      sha256 = "0xmk68kqb9b8aspjj2f8wxv2mxiqk9k3xs0yal4szmzbv65c6k66";
+    };
+    # Fix PostgreSQL dashboard to use our Prometheus datasource
+    postgresqlDashboard = pkgs.runCommand "postgresql-fixed.json" {} ''
+      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${postgresqlDashboardRaw} > $out
+    '';
+    redisDashboard = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/11835/revisions/1/download";
+      sha256 = "15lbn4i8j5hiypl4dsg0d72jgrgjwpagkf5kcwx66gyps17jcrxx";
+    };
+    dockerDashboardRaw = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/193/revisions/1/download";
+      sha256 = "1lxbbl91fh0yfh8x53205b7nw5ivghlpfb0m308z2p6fzvz2iq2m";
+    };
+    # Fix Docker dashboard to use our Prometheus datasource
+    dockerDashboard = pkgs.runCommand "docker-cadvisor-fixed.json" {} ''
+      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${dockerDashboardRaw} > $out
+    '';
+    caddyDashboardRaw = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/14280/revisions/1/download";
+      sha256 = "0j3q68cq1nj8gcxkqz5h1kn1ds5kgq4jlkw73xp6yc88mbm5nyh4";
+    };
+    # Fix Caddy dashboard to use our Prometheus datasource
+    caddyDashboard = pkgs.runCommand "caddy-fixed.json" {} ''
+      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${caddyDashboardRaw} > $out
+    '';
+    piholeDashboardRaw = pkgs.fetchurl {
+      url = "https://grafana.com/api/dashboards/10176/revisions/3/download";
+      sha256 = "18f8w3l5k178agipfbimg29lkf2i32xynin1g1v5abiac3ahj7ih";
+    };
+    # Fix Pi-hole dashboard to use our Prometheus datasource
+    piholeDashboard = pkgs.runCommand "pihole-fixed.json" {} ''
+      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${piholeDashboardRaw} > $out
+    '';
+  in [
+    "d /var/lib/grafana/dashboards 0755 grafana grafana -"
+    "L+ /var/lib/grafana/dashboards/node-exporter-full.json - - - - ${nodeExporterFull}"
+    "L+ /var/lib/grafana/dashboards/nvidia-gpu.json - - - - ${nvidiaDashboard}"
+    "L+ /var/lib/grafana/dashboards/postgresql.json - - - - ${postgresqlDashboard}"
+    "L+ /var/lib/grafana/dashboards/redis.json - - - - ${redisDashboard}"
+    "L+ /var/lib/grafana/dashboards/docker-cadvisor.json - - - - ${dockerDashboard}"
+    "L+ /var/lib/grafana/dashboards/caddy.json - - - - ${caddyDashboard}"
+    "L+ /var/lib/grafana/dashboards/pihole.json - - - - ${piholeDashboard}"
+  ];
 
   # Open firewall ports for Prometheus to scrape exporters
   networking.firewall = {
-    allowedTCPPorts = [
-      ports.node
-      ports.systemd
-      ports.process
-    ];
+    # allowedTCPPorts = [
+    #   ports.node
+    #   ports.systemd
+    #   ports.process
+    # ];
 
     # Allow Prometheus and Grafana access from Tailscale network
     interfaces."tailscale0".allowedTCPPorts = [
