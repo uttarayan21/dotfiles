@@ -106,7 +106,7 @@ in {
       LoadCredential = "ppassword:${config.sops.secrets."pihole/password".path}";
       ExecStart = ''
         ${pkgs.bash}/bin/bash -c '${pkgs.prometheus-pihole-exporter}/bin/pihole-exporter \
-          -pihole_hostname pihole.darksailor.dev \
+          -pihole_hostname localhost \
           -pihole_port 8053 \
           -port ${toString ports.pihole} \
           -pihole_password $(cat ''${CREDENTIALS_DIRECTORY}/ppassword)'

@@ -55,21 +55,21 @@ in {
   };
 
   # Docker cAdvisor for container metrics
-  virtualisation.oci-containers.containers.cadvisor = {
-    image = "gcr.io/cadvisor/cadvisor:v0.49.1";
-    ports = ["${toString ports.cadvisor}:8080"];
-    volumes = [
-      "/:/rootfs:ro"
-      "/var/run:/var/run:ro"
-      "/sys:/sys:ro"
-      "/var/lib/docker/:/var/lib/docker:ro"
-      "/dev/disk/:/dev/disk:ro"
-    ];
-    extraOptions = [
-      "--privileged"
-      "--device=/dev/kmsg"
-    ];
-  };
+  # virtualisation.oci-containers.containers.cadvisor = {
+  #   image = "gcr.io/cadvisor/cadvisor:v0.49.1";
+  #   ports = ["${toString ports.cadvisor}:8080"];
+  #   volumes = [
+  #     "/:/rootfs:ro"
+  #     "/var/run:/var/run:ro"
+  #     "/sys:/sys:ro"
+  #     "/var/lib/docker/:/var/lib/docker:ro"
+  #     "/dev/disk/:/dev/disk:ro"
+  #   ];
+  #   extraOptions = [
+  #     "--privileged"
+  #     "--device=/dev/kmsg"
+  #   ];
+  # };
 
   # Open firewall ports for Prometheus exporters
   networking.firewall = {
