@@ -20,6 +20,7 @@
   };
 in {
   opts = {
+    autoread = true;
     completeopt = "menu,menuone,popup,noselect";
     expandtab = true;
     foldenable = true;
@@ -106,7 +107,7 @@ in {
       "<C-q>x" = "[[<cmd>tabclose<cr>]]";
       "<C-q>n" = "[[<cmd>tabnext<cr>]]";
       "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
-      "<c-.>" = "require('sidekick.cli').toggle";
+      "<C-.>" = "require('opencode').toggle";
     };
     terminal = {
       "<C-\\>" = "require('FTerm').toggle";
@@ -177,15 +178,18 @@ in {
     trouble.enable = true;
     ts-context-commentstring.enable = true;
     which-key.enable = true;
-
-    sidekick = {
+    opencode = {
       enable = true;
-      settings = {
-        nes = {
-          enabled = false;
-        };
-      };
     };
+
+    # sidekick = {
+    #   enable = true;
+    #   settings = {
+    #     nes = {
+    #       enabled = false;
+    #     };
+    #   };
+    # };
 
     conform-nvim = {
       enable = true;
@@ -857,5 +861,6 @@ in {
     pkgs.lua
     pkgs.ripgrep
     pkgs.nodejs-slim
+    pkgs.lsof
   ];
 }
