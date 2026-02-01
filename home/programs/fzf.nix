@@ -1,1 +1,1 @@
-{pkgs, ...}: { home.packages = [pkgs.fzf];}
+{pkgs, ...}: {home.packages = [pkgs.fzf];}

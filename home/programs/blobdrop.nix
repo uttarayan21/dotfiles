@@ -1,1 +1,8 @@
-{pkgs, ...}: {home.packages = [pkgs.blobdrop];}
+{
+  pkgs,
+  device,
+  lib,
+  ...
+}: {
+  home.packages = lib.optionals (device.name != "shiro") [pkgs.blobdrop];
+}
