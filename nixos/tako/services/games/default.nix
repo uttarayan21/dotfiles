@@ -2,7 +2,7 @@
   imports = [
     # ./minecraft.nix
     # ./satisfactory.nix
-    ./terraria.nix
+    # ./terraria.nix
   ];
 
   environment.systemPackages = with pkgs; [
