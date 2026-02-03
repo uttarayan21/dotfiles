@@ -12,14 +12,18 @@
     ./ast-grep.nix
     ./atuin.nix
     ./bat.nix
+    ./binwalk.nix
+    ./blobdrop.nix
     ./bottom.nix
     ./btop.nix
     ./cachix.nix
     ./carapace.nix
+    ./cargo.nix
     ./ddcbacklight.nix
     ./deploy-rs.nix
     ./direnv.nix
     ./dust.nix
+    ./dysk.nix
     ./eilmeldung.nix
     ./eza.nix
     ./fastfetch.nix
@@ -39,6 +43,7 @@
     ./neovim.nix
     ./nix-index.nix
     ./nushell.nix
+    ./omnix.nix
     ./opencode.nix
     ./p7zip.nix
     ./pkg-config.nix
@@ -63,7 +68,6 @@
     # ./ncmpcpp.nix
     # ./newsboat.nix
     # ./nh.nix
-    # ./omnix.nix
     # ./retroarch.nix
     # ./ryujinx.nix
     # ./sxiv.nix
@@ -72,9 +76,5 @@
     # ./tuifeed.nix
     # ./xh.nix
     # ./zellij.nix
-    ./dysk.nix
-    ./binwalk.nix
-    ./cargo.nix
-    ./blobdrop.nix
   ];
 }
