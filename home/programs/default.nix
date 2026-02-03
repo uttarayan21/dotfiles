@@ -47,6 +47,7 @@
     ./opencode.nix
     ./p7zip.nix
     ./pkg-config.nix
+    ./retroarch.nix
     ./ripgrep.nix
     ./rustup.nix
     ./sd.nix
@@ -68,7 +69,6 @@
     # ./ncmpcpp.nix
     # ./newsboat.nix
     # ./nh.nix
-    # ./retroarch.nix
     # ./ryujinx.nix
     # ./sxiv.nix
     # ./tea.nix
