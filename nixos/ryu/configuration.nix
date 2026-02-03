@@ -81,7 +81,7 @@
   users.users.${device.user} = {
     uid = device.uid;
     isNormalUser = true;
-    extraGroups = ["wheel" "audio" "i2c" "media" "video" "tss"];
+    extraGroups = ["wheel" "audio" "i2c" "media" "video" "tss" "plugdev"];
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub

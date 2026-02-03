@@ -252,6 +252,10 @@
     hytale-launcher = {
       url = "github:JPyke3/hytale-launcher-nix";
     };
+    mixid = {
+      url = "github:leguteape/MixiD";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

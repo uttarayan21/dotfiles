@@ -291,6 +291,7 @@ in
     inputs.headplane.overlays.default
     inputs.vicinae.overlays.default
     inputs.eilmeldung.overlays.default
+    inputs.mixid.overlays.default
     jellyfin
     libfprint
     misc-applications
