@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.optionalAttrs (device.is "ryu") {
+lib.optionalAttrs (device.is "ryu" || device.is "kuro") {
   programs.opencode = {
     enable = true;
   };
