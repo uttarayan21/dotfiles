@@ -21,5 +21,6 @@
     # ./sunshine.nix
     ./tailscale.nix
     ./wivrn.nix
+    ./pipewire.nix
   ];
 }

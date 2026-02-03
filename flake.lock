@@ -2425,14 +2425,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1770132108,
-        "narHash": "sha256-0Tzv5KCo2XPAq01An0BRNJXL3DmemY1J+ZYeYiqXsE8=",
-        "path": "/home/servius/Projects/MixiD",
-        "type": "path"
+        "lastModified": 1768471435,
+        "narHash": "sha256-gf0oCl8LrBDaEVxtDLa9eR8wNC7ropbsYsI2ILXPjWk=",
+        "owner": "leguteape",
+        "repo": "MixiD",
+        "rev": "32d049213cdf4d4d25f310609749daa72f26cf65",
+        "type": "github"
       },
       "original": {
-        "path": "/home/servius/Projects/MixiD",
-        "type": "path"
+        "owner": "leguteape",
+        "repo": "MixiD",
+        "type": "github"
       }
     },
     "music-player": {
