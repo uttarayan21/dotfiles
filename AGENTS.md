@@ -133,6 +133,7 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
 2. **DO NOT add shell scripts** - use Nix expressions
 3. **All configurations must use Nix expressions** when possible
 4. **Follow existing naming conventions** and directory structure
+5. Create custom application entries in `~/.local/share/applications/{appname}.desktop`
 
 ## Secrets Management
 

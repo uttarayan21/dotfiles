@@ -3,25 +3,27 @@
   device,
   cratesNix,
   ...
-}:
-lib.mkIf (!device.isServer) {
-  home.file.".cargo/config.toml".text =
-    # toml
-    ''
-      [alias]
-      lldb = ["with", "rust-lldb", "--"]
-      t = ["nextest", "run"]
+}: let
+  cargo-credential-1password = cratesNix.buildCrate "cargo-credential-1password" {};
+in
+  lib.mkIf (!device.isServer) {
+    home.file.".cargo/config.toml".text =
+      # toml
+      ''
+        [alias]
+        lldb = ["with", "rust-lldb", "--"]
+        t = ["nextest", "run"]
 
-      [net]
-      git-fetch-with-cli = true
+        [net]
+        git-fetch-with-cli = true
 
-      [registries.kellnr]
-      index = "sparse+https://crates.darksailor.dev/api/v1/crates/"
+        [registries.kellnr]
+        index = "sparse+https://crates.darksailor.dev/api/v1/crates/"
 
-      [registry]
-      global-credential-providers = ["cargo:token", "/etc/profiles/per-user/fs0c131y/bin/cargo-credential-1password --account my.1password.com"]
-    '';
-  home.packages = [
-    (cratesNix.buildCrate "cargo-credential-1password" {})
-  ];
-}
+        [registry]
+        global-credential-providers = ["cargo:token", "${lib.getExe cargo-credential-1password} --account my.1password.com"]
+      '';
+    home.packages = [
+      cargo-credential-1password
+    ];
+  }
