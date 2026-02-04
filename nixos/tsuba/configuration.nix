@@ -5,6 +5,10 @@
   device,
   ...
 }: {
+  imports = [
+    ../../modules/nixos/substituters.nix
+  ];
+
   users.extraUsers.servius.extraGroups = ["docker"];
   networking.firewall.enable = false;
   services.openssh.enable = true;
@@ -16,14 +20,6 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = ["root" "remotebuilder" device.user];
-      trusted-substituters = [
-        "https://nix-community.cachix.org"
-        "https://nixos-raspberrypi.cachix.org"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-      ];
     };
     extraOptions = ''
       build-users-group = nixbld

@@ -9,6 +9,7 @@
     ./services
     ./tako.nix
     # ./docker.nix
+    ../../modules/nixos/substituters.nix
   ];
 
   virtualisation.docker.enable = true;
@@ -35,7 +36,6 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
   nix = {
     settings = {
       max-jobs = 1;
@@ -43,16 +43,6 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = [device.user "remotebuilder"];
-      trusted-substituters = [
-        "https://nix-community.cachix.org"
-        "https://nixos-raspberrypi.cachix.org"
-        # "https://sh.darksailor.dev"
-      ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "nixos-raspberrypi.cachix.org-1:4iMO9LXa8BqhU+Rpg6LQKiGa2lsNh/j2oiYLNOQ5sPI="
-        # "tako:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
-      ];
     };
     extraOptions = ''
       build-users-group = nixbld
@@ -67,6 +57,9 @@
     };
     package = pkgs.nixVersions.nix_2_32; # deploy-rs doesn't work with nix >= 2.32
     distributedBuilds = true;
+    substituters = {
+      enableCuda = true;
+    };
   };
 
   users.users.${device.user} = {
