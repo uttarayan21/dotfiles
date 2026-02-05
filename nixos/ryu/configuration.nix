@@ -306,6 +306,7 @@
       nerd-fonts.symbols-only
       monaspace
       ddcutil
+      libnotify
     ];
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
