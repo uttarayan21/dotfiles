@@ -156,14 +156,12 @@
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
-      windowrulev2 = [
-        # "float, title:^(Steam)$"
-        "float, title:^(Archetype.*)$"
-        "float, class:(.*nextcloud.*)"
-        "float, class:org.kde.kdeconnect.app"
+      windowrule = [
+        # "match:title ^(Steam)$ float"
+        "match:title ^(Archetype.*)$ float"
+        "match:class (.*nextcloud.*) float"
+        "match:class org.kde.kdeconnect.app float"
       ];
-
-      # "misc:vfr" = true;
 
       env = [
         "XCURSOR_SIZE,24"
@@ -171,6 +169,7 @@
         "MOZ_ENABLE_WAYLAND,1"
         "QT_QPA_PLATFORM,wayland"
       ];
+
       exec-once = [
         # "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
         "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"

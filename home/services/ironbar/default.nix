@@ -36,45 +36,45 @@
           {type = "clock";}
         ];
       };
-      "${device.monitors.primary}" = {
-        position = "bottom";
-        icon_theme = "Papirus-Dark";
-        end = [
-          {
-            type = "sys_info";
-            format = [
-              "  CPU {cpu_percent}% | {temp_c:coretemp-Package-id-0}°C"
-              "  RAM {memory_used}GB/{memory_total}GB"
-            ];
-            interval = {
-              cpu = 1;
-              temps = 5;
-              memory = 30;
-              # disks= 300;
-              # networks= 3;
-            };
-          }
-        ];
-        start = [
-          {
-            type = "workspaces";
-            name_map = {
-              "1" = "icon:kitty";
-              "2" = "icon:code";
-              "3" = "icon:firefox";
-              "4" = "icon:slack";
-              # "5" = "icon:steam";
-              # "6" = "icon:foot";
-              # "7" = "icon:foot";
-              # "8" = "icon:firefox";
-              # "9" = "icon:discord";
-              # "10" = "icon:spotify";
-            };
-            favorites = ["1" "2" "3" "4"];
-            all_monitors = false;
-          }
-        ];
-      };
+      # "${device.monitors.primary}" = {
+      #   position = "bottom";
+      #   icon_theme = "Papirus-Dark";
+      #   end = [
+      #     {
+      #       type = "sys_info";
+      #       format = [
+      #         "  CPU {cpu_percent}% | {temp_c:coretemp-Package-id-0}°C"
+      #         "  RAM {memory_used}GB/{memory_total}GB"
+      #       ];
+      #       interval = {
+      #         cpu = 1;
+      #         temps = 5;
+      #         memory = 30;
+      #         # disks= 300;
+      #         # networks= 3;
+      #       };
+      #     }
+      #   ];
+      #   start = [
+      #     {
+      #       type = "workspaces";
+      #       name_map = {
+      #         "1" = "icon:kitty";
+      #         "2" = "icon:code";
+      #         "3" = "icon:firefox";
+      #         "4" = "icon:slack";
+      #         # "5" = "icon:steam";
+      #         # "6" = "icon:foot";
+      #         # "7" = "icon:foot";
+      #         # "8" = "icon:firefox";
+      #         # "9" = "icon:discord";
+      #         # "10" = "icon:spotify";
+      #       };
+      #       favorites = ["1" "2" "3" "4"];
+      #       all_monitors = false;
+      #     }
+      #   ];
+      # };
       "${device.monitors.tertiary}" = {
         position = "bottom";
         icon_theme = "Papirus-Dark";

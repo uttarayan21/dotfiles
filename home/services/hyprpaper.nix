@@ -12,6 +12,7 @@
   in {
     enable = device.is "ryu";
     settings = {
+      splash = false;
       wallpaper = [
         {
           monitor = device.monitors.primary;
