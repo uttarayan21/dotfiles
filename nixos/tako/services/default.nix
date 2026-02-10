@@ -24,7 +24,7 @@
     ./searxng.nix
     ./tailscale.nix
     ./kellnr.nix
-    ./tuwunel.nix
+    ./matrix
   ];
   services = {
     nix-serve = {

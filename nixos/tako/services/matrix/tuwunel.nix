@@ -13,9 +13,9 @@
       };
     };
     sso_redirect_options = {
-      # immediate = false;
-      # on_welcome_page = true;
-      # on_login_page = true;
+      immediate = false;
+      on_welcome_page = true;
+      on_login_page = true;
     };
   };
   elementConfigFile = pkgs.writeText "element-config.json" elementConfig;
@@ -53,18 +53,31 @@ in {
           callback_url = "https://matrix.${base_domain}/_matrix/client/unstable/login/sso/callback/${client_id}";
         }
       ];
+      well_known = {
+        client = "https://matrix.${base_domain}";
+        server = "matrix.${base_domain}:443";
+      };
     };
     package = pkgs.matrix-tuwunel;
   };
-  services.caddy.virtualHosts."matrix.${base_domain}, matrix.${base_domain}:8448".extraConfig = ''
-    reverse_proxy /_matrix/* localhost:${toString port}
-    handle_path /config.json {
-        root ${elementConfigFile}
+  services.caddy.virtualHosts = {
+    "matrix.${base_domain}".extraConfig = ''
+      reverse_proxy /_matrix/* localhost:${toString port}
+      handle_path /config.json  {
         file_server
-    }
-    root * ${pkgs.element-web}
-    file_server
-  '';
+        root ${elementConfigFile}
+      }
+      root * ${pkgs.element-web}
+      file_server
+    '';
+    "${base_domain}".extraConfig = ''
+      reverse_proxy /.well-known/* localhost:${toString port}
+    '';
+    # "matrix.${base_domain}:8448".extraConfig = ''
+    #   reverse_proxy /_matrix/* localhost:${toString port}
+    # '';
+  };
+  networking.firewall.allowedTCPPorts = [8448];
 
   users.users.${config.services.caddy.user}.extraGroups = [config.services.matrix-tuwunel.group];
 
@@ -94,14 +107,13 @@ in {
                   require_pkce = false;
                   # pkce_challenge_method = "S256";
                   redirect_uris = [
-                    # "https://auth.${base_domain}/user/oauth2/authelia/callback"
-                    "https://matrix.${base_domain}/_matrix/client/v3/login/sso/redirect/${client_id}"
+                    "https://matrix.${base_domain}/_matrix/client/unstable/login/sso/callback/${client_id}"
                   ];
                   scopes = [
-                    "email"
-                    "name"
+                    "openid"
                     "groups"
-                    "preferred_username"
+                    "email"
+                    "profile"
                   ];
                   response_types = ["code"];
                   response_modes = ["form_post"];
@@ -117,24 +129,3 @@ in {
     };
   };
 }
-# templates = {
-#   "tuwunel-auth.toml" = {
-#     content = ''
-#       [[global.identity_provider]]
-#       brand = "Authelia"
-#       name = "Authelia"
-#       default = true
-#       issuer_url = "https://auth.${base_domain}"
-#       client_id = "${config.sops.placeholder."tuwunel/client_id"}"
-#       client_secret = "${config.sops.placeholder."tuwunel/client_secret"}"
-#       callback_url = "https://matrix.${base_domain}/_matrix/client/v3/login/sso/redirect/${config.sops.placeholder."tuwunel/client_id"}"
-#     '';
-#     # callback_url = "https://auth.${base_domain}/_matrix/client/unstable/login/sso/callback/${config.sops.placeholder."tuwunel/client_id"}"
-#     owner = config.services.matrix-tuwunel.user;
-#     group = config.services.matrix-tuwunel.group;
-#   };
-# };
-# extraEnvironment = {
-#   CONDUIT_CONFIG = config.sops.templates."tuwunel-auth.toml".path;
-# };
-

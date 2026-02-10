@@ -9,6 +9,7 @@
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     # silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
     bocchiVertical = nextcloudWallpapers "bocchi-vertical.jpg";
+    silksongShadeLord = nextcloudWallpapers "silksong-shadelord.jpg";
   in {
     enable = device.is "ryu";
     settings = {
@@ -16,7 +17,7 @@
       wallpaper = [
         {
           monitor = device.monitors.primary;
-          path = wallpapers.skull;
+          path = silksongShadeLord;
           fit_mode = "cover";
         }
         {
