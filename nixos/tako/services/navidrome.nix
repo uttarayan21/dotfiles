@@ -18,8 +18,8 @@ in {
       enable = true;
       settings = {
         MusicFolder = "/media/music";
-        ReverseProxyUserHeader = "Remote-User";
-        ReverseProxyWhitelist = "@";
+        "ExtAuth.TrustedSources" = "@";
+        "ExtAuth.UserHeader" = "Remote-User";
         Address = "unix:${socket}";
         BaseUrl = "https://music.darksailor.dev";
       };
