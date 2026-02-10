@@ -41,3 +41,5 @@ add program:
     alejandra fmt home/programs/{{program}}.nix home/programs/default.nix
     git add home/programs/{{program}}.nix 
 
+# add-secret secret:
+#     openssl rand -hex 32 | tr -d '\n' | jq -sR | sops set --value-stdin secrets/secrets.yaml {{secret}}

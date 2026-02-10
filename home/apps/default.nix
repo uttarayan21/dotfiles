@@ -32,6 +32,7 @@ lib.optionalAttrs device.hasGui {
     ./lmstudio.nix
     ./mpv.nix
     ./nextcloud.nix
+    ./matrix.nix
     ./obs-studio.nix
     ./orcaslicer.nix
     ./prismlauncher.nix

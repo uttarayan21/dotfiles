@@ -4,7 +4,25 @@
   ...
 }: {
   imports = [
+    # ./bluetui.nix
+    # ./goread.nix
+    # ./helix.nix
+    # ./magika.nix
+    # ./mpd.nix
+    # ./mpris-scrobbler.nix
+    # ./ncmpcpp.nix
+    # ./newsboat.nix
+    # ./nh.nix
+    # ./ryujinx.nix
+    # ./sxiv.nix
+    # ./tea.nix
+    # ./template.nix
+    # ./tuifeed.nix
+    # ./xh.nix
+    # ./zellij.nix
+
     ../../modules
+
     ./1password-cli.nix
     ./aichat.nix
     ./alejandra.nix
@@ -60,21 +78,5 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    # ./bluetui.nix
-    # ./goread.nix
-    # ./helix.nix
-    # ./magika.nix
-    # ./mpd.nix
-    # ./mpris-scrobbler.nix
-    # ./ncmpcpp.nix
-    # ./newsboat.nix
-    # ./nh.nix
-    # ./ryujinx.nix
-    # ./sxiv.nix
-    # ./tea.nix
-    # ./template.nix
-    # ./tuifeed.nix
-    # ./xh.nix
-    # ./zellij.nix
   ];
 }

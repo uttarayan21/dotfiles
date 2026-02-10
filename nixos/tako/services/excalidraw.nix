@@ -10,21 +10,20 @@
     };
   };
   services.caddy.virtualHosts."draw.darksailor.dev".extraConfig = ''
-    import auth
     reverse_proxy localhost:5959
   '';
-  services.authelia = {
-    instances.darksailor = {
-      settings = {
-        access_control = {
-          rules = [
-            {
-              domain = "draw.darksailor.dev";
-              policy = "one_factor";
-            }
-          ];
-        };
-      };
-    };
-  };
+  # services.authelia = {
+  #   instances.darksailor = {
+  #     settings = {
+  #       access_control = {
+  #         rules = [
+  #           {
+  #             domain = "draw.darksailor.dev";
+  #             policy = "one_factor";
+  #           }
+  #         ];
+  #       };
+  #     };
+  #   };
+  # };
 }
