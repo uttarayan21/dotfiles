@@ -1,16 +1,21 @@
-{...}: {
+{config, ...}: let
+  socket = "/run/attic/attic.sock";
+in {
+  sops = {
+    secrets."attic/jwt_secret" = {};
+    templates."attic.env".content = ''
+      ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=${config.sops.placeholder."attic/jwt_secret"}
+    '';
+  };
   services = {
     atticd = {
       enable = true;
-      listen = "/run/attic/attic.sock";
+      settings.listen = socket;
+      environmentFile = config.sops.templates."attic.env".path;
     };
     caddy = {
       virtualHosts."cache.darksailor.dev".extraConfig = ''
-        reverse_proxy /run/attic/attic.sock {
-          transport http {
-            protocol = "fd"
-          }
-        }
+        reverse_proxy unix/${socket}
       '';
     };
   };
