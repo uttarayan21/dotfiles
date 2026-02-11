@@ -78,5 +78,6 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
+    ./attic.nix
   ];
 }
