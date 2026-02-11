@@ -1,5 +1,5 @@
 {config, ...}: let
-  socket = "/run/attic/attic.sock";
+  address = "127.0.0.1:8052";
 in {
   sops = {
     secrets."attic/jwt_secret" = {};
@@ -10,12 +10,12 @@ in {
   services = {
     atticd = {
       enable = true;
-      settings.listen = socket;
+      settings.listen = address;
       environmentFile = config.sops.templates."attic.env".path;
     };
     caddy = {
       virtualHosts."cache.darksailor.dev".extraConfig = ''
-        reverse_proxy unix/${socket}
+        reverse_proxy ${address}
       '';
     };
   };
