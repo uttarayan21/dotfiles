@@ -4,5 +4,5 @@
   lib,
   ...
 }: {
-  home.packages = lib.optionals (device.name != "shiro") [pkgs.blobdrop];
+  home.packages = lib.optionals (device.name == "ryu") [pkgs.blobdrop];
 }
