@@ -79,5 +79,6 @@
     ./yt-dlp.nix
     ./zoxide.nix
     ./attic.nix
+    ./cfcli.nix
   ];
 }

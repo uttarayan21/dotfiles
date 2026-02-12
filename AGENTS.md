@@ -162,6 +162,11 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
 just add program myprogram  # Creates home/programs/myprogram.nix and adds import
 ```
 
+### Adding a new dns entry
+```bash
+cfcli add --type A foobar.bazbar.biz 192.168.0.1
+```
+
 ### Creating a Module
 
 1. Determine location: `modules/nixos/`, `modules/darwin/`, or `modules/home/`
