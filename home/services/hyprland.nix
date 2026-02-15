@@ -61,9 +61,9 @@
         {
           output = device.monitors.secondary;
           mode = "2560x1440@170";
-          position = "-1440x-1120";
+          position = "-2560x0";
           scale = 1;
-          transform = 1;
+          transform = 0;
         }
         {
           output = device.monitors.tertiary;
