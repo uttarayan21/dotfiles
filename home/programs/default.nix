@@ -80,5 +80,6 @@
     ./zoxide.nix
     ./attic.nix
     ./cfcli.nix
+    ./jujutsu.nix
   ];
 }
