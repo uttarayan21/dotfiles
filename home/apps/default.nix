@@ -22,6 +22,7 @@ lib.optionalAttrs device.hasGui {
     # ./vial.nix
     # ./vscode.nix
 
+    ./affine.nix
     ./blueman.nix
     ./chromium.nix
     ./discord.nix
