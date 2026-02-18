@@ -3,9 +3,9 @@
   device,
   ...
 }:
-lib.optionalAttrs device.hasGui {
+ lib.optionalAttrs device.hasGui {
   imports = [
-    # ./audacity.nix
+    ./audacity.nix
     # ./bottles.nix
     # ./cursor.nix
     # ./gimp.nix
