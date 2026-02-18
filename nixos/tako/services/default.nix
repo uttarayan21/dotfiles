@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./affine.nix
     ./attic.nix
     ./atuin.nix
     ./authelia.nix

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   device,
+  config,
   ...
 }: {
   imports = [
@@ -47,6 +48,7 @@
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = [device.user];
+      extra-sandbox-paths = [config.programs.ccache.cacheDir];
     };
     extraOptions = ''
       build-users-group = nixbld
