@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   device,
+  config,
   ...
 }: {
   imports = [
@@ -10,6 +11,25 @@
   programs.zen-browser = {
     enable = device.isLinux;
     profiles.default = {
+      containersForce = true;
+      containers = {
+        Personal = {
+          color = "purple";
+          icon = "fingerprint";
+          id = 1;
+        };
+        Work = {
+          color = "blue";
+          icon = "briefcase";
+          id = 2;
+        };
+        Shopping = {
+          color = "yellow";
+          icon = "dollar";
+          id = 3;
+        };
+      };
+      spacesForce = true;
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         violentmonkey
@@ -42,5 +62,6 @@
         Fingerprinting = true;
       };
     };
+    suppressXdgMigrationWarning = true;
   };
 }

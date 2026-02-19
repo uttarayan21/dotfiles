@@ -17,5 +17,6 @@
         cache_dir = config.home.homeDirectory + "/.cache/yazi/previews";
       };
     };
+    shellWrapperName = "yy";
   };
 }

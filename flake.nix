@@ -155,9 +155,9 @@
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input
+      # IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
 
     anyrun = {

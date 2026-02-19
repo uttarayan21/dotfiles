@@ -3,9 +3,9 @@
   device,
   ...
 }:
- lib.optionalAttrs device.hasGui {
+lib.optionalAttrs device.hasGui {
   imports = [
-    ./audacity.nix
+    # ./audacity.nix
     # ./bottles.nix
     # ./cursor.nix
     # ./gimp.nix
@@ -13,13 +13,18 @@
     # ./ida.nix
     # ./jellyflix.nix
     # ./kicad.nix
+    # ./lmstudio.nix
     # ./neovide.nix
     # ./openscad.nix
+    # ./orcaslicer.nix
     # ./pcsx2.nix
+    # ./prismlauncher.nix
     # ./rpcs3.nix
+    # ./shadps4.nix
     # ./thunderbird.nix
     # ./tsukimi.nix
     # ./vial.nix
+    # ./vlc.nix
     # ./vscode.nix
 
     ./affine.nix
@@ -30,17 +35,12 @@
     ./ghostty.nix
     ./hyprpicker.nix
     ./kitty.nix
-    ./lmstudio.nix
+    ./matrix.nix
     ./mpv.nix
     ./nextcloud.nix
-    ./matrix.nix
     ./obs-studio.nix
-    ./orcaslicer.nix
-    ./prismlauncher.nix
-    ./shadps4.nix
     ./slack.nix
     ./vicinae.nix
-    ./vlc.nix
     ./wezterm.nix
     ./zathura.nix
     ./zed.nix

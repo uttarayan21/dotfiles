@@ -293,42 +293,6 @@
   fonts.fontconfig.enable = true;
   fonts.fontDir.enable = true;
   environment = {
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    systemPackages = with pkgs; [
-      v4l-utils
-      polychromatic
-      openrazer-daemon
-      cudatoolkit
-      # Wine
-      wine-wayland
-      winetricks
-      wineWowPackages.waylandFull
-
-      virt-manager
-      gparted
-      nvtopPackages.nvidia
-      quickemu
-      # (nixvim.makeNixvim (import ../../neovim))
-      qpwgraph
-      hyprland
-      xorg.xhost
-      foot
-      git
-      fish
-      nushell
-      # (pkgs.wrapFirefox
-      #   (pkgs.firefox-unwrapped.override {pipewireSupport = true;})
-      #   {})
-      gnumake
-      python3
-      nerd-fonts.fira-code
-      nerd-fonts.hasklug
-      nerd-fonts.symbols-only
-      monaspace
-      ddcutil
-      libnotify
-    ];
     sessionVariables = {
       WLR_NO_HARDWARE_CURSORS = "1";
       NIXOS_OZONE_WL = "1";

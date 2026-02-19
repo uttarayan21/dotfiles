@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./hytale.nix
+    # ./hytale.nix
   ];
 }
