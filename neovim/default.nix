@@ -620,6 +620,21 @@ in {
         };
         sources = {
           cmdline = [];
+          # default =
+          # rawLua
+          # /*
+          # lua
+          # */
+          # ''
+          #   function(ctx)
+          #     local success, node = pcall(vim.treesitter.get_node)
+          #     if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
+          #       return { 'buffer' }
+          #     else
+          #       return { 'git', 'lsp', 'path', 'snippets', 'buffer', 'dictionary', 'ripgrep', 'tmux' }
+          #     end
+          #   end
+          # '';
           default = [
             "git"
             "lsp"
@@ -628,6 +643,7 @@ in {
             "path"
             "buffer"
             "ripgrep"
+            # "tmux"
           ];
           providers = {
             buffer = {
@@ -639,23 +655,30 @@ in {
             path = {};
             dictionary = {
               module = "blink-cmp-dictionary";
-              name = "Dict";
+              name = "dict";
               min_keyword_length = 3;
               opts = {
               };
             };
             git = {
               module = "blink-cmp-git";
-              name = "Git";
+              name = "git";
               opts = {
                 # -- options for the blink-cmp-git
               };
             };
             ripgrep = {
               module = "blink-ripgrep";
-              name = "Ripgrep";
+              name = "ripgrep";
               opts = {};
             };
+            # tmux = {
+            #   module = "blink-cmp-tmux";
+            #   name = "tmux";
+            #   opts = {
+            #     triggered_only = false;
+            #   };
+            # };
           };
         };
       };
@@ -665,6 +688,7 @@ in {
     blink-cmp-dictionary.enable = true;
     blink-cmp-copilot.enable = true;
     blink-cmp-spell.enable = true;
+    blink-cmp-tmux.enable = true;
     blink-compat = {
       enable = true;
       settings.impersonate_nvim_cmp = true;

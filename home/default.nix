@@ -27,6 +27,7 @@
     home-manager = {
       enable = true;
     };
+    man.generateCaches = true;
   };
 
   fonts.fontconfig.enable = true;

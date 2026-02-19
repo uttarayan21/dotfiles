@@ -1,13 +1,8 @@
-{
-  pkgs,
-  lib,
-  device,
-  ...
-}: {
+{...}: {
   programs.
     carapace = {
     enable = false;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
     enableNushellIntegration = true;
   };
 }

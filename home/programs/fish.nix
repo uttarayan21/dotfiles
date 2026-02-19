@@ -43,6 +43,7 @@
       ''}
     '';
   };
+  home.shell.enableFishIntegration = true;
 }
 // lib.optionalAttrs (!(device.is "tsuba")) {
   stylix.targets.fish.enable = false;

@@ -26,4 +26,5 @@
       }
     '';
   };
+  home.shell.enableNushellIntegration = true;
 }

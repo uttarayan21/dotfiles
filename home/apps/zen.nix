@@ -30,6 +30,28 @@
         };
       };
       spacesForce = true;
+      spaces = let
+        containers = config.programs.zen-browser.profiles."default".containers;
+      in {
+        "Personal" = {
+          id = "";
+          icon = "👤";
+          container = containers."Personal".id;
+          position = 1000;
+        };
+        "Work" = {
+          id = "00bdd434-e31b-4e2b-b8f5-fa7055631a64";
+          icon = "💼";
+          container = containers."Work".id;
+          position = 2000;
+        };
+        "Shopping" = {
+          id = "77452260-56e6-4c9e-8d5f-417958bc4fa4";
+          icon = "💸";
+          container = containers."Shopping".id;
+          position = 3000;
+        };
+      };
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         privacy-badger
         violentmonkey
