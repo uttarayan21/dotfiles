@@ -12,8 +12,9 @@
       autoStart = true;
     };
   };
-  home.packages = with pkgs; [
-    # pulseaudio
-    playerctl
-  ];
+  home.packages = with pkgs;
+    lib.optionals (device.is "ryu") [
+      # pulseaudio
+      playerctl
+    ];
 }
