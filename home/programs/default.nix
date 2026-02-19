@@ -28,6 +28,7 @@
     ./alejandra.nix
     ./aria2.nix
     ./ast-grep.nix
+    ./attic.nix
     ./atuin.nix
     ./bat.nix
     ./binwalk.nix
@@ -35,8 +36,10 @@
     ./bottom.nix
     ./btop.nix
     ./cachix.nix
+    ./calendar.nix
     ./carapace.nix
     ./cargo.nix
+    ./cfcli.nix
     ./ddcbacklight.nix
     ./deploy-rs.nix
     ./direnv.nix
@@ -55,6 +58,7 @@
     ./himalaya.nix
     ./hyprshade.nix
     ./jq.nix
+    ./jujutsu.nix
     ./just.nix
     ./ncpamixer.nix
     ./neomutt.nix
@@ -78,8 +82,5 @@
     ./yazi.nix
     ./yt-dlp.nix
     ./zoxide.nix
-    ./attic.nix
-    ./cfcli.nix
-    ./jujutsu.nix
   ];
 }
