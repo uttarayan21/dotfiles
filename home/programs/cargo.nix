@@ -13,6 +13,7 @@ in
         [alias]
         lldb = ["with", "rust-lldb", "--"]
         t = ["nextest", "run"]
+        pkgs = ["metadata", "--no-deps", "--format-version", "1"]
 
         [net]
         git-fetch-with-cli = true
