@@ -34,12 +34,12 @@
         };
       };
     };
-    # headplane = {
-    #   enable = true;
-    #   settings = {
-    #     server.port = 42562;
-    #   };
-    # };
+    headplane = {
+      enable = true;
+      settings = {
+        server.port = 42562;
+      };
+    };
     caddy = {
       virtualHosts."headscale.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:${toString config.services.headplane.settings.server.port}

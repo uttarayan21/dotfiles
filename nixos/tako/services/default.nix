@@ -1,32 +1,33 @@
 {...}: {
   imports = [
-    ./affine.nix
-    ./attic.nix
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
-    ./excalidraw.nix
     ./fail2ban.nix
-    ./flaresolverr.nix
-    ./games
-    ./gitea.nix
     ./homepage.nix
-    ./immich.nix
-    ./kellnr.nix
     ./lldap.nix
-    ./llms.nix
-    ./matrix
-    ./monitoring.nix
     ./navidrome.nix
     ./nextcloud.nix
     ./openssh.nix
-    ./prowlarr.nix
     ./resolved.nix
-    ./searxng.nix
-    ./shitpost.nix
     ./tailscale.nix
+    ./gitea.nix
+
+    ./affine.nix
+    ./attic.nix
+    ./excalidraw.nix
+    ./flaresolverr.nix
+    # ./games
     # ./headscale.nix
+    ./immich.nix
+    ./kellnr.nix
+    # ./llms.nix
+    ./matrix
+    # ./monitoring.nix
     # ./paperless.nix
+    ./prowlarr.nix
+    # ./searxng.nix
+    # ./shitpost.nix
   ];
   services = {
     nix-serve = {
