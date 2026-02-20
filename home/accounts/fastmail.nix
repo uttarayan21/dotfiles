@@ -31,9 +31,6 @@
             port = 465;
             tls.enable = true;
           };
-          imapnotify = {
-            enable = true;
-          };
           passwordCommand = ["cat" "${config.sops.secrets."accounts/mail/fastmail".path}"];
           mbsync = {
             enable = true;
