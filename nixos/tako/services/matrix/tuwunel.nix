@@ -1,20 +1,12 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
   port = 6167;
   base_domain = "darksailor.dev";
   client_id = "tuwunel";
   rtc_domain = "matrix-rtc.${base_domain}";
-  livekit_port = 7880;
-  livekit_rtc_tcp_port = 7881;
-  livekit_rtc_port_start = 50100;
-  livekit_rtc_port_end = 50200;
-  livekit_turn_udp_port = 3478;
-  livekit_turn_relay_start = 50300;
-  livekit_turn_relay_end = 65535;
   jwt_port = 8081;
   elementConfig = builtins.toJSON {
     default_server_config = {
@@ -29,25 +21,6 @@
     };
   };
   elementConfigFile = pkgs.writeText "element-config.json" elementConfig;
-  livekitConfigTemplate = pkgs.writeText "livekit.yaml.template" ''
-    port: ${toString livekit_port}
-    bind_addresses:
-      - ""
-    rtc:
-      tcp_port: ${toString livekit_rtc_tcp_port}
-      port_range_start: ${toString livekit_rtc_port_start}
-      port_range_end: ${toString livekit_rtc_port_end}
-      use_external_ip: true
-      enable_loopback_candidate: false
-    keys:
-      LIVEKIT_KEY_PLACEHOLDER: LIVEKIT_SECRET_PLACEHOLDER
-    turn:
-      enabled: true
-      udp_port: ${toString livekit_turn_udp_port}
-      relay_range_start: ${toString livekit_turn_relay_start}
-      relay_range_end: ${toString livekit_turn_relay_end}
-      domain: ${rtc_domain}
-  '';
 in {
   sops = {
     secrets."tuwunel/client_id" = {
@@ -63,6 +36,9 @@ in {
     secrets."tuwunel/registration_token".owner = config.services.matrix-tuwunel.user;
     secrets."livekit/key_name" = {};
     secrets."livekit/key_secret" = {};
+    templates."livekit-keys".content = ''
+      ${config.sops.placeholder."livekit/key_name"}: ${config.sops.placeholder."livekit/key_secret"}
+    '';
   };
   services.matrix-tuwunel = {
     enable = true;
@@ -110,9 +86,6 @@ in {
     "${base_domain}".extraConfig = ''
       reverse_proxy /.well-known/* localhost:${toString port}
     '';
-    # "matrix.${base_domain}:8448".extraConfig = ''
-    #   reverse_proxy /_matrix/* localhost:${toString port}
-    # '';
     "${rtc_domain}".extraConfig = ''
       @jwt_service {
         path /sfu/get* /healthz*
@@ -121,7 +94,7 @@ in {
         reverse_proxy localhost:${toString jwt_port}
       }
       handle {
-        reverse_proxy localhost:${toString livekit_port} {
+        reverse_proxy localhost:${toString config.services.livekit.settings.port} {
           header_up Connection "upgrade"
           header_up Upgrade {http.request.header.Upgrade}
         }
@@ -129,69 +102,45 @@ in {
     '';
   };
   networking.firewall = {
-    allowedTCPPorts = [8448 livekit_rtc_tcp_port];
-    allowedUDPPorts = [livekit_turn_udp_port];
+    allowedTCPPorts = [8448 7881];
+    allowedUDPPorts = [3478];
     allowedUDPPortRanges = [
       {
-        from = livekit_rtc_port_start;
-        to = livekit_rtc_port_end;
-      }
-      {
-        from = livekit_turn_relay_start;
-        to = livekit_turn_relay_end;
+        from = 50300;
+        to = 65535;
       }
     ];
   };
 
   users.users.${config.services.caddy.user}.extraGroups = [config.services.matrix-tuwunel.group];
 
-  # LiveKit server
-  systemd.services.livekit = {
-    description = "LiveKit SFU server";
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      DynamicUser = true;
-      StateDirectory = "livekit";
-      RuntimeDirectory = "livekit";
-      ExecStartPre = let
-        script = pkgs.writeShellScript "livekit-config" ''
-          KEY_NAME=$(cat ${config.sops.secrets."livekit/key_name".path})
-          KEY_SECRET=$(cat ${config.sops.secrets."livekit/key_secret".path})
-          ${lib.getExe pkgs.gnused} \
-            -e "s|LIVEKIT_KEY_PLACEHOLDER|$KEY_NAME|g" \
-            -e "s|LIVEKIT_SECRET_PLACEHOLDER|$KEY_SECRET|g" \
-            ${livekitConfigTemplate} > /run/livekit/livekit.yaml
-        '';
-      in "${script}";
-      ExecStart = "${lib.getExe pkgs.livekit} --config /run/livekit/livekit.yaml";
-      Restart = "on-failure";
-      RestartSec = 5;
-      AmbientCapabilities = ["CAP_NET_BIND_SERVICE"];
+  services.livekit = {
+    enable = true;
+    keyFile = config.sops.templates."livekit-keys".path;
+    openFirewall = true;
+    settings = {
+      rtc = {
+        tcp_port = 7881;
+        port_range_start = 50100;
+        port_range_end = 50200;
+        use_external_ip = true;
+        enable_loopback_candidate = false;
+      };
+      turn = {
+        enabled = true;
+        udp_port = 3478;
+        relay_range_start = 50300;
+        relay_range_end = 65535;
+        domain = rtc_domain;
+      };
     };
   };
 
-  # LiveKit JWT service for MatrixRTC
-  systemd.services.lk-jwt-service = {
-    description = "LiveKit JWT service for MatrixRTC";
-    after = ["network-online.target" "livekit.service"];
-    wants = ["network-online.target"];
-    requires = ["livekit.service"];
-    wantedBy = ["multi-user.target"];
-    serviceConfig = {
-      DynamicUser = true;
-      ExecStart = "${lib.getExe pkgs.lk-jwt-service}";
-      Restart = "on-failure";
-      RestartSec = 5;
-    };
-    environment = {
-      LIVEKIT_JWT_BIND = ":${toString jwt_port}";
-      LIVEKIT_URL = "wss://${rtc_domain}";
-      LIVEKIT_KEY_FILE = config.sops.secrets."livekit/key_name".path;
-      LIVEKIT_SECRET_FILE = config.sops.secrets."livekit/key_secret".path;
-      LIVEKIT_FULL_ACCESS_HOMESERVERS = base_domain;
-    };
+  services.lk-jwt-service = {
+    enable = true;
+    port = jwt_port;
+    livekitUrl = "wss://${rtc_domain}";
+    keyFile = config.sops.templates."livekit-keys".path;
   };
 
   services = {
