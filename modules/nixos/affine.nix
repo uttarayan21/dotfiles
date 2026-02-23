@@ -67,12 +67,12 @@ in {
           };
           environmentFiles = cfg.environmentFiles;
           extraOptions = [
-            "--network=affine-net"
             "--health-cmd=pg_isready -U ${dbUser} -d ${dbName}"
             "--health-interval=10s"
             "--health-timeout=5s"
             "--health-retries=5"
           ];
+          networks = ["affine-net"];
         };
 
         affine-redis = {
@@ -80,8 +80,8 @@ in {
           volumes = [
             "${cfg.dataDir}/redis:/data"
           ];
+          networks = ["affine-net"];
           extraOptions = [
-            "--network=affine-net"
             "--health-cmd=redis-cli --raw incr ping"
             "--health-interval=10s"
             "--health-timeout=5s"
@@ -111,9 +111,7 @@ in {
             AFFINE_INDEXER_ENABLED = "false";
           };
           environmentFiles = cfg.environmentFiles;
-          extraOptions = [
-            "--network=affine-net"
-          ];
+          networks = ["affine-net"];
         };
 
         affine-migration = {
@@ -133,34 +131,32 @@ in {
             AFFINE_INDEXER_ENABLED = "false";
           };
           environmentFiles = cfg.environmentFiles;
-          extraOptions = [
-            "--network=affine-net"
-          ];
+          networks = ["affine-net"];
         };
       };
     };
 
     # Create the Docker network
-    systemd.services.affine-network = {
-      description = "Create AFFiNE Docker network";
-      after = ["docker.service"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        Type = "oneshot";
-        RemainAfterExit = true;
-        ExecStart = "${config.virtualisation.docker.package}/bin/docker network create affine-net";
-        ExecStop = "${config.virtualisation.docker.package}/bin/docker network remove affine-net";
-      };
-    };
-
+    # systemd.services.affine-network = {
+    #   description = "Create AFFiNE Docker network";
+    #   after = ["docker.service"];
+    #   wantedBy = ["multi-user.target"];
+    #   serviceConfig = {
+    #     Type = "oneshot";
+    #     RemainAfterExit = true;
+    #     # ExecStart = "${config.virtualisation.docker.package}/bin/docker network create affine-net";
+    #     # ExecStop = "${config.virtualisation.docker.package}/bin/docker network remove affine-net";
+    #   };
+    # };
+    #
     # Ensure containers start after the network is created
-    systemd.services.docker-affine.after = ["affine-network.service"];
-    systemd.services.docker-affine.requires = ["affine-network.service"];
-    systemd.services.docker-affine-postgres.after = ["affine-network.service"];
-    systemd.services.docker-affine-postgres.requires = ["affine-network.service"];
-    systemd.services.docker-affine-redis.after = ["affine-network.service"];
-    systemd.services.docker-affine-redis.requires = ["affine-network.service"];
-    systemd.services.docker-affine-migration.after = ["affine-network.service"];
-    systemd.services.docker-affine-migration.requires = ["affine-network.service"];
+    # systemd.services.docker-affine.after = ["affine-network.service"];
+    # systemd.services.docker-affine.requires = ["affine-network.service"];
+    # systemd.services.docker-affine-postgres.after = ["affine-network.service"];
+    # systemd.services.docker-affine-postgres.requires = ["affine-network.service"];
+    # systemd.services.docker-affine-redis.after = ["affine-network.service"];
+    # systemd.services.docker-affine-redis.requires = ["affine-network.service"];
+    # systemd.services.docker-affine-migration.after = ["affine-network.service"];
+    # systemd.services.docker-affine-migration.requires = ["affine-network.service"];
   };
 }
