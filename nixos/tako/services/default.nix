@@ -13,7 +13,7 @@
     ./tailscale.nix
     ./gitea.nix
 
-    # ./affine.nix
+    ./affine.nix
     ./attic.nix
     ./excalidraw.nix
     ./flaresolverr.nix
