@@ -21,9 +21,9 @@
     # ./headscale.nix
     ./immich.nix
     ./kellnr.nix
-    # ./llms.nix
+    ./llms.nix
     ./matrix
-    # ./monitoring.nix
+    ./monitoring.nix
     # ./paperless.nix
     ./prowlarr.nix
     # ./searxng.nix

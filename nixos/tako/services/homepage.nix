@@ -198,19 +198,19 @@
         reverse_proxy localhost:${builtins.toString config.services.homepage-dashboard.listenPort}
       '';
     };
-    # authelia = {
-    #   instances.darksailor = {
-    #     settings = {
-    #       access_control = {
-    #         rules = [
-    #           {
-    #             domain = "dashboard.darksailor.dev";
-    #             policy = "one_factor";
-    #           }
-    #         ];
-    #       };
-    #     };
-    #   };
-    # };
+    authelia = {
+      instances.darksailor = {
+        settings = {
+          access_control = {
+            rules = [
+              {
+                domain = "dashboard.darksailor.dev";
+                policy = "one_factor";
+              }
+            ];
+          };
+        };
+      };
+    };
   };
 }
