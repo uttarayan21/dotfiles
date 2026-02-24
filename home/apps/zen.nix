@@ -9,7 +9,7 @@
     inputs.zen-browser.homeModules.beta
   ];
   programs.zen-browser = {
-    enable = device.isLinux;
+    enable = true;
     profiles.default = {
       containersForce = true;
       containers = {
