@@ -8,19 +8,12 @@
   client_id = "tuwunel";
   rtc_domain = "matrix-rtc.${base_domain}";
   jwt_port = 8081;
-  elementConfig = builtins.toJSON {
-    default_server_config = {
-      "m.homeserver" = {
-        base_url = "https://matrix.${base_domain}";
-      };
-    };
-    sso_redirect_options = {
-      immediate = false;
-      on_welcome_page = true;
-      on_login_page = true;
-    };
+  cinnyConfig = builtins.toJSON {
+    defaultHomeserver = 0;
+    homeserverList = ["darksailor.dev" "matrix.org"];
+    allowCustomHomeservers = false;
   };
-  elementConfigFile = pkgs.writeText "element-config.json" elementConfig;
+  cinnyConfigFile = pkgs.writeText "cinny-config.json" cinnyConfig;
 in {
   sops = {
     secrets."tuwunel/client_id" = {
@@ -78,9 +71,10 @@ in {
       reverse_proxy /_matrix/* localhost:${toString port}
       handle_path /config.json  {
         file_server
-        root ${elementConfigFile}
+        root ${cinnyConfigFile}
       }
-      root * ${pkgs.element-web}
+      root * ${pkgs.cinny}
+      try_files {path} / index.html
       file_server
     '';
     "${base_domain}".extraConfig = ''
