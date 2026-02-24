@@ -5,14 +5,6 @@
   ...
 }: {
   nodes = {
-    mirai = {
-      hostname = "mirai.darksailor.dev";
-      profiles.system = {
-        sshUser = "fs0c131y";
-        path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.mirai;
-        user = "root";
-      };
-    };
     tsuba = {
       hostname = "tsuba.darksailor.dev";
       profiles.system = {

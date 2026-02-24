@@ -17,10 +17,6 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix-stable = {
-      url = "github:nix-community/stylix/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
-    };
     home-manager-stable = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs-stable";
@@ -51,25 +47,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/nur";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     zjstatus = {
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    openapi-tui = {
-      url = "github:zaghaghi/openapi-tui";
-      flake = false;
     };
     musnix = {
       url = "github:musnix/musnix";
@@ -83,25 +63,9 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    csshacks = {
-      url = "github:MrOtherGuy/firefox-csshacks";
-      flake = false;
-    };
     nno = {
       url = "github:nvim-neorg/nixpkgs-neorg-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    pets = {
-      url = "github:giusgad/pets.nvim";
-      flake = false;
-    };
-    rest-nvim = {
-      url = "github:rest-nvim/rest.nvim";
-      flake = false;
-    };
-    neogit = {
-      url = "github:NeogitOrg/neogit/nightly";
-      flake = false;
     };
     d2 = {
       url = "github:terrastruct/d2-vim";
@@ -127,25 +91,6 @@
       url = "github:pest-parser/tree-sitter-pest";
       flake = false;
     };
-    navigator = {
-      url = "github:ray-x/navigator.lua";
-      flake = false;
-    };
-    guihua = {
-      url = "github:ray-x/guihua.lua";
-      flake = false;
-    };
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-    typr = {
-      url = "github:nvzone/typr";
-      flake = false;
-    };
-    volt = {
-      url = "github:nvzone/volt";
-      flake = false;
-    };
     arion = {
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -169,16 +114,8 @@
       url = "github:uttarayan21/anyrun-hyprwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun-rink = {
-      url = "github:uttarayan21/anyrun-rink";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     onepassword-shell-plugins = {
       url = "github:1Password/shell-plugins";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zeronsd = {
-      url = "github:uttarayan21/zeronsd";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tmux-float = {
@@ -199,24 +136,6 @@
     #   url = "path:/home/servius/Projects/ALVR";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    ik_llama = {
-      url = "github:ikawrakow/ik_llama.cpp?submodules=1";
-      # submodules = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    llama-cpp = {
-      # url = "https://github.com/ggml-org/llama.cpp";
-      url = "github:ggml-org/llama.cpp/b6178?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    yabai = {
-      url = "github:koekeishiya/yabai";
-      flake = false;
-    };
-    nix-auth = {
-      url = "github:numtide/nix-auth";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -241,16 +160,9 @@
       url = "github:vicinaehq/vicinae";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
-    wivrn = {
-      url = "github:uttarayan21/wivrn?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     eilmeldung = {
       url = "github:christo-auer/eilmeldung";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hytale-launcher = {
-      url = "github:JPyke3/hytale-launcher-nix";
     };
   };
 

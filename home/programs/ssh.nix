@@ -16,11 +16,6 @@
         user = "git";
         host = "github.com";
       };
-      # mirai = {
-      #   user = "fs0c131y";
-      #   hostname = "mirai.darksailor.dev";
-      #   forwardAgent = true;
-      # };
       tako = {
         user = "servius";
         hostname = "tako.darksailor.dev";
