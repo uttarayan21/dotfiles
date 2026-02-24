@@ -9,7 +9,6 @@
     };
   };
   misc-applications = final: prev: {
-    command-runner = inputs.command-runner.packages.${prev.system}.command-runner;
     goread = final.pkgs.buildGoModule {
       pname = "goread";
       version = "v1.6.4";
