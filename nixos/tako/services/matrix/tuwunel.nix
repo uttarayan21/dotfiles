@@ -8,53 +8,6 @@
   client_id = "tuwunel";
   rtc_domain = "matrix-rtc.${base_domain}";
   jwt_port = 8081;
-  cinnyConfig = builtins.toJSON {
-    defaultHomeserver = 0;
-    homeserverList = ["darksailor.dev" "matrix.org"];
-    allowCustomHomeservers = false;
-    hashRouter = {
-      enabled = true;
-      basename = "/";
-    };
-  };
-  cinnyConfigFile = pkgs.writeText "cinny-config.json" cinnyConfig;
-  cinny = with pkgs;
-    buildNpmPackage rec {
-      pname = "cinny-unwrapped";
-      version = "4.10.5";
-
-      src = fetchFromGitHub {
-        owner = "cinnyapp";
-        repo = "cinny";
-        tag = "v${version}";
-        hash = "sha256-Napy3AcsLRDZPcBh3oq1U30FNtvoNtob0+AZtZSvcbM=";
-      };
-
-      nodejs = nodejs_22;
-
-      npmDepsHash = "sha256-2Lrd0jAwAH6HkwLHyivqwaEhcpFAIALuno+MchSIfxo=";
-
-      nativeBuildInputs = [
-        python3
-        pkg-config
-      ];
-
-      buildInputs =
-        [
-          pixman
-          cairo
-          pango
-        ]
-        ++ lib.optionals stdenv.hostPlatform.isDarwin [giflib];
-
-      installPhase = ''
-        runHook preInstall
-
-        cp -r dist $out
-
-        runHook postInstall
-      '';
-    };
 in {
   sops = {
     secrets."tuwunel/client_id" = {
@@ -108,20 +61,20 @@ in {
     package = pkgs.matrix-tuwunel;
   };
   services.caddy.virtualHosts = {
-    "matrix.${base_domain}".extraConfig = ''
-      handle /_matrix/* {
-        reverse_proxy /_matrix/* localhost:${toString port}
-      }
-      handle_path /config.json  {
-        file_server
-        root ${cinnyConfigFile}
-      }
-      handle {
-          root * ${cinny}
-          try_files {path} /index.html
-          file_server
-      }
-    '';
+    # "matrix.${base_domain}".extraConfig = ''
+    #   handle /_matrix/* {
+    #     reverse_proxy /_matrix/* localhost:${toString port}
+    #   }
+    #   handle_path /config.json  {
+    #     file_server
+    #     root ${cinnyConfigFile}
+    #   }
+    #   handle {
+    #       root * ${cinny}
+    #       try_files {path} /index.html
+    #       file_server
+    #   }
+    # '';
     "${base_domain}".extraConfig = ''
       reverse_proxy /.well-known/* localhost:${toString port}
     '';

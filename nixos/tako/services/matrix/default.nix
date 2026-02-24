@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./tuwunel.nix
-    # ./signal.nix // libolm deprecated
+    # ./signal.nix
     # ./discord.nix
   ];
 }
