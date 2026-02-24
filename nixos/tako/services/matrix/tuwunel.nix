@@ -12,6 +12,10 @@
     defaultHomeserver = 0;
     homeserverList = ["darksailor.dev" "matrix.org"];
     allowCustomHomeservers = false;
+    hashRouter = {
+      enabled = true;
+      basename = "/";
+    };
   };
   cinnyConfigFile = pkgs.writeText "cinny-config.json" cinnyConfig;
 in {
@@ -68,14 +72,18 @@ in {
   };
   services.caddy.virtualHosts = {
     "matrix.${base_domain}".extraConfig = ''
-      reverse_proxy /_matrix/* localhost:${toString port}
+      handle /_matrix/* {
+        reverse_proxy /_matrix/* localhost:${toString port}
+      }
       handle_path /config.json  {
         file_server
         root ${cinnyConfigFile}
       }
-      root * ${pkgs.cinny}
-      try_files {path} / index.html
-      file_server
+      handle {
+          root * ${pkgs.cinny}
+          try_files {path} /index.html
+          file_server
+      }
     '';
     "${base_domain}".extraConfig = ''
       reverse_proxy /.well-known/* localhost:${toString port}

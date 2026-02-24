@@ -23,7 +23,7 @@
     caddy = 2019;
   };
 in {
-  sops.secrets."grafana.secretKey" = {
+  sops.secrets."grafana/secret_key" = {
     owner = "grafana";
   };
   # Grafana configuration with Authelia integration
@@ -57,7 +57,7 @@ in {
       security = {
         disable_gravatar = true;
         cookie_secure = true;
-        secret_key = ''$__file{${config.sops.secrets."grafana.secretKey".path}}'';
+        secret_key = ''$__file{${config.sops.secrets."grafana/secret_key".path}}'';
       };
 
       analytics = {
