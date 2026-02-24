@@ -4,28 +4,8 @@ This repository contains NixOS, nix-darwin, and Home Manager configurations in N
 
 ## Build, Test, and Deployment Commands
 
-### Build and Apply Configurations
-
-**Linux (NixOS):**
-```bash
-just build                          # Build configuration
-just install cores='32'             # Apply with 32 cores
-sudo nixos-rebuild test --fast --flake .  # Test without activation
-sudo nixos-rebuild switch --rollback --flake .  # Rollback
-```
-
-**macOS (nix-darwin):**
-```bash
-just build                          # Build configuration
-just install                        # Apply configuration
-```
-
-**Home Manager:**
-```bash
-just home
-```
-
-### Deploy to Remote Machines (deploy-rs)
+### Build and Apply Configurations & Deploy to Remote Machines
+Can use deploy for both local and remote hosts
 
 ```bash
 deploy -s .#ryu      # Desktop (x86_64-linux)
@@ -33,6 +13,23 @@ deploy -s .#tako     # Server (x86_64-linux)
 deploy -s .#tsuba    # Raspberry Pi (aarch64-linux)
 deploy -s .#kuro     # MacBook M4 Pro (aarch64-darwin)
 deploy -s .#shiro    # Mac Mini M4 (aarch64-darwin)
+```
+
+**Linux (NixOS):**
+```bash
+deploy -s .#ryu 
+deploy -s .#tako
+deploy -s .#tako --builders '' --cores 32 # with no other builders and 32 cores
+deploy -s .#ryu --max-jobs 4 --cores 32 # use 32 cores and 4 parallel derivations
+sudo nixos-rebuild test --fast --flake .  # Test without activation
+sudo nixos-rebuild switch --rollback --flake .  # Rollback
+```
+
+**macOS (nix-darwin):**
+```bash
+deploy -s .#kuro
+deploy -s .#shiro
+sudo nix-darwin test --fast --flake .
 ```
 
 ### Validation and Formatting
@@ -164,7 +161,7 @@ just add program myprogram  # Creates home/programs/myprogram.nix and adds impor
 
 ### Adding a new dns entry
 ```bash
-cfcli add --type A foobar.bazbar.biz 192.168.0.1
+cfcli add --type A foobar.bazbar.biz 100.102.64.19
 ```
 
 ### Creating a Module
