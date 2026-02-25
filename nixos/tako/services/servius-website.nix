@@ -1,0 +1,12 @@
+{
+  inputs,
+  pkgs,
+  ...
+}: let
+  website = inputs.servius-website.packages.${pkgs.system}.default;
+in {
+  services.caddy.virtualHosts."servius.darksailor.dev".extraConfig = ''
+    root * ${website}
+    file_server
+  '';
+}

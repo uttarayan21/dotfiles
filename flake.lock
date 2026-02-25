@@ -51,6 +51,22 @@
     "advisory-db_4": {
       "flake": false,
       "locked": {
+        "lastModified": 1771560015,
+        "narHash": "sha256-TuZcPFTXgFyDTcs+olpuVquBphW0zrxoBxgZ4WjEXWE=",
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "rev": "81e3cd7b86b1a2e05c116072de9b61b872a43ae4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "type": "github"
+      }
+    },
+    "advisory-db_5": {
+      "flake": false,
+      "locked": {
         "lastModified": 1762159198,
         "narHash": "sha256-P4ozmEYWDWTJ4ji+lyIpgTRP5o7Nabv8VP0SDSODPCU=",
         "owner": "rustsec",
@@ -332,6 +348,21 @@
     },
     "crane_5": {
       "locked": {
+        "lastModified": 1771438068,
+        "narHash": "sha256-nGBbXvEZVe/egCPVPFcu89RFtd8Rf6J+4RFoVCFec0A=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "b5090e53e9d68c523a4bb9ad42b4737ee6747597",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
+    "crane_6": {
+      "locked": {
         "lastModified": 1760924934,
         "narHash": "sha256-tuuqY5aU7cUkR71sO2TraVKK2boYrdW3gCSXUkF4i44=",
         "owner": "ipetkov",
@@ -345,7 +376,7 @@
         "type": "github"
       }
     },
-    "crane_6": {
+    "crane_7": {
       "locked": {
         "lastModified": 1765739568,
         "narHash": "sha256-gQYx35Of4UDKUjAYvmxjUEh/DdszYeTtT6MDin4loGE=",
@@ -377,9 +408,47 @@
         "url": "https://github.com/rust-lang/crates.io-index"
       }
     },
+    "crates-io-index_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772013874,
+        "narHash": "sha256-WwDhEeVOnAfH1PKpqHNdGFylmbtmTk5hk7cS+0C6Scg=",
+        "ref": "refs/heads/master",
+        "rev": "94b5f7911c9131b53988424c964f721a3f22714d",
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/rust-lang/crates.io-index"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "https://github.com/rust-lang/crates.io-index"
+      }
+    },
     "crates-nix": {
       "inputs": {
         "crates-io-index": [
+          "crates-io-index"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763364255,
+        "narHash": "sha256-uHP6YjKDWVaWqcmb/LOxEdZlkVWBvspXqx4+LC1zJsE=",
+        "owner": "uttarayan21",
+        "repo": "crates.nix",
+        "rev": "13d09f3b04e31d2ab3cfbe47540cb425eaf9b750",
+        "type": "github"
+      },
+      "original": {
+        "owner": "uttarayan21",
+        "repo": "crates.nix",
+        "type": "github"
+      }
+    },
+    "crates-nix_2": {
+      "inputs": {
+        "crates-io-index": [
+          "servius-website",
           "crates-io-index"
         ]
       },
@@ -938,7 +1007,7 @@
     },
     "flake-utils_14": {
       "inputs": {
-        "systems": "systems_18"
+        "systems": "systems_17"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -956,7 +1025,25 @@
     },
     "flake-utils_15": {
       "inputs": {
-        "systems": "systems_20"
+        "systems": "systems_19"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_16": {
+      "inputs": {
+        "systems": "systems_21"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1502,6 +1589,27 @@
       }
     },
     "nix-github-actions_3": {
+      "inputs": {
+        "nixpkgs": [
+          "servius-website",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1737420293,
+        "narHash": "sha256-F1G5ifvqTpJq7fdkT34e/Jy9VCyzd5XfJ9TO8fHhJWE=",
+        "owner": "nix-community",
+        "repo": "nix-github-actions",
+        "rev": "f4158fa080ef4503c8f4c820967d946c2af31ec9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-github-actions",
+        "type": "github"
+      }
+    },
+    "nix-github-actions_4": {
       "inputs": {
         "nixpkgs": [
           "tmux-float",
@@ -2094,6 +2202,7 @@
         "nno": "nno",
         "nur": "nur",
         "onepassword-shell-plugins": "onepassword-shell-plugins",
+        "servius-website": "servius-website",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "tmux-float": "tmux-float",
@@ -2235,6 +2344,27 @@
     "rust-overlay_6": {
       "inputs": {
         "nixpkgs": [
+          "servius-website",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1771556776,
+        "narHash": "sha256-zKprqMQDl3xVfhSSYvgru1IGXjFdxryWk+KqK0I20Xk=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "8b3f46b8a6d17ab46e533a5e3d5b1cc2ff228860",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "rust-overlay_7": {
+      "inputs": {
+        "nixpkgs": [
           "tmux-float",
           "nixpkgs"
         ]
@@ -2253,7 +2383,7 @@
         "type": "github"
       }
     },
-    "rust-overlay_7": {
+    "rust-overlay_8": {
       "inputs": {
         "nixpkgs": [
           "zjstatus",
@@ -2272,6 +2402,33 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "servius-website": {
+      "inputs": {
+        "advisory-db": "advisory-db_4",
+        "crane": "crane_5",
+        "crates-io-index": "crates-io-index_2",
+        "crates-nix": "crates-nix_2",
+        "flake-utils": "flake-utils_14",
+        "nix-github-actions": "nix-github-actions_3",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "rust-overlay": "rust-overlay_6"
+      },
+      "locked": {
+        "lastModified": 1772015815,
+        "narHash": "sha256-vgI/lh5EeFt8G2MEOqu61swr0BivajDUk9IR4vqnn14=",
+        "ref": "refs/heads/master",
+        "rev": "17d21dbc6646d99bc4292a63db4e5ff7da1dc649",
+        "revCount": 3,
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/servius.neocities.org"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/servius.neocities.org"
       }
     },
     "sops-nix": {
@@ -2307,7 +2464,7 @@
           "nixpkgs"
         ],
         "nur": "nur_2",
-        "systems": "systems_17",
+        "systems": "systems_18",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
@@ -2523,6 +2680,21 @@
         "type": "github"
       }
     },
+    "systems_21": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "systems_3": {
       "locked": {
         "lastModified": 1681028828,
@@ -2711,14 +2883,14 @@
     },
     "tmux-float": {
       "inputs": {
-        "advisory-db": "advisory-db_4",
-        "crane": "crane_5",
-        "flake-utils": "flake-utils_14",
-        "nix-github-actions": "nix-github-actions_3",
+        "advisory-db": "advisory-db_5",
+        "crane": "crane_6",
+        "flake-utils": "flake-utils_15",
+        "nix-github-actions": "nix-github-actions_4",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_6"
+        "rust-overlay": "rust-overlay_7"
       },
       "locked": {
         "lastModified": 1762159782,
@@ -2856,7 +3028,7 @@
     "vicinae": {
       "inputs": {
         "nixpkgs": "nixpkgs_10",
-        "systems": "systems_19"
+        "systems": "systems_20"
       },
       "locked": {
         "lastModified": 1771502217,
@@ -2897,12 +3069,12 @@
     },
     "zjstatus": {
       "inputs": {
-        "crane": "crane_6",
-        "flake-utils": "flake-utils_15",
+        "crane": "crane_7",
+        "flake-utils": "flake-utils_16",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay_7"
+        "rust-overlay": "rust-overlay_8"
       },
       "locked": {
         "lastModified": 1771148613,

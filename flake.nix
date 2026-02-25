@@ -164,6 +164,10 @@
       url = "github:christo-auer/eilmeldung";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    servius-website = {
+      url = "git+https://git.darksailor.dev/servius/servius.neocities.org";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
