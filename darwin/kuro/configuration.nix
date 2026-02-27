@@ -22,6 +22,7 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
       ];
+      download-buffer-size = 524288000;
     };
     extraOptions = ''
       build-users-group = nixbld

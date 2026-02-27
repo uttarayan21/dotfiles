@@ -49,6 +49,7 @@
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
       trusted-users = [device.user];
       extra-sandbox-paths = [config.programs.ccache.cacheDir];
+      download-buffer-size = 524288000;
     };
     extraOptions = ''
       build-users-group = nixbld
