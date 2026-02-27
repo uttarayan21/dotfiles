@@ -83,5 +83,6 @@
     ./yt-dlp.nix
     ./zoxide.nix
     ./yq.nix
+    ./codex.nix
   ];
 }
