@@ -68,11 +68,6 @@
       # ../../builders/tsuba.nix
     ];
     distributedBuilds = true;
-    # Enable CUDA and llama-cpp caches
-    substituters = {
-      enableCuda = true;
-      enableLlamaCpp = true;
-    };
   };
 
   users.users.${device.user} = {

@@ -57,9 +57,6 @@
     };
     package = pkgs.nixVersions.nix_2_32; # deploy-rs doesn't work with nix >= 2.32
     distributedBuilds = true;
-    substituters = {
-      enableCuda = true;
-    };
   };
 
   users.users.${device.user} = {
