@@ -686,7 +686,7 @@ in {
     blink-ripgrep.enable = true;
     blink-cmp-git.enable = true;
     blink-cmp-dictionary.enable = true;
-    blink-cmp-copilot.enable = true;
+    # blink-cmp-copilot.enable = true;
     blink-cmp-spell.enable = true;
     blink-cmp-tmux.enable = true;
     blink-compat = {

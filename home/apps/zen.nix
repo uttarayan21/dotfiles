@@ -35,19 +35,19 @@
         containers = config.programs.zen-browser.profiles."default".containers;
       in {
         "Personal" = {
-          id = "";
+          id = "0b4dab19-9b39-4f2c-8ad1-0268d9fa2e49";
           icon = "👤";
           container = containers."Personal".id;
           position = 1000;
         };
         "Work" = {
-          id = "00bdd434-e31b-4e2b-b8f5-fa7055631a64";
+          id = "8f687163-6b15-4c3c-885f-8ffe465b386f";
           icon = "💼";
           container = containers."Work".id;
           position = 2000;
         };
         "Shopping" = {
-          id = "77452260-56e6-4c9e-8d5f-417958bc4fa4";
+          id = "74f46a1b-cdd7-408c-98d7-382a2b11bd51";
           icon = "💸";
           container = containers."Shopping".id;
           position = 3000;
