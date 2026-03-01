@@ -4,7 +4,9 @@
   cratesNix,
   ...
 }: let
-  cargo-credential-1password = cratesNix.buildCrate "cargo-credential-1password" {};
+  cargo-credential-1password = cratesNix.buildCrate "cargo-credential-1password" {
+    meta.mainProgram = "cargo-credential-1password";
+  };
 in
   lib.mkIf (!device.isServer) {
     home.file.".cargo/config.toml".text =

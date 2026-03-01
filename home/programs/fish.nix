@@ -23,6 +23,7 @@
       j = "just --choose";
       # t = "zellij a -c --index 0";
       t = "tmux";
+      neorg = "nvim -c ':Neorg index'";
     };
     shellAliases = {
       g = "git";

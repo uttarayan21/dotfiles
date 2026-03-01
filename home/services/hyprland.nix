@@ -172,7 +172,7 @@
 
       exec-once = [
         # "${pkgs.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1"
-        "${pkgs.mate.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
+        "${pkgs.mate-polkit}/libexec/polkit-mate-authentication-agent-1"
         # "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
         # "${pkgs.swww}/bin/swww init; swww img ~/.local/share/dotfiles/images/wallpaper.jpg"
         # "${pkgs.ironbar}/bin/ironbar"

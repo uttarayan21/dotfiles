@@ -36,7 +36,7 @@ in {
       pkgs.writeShellApplication {
         name = "git-install-prepare-commit-msg";
         text = ''
-          cp ${../scripts/prepare-commit-msg} .git/hooks/prepare-commit-msg
+          ln -sf ${../scripts/prepare-commit-msg} .git/hooks/prepare-commit-msg
         '';
       }
     )
