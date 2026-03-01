@@ -84,5 +84,6 @@
     ./zoxide.nix
     ./yq.nix
     ./codex.nix
+    ./nixify.nix
   ];
 }

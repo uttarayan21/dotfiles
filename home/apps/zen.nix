@@ -8,6 +8,7 @@
   imports = [
     inputs.zen-browser.homeModules.beta
   ];
+  programs.zen-browser.darwinDefaultsId = "org.mozilla.firefox.plist";
   programs.zen-browser = {
     enable = true;
     profiles.default = {
