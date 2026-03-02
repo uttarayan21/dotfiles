@@ -1,8 +1,4 @@
-{
-  config,
-  lib,
-  ...
-}: {
+{...}: {
   config = {
     nix.settings = {
       trusted-substituters = [
