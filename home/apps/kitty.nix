@@ -8,11 +8,8 @@
   stylix.targets.kitty.enable = false;
   programs.kitty = {
     enable = true;
-    # enable = false;
     font = {
-      # name = "FiraCode Nerd Font Mono";
       name = "Hasklug Nerd Font Mono";
-      # name = "Monaspace Krypton Var Light";
       size = lib.mkForce 13;
     };
     settings = {
