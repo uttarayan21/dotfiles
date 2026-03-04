@@ -22,5 +22,6 @@
     ./foot.nix
     ./ddcutil.nix
     ./libnotify.nix
+    ./fish.nix
   ];
 }

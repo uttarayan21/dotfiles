@@ -52,9 +52,13 @@
           khal = {
             enable = true;
             addresses = ["email@uttarayan.me"];
+            type = "discover";
           };
           vdirsyncer = {
             enable = true;
+            conflictResolution = "remote wins";
+            collections = ["from a"];
+            metadata = ["color" "displayname"];
           };
         };
       };

@@ -86,6 +86,36 @@
             icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
             definedAliases = ["@nx"]; # Keep in mind that aliases defined here only work if they start with "@"
           };
+          hm = {
+            name = "Home Manager Options";
+            urls = [
+              {
+                template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+            definedAliases = ["@hm"];
+          };
+          nv = {
+            name = "NixVim";
+            urls = [
+              {
+                template = "https://nix-community.github.io/nixvim/search/?query={searchTerms}";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+            definedAliases = ["@nv"];
+          };
         };
       };
       pins = {

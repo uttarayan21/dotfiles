@@ -46,14 +46,14 @@
   };
   home.shell.enableFishIntegration = true;
 
-  programs.bash = {
-    enable = true;
-    initExtra = ''
-      if [[ $- == *i* && -z "$FISH_VERSION" ]]; then
-        exec ${lib.getExe pkgs.fish}
-      fi
-    '';
-  };
+  # programs.bash = {
+  #   enable = true;
+  #   initExtra = ''
+  #     if [[ $- == *i* && -z "$FISH_VERSION" ]]; then
+  #       ${lib.getExe pkgs.fish}
+  #     fi
+  #   '';
+  # };
 }
 // lib.optionalAttrs (!(device.is "tsuba")) {
   stylix.targets.fish.enable = false;
