@@ -289,7 +289,7 @@ in {
         "core.keybinds" = {
           config = {
             default_keybinds = true;
-            neorg_leader = "<C-m>";
+            neorg_leader = "<C-i>";
           };
         };
         "core.integrations.treesitter" = {

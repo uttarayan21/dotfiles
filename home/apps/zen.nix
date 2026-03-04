@@ -11,7 +11,7 @@
   programs.zen-browser.darwinDefaultsId = "org.mozilla.firefox.plist";
   programs.zen-browser = {
     enable = true;
-    profiles.default = {
+    profiles.default = rec {
       containersForce = true;
       containers = {
         Personal = {
@@ -65,6 +65,46 @@
         sponsorblock
         floccus
       ];
+      search = {
+        force = true;
+        default = "ddg";
+        engines = {
+          mynixos = {
+            name = "My NixOS";
+            urls = [
+              {
+                template = "https://mynixos.com/search?q={searchTerms}";
+                params = [
+                  {
+                    name = "query";
+                    value = "searchTerms";
+                  }
+                ];
+              }
+            ];
+
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            definedAliases = ["@nx"]; # Keep in mind that aliases defined here only work if they start with "@"
+          };
+        };
+      };
+      pins = {
+        dashboard = {
+          id = "d163f090-67b7-47d2-8f76-7d638b9f742b";
+          workspace = spaces.Personal.id;
+          url = "https://dashboard.darksailor.dev";
+          isEssential = true;
+          position = 101;
+        };
+        github = {
+          id = "db2f3e36-9279-4b8d-8b5d-52a90f34ea0d";
+          workspace = spaces.Personal.id;
+          url = "https://github.com";
+          isEssential = true;
+          position = 102;
+        };
+      };
+      pinsForce = true;
     };
     nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {
