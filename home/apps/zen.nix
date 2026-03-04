@@ -74,12 +74,6 @@
             urls = [
               {
                 template = "https://mynixos.com/search?q={searchTerms}";
-                params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
-                ];
               }
             ];
 
@@ -91,12 +85,6 @@
             urls = [
               {
                 template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master";
-                params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
-                ];
               }
             ];
             definedAliases = ["@hm"];
@@ -105,16 +93,31 @@
             name = "NixVim";
             urls = [
               {
-                template = "https://nix-community.github.io/nixvim/search/?query={searchTerms}";
+                template = "https://nix-community.github.io/nixvim/search";
                 params = [
                   {
                     name = "query";
-                    value = "searchTerms";
+                    value = "{searchTerms}";
                   }
                 ];
               }
             ];
             definedAliases = ["@nv"];
+          };
+          lib = {
+            name = "Lib.rs";
+            urls = [
+              {
+                template = "https://lib.rs/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "{searchTerms}";
+                  }
+                ];
+              }
+            ];
+            definedAliases = ["@lib"];
           };
         };
       };
