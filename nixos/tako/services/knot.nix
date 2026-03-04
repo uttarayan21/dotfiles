@@ -15,7 +15,7 @@
   };
 
   services.caddy.virtualHosts."tangled.darksailor.dev".extraConfig = ''
-    reverse_proxy / ${config.services.tangled.knot.server.listenAddr} {
+    reverse_proxy ${config.services.tangled.knot.server.listenAddr} {
         header_up Host {host}
         header_up X-Real-IP {remote}
         header_up X-Forwarded-For {remote}
