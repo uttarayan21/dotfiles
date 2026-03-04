@@ -28,6 +28,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
           inputs.headplane.nixosModules.headplane
+          inputs.tangled-core.nixosModules.knot
 
           ./${device.name}/configuration.nix
           ../home/module.nix

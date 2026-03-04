@@ -12,6 +12,7 @@
     ./resolved.nix
     ./tailscale.nix
     ./gitea.nix
+    ./knot.nix
 
     ./affine.nix
     ./attic.nix

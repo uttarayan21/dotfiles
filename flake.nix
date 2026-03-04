@@ -172,6 +172,10 @@
       url = "github:uttarayan21/nixify";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tangled-core = {
+      url = "git+https://tangled.org/tangled.org/core";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
