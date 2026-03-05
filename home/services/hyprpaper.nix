@@ -8,8 +8,10 @@
     wallpapers = import ../../utils/wallhaven.nix {inherit pkgs;};
     nextcloudWallpapers = name: config.home.homeDirectory + "/Nextcloud/Wallpapers/" + name;
     # silksongFleas = nextcloudWallpapers "silksong-fleas.jpg";
-    bocchiVertical = nextcloudWallpapers "bocchi-vertical.jpg";
-    silksongShadeLord = nextcloudWallpapers "silksong-shadelord.jpg";
+
+    # The artist https://www.bilibili.com/video/BV1s44y1S7MM/
+    bocchiVertical = nextcloudWallpapers "bocchi-guitar.jpg";
+    frieren = nextcloudWallpapers "frieren.png";
   in {
     enable = device.is "ryu";
     settings = {
@@ -17,12 +19,12 @@
       wallpaper = [
         {
           monitor = device.monitors.primary;
-          path = silksongShadeLord;
+          path = wallpapers.moon;
           fit_mode = "cover";
         }
         {
           monitor = device.monitors.secondary;
-          path = wallpapers.frieren_3;
+          path = frieren;
           fit_mode = "cover";
         }
         {
