@@ -34,7 +34,7 @@
     '';
     # ${pkgs.spotify-player}/bin/spotify_player generate fish | source
     interactiveShellInit = ''
-      if test -n "$TMUX"; ${lib.getExe pkgs.fastfetch} --logo-type sixel; else ${lib.getExe pkgs.fastfetch}; end
+      if test -n "$TMUX"; ${lib.getExe pkgs.fastfetch} --logo-type kitty-icat; else ${lib.getExe pkgs.fastfetch}; end
       # ${pkgs.nb}/bin/nb todo undone
       ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
       ${lib.optionalString (device.is "ryu") ''
