@@ -206,7 +206,7 @@
         "$mainMod, d, exec, ${lib.getExe pkgs.vicinae} toggle"
         "$mainMod, Space, exec, ${lib.getExe pkgs.vicinae} toggle"
         "$mainMod, p, pseudo, # dwindle"
-        "$mainMod, v, togglesplit,"
+        "$mainMod, v, layoutmsg, togglesplit"
         "$mainMod, a, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"
         "$mainMod, Tab, cyclenext"
         # Audio
