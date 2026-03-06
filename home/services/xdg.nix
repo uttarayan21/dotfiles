@@ -2,6 +2,7 @@
   pkgs,
   lib,
   device,
+  inputs,
   ...
 }: {
   xdg.portal = {
@@ -12,7 +13,8 @@
     };
     extraPortals = with pkgs; [
       kdePackages.xdg-desktop-portal-kde
-      xdg-desktop-portal-hyprland
+      # xdg-desktop-portal-hyprland
+      inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
   };

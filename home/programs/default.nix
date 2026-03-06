@@ -85,5 +85,6 @@
     ./yq.nix
     ./codex.nix
     ./nixify.nix
+    ./iamb.nix
   ];
 }

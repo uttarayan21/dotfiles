@@ -81,6 +81,10 @@
     });
   };
 
+  applications = final: prev: {
+    iamb = inputs.iamb.packages.${prev.system}.default;
+  };
+
   # --- Themes and assets ---
   themes = final: prev: {
     catppuccinThemes = import ./themes/catppuccin.nix {pkgs = final.pkgs;};
@@ -99,6 +103,7 @@ in
     media
     darwin
     themes
+    applications
 
     # External input overlays
     inputs.deploy-rs.overlays.default

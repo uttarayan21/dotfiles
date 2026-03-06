@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
-    hyprland
+    inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
     xhost
   ];
 }

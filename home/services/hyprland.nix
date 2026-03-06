@@ -2,6 +2,7 @@
   pkgs,
   device,
   lib,
+  inputs,
   ...
 }:
 # lib.optionalAttrs device.isNix
@@ -31,6 +32,8 @@
   wayland.windowManager.hyprland = {
     enable = device.is "ryu";
     systemd.enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 
     settings = {
       # source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
