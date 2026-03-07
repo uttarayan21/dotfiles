@@ -26,9 +26,9 @@
           };
         };
       };
-    tmux-float = inputs.tmux-float.packages.${prev.system}.default;
+    tmux-float = inputs.tmux-float.packages.${prev.stdenv.hostPlatform.system}.default;
     zellijPlugins = {
-      zjstatus = inputs.zjstatus.packages.${prev.system}.default;
+      zjstatus = inputs.zjstatus.packages.${prev.stdenv.hostPlatform.system}.default;
     };
   };
 
@@ -65,13 +65,13 @@
 
   # --- Media ---
   media = final: prev: {
-    ddcbacklight = inputs.ddcbacklight.packages.${prev.system}.ddcbacklight;
-    music-player-git = inputs.music-player.packages.${prev.system}.default;
+    ddcbacklight = inputs.ddcbacklight.packages.${prev.stdenv.hostPlatform.system}.ddcbacklight;
+    music-player-git = inputs.music-player.packages.${prev.stdenv.hostPlatform.system}.default;
   };
 
   # --- macOS-specific ---
   darwin = final: prev: {
-    kitty = inputs.nixpkgs-stable.legacyPackages.${prev.system}.kitty;
+    kitty = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.kitty;
     yabai = prev.yabai.overrideAttrs (oldAttrs: rec {
       version = "7.1.16";
       src = final.fetchzip {
@@ -82,7 +82,9 @@
   };
 
   applications = final: prev: {
-    iamb = inputs.iamb.packages.${prev.system}.default;
+    iamb = inputs.iamb.packages.${prev.stdenv.hostPlatform.system}.default;
+    hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.hyprland;
+    # xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   # --- Themes and assets ---
@@ -90,7 +92,7 @@
     catppuccinThemes = import ./themes/catppuccin.nix {pkgs = final.pkgs;};
     nix-index-database = final.runCommandLocal "nix-index-database" {} ''
       mkdir -p $out
-      ln -s ${inputs.nix-index-database.legacyPackages.${prev.system}.database} $out/files
+      ln -s ${inputs.nix-index-database.legacyPackages.${prev.stdenv.hostPlatform.system}.database} $out/files
     '';
   };
 in

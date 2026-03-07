@@ -7,7 +7,7 @@
     # ./alvr.nix
     ./easyeffects.nix
     ./vr.nix
-    ./helvum.nix
+    ./crosspipe.nix
     # ./wine.nix
     # ./virt.nix
     ./gparted.nix

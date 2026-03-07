@@ -158,6 +158,5 @@
         Fingerprinting = true;
       };
     };
-    suppressXdgMigrationWarning = true;
   };
 }
