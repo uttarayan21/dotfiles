@@ -1,15 +1,18 @@
 {...}: {
   imports = [
     # ../../../modules/darwin/caddy
-    ./yabai.nix
-    ./skhd.nix
-    ./tailscale.nix
-    ./autossh.nix
-    # ./caddy.nix
-    ./sops.nix
-    # ./lmstudio.nix
-    # ./colima.nix
-    # ./zerotier.nix
+
     # ./aerospace.nix
+    # ./caddy.nix
+    # ./colima.nix
+    # ./lmstudio.nix
+    # ./zerotier.nix
+
+    ./autossh.nix
+    ./skhd.nix
+    ./sops.nix
+    ./sunshine.nix
+    ./tailscale.nix
+    ./yabai.nix
   ];
 }
