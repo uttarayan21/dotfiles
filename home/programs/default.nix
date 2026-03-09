@@ -7,6 +7,7 @@
     # ./bluetui.nix
     # ./goread.nix
     # ./helix.nix
+    # ./iamb.nix
     # ./magika.nix
     # ./mpd.nix
     # ./mpris-scrobbler.nix
@@ -19,6 +20,7 @@
     # ./template.nix
     # ./tuifeed.nix
     # ./xh.nix
+    # ./yt-dlp.nix
     # ./zellij.nix
 
     ../../modules
@@ -40,6 +42,7 @@
     ./carapace.nix
     ./cargo.nix
     ./cfcli.nix
+    ./codex.nix
     ./ddcbacklight.nix
     ./deploy-rs.nix
     ./direnv.nix
@@ -64,6 +67,7 @@
     ./neomutt.nix
     ./neovim.nix
     ./nix-index.nix
+    ./nixify.nix
     ./nushell.nix
     ./omnix.nix
     ./opencode.nix
@@ -80,11 +84,7 @@
     ./tmux.nix
     ./uv.nix
     ./yazi.nix
-    # ./yt-dlp.nix
-    ./zoxide.nix
     ./yq.nix
-    ./codex.nix
-    ./nixify.nix
-    ./iamb.nix
+    ./zoxide.nix
   ];
 }
