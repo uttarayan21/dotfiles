@@ -80,7 +80,7 @@
     ./tmux.nix
     ./uv.nix
     ./yazi.nix
-    ./yt-dlp.nix
+    # ./yt-dlp.nix
     ./zoxide.nix
     ./yq.nix
     ./codex.nix
