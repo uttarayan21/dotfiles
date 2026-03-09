@@ -32,6 +32,8 @@
   wayland.windowManager.hyprland = {
     enable = device.is "ryu";
     systemd.enable = true;
+    package = pkgs.hyprland;
+    portalPackage = pkgs.xdph;
 
     settings = {
       # source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";

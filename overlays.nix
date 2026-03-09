@@ -57,7 +57,7 @@
 
   # --- Networking ---
   networking = final: prev: {
-    caddyWithCloudflare = inputs.nixpkgs.legacyPackages.${final.system}.caddy.withPlugins {
+    caddyWithCloudflare = inputs.nixpkgs.legacyPackages.${prev.stdenv.hostPlatform.system}.caddy.withPlugins {
       plugins = ["github.com/caddy-dns/cloudflare@v0.2.2"];
       hash = "sha256-biQdtiscdmrwP6VUsuXmZrvcdewl+g50kdmab5lhE0s=";
     };
@@ -84,7 +84,8 @@
   applications = final: prev: {
     iamb = inputs.iamb.packages.${prev.stdenv.hostPlatform.system}.default;
     hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.hyprland;
-    # xdg-desktop-portal-hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xdg-desktop-portal-hyprland = prev.enableDebugging inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    xdph = inputs.nixpkgs-master.legacyPackages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
   # --- Themes and assets ---

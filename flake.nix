@@ -184,6 +184,10 @@
       url = "github:ulyssa/iamb/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cinny = {
+      url = "github:cinnyapp/cinny/dev";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -362,10 +366,6 @@
           config.allowUnfree = true;
         };
       in {
-        # packages = rec {
-        #   default = neovim;
-        #   neovim = pkgs.nixvim.makeNixvim (pkgs.callPackage ./neovim);
-        # };
         devShells = {
           default = pkgs.mkShell {
             packages = with pkgs; [sops just openssl ast-grep];

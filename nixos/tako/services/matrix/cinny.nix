@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: let
   base_domain = "darksailor.dev";
@@ -19,16 +20,18 @@
       pname = "cinny-unwrapped";
       version = "4.10.5";
 
-      src = fetchFromGitHub {
-        owner = "cinnyapp";
-        repo = "cinny";
-        tag = "v${version}";
-        hash = "sha256-Napy3AcsLRDZPcBh3oq1U30FNtvoNtob0+AZtZSvcbM=";
-      };
+      # src = fetchFromGitHub {
+      #   owner = "cinnyapp";
+      #   repo = "cinny";
+      #   rev = "dev";
+      #   # tag = "v${version}";
+      #   hash = "sha256-2qxmlj4IK6twDh27R6qMJDmYSfsWoofVGuRHxSP72f0=";
+      # };
+      src = inputs.cinny;
 
       nodejs = nodejs_22;
 
-      npmDepsHash = "sha256-2Lrd0jAwAH6HkwLHyivqwaEhcpFAIALuno+MchSIfxo=";
+      npmDepsHash = "sha256-qyQ0SXkPSUES/tavKzPra0Q+ZnU9qHvkTC1JgAjL0o8=";
 
       nativeBuildInputs = [
         python3

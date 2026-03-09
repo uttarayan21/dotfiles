@@ -23,15 +23,6 @@
     tctiEnvironment.enable = true;
   };
 
-  programs = {
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-      xwayland.enable = true;
-    };
-    uwsm.enable = true;
-  };
-
   systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
   # systemd.tmpfiles.rules = [
   #   "L+ /etc/gdm/.config/monitors.xml - - - - ${./monitors.xml}"

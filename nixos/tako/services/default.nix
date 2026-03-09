@@ -25,7 +25,7 @@
     ./llms.nix
     ./matrix
     ./monitoring.nix
-    ./servius-website.nix
+    # ./servius-website.nix
     # ./paperless.nix
     ./prowlarr.nix
     # ./searxng.nix
