@@ -1,8 +1,8 @@
 {...}: {
-  taps = {
-    "lizardbyte/homebrew" = {};
-  };
+  taps = [
+    "lizardbyte/homebrew"
+  ];
   brews = [
-    "sunshine-beta"
+    "lizardbyte/homebrew/sunshine-beta"
   ];
 }
