@@ -13,6 +13,7 @@
     ./sops.nix
     ./sunshine.nix
     ./tailscale.nix
+    ./openclaw.nix
     ./yabai.nix
   ];
 }
