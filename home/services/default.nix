@@ -1,18 +1,19 @@
 {...}: {
   imports = [
+    ./gtk.nix
+    ./gui.nix
+    ./hyprland.nix
+    ./hyprmon.nix
+    ./hyprpaper.nix
+    ./ironbar
+    ./kdeconnect.nix
+    ./remmina.nix
+    ./ollama.nix
     ./swaync.nix
     ./swayosd.nix
-    ./kdeconnect.nix
-    ./gtk.nix
-    # ./anyrun.nix
-    ./ironbar
-    ./gui.nix
-    # ./eww.nix
     ./xdg.nix
-    ./hyprmon.nix
-    ./hyprland.nix
-    ./hyprpaper.nix
-    ./remmina.nix
+    # ./anyrun.nix
+    # ./eww.nix
     # ./wallpaperengine.nix
   ];
 }
