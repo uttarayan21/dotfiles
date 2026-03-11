@@ -27,6 +27,9 @@ lib.optionalAttrs device.hasGui {
     # ./vial.nix
     # ./vlc.nix
     # ./vscode.nix
+    # ./zen.nix
+
+    ./moonlight.nix
     # ./zed.nix
 
     ./affine.nix

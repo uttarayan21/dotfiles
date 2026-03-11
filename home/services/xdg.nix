@@ -4,8 +4,7 @@
   device,
   inputs,
   ...
-}:
-{
+}: {
   xdg.portal = {
     enable = device.is "ryu";
     config = {
@@ -14,6 +13,7 @@
     };
   };
 }
-// lib.optionalAttrs (device.is "ryu") {
-  environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
-}
+# // lib.optionalAttrs (device.is "ryu") {
+#   environment.pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
+# }
+

@@ -8,7 +8,7 @@
     ./ironbar
     ./kdeconnect.nix
     ./remmina.nix
-    ./ollama.nix
+    # ./ollama.nix
     ./swaync.nix
     ./swayosd.nix
     ./xdg.nix
