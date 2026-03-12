@@ -130,11 +130,10 @@
     options = ["nofail"];
   };
 
-  # fileSystems."/volumes/windows-games" = {
-  #   device = "/dev/disk/by-partuuid/56359fb7-7d33-44d2-bebd-b0c53daeeb73";
-  #   fsType = "ntfs3";
-  #   options = ["nofail"];
-  # };
+  fileSystems."/var" = {
+    device = "/dev/disk/by-uuid/ff874913-dc21-43f3-82f8-cdf45dd888f7";
+    fsType = "ext4";
+  };
 
   swapDevices = [
     {
