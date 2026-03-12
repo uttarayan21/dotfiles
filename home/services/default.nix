@@ -12,6 +12,7 @@
     ./swaync.nix
     ./swayosd.nix
     ./xdg.nix
+    ./ironclaw.nix
     # ./anyrun.nix
     # ./eww.nix
     # ./wallpaperengine.nix

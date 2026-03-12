@@ -365,10 +365,18 @@
           };
           config.allowUnfree = true;
         };
+        cratesNix = inputs.crates-nix.mkLib {inherit pkgs;};
       in {
         devShells = {
           default = pkgs.mkShell {
             packages = with pkgs; [sops just openssl ast-grep];
+          };
+        };
+        packages = {
+          default = cratesNix.buildCrate "ironclaw" {
+            nativeBuildInputs = [pkgs.pkg-config];
+            buildInputs = [pkgs.openssl];
+            doCheck = false;
           };
         };
       }

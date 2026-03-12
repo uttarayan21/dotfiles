@@ -119,6 +119,15 @@
             ];
             definedAliases = ["@lib"];
           };
+          searchix = {
+            name = "Searchix";
+            urls = [
+              {
+                template = "https://searchix.ovh/?query={searchTerms}";
+              }
+            ];
+            definedAliases = ["sx"];
+          };
         };
       };
       pins = {

@@ -491,10 +491,10 @@
     "crates-io-index": {
       "flake": false,
       "locked": {
-        "lastModified": 1772964728,
-        "narHash": "sha256-Up4dWUxHpjPZodSKtsy64RE+UDB9OW7LQI3xNpRd4vQ=",
+        "lastModified": 1773228541,
+        "narHash": "sha256-/HxIvekjC2d4rV1i1c427OaQ/2Ob592T05iHGCG1Smk=",
         "ref": "refs/heads/master",
-        "rev": "0c907d92a476b9ffadcfd9bc5e3d8afa4ffd30c4",
+        "rev": "6a47cd654bba9bad905b041a81f485bb13affdb2",
         "shallow": true,
         "type": "git",
         "url": "https://github.com/rust-lang/crates.io-index"
@@ -529,11 +529,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1763364255,
-        "narHash": "sha256-uHP6YjKDWVaWqcmb/LOxEdZlkVWBvspXqx4+LC1zJsE=",
+        "lastModified": 1773225892,
+        "narHash": "sha256-EM//kHJ1Rlhsl6Q01gRxFozaGWlZvrnaI8Gdv0YfMgs=",
         "owner": "uttarayan21",
         "repo": "crates.nix",
-        "rev": "13d09f3b04e31d2ab3cfbe47540cb425eaf9b750",
+        "rev": "40b6736feba1aedf830b500b5d017d07ab5bd6f2",
         "type": "github"
       },
       "original": {
