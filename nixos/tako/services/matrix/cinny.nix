@@ -18,12 +18,12 @@
   cinny = with pkgs;
     buildNpmPackage rec {
       pname = "cinny-unwrapped";
-      version = "4.11.0";
+      version = "4.11.1";
       src = inputs.cinny;
 
       nodejs = nodejs_22;
 
-      npmDepsHash = "sha256-+V0neNe3h21nEgqj6cLBwUzN/dOtePM2VlzN/jx4lB4=";
+      npmDepsHash = "sha256-27WFjb08p09aJRi0S2PvYq3bivEuG5+z2QhFahTSj4Q=";
 
       nativeBuildInputs = [
         python3
