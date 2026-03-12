@@ -35,7 +35,7 @@ lib.optionalAttrs device.hasGui {
     ./affine.nix
     ./blueman.nix
     ./chromium.nix
-    ./discord.nix
+    # ./discord.nix
     ./firefox.nix
     ./ghostty.nix
     ./hyprpicker.nix

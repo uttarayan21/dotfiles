@@ -54,16 +54,16 @@
         };
       };
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        privacy-badger
-        violentmonkey
-        tridactyl
         clearurls
-        onepassword-password-manager
-        ublock-origin
+        floccus
         i-dont-care-about-cookies
         keepa
+        onepassword-password-manager
+        privacy-badger
         sponsorblock
-        floccus
+        tridactyl
+        ublock-origin
+        violentmonkey
       ];
       search = {
         force = true;
