@@ -6,6 +6,7 @@
     ./caddy.nix
     ./servarr.nix
     ./deluge.nix
+    ./aria2.nix
     ./homeassistant.nix
     ./flaresolverr.nix
     ./caddy.nix

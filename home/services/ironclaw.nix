@@ -1,5 +1,12 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.ironclaw
-  ];
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {
+  home.packages =
+    lib.optionals (device.is "ryu")
+    [
+      pkgs.ironclaw
+    ];
 }
