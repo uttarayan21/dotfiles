@@ -1,6 +1,7 @@
 {
   pkgs,
   device,
+  lib,
   ...
 }: {
   programs.gamemode = {
@@ -12,7 +13,7 @@
       custom = {
         start = let
           out = pkgs.writeScriptBin "gamemode-start" ''
-            ${pkgs.lmstudio}/bin/lms unload
+            ${lib.getExe pkgs.ollama} ps | tail +2 | cut -d' ' -f1 | xargs ${lib.getExe pkgs.ollama} stop
             ${pkgs.libnotify}/bin/notify-send 'GameMode started'
           '';
         in "${out}/bin/gamemode-start";

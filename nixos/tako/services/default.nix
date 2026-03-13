@@ -29,7 +29,7 @@
     # ./paperless.nix
     ./prowlarr.nix
     # ./searxng.nix
-    # ./shitpost.nix
+    ./shitpost.nix
   ];
   services = {
     nix-serve = {
