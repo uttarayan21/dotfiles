@@ -285,7 +285,7 @@ in {
           {
             targets = [
               "tsuba:8096" # jellyfin (built-in /metrics endpoint)
-              "tsuba:8123" # homeassistant (configure prometheus integration)
+              # "tsuba:8123" # homeassistant (configure prometheus integration)
               "tsuba:9617" # pihole-exporter
             ];
             labels = {
@@ -302,12 +302,12 @@ in {
             target_label = "__metrics_path__";
             replacement = "/metrics";
           }
-          {
-            source_labels = ["__address__"];
-            regex = "tsuba:8123";
-            target_label = "__metrics_path__";
-            replacement = "/api/prometheus";
-          }
+          # {
+          #   source_labels = ["__address__"];
+          #   regex = "tsuba:8123";
+          #   target_label = "__metrics_path__";
+          #   replacement = "/api/prometheus";
+          # }
         ];
       }
 
