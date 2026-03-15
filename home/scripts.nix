@@ -40,7 +40,7 @@ in {
         '';
       }
     )
-    # (mkScript ../scripts/yt-dlp.sh (with pkgs; [yt-dlp]))
-    # (mkScript ../scripts/autossh.sh (with pkgs; [autossh openssh]))
+    (mkScript ../scripts/yt-dlp.sh (with pkgs; [yt-dlp]))
+    (mkScript ../scripts/autossh.sh (with pkgs; [autossh openssh]))
   ];
 }

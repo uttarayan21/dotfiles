@@ -1,6 +1,7 @@
 set dotenv-load
 
 
+
 [macos]
 install: 
     sudo nix run nix-darwin -- switch --flake .
@@ -8,6 +9,10 @@ install:
 [linux]
 install cores='32':
 	sudo nixos-rebuild switch --flake . --builders '' --max-jobs 1 --cores {{cores}}
+
+[linux]
+boot cores='32': 
+	sudo nixos-rebuild boot --flake . --builders '' --max-jobs 1 --cores {{cores}}
 
 [macos]
 build:
