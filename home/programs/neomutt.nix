@@ -16,6 +16,7 @@ in {
     sidebar = {
       enable = true;
     };
+    checkStatsInterval = 60;
     extraConfig = ''
       # Catppuccin Mocha theme
       set color_directcolor = yes
@@ -64,14 +65,43 @@ in {
 
       # Pager
       color progress      #cdd6f4  #313244    # Text on Surface0
+
+      # Remove default mailboxes
+      unmailboxes *
+
+      # Notmuch virtual mailboxes
+      virtual-mailboxes "Unread" "notmuch://?query=tag:unread"
+      virtual-mailboxes "Inbox" "notmuch://?query=tag:inbox"
+      virtual-mailboxes "Sent" "notmuch://?query=tag:sent"
+      virtual-mailboxes "Archive" "notmuch://?query=tag:archive"
+      virtual-mailboxes "Spam" "notmuch://?query=tag:spam"
+      virtual-mailboxes "Flagged" "notmuch://?query=tag:flagged"
+      virtual-mailboxes "Hardware" "notmuch://?query=tag:hardware"
+      virtual-mailboxes "Servius" "notmuch://?query=tag:servius"
+      virtual-mailboxes "Uber" "notmuch://?query=tag:uber"
+      virtual-mailboxes "Fastmail" "notmuch://?query=folder:fastmail"
+      virtual-mailboxes "Gmail" "notmuch://?query=folder:gmail"
     '';
   };
   programs.notmuch = {
     enable = true;
+    new.tags = ["new" "unread"];
+    hooks = {
+      preNew = ''
+        ${pkgs.notmuch}/bin/notmuch tag +servius -- folder:fastmail/Inbox/Servius
+        ${pkgs.notmuch}/bin/notmuch tag +hardware -- folder:fastmail/Inbox/Hardware
+        ${pkgs.notmuch}/bin/notmuch tag +uber -- folder:fastmail/Inbox/Uber
+        ${pkgs.notmuch}/bin/notmuch tag +spam -- folder:fastmail/Spam
+        ${pkgs.notmuch}/bin/notmuch tag +spam -- folder:'gmail/[Gmail]/Spam'
+        ${pkgs.notmuch}/bin/notmuch tag +sent -- folder:fastmail/Sent
+        ${pkgs.notmuch}/bin/notmuch tag +sent -- folder:'gmail/[Gmail]/Sent Mail'
+        ${pkgs.notmuch}/bin/notmuch tag +archive -- folder:fastmail/Archive
+        ${pkgs.notmuch}/bin/notmuch tag +archive -- folder:'gmail/[Gmail]/All Mail'
+      '';
+    };
   };
   accounts.email.accounts.fastmail.neomutt = {
     enable = true;
-    extraMailboxes = ["Inbox/Hardware" "Inbox/Servius"];
   };
   accounts.email.accounts.fastmail.notmuch = {
     enable = true;
@@ -83,7 +113,7 @@ in {
   };
   accounts.email.accounts.fastmail.imapnotify = {
     enable = true;
-    boxes = ["Inbox" "Inbox/Hardware" "Inbox/Servius"];
+    boxes = ["Inbox"];
     onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
       ${pkgs.isync}/bin/mbsync $1
       ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
