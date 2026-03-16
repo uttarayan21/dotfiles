@@ -1,18 +1,69 @@
 {pkgs, ...}: let
-  theme = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/neomutt/refs/heads/main/neomuttrc";
-    sha256 = "sha256:1q086p5maqwxa4gh6z8g7h3nfavdmkbql025ibdhglpz46hsq0hs";
+  neomutt-wrapped = pkgs.symlinkJoin {
+    name = "neomutt";
+    paths = [pkgs.neomutt];
+    nativeBuildInputs = [pkgs.makeWrapper];
+    postBuild = ''
+      wrapProgram $out/bin/neomutt --set TERM xterm-direct
+    '';
   };
 in {
   programs.neomutt = {
     enable = true;
+    package = neomutt-wrapped;
     vimKeys = true;
     editor = "nvim";
     sidebar = {
       enable = true;
     };
     extraConfig = ''
-      source ${theme}
+      # Catppuccin Mocha theme
+      set color_directcolor = yes
+
+      # Base colors
+      color normal        #cdd6f4  #1e1e2e    # Text on Base
+      color error         #f38ba8  #1e1e2e    # Red on Base
+      color indicator     #1e1e2e  #f5c2e7    # Base on Pink (highlight)
+      color status        #cdd6f4  #313244    # Text on Surface0
+      color tilde         #6c7086  #1e1e2e    # Overlay0 on Base
+      color tree          #cba6f7  #1e1e2e    # Mauve on Base
+      color search        #1e1e2e  #f9e2af    # Base on Yellow
+
+      # Index (message list)
+      color index         #cdd6f4  #1e1e2e    # default
+      color index         #a6e3a1  #1e1e2e  "~N"   # New messages - Green
+      color index         #f38ba8  #1e1e2e  "~F"   # Flagged - Red
+      color index         #f5c2e7  #1e1e2e  "~T"   # Tagged - Pink
+      color index         #6c7086  #1e1e2e  "~D"   # Deleted - Overlay0
+
+      # Headers
+      color hdrdefault    #f5c2e7  #1e1e2e    # Pink
+      color header        #f5c2e7  #1e1e2e  "^From:"
+      color header        #f5c2e7  #1e1e2e  "^Subject:"
+
+      # Body
+      color quoted        #cba6f7  #1e1e2e    # Mauve
+      color quoted1       #89b4fa  #1e1e2e    # Blue
+      color quoted2       #94e2d5  #1e1e2e    # Teal
+      color quoted3       #a6e3a1  #1e1e2e    # Green
+      color quoted4       #f9e2af  #1e1e2e    # Yellow
+
+      color signature     #6c7086  #1e1e2e    # Overlay0
+      color attachment    #fab387  #1e1e2e    # Peach
+      color body          #89b4fa  #1e1e2e  "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"  # Email - Blue
+      color body          #89b4fa  #1e1e2e  "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+"  # URLs - Blue
+      color body          #a6e3a1  #1e1e2e  "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)"  # *bold* - Green
+      color body          #89dceb  #1e1e2e  "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"  # _underline_ - Sky
+      color body          #cba6f7  #1e1e2e  "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"  # /italic/ - Mauve
+
+      # Sidebar
+      color sidebar_divider  #45475a  #1e1e2e
+      color sidebar_new      #a6e3a1  #1e1e2e    # Green
+      color sidebar_flagged  #f38ba8  #1e1e2e    # Red
+      color sidebar_highlight #1e1e2e  #f5c2e7   # Base on Pink
+
+      # Pager
+      color progress      #cdd6f4  #313244    # Text on Surface0
     '';
   };
   programs.notmuch = {
@@ -20,6 +71,7 @@ in {
   };
   accounts.email.accounts.fastmail.neomutt = {
     enable = true;
+    extraMailboxes = ["Inbox/Hardware" "Inbox/Servius"];
   };
   accounts.email.accounts.fastmail.notmuch = {
     enable = true;
@@ -30,6 +82,21 @@ in {
     path = [pkgs.coreutils pkgs.isync pkgs.libnotify];
   };
   accounts.email.accounts.fastmail.imapnotify = {
+    enable = true;
+    boxes = ["Inbox" "Inbox/Hardware" "Inbox/Servius"];
+    onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
+      ${pkgs.isync}/bin/mbsync $1
+      ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
+    ''} %s";
+  };
+  accounts.email.accounts.gmail.neomutt = {
+    enable = true;
+  };
+  accounts.email.accounts.gmail.notmuch = {
+    enable = true;
+    neomutt.enable = true;
+  };
+  accounts.email.accounts.gmail.imapnotify = {
     enable = true;
     boxes = ["Inbox"];
     onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
