@@ -100,39 +100,46 @@ in {
       '';
     };
   };
-  accounts.email.accounts.fastmail.neomutt = {
-    enable = true;
-  };
-  accounts.email.accounts.fastmail.notmuch = {
-    enable = true;
-    neomutt.enable = true;
+
+  accounts.email.accounts = {
+    fastmail = {
+      neomutt = {
+        enable = true;
+      };
+      notmuch = {
+        enable = true;
+        neomutt.enable = false;
+      };
+      imapnotify = {
+        enable = true;
+        boxes = ["Inbox" "Inbox/Servius" "Inbox/Hardware" "Inbox/Uber"];
+        onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
+          ${pkgs.isync}/bin/mbsync $1
+          ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
+        ''} %s";
+      };
+    };
+    gmail = {
+      neomutt = {
+        enable = true;
+      };
+      notmuch = {
+        enable = true;
+        neomutt.enable = false;
+      };
+      imapnotify = {
+        enable = true;
+        boxes = ["Inbox"];
+        onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
+          ${pkgs.isync}/bin/mbsync $1
+          ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
+        ''} %s";
+      };
+    };
   };
   services.imapnotify = {
     enable = true;
     path = [pkgs.coreutils pkgs.isync pkgs.libnotify];
-  };
-  accounts.email.accounts.fastmail.imapnotify = {
-    enable = true;
-    boxes = ["Inbox"];
-    onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
-      ${pkgs.isync}/bin/mbsync $1
-      ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
-    ''} %s";
-  };
-  accounts.email.accounts.gmail.neomutt = {
-    enable = true;
-  };
-  accounts.email.accounts.gmail.notmuch = {
-    enable = true;
-    neomutt.enable = true;
-  };
-  accounts.email.accounts.gmail.imapnotify = {
-    enable = true;
-    boxes = ["Inbox"];
-    onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
-      ${pkgs.isync}/bin/mbsync $1
-      ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
-    ''} %s";
   };
   programs.mbsync.enable = true;
   services.mbsync.enable = pkgs.stdenv.isLinux;
