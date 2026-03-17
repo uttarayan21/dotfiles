@@ -54,16 +54,20 @@
         };
       };
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
+        augmented-steam
         clearurls
         floccus
         i-dont-care-about-cookies
+        indie-wiki-buddy
         keepa
+        libredirect
         onepassword-password-manager
         privacy-badger
         sponsorblock
         tridactyl
         ublock-origin
-        violentmonkey
+        youtube-recommended-videos
+        zen-internet
       ];
       search = {
         force = true;

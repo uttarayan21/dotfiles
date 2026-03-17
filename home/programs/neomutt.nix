@@ -8,6 +8,7 @@
     '';
   };
 in {
+  home.packages = [pkgs.w3m];
   programs.neomutt = {
     enable = true;
     package = neomutt-wrapped;
@@ -18,6 +19,12 @@ in {
     };
     checkStatsInterval = 60;
     extraConfig = ''
+      auto_view text/html
+      alternative_order text/plain text/html
+
+      macro pager e '<enter-command>set pipe_decode=yes<enter><pipe-message>nvim -R -c "set ft=mail"<enter>'
+      macro index e '<enter-command>set pipe_decode=yes<enter><pipe-message>nvim -R -c "set ft=mail"<enter>'
+
       # Catppuccin Mocha theme
       set color_directcolor = yes
 
@@ -66,7 +73,7 @@ in {
       # Pager
       color progress      #cdd6f4  #313244    # Text on Surface0
 
-      # Remove default mailboxes
+# Remove default mailboxes
       unmailboxes *
 
       # Notmuch virtual mailboxes
@@ -81,6 +88,8 @@ in {
       virtual-mailboxes "Uber" "notmuch://?query=tag:uber"
       virtual-mailboxes "Fastmail" "notmuch://?query=folder:fastmail"
       virtual-mailboxes "Gmail" "notmuch://?query=folder:gmail"
+
+      startup-hook . "push '<change-folder>+Unread<enter>'"
     '';
   };
   programs.notmuch = {
@@ -145,6 +154,10 @@ in {
   };
   programs.mbsync.enable = true;
   services.mbsync.enable = pkgs.stdenv.isLinux;
+
+  xdg.configFile."neomutt/mailcap".text = ''
+    text/html; ${pkgs.w3m}/bin/w3m -I %{charset} -T text/html; copiousoutput
+  '';
 
   # launchd.agents.mbsync = {
   #   enable = true;
