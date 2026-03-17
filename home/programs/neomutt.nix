@@ -108,7 +108,8 @@ in {
       };
       notmuch = {
         enable = true;
-        neomutt.enable = false;
+        neomutt.enable = true;
+        neomutt.virtualMailboxes = [];
       };
       imapnotify = {
         enable = true;
@@ -125,7 +126,8 @@ in {
       };
       notmuch = {
         enable = true;
-        neomutt.enable = false;
+        neomutt.enable = true;
+        neomutt.virtualMailboxes = [];
       };
       imapnotify = {
         enable = true;

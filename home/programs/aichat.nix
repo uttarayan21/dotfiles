@@ -20,7 +20,7 @@
     enableNushellIntegration = false;
     settings = {
       save_session = true;
-      model = "ryu:qwen3:30b-a3b";
+      model = "chutes:zai-org/GLM-5-Turbo";
       rag_embedding_model = "ryu:RobinBially/nomic-embed-text-8k";
       clients = [
         {
@@ -62,6 +62,18 @@
             #   name = "qwen3:8b";
             #   type = "chat";
             # }
+          ];
+        }
+        {
+          type = "openai-compatible";
+          name = "chutes";
+          api_base = "https://llm.chutes.ai/v1";
+          api_key_cmd = "op item get chutes.ai --fields token --reveal";
+          models = [
+            {
+              name = "zai-org/GLM-5-Turbo";
+              type = "chat";
+            }
           ];
         }
         {

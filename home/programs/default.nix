@@ -26,6 +26,7 @@
     ../../modules
 
     ./1password-cli.nix
+    ./aerc.nix
     ./aichat.nix
     ./alejandra.nix
     ./aria2.nix
