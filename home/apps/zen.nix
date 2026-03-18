@@ -67,7 +67,6 @@
         tridactyl
         ublock-origin
         youtube-recommended-videos
-        zen-internet
       ];
       search = {
         force = true;

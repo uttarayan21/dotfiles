@@ -3,6 +3,7 @@
     ./atuin.nix
     ./authelia.nix
     ./caddy.nix
+    # ./calibre.nix
     ./fail2ban.nix
     ./homepage.nix
     ./lldap.nix
