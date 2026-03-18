@@ -1,6 +1,11 @@
-{pkgs, config, lib, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home.packages = [pkgs.w3m];
-  
+
   programs.aerc = {
     enable = true;
     extraConfig.general.unsafe-accounts-conf = true;

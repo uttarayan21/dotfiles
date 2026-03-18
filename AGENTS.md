@@ -149,6 +149,8 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
     openssl rand -hex 32 | tr -d '\n' | jq -sR | sops set --value-stdin secrets/secrets.yaml '["foo"]["bar"]'
   ```
   This will add a randomly generated secret to the sops file
+  NOTE: You MUST NEVER decrypt the secrets/secrets.yaml file
+  NOTE: You MUST NEVER generate secrets manually and then put them in the file later. It should ALWAYS be a single command
 
 
 ## Common Patterns
