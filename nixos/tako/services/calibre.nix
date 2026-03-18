@@ -20,7 +20,7 @@ in {
         enableBookConversion = true;
         reverseProxyAuth = {
           enable = true;
-          header = "REMOTE-USER";
+          header = "Remote-User";
         };
       };
     };

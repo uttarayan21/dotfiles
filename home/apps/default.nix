@@ -9,6 +9,7 @@ lib.optionalAttrs device.hasGui {
     # ./bottles.nix
     # ./cinny.nix
     # ./cursor.nix
+    # ./discord.nix
     # ./gimp.nix
     # ./guitarix.nix
     # ./ida.nix
@@ -27,20 +28,19 @@ lib.optionalAttrs device.hasGui {
     # ./vial.nix
     # ./vlc.nix
     # ./vscode.nix
-    # ./zen.nix
-
-    ./moonlight.nix
     # ./zed.nix
+    # ./zen.nix
 
     ./affine.nix
     ./blueman.nix
+    ./calibre.nix
     ./chromium.nix
-    # ./discord.nix
     ./firefox.nix
     ./ghostty.nix
     ./hyprpicker.nix
     ./kitty.nix
     ./matrix.nix
+    ./moonlight.nix
     ./mpv.nix
     ./nextcloud.nix
     ./obs-studio.nix
