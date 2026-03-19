@@ -123,6 +123,7 @@ in {
         boxes = ["Inbox" "Inbox/Servius" "Inbox/Hardware" "Inbox/Uber"];
         onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
           ${pkgs.isync}/bin/mbsync $1
+          ${pkgs.notmuch}/bin/notmuch new
           ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
         ''} %s";
       };
@@ -141,6 +142,7 @@ in {
         boxes = ["Inbox"];
         onNotify = "${pkgs.writeShellScript "mbsync-notify" ''
           ${pkgs.isync}/bin/mbsync $1
+          ${pkgs.notmuch}/bin/notmuch new
           ${pkgs.libnotify}/bin/notify-send "New Mail" "New email in $1"
         ''} %s";
       };
@@ -148,7 +150,7 @@ in {
   };
   services.imapnotify = {
     enable = true;
-    path = [pkgs.coreutils pkgs.isync pkgs.libnotify];
+    path = [pkgs.coreutils pkgs.isync pkgs.libnotify pkgs.notmuch];
   };
   programs.mbsync.enable = true;
   services.mbsync.enable = pkgs.stdenv.isLinux;
