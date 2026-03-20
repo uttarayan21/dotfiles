@@ -32,6 +32,7 @@ lib.optionalAttrs device.hasGui {
     # ./zen.nix
 
     ./affine.nix
+    ./bitwarden.nix
     ./blueman.nix
     ./calibre.nix
     ./chromium.nix

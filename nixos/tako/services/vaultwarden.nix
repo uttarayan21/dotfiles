@@ -35,7 +35,7 @@ in {
         SSO_ENABLED = true;
         SSO_ONLY = true;
         SSO_AUTHORITY = "https://auth.darksailor.dev";
-        SSO_SCOPES = "openid offline_access profile email";
+        SSO_SCOPES = "profile email offline_access vaultwarden";
         SSO_PKCE = true;
         SSO_ROLES_ENABLED = true;
         SSO_ROLES_DEFAULT_TO_USER = true;
@@ -46,23 +46,39 @@ in {
       reverse_proxy localhost:${toString port}
     '';
     authelia.instances.darksailor.settings = {
-      identity_providers.oidc.clients = [
-        {
-          client_name = "Vaultwarden";
-          client_id = "{{ secret \"${config.sops.secrets."authelia/oidc/vaultwarden/client_id".path}\" }}";
-          client_secret = "{{ secret \"${config.sops.secrets."authelia/oidc/vaultwarden/client_secret".path}\" }}";
-          public = false;
-          authorization_policy = "one_factor";
-          require_pkce = true;
-          pkce_challenge_method = "S256";
-          redirect_uris = ["https://pass.darksailor.dev/identity/connect/oidc-signin"];
-          scopes = ["openid" "offline_access" "profile" "email"];
-          response_types = ["code"];
-          grant_types = ["authorization_code" "refresh_token"];
-          userinfo_signed_response_alg = "none";
-          token_endpoint_auth_method = "client_secret_basic";
-        }
-      ];
+      definitions.user_attributes.vaultwarden_roles.expression = ''"vaultwarden_admins" in groups ? ["admin"] : "vaultwarden_users" in groups ? ["user"] : [""]'';
+      identity_providers.oidc = {
+        claims_policies = {
+          vaultwarden = {
+            id_token = ["vaultwarden_roles"];
+            custom_claims = {
+              vaultwarden_roles = {};
+            };
+          };
+        };
+        scopes = {
+          vaultwarden = {
+            claims = ["vaultwarden_roles"];
+          };
+        };
+        clients = [
+          {
+            client_name = "Vaultwarden";
+            client_id = "{{ secret \"${config.sops.secrets."authelia/oidc/vaultwarden/client_id".path}\" }}";
+            client_secret = "{{ secret \"${config.sops.secrets."authelia/oidc/vaultwarden/client_secret".path}\" }}";
+            public = false;
+            authorization_policy = "one_factor";
+            require_pkce = true;
+            pkce_challenge_method = "S256";
+            redirect_uris = ["https://pass.darksailor.dev/identity/connect/oidc-signin"];
+            scopes = ["openid" "offline_access" "profile" "email" "vaultwarden"];
+            response_types = ["code"];
+            grant_types = ["authorization_code" "refresh_token"];
+            userinfo_signed_response_alg = "none";
+            token_endpoint_auth_method = "client_secret_basic";
+          }
+        ];
+      };
     };
   };
 }
