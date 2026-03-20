@@ -19,10 +19,15 @@
     };
     environment = {
       LLDAP_JWT_SECRET_FILE = "${config.sops.secrets."lldap/jwt".path}";
-      # LLDAP_FORCE_UPDATE_PRIVATE_KEY = "true";
-      # LLDAP_KEY_SEED_FILE = "${config.sops.secrets."lldap/seed".path}";
     };
   };
+  services.caddy.virtualHosts."lldap.darksailor.dev".extraConfig = ''
+    @tailscale remote_ip 100.64.0.0/10
+    handle @tailscale {
+      reverse_proxy localhost:5090
+    }
+    respond "Access denied" 403
+  '';
   users.users.lldap = {
     name = "lldap";
     group = "lldap";
