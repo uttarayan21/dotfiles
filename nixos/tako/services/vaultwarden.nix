@@ -33,9 +33,9 @@ in {
         ROCKET_PORT = port;
         SIGNUPS_ALLOWED = false;
         SSO_ENABLED = true;
-        SSO_ONLY = false;
+        SSO_ONLY = true;
         SSO_AUTHORITY = "https://auth.darksailor.dev";
-        SSO_SCOPES = "profile email offline_access";
+        SSO_SCOPES = "openid offline_access profile email";
         SSO_PKCE = true;
         SSO_ROLES_ENABLED = true;
         SSO_ROLES_DEFAULT_TO_USER = true;
