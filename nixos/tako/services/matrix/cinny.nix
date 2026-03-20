@@ -23,7 +23,7 @@
 
       nodejs = nodejs_22;
 
-      npmDepsHash = "sha256-27WFjb08p09aJRi0S2PvYq3bivEuG5+z2QhFahTSj4Q=";
+      npmDepsHash = "sha256-MTx0MoXa4+sWagrUDMWzEK2ofRqcZHbSyPiO3PGz+JM=";
 
       nativeBuildInputs = [
         python3

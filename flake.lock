@@ -345,11 +345,11 @@
     "cinny": {
       "flake": false,
       "locked": {
-        "lastModified": 1773549434,
-        "narHash": "sha256-adrEoS3XFzsTukn/kUVb6kE3bPefJ8E4hvxoJIDqOpc=",
+        "lastModified": 1773897985,
+        "narHash": "sha256-r4gpfSnEYCDpoGy4E9XgssrNGDKKjjDTfZXsGzT9T5w=",
         "owner": "cinnyapp",
         "repo": "cinny",
-        "rev": "8f1add6059c5efa72232d4bc060c6a5e1acb74e5",
+        "rev": "132a76df27ba0c26140ba40b7cf9ac4352178c67",
         "type": "github"
       },
       "original": {
