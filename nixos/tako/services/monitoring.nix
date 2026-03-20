@@ -104,8 +104,12 @@ in {
 
   # Caddy virtual host for Grafana with Authelia
   services.caddy.virtualHosts."grafana.darksailor.dev".extraConfig = ''
-    import auth
-    reverse_proxy localhost:${toString ports.grafana}
+    @tailscale remote_ip 100.64.0.0/10
+    handle @tailscale {
+      import auth
+      reverse_proxy localhost:${toString ports.grafana}
+    }
+    respond "Access denied" 403
   '';
 
   # Central Prometheus server
