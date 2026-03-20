@@ -23,7 +23,8 @@
     arion
   ];
 
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo.wheelNeedsPassword = true;
+  security.auditd.enable = true;
   sops = {
     secrets."builder/mirai/cache/private" = {};
     secrets.users = {

@@ -99,7 +99,7 @@ in {
     allowedUDPPortRanges = [
       {
         from = 50300;
-        to = 65535;
+        to = 51300;
       }
     ];
   };
@@ -122,7 +122,7 @@ in {
         enabled = true;
         udp_port = 3478;
         relay_range_start = 50300;
-        relay_range_end = 65535;
+        relay_range_end = 51300;
         domain = rtc_domain;
       };
     };
