@@ -31,6 +31,7 @@
     ./prowlarr.nix
     # ./searxng.nix
     ./shitpost.nix
+    ./vaultwarden.nix
   ];
   services = {
     nix-serve = {
