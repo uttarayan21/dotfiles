@@ -12,6 +12,10 @@
   programs.zen-browser = {
     enable = true;
     profiles.default = rec {
+      settings = {
+        "zen.window-sync.enabled" = false;
+        "zen.welcome-screen.seen" = true;
+      };
       containersForce = true;
       containers = {
         Personal = {
