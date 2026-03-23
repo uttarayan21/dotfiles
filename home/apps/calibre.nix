@@ -1,8 +1,3 @@
-{
-  pkgs,
-  device,
-  lib,
-  ...
-}: {
-  home.packages = lib.optionals (device.is "ryu") [pkgs.calibre];
+{device, ...}: {
+  programs.calibre.enable = device.is "ryu";
 }
