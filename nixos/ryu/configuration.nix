@@ -72,7 +72,13 @@
     ];
   };
   users.groups.i2c = {};
+  users.users.media = {
+    isSystemUser = true;
+    extraGroups = ["audio" "video"];
+    group = "media";
+  };
   users.groups.media = {};
+
   users.groups.${device.user} = {
     gid = device.gid;
     members = [device.user];

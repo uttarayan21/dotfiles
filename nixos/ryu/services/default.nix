@@ -1,10 +1,12 @@
 {...}: {
   imports = [
-    # ./rsyncd.nix
-    # ./zerotier.nix
+    # ./calibre.nix
     # ./dnscrypt.nix
+    # ./rsyncd.nix
+    # ./sunshine.nix
+    # ./zerotier.nix
+
     ./caddy.nix
-    ./calibre.nix
     ./dualsense.nix
     ./fprintd.nix
     ./fwupd.nix
@@ -16,12 +18,11 @@
     ./ollama.nix
     ./openrgb.nix
     ./openssh.nix
+    ./pipewire.nix
     ./resolved.nix
     ./samba.nix
     ./sshd.nix
-    # ./sunshine.nix
     ./tailscale.nix
     ./wivrn.nix
-    ./pipewire.nix
   ];
 }

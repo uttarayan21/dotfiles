@@ -130,6 +130,12 @@
     options = ["nofail"];
   };
 
+  fileSystems."/volumes/media" = {
+    device = "/dev/storage/media";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
+
   fileSystems."/var" = {
     device = "/dev/disk/by-uuid/ff874913-dc21-43f3-82f8-cdf45dd888f7";
     fsType = "ext4";

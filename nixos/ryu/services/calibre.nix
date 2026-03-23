@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  port = 8134;
+  port = 8293;
   user = config.services.calibre-web.user or "calibre-web";
   group = config.services.calibre-web.group or "calibre-web";
 in {
@@ -16,7 +16,7 @@ in {
         inherit port;
       };
       options = {
-        calibreLibrary = "/home/servius/Books";
+        calibreLibrary = "/volumes/media/Books";
         enableBookConversion = true;
         # reverseProxyAuth = {
         #   enable = true;
@@ -24,20 +24,17 @@ in {
         # };
       };
     };
-    caddy = {
-      virtualHosts."books.darksailor.dev".extraConfig = ''
-        reverse_proxy localhost:${toString port}
-      '';
-    };
+    # caddy = {
+    #   virtualHosts."books.darksailor.dev".extraConfig = ''
+    #     reverse_proxy localhost:${toString port}
+    #   '';
+    # };
+  };
+  systemd.services.calibre-web = {
+    path = [pkgs.python-jsonschema];
   };
 
-  users.users.${device.user} = {
-    extraGroups = [group];
-  };
   users.users.${user} = {
-    extraGroups = [device.user];
-  };
-  users.users.caddy = {
-    extraGroups = [group];
+    extraGroups = ["media"];
   };
 }
