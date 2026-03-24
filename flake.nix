@@ -188,6 +188,10 @@
       url = "github:cinnyapp/cinny/dev";
       flake = false;
     };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
