@@ -2,6 +2,7 @@
   pkgs,
   lib,
   device,
+  config,
   ...
 }:
 lib.optionalAttrs (device.is "ryu") {
@@ -34,6 +35,7 @@ lib.optionalAttrs (device.is "ryu") {
 
     gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
+    gtk4.theme = config.gtk.theme;
   };
   home.packages = lib.optionals (device.is "ryu") [
     # pkgs.catppuccinThemes.gtk
