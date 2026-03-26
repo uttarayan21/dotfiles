@@ -39,10 +39,11 @@
       # source = "${pkgs.catppuccinThemes.hyprland}/themes/mocha.conf";
       render = {
         cm_enabled = true;
-        direct_scanout = 2; # 0 - off; 1 - on; 2 - auto based on `game`
+        direct_scanout = 1; # 0 - off; 1 - on; 2 - auto based on `game`
         cm_fs_passthrough = 1; # 0 - off; 1 - always; 2 - hdr only
         send_content_type = true; # automatic monitor mode switch
         cm_auto_hdr = 1; # 0 - off; 1 - switch to cm,hdr 2; 2 - switch to cm,hdredid
+        non_shader_cm = 2;
       };
       # experimental = {
       #   xx_color_management_v4 = true;
@@ -56,10 +57,13 @@
           transform = 0;
           supports_wide_color = 1;
           supports_hdr = 1;
+          min_luminance = 0.005;
+          max_luminance = 400;
+          max_avg_luminance = 300;
           bitdepth = 10;
           cm = "hdr";
-          # sdrbrightness = 0.005;
-          # sdrsaturation = 200;
+          sdrbrightness = 1;
+          sdrsaturation = 1;
         }
         {
           output = device.monitors.secondary;
