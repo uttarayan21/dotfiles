@@ -11,7 +11,7 @@
     extraConfig.general.unsafe-accounts-conf = true;
     extraConfig.ui = {
       styleset-name = "catppuccin-mocha";
-      spinner = "⊒⊓⊣⊂📤";
+      spinner = "📤";
       icon-unread = "📬";
       icon-read = "📭";
       icon-attachment = "📎";

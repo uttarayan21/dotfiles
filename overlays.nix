@@ -93,6 +93,7 @@
       doCheck = false;
     };
     less = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.less;
+    notmuch = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.notmuch;
   };
 
   # --- Themes and assets ---
