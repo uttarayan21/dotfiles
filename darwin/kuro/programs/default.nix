@@ -5,5 +5,6 @@
 }: {
   imports = [
     # ./nh.nix
+    ./fish.nix
   ];
 }
