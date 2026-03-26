@@ -87,5 +87,6 @@
     ./yazi.nix
     ./yq.nix
     ./zoxide.nix
+    ./claude-code.nix
   ];
 }
