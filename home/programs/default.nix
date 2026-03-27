@@ -88,5 +88,6 @@
     ./yq.nix
     ./zoxide.nix
     ./claude-code.nix
+    ./fnm.nix
   ];
 }
