@@ -556,28 +556,28 @@ in {
         # sourcekit.enable = true;
         openscad_lsp.enable = true;
         tinymist.enable = true;
-        rust_analyzer = {
-          enable = false;
-          installCargo = false;
-          installRustc = false;
-          settings = {
-            inlayHints = {
-              typeHints.enable = false;
-            };
-            check = {
-              features = ["default"];
-            };
-            files.exclude = [
-              ".cargo/"
-              ".direnv/"
-              ".git/"
-              ".vcpkg/"
-              "node_modules/"
-              "target/"
-              "vendor/"
-            ];
-          };
-        };
+        # rust_analyzer = {
+        #   enable = false;
+        #   installCargo = false;
+        #   installRustc = false;
+        #   settings = {
+        #     inlayHints = {
+        #       typeHints.enable = false;
+        #     };
+        #     check = {
+        #       features = ["default"];
+        #     };
+        #     files.exclude = [
+        #       ".cargo/"
+        #       ".direnv/"
+        #       ".git/"
+        #       ".vcpkg/"
+        #       "node_modules/"
+        #       "target/"
+        #       "vendor/"
+        #     ];
+        #   };
+        # };
       };
       # onAttach =
       #   /*

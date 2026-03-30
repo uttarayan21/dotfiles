@@ -24,6 +24,7 @@
       # t = "zellij a -c --index 0";
       t = "tmux";
       neorg = "nvim -c ':Neorg index'";
+      neork = "nvim -c ':Neorg workspace Work'";
     };
     shellAliases = {
       g = "git";
