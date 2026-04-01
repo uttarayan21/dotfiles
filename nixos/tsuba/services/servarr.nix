@@ -1,8 +1,7 @@
 {
-  unstablePkgs,
   config,
   pkgs,
-  lib,
+  unstablePkgs,
   ...
 }: {
   systemd.services.sonarr = {
