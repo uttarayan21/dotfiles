@@ -239,6 +239,7 @@
       allowedTCPPorts = [
         3113 # Hyprmonitors
         11345 # lmstudio
+        8000 # vllm
       ];
       allowedTCPPortRanges = [
         {

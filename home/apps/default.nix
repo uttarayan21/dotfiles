@@ -50,5 +50,6 @@ lib.optionalAttrs device.hasGui {
     ./wezterm.nix
     ./zathura.nix
     ./zen.nix
+    ./localsend.nix
   ];
 }

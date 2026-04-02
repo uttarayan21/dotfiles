@@ -23,6 +23,7 @@
     ./samba.nix
     ./sshd.nix
     ./tailscale.nix
+    # ./vllm.nix
     ./wivrn.nix
   ];
 }
