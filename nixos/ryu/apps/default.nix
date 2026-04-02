@@ -1,17 +1,16 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   imports = [
     # ./alvr.nix
-    ./easyeffects.nix
-    ./vr.nix
-    ./crosspipe.nix
-    # ./wine.nix
     # ./virt.nix
+    # ./wine.nix
+
+    ./crosspipe.nix
+    ./easyeffects.nix
     ./gparted.nix
+    ./lmms.nix
     ./nvtop.nix
-    # ./qpwgraph.nix
+    ./qpwgraph.nix
+    ./vr.nix
+    ./audacity.nix
   ];
 }
