@@ -11,5 +11,6 @@
       "gebbhagfogifgggkldgodflihgfeippi" # Return YouTube Dislike
       "edibdbjcniadpccecjdfdjjppcpchdlm" # I still don't care about cookies
     ];
+    package = pkgs.chromium.override {enableWideVine = true;};
   };
 }
