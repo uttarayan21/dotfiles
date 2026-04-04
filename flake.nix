@@ -196,6 +196,10 @@
       url = "github:uttarayan21/lichtfeld-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-proton-cachyos = {
+      url = "github:kimjongbing/nix-proton-cachyos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

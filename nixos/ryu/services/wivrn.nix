@@ -1,17 +1,17 @@
-{
-  pkgs,
-  masterPkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   services.wivrn = {
     enable = true;
     openFirewall = true;
-    defaultRuntime = true;
     autoStart = true;
-    steam = {
-      importOXRRuntimes = true;
+    config.enable = true;
+    config.json = {
+      encoder = {
+        encoder = "nvenc";
+        codec = "av1";
+      };
     };
+    # defaultRuntime = true;
+    steam.importOXRRuntimes = true;
     highPriority = true;
     # package = pkgs.wivrn-nightly;
   };

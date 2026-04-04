@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -7,6 +7,7 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
     extraCompatPackages = [
       pkgs.proton-ge-bin
+      inputs.nix-proton-cachyos.packages.${pkgs.stdenv.hostPlatform.system}.proton-cachyos
       pkgs.gamescope
       pkgs.gamescope-wsi
       pkgs.mangohud
