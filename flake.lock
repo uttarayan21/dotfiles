@@ -2471,15 +2471,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1738731353,
-        "narHash": "sha256-opfBquff3X73DhLC4io2FqzhSrlnDOBLWrnBpGqLAHU=",
-        "owner": "kimjongbing",
+        "lastModified": 1775332765,
+        "narHash": "sha256-7ZdHMwoITml5Dkyh/DN3foMSENHZkwYi8l9NIKE4qNQ=",
+        "owner": "uttarayan21",
         "repo": "nix-proton-cachyos",
-        "rev": "bad753f8f8d19aecd753bef3f764562ad15d6a9b",
+        "rev": "d18a7efa83048040fbf90252d9b949c236937a72",
         "type": "github"
       },
       "original": {
-        "owner": "kimjongbing",
+        "owner": "uttarayan21",
         "repo": "nix-proton-cachyos",
         "type": "github"
       }

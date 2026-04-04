@@ -197,7 +197,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-proton-cachyos = {
-      url = "github:kimjongbing/nix-proton-cachyos";
+      url = "github:uttarayan21/nix-proton-cachyos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

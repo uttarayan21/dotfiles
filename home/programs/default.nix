@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    # ./eilmeldung.nix
     # ./bluetui.nix
     # ./goread.nix
     # ./helix.nix
@@ -49,7 +50,6 @@
     ./direnv.nix
     ./dust.nix
     ./dysk.nix
-    ./eilmeldung.nix
     ./eza.nix
     ./fastfetch.nix
     ./fd.nix
