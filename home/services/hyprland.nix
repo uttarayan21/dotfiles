@@ -40,9 +40,9 @@
       render = {
         cm_enabled = true;
         direct_scanout = 1; # 0 - off; 1 - on; 2 - auto based on `game`
-        cm_fs_passthrough = 1; # 0 - off; 1 - always; 2 - hdr only
+        cm_fs_passthrough = 2; # 0 - off; 1 - always; 2 - hdr only
         send_content_type = true; # automatic monitor mode switch
-        cm_auto_hdr = 1; # 0 - off; 1 - switch to cm,hdr 2; 2 - switch to cm,hdredid
+        cm_auto_hdr = 2; # 0 - off; 1 - switch to cm,hdr 2; 2 - switch to cm,hdredid
         non_shader_cm = 2;
       };
       # experimental = {

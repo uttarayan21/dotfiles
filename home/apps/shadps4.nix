@@ -6,8 +6,8 @@
   shadps4_qtlauncher = pkgs.fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadps4-qtlauncher";
-    rev = "1f4e59f6110d5f991cead5a3e9f72671fced2c70";
-    sha256 = "sha256-AAxj3Eqp7iGJgRgJki/93fln5Z6ae8AydJLGZ6Dbb00=";
+    rev = "62704a8a0450792608d9644e38b2627c543bc971";
+    sha256 = "sha256-NKt6AGSkhR7wyo7PP5Lgh9UhVbt3lWu/qygMvyD56wk=";
     fetchSubmodules = true;
   };
   # diegolixShadps4 = pkgs.fetchFromGitHub {
@@ -20,8 +20,8 @@
   bblauncher = pkgs.fetchFromGitHub {
     owner = "rainmakerv3";
     repo = "BB_Launcher";
-    rev = "2280c90974d2d741ce927dfc88f0ecf98c8bd2df";
-    sha256 = "sha256-jPcIQp2EBAEiaTLvC/OBH0BgcfYv3zo2H7akHJSlPaI=";
+    rev = "d0f7698de7d79a1a6078273843ad9e4c76442168";
+    sha256 = "sha256-ECwN0g4DVTC6LepFCD28I7mpvETZcOwCeIZ6dIcEh6Q=";
     fetchSubmodules = true;
   };
 in {
@@ -67,10 +67,10 @@ in {
         pkgs.vulkan-utility-libraries
         pkgs.wayland
         pkgs.wayland-protocols
-        pkgs.xorg.libxcb
-        pkgs.xorg.xcbutil
-        pkgs.xorg.xcbutilkeysyms
-        pkgs.xorg.xcbutilwm
+        pkgs.libxcb
+        pkgs.xcbutil
+        pkgs.xcbutilkeysyms
+        pkgs.xcbutilwm
         pkgs.zlib
       ];
     })
@@ -112,10 +112,10 @@ in {
         pkgs.vulkan-utility-libraries
         pkgs.wayland
         pkgs.wayland-protocols
-        pkgs.xorg.libxcb
-        pkgs.xorg.xcbutil
-        pkgs.xorg.xcbutilkeysyms
-        pkgs.xorg.xcbutilwm
+        pkgs.libxcb
+        pkgs.xcbutil
+        pkgs.xcbutilkeysyms
+        pkgs.xcbutilwm
         pkgs.zlib
       ];
     })

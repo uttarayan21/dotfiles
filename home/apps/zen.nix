@@ -13,7 +13,7 @@
     enable = true;
     profiles.default = rec {
       settings = {
-        "zen.window-sync.enabled" = false;
+        "zen.window-sync.enabled" = true;
         "zen.welcome-screen.seen" = true;
       };
       containersForce = true;

@@ -15,6 +15,7 @@ lib.optionalAttrs device.hasGui {
     # ./ida.nix
     # ./jellyflix.nix
     # ./kicad.nix
+    # ./lichtfeld.nix
     # ./lmstudio.nix
     # ./neovide.nix
     # ./openscad.nix
@@ -22,7 +23,6 @@ lib.optionalAttrs device.hasGui {
     # ./pcsx2.nix
     # ./prismlauncher.nix
     # ./rpcs3.nix
-    # ./shadps4.nix
     # ./thunderbird.nix
     # ./tsukimi.nix
     # ./vial.nix
@@ -40,16 +40,17 @@ lib.optionalAttrs device.hasGui {
     ./ghostty.nix
     ./hyprpicker.nix
     ./kitty.nix
+    ./localsend.nix
     ./matrix.nix
     ./moonlight.nix
     ./mpv.nix
     ./nextcloud.nix
     ./obs-studio.nix
+    ./shadps4.nix
     ./slack.nix
     ./vicinae.nix
     ./wezterm.nix
     ./zathura.nix
     ./zen.nix
-    ./localsend.nix
   ];
 }
