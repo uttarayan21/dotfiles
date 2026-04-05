@@ -3017,6 +3017,26 @@
         "type": "github"
       }
     },
+    "paseo": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1775378555,
+        "narHash": "sha256-pEn/1XwFRQweGaeX5gg9NYnaf6zKTjmyKOQMl09aD0A=",
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "rev": "3397e6c5899895937d3fbe14245ebe610f7235c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getpaseo",
+        "repo": "paseo",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_5",
@@ -3105,6 +3125,7 @@
         "nno": "nno",
         "nur": "nur",
         "onepassword-shell-plugins": "onepassword-shell-plugins",
+        "paseo": "paseo",
         "servius-website": "servius-website",
         "sops-nix": "sops-nix",
         "stylix": "stylix",

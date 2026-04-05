@@ -200,6 +200,10 @@
       url = "github:uttarayan21/nix-proton-cachyos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    paseo = {
+      url = "github:getpaseo/paseo";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
