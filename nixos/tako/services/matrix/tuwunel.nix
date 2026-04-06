@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  stablePkgs,
   ...
 }: let
   port = 6167;
@@ -126,6 +127,7 @@ in {
         domain = rtc_domain;
       };
     };
+    package = stablePkgs.livekit;
   };
 
   services.lk-jwt-service = {
@@ -133,6 +135,7 @@ in {
     port = jwt_port;
     livekitUrl = "wss://${rtc_domain}";
     keyFile = config.sops.templates."livekit-keys".path;
+    package = stablePkgs.lk-jwt-service;
   };
 
   services = {
