@@ -26,11 +26,18 @@ in {
         ExecStart = "${paseoPkg}/bin/paseo-server";
         Restart = "on-failure";
         RestartSec = "5";
+        Environments = [
+          "PASEO_HOME=${config.home.homeDirectory}/.config/paseo"
+        ];
       };
 
       Install = {
         WantedBy = ["default.target"];
       };
+    };
+    home.packages = [paseoPkg];
+    home.sessionVariables = {
+      PASEO_HOME = "${config.home.homeDirectory}/.config/paseo";
     };
   };
 }

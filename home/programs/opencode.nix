@@ -46,7 +46,14 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro") {
           };
         }
         ```
-
+        Save the modules under modules/{home, darwin, nixos} folders
+        And then add a new file under home/my_program.nix
+        ```nix
+        {...}: {
+            imports = [path/to/my_module.nix];
+            programs.myModule.enable = true;
+        }
+        ```
 
         **Device-Specific Logic:**
         ```nix
