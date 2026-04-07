@@ -75,7 +75,7 @@
         {
           output = device.monitors.tertiary;
           mode = "2560x1440@170";
-          position = "2560x-1120";
+          position = "2560x-875";
           scale = 1;
           transform = 3;
         }

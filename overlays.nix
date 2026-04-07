@@ -104,6 +104,40 @@
       ln -s ${inputs.nix-index-database.legacyPackages.${prev.stdenv.hostPlatform.system}.database} $out/files
     '';
   };
+
+  # --- AI/ML ---
+  ai = final: prev: {
+    ollama = prev.ollama.overrideAttrs (oldAttrs: rec {
+      version = "0.20.3";
+      src = final.fetchFromGitHub {
+        owner = "ollama";
+        repo = "ollama";
+        tag = "v${version}";
+        hash = "sha256-o9iCqdOfNMxfIyThQAOSSQZE2ZyBuyJWFr6wqvQo1A0=";
+      };
+      vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
+    });
+    ollama-cuda = prev.ollama-cuda.overrideAttrs (oldAttrs: rec {
+      version = "0.20.3";
+      src = final.fetchFromGitHub {
+        owner = "ollama";
+        repo = "ollama";
+        tag = "v${version}";
+        hash = "sha256-o9iCqdOfNMxfIyThQAOSSQZE2ZyBuyJWFr6wqvQo1A0=";
+      };
+      vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
+    });
+    ollama-rocm = prev.ollama-rocm.overrideAttrs (oldAttrs: rec {
+      version = "0.20.3";
+      src = final.fetchFromGitHub {
+        owner = "ollama";
+        repo = "ollama";
+        tag = "v${version}";
+        hash = "sha256-o9iCqdOfNMxfIyThQAOSSQZE2ZyBuyJWFr6wqvQo1A0=";
+      };
+      vendorHash = "sha256-Lc1Ktdqtv2VhJQssk8K1UOimeEjVNvDWePE9WkamCos=";
+    });
+  };
 in
   [
     # Local overlays
@@ -115,6 +149,7 @@ in
     darwin
     themes
     applications
+    ai
 
     # External input overlays
     inputs.deploy-rs.overlays.default
