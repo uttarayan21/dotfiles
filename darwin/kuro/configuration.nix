@@ -29,7 +29,7 @@
       extra-nix-path = nixpkgs=flake:nixpkgs
       builders-use-substitutes = true
     '';
-    package = pkgs.nixVersions.nix_2_32;
+    package = pkgs.nixVersions.nix_2_34;
     buildMachines = [
       ../../builders/tako.nix
       ../../builders/shiro.nix

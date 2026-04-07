@@ -1,13 +1,14 @@
 {
   pkgs,
   config,
+  device,
   lib,
   ...
 }: {
   home.packages = [pkgs.w3m];
 
   programs.aerc = {
-    enable = true;
+    enable = (device.is "ryu") || (device.is "kuro");
     extraConfig.general.unsafe-accounts-conf = true;
     extraConfig.ui = {
       styleset-name = "catppuccin-mocha";
