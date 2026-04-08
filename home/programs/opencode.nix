@@ -14,7 +14,7 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
     OPENCODE_SERVER_USERNAME=${config.sops.placeholder."opencode/username"}
   '';
 
-  home.packages = with pkgs; [nodejs];
+  home.packages = with pkgs; [nodejs bun];
   stylix.targets.opencode.enable = false;
   programs.opencode = {
     enable = true;
