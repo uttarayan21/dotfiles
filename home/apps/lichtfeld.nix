@@ -9,4 +9,3 @@
     inputs.lichtfeld.packages.${pkgs.system}.lichtfeld
   ];
 }
-
