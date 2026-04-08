@@ -15,8 +15,14 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
   '';
 
   home.packages = with pkgs; [nodejs];
+  stylix.targets.opencode.enable = false;
   programs.opencode = {
     enable = true;
+    settings = {
+      plugin = [
+        "@whisperopencode/push"
+      ];
+    };
     web = {
       enable = true;
       extraArgs = [
