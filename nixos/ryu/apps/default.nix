@@ -12,5 +12,6 @@
     ./qpwgraph.nix
     ./vr.nix
     ./audacity.nix
+    ./bottles.nix
   ];
 }
