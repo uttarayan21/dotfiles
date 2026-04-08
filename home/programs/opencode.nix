@@ -1,11 +1,24 @@
 {
   device,
   lib,
+  config,
   ...
 }:
 lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
+  sops.secrets."opencode/password" = {};
+  sops.secrets."opencode/username" = {};
+
+  sops.templates."opencode-web.env".content = ''
+    OPENCODE_SERVER_PASSWORD=${config.sops.placeholder."opencode/password"}
+    OPENCODE_SERVER_USERNAME=${config.sops.placeholder."opencode/username"}
+  '';
+
   programs.opencode = {
     enable = true;
+    web = {
+      enable = true;
+      environmentFile = config.sops.templates."opencode-web.env".path;
+    };
     tui = {
       settings.provider = {
         ollama = {

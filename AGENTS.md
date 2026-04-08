@@ -151,14 +151,36 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
   This will add a randomly generated secret to the sops file
   NOTE: You MUST NEVER decrypt the secrets/secrets.yaml file
   NOTE: You MUST NEVER generate secrets manually and then put them in the file later. It should ALWAYS be a single command
-
+- If a service takes a file as environmentFile then define sops templates as such
+    ```nix
+    sops.templates = {
+      "FOO_VARS.env".content = ''
+        FOO_API_KEY=${config.sops.placeholder."foo/api_key"}
+        FOO_USER_NAME=${config.sops.placeholder."foo/username"}
+      '';
+    };
+    ```
+    and use them like so
+    ```nix
+    services.foo.settings.environmentFile = config.sops.templates."opencode-web.env".path;
+    ```
+    If they don't take environmentFile as part of settings
+    then
+    ```nix
+    systemd.services.foo = {
+      serviceConfig = {
+        EnvironmentFile = config.sops.templates."FOO_VARS.env".path;
+      };
+    };
+    ```
 
 ## Common Patterns
 
 ### Adding a New Program
 
 ```bash
-just add program myprogram  # Creates home/programs/myprogram.nix and adds import
+just add foo home/apps # Creates home/apps/foo.nix and adds import
+just add bar home/programs # Creates home/programs/foo.nix and adds import
 ```
 
 ### Adding a new dns entry
