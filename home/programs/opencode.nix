@@ -1,4 +1,5 @@
 {
+  pkgs,
   device,
   lib,
   config,
@@ -13,10 +14,15 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
     OPENCODE_SERVER_USERNAME=${config.sops.placeholder."opencode/username"}
   '';
 
+  home.packages = with pkgs; [nodejs];
   programs.opencode = {
     enable = true;
     web = {
       enable = true;
+      extraArgs = [
+        "--cors"
+        "https://code.darksailor.dev"
+      ];
       environmentFile = config.sops.templates."opencode-web.env".path;
     };
     tui = {

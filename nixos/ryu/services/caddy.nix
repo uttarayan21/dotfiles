@@ -30,6 +30,10 @@
         }
       '';
       package = pkgs.caddyWithCloudflare;
+      virtualHosts."code.darksailor.dev".extraConfig = ''
+        import cloudflare
+        reverse_proxy localhost:4096
+      '';
     };
   };
   systemd.services.caddy = {
