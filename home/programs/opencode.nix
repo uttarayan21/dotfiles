@@ -22,6 +22,27 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
       plugin = [
         "@whisperopencode/push"
       ];
+
+      provider = {
+        ollama = {
+          models = {
+            "glm-4.7-flash" = {
+              name = "glm-4.7-flash";
+            };
+            "gemma4:31b" = {
+              name = "gemma4:31b";
+            };
+            "gemma4:26b" = {
+              name = "gemma4:26b";
+            };
+          };
+          name = "Ollama (local)";
+          npm = "@ai-sdk/openai-compatible";
+          options = {
+            baseURL = "https://ollama.darksailor.dev/v1";
+          };
+        };
+      };
     };
     web = {
       enable = true;
@@ -32,21 +53,6 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
       environmentFile = config.sops.templates."opencode-web.env".path;
     };
     tui = {
-      settings.provider = {
-        ollama = {
-          models = {
-            "glm-4.7-flash" = {
-              # "_launch" = true;
-              name = "glm-4.7-flash";
-            };
-          };
-          name = "Ollama (local)";
-          npm = "@ai-sdk/openai-compatible";
-          options = {
-            baseURL = "https://ollama.darksailor.dev/v1";
-          };
-        };
-      };
     };
     skills = {
       nix = ''
