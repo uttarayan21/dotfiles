@@ -36,6 +36,7 @@
           {nixpkgs.overlays = overlays;}
           ../sops.nix
           ../stylix.nix
+          ../modules/servers
         ];
       }
   )

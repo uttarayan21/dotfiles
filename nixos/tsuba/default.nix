@@ -56,6 +56,7 @@
           ./disk-config.nix
           ./${name}.nix
           ../../sops.nix
+          ../../modules/servers
           # ../../stylix.nix
         ];
       }
