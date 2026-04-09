@@ -9,6 +9,7 @@
     # ./zerotier.nix
 
     ./autossh.nix
+    ./caffeinate.nix
     ./skhd.nix
     ./sops.nix
     ./sunshine.nix

@@ -37,9 +37,9 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
             };
           };
           name = "Ollama (local)";
-          npm = "@ai-sdk/openai-compatible";
+          npm = "@ai-sdk-ollama";
           options = {
-            baseURL = "https://ollama.darksailor.dev/v1";
+            baseURL = "https://ollama.darksailor.dev";
           };
         };
       };
