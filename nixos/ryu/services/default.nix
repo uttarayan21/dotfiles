@@ -3,7 +3,7 @@
     # ./calibre.nix
     # ./dnscrypt.nix
     # ./rsyncd.nix
-    # ./sunshine.nix
+    # ./vllm.nix
     # ./zerotier.nix
 
     ./caddy.nix
@@ -22,8 +22,8 @@
     ./resolved.nix
     ./samba.nix
     ./sshd.nix
+    ./sunshine.nix
     ./tailscale.nix
-    # ./vllm.nix
     ./wivrn.nix
   ];
 }
