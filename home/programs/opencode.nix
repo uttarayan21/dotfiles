@@ -32,14 +32,17 @@ lib.optionalAttrs (device.is "ryu" || device.is "kuro" || device.is "shiro") {
             "gemma4:31b" = {
               name = "gemma4:31b";
             };
-            "gemma4:26b" = {
-              name = "gemma4:26b";
+            "gemma4:26b256k" = {
+              name = "gemma4:26b256k";
+            };
+            "gemma4:26b100k" = {
+              name = "gemma4:26b100k";
             };
           };
           name = "Ollama (local)";
-          npm = "@ai-sdk-ollama";
+          npm = "@ai-sdk/openai-compatible";
           options = {
-            baseURL = "https://ollama.darksailor.dev";
+            baseURL = "https://ollama.darksailor.dev/v1";
           };
         };
       };
