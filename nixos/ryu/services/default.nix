@@ -12,6 +12,7 @@
     ./fwupd.nix
     ./gstreamer.nix
     ./handoff.nix
+    ./llama.nix
     ./minecraft.nix
     ./monitoring.nix
     ./mullvad.nix
