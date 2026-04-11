@@ -18,7 +18,6 @@ lib.optionalAttrs device.hasGui {
     # ./lmstudio.nix
     # ./neovide.nix
     # ./openscad.nix
-    # ./orcaslicer.nix
     # ./pcsx2.nix
     # ./prismlauncher.nix
     # ./rpcs3.nix
@@ -45,6 +44,7 @@ lib.optionalAttrs device.hasGui {
     ./mpv.nix
     ./nextcloud.nix
     ./obs-studio.nix
+    ./orcaslicer.nix
     ./shadps4.nix
     ./slack.nix
     ./vicinae.nix

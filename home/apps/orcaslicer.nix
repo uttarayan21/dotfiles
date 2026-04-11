@@ -4,7 +4,7 @@
   lib,
   ...
 }: {
-  home.packages = lib.mkIf (device.is "ryu") [
+  home.packages = lib.optionals (device.is "ryu") [
     pkgs.orca-slicer
   ];
 }

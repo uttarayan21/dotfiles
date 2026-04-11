@@ -12,7 +12,7 @@
       # polkit_gnome
       seahorse
       signal-desktop
-      sony-headphones-client
+      # sony-headphones-client
       spotify
       steam-run
       wl-clipboard
