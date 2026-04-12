@@ -151,6 +151,15 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
   This will add a randomly generated secret to the sops file
   NOTE: You MUST NEVER decrypt the secrets/secrets.yaml file
   NOTE: You MUST NEVER generate secrets manually and then put them in the file later. It should ALWAYS be a single command
+- **NEVER use systemd shell scripts to generate secret files** — use `sops.templates` to render the file and `systemd.tmpfiles.rules` with `C+` to copy it into place
+    ```nix
+    sops.templates."foo-config.json".content = builtins.toJSON {
+      api_key = config.sops.placeholder."foo/api_key";
+    };
+    systemd.tmpfiles.rules = [
+      "C+ /var/lib/foo/config.json 0644 root root - ${config.sops.templates."foo-config.json".path}"
+    ];
+    ```
 - If a service takes a file as environmentFile then define sops templates as such
     ```nix
     sops.templates = {

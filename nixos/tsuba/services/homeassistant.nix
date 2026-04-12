@@ -5,6 +5,12 @@
   ...
 }: {
   sops.secrets."homeassistant/puppet-token" = {};
+  sops.templates."puppet-options.json".content = builtins.toJSON {
+    home_assistant_url = "http://localhost:8123";
+    access_token = config.sops.placeholder."homeassistant/puppet-token";
+    keep_browser_open = false;
+  };
+
   virtualisation.oci-containers = {
     containers = {
       homeassistant = {
@@ -37,27 +43,10 @@
     };
   };
 
-  # Generate Puppet config from sops secret
-  systemd.services.puppet-config = {
-    description = "Generate Puppet addon config";
-    wantedBy = ["multi-user.target"];
-    before = ["docker-puppet.service"];
-    requiredBy = ["docker-puppet.service"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      mkdir -p /var/lib/puppet
-      cat > /var/lib/puppet/options.json <<EOF
-      {
-        "home_assistant_url": "http://localhost:8123",
-        "access_token": "$(cat ${config.sops.secrets."homeassistant/puppet-token".path})",
-        "keep_browser_open": false
-      }
-      EOF
-    '';
-  };
+  systemd.tmpfiles.rules = [
+    "d /var/lib/puppet 0755 root root -"
+    "C+ /var/lib/puppet/options.json 0644 root root - ${config.sops.templates."puppet-options.json".path}"
+  ];
   users.users.homeassistant = {
     isSystemUser = true;
     home = "/var/lib/homeassistant";
