@@ -12,5 +12,8 @@
       "edibdbjcniadpccecjdfdjjppcpchdlm" # I still don't care about cookies
     ];
     package = pkgs.chromium.override {enableWideVine = true;};
+    commandLineArgs = [
+      "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder,VaapiVideoDecodeLinuxGL,PlatformHEVCDecoderSupport"
+    ];
   };
 }

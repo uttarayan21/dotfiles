@@ -4,6 +4,8 @@
   config,
   ...
 }: {
+  sops.secrets."homeassistant/puppet-token" = {};
+
   virtualisation.oci-containers = {
     containers = {
       homeassistant = {
@@ -23,7 +25,54 @@
           TZ = config.time.timeZone;
         };
       };
+
+      puppet = {
+        image = "ghcr.io/balloob/home-assistant-addons:latest";
+        extraOptions = [
+          "--network=host"
+        ];
+        volumes = [
+          "/var/lib/puppet/options.json:/data/options.json:ro"
+        ];
+      };
+
+      esphome = {
+        image = "ghcr.io/esphome/esphome:latest";
+        extraOptions = [
+          "--network=host"
+          "--device=/dev/ttyUSB0:/dev/ttyUSB0"
+        ];
+        volumes = [
+          "/var/lib/esphome:/config"
+          "/etc/localtime:/etc/localtime:ro"
+        ];
+        environment = {
+          TZ = config.time.timeZone;
+        };
+      };
     };
+  };
+
+  # Generate Puppet config from sops secret
+  systemd.services.puppet-config = {
+    description = "Generate Puppet addon config";
+    wantedBy = ["multi-user.target"];
+    before = ["docker-puppet.service"];
+    requiredBy = ["docker-puppet.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      mkdir -p /var/lib/puppet
+      cat > /var/lib/puppet/options.json <<EOF
+      {
+        "home_assistant_url": "http://localhost:8123",
+        "access_token": "$(cat ${config.sops.secrets."homeassistant/puppet-token".path})",
+        "keep_browser_open": false
+      }
+      EOF
+    '';
   };
   users.users.homeassistant = {
     isSystemUser = true;

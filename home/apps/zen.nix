@@ -15,6 +15,13 @@
       settings = {
         "zen.window-sync.enabled" = true;
         "zen.welcome-screen.seen" = true;
+        # Codec and hardware video decode support
+        "media.ffmpeg.vaapi.enabled" = true;
+        "media.ffvpx.enabled" = false;
+        "media.rdd-ffmpeg.enabled" = true;
+        "media.av1.enabled" = true;
+        "media.hardware-video-decoding.enabled" = true;
+        "gfx.webrender.all" = true;
       };
       containersForce = true;
       containers = {
