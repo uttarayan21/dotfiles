@@ -5,6 +5,11 @@
   ...
 }: {
   sops.secrets."homeassistant/puppet-token" = {};
+  sops.secrets.esphome = {
+    sopsFile = ../../../secrets/esphome.yaml;
+    format = "yaml";
+    key = "";
+  };
 
   virtualisation.oci-containers = {
     containers = {
@@ -74,6 +79,12 @@
       EOF
     '';
   };
+  systemd.tmpfiles.rules = [
+    "d /var/lib/esphome 0755 root root -"
+    "L+ /var/lib/esphome/secrets.yaml - - - - ${config.sops.secrets.esphome.path}"
+    "L+ /var/lib/esphome/esphome.yaml - - - - ${./esphome/esphome.yaml}"
+  ];
+
   users.users.homeassistant = {
     isSystemUser = true;
     home = "/var/lib/homeassistant";
