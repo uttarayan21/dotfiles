@@ -8,6 +8,7 @@
     ./deluge.nix
     ./aria2.nix
     ./homeassistant.nix
+    ./esphome.nix
     ./flaresolverr.nix
     ./caddy.nix
     ./monitoring.nix

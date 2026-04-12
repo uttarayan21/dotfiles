@@ -34,7 +34,7 @@ logger:
   
 api:
   encryption:
-    key: "T4iKqws+XpTZ99iY9EXANjnFD16BlukBL0vHP3Al3sQ="
+    key: !secret reterminal_e1002_enc_key
 
 ota:
   - platform: esphome
@@ -383,6 +383,7 @@ display:
     id: epaper_display
     model: Seeed-reTerminal-E1002
     update_interval: never
+    full_update_every: 10
     lambda: |-
       if (id(page_index) == 0) {
         it.image(0, 0, id(dashboard_image_home));
