@@ -258,7 +258,7 @@ online_image:
     format: PNG
     type: RGB565
     buffer_size: 65536
-    url: http://192.168.0.125:10000/eink-e1002/home?device=seeed-reterminal-e1002
+    url: http://192.168.0.125:10000/eink-e1002/home?device=seeed-reterminal-e1002&dark=
     update_interval: never
     on_download_finished:
       - delay: 100ms
@@ -268,7 +268,7 @@ online_image:
     format: PNG
     type: RGB565
     buffer_size: 65536
-    url: http://192.168.0.125:10000/eink-e1002/energy?device=seeed-reterminal-e1002
+    url: http://192.168.0.125:10000/eink-e1002/energy?device=seeed-reterminal-e1002&dark=
     update_interval: never
     on_download_finished:
       - delay: 100ms
@@ -278,7 +278,7 @@ online_image:
     format: PNG
     type: RGB565
     buffer_size: 65536
-    url: http://192.168.0.125:10000/eink-e1002/plants?device=seeed-reterminal-e1002
+    url: http://192.168.0.125:10000/eink-e1002/plants?device=seeed-reterminal-e1002&dark=
     update_interval: never
     on_download_finished:
       - delay: 100ms
@@ -288,7 +288,7 @@ online_image:
     format: PNG
     type: RGB565
     buffer_size: 65536
-    url: http://192.168.0.125:10000/eink-e1002/wallpaper?device=seeed-reterminal-e1002
+    url: http://192.168.0.125:10000/eink-e1002/wallpaper?device=seeed-reterminal-e1002&dark=
     update_interval: never
     on_download_finished:
       - delay: 100ms

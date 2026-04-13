@@ -23,8 +23,8 @@
 
   systemd.tmpfiles.rules = [
     "d /var/lib/esphome 0755 root root -"
-    "C+ /var/lib/esphome/secrets.yaml 0644 root root - ${config.sops.secrets.esphome.path}"
-    "C+ /var/lib/esphome/reTerminal-e1002.yaml 0644 root root - ${./esphome/reTerminal-e1002.yaml}"
+    "C /var/lib/esphome/secrets.yaml 0644 root root - ${config.sops.secrets.esphome.path}"
+    "C /var/lib/esphome/reTerminal-e1002.yaml 0644 root root - ${./esphome/reTerminal-e1002.yaml}"
   ];
 
   services.caddy.virtualHosts."esphome.darksailor.dev".extraConfig = ''

@@ -6,7 +6,7 @@
 }: {
   sops.secrets."homeassistant/puppet-token" = {};
   sops.templates."puppet-options.json".content = builtins.toJSON {
-    home_assistant_url = "http://localhost:8123";
+    home_assistant_url = "http://host.docker.internal:8123";
     access_token = config.sops.placeholder."homeassistant/puppet-token";
     keep_browser_open = false;
   };
@@ -33,8 +33,9 @@
 
       puppet = {
         image = "ghcr.io/balloob/home-assistant-addons:latest";
+        ports = ["10000:10000"];
         extraOptions = [
-          "--network=host"
+          "--add-host=host.docker.internal:host-gateway"
         ];
         volumes = [
           "/var/lib/puppet/options.json:/data/options.json:ro"
@@ -45,7 +46,7 @@
 
   systemd.tmpfiles.rules = [
     "d /var/lib/puppet 0755 root root -"
-    "C+ /var/lib/puppet/options.json 0644 root root - ${config.sops.templates."puppet-options.json".path}"
+    "C /var/lib/puppet/options.json 0644 root root - ${config.sops.templates."puppet-options.json".path}"
   ];
   users.users.homeassistant = {
     isSystemUser = true;
@@ -60,6 +61,10 @@
     virtualHosts."home.darksailor.dev".extraConfig = ''
       import cloudflare
       reverse_proxy localhost:8123
+    '';
+    virtualHosts."puppet.home.darksailor.dev".extraConfig = ''
+      import cloudflare
+      reverse_proxy localhost:10000
     '';
   };
 
