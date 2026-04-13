@@ -63,7 +63,7 @@ in {
               ++ (bypass_api "radarr.tsuba.darksailor.dev")
               ++ (bypass_api "lidarr.tsuba.darksailor.dev")
               ++ (bypass_api "bazarr.tsuba.darksailor.dev")
-              ++ (bypass_api "prowlarr.tsuba.darksailor.dev");
+              ++ (bypass_api "prowlarr.darksailor.dev");
           };
           storage = {
             local = {
