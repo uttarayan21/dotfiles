@@ -12,7 +12,6 @@
     ./swaync.nix
     ./swayosd.nix
     ./xdg.nix
-    ./paseo.nix
     # ./ironclaw.nix
     # ./anyrun.nix
     # ./eww.nix
