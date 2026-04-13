@@ -24,12 +24,14 @@
     options = [
       "bind"
     ];
+    fsType = config.fileSystems."/media".fsType;
   };
   fileSystems."/var/lib/docker" = {
     device = "/media/docker";
     options = [
       "bind"
     ];
+    fsType = config.fileSystems."/media".fsType;
   };
 
   fileSystems."/home".neededForBoot = true;

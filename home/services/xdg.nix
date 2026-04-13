@@ -15,7 +15,7 @@
         };
       };
     }
-    // lib.optionalAttrs (device.is "ryu") {
+    // lib.optionalAttrs (device.is "ryu" || device.is "tako") {
       userDirs.setSessionVariables = true;
     };
 }

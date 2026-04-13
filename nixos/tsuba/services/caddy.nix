@@ -29,10 +29,9 @@
             }
         }
         (auth) {
-            forward_auth https://auth.darksailor.dev {
-               # header_up X-Forwarded-Host {upstream_hostport}
-               uri /api/authz/forward-auth
-               copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+            forward_auth 100.102.64.19:5555 {
+               uri /api/authz/forward-auth?authelia_url=https://auth.darksailor.dev
+               copy_headers Remote-User Remote-Groups Remote-Name Remote-Email
             }
         }
       '';
