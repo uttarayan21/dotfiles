@@ -1,3 +1,8 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.fnm];
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {
+  home.packages = lib.optionals (!device.isServer) [pkgs.fnm];
 }

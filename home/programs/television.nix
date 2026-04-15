@@ -1,3 +1,3 @@
-{...}: {
-  programs.television.enable = true;
+{device, ...}: {
+  programs.television.enable = !device.isServer;
 }

@@ -1,1 +1,6 @@
-{pkgs, ...}: {home.packages = [pkgs.pkg-config];}
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {home.packages = lib.optionals (!device.isServer) [pkgs.pkg-config];}

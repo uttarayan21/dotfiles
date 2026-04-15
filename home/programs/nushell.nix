@@ -4,27 +4,29 @@
   device,
   ...
 }: {
-  programs.nushell = {
-    enable = true;
-    shellAliases = {
-      cd = "z";
-      yy = "yazi";
-      cat = "bat";
+  config = lib.mkIf (!device.isServer) {
+    programs.nushell = {
+      enable = true;
+      shellAliases = {
+        cd = "z";
+        yy = "yazi";
+        cat = "bat";
+      };
+      plugins = with pkgs.nushellPlugins; [
+        formats
+        polars
+        # highlight
+      ];
+      extraConfig = ''
+        ${pkgs.pfetch-rs}/bin/pfetch
+      '';
+      package = pkgs.nushell;
+      configFile.text = ''
+        $env.config = {
+            show_banner: false,
+        }
+      '';
     };
-    plugins = with pkgs.nushellPlugins; [
-      formats
-      polars
-      # highlight
-    ];
-    extraConfig = ''
-      ${pkgs.pfetch-rs}/bin/pfetch
-    '';
-    package = pkgs.nushell;
-    configFile.text = ''
-      $env.config = {
-          show_banner: false,
-      }
-    '';
+    home.shell.enableNushellIntegration = true;
   };
-  home.shell.enableNushellIntegration = true;
 }

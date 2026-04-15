@@ -1,3 +1,3 @@
-{...}: {
-  programs.uv.enable = true;
+{device, ...}: {
+  programs.uv.enable = !device.isServer;
 }

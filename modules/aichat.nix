@@ -79,6 +79,7 @@ in {
       };
       roles = lib.mkOption {
         type = lib.types.attrsOf lib.types.str;
+        default = {};
         description = "Roles for the AI chat clients";
       };
       extraPackages = mkOption {
@@ -114,11 +115,12 @@ in {
     programs.zsh.initExtra = mkIf cfg.enableZshIntegration zshIntegration;
     programs.nushell.extraConfig = mkIf cfg.enableNushellIntegration nuIntegration;
 
-    xdg.configFile =
+    xdg.configFile = mkIf cfg.enable (
       {
         "aichat/config.yaml".source =
           yamlFormat.generate "config.yaml" cfg.settings;
       }
-      // (mapAttrs' (name: role: nameValuePair "aichat/roles/${name}.md" {text = role;}) cfg.roles);
+      // (mapAttrs' (name: role: nameValuePair "aichat/roles/${name}.md" {text = role;}) cfg.roles)
+    );
   };
 }

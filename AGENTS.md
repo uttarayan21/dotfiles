@@ -40,6 +40,12 @@ alejandra fmt .                     # Format all files
 alejandra fmt <file>.nix            # Format single file
 ```
 
+### Checking Enabled Programs/Services Per Device
+
+```bash
+python3 ./scripts/list-host-config.py .  # Table of system + HM programs & services per host
+```
+
 ## Directory Structure
 
 - `flake.nix` - Main entry point, device definitions

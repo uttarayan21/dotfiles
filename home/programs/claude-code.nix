@@ -1,3 +1,3 @@
-{...}: {
-  programs.claude-code.enable = true;
+{device, ...}: {
+  programs.claude-code.enable = !device.isServer;
 }

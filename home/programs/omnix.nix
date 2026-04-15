@@ -1,3 +1,8 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.omnix];
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {
+  home.packages = lib.optionals (!device.isServer) [pkgs.omnix];
 }

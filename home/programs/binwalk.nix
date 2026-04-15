@@ -1,1 +1,6 @@
-{pkgs, ...}: {home.packages = [pkgs.binwalk];}
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {home.packages = lib.optionals (!device.isServer) [pkgs.binwalk];}

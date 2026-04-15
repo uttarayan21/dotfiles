@@ -1,1 +1,6 @@
-{pkgs, ...}: {home.packages = [pkgs.jujutsu];}
+{
+  pkgs,
+  lib,
+  device,
+  ...
+}: {home.packages = lib.optionals (!device.isServer) [pkgs.jujutsu];}
