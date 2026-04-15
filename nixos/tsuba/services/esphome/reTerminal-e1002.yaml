@@ -223,6 +223,11 @@ http_request:
   timeout: 10s
   watchdog_timeout: 15s
 
+interval:
+  - interval: 10min
+    then:
+      - script.execute: update_display_from_selector
+
 script:
   - id: update_display_from_selector
     mode: restart
