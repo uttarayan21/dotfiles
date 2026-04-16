@@ -31,6 +31,20 @@
         };
       };
 
+      matter-server = {
+        image = "ghcr.io/home-assistant-libs/python-matter-server:stable";
+        volumes = [
+          "/var/lib/matter-server:/data"
+          "/run/dbus:/run/dbus:ro"
+        ];
+        extraOptions = [
+          "--network=host"
+        ];
+        environment = {
+          TZ = config.time.timeZone;
+        };
+      };
+
       puppet = {
         image = "ghcr.io/balloob/home-assistant-addons:latest";
         ports = ["10000:10000"];
@@ -45,6 +59,7 @@
   };
 
   systemd.tmpfiles.rules = [
+    "d /var/lib/matter-server 0755 root root -"
     "d /var/lib/puppet 0755 root root -"
     "C /var/lib/puppet/options.json 0644 root root - ${config.sops.templates."puppet-options.json".path}"
   ];
