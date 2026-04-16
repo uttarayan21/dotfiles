@@ -4,7 +4,7 @@
   ...
 }: {
   programs.codex = {
-    enable = !device.isServer;
+    enable = device.is "ryu" || device.is "kuro";
     package = pkgs.codex;
   };
 }
