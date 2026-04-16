@@ -5,6 +5,9 @@
       vo = "gpu-next";
       gpu-api = "vulkan";
       target-colorspace-hint = "auto";
+      cache = "yes";
+      demuxer-max-bytes = "1024MiB";
+      demuxer-max-back-bytes = "256MiB";
       hwdec = "auto";
       loop-file = "inf";
       loop-playlist = "inf";
