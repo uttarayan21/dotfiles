@@ -34,6 +34,7 @@ in {
       server_name = "${base_domain}";
       address = ["127.0.0.1"];
       port = [port];
+      max_request_size = 500000000; # 500MB
       allow_registration = true;
       registration_token_file = config.sops.secrets."tuwunel/registration_token".path;
       single_sso = true;

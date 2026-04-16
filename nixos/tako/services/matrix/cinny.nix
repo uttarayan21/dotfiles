@@ -49,6 +49,9 @@
 in {
   services.caddy.virtualHosts = {
     "matrix.${base_domain}".extraConfig = ''
+      request_body {
+        max_size 500MB
+      }
       handle /_matrix/* {
         reverse_proxy /_matrix/* localhost:${toString (builtins.elemAt config.services.matrix-tuwunel.settings.global.port 0)}
       }
