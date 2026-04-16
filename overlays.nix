@@ -108,6 +108,21 @@
 
   # --- AI/ML ---
   ai = final: prev: {
+    codex = prev.codex.overrideAttrs (oldAttrs: rec {
+      version = "0.121.0";
+      src = final.fetchFromGitHub {
+        owner = "openai";
+        repo = "codex";
+        tag = "rust-v${version}";
+        hash = "sha256-wjiUMox9V5tFggNgaFyHXWhRlpPerK7W+U/eR2Ddbbc=";
+      };
+      sourceRoot = "${src.name}/codex-rs";
+      cargoDeps = final.rustPlatform.fetchCargoVendor {
+        inherit src sourceRoot;
+        name = "${oldAttrs.pname}-${version}-vendor.tar.gz";
+        hash = "sha256-zpQ0vg9XuarLfdZYiRIhcwLHUOdunNbOb5xLW3MPzp8=";
+      };
+    });
     ollama = prev.ollama.overrideAttrs (oldAttrs: rec {
       version = "0.20.3";
       src = final.fetchFromGitHub {

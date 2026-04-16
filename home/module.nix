@@ -14,6 +14,7 @@
       inherit device;
       stablePkgs = inputs.nixpkgs-stable.legacyPackages.${device.system};
       cratesNix = inputs.crates-nix.mkLib {inherit pkgs;};
+      masterPkgs = inputs.nixpkgs-master.legacyPackages.${device.system};
     };
     users.${device.user}.imports = [
       inputs.nixvim.homeModules.nixvim

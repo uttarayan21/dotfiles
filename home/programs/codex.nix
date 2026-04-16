@@ -1,6 +1,10 @@
 {
-  pkgs,
-  lib,
   device,
+  pkgs,
   ...
-}: {home.packages = lib.optionals (!device.isServer) [pkgs.codex];}
+}: {
+  programs.codex = {
+    enable = !device.isServer;
+    package = pkgs.codex;
+  };
+}
