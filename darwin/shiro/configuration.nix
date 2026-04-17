@@ -72,6 +72,9 @@
 
   programs.bash.enable = true;
   programs.zsh.enable = true;
+  programs.zsh.interactiveShellInit = ''
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  '';
   programs.fish.enable = true;
 
   # services.nix-daemon.enable = true;
