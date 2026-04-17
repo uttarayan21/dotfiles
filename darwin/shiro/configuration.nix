@@ -30,7 +30,7 @@
     package = pkgs.nixVersions.latest;
     buildMachines = [
       ../../builders/tako.nix
-      ../../builders/shiro.nix
+      # ../../builders/shiro.nix
     ];
     distributedBuilds = true;
   };
