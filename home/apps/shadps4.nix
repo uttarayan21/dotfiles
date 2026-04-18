@@ -1,13 +1,14 @@
 {
   pkgs,
   lib,
+  masterPkgs,
   ...
 }: let
   shadps4_qtlauncher = pkgs.fetchFromGitHub {
     owner = "shadps4-emu";
     repo = "shadps4-qtlauncher";
-    rev = "62704a8a0450792608d9644e38b2627c543bc971";
-    sha256 = "sha256-NKt6AGSkhR7wyo7PP5Lgh9UhVbt3lWu/qygMvyD56wk=";
+    rev = "v224";
+    sha256 = "sha256-KBjAP0t2A6Q0eD7A0/9HzIQrUJ97YUkx2nx4SB+poHU=";
     fetchSubmodules = true;
   };
   # diegolixShadps4 = pkgs.fetchFromGitHub {
@@ -20,17 +21,18 @@
   bblauncher = pkgs.fetchFromGitHub {
     owner = "rainmakerv3";
     repo = "BB_Launcher";
-    rev = "d0f7698de7d79a1a6078273843ad9e4c76442168";
-    sha256 = "sha256-ECwN0g4DVTC6LepFCD28I7mpvETZcOwCeIZ6dIcEh6Q=";
+    rev = "Release15.01";
+    sha256 = "sha256-L3G2DxchadDitZ2d9xE/Q60g9kGyDZjbwcYKth1e/Ww=";
     fetchSubmodules = true;
   };
 in {
   home.packages = lib.optionals pkgs.stdenv.isLinux [
-    (pkgs.shadps4.overrideAttrs
-      (oldAttrs: {
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.cudatoolkit];
-        buildInputs = oldAttrs.buildInputs ++ [pkgs.cudatoolkit];
-      }))
+    masterPkgs.shadps4
+    # (pkgs.shadps4.overrideAttrs
+    #   (oldAttrs: {
+    #     nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [pkgs.cudatoolkit];
+    #     buildInputs = oldAttrs.buildInputs ++ [pkgs.cudatoolkit];
+    #   }))
     (pkgs.stdenv.mkDerivation {
       pname = "shadps4-qt";
       version = "1.0.0";
