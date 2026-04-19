@@ -29,7 +29,7 @@
         }
         {
           monitor = device.monitors.tertiary;
-          path = bocchiVertical;
+          path = wallpapers.skull;
           fit_mode = "cover";
         }
       ];
