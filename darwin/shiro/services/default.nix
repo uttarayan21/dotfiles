@@ -10,6 +10,7 @@
 
     ./autossh.nix
     ./caffeinate.nix
+    ./gitea-runner.nix
     ./skhd.nix
     ./sops.nix
     ./sunshine.nix

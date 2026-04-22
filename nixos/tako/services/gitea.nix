@@ -93,7 +93,18 @@
             "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
             "ubuntu-22.04:docker://catthehacker/ubuntu:full-22.04"
             "ubuntu-20.04:docker://catthehacker/ubuntu:full-20.04"
-            "nix:docker://nixos/nix:latest"
+            "nix:host"
+          ];
+          hostPackages = with pkgs; [
+            bash
+            coreutils
+            curl
+            gawk
+            gitMinimal
+            gnused
+            nix
+            nodejs
+            wget
           ];
           tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
         };
@@ -156,6 +167,7 @@
   systemd.services.gitea = {
     after = ["sops-install-secrets.service"];
   };
+
 
   # systemd.services."gitea-actions-tako" = {
   #   after = ["gitea.service"];
