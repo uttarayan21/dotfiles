@@ -27,5 +27,6 @@
     pkgs.vulkan-tools
     pkgs.gamescope
     pkgs.gamescope-wsi
+    pkgs.mangohud
   ];
 }

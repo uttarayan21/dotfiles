@@ -9,8 +9,7 @@
   };
 in {
   home.packages = lib.optionals pkgs.stdenv.isLinux [
-    pkgs.shadps4
-    pkgs.shadps4-qt
+    pkgs.shadps4-qt # uses shadps4-unstable as backend
     pkgs.bblauncher
   ];
 

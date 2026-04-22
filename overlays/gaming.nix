@@ -133,8 +133,29 @@
     '';
   });
 
+  shadps4-unstable = final.shadps4.overrideAttrs (oldAttrs: {
+    version = "unstable-2026-04-22";
+    src = final.fetchFromGitHub {
+      owner = "shadps4-emu";
+      repo = "shadPS4";
+      rev = "07a0475d0f2ed391fce38fa5254dcbdf85eabe4a";
+      hash = "sha256-WSoMlQZFwfqMMQ1gas1J+aXeOvYX36CvzJ/DqLC2hM8=";
+      fetchSubmodules = true;
+    };
+    postPatch = ''
+      echo "07a0475d" > COMMIT
+      echo "2026-04-22T06:35:22Z" > SOURCE_DATE_EPOCH
+      substituteInPlace src/common/scm_rev.cpp.in \
+        --replace-fail @APP_VERSION@ unstable-2026-04-22 \
+        --replace-fail @GIT_REV@ 07a0475d \
+        --replace-fail @GIT_BRANCH@ main \
+        --replace-fail @GIT_DESC@ nixpkgs \
+        --replace-fail @BUILD_DATE@ 2026-04-22T06:35:22Z
+    '';
+  });
+
   shadps4-qt = let
-    shadps4 = final.shadps4;
+    shadps4 = final.shadps4-unstable;
     shadps4Wrapped = final.symlinkJoin {
       name = "shadps4-wrapped";
       paths = [shadps4];
