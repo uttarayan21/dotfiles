@@ -155,7 +155,7 @@
   });
 
   shadps4-qt = let
-    shadps4 = final.shadps4-unstable;
+    shadps4 = final.shadps4;
     shadps4Wrapped = final.symlinkJoin {
       name = "shadps4-wrapped";
       paths = [shadps4];

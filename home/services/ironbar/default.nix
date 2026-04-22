@@ -33,7 +33,10 @@
             type = "music";
             player_type = "mpris";
           }
-          {type = "clock";}
+          {
+            type = "clock";
+            format = "%I:%M %p";
+          }
         ];
       };
       # "${device.monitors.primary}" = {
@@ -87,7 +90,10 @@
           {type = "focused";}
         ];
         end = [
-          {type = "clock";}
+          {
+            type = "clock";
+            format = "%I:%M %p";
+          }
         ];
       };
     };
