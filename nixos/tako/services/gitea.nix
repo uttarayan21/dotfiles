@@ -77,6 +77,10 @@
           ENABLE_OPENID_SIGNUP = true;
           WHITELISTED_URIS = "auth.darksailor.dev";
         };
+        actions = {
+          ENABLED = true;
+          DEFAULT_ACTIONS_URL = "github";
+        };
       };
     };
     gitea-actions-runner = {
@@ -89,6 +93,7 @@
             "ubuntu-latest:docker://catthehacker/ubuntu:full-latest"
             "ubuntu-22.04:docker://catthehacker/ubuntu:full-22.04"
             "ubuntu-20.04:docker://catthehacker/ubuntu:full-20.04"
+            "nix:docker://nixos/nix:latest"
           ];
           tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
         };
