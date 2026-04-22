@@ -34,10 +34,13 @@ sudo nix-darwin test --fast --flake .
 
 ### Validation and Formatting
 
+**NEVER use `nix flake check`** — it runs 715+ checks and is too slow. Always validate with build commands:
+
 ```bash
-nix flake check --show-trace        # Check flake for errors
-alejandra fmt .                     # Format all files
-alejandra fmt <file>.nix            # Format single file
+nixos-rebuild build --flake .        # Validate NixOS config (builds current host)
+darwin-rebuild build --flake .       # Validate nix-darwin config (builds current host)
+alejandra fmt .                      # Format all files
+alejandra fmt <file>.nix             # Format single file
 ```
 
 ### Checking Enabled Programs/Services Per Device

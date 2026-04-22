@@ -1,4 +1,55 @@
 {...}: final: prev: {
+  bblauncher = final.stdenv.mkDerivation {
+    pname = "BBLauncher";
+    version = "15.01";
+    src = final.fetchFromGitHub {
+      owner = "rainmakerv3";
+      repo = "BB_Launcher";
+      rev = "Release15.01";
+      sha256 = "sha256-L3G2DxchadDitZ2d9xE/Q60g9kGyDZjbwcYKth1e/Ww=";
+      fetchSubmodules = true;
+    };
+    nativeBuildInputs = [
+      final.cmake
+      final.pkg-config
+      final.qt6.wrapQtAppsHook
+    ];
+    buildInputs = [
+      final.alsa-lib
+      final.ffmpeg
+      final.fmt
+      final.glslang
+      final.jack2
+      final.libedit
+      final.libevdev
+      final.libpng
+      final.libpulseaudio
+      final.libxkbcommon
+      final.openal
+      final.openssl
+      final.qt6.qtbase
+      final.qt6.qtmultimedia
+      final.qt6.qttools
+      final.qt6.qtwayland
+      final.qt6.qtwebview
+      final.SDL2
+      final.sdl3
+      final.sndio
+      final.stb
+      final.udev
+      final.vulkan-headers
+      final.vulkan-tools
+      final.vulkan-utility-libraries
+      final.wayland
+      final.wayland-protocols
+      final.libxcb
+      final.xcbutil
+      final.xcbutilkeysyms
+      final.xcbutilwm
+      final.zlib
+    ];
+  };
+
   shadps4 = prev.shadps4.overrideAttrs (oldAttrs: rec {
     version = "0.15.0";
     src = final.fetchFromGitHub {
@@ -88,12 +139,14 @@
       name = "shadps4-wrapped";
       paths = [shadps4];
       postBuild = let
-        versionsJson = final.writeText "versions.json" (builtins.toJSON [{
-          codename = "built-in";
-          name = "built-in";
-          path = "@shadps4@";
-          type = 0;
-        }]);
+        versionsJson = final.writeText "versions.json" (builtins.toJSON [
+          {
+            codename = "built-in";
+            name = "built-in";
+            path = "@shadps4@";
+            type = 0;
+          }
+        ]);
         qtUiIni = final.writeText "qt_ui.ini" ''
           [version_manager]
           versionSelected=@shadps4@

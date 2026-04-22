@@ -14,6 +14,7 @@
         overalljails = true; # Calculate the bantime based on all the violations
       };
       ignoreIP = [
+        "100.64.0.0/10" # Tailscale CGNAT range — covers all Tailnet devices
         "106.219.121.52"
         "106.219.122.125"
         "106.219.122.221"
