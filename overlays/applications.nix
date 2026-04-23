@@ -13,4 +13,5 @@ in {
   };
   less = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.less;
   notmuch = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.notmuch;
+  # nushell = inputs.nixpkgs-stable.legacyPackages.${prev.stdenv.hostPlatform.system}.nushell;
 }
