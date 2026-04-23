@@ -26,7 +26,7 @@
   security.sudo.wheelNeedsPassword = false;
   security.auditd.enable = true;
   sops = {
-    secrets."builder/mirai/cache/private" = {};
+    secrets."builder/tako/cache/private" = {};
     secrets.users = {
       sopsFile = ../../secrets/users.yaml;
       format = "yaml";
@@ -49,7 +49,7 @@
       build-users-group = nixbld
       extra-nix-path = nixpkgs=flake:nixpkgs
       builders-use-substitutes = true
-      secret-key-files = ${config.sops.secrets."builder/mirai/cache/private".path}
+      secret-key-files = ${config.sops.secrets."builder/tako/cache/private".path}
     '';
     gc = {
       automatic = true;

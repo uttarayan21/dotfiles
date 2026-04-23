@@ -20,6 +20,7 @@
   configFile = settingsFormat.generate "runner-config.yaml" {};
 
   hostPackages = with pkgs; [
+    attic-client
     bash
     coreutils
     curl

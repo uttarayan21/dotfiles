@@ -15,12 +15,12 @@
       max-jobs = 8;
       trusted-users = ["root" device.user];
       substituters = [
+        "https://cache.darksailor.dev"
         "https://nix-community.cachix.org"
-        # "https://sh.darksailor.dev"
       ];
       trusted-public-keys = [
+        "tako:jKscA3020BGRFXmfKQFjvabLdiyZ2PNbgKGS5DyZQpM=" # tako cache signing key
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "mirai:bcVPoFGBZ0i7JAKMXIqLj2GY3CulLC4kP7rQyqes1RM="
       ];
       download-buffer-size = 524288000;
     };

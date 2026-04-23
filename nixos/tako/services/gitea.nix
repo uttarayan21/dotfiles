@@ -96,6 +96,7 @@
             "nix:host"
           ];
           hostPackages = with pkgs; [
+            attic-client
             bash
             coreutils
             curl
@@ -167,7 +168,6 @@
   systemd.services.gitea = {
     after = ["sops-install-secrets.service"];
   };
-
 
   # systemd.services."gitea-actions-tako" = {
   #   after = ["gitea.service"];

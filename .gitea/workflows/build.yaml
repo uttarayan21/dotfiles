@@ -1,0 +1,84 @@
+name: Build and Cache
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build-linux:
+    name: Build Linux Configurations
+    runs-on: nix
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Attic
+        if: github.ref == 'refs/heads/master'
+        env:
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+        run: attic login ci https://cache.darksailor.dev "$ATTIC_TOKEN"
+
+      - name: Build ryu (x86_64-linux)
+        id: build-ryu
+        continue-on-error: true
+        run: |
+          out=$(nix build .#nixosConfigurations.ryu.config.system.build.toplevel --no-link --print-out-paths)
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+
+      - name: Build tako (x86_64-linux)
+        id: build-tako
+        continue-on-error: true
+        run: |
+          out=$(nix build .#nixosConfigurations.tako.config.system.build.toplevel --no-link --print-out-paths)
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+
+      - name: Build tsuba (aarch64-linux)
+        id: build-tsuba
+        continue-on-error: true
+        run: |
+          out=$(nix build .#nixosConfigurations.tsuba.config.system.build.toplevel --no-link --print-out-paths)
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+
+      - name: Check results
+        run: |
+          failed=0
+          [ "${{ steps.build-ryu.outcome }}" = "failure" ] && echo "FAIL: ryu" && failed=1
+          [ "${{ steps.build-tako.outcome }}" = "failure" ] && echo "FAIL: tako" && failed=1
+          [ "${{ steps.build-tsuba.outcome }}" = "failure" ] && echo "FAIL: tsuba" && failed=1
+          [ "$failed" = "1" ] && exit 1
+          echo "All Linux builds succeeded"
+
+  build-darwin:
+    name: Build Darwin Configurations
+    runs-on: nix-darwin
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Attic
+        if: github.ref == 'refs/heads/master'
+        env:
+          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
+        run: attic login ci https://cache.darksailor.dev "$ATTIC_TOKEN"
+
+      - name: Build kuro (aarch64-darwin)
+        id: build-kuro
+        continue-on-error: true
+        run: |
+          out=$(nix build .#darwinConfigurations.kuro.system --no-link --print-out-paths)
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+
+      - name: Build shiro (aarch64-darwin)
+        id: build-shiro
+        continue-on-error: true
+        run: |
+          out=$(nix build .#darwinConfigurations.shiro.system --no-link --print-out-paths)
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+
+      - name: Check results
+        run: |
+          failed=0
+          [ "${{ steps.build-kuro.outcome }}" = "failure" ] && echo "FAIL: kuro" && failed=1
+          [ "${{ steps.build-shiro.outcome }}" = "failure" ] && echo "FAIL: shiro" && failed=1
+          [ "$failed" = "1" ] && exit 1
+          echo "All Darwin builds succeeded"
