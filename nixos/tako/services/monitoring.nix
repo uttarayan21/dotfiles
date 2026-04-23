@@ -131,6 +131,7 @@ in {
       node = {
         enable = true;
         port = ports.node;
+        listenAddress = "0.0.0.0";
         enabledCollectors = [
           "systemd"
           "textfile"
