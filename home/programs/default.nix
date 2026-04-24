@@ -17,7 +17,6 @@
     # ./nh.nix
     # ./ryujinx.nix
     # ./sxiv.nix
-    # ./tea.nix
     # ./template.nix
     # ./tuifeed.nix
     # ./xh.nix
@@ -44,6 +43,7 @@
     ./carapace.nix
     ./cargo.nix
     ./cfcli.nix
+    ./claude-code
     ./codex.nix
     ./ddcbacklight.nix
     ./deploy-rs.nix
@@ -55,6 +55,7 @@
     ./fd.nix
     ./file.nix
     ./fish.nix
+    ./fnm.nix
     ./fzf.nix
     ./gh.nix
     ./git.nix
@@ -67,8 +68,8 @@
     ./ncpamixer.nix
     ./neomutt.nix
     ./neovim.nix
-    ./nix-index.nix
     ./nixify.nix
+    ./nix-index.nix
     ./nushell.nix
     ./omnix.nix
     ./opencode.nix
@@ -81,13 +82,12 @@
     ./sops.nix
     ./ssh.nix
     ./starship.nix
+    ./tea.nix
     ./television.nix
     ./tmux.nix
     ./uv.nix
     ./yazi.nix
     ./yq.nix
     ./zoxide.nix
-    ./claude-code
-    ./fnm.nix
   ];
 }
