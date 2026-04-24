@@ -98,13 +98,6 @@
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
     };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: To ensure compatibility with the latest Firefox version, use nixpkgs-unstable.
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
     anyrun = {
       # My fork of anyrun that allows up / down with <C-n> / <C-p>
       url = "github:anyrun-org/anyrun";

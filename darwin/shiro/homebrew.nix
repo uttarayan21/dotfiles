@@ -8,7 +8,7 @@
       "raycast"
       "lunar"
       "orcaslicer"
-      "zen"
+      "firefox"
     ];
   };
 }

@@ -3102,7 +3102,6 @@
         "tree-sitter-pest": "tree-sitter-pest",
         "tree-sitter-slint": "tree-sitter-slint",
         "vicinae": "vicinae",
-        "zen-browser": "zen-browser",
         "zjstatus": "zjstatus"
       }
     },
@@ -4164,29 +4163,6 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1776922304,
-        "narHash": "sha256-T1r7GWzeqX0C6YauIMN6D0sdr5voDAPMg8jvn59Wm7g=",
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
-        "rev": "91cc9ed57a893b2e944de60812511f05fd408ce6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "0xc000022070",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     },

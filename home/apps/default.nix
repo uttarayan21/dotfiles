@@ -27,7 +27,6 @@ lib.optionalAttrs device.hasGui {
     # ./vlc.nix
     # ./vscode.nix
     # ./zed.nix
-    # ./zen.nix
 
     ./affine.nix
     ./bitwarden.nix
@@ -50,6 +49,5 @@ lib.optionalAttrs device.hasGui {
     ./vicinae.nix
     ./wezterm.nix
     ./zathura.nix
-    ./zen.nix
   ];
 }
