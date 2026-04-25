@@ -61,7 +61,7 @@
             }
             {
               "Aria2" = {
-                icon = "aria2.png";
+                icon = "ariang.png";
                 description = "Aria2: Download Manager";
                 href = "https://aria2.tsuba.darksailor.dev";
                 siteMonitor = "https://aria2.tsuba.darksailor.dev";
