@@ -55,7 +55,6 @@
         floccus
         i-dont-care-about-cookies
         indie-wiki-buddy
-        keepa
         libredirect
         onepassword-password-manager
         privacy-badger
@@ -64,7 +63,6 @@
         tridactyl
         ublock-origin
         violentmonkey
-        youtube-recommended-videos
       ];
       search = {
         force = true;
