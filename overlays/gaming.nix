@@ -168,6 +168,11 @@
       hash = "sha256-E8/gzD1QeqK/xcbueK0Jox549ZRYNbTrZUwjfCU1qPI=";
       fetchSubmodules = true;
     };
+    patches =
+      (oldAttrs.patches or [])
+      ++ [
+        ../patches/shadps4-image-spec-num-bindings.patch
+      ];
     postPatch = ''
       echo "6e87e749" > COMMIT
       echo "2026-04-25T08:08:02Z" > SOURCE_DATE_EPOCH
