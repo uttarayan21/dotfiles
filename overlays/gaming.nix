@@ -159,112 +159,68 @@
     '';
   });
 
-  shadps4-qt = let
-    shadps4 = final.shadps4-prerelease;
-    shadps4Wrapped = final.symlinkJoin {
-      name = "shadps4-wrapped";
-      paths = [shadps4];
-      postBuild = let
-        versionsJson = final.writeText "versions.json" (builtins.toJSON [
-          {
-            codename = "built-in";
-            name = "built-in";
-            path = "@shadps4@";
-            type = 0;
-          }
-        ]);
-        qtUiIni = final.writeText "qt_ui.ini" ''
-          [version_manager]
-          versionSelected=@shadps4@
-        '';
-      in ''
-        mkdir -p $out/share
-        substitute ${versionsJson} $out/share/versions.json \
-          --replace-fail @shadps4@ $out/bin/shadps4
-        # substitute ${qtUiIni} $out/share/qt_ui.ini \
-        #   --replace-fail @shadps4@ $out/bin/shadps4
-      '';
+  shadps4-diegolix29 = final.shadps4.overrideAttrs (oldAttrs: {
+    version = "diegolix29-2026-04-25";
+    src = final.fetchFromGitHub {
+      owner = "diegolix29";
+      repo = "shadPS4";
+      rev = "6e87e74924cf61b55bef8c96d09513cb3ae23625";
+      hash = "sha256-E8/gzD1QeqK/xcbueK0Jox549ZRYNbTrZUwjfCU1qPI=";
+      fetchSubmodules = true;
     };
-  in
-    prev.stdenv.mkDerivation {
-      pname = "shadps4-qt";
-      version = "224";
+    postPatch = ''
+      echo "6e87e749" > COMMIT
+      echo "2026-04-25T08:08:02Z" > SOURCE_DATE_EPOCH
+      substituteInPlace src/common/scm_rev.cpp.in \
+        --replace-fail @APP_VERSION@ diegolix29-2026-04-25 \
+        --replace-fail @GIT_REV@ 6e87e749 \
+        --replace-fail @GIT_BRANCH@ main \
+        --replace-fail @GIT_DESC@ nixpkgs \
+        --replace-fail @BUILD_DATE@ 2026-04-25T08:08:02Z
+    '';
+  });
 
-      src = final.fetchFromGitHub {
-        owner = "shadps4-emu";
-        repo = "shadps4-qtlauncher";
-        tag = "v224";
-        hash = "sha256-KBjAP0t2A6Q0eD7A0/9HzIQrUJ97YUkx2nx4SB+poHU=";
-        fetchSubmodules = true;
-      };
+  shadps4-qt = final.shadps4-diegolix29.overrideAttrs (oldAttrs: {
+    pname = "shadps4-qt";
 
-      postPatch = ''
-        substituteInPlace src/common/scm_rev.cpp.in \
-          --replace-fail @APP_VERSION@ ${shadps4.version} \
-          --replace-fail @GIT_REV@ v224 \
-          --replace-fail @GIT_BRANCH@ v224 \
-          --replace-fail @GIT_DESC@ nixpkgs \
-          --replace-fail @BUILD_DATE@ 1970-01-01T00:00:00Z
-
-        substituteInPlace src/common/versions.cpp \
-          --replace-fail 'Common::FS::GetUserPath(Common::FS::PathType::LauncherDir) / "versions.json"' \
-          '"${shadps4Wrapped}/share/versions.json"'
-
-        substituteInPlace src/qt_gui/gui_settings.cpp \
-          --replace-fail 'ComputeSettingsDir() + "qt_ui.ini"' \
-          'QString::fromStdString("${shadps4Wrapped}/share/qt_ui.ini")'
-      '';
-
-      inherit (shadps4) cmakeBuildType dontStrip runtimeDependencies;
-
-      nativeBuildInputs =
-        (shadps4.nativeBuildInputs or [])
-        ++ [
-          final.qt6.wrapQtAppsHook
-        ];
-
-      buildInputs =
-        (shadps4.buildInputs or [])
-        ++ [
-          final.qt6.qtbase
-          final.qt6.qttools
-          final.qt6.qtmultimedia
-        ];
-
-      cmakeFlags = [
-        (final.lib.cmakeBool "ENABLE_UPDATER" false)
-        (final.lib.cmakeBool "HIDE_VERSION_MANAGER" true)
+    nativeBuildInputs =
+      (oldAttrs.nativeBuildInputs or [])
+      ++ [
+        final.qt6.wrapQtAppsHook
       ];
 
-      installPhase = ''
-        runHook preInstall
+    buildInputs =
+      (oldAttrs.buildInputs or [])
+      ++ [
+        final.qt6.qtbase
+        final.qt6.qttools
+        final.qt6.qtmultimedia
+        final.openssl
+      ];
 
-        mkdir -p $out/bin
-        ln -s ${shadps4Wrapped}/bin/shadps4 $out/bin
+    cmakeFlags = [
+      (final.lib.cmakeBool "ENABLE_UPDATER" false)
+      (final.lib.cmakeBool "ENABLE_QT_GUI" true)
+    ];
 
-        install -Dm644 $src/.github/shadps4.png $out/share/icons/hicolor/512x512/apps/net.shadps4.shadPS4.png
-        install -Dm644 -t $out/share/applications $src/dist/net.shadps4.shadps4-qtlauncher.desktop
-        install -Dm644 -t $out/share/metainfo $src/dist/net.shadps4.shadps4-qtlauncher.metainfo.xml
+    installPhase = ''
+      runHook preInstall
 
-        install -Dm755 shadPS4QtLauncher $out/bin/shadps4-qt
+      install -D -t $out/bin shadps4
+      ln -s shadps4 $out/bin/shadps4-qt
 
-        runHook postInstall
-      '';
+      install -Dm644 $src/.github/shadps4.png $out/share/icons/hicolor/512x512/apps/net.shadps4.shadPS4.png
+      install -Dm644 -t $out/share/applications $src/dist/net.shadps4.shadPS4.desktop
+      install -Dm644 -t $out/share/metainfo $src/dist/net.shadps4.shadPS4.metainfo.xml
 
-      fixupPhase = ''
-        runHook preFixup
+      runHook postInstall
+    '';
 
-        substituteInPlace $out/share/applications/net.shadps4.shadps4-qtlauncher.desktop \
-          --replace-fail 'Exec=shadPS4QtLauncher' 'Exec=shadps4-qt'
-
-        runHook postFixup
-      '';
-
-      meta = {
-        inherit (shadps4.meta) platforms license maintainers;
-        description = shadps4.meta.description + " (Qt UI)";
-        homepage = "https://github.com/shadps4-emu/shadps4-qtlauncher";
+    meta =
+      (oldAttrs.meta or {})
+      // {
+        description = (oldAttrs.meta.description or "shadPS4") + " (Qt UI, diegolix29 fork)";
         mainProgram = "shadps4-qt";
       };
-    };
+  });
 }
