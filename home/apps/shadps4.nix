@@ -16,7 +16,7 @@ in {
   xdg.desktopEntries.bloodborne = lib.mkIf pkgs.stdenv.isLinux {
     name = "Bloodborne";
     comment = "Bloodborne via shadPS4 with gamescope";
-    exec = "taskset -c 0-15 gamemoderun gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --hdr-enabled --force-grab-cursor -- ${pkgs.shadps4-qt}/bin/shadps4 -g /home/servius/Games/PS4/Bloodborne/CUSA00900/eboot.bin";
+    exec = "${pkgs.util-linux}/bin/taskset -c 0-15 ${pkgs.gamemode}/bin/gamemoderun ${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --hdr-enabled --force-grab-cursor -- ${pkgs.shadps4-qt}/bin/shadps4 -g /home/servius/Games/PS4/Bloodborne/CUSA00900/eboot.bin";
     icon = "${bloodborne-icon}";
     terminal = false;
     type = "Application";
