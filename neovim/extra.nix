@@ -157,6 +157,7 @@
     FTerm-nvim
     blink-cmp-tmux
     cmp-ctags
+    nvim-cmp
     crates-nvim
     image-nvim
     iron-nvim
