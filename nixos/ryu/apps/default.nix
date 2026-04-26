@@ -13,5 +13,6 @@
     ./vr.nix
     ./audacity.nix
     ./bottles.nix
+    ./sgdboop.nix
   ];
 }
