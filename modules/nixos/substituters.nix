@@ -1,13 +1,16 @@
-{...}: {
+{...}: let
+  caches = [
+    "https://cache.darksailor.dev"
+    "https://nix-community.cachix.org"
+    "https://nixos-raspberrypi.cachix.org"
+    "https://llama-cpp.cachix.org"
+    "https://cache.nixos-cuda.org"
+  ];
+in {
   config = {
     nix.settings = {
-      trusted-substituters = [
-        "https://cache.darksailor.dev"
-        "https://nix-community.cachix.org"
-        "https://nixos-raspberrypi.cachix.org"
-        "https://llama-cpp.cachix.org"
-        "https://cache.nixos-cuda.org"
-      ];
+      substituters = caches;
+      trusted-substituters = caches;
 
       trusted-public-keys = [
         "tako:jKscA3020BGRFXmfKQFjvabLdiyZ2PNbgKGS5DyZQpM=" # tako cache signing key
