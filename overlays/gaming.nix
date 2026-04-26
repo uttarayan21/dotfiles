@@ -138,8 +138,8 @@
     src = final.fetchFromGitHub {
       owner = "shadps4-emu";
       repo = "shadPS4";
-      rev = "615949ea409438ce524ca94eb7e395b414130b5f";
-      hash = "sha256-9PUOWkatSin2hoIKQUyQB3UNiNp8a6FXSLa0WHgn5sc=";
+      rev = "Pre-release-shadPS4-2026-04-25-a762f70";
+      hash = "sha256-NLnQ6LB6ar15WsG2wpqWoQm8TpRh4WwHZrVDComn6Nk=";
       fetchSubmodules = true;
     };
     postPatch = ''
