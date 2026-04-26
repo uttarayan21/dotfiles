@@ -96,7 +96,6 @@
             "nix:host"
           ];
           hostPackages = with pkgs; [
-            attic-client
             bash
             coreutils
             curl

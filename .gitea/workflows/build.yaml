@@ -13,32 +13,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure Attic
-        if: github.ref == 'refs/heads/master'
-        env:
-          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
-        run: attic login ci https://cache.darksailor.dev "$ATTIC_TOKEN"
-
       - name: Build ryu (x86_64-linux)
         id: build-ryu
         continue-on-error: true
-        run: |
-          out=$(nix build .#nixosConfigurations.ryu.config.system.build.toplevel --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+        run: nix build .#nixosConfigurations.ryu.config.system.build.toplevel --no-link --print-out-paths
 
       - name: Build tako (x86_64-linux)
         id: build-tako
         continue-on-error: true
-        run: |
-          out=$(nix build .#nixosConfigurations.tako.config.system.build.toplevel --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+        run: nix build .#nixosConfigurations.tako.config.system.build.toplevel --no-link --print-out-paths
 
       - name: Build tsuba (aarch64-linux)
         id: build-tsuba
         continue-on-error: true
-        run: |
-          out=$(nix build .#nixosConfigurations.tsuba.config.system.build.toplevel --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+        run: nix build .#nixosConfigurations.tsuba.config.system.build.toplevel --no-link --print-out-paths
 
       - name: Check results
         run: |
@@ -52,28 +40,24 @@ jobs:
   build-darwin:
     name: Build Darwin Configurations
     runs-on: nix-darwin
+    env:
+      CACHE_HOST: ssh-ng://servius@tako.darksailor.dev
     steps:
       - uses: actions/checkout@v4
-
-      - name: Configure Attic
-        if: github.ref == 'refs/heads/master'
-        env:
-          ATTIC_TOKEN: ${{ secrets.ATTIC_TOKEN }}
-        run: attic login ci https://cache.darksailor.dev "$ATTIC_TOKEN"
 
       - name: Build kuro (aarch64-darwin)
         id: build-kuro
         continue-on-error: true
         run: |
           out=$(nix build .#darwinConfigurations.kuro.system --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out"; fi
 
       - name: Build shiro (aarch64-darwin)
         id: build-shiro
         continue-on-error: true
         run: |
           out=$(nix build .#darwinConfigurations.shiro.system --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then attic push system $out; fi
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out"; fi
 
       - name: Check results
         run: |

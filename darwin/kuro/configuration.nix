@@ -19,7 +19,7 @@
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
-        "tako:jKscA3020BGRFXmfKQFjvabLdiyZ2PNbgKGS5DyZQpM=" # tako cache signing key
+        "cache.darksailor.dev-1:SE3fTKFjzPJ6A5rrmZcRYlJme6/zSpRI1yVu3366u6k=" # harmonia (tako) cache signing key
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
       download-buffer-size = 524288000;

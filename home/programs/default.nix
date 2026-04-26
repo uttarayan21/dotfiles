@@ -31,7 +31,6 @@
     ./alejandra.nix
     ./aria2.nix
     ./ast-grep.nix
-    ./attic.nix
     ./atuin.nix
     ./bat.nix
     ./binwalk.nix

@@ -16,7 +16,7 @@
     ./knot.nix
 
     # ./affine.nix
-    ./attic.nix
+    ./harmonia.nix
     ./excalidraw.nix
     ./flaresolverr.nix
     # ./games
@@ -33,9 +33,4 @@
     ./shitpost.nix
     ./vaultwarden.nix
   ];
-  services = {
-    nix-serve = {
-      enable = true;
-    };
-  };
 }
