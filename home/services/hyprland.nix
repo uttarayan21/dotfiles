@@ -40,7 +40,7 @@
       render = {
         cm_enabled = true;
         direct_scanout = 2; # 0 - off; 1 - on; 2 - auto based on `game`
-        cm_fs_passthrough = 0; # 0 - off; 1 - always; 2 - hdr only (2 broken on nvidia)
+        # cm_fs_passthrough = 0; # 0 - off; 1 - always; 2 - hdr only (2 broken on nvidia) ( removed )
         send_content_type = true; # automatic monitor mode switch
         cm_auto_hdr = 2; # 0 - off; 1 - switch to cm,hdr 2; 2 - switch to cm,hdredid
         non_shader_cm = 2;
