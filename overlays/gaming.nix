@@ -142,6 +142,11 @@
       hash = "sha256-NLnQ6LB6ar15WsG2wpqWoQm8TpRh4WwHZrVDComn6Nk=";
       fetchSubmodules = true;
     };
+    patches =
+      (oldAttrs.patches or [])
+      ++ [
+        ../patches/shadps4-image-spec-num-bindings.patch
+      ];
     postPatch = ''
       echo "615949ea" > COMMIT
       echo "2026-04-24T00:00:00Z" > SOURCE_DATE_EPOCH
@@ -176,8 +181,8 @@
         mkdir -p $out/share
         substitute ${versionsJson} $out/share/versions.json \
           --replace-fail @shadps4@ $out/bin/shadps4
-        substitute ${qtUiIni} $out/share/qt_ui.ini \
-          --replace-fail @shadps4@ $out/bin/shadps4
+        # substitute ${qtUiIni} $out/share/qt_ui.ini \
+        #   --replace-fail @shadps4@ $out/bin/shadps4
       '';
     };
   in
