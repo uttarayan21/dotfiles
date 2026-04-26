@@ -5,8 +5,11 @@
   lib,
   ...
 }: let
+  runnerUser = "_gitea-runner";
+  runnerUid = 701;
+  runnerHome = "/var/lib/gitea-runner";
   name = "shiro";
-  stateDir = "/var/lib/gitea-runner/${name}";
+  stateDir = "${runnerHome}/${name}";
   url = "https://git.darksailor.dev";
   labels = [
     "macos-latest:host"
@@ -70,11 +73,27 @@
     '';
   };
 in {
+  users.users.${runnerUser} = {
+    description = "Gitea Actions Runner";
+    uid = runnerUid;
+    home = runnerHome;
+    createHome = true;
+    shell = "/bin/bash";
+  };
+  users.knownUsers = [runnerUser];
+
   sops = {
-    secrets."gitea/registration" = {};
-    templates."GITEA_RUNNER_TOKEN.env".content = ''
-      TOKEN=${config.sops.placeholder."gitea/registration"}
-    '';
+    secrets."gitea/registration" = {
+      owner = null;
+      uid = runnerUid;
+    };
+    templates."GITEA_RUNNER_TOKEN.env" = {
+      owner = null;
+      uid = runnerUid;
+      content = ''
+        TOKEN=${config.sops.placeholder."gitea/registration"}
+      '';
+    };
   };
 
   launchd.daemons.gitea-runner = {
@@ -83,9 +102,9 @@ in {
       Label = "dev.darksailor.gitea-runner";
       RunAtLoad = true;
       KeepAlive = true;
-      UserName = device.user;
-      StandardOutPath = "/var/log/gitea-runner.log";
-      StandardErrorPath = "/var/log/gitea-runner.error.log";
+      UserName = runnerUser;
+      StandardOutPath = "${runnerHome}/gitea-runner.log";
+      StandardErrorPath = "${runnerHome}/gitea-runner.error.log";
     };
   };
 }

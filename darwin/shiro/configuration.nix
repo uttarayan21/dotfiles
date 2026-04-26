@@ -45,7 +45,7 @@
   users.users.remotebuilder = {
     description = "User for Nix remote builds";
     uid = 700;
-    # home = "/var/remotebuilder";
+    home = "/var/lib/remotebuilder";
     createHome = true;
     shell = "/bin/bash";
     openssh.authorizedKeys.keyFiles = [
@@ -53,6 +53,7 @@
       ../../secrets/id_ios.pub
     ];
   };
+  users.knownUsers = ["remotebuilder"];
 
   # security.pam.enableSudoTouchIdAuth = true;
   # system.patches = [
