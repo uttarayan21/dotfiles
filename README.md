@@ -1,38 +1,35 @@
-# Machines
+# Dotfiles
 
-1. Ryu Dektop (Intel i9-14900KS / Nvidia RTX 5090 / DDR5 64GB CL36@6000MTs) 
-    ```
-    deploy -s .#ryu
-    ```
-2. Tako Server (Intel Xeon E-2236 / DDR5 64GB)
-    ```
-    deploy -s .#tako
-    ```
-3. Tsuba Server  (Raspberry Pi 5 / 8GB)
-    ```
-    deploy -s .#tsuba
-    ```
-4. Kuro Laptop (Apple M4 Pro macbook / 24GB)
-    ```
-    deploy -s .#kuro
-    ```
-5. Shiro Desktop (Apple M4 macmini / 16GB)
-    ```
-    deploy -s .#shiro
-    ```
+NixOS, nix-darwin, and Home Manager configurations across personal machines.
+
+## Machines
+
+| Host  | Role             | Hardware                                              | Deploy             |
+| ----- | ---------------- | ----------------------------------------------------- | ------------------ |
+| ryu   | Linux desktop    | Intel i9-14900KS / RTX 5090 / 64GB DDR5 CL36@6000MT/s | `deploy -s .#ryu`   |
+| tako  | Linux server     | Intel Xeon E-2236 / 64GB DDR5                         | `deploy -s .#tako`  |
+| tsuba | Linux server     | Raspberry Pi 5 / 8GB                                  | `deploy -s .#tsuba` |
+| kuro  | macOS laptop     | Apple M4 Pro MacBook / 24GB                           | `deploy -s .#kuro`  |
+| shiro | macOS desktop    | Apple M4 Mac mini / 16GB                              | `deploy -s .#shiro` |
+
+## Layout
+
+- `flake.nix` — entry point and device definitions
+- `nixos/` — per-host NixOS configs (`ryu`, `tako`, `tsuba`)
+- `darwin/` — per-host nix-darwin configs (`kuro`, `shiro`)
+- `home/` — Home Manager modules (`programs/`, `services/`, `apps/`)
+- `modules/` — custom modules (`nixos/`, `darwin/`, `home/`)
+- `secrets/` — SOPS-encrypted secrets
+- `steamdeck/` — standalone Home Manager config for Steam Deck
+
+## Validating
+
+```bash
+nixos-rebuild build --flake .       # current Linux host
+darwin-rebuild build --flake .      # current macOS host
+alejandra fmt .                     # format all Nix files
+```
 
 ## Troubleshooting
 
-### BB_Launcher: "Only one instance of app can be opened"
-
-BB_Launcher uses shared memory (shm) for single-instance detection. If it crashes or is killed without cleanup, stale shm segments remain and block relaunch.
-
-**Fix:** Remove the orphaned shared memory segments:
-```bash
-# List segments to identify BB_Launcher's (owned by your user)
-ipcs -m
-
-# Remove by shmid (replace 0 and 1 with actual shmid values)
-ipcrm -m 0
-ipcrm -m 1
-```
+See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).

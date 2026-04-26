@@ -58,6 +58,7 @@
     ./fzf.nix
     ./gh.nix
     ./git.nix
+    ./glow.nix
     ./gnupg.nix
     ./himalaya.nix
     ./hyprshade.nix

@@ -141,6 +141,7 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
 4. **Follow existing naming conventions** and directory structure
 5. Create custom application entries in `~/.local/share/applications/{appname}.desktop`
 6. **GUI / gaming apps go to `nixos/ryu/`** (apps/ or games/) — never to servers (`tako`, `tsuba`). Servers are headless and must not pull in desktop/gaming packages.
+7. **Troubleshooting steps go in `TROUBLESHOOTING.md`** — never in `README.md` or other docs. Append a new `##` section per issue with symptom and fix.
 
 ## Secrets Management
 
