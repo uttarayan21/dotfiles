@@ -1,4 +1,6 @@
-{
+let
+  inherit (import ../lib.nix) rawLua;
+in {
   copilot-lua = {
     enable = false;
     settings = {
@@ -21,6 +23,10 @@
       completion = {
         documentation.window.border = "rounded";
         menu.border = "rounded";
+        menu.draw.columns = [
+          (rawLua ''{ "kind_icon", "label", "label_description", gap = 1 }'')
+          (rawLua ''{ "source_name" }'')
+        ];
       };
       signature = {
         window.border = "rounded";
@@ -69,8 +75,16 @@
           "path"
           "buffer"
           "ripgrep"
-          # "tmux"
+          "emoji"
+          "tmux"
+          "ctags"
         ];
+        per_filetype = {
+          nix = rawLua ''{ inherit_defaults = true, "nixpkgs-maintainers" }'';
+          tex = rawLua ''{ inherit_defaults = true, "latex" }'';
+          markdown = rawLua ''{ inherit_defaults = true, "latex", "thesaurus" }'';
+          gitcommit = rawLua ''{ inherit_defaults = true, "thesaurus" }'';
+        };
         providers = {
           buffer = {
             score_offset = -7;
@@ -98,13 +112,50 @@
             name = "ripgrep";
             opts = {};
           };
-          # tmux = {
-          #   module = "blink-cmp-tmux";
-          #   name = "tmux";
-          #   opts = {
-          #     triggered_only = false;
-          #   };
-          # };
+          emoji = {
+            module = "blink-emoji";
+            name = "Emoji";
+            score_offset = -5;
+            min_keyword_length = 2;
+            opts = {};
+          };
+          thesaurus = {
+            module = "blink-cmp-words.thesaurus";
+            name = "blink-cmp-words";
+            score_offset = -8;
+            min_keyword_length = 3;
+            opts = {};
+          };
+          nixpkgs-maintainers = {
+            module = "blink_cmp_nixpkgs_maintainers";
+            name = "nixpkgs maintainers";
+            score_offset = -3;
+            min_keyword_length = 2;
+            opts = {};
+          };
+          latex = {
+            module = "blink-cmp-latex";
+            name = "Latex";
+            score_offset = -5;
+            min_keyword_length = 2;
+            opts = {};
+          };
+          ctags = {
+            module = "blink.compat.source";
+            name = "ctags";
+            score_offset = -4;
+            min_keyword_length = 2;
+            opts = {};
+          };
+          tmux = {
+            module = "blink-cmp-tmux";
+            name = "tmux";
+            score_offset = -6;
+            min_keyword_length = 3;
+            opts = {
+              triggered_only = false;
+            };
+          };
         };
       };
     };
@@ -114,7 +165,10 @@
   blink-cmp-dictionary.enable = true;
   # blink-cmp-copilot.enable = true;
   blink-cmp-spell.enable = true;
-  blink-cmp-tmux.enable = true;
+  blink-emoji.enable = true;
+  blink-cmp-words.enable = true;
+  blink-cmp-nixpkgs-maintainers.enable = true;
+  blink-cmp-latex.enable = true;
   blink-compat = {
     enable = true;
     settings.impersonate_nvim_cmp = true;

@@ -155,6 +155,8 @@
     '';
   extraPlugins = with pkgs.vimPlugins; [
     FTerm-nvim
+    blink-cmp-tmux
+    cmp-ctags
     crates-nvim
     image-nvim
     iron-nvim
@@ -181,6 +183,7 @@
       pathlib-nvim
     ];
   extraPackages = [
+    pkgs.universal-ctags
     pkgs.lldb
     pkgs.taplo
     pkgs.d2
