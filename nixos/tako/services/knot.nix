@@ -6,7 +6,7 @@
 }: {
   services.tangled.knot = {
     enable = true;
-    package = inputs.tangled-core.packages.${pkgs.system}.knot;
+    package = inputs.tangled-core.packages.${pkgs.stdenv.hostPlatform.system}.knot;
     server = {
       hostname = "tangled.darksailor.dev";
       owner = "did:plc:tllyvpa5oxw6fwwhkj3kv6dr";

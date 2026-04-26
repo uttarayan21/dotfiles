@@ -6,6 +6,6 @@
   ...
 }: {
   home.packages = lib.optionals (device.is "ryu") [
-    inputs.lichtfeld.packages.${pkgs.system}.lichtfeld
+    inputs.lichtfeld.packages.${pkgs.stdenv.hostPlatform.system}.lichtfeld
   ];
 }

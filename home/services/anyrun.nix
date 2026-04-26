@@ -10,12 +10,12 @@
   imports = [inputs.anyrun.homeManagerModules.default];
   programs.anyrun = {
     enable = device.isDesktopLinux;
-    package = inputs.anyrun.packages.${pkgs.system}.anyrun.overrideAttrs (finalAttrs: prevAttrs: {patches = [../../patches/ctrl-np.patch];});
+    package = inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}.anyrun.overrideAttrs (finalAttrs: prevAttrs: {patches = [../../patches/ctrl-np.patch];});
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
-        inputs.anyrun-nixos-options.packages.${pkgs.system}.default
-        inputs.anyrun-hyprwin.packages.${pkgs.system}.default
-        # inputs.anyrun-rink.packages.${pkgs.system}.default
+      plugins = with inputs.anyrun.packages.${pkgs.stdenv.hostPlatform.system}; [
+        inputs.anyrun-nixos-options.packages.${pkgs.stdenv.hostPlatform.system}.default
+        inputs.anyrun-hyprwin.packages.${pkgs.stdenv.hostPlatform.system}.default
+        # inputs.anyrun-rink.packages.${pkgs.stdenv.hostPlatform.system}.default
         rink
         applications
         websearch
@@ -39,11 +39,11 @@
           pkgs.lib.optionalString device.isNix osConfig.system.build.manual.optionsJSON
           + "/share/doc/nixos/options.json";
         hm-options =
-          inputs.home-manager.packages.${pkgs.system}.docs-json
+          inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.docs-json
           + "/share/doc/home-manager/options.json";
         # or alternatively if you wish to read any other documentation options, such as home-manager
         # get the docs-json package from the home-manager flake
-        # hm-options = inputs.home-manager.packages.${pkgs.system}.docs-json + "/share/doc/home-manager/options.json";
+        # hm-options = inputs.home-manager.packages.${pkgs.stdenv.hostPlatform.system}.docs-json + "/share/doc/home-manager/options.json";
         # options = builtins.toJSON {
         #   ":nix" = [nixos-options];
         #   ":hm" = [hm-options];

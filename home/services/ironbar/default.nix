@@ -7,7 +7,7 @@
   imports = [inputs.ironbar.homeManagerModules.default];
   programs.ironbar = {
     enable = device.is "ryu";
-    package = inputs.ironbar.packages.${pkgs.system}.ironbar;
+    package = inputs.ironbar.packages.${pkgs.stdenv.hostPlatform.system}.ironbar;
     systemd = true;
     config.monitors = {
       "${device.monitors.secondary}" = {
