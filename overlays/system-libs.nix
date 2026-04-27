@@ -17,5 +17,15 @@
         final.cmake
         final.doctest
       ];
+    # doctest in nixpkgs ships only headers + cmake config; meson's cmake dep emits
+    # `-ldoctest` and the linker fails. Drop the sigfm-tests target — the library
+    # itself is unaffected.
+    postPatch =
+      (oldAttrs.postPatch or "")
+      + ''
+        substituteInPlace libfprint/sigfm/meson.build \
+          --replace-fail "doctest = dependency('doctest', required: true)" "" \
+          --replace-fail "sigfm_tests = executable('sigfm-tests', ['./tests.cpp'], dependencies: [doctest, opencv], link_with: [libsigfm])" ""
+      '';
   });
 }
