@@ -169,6 +169,9 @@
     group = "gitea-runner";
     home = "/var/lib/gitea-runner";
     createHome = true;
+    openssh.authorizedKeys.keyFiles = [
+      ../../secrets/id_gitea_runner.pub
+    ];
   };
   users.groups.gitea-runner = {};
 

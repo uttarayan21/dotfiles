@@ -66,7 +66,6 @@
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub
-      ../../secrets/id_gitea_runner.pub
     ];
   };
   users.users.remotebuilder = {

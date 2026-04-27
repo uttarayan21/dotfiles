@@ -41,7 +41,7 @@ jobs:
     name: Build Darwin Configurations
     runs-on: nix-darwin
     env:
-      CACHE_HOST: ssh-ng://servius@tako.darksailor.dev
+      CACHE_HOST: ssh-ng://gitea-runner@tako.darksailor.dev
     steps:
       - uses: actions/checkout@v4
 
