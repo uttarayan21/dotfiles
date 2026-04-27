@@ -164,8 +164,21 @@
       };
     };
   };
+  users.users.gitea-runner = {
+    isSystemUser = true;
+    group = "gitea-runner";
+    home = "/var/lib/gitea-runner";
+    createHome = true;
+  };
+  users.groups.gitea-runner = {};
+
   systemd.services.gitea = {
     after = ["sops-install-secrets.service"];
+  };
+  systemd.services.gitea-runner-tako.serviceConfig = {
+    DynamicUser = lib.mkForce false;
+    User = "gitea-runner";
+    Group = "gitea-runner";
   };
 
   # systemd.services."gitea-actions-tako" = {

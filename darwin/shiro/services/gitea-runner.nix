@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  runnerUser = "_gitea-runner";
+  runnerUser = "gitea-runner";
   runnerUid = 701;
   runnerHome = "/var/lib/gitea-runner";
   name = "shiro";
@@ -18,6 +18,10 @@
   ];
   labelsStr = lib.concatStringsSep "," labels;
   labelsSorted = builtins.concatStringsSep "\n" (builtins.sort builtins.lessThan labels);
+
+  knownHostsFile = pkgs.writeText "gitea-runner-known-hosts" ''
+    tako.darksailor.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBt2bY4G9wfBf/6OsH+sLqA0GaQSTQUO2OCMhjQxwjJZ
+  '';
 
   settingsFormat = pkgs.formats.yaml {};
   configFile = settingsFormat.generate "runner-config.yaml" {};
@@ -42,6 +46,11 @@
       INSTANCE_DIR="${stateDir}"
       mkdir -p "$INSTANCE_DIR"
       cd "$INSTANCE_DIR"
+
+      # Add tako to known hosts
+      mkdir -p "$HOME/.ssh"
+      cp ${knownHostsFile} "$HOME/.ssh/known_hosts"
+      chmod 644 "$HOME/.ssh/known_hosts"
 
       TOKEN_FILE="${config.sops.templates."GITEA_RUNNER_TOKEN.env".path}"
       while [ ! -f "$TOKEN_FILE" ]; do
