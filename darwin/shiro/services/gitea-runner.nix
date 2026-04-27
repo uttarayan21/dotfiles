@@ -97,6 +97,7 @@ in {
       mode = "0600";
       path = "${runnerHome}/.ssh/id_ed25519";
     };
+    secrets."builder/shiro/cache/private" = {};
     templates."GITEA_RUNNER_TOKEN.env" = {
       owner = null;
       uid = runnerUid;

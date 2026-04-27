@@ -20,6 +20,7 @@
       ];
       trusted-public-keys = [
         "cache.darksailor.dev-1:SE3fTKFjzPJ6A5rrmZcRYlJme6/zSpRI1yVu3366u6k=" # harmonia (tako) cache signing key
+        "cache.shiro-1:6LdQLhp0+TocABKct7ab9zqsUPTspiH7Y52N5qzPCvs=" # shiro cache signing key
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
       download-buffer-size = 524288000;
