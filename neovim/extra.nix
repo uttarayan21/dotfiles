@@ -1,4 +1,8 @@
-{pkgs}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   extraConfigLua =
     # lua
     ''
@@ -183,17 +187,22 @@
       nvim-nio
       pathlib-nvim
     ];
-  extraPackages = [
-    pkgs.universal-ctags
-    pkgs.lldb
-    pkgs.taplo
-    pkgs.d2
-    pkgs.sleek
-    pkgs.graphqurl
-    pkgs.sqls
-    pkgs.lua
-    pkgs.ripgrep
-    pkgs.nodejs-slim
-    pkgs.lsof
-  ];
+  extraPackages =
+    [
+      pkgs.universal-ctags
+      pkgs.lldb
+      pkgs.taplo
+    ]
+    ++ lib.optionals pkgs.stdenv.isLinux [
+      pkgs.d2
+    ]
+    ++ [
+      pkgs.sleek
+      pkgs.graphqurl
+      pkgs.sqls
+      pkgs.lua
+      pkgs.ripgrep
+      pkgs.nodejs-slim
+      pkgs.lsof
+    ];
 }

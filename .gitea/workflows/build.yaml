@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.host }}
-        run: nix build .#${{ matrix.flake }} --no-link --print-out-paths
+        run: nix build .#${{ matrix.flake }} --no-link --print-out-paths --show-trace
 
   build-darwin:
     name: Build ${{ matrix.host }}
@@ -42,5 +42,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.host }}
         run: |
-          out=$(nix build .#${{ matrix.flake }} --no-link --print-out-paths)
+          out=$(nix build .#${{ matrix.flake }} --no-link --print-out-paths --show-trace)
           if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out" -j 4; fi
