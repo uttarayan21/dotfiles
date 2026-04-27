@@ -50,14 +50,14 @@ jobs:
         continue-on-error: true
         run: |
           out=$(nix build .#darwinConfigurations.kuro.system --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out"; fi
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out" -j 4; fi
 
       - name: Build shiro (aarch64-darwin)
         id: build-shiro
         continue-on-error: true
         run: |
           out=$(nix build .#darwinConfigurations.shiro.system --no-link --print-out-paths)
-          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out"; fi
+          if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out" -j 4; fi
 
       - name: Check results
         run: |
