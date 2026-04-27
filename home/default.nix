@@ -30,7 +30,7 @@
     man.generateCaches = true;
   };
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = lib.mkIf device.isLinux true;
 
   home = {
     username = device.user;
