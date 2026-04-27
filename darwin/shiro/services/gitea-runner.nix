@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  runnerUser = "gitea-runner";
+  runnerUser = "_gitea-runner";
   runnerUid = 701;
   runnerHome = "/var/lib/gitea-runner";
   name = "shiro";

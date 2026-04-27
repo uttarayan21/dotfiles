@@ -12,7 +12,7 @@
     settings = {
       experimental-features = "nix-command flakes auto-allocate-uids";
       max-jobs = 8;
-      trusted-users = ["root" "servius" "gitea-runner"];
+      trusted-users = ["root" "servius" "_gitea-runner"];
       substituters = [
         "https://cache.darksailor.dev"
         "https://nix-community.cachix.org"
