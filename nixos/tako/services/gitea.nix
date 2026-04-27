@@ -169,6 +169,7 @@
     group = "gitea-runner";
     home = "/var/lib/gitea-runner";
     createHome = true;
+    shell = pkgs.bashInteractive;
     openssh.authorizedKeys.keyFiles = [
       ../../../secrets/id_gitea_runner.pub
     ];
