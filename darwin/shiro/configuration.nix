@@ -35,6 +35,14 @@
       # ../../builders/shiro.nix
     ];
     distributedBuilds = true;
+    gc = {
+      automatic = true;
+      interval = {
+        Hour = 3;
+        Minute = 0;
+      };
+      options = "--delete-old";
+    };
   };
 
   users.users.${device.user} = {
