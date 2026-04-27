@@ -20,7 +20,10 @@
       lua_ls.enable = true;
       jsonls.enable = true;
       html.enable = true;
-      htmx.enable = true;
+      htmx = {
+        enable = true;
+        filetypes = ["html"];
+      };
       elixirls.enable = true;
       ast_grep.enable = true;
       sqls.enable = true;

@@ -1,0 +1,41 @@
+name: Update Flake
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    name: Update flake.lock
+    runs-on: nix
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update flake
+        run: nix flake update
+
+      - name: Check for changes
+        id: check
+        run: |
+          if git diff --quiet flake.lock; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create PR
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GITEA_TOKEN: ${{ gitea.token }}
+        run: |
+          git config user.name "gitea-runner"
+          git config user.email "gitea-runner@darksailor.dev"
+          branch="flake-update-$(date +%Y%m%d)"
+          git checkout -b "$branch"
+          git add flake.lock
+          git commit -m "chore: update flake.lock"
+          git push origin "$branch"
+          curl -s -X POST \
+            -H "Authorization: token $GITEA_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"title\":\"chore: update flake.lock\",\"head\":\"$branch\",\"base\":\"master\"}" \
+            "https://git.darksailor.dev/api/v1/repos/servius/dotfiles/pulls"
