@@ -29,7 +29,6 @@
           inputs.stylix.nixosModules.stylix
           inputs.headplane.nixosModules.headplane
           inputs.tangled-core.nixosModules.knot
-          inputs.paseo.nixosModules.default
 
           ./${device.name}/configuration.nix
           ../home/module.nix

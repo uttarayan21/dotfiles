@@ -26,6 +26,5 @@
     ./sunshine.nix
     ./tailscale.nix
     ./wivrn.nix
-    ./paseo.nix
   ];
 }
