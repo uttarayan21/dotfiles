@@ -1,14 +1,11 @@
-{...}: final: prev: {
+{inputs, ...}: final: prev: let
+  # Format flake input lastModifiedDate ("YYYYMMDDHHMMSS") as ISO-8601 UTC.
+  isoDate = d: "${builtins.substring 0 4 d}-${builtins.substring 4 2 d}-${builtins.substring 6 2 d}T${builtins.substring 8 2 d}:${builtins.substring 10 2 d}:${builtins.substring 12 2 d}Z";
+in {
   bblauncher = final.stdenv.mkDerivation {
     pname = "BBLauncher";
     version = "15.01";
-    src = final.fetchFromGitHub {
-      owner = "rainmakerv3";
-      repo = "BB_Launcher";
-      rev = "Release15.01";
-      sha256 = "sha256-L3G2DxchadDitZ2d9xE/Q60g9kGyDZjbwcYKth1e/Ww=";
-      fetchSubmodules = true;
-    };
+    src = inputs.bblauncher-src;
     nativeBuildInputs = [
       final.cmake
       final.pkg-config
@@ -50,22 +47,15 @@
     ];
   };
 
-  shadps4 = prev.shadps4.overrideAttrs (oldAttrs: rec {
+  shadps4 = prev.shadps4.overrideAttrs (oldAttrs: {
     version = "0.15.0";
-    src = final.fetchFromGitHub {
-      owner = "shadps4-emu";
-      repo = "shadPS4";
-      tag = "v.${version}";
-      hash = "sha256-ZYY8PlHEz6jj000Lrllqsk4Da6/CnNdSQHx1+89+yZM=";
-      fetchSubmodules = true;
-      leaveDotGit = true;
-      postFetch = ''
-        cd "$out"
-        git rev-parse --short=8 HEAD > $out/COMMIT
-        date -u -d "@$(git log -1 --pretty=%ct)" "+%Y-%m-%dT%H:%M:%SZ" > $out/SOURCE_DATE_EPOCH
-        find "$out" -name .git -print0 | xargs -0 rm -rf
+    src = inputs.shadps4-src;
+    postPatch =
+      (oldAttrs.postPatch or "")
+      + ''
+        echo "${builtins.substring 0 8 inputs.shadps4-src.rev}" > COMMIT
+        echo "${isoDate inputs.shadps4-src.lastModifiedDate}" > SOURCE_DATE_EPOCH
       '';
-    };
     buildInputs = with final; [
       alsa-lib
       boost
@@ -135,13 +125,7 @@
 
   shadps4-prerelease = final.shadps4.overrideAttrs (oldAttrs: {
     version = "prerelease-2026-04-24";
-    src = final.fetchFromGitHub {
-      owner = "shadps4-emu";
-      repo = "shadPS4";
-      rev = "Pre-release-shadPS4-2026-04-25-a762f70";
-      hash = "sha256-NLnQ6LB6ar15WsG2wpqWoQm8TpRh4WwHZrVDComn6Nk=";
-      fetchSubmodules = true;
-    };
+    src = inputs.shadps4-prerelease-src;
     patches =
       (oldAttrs.patches or [])
       ++ [
@@ -161,13 +145,7 @@
 
   shadps4-diegolix29 = final.shadps4.overrideAttrs (oldAttrs: {
     version = "diegolix29-2026-04-25";
-    src = final.fetchFromGitHub {
-      owner = "diegolix29";
-      repo = "shadPS4";
-      rev = "6e87e74924cf61b55bef8c96d09513cb3ae23625";
-      hash = "sha256-E8/gzD1QeqK/xcbueK0Jox549ZRYNbTrZUwjfCU1qPI=";
-      fetchSubmodules = true;
-    };
+    src = inputs.shadps4-diegolix29-src;
     patches =
       (oldAttrs.patches or [])
       ++ [

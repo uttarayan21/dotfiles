@@ -364,6 +364,144 @@
         "type": "github"
       }
     },
+    "bblauncher-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775601719,
+        "narHash": "sha256-L3G2DxchadDitZ2d9xE/Q60g9kGyDZjbwcYKth1e/Ww=",
+        "ref": "refs/tags/Release15.01",
+        "rev": "612aeb0bafcb93028737b156d7a488bff611e400",
+        "revCount": 493,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/rainmakerv3/BB_Launcher"
+      },
+      "original": {
+        "ref": "refs/tags/Release15.01",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/rainmakerv3/BB_Launcher"
+      }
+    },
+    "catppuccin-bat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710456315,
+        "narHash": "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg=",
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "b19bea35a85a32294ac4732cad5b0dc6495bed32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "bat",
+        "rev": "b19bea35a85a32294ac4732cad5b0dc6495bed32",
+        "type": "github"
+      }
+    },
+    "catppuccin-fish": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698929621,
+        "narHash": "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg=",
+        "owner": "catppuccin",
+        "repo": "fish",
+        "rev": "0ce27b518e8ead555dec34dd8be3df5bd75cff8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "fish",
+        "rev": "0ce27b518e8ead555dec34dd8be3df5bd75cff8e",
+        "type": "github"
+      }
+    },
+    "catppuccin-hyprland": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702668781,
+        "narHash": "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no=",
+        "owner": "catppuccin",
+        "repo": "hyprland",
+        "rev": "fc228737d3d0c12e34a7fa155a0fc3192e5e4017",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "hyprland",
+        "rev": "fc228737d3d0c12e34a7fa155a0fc3192e5e4017",
+        "type": "github"
+      }
+    },
+    "catppuccin-newsboat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1666070943,
+        "narHash": "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI=",
+        "owner": "catppuccin",
+        "repo": "newsboat",
+        "rev": "be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "newsboat",
+        "rev": "be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f",
+        "type": "github"
+      }
+    },
+    "catppuccin-starship": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1689246850,
+        "narHash": "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=",
+        "owner": "catppuccin",
+        "repo": "starship",
+        "rev": "5629d2356f62a9f2f8efad3ff37476c19969bd4f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "starship",
+        "rev": "5629d2356f62a9f2f8efad3ff37476c19969bd4f",
+        "type": "github"
+      }
+    },
+    "catppuccin-waybar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1662347643,
+        "narHash": "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw=",
+        "owner": "catppuccin",
+        "repo": "waybar",
+        "rev": "55068360899193d0acf0ca0c30d0e6184dfb74a1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "ref": "v1.0",
+        "repo": "waybar",
+        "type": "github"
+      }
+    },
+    "catppuccin-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1754506012,
+        "narHash": "sha256-zkL46h1+U9ThD4xXkv1uuddrlQviEQD3wNZFRgv7M8Y=",
+        "owner": "catppuccin",
+        "repo": "yazi",
+        "rev": "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "yazi",
+        "rev": "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31",
+        "type": "github"
+      }
+    },
     "cinny": {
       "flake": false,
       "locked": {
@@ -378,6 +516,23 @@
         "owner": "cinnyapp",
         "ref": "dev",
         "repo": "cinny",
+        "type": "github"
+      }
+    },
+    "codex-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776282225,
+        "narHash": "sha256-wjiUMox9V5tFggNgaFyHXWhRlpPerK7W+U/eR2Ddbbc=",
+        "owner": "openai",
+        "repo": "codex",
+        "rev": "d65ed92a5e440972626965d0af9a6345179783bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "openai",
+        "ref": "rust-v0.121.0",
+        "repo": "codex",
         "type": "github"
       }
     },
@@ -2157,6 +2312,23 @@
         "type": "github"
       }
     },
+    "libfprint-cs9711-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767286623,
+        "narHash": "sha256-JygOJ3SybXKR3CjLxLbAZDaYCl9LuQYDQfFC8Si5oaw=",
+        "owner": "archeYR",
+        "repo": "libfprint-CS9711",
+        "rev": "c2d163fbb06d33e80a5177815bb0b8ca2f01739f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "archeYR",
+        "repo": "libfprint-CS9711",
+        "rev": "c2d163fbb06d33e80a5177815bb0b8ca2f01739f",
+        "type": "github"
+      }
+    },
     "lichtfeld": {
       "inputs": {
         "flake-utils": "flake-utils_10",
@@ -2962,6 +3134,23 @@
         "type": "github"
       }
     },
+    "ollama-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1775526437,
+        "narHash": "sha256-o9iCqdOfNMxfIyThQAOSSQZE2ZyBuyJWFr6wqvQo1A0=",
+        "owner": "ollama",
+        "repo": "ollama",
+        "rev": "8c8f8f3450d39735355fc6cd7f2e436c8aa42ab1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ollama",
+        "ref": "v0.20.3",
+        "repo": "ollama",
+        "type": "github"
+      }
+    },
     "onepassword-shell-plugins": {
       "inputs": {
         "nixpkgs": [
@@ -3036,7 +3225,16 @@
         "anyrun-hyprwin": "anyrun-hyprwin",
         "anyrun-nixos-options": "anyrun-nixos-options",
         "arion": "arion",
+        "bblauncher-src": "bblauncher-src",
+        "catppuccin-bat": "catppuccin-bat",
+        "catppuccin-fish": "catppuccin-fish",
+        "catppuccin-hyprland": "catppuccin-hyprland",
+        "catppuccin-newsboat": "catppuccin-newsboat",
+        "catppuccin-starship": "catppuccin-starship",
+        "catppuccin-waybar": "catppuccin-waybar",
+        "catppuccin-yazi": "catppuccin-yazi",
         "cinny": "cinny",
+        "codex-src": "codex-src",
         "crates-io-index": "crates-io-index",
         "crates-nix": "crates-nix",
         "d2": "d2",
@@ -3054,6 +3252,7 @@
         "iamb": "iamb",
         "ironbar": "ironbar",
         "lanzaboote": "lanzaboote",
+        "libfprint-cs9711-src": "libfprint-cs9711-src",
         "lichtfeld": "lichtfeld",
         "music-player": "music-player",
         "musnix": "musnix",
@@ -3069,12 +3268,18 @@
         "nixvim": "nixvim",
         "nno": "nno",
         "nur": "nur",
+        "ollama-src": "ollama-src",
         "onepassword-shell-plugins": "onepassword-shell-plugins",
         "servius-website": "servius-website",
+        "shadps4-diegolix29-src": "shadps4-diegolix29-src",
+        "shadps4-prerelease-src": "shadps4-prerelease-src",
+        "shadps4-src": "shadps4-src",
+        "shitpost-src": "shitpost-src",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "tangled-core": "tangled-core",
         "tmux-float": "tmux-float",
+        "tmux-super-fingers-src": "tmux-super-fingers-src",
         "tree-sitter-d2": "tree-sitter-d2",
         "tree-sitter-just": "tree-sitter-just",
         "tree-sitter-nu": "tree-sitter-nu",
@@ -3372,6 +3577,82 @@
       "original": {
         "type": "git",
         "url": "https://git.darksailor.dev/servius/servius.neocities.org"
+      }
+    },
+    "shadps4-diegolix29-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777104482,
+        "narHash": "sha256-p9ojy1bymNEDJMjETtagK4NFH3YoxfjL3A9/AWxe8sI=",
+        "ref": "main",
+        "rev": "6e87e74924cf61b55bef8c96d09513cb3ae23625",
+        "revCount": 6068,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/diegolix29/shadPS4"
+      },
+      "original": {
+        "ref": "main",
+        "rev": "6e87e74924cf61b55bef8c96d09513cb3ae23625",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/diegolix29/shadPS4"
+      }
+    },
+    "shadps4-prerelease-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777150620,
+        "narHash": "sha256-XvKatA1t7HiYAelYljfz3oVxNXsISw+ltkxlpcD6siI=",
+        "ref": "main",
+        "rev": "a762f70df3fc23185540f88724b261b065e5d979",
+        "revCount": 3855,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadPS4"
+      },
+      "original": {
+        "ref": "main",
+        "rev": "a762f70df3fc23185540f88724b261b065e5d979",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadPS4"
+      }
+    },
+    "shadps4-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1773732142,
+        "narHash": "sha256-0s5I3yYjuKD7KoYY2UJHx45kIv9pHuy6ids5iTNc5ks=",
+        "ref": "refs/tags/v.0.15.0",
+        "rev": "4d62930075925f5ff7c1d0d9db015e2b0b588397",
+        "revCount": 3726,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadPS4"
+      },
+      "original": {
+        "ref": "refs/tags/v.0.15.0",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadPS4"
+      }
+    },
+    "shitpost-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763839570,
+        "narHash": "sha256-EVis06rmHq1jJK0FVsbgi7TOru7GtEUpbx0PjU2AKEo=",
+        "ref": "refs/heads/master",
+        "rev": "68d972f68cab8f68916b94df05b7ab6a7da4a1da",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/adarkdayinmylife.public"
+      },
+      "original": {
+        "rev": "68d972f68cab8f68916b94df05b7ab6a7da4a1da",
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/adarkdayinmylife.public"
       }
     },
     "sops-nix": {
@@ -3963,6 +4244,23 @@
       "original": {
         "owner": "uttarayan21",
         "repo": "tmux-float",
+        "type": "github"
+      }
+    },
+    "tmux-super-fingers-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696324843,
+        "narHash": "sha256-iKfx9Ytk2vSuINvQTB6Kww8Vv7i51cFEnEBHLje+IJw=",
+        "owner": "artemave",
+        "repo": "tmux_super_fingers",
+        "rev": "518044ef78efa1cf3c64f2e693fef569ae570ddd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "artemave",
+        "repo": "tmux_super_fingers",
+        "rev": "518044ef78efa1cf3c64f2e693fef569ae570ddd",
         "type": "github"
       }
     },

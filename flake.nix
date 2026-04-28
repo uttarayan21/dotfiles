@@ -189,6 +189,73 @@
       url = "github:uttarayan21/lichtfeld-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Pinned source inputs (replace fetchFromGitHub/fetchgit). Update with `nix flake update <name>`.
+    bblauncher-src = {
+      url = "git+https://github.com/rainmakerv3/BB_Launcher?ref=refs/tags/Release15.01&submodules=1";
+      flake = false;
+    };
+    shadps4-src = {
+      url = "git+https://github.com/shadps4-emu/shadPS4?ref=refs/tags/v.0.15.0&submodules=1";
+      flake = false;
+    };
+    shadps4-prerelease-src = {
+      # Original tag: Pre-release-shadPS4-2026-04-25-a762f70 (auto-deleted upstream — pin commit SHA)
+      url = "git+https://github.com/shadps4-emu/shadPS4?ref=main&rev=a762f70df3fc23185540f88724b261b065e5d979&submodules=1";
+      flake = false;
+    };
+    shadps4-diegolix29-src = {
+      url = "git+https://github.com/diegolix29/shadPS4?ref=main&rev=6e87e74924cf61b55bef8c96d09513cb3ae23625&submodules=1";
+      flake = false;
+    };
+    codex-src = {
+      url = "github:openai/codex/rust-v0.121.0";
+      flake = false;
+    };
+    ollama-src = {
+      url = "github:ollama/ollama/v0.20.3";
+      flake = false;
+    };
+    tmux-super-fingers-src = {
+      url = "github:artemave/tmux_super_fingers/518044ef78efa1cf3c64f2e693fef569ae570ddd";
+      flake = false;
+    };
+    libfprint-cs9711-src = {
+      url = "github:archeYR/libfprint-CS9711/c2d163fbb06d33e80a5177815bb0b8ca2f01739f";
+      flake = false;
+    };
+    catppuccin-bat = {
+      url = "github:catppuccin/bat/b19bea35a85a32294ac4732cad5b0dc6495bed32";
+      flake = false;
+    };
+    catppuccin-hyprland = {
+      url = "github:catppuccin/hyprland/fc228737d3d0c12e34a7fa155a0fc3192e5e4017";
+      flake = false;
+    };
+    catppuccin-starship = {
+      url = "github:catppuccin/starship/5629d2356f62a9f2f8efad3ff37476c19969bd4f";
+      flake = false;
+    };
+    catppuccin-fish = {
+      url = "github:catppuccin/fish/0ce27b518e8ead555dec34dd8be3df5bd75cff8e";
+      flake = false;
+    };
+    catppuccin-waybar = {
+      url = "github:catppuccin/waybar/v1.0";
+      flake = false;
+    };
+    catppuccin-newsboat = {
+      url = "github:catppuccin/newsboat/be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f";
+      flake = false;
+    };
+    catppuccin-yazi = {
+      url = "github:catppuccin/yazi/043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
+      flake = false;
+    };
+    shitpost-src = {
+      url = "git+https://git.darksailor.dev/servius/adarkdayinmylife.public?rev=68d972f68cab8f68916b94df05b7ab6a7da4a1da";
+      flake = false;
+    };
     # nix-proton-cachyos = {
     #   url = "github:uttarayan21/nix-proton-cachyos";
     #   inputs.nixpkgs.follows = "nixpkgs";

@@ -98,13 +98,7 @@
       };
     };
     style = let
-      catppuccin = pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "waybar";
-        rev = "v1.0";
-        sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
-      };
-      mocha = builtins.readFile "${catppuccin}/mocha.css";
+      mocha = builtins.readFile "${inputs.catppuccin-waybar}/mocha.css";
     in
       mocha + builtins.readFile ./ironbar.css;
   };

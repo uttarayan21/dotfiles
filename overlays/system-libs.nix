@@ -1,4 +1,4 @@
-{...}: final: prev: {
+{inputs, ...}: final: prev: {
   # openldap's test017-syncreplication-refresh is timing-sensitive and flakes on
   # the loaded gitea-runner host. Skip the upstream test suite — the library is fine.
   openldap = prev.openldap.overrideAttrs (_: {
@@ -8,12 +8,7 @@
   # https://github.com/archeYR/libfprint-CS9711/commits/cs9711-rebase/
   libfprint = prev.libfprint.overrideAttrs (oldAttrs: {
     version = "git";
-    src = final.fetchFromGitHub {
-      owner = "archeYR";
-      repo = "libfprint-CS9711";
-      rev = "c2d163fbb06d33e80a5177815bb0b8ca2f01739f";
-      sha256 = "sha256-JygOJ3SybXKR3CjLxLbAZDaYCl9LuQYDQfFC8Si5oaw";
-    };
+    src = inputs.libfprint-cs9711-src;
     buildInputs = oldAttrs.buildInputs ++ [final.nss_latest];
     nativeBuildInputs =
       oldAttrs.nativeBuildInputs

@@ -1,75 +1,58 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   mkCatppuccin = {
-    owner ? "catppuccin",
-    version ? "0.0.1",
     item,
-    rev ? "main",
-    sha256 ? pkgs.lib.fakeSha256,
+    src,
+    version ? "0.0.1",
     override ? null,
   }:
     pkgs.stdenv.mkDerivation {
-      inherit version override;
+      inherit version override src;
       pname = item;
-      # TODO: Move to subflake
-      # NOTE: It might not make sense to move this to subflake
-      src = pkgs.fetchFromGitHub {
-        inherit owner rev sha256;
-        repo = item;
-      };
       buildPhase = ''
         echo "Building Cattppucin for ${item}..."
         mkdir -p $out
         cp -r ./* $out/
       '';
     };
-
-  flavors = ["latte" "frappe" "macchiato" "mocha"];
-  mapFlavor = flavorMap:
-    (flavor: {
-      name = flavor;
-      value = flavorMap flavor;
-    })
-    flavors;
 in {
   bat = mkCatppuccin {
     item = "bat";
-    rev = "b19bea35a85a32294ac4732cad5b0dc6495bed32";
-    sha256 = "sha256-POoW2sEM6jiymbb+W/9DKIjDM1Buu1HAmrNP0yC2JPg";
+    src = inputs.catppuccin-bat;
   };
 
   hyprland = mkCatppuccin {
     item = "hyprland";
-    rev = "fc228737d3d0c12e34a7fa155a0fc3192e5e4017";
-    sha256 = "sha256-9BhZq9J1LmHfAPBqOr64chiAEzS+YV6zqe9ma95V3no";
+    src = inputs.catppuccin-hyprland;
   };
 
   starship = mkCatppuccin {
     item = "starship";
-    rev = "5629d2356f62a9f2f8efad3ff37476c19969bd4f";
-    sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0";
+    src = inputs.catppuccin-starship;
   };
 
   fish = mkCatppuccin {
     item = "fish";
-    rev = "0ce27b518e8ead555dec34dd8be3df5bd75cff8e";
-    sha256 = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg";
+    src = inputs.catppuccin-fish;
   };
 
   ironbar = mkCatppuccin {
     item = "waybar";
-    rev = "v1.0";
-    sha256 = "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw";
+    src = inputs.catppuccin-waybar;
   };
+
   newsboat = mkCatppuccin {
     item = "newsboat";
-    rev = "be3d0ee1ba0fc26baf7a47c2aa7032b7541deb0f";
-    sha256 = "sha256-czvR3bVZ0NfBmuu0JixalS7B1vf1uEGSTSUVVTclKxI";
+    src = inputs.catppuccin-newsboat;
   };
+
   # https://github.com/catppuccin/yazi
   yazi = mkCatppuccin {
     item = "yazi";
-    rev = "043ffae14e7f7fcc136636d5f2c617b5bc2f5e31";
-    sha256 = "sha256-zkL46h1+U9ThD4xXkv1uuddrlQviEQD3wNZFRgv7M8Y=";
+    src = inputs.catppuccin-yazi;
   };
 
   gtk = pkgs.catppuccin-gtk.override {
