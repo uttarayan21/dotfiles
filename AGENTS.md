@@ -231,9 +231,9 @@ Devices are defined in `flake.nix` using `mkDevice`. Properties available:
 1. Build first: `just build` or `nixos-rebuild build --flake .`
 2. Check for errors with `--show-trace` flag
 
-## Version Information
+## Notes
+When adding a new fetch source in the overlay, set hash = lib.fakeHash; first, run the build, and copy the 'got:' hash from the error. Do not prefetch manually.
 
-- Nix Version: 2.32+
-- Flakes: Enabled (required)
-- Formatter: alejandra
-- State Version: (varies by machine & never change this)
+## Scope Boundaries
+- `home/` is for shared/cross-host config; host-specific apps (especially gaming/GUI) belong under the host directory (e.g., `nixos/ryu/`).
+- Distinguish gaming/GUI configs from headless/server configs.
