@@ -112,6 +112,8 @@
     };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
+        @bots header_regexp User-Agent "(?i)(meta-externalagent|GPTBot|ClaudeBot|Claude-Web|Bytespider|Amazonbot|DataForSeoBot|DotBot|Applebot|SemrushBot|AhrefsBot|MJ12bot|PetalBot|YandexBot|facebookexternalhit|Bingbot|CCBot|anthropic-ai|cohere-ai|Diffbot|ImagesiftBot|Omgilibot|Timpibot|YouBot|ZoominfoBot)"
+        respond @bots 403
         reverse_proxy localhost:3000
       '';
     };
