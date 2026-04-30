@@ -1,7 +1,5 @@
 {inputs, ...}: let
   inherit (inputs.self) devices;
-  game = "65.109.106.125";
-  chibi = "51.79.165.197";
 in {
   # Records that are not associated with a single service live here.
   # Service-specific records are colocated with their service module.
@@ -31,17 +29,13 @@ in {
     "tako.darksailor.dev".a.data = devices.tako.tailscaleIp;
     "tsuba.darksailor.dev".a.data = devices.tsuba.tailscaleIp;
 
-    # External hosts (no service file).
-    "chibi.darksailor.dev".a.data = chibi;
-    "game.darksailor.dev".a.data = game;
+    # "chibi.darksailor.dev".a.data = chibi;
+    # "game.darksailor.dev".a.data = game;
 
     # Records without a corresponding service module in this repo.
-    "console.darksailor.dev" = {};
-    "langfuse.darksailor.dev" = {};
-    "mc.darksailor.dev" = {};
-    "notes.darksailor.dev" = {};
-    "sh.darksailor.dev" = {};
-    "www.darksailor.dev" = {};
+    # "console.darksailor.dev" = {};
+    # "langfuse.darksailor.dev" = {};
+    # "notes.darksailor.dev" = {};
 
     # DKIM CNAMEs (no inherited A/AAAA).
     "fm1._domainkey.darksailor.dev" = {
