@@ -189,6 +189,10 @@
       url = "github:uttarayan21/lichtfeld-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kobors = {
+      url = "git+ssh://gitea@git.darksailor.dev/servius/kobors";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Pinned source inputs (replace fetchFromGitHub/fetchgit). Update with `nix flake update <name>`.
     bblauncher-src = {
