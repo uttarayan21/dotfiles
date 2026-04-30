@@ -1,7 +1,7 @@
 {inputs, ...}: {
   networking.domains = {
     enable = true;
-    defaultTTL = 3600;
+    defaultTTL = 300;
     baseDomains."darksailor.dev".a.data = inputs.self.devices.tako.externalIp;
   };
 }

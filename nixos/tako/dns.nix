@@ -46,15 +46,15 @@ in {
     # DKIM CNAMEs (no inherited A/AAAA).
     "fm1._domainkey.darksailor.dev" = {
       a.data = null;
-      cname.data = "fm1.darksailor.dev.dkim.fmhosted.com";
+      cname.data = "fm1.darksailor.dev.dkim.fmhosted.com.";
     };
     "fm2._domainkey.darksailor.dev" = {
       a.data = null;
-      cname.data = "fm2.darksailor.dev.dkim.fmhosted.com";
+      cname.data = "fm2.darksailor.dev.dkim.fmhosted.com.";
     };
     "fm3._domainkey.darksailor.dev" = {
       a.data = null;
-      cname.data = "fm3.darksailor.dev.dkim.fmhosted.com";
+      cname.data = "fm3.darksailor.dev.dkim.fmhosted.com.";
     };
 
     # Auth/policy TXT records (no inherited A).

@@ -12,9 +12,16 @@
   octodnsConfigFile = generate.octodnsConfig {
     inherit dnsConfig;
     config = {
-      providers.cloudflare = {
-        class = "octodns_cloudflare.CloudflareProvider";
-        cf_token = "env/CLOUDFLARE_TOKEN";
+      providers = {
+        # nixos-dns generates zone files without an NS RRset; tell the bind
+        # source not to require one (Cloudflare manages NS records itself).
+        config.check_origin = false;
+        cloudflare = {
+          class = "octodns_cloudflare.CloudflareProvider";
+          token = "env/CLOUDFLARE_TOKEN";
+          # Token is scoped to DNS only; skip pagerules (would 401).
+          pagerules = false;
+        };
       };
     };
     zones = {
