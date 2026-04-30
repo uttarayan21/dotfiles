@@ -2,6 +2,8 @@
   dataDir = "/var/lib/excalidraw";
   base_domain = "darksailor.dev";
 in {
+  networking.domains.subDomains."draw.${base_domain}" = {};
+
   # SOPS secrets and templates
   sops = {
     secrets = {

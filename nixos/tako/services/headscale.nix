@@ -1,4 +1,6 @@
 {config, ...}: {
+  networking.domains.subDomains."headscale.darksailor.dev" = {};
+
   sops = {
     secrets.headscale-secret = {
       owner = config.systemd.services.headscale.serviceConfig.User;

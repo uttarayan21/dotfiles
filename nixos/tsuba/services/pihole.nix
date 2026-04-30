@@ -1,8 +1,11 @@
 {
   pkgs,
   config,
+  device,
   ...
 }: {
+  networking.domains.subDomains."pihole.darksailor.dev".a.data = device.tailscaleIp;
+
   sops = {
     secrets."pihole/password" = {};
     templates."pihole.env".content = ''

@@ -1,8 +1,11 @@
 {
   config,
   pkgs,
+  device,
   ...
 }: {
+  networking.domains.subDomains."code.darksailor.dev".a.data = device.tailscaleIp;
+
   sops = {
     secrets."cloudflare/api_key".owner = config.services.caddy.user;
     templates = {

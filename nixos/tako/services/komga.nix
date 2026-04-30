@@ -1,6 +1,12 @@
-{config, ...}: let
+{
+  config,
+  device,
+  ...
+}: let
   port = 25600;
 in {
+  networking.domains.subDomains."comics.darksailor.dev".a.data = device.tailscaleIp;
+
   systemd.tmpfiles.rules = [
     "Z /media/comics - ${config.services.komga.user} ${config.services.komga.group} - -"
   ];

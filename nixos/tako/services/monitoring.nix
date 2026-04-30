@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  device,
   ...
 }: let
   # Port configurations
@@ -23,6 +24,11 @@
     caddy = 2019;
   };
 in {
+  networking.domains.subDomains = {
+    "monitoring.darksailor.dev" = {};
+    "grafana.darksailor.dev".a.data = device.tailscaleIp;
+  };
+
   sops.secrets."grafana/secret_key" = {
     owner = "grafana";
   };

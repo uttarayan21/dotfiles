@@ -3,6 +3,8 @@
   masterPkgs,
   ...
 }: {
+  networking.domains.subDomains."prowlarr.darksailor.dev" = {};
+
   services = {
     prowlarr = {
       enable = true;

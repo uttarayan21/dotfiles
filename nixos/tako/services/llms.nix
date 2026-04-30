@@ -1,4 +1,6 @@
 {config, ...}: {
+  networking.domains.subDomains."chat.darksailor.dev" = {};
+
   sops = {
     secrets."llama/api_key".owner = config.services.caddy.user;
     secrets."openai/api_key" = {};

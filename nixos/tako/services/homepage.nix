@@ -1,4 +1,6 @@
 {config, ...}: {
+  networking.domains.subDomains."dashboard.darksailor.dev" = {};
+
   services = {
     homepage-dashboard = {
       enable = true;

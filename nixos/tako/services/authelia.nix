@@ -1,6 +1,7 @@
 {config, ...}: let
   port = 5555;
 in {
+  networking.domains.subDomains."auth.darksailor.dev" = {};
   sops = {
     secrets = let
       user = config.systemd.services.authelia-darksailor.serviceConfig.User;

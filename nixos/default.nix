@@ -29,6 +29,8 @@
           inputs.stylix.nixosModules.stylix
           inputs.headplane.nixosModules.headplane
           inputs.tangled-core.nixosModules.knot
+          inputs.nixos-dns.nixosModules.dns
+          ./dns-shared.nix
 
           ./${device.name}/configuration.nix
           ../home/module.nix

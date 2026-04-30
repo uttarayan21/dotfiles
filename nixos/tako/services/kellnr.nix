@@ -7,6 +7,8 @@
   port = 8899;
   domain = "crates.darksailor.dev";
 in {
+  networking.domains.subDomains.${domain} = {};
+
   sops = {
     secrets."kellnr/password" = {};
     secrets."kellnr/token" = {};

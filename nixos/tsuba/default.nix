@@ -50,6 +50,8 @@
               ];
             };
           }
+          inputs.nixos-dns.nixosModules.dns
+          ../dns-shared.nix
           ./configuration.nix
           ./services
           ./programs
