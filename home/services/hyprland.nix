@@ -223,8 +223,7 @@
         ",xf86monbrightnessdown, exec, ${lib.getExe pkgs.ddcbacklight} dec 10"
 
         # Screenshot
-        # "$mainMod,Print, exec, grim"
-        # "$mainModShift,Print, exec, grim -g "$(slurp)""
+        ", Print, exec, ${lib.getExe pkgs.hyprshot} -m output -o ~/Pictures/Screenshots/"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
