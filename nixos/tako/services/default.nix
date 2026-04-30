@@ -23,6 +23,7 @@
     # ./headscale.nix
     ./immich.nix
     ./kellnr.nix
+    ./komga.nix
     ./llms.nix
     ./matrix
     ./monitoring.nix
