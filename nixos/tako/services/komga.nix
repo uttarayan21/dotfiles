@@ -1,6 +1,9 @@
-{...}: let
+{config, ...}: let
   port = 25600;
 in {
+  systemd.tmpfiles.rules = [
+    "Z /media/comics - ${config.services.komga.user} ${config.services.komga.group} - -"
+  ];
   services = {
     komga = {
       enable = true;
