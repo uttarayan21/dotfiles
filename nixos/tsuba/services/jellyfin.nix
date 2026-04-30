@@ -1,8 +1,11 @@
 {
   pkgs,
   config,
+  device,
   ...
 }: {
+  networking.domains.subDomains."jellyfin.darksailor.dev".a.data = device.tailscaleIp;
+
   virtualisation.oci-containers = {
     containers = {
       jellyfin = {

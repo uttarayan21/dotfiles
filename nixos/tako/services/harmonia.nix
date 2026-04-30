@@ -1,6 +1,8 @@
 {config, ...}: let
   address = "127.0.0.1:8052";
 in {
+  networking.domains.subDomains."cache.darksailor.dev" = {};
+
   sops.secrets."harmonia/sign_key" = {};
 
   services = {

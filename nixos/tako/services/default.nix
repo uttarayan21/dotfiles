@@ -27,6 +27,7 @@
     ./llms.nix
     ./matrix
     ./monitoring.nix
+    ./octodns.nix
     # ./servius-website.nix
     # ./paperless.nix
     ./prowlarr.nix

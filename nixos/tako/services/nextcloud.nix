@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  networking.domains.subDomains."cloud.darksailor.dev" = {};
+
   sops = {
     secrets."nextcloud/adminpass".owner = config.users.users.nextcloud.name;
     # secrets."authelia/oidc/nextcloud/client_id".owner = config.users.users.nextcloud.name;

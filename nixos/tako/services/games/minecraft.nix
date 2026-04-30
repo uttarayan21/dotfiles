@@ -1,9 +1,12 @@
 {
   pkgs,
   inputs,
+  device,
   ...
 }: {
   # imports = [inputs.nix-minecraft.nixosModules.minecraft-servers];
+
+  networking.domains.subDomains."mc.darksailor.dev" = device.externalIp;
   services = let
     whitelist = {
       "AbhinavSE" = "8b6c052e-69b3-4bee-b9dc-12eb94653c9e";

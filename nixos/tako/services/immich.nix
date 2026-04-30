@@ -3,6 +3,8 @@
   config,
   ...
 }: {
+  networking.domains.subDomains."photos.darksailor.dev" = {};
+
   sops = {
     secrets."authelia/oidc/immich/client_id" = {
       owner = config.systemd.services.authelia-darksailor.serviceConfig.User;

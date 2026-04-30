@@ -1,4 +1,5 @@
 {...}: {
+  networking.domains.subDomains."atuin.darksailor.dev" = {};
   services = {
     atuin = {
       enable = true;

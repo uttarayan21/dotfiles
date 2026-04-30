@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  networking.domains.subDomains."search.darksailor.dev" = {};
+
   systemd.services.websurfx = {
     description = "Websurfx";
     wantedBy = ["multi-user.target"];

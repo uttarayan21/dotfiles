@@ -10,6 +10,13 @@
   rtc_domain = "matrix-rtc.${base_domain}";
   jwt_port = 8081;
 in {
+  networking.domains.subDomains = {
+    "matrix.${base_domain}" = {};
+    ${rtc_domain} = {};
+    "livekit.${base_domain}" = {};
+    "turn.${base_domain}" = {};
+  };
+
   sops = {
     secrets."tuwunel/client_id" = {
       owner = config.services.matrix-tuwunel.user;

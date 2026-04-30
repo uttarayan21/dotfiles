@@ -2,8 +2,11 @@
   pkgs,
   lib,
   config,
+  device,
   ...
 }: {
+  networking.domains.subDomains."ollama.darksailor.dev".a.data = device.tailscaleIp;
+
   sops = {
     secrets."openai/api_key" = {};
     secrets."llama/api_key".owner = config.services.caddy.user;

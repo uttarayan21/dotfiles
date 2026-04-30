@@ -1,8 +1,14 @@
 {
   config,
   lib,
+  device,
   ...
 }: {
+  networking.domains.subDomains = {
+    "ldap.darksailor.dev" = {};
+    "lldap.darksailor.dev".a.data = device.tailscaleIp;
+  };
+
   services.lldap = {
     enable = true;
     settings = {

@@ -1,5 +1,11 @@
 # https://wiki.seeedstudio.com/getting_started_with_reterminal_e1002
-{config, ...}: {
+{
+  config,
+  device,
+  ...
+}: {
+  networking.domains.subDomains."esphome.darksailor.dev".a.data = device.tailscaleIp;
+
   sops.secrets.esphome = {
     sopsFile = ../../../secrets/esphome.yaml;
     format = "yaml";

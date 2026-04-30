@@ -5,6 +5,8 @@
 }: let
   socket = "/run/navidrome/navidrome.sock";
 in {
+  networking.domains.subDomains."music.darksailor.dev" = {};
+
   sops = {
     secrets."lastfm/api_key" = {};
     secrets."lastfm/shared_secret" = {};

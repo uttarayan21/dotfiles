@@ -4,6 +4,8 @@
   config,
   ...
 }: {
+  networking.domains.subDomains."sunshine.darksailor.dev".a.data = device.tailscaleIp;
+
   systemd.user.services.sunshine.path = [
     pkgs.gamemode
     pkgs.steam

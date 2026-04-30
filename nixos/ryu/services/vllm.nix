@@ -2,10 +2,19 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }: let
   port = 3094;
 in {
+  networking.domains.subDomains = {
+    "llama.darksailor.dev".a.data = inputs.self.devices.tako.tailscaleIp;
+    "_acme-challenge.llama.ryu.darksailor.dev" = {
+      a.data = null;
+      txt.data = "KkTY3eRzN0UcXl1pDdAze-Fj6f-xdqTuOMCQSVUl8GM";
+    };
+  };
+
   sops = {
     secrets."llama/api_key".owner = config.services.caddy.user;
     templates = {

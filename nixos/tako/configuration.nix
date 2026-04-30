@@ -7,6 +7,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./services
+    ./dns.nix
     ./tako.nix
     # ./docker.nix
     ../../modules/nixos/substituters.nix

@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  networking.domains.subDomains."git.darksailor.dev" = {};
+
   virtualisation.docker.enable = true;
   sops = {
     # secrets."gitea/registration".owner = config.systemd.services.gitea-actions-tako.serviceConfig.User;

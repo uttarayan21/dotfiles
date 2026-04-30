@@ -189,6 +189,14 @@
       url = "github:uttarayan21/lichtfeld-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    kobors = {
+      url = "git+ssh://gitea@git.darksailor.dev/servius/kobors";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixos-dns = {
+      url = "github:Janik-Haag/nixos-dns";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Pinned source inputs (replace fetchFromGitHub/fetchgit). Update with `nix flake update <name>`.
     bblauncher-src = {
@@ -283,12 +291,15 @@
         hasGui = false;
         isNix = true;
         isServer = true;
+        tailscaleIp = "100.102.64.19";
+        externalIp = "15.235.165.172";
       };
       ryu = mkDevice {
         name = "ryu";
         system = "x86_64-linux";
         user = "servius";
         isNix = true;
+        tailscaleIp = "100.78.171.80";
         monitors = {
           # Gigabyte FO27Q3
           primary = "HDMI-A-1";
@@ -305,6 +316,7 @@
         hasGui = false;
         isNix = true;
         isServer = true;
+        tailscaleIp = "100.87.221.59";
       };
       kuro = mkDevice {
         name = "kuro";
@@ -346,6 +358,14 @@
       monitors =
         if (builtins.hasAttr "monitors" device)
         then device.monitors
+        else null;
+      tailscaleIp =
+        if (builtins.hasAttr "tailscaleIp" device)
+        then device.tailscaleIp
+        else null;
+      externalIp =
+        if (builtins.hasAttr "externalIp" device)
+        then device.externalIp
         else null;
       system = device.system;
       name = device.name;

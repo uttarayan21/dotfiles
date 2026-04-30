@@ -2,8 +2,14 @@
   pkgs,
   lib,
   config,
+  device,
   ...
 }: {
+  networking.domains.subDomains = {
+    "home.darksailor.dev".a.data = device.tailscaleIp;
+    "puppet.home.darksailor.dev".a.data = device.tailscaleIp;
+  };
+
   sops.secrets."homeassistant/puppet-token" = {};
   sops.templates."puppet-options.json".content = builtins.toJSON {
     home_assistant_url = "http://host.docker.internal:8123";

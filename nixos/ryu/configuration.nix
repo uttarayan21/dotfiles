@@ -204,27 +204,35 @@
       # firewall.enable = false;
       enable = true;
       flushRuleset = true;
+      # Marks Tailscale traffic with Mullvad's whitelist marks
+      # (ct mark 0x00000f41 / meta mark 0x6d6f6c65 = "mole") so it bypasses
+      # Mullvad's killswitch and tunnel.
+      # Source: https://github.com/r3nor/mullvad-tailscale
       tables = {
         "mullvad_tailscale" = {
           enable = true;
           family = "inet";
           content = ''
-            chain output {
+            chain excludeOutgoing {
               type route hook output priority 0; policy accept;
               ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+              ip daddr 192.168.0.0/16 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+              ip6 daddr fd7a:115c:a1e0::/48 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+            }
+
+            chain allowIncoming {
+              type filter hook input priority -100; policy accept;
+              iifname "tailscale0" ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+            }
+
+            chain excludeDns {
+              type filter hook output priority -10; policy accept;
+              ip daddr 100.100.100.100 udp dport 53 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
+              ip daddr 100.100.100.100 tcp dport 53 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
             }
           '';
         };
       };
-      # ruleset = ''
-      #   table inet mullvad_tailscale {
-      #     chain output {
-      #       type route hook output priority 0; policy accept;
-      #       ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
-      #     }
-      #   }
-      #
-      # '';
     };
     firewall = {
       enable = true;
