@@ -1,0 +1,27 @@
+--- a/internal/glance/widget-rss.go	2026-05-02 04:44:10.934131076 +0530
++++ b/internal/glance/widget-rss.go	2026-05-02 04:44:35.255720715 +0530
+@@ -313,6 +313,8 @@
+ 			rssItem.ImageURL = item.Image.URL
+ 		} else if url := findThumbnailInItemExtensions(item); url != "" {
+ 			rssItem.ImageURL = url
++		} else if url := findFirstImageEnclosure(item); url != "" {
++			rssItem.ImageURL = url
+ 		} else if feed.Image != nil {
+ 			if len(feed.Image.URL) > 0 && feed.Image.URL[0] == '/' {
+ 				rssItem.ImageURL = strings.TrimRight(feed.Link, "/") + feed.Image.URL
+@@ -343,6 +345,15 @@
+ 	return items, nil
+ }
+ 
++func findFirstImageEnclosure(item *gofeed.Item) string {
++	for _, enc := range item.Enclosures {
++		if enc != nil && strings.HasPrefix(enc.Type, "image/") {
++			return enc.URL
++		}
++	}
++	return ""
++}
++
+ func findThumbnailInItemExtensions(item *gofeed.Item) string {
+ 	media, ok := item.Extensions["media"]
+ 

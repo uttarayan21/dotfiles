@@ -1,6 +1,9 @@
 {inputs, ...}: final: prev: let
   cratesNix = pkgs: inputs.crates-nix.mkLib {inherit pkgs;};
 in {
+  glance = prev.glance.overrideAttrs (old: {
+    patches = (old.patches or []) ++ [./glance-enclosure-thumbnail.patch];
+  });
   iamb = inputs.iamb.packages.${prev.stdenv.hostPlatform.system}.default;
   # hyprland = inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.hyprland;
   # xdg-desktop-portal-hyprland = prev.enableDebugging inputs.hyprland.packages.${prev.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;

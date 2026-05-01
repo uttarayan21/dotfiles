@@ -211,8 +211,8 @@ DNS records are generated from `networking.domains.subDomains` declarations and 
 # In the host's services file:
 networking.domains.subDomains."foo.darksailor.dev" = {};
 
-# After deploy, push the zone to Cloudflare:
-ssh tako 'sudo systemctl start octodns-apply'
+# Deploy — `octodns-apply` re-runs automatically when the rendered zone changes:
+deploy -s .#tako
 
 # Verify with cfcli (read-only check):
 cfcli get foo.darksailor.dev

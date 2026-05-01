@@ -51,8 +51,13 @@ in {
 
   systemd.services.octodns-apply = {
     description = "OctoDNS apply zone to Cloudflare";
+    # Re-run on activation whenever the rendered zone changes (subdomain added,
+    # removed, or modified anywhere in the flake).
+    wantedBy = ["multi-user.target"];
+    restartTriggers = [octodnsConfigFile];
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = true;
       EnvironmentFile = config.sops.templates."octodns.env".path;
       ExecStart = syncCmd "--doit --force";
     };
