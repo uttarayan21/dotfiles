@@ -214,7 +214,9 @@
           family = "inet";
           content = ''
             chain excludeOutgoing {
-              type route hook output priority 0; policy accept;
+              # mangle priority (-150) runs before mullvad's filter chain (0),
+              # so the ct mark is set before mullvad's drop policy applies.
+              type route hook output priority mangle; policy accept;
               ip daddr 100.64.0.0/10 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
               ip daddr 192.168.0.0/16 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
               ip6 daddr fd7a:115c:a1e0::/48 ct mark set 0x00000f41 meta mark set 0x6d6f6c65;
