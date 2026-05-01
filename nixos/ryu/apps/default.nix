@@ -14,5 +14,6 @@
     ./audacity.nix
     ./bottles.nix
     ./sgdboop.nix
+    ./umu.nix
   ];
 }

@@ -4,7 +4,7 @@
     ./steam.nix
     ./1password.nix
     ./localsend.nix
-    # ./appimage.nix
+    ./appimage.nix
     ./obs-studio.nix
     ./gnome-disks.nix
     ./nix-ld.nix
