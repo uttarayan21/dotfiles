@@ -134,7 +134,7 @@ in {
                     cache = "30m";
                     feeds = [
                       {
-                        url = "https://rsshub.darksailor.dev/hackernews/best";
+                        url = "https://hnrss.org/best";
                         title = "Hacker News";
                       }
                       {
