@@ -110,8 +110,8 @@ in {
 
   # Caddy virtual host for Grafana with Authelia
   services.caddy.virtualHosts."grafana.darksailor.dev".extraConfig = ''
-    @tailscale remote_ip 100.64.0.0/10
-    handle @tailscale {
+    @internal remote_ip 100.64.0.0/10 127.0.0.1/32 ::1/128
+    handle @internal {
       import auth
       reverse_proxy localhost:${toString ports.grafana}
     }

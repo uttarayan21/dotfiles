@@ -1,4 +1,12 @@
-{...}: {
+{
+  config,
+  lib,
+  ...
+}: {
+  networking.hosts."127.0.0.1" = lib.unique (map
+    (n: lib.removePrefix "https://" (lib.removePrefix "http://" n))
+    (lib.attrNames config.services.caddy.virtualHosts));
+
   services = {
     caddy = {
       enable = true;

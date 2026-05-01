@@ -1,12 +1,5 @@
 {config, ...}: let
   port = 8080;
-  mkMonitor = sites:
-    map (s: {
-      title = s.title;
-      url = s.url;
-      icon = s.icon or null;
-    })
-    sites;
 in {
   networking.domains.subDomains."dashboard.darksailor.dev" = {};
 
@@ -42,6 +35,7 @@ in {
                         title = "Grafana";
                         url = "https://grafana.darksailor.dev";
                         icon = "di:grafana";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "Nextcloud";
@@ -62,16 +56,19 @@ in {
                         title = "Navidrome";
                         url = "https://music.darksailor.dev";
                         icon = "di:navidrome";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "OpenWebUI";
                         url = "https://chat.darksailor.dev";
                         icon = "di:open-webui";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "Prowlarr";
                         url = "https://prowlarr.darksailor.dev";
                         icon = "di:prowlarr";
+                        alt-status-codes = [401];
                       }
                     ];
                   }
@@ -89,16 +86,19 @@ in {
                         title = "Sonarr";
                         url = "https://sonarr.tsuba.darksailor.dev";
                         icon = "di:sonarr";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "Radarr";
                         url = "https://radarr.tsuba.darksailor.dev";
                         icon = "di:radarr";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "Bazarr";
                         url = "https://bazarr.tsuba.darksailor.dev";
                         icon = "di:bazarr";
+                        alt-status-codes = [401];
                       }
                       {
                         title = "Deluge";
@@ -108,7 +108,7 @@ in {
                       {
                         title = "Aria2";
                         url = "https://aria2.tsuba.darksailor.dev";
-                        icon = "di:aria-ng";
+                        icon = "di:ariang.png";
                       }
                       {
                         title = "Home Assistant";
@@ -196,15 +196,6 @@ in {
                       }
                     ];
                   }
-                  {
-                    type = "releases";
-                    cache = "1d";
-                    repositories = [
-                      "glanceapp/glance"
-                      "NixOS/nixpkgs"
-                      "jellyfin/jellyfin"
-                    ];
-                  }
                 ];
               }
             ];
@@ -214,6 +205,7 @@ in {
     };
     caddy = {
       virtualHosts."dashboard.darksailor.dev".extraConfig = ''
+        import auth
         reverse_proxy localhost:${toString port}
       '';
     };
