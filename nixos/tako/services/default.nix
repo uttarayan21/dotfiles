@@ -5,7 +5,7 @@
     # ./kobo.nix
     ./caddy.nix
     ./fail2ban.nix
-    ./homepage.nix
+    ./glance.nix
     ./lldap.nix
     ./navidrome.nix
     ./nextcloud.nix

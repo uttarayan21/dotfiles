@@ -6,7 +6,7 @@ in {
   sops.secrets."harmonia/sign_key" = {};
 
   services = {
-    harmonia = {
+    harmonia.cache = {
       enable = true;
       signKeyPaths = [config.sops.secrets."harmonia/sign_key".path];
       settings = {
