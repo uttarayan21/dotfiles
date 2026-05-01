@@ -33,3 +33,7 @@ alejandra fmt .                     # format all Nix files
 ## Troubleshooting
 
 See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md).
+
+## TODO
+
+- Verify Gitea Actions `nix copy` from shiro to tako still works after dropping `gitea-runner` from tako's `nix.settings.trusted-users`. Paths must be signed by `cache.shiro-1` (shiro's `secret-key-files`); unsigned imports or `--no-check-sigs` will fail for non-trusted users.

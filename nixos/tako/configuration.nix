@@ -44,7 +44,7 @@
       cores = 8;
       auto-optimise-store = true;
       extra-experimental-features = "nix-command flakes auto-allocate-uids";
-      trusted-users = [device.user "remotebuilder" "gitea-runner"];
+      trusted-users = [device.user "remotebuilder"];
     };
     extraOptions = ''
       build-users-group = nixbld

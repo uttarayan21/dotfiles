@@ -11,7 +11,15 @@
 
   users.extraUsers.servius.extraGroups = ["docker"];
   networking.firewall.enable = false;
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+    settings.PermitRootLogin = "no";
+  };
+
+  sops.secrets."users/tsuba/servius/password" = {
+    neededForUsers = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
   security.sudo.wheelNeedsPassword = false;
@@ -41,7 +49,7 @@
   users.users.${device.user} = {
     isNormalUser = true;
     extraGroups = ["wheel" "media"];
-    initialPassword = "aaa";
+    hashedPasswordFile = config.sops.secrets."users/tsuba/servius/password".path;
     openssh.authorizedKeys.keyFiles = [
       ../../secrets/id_ed25519.pub
       ../../secrets/id_ios.pub
