@@ -114,8 +114,13 @@
     };
     caddy = {
       virtualHosts."git.darksailor.dev".extraConfig = ''
-        @bots header_regexp User-Agent "(?i)(meta-externalagent|GPTBot|ClaudeBot|Claude-Web|Bytespider|Amazonbot|DataForSeoBot|DotBot|Applebot|SemrushBot|AhrefsBot|MJ12bot|PetalBot|YandexBot|facebookexternalhit|Bingbot|CCBot|anthropic-ai|cohere-ai|Diffbot|ImagesiftBot|Omgilibot|Timpibot|YouBot|ZoominfoBot)"
+        @bots {
+          not header_regexp User-Agent "^(git/|JGit|go-git|connect-go|JetBrains-|GitHub-Hookshot|grafana|Prometheus|Authelia|Go-http-client)"
+          header_regexp User-Agent "(?i)(bot|crawl|spider|scrape|archive|backlink|monitor|harvester|libwww|httpclient|okhttp|axios|aiohttp|python-requests|python-urllib|scrapy|extractor|preview|external|http_get|headlesschrome|phantomjs|selenium|puppeteer|playwright|chatgpt|gpt|claude|llm|anthropic|openai|cohere|perplexity|diffbot|zoominfo|dataprovider|webzio|expanse|scanner|nuclei|nikto|sqlmap|masscan|zmap|fetch|^curl/|^Wget/|^Java/|^Python/|^Ruby|^Go-http|^node-fetch)"
+        }
+        @missingUA not header User-Agent *
         respond @bots 403
+        respond @missingUA 403
         reverse_proxy localhost:3000
       '';
     };

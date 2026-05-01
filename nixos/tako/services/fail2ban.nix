@@ -21,7 +21,7 @@
           filter = "caddy-bots";
           logpath = "/var/log/caddy/access-git.darksailor.dev.log";
           findtime = 600;
-          maxretry = 10;
+          maxretry = 3;
           bantime = "7d";
           backend = "auto";
         };
