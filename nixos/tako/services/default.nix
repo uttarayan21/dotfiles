@@ -31,6 +31,7 @@
     # ./servius-website.nix
     # ./paperless.nix
     ./prowlarr.nix
+    ./rsshub.nix
     # ./searxng.nix
     ./shitpost.nix
     ./vaultwarden.nix

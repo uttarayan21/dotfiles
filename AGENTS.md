@@ -204,9 +204,21 @@ just add bar home/programs # Creates home/programs/foo.nix and adds import
 ```
 
 ### Adding a new dns entry
+
+DNS records are generated from `networking.domains.subDomains` declarations and pushed to Cloudflare via `nixos-dns` + `octodns` (see `nixos/dns-shared.nix` and `nixos/tako/services/octodns.nix`). Adding a vhost with a `subDomains."foo.darksailor.dev" = {};` declaration is enough — deploy tako and run the `octodns-apply` unit to publish.
+
 ```bash
-cfcli add --type A foobar.bazbar.biz 100.102.64.19
+# In the host's services file:
+networking.domains.subDomains."foo.darksailor.dev" = {};
+
+# After deploy, push the zone to Cloudflare:
+ssh tako 'sudo systemctl start octodns-apply'
+
+# Verify with cfcli (read-only check):
+cfcli get foo.darksailor.dev
 ```
+
+`cfcli` is now used **only to verify** DNS state, never to add records.
 
 ### Creating a Module
 

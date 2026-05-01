@@ -134,11 +134,11 @@ in {
                     cache = "30m";
                     feeds = [
                       {
-                        url = "https://hnrss.org/frontpage";
+                        url = "https://rsshub.darksailor.dev/hackernews/best";
                         title = "Hacker News";
                       }
                       {
-                        url = "https://www.phoronix.com/rss.php";
+                        url = "https://rsshub.darksailor.dev/phoronix";
                         title = "Phoronix";
                       }
                     ];
