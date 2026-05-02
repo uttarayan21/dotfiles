@@ -1,7 +1,7 @@
 {
   config,
   inputs,
-  pkgs,
+  # pkgs,
   ...
 }: let
   port = 8293;
@@ -15,13 +15,13 @@ in {
 
   services = {
     kobors = {
-      enable = true;
+      enable = false;
       socket = "127.0.0.1:${toString port}";
       externalUrl = "https://books.darksailor.dev";
       calibreLibraryPath = libraryPath;
     };
     caddy = {
-      virtualHosts."books.darksailor.dev".extraConfig = ''
+      virtualHosts."kobo.darksailor.dev".extraConfig = ''
         reverse_proxy localhost:${toString port}
       '';
     };
