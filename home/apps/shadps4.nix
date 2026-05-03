@@ -9,7 +9,7 @@
   };
 in {
   home.packages = lib.optionals pkgs.stdenv.isLinux [
-    pkgs.shadps4-qt # vanilla Qt UI
+    # pkgs.shadps4-qt # vanilla Qt UI
     pkgs.shadps4-qt-diegolix # diegolix29 fork w/ Qt UI
     pkgs.bblauncher
   ];

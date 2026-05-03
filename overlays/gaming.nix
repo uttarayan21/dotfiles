@@ -25,10 +25,11 @@
           final.openssl
         ];
 
-      cmakeFlags = [
-        (final.lib.cmakeBool "ENABLE_UPDATER" false)
-        (final.lib.cmakeBool "ENABLE_QT_GUI" true)
-      ];
+      cmakeFlags =
+        (oldAttrs.cmakeFlags or [])
+        ++ [
+          (final.lib.cmakeBool "ENABLE_QT_GUI" true)
+        ];
 
       installPhase = ''
         runHook preInstall
@@ -96,15 +97,28 @@ in {
     ];
   };
 
-  shadps4 = prev.shadps4.overrideAttrs (oldAttrs: {
+  shadps4 = final.llvmPackages_19.stdenv.mkDerivation (finalAttrs: {
+    pname = "shadps4";
     version = "0.15.0";
     src = inputs.shadps4-src;
-    postPatch =
-      (oldAttrs.postPatch or "")
-      + ''
-        echo "${builtins.substring 0 8 inputs.shadps4-src.rev}" > COMMIT
-        echo "${isoDate inputs.shadps4-src.lastModifiedDate}" > SOURCE_DATE_EPOCH
-      '';
+
+    postPatch = ''
+      echo "${builtins.substring 0 8 inputs.shadps4-src.rev}" > COMMIT
+      echo "${isoDate inputs.shadps4-src.lastModifiedDate}" > SOURCE_DATE_EPOCH
+      substituteInPlace src/common/scm_rev.cpp.in \
+        --replace-fail @APP_VERSION@ ${finalAttrs.version} \
+        --replace-fail @GIT_REV@ $(cat COMMIT) \
+        --replace-fail @GIT_BRANCH@ ${finalAttrs.version} \
+        --replace-fail @GIT_DESC@ nixpkgs \
+        --replace-fail @BUILD_DATE@ $(cat SOURCE_DATE_EPOCH)
+    '';
+
+    nativeBuildInputs = with final; [
+      cmake
+      pkg-config
+      makeWrapper
+    ];
+
     buildInputs = with final; [
       alsa-lib
       boost
@@ -146,11 +160,19 @@ in {
       zlib-ng
       zydis
     ];
-    nativeBuildInputs = with final; [
-      cmake
-      pkg-config
-      makeWrapper
+
+    env.NIX_CFLAGS_COMPILE = "-march=native -O3 -fno-plt";
+
+    cmakeBuildType = "Release";
+    dontStrip = false;
+
+    cmakeFlags = [
+      # Disabled: upstream gates this behind a kernel-bug regression (issue #1704)
+      # (final.lib.cmakeBool "ENABLE_USERFAULTFD" true)
+      (final.lib.cmakeBool "ENABLE_DISCORD_RPC" false)
+      (final.lib.cmakeBool "ENABLE_UPDATER" false)
     ];
+
     installPhase = ''
       runHook preInstall
 
@@ -160,16 +182,21 @@ in {
       install -Dm644 -t $out/share/metainfo $src/dist/net.shadps4.shadPS4.metainfo.xml
 
       wrapProgram $out/bin/shadps4 \
-        --prefix LD_LIBRARY_PATH : ${
-        final.lib.makeLibraryPath [
-          final.libpulseaudio
-          final.pipewire
-        ]
-      } \
+        --prefix LD_LIBRARY_PATH : ${final.lib.makeLibraryPath [final.libpulseaudio final.pipewire]} \
         --prefix PATH : ${final.lib.makeBinPath [final.zenity]}
 
       runHook postInstall
     '';
+
+    runtimeDependencies = with final; [vulkan-loader libxi];
+
+    meta = {
+      description = "Early in development PS4 emulator (perf-tuned)";
+      homepage = "https://github.com/shadps4-emu/shadPS4";
+      license = final.lib.licenses.gpl2Plus;
+      mainProgram = "shadps4";
+      platforms = final.lib.intersectLists final.lib.platforms.linux final.lib.platforms.x86_64;
+    };
   });
 
   shadps4-prerelease = final.shadps4.overrideAttrs (oldAttrs: {
