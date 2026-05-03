@@ -3409,6 +3409,7 @@
         "servius-website": "servius-website",
         "shadps4-diegolix29-src": "shadps4-diegolix29-src",
         "shadps4-prerelease-src": "shadps4-prerelease-src",
+        "shadps4-qtlauncher-src": "shadps4-qtlauncher-src",
         "shadps4-src": "shadps4-src",
         "shitpost-src": "shitpost-src",
         "sops-nix": "sops-nix",
@@ -3774,6 +3775,26 @@
         "submodules": true,
         "type": "git",
         "url": "https://github.com/shadps4-emu/shadPS4"
+      }
+    },
+    "shadps4-qtlauncher-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777579209,
+        "narHash": "sha256-mStjj6HKlIUHpHrMuURfKESZoQbNXBQgBe2Gj8/udsk=",
+        "ref": "main",
+        "rev": "c39f5977f667e4fea126a2d6d2ab5cb68efcda6a",
+        "revCount": 277,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadps4-qtlauncher"
+      },
+      "original": {
+        "ref": "main",
+        "rev": "c39f5977f667e4fea126a2d6d2ab5cb68efcda6a",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shadps4-emu/shadps4-qtlauncher"
       }
     },
     "shadps4-src": {

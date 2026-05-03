@@ -9,14 +9,15 @@
   };
 in {
   home.packages = lib.optionals pkgs.stdenv.isLinux [
-    pkgs.shadps4-qt # diegolix29 fork w/ ENABLE_QT_GUI
+    pkgs.shadps4-qt # vanilla Qt UI
+    pkgs.shadps4-qt-diegolix # diegolix29 fork w/ Qt UI
     pkgs.bblauncher
   ];
 
   xdg.desktopEntries.bloodborne = lib.mkIf pkgs.stdenv.isLinux {
     name = "Bloodborne";
     comment = "Bloodborne via shadPS4 with gamescope";
-    exec = "${pkgs.util-linux}/bin/taskset -c 0-15 ${pkgs.gamemode}/bin/gamemoderun ${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --force-grab-cursor -- ${pkgs.shadps4-qt}/bin/shadps4 -g /home/servius/Games/PS4/Bloodborne/CUSA00900/eboot.bin";
+    exec = "${pkgs.util-linux}/bin/taskset -c 0-15 ${pkgs.gamemode}/bin/gamemoderun ${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --force-grab-cursor -- ${pkgs.shadps4-qt-diegolix}/bin/shadps4 -g /home/servius/Games/PS4/Bloodborne/CUSA00900/eboot.bin";
     icon = "${bloodborne-icon}";
     terminal = false;
     type = "Application";

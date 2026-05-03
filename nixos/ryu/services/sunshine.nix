@@ -24,7 +24,7 @@
       auto-detach = "true";
       exclude-global-prep-cmd = "false";
       prep-cmd = [];
-      detached = ["${pkgs.util-linux}/bin/taskset -c 0-15 ${pkgs.gamemode}/bin/gamemoderun ${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --force-grab-cursor -- ${pkgs.shadps4-qt}/bin/shadps4 -g ${device.home}/Games/PS4/Bloodborne/CUSA00900/eboot.bin"];
+      detached = ["${pkgs.util-linux}/bin/taskset -c 0-15 ${pkgs.gamemode}/bin/gamemoderun ${pkgs.gamescope}/bin/gamescope -W 2560 -H 1440 -r 90 -f --adaptive-sync --force-grab-cursor -- ${pkgs.shadps4-qt-diegolix}/bin/shadps4 -g ${device.home}/Games/PS4/Bloodborne/CUSA00900/eboot.bin"];
       wait-all = true;
       exit-timeout = 5;
     }

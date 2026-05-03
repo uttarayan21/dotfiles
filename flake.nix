@@ -216,6 +216,10 @@
       url = "git+https://github.com/diegolix29/shadPS4?ref=main&rev=6e87e74924cf61b55bef8c96d09513cb3ae23625&submodules=1";
       flake = false;
     };
+    shadps4-qtlauncher-src = {
+      url = "git+https://github.com/shadps4-emu/shadps4-qtlauncher?ref=main&rev=c39f5977f667e4fea126a2d6d2ab5cb68efcda6a&submodules=1";
+      flake = false;
+    };
     codex-src = {
       url = "github:openai/codex/rust-v0.121.0";
       flake = false;
