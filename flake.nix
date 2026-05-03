@@ -197,6 +197,10 @@
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    system-manager = {
+      url = "github:numtide/system-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Pinned source inputs (replace fetchFromGitHub/fetchgit). Update with `nix flake update <name>`.
     bblauncher-src = {
@@ -285,6 +289,7 @@
     nur,
     deploy-rs,
     nixos-raspberrypi,
+    system-manager,
     ...
   } @ inputs: let
     devices = {
@@ -340,6 +345,14 @@
         hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
         isServer = true;
       };
+      yuge = mkDevice {
+        name = "yuge";
+        system = "x86_64-linux";
+        user = "deck";
+        hasGui = false;
+        isServer = true;
+        isSystemManager = true;
+      };
     };
 
     mkDevice = device: rec {
@@ -351,6 +364,10 @@
       isNix =
         if (builtins.hasAttr "isNix" device)
         then device.isNix
+        else false;
+      isSystemManager =
+        if (builtins.hasAttr "isSystemManager" device)
+        then device.isSystemManager
         else false;
       isDarwin = !isNull (builtins.match ".*-darwin" device.system);
       isArm = !isNull (builtins.match "aarch64-.*" device.system);
@@ -397,6 +414,7 @@
     # linux_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isLinux) devices;
     darwin_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isDarwin) devices;
     rpi_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isArm && x.isLinux) devices;
+    systemManager_devices = nixpkgs.lib.attrsets.filterAttrs (n: x: x.isSystemManager) devices;
 
     overlays = import ./overlays.nix {
       inherit inputs;
@@ -440,6 +458,11 @@
               ./steamdeck
             ];
           };
+      };
+
+      systemConfigs = import ./system-manager {
+        inherit inputs system-manager;
+        devices = systemManager_devices;
       };
 
       installerImages = let

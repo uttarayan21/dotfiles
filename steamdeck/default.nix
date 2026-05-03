@@ -1,10 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    ./tailscale.nix
     ../home/programs/helix.nix
     ../home/programs/sops.nix
   ];
@@ -49,15 +44,6 @@
       _1password-cli
       just
     ];
-    file.".ssh/rc".text = ''
-      export PATH="/nix/var/nix/profiles/default/bin:$PATH"
-    '';
-    activation.tailscale-service = let
-      tailscale_service = pkgs.writeText "tailscaled.service" (builtins.replaceStrings ["/usr/bin/tailscaled"] ["${pkgs.tailscale}/bin/tailscaled"] (builtins.readFile ./tailscaled.service));
-    in
-      lib.hm.dag.entryAfter ["writeBoundary"] ''
-        run echo cp ${tailscale_service} /etc/systemd/system/tailscaled.service
-      '';
     stateVersion = "24.11";
   };
 }

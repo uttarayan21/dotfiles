@@ -55,5 +55,14 @@
         user = "deck";
       };
     };
+    yuge = {
+      hostname = "sdeck";
+      interactiveSudo = true;
+      profiles.system = {
+        sshUser = "deck";
+        user = "root";
+        path = deploy-rs.lib.x86_64-linux.activate.custom self.systemConfigs.yuge "./bin/activate";
+      };
+    };
   };
 }
