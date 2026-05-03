@@ -155,7 +155,7 @@ in {
       vulkan-loader
       vulkan-memory-allocator
       xbyak
-      xxHash
+      xxhash
       zenity
       zlib-ng
       zydis

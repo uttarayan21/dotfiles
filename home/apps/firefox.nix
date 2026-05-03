@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   stylix.targets.firefox.profileNames = ["default"];
   programs.firefox = {
     enable = pkgs.stdenv.isLinux;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.default = {
       settings = {
+        "extensions.autoDisableScopes" = 0;
+        "extensions.enabledScopes" = 15;
         "sidebar.revamp" = true;
         "sidebar.verticalTabs" = true;
         "browser.ml.enable" = false;
@@ -56,9 +63,9 @@
         i-dont-care-about-cookies
         indie-wiki-buddy
         libredirect
+        multi-account-containers
         onepassword-password-manager
         privacy-badger
-        shortkeys
         sponsorblock
         tridactyl
         ublock-origin
