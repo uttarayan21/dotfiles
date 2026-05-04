@@ -28,5 +28,5 @@
       // builtins.fromTOML (builtins.readFile
         (pkgs.catppuccinThemes.starship + /palettes/${flavour}.toml));
   };
-  stylix.targets.starship.enable = lib.mkIf (device.is "tsuba") false;
+  stylix.targets.starship.enable = lib.mkIf (!(device.is "tsuba")) false;
 }
