@@ -1,12 +1,29 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
+  home.activation.firefoxDarwinProfilesIni = lib.mkIf pkgs.stdenv.isDarwin (
+    lib.hm.dag.entryAfter ["linkGeneration"] ''
+      ffDir="$HOME/Library/Application Support/Firefox"
+      iniLink="$ffDir/profiles.ini"
+      if [ -L "$iniLink" ]; then
+        target=$(readlink "$iniLink")
+        run cp -f "$target" "$iniLink.tmp"
+        run rm "$iniLink"
+        run mv "$iniLink.tmp" "$iniLink"
+        run chmod u+w "$iniLink"
+      fi
+      run rm -f "$ffDir/installs.ini"
+    ''
+  );
+
   stylix.targets.firefox.profileNames = ["default"];
   programs.firefox = {
-    enable = pkgs.stdenv.isLinux;
-    configPath = "${config.xdg.configHome}/mozilla/firefox";
+    enable = true;
+    package = lib.mkIf pkgs.stdenv.isDarwin null;
+    configPath = lib.mkIf pkgs.stdenv.isLinux "${config.xdg.configHome}/mozilla/firefox";
     profiles.default = {
       settings = {
         "extensions.autoDisableScopes" = 0;
