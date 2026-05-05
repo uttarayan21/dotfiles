@@ -8,7 +8,8 @@
       cache = "yes";
       demuxer-max-bytes = "1024MiB";
       demuxer-max-back-bytes = "256MiB";
-      hwdec = "auto";
+      # https://github.com/mpv-player/mpv/issues/16189
+      # hwdec = "auto";
       loop-file = "inf";
       loop-playlist = "inf";
     };
