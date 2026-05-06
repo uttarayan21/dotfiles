@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./nvidia-power-limit.nix
+    # ./nvidia-power-limit.nix
   ];
 }

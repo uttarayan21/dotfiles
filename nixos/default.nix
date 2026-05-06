@@ -27,7 +27,7 @@
           inputs.nur.modules.nixos.default
           inputs.sops-nix.nixosModules.sops
           inputs.stylix.nixosModules.stylix
-          inputs.headplane.nixosModules.headplane
+          # inputs.headplane.nixosModules.headplane
           inputs.tangled-core.nixosModules.knot
           inputs.nixos-dns.nixosModules.dns
           ./dns-shared.nix
