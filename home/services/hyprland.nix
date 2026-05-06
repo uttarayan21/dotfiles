@@ -23,12 +23,12 @@
       ];
     };
   };
-  services.hyprsunset = {
-    enable = device.is "ryu";
-  };
-  programs.hyprlock = {
-    enable = device.is "ryu";
-  };
+  # services.hyprsunset = {
+  #   enable = device.is "ryu";
+  # };
+  # programs.hyprlock = {
+  #   enable = device.is "ryu";
+  # };
   wayland.windowManager.hyprland = {
     enable = device.is "ryu";
     systemd.enable = true;
