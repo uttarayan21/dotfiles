@@ -15,7 +15,7 @@
     ./gitea.nix
     ./knot.nix
 
-    # ./affine.nix
+    ./affine.nix
     ./harmonia.nix
     ./excalidraw.nix
     ./flaresolverr.nix
