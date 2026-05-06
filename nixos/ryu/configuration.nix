@@ -8,6 +8,7 @@
 }: {
   imports = [
     ./ryu.nix
+    ./hardware
     ./services
     ./programs
     ./containers
