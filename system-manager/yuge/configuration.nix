@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./moonlight.nix
     ./shadps4.nix
     ./sshd.nix
     ./sudo.nix
