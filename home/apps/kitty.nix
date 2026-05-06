@@ -1,8 +1,6 @@
 {
   lib,
   pkgs,
-  # device,
-  # inputs,
   ...
 }: {
   stylix.targets.kitty.enable = false;
@@ -13,7 +11,7 @@
       size = lib.mkForce 13;
     };
     settings = {
-      background_opacity = lib.mkForce "0.8";
+      background_opacity = lib.mkForce "0.7";
       background = lib.mkForce "#000000";
       shell = "${pkgs.fish}/bin/fish";
       hide_window_decorations = "yes";
