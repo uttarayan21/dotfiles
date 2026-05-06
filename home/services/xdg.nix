@@ -2,7 +2,8 @@
   lib,
   device,
   ...
-}: {
+}:
+{
   xdg = {
     portal = {
       enable = device.is "ryu";
@@ -11,7 +12,8 @@
         common.default = ["*" "hyprland"];
       };
     };
-
-    userDirs.setSessionVariables = lib.mkIf (device.is "ryu" || device.is "tako") true;
   };
+}
+// lib.optionalAttrs (device.is "ryu" || device.is "tako") {
+  xdg.userDirs.setSessionVariables = true;
 }

@@ -2,9 +2,8 @@
   lib,
   device,
   ...
-}:
-lib.optionalAttrs device.hasGui {
-  imports = [
+}: {
+  imports = lib.optionals device.hasGui [
     # ./audacity.nix
     # ./cinny.nix
     # ./cursor.nix

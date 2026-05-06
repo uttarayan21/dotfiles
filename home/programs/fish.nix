@@ -4,7 +4,8 @@
   device,
   config,
   ...
-}: {
+}:
+{
   home.file = {
     ".config/fish/themes".source = pkgs.catppuccinThemes.fish + "/themes";
   };
@@ -54,5 +55,7 @@
   #     fi
   #   '';
   # };
-  stylix.targets.fish.enable = lib.mkIf (!(device.is "tsuba")) false;
+}
+// lib.optionalAttrs (!(device.is "tsuba")) {
+  stylix.targets.fish.enable = false;
 }

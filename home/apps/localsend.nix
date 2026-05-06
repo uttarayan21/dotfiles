@@ -3,9 +3,8 @@
   lib,
   device,
   ...
-}:
-lib.optionalAttrs (device.is "kuro" || device.is "shiro") {
-  home.packages = [
+}: {
+  home.packages = lib.mkIf (device.is "kuro" || device.is "shiro") [
     pkgs.localsend
   ];
 }
