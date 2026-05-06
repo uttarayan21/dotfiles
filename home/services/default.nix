@@ -7,7 +7,7 @@
     ./hyprpaper.nix
     ./ironbar
     ./kdeconnect.nix
-    ./remmina.nix
+    # ./remmina.nix
     # ./ollama.nix
     ./swaync.nix
     ./swayosd.nix
