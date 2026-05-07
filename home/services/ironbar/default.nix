@@ -98,7 +98,7 @@
       };
     };
     style = let
-      mocha = builtins.readFile "${inputs.catppuccin-waybar}/mocha.css";
+      mocha = builtins.readFile "${inputs.catppuccin-waybar}/themes/mocha.css";
     in
       mocha + builtins.readFile ./ironbar.css;
   };

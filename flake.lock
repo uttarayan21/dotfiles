@@ -487,16 +487,16 @@
     "catppuccin-waybar": {
       "flake": false,
       "locked": {
-        "lastModified": 1662347643,
-        "narHash": "sha256-vfwfBE3iqIN1cGoItSssR7h0z6tuJAhNarkziGFlNBw=",
+        "lastModified": 1711907468,
+        "narHash": "sha256-9lY+v1CTbpw2lREG/h65mLLw5KuT8OJdEPOb+NNC6Fo=",
         "owner": "catppuccin",
         "repo": "waybar",
-        "rev": "55068360899193d0acf0ca0c30d0e6184dfb74a1",
+        "rev": "0830796af6aa64ce8bc7453d42876a628777ac68",
         "type": "github"
       },
       "original": {
         "owner": "catppuccin",
-        "ref": "v1.0",
+        "ref": "v1.1",
         "repo": "waybar",
         "type": "github"
       }
@@ -532,23 +532,6 @@
         "owner": "cinnyapp",
         "ref": "dev",
         "repo": "cinny",
-        "type": "github"
-      }
-    },
-    "codex-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1776282225,
-        "narHash": "sha256-wjiUMox9V5tFggNgaFyHXWhRlpPerK7W+U/eR2Ddbbc=",
-        "owner": "openai",
-        "repo": "codex",
-        "rev": "d65ed92a5e440972626965d0af9a6345179783bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "openai",
-        "ref": "rust-v0.121.0",
-        "repo": "codex",
         "type": "github"
       }
     },
@@ -3317,16 +3300,16 @@
     "ollama-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1775526437,
-        "narHash": "sha256-o9iCqdOfNMxfIyThQAOSSQZE2ZyBuyJWFr6wqvQo1A0=",
+        "lastModified": 1777996504,
+        "narHash": "sha256-19rx+PNCpvRxhVr1+bgqsQIwpZzgdazlCoppxlDKzvE=",
         "owner": "ollama",
         "repo": "ollama",
-        "rev": "8c8f8f3450d39735355fc6cd7f2e436c8aa42ab1",
+        "rev": "15e6076d7928f7e13e56cbf59a150e0f9f222da9",
         "type": "github"
       },
       "original": {
         "owner": "ollama",
-        "ref": "v0.20.3",
+        "ref": "v0.23.1",
         "repo": "ollama",
         "type": "github"
       }
@@ -3442,7 +3425,6 @@
         "catppuccin-waybar": "catppuccin-waybar",
         "catppuccin-yazi": "catppuccin-yazi",
         "cinny": "cinny",
-        "codex-src": "codex-src",
         "crates-io-index": "crates-io-index",
         "crates-nix": "crates-nix",
         "d2": "d2",

@@ -12,7 +12,7 @@ in
     (import ./overlays/themes.nix args)
     (import ./overlays/gaming.nix args)
     (import ./overlays/applications.nix args)
-    (import ./overlays/ai.nix args)
+    # (import ./overlays/ai.nix args)
 
     # External input overlays
     inputs.deploy-rs.overlays.default

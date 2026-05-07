@@ -224,12 +224,8 @@
       url = "git+https://github.com/shadps4-emu/shadps4-qtlauncher?ref=main&rev=c39f5977f667e4fea126a2d6d2ab5cb68efcda6a&submodules=1";
       flake = false;
     };
-    codex-src = {
-      url = "github:openai/codex/rust-v0.121.0";
-      flake = false;
-    };
     ollama-src = {
-      url = "github:ollama/ollama/v0.20.3";
+      url = "github:ollama/ollama/v0.23.1";
       flake = false;
     };
     tmux-super-fingers-src = {
@@ -257,7 +253,7 @@
       flake = false;
     };
     catppuccin-waybar = {
-      url = "github:catppuccin/waybar/v1.0";
+      url = "github:catppuccin/waybar/v1.1";
       flake = false;
     };
     catppuccin-newsboat = {
