@@ -58,12 +58,13 @@ in {
 
       auth = {
         disable_login_form = true;
-        oauth_auto_login = true;
       };
       "auth.basic".enabled = false;
       "auth.anonymous".enabled = false;
       "auth.generic_oauth" = {
         enabled = true;
+        auto_login = true;
+        allow_sign_up = false;
         name = "Authelia";
         icon = "signin";
         client_id = "$__file{${config.sops.secrets."grafana/oidc/client_id".path}}";
@@ -77,16 +78,15 @@ in {
         groups_attribute_path = "groups";
         name_attribute_path = "name";
         use_pkce = true;
-        allow_sign_up = true;
         auth_style = "InHeader";
-        role_attribute_path = "contains(groups[*], 'admins') && 'Admin' || contains(groups[*], 'editors') && 'Editor' || 'Viewer'";
+        role_attribute_path = "groups && (contains(groups, 'sso_admin') && 'Admin' || contains(groups, 'sso_editor') && 'Editor' || 'Viewer')";
         role_attribute_strict = false;
       };
 
       users = {
         allow_sign_up = false;
         auto_assign_org = true;
-        auto_assign_org_role = "Admin";
+        auto_assign_org_role = "Viewer";
       };
 
       security = {
@@ -99,6 +99,15 @@ in {
         reporting_enabled = false;
         check_for_updates = false;
       };
+
+      # SCIM and the new repository "provisioning" (Git Sync) feature toggles
+      # both route user storage through the apiserver/unified path, which
+      # breaks OAuth auto-create with a misleading
+      # `user.sync: Failed to create user error="user not found"`.
+      feature_toggles = {
+        enableSCIM = false;
+        provisioning = false;
+      };
     };
 
     provision = {
@@ -106,7 +115,6 @@ in {
       datasources.settings.datasources = [
         {
           name = "Prometheus";
-          uid = "prometheus";
           type = "prometheus";
           access = "proxy";
           url = "http://localhost:${toString ports.prometheus}";
@@ -116,138 +124,6 @@ in {
           };
         }
       ];
-
-      alerting = {
-        rules.settings = {
-          apiVersion = 1;
-          groups = [
-            {
-              orgId = 1;
-              name = "gitea";
-              folder = "Alerts";
-              interval = "1m";
-              rules = [
-                {
-                  uid = "gitea_slow_scrape";
-                  title = "Gitea slow / stalled";
-                  condition = "C";
-                  for = "5m";
-                  noDataState = "NoData";
-                  execErrState = "Error";
-                  annotations = {
-                    summary = "Gitea /metrics scrape > 2s for 5m";
-                    description = "scrape_duration_seconds for tako gitea (localhost:3000) > 2s — web handler likely stalled (see common/maintenancemode.go). Restart: systemctl restart gitea.";
-                  };
-                  labels = {
-                    severity = "warning";
-                    service = "gitea";
-                  };
-                  data = [
-                    {
-                      refId = "A";
-                      relativeTimeRange = {
-                        from = 600;
-                        to = 0;
-                      };
-                      datasourceUid = "prometheus";
-                      model = {
-                        refId = "A";
-                        expr = ''scrape_duration_seconds{job="tako-applications",instance="localhost:3000"}'';
-                        instant = true;
-                        intervalMs = 60000;
-                        maxDataPoints = 43200;
-                      };
-                    }
-                    {
-                      refId = "C";
-                      relativeTimeRange = {
-                        from = 0;
-                        to = 0;
-                      };
-                      datasourceUid = "__expr__";
-                      model = {
-                        refId = "C";
-                        type = "threshold";
-                        expression = "A";
-                        conditions = [
-                          {
-                            type = "query";
-                            evaluator = {
-                              type = "gt";
-                              params = [2];
-                            };
-                            operator.type = "and";
-                            query.params = ["C"];
-                            reducer.type = "last";
-                          }
-                        ];
-                      };
-                    }
-                  ];
-                }
-                {
-                  uid = "gitea_down";
-                  title = "Gitea down";
-                  condition = "C";
-                  for = "2m";
-                  noDataState = "Alerting";
-                  execErrState = "Error";
-                  annotations = {
-                    summary = "Gitea scrape failing for 2m";
-                    description = "up{job=tako-applications,instance=localhost:3000} == 0 — gitea web port not responding to Prometheus.";
-                  };
-                  labels = {
-                    severity = "critical";
-                    service = "gitea";
-                  };
-                  data = [
-                    {
-                      refId = "A";
-                      relativeTimeRange = {
-                        from = 600;
-                        to = 0;
-                      };
-                      datasourceUid = "prometheus";
-                      model = {
-                        refId = "A";
-                        expr = ''up{job="tako-applications",instance="localhost:3000"}'';
-                        instant = true;
-                        intervalMs = 60000;
-                        maxDataPoints = 43200;
-                      };
-                    }
-                    {
-                      refId = "C";
-                      relativeTimeRange = {
-                        from = 0;
-                        to = 0;
-                      };
-                      datasourceUid = "__expr__";
-                      model = {
-                        refId = "C";
-                        type = "threshold";
-                        expression = "A";
-                        conditions = [
-                          {
-                            type = "query";
-                            evaluator = {
-                              type = "lt";
-                              params = [1];
-                            };
-                            operator.type = "and";
-                            query.params = ["C"];
-                            reducer.type = "last";
-                          }
-                        ];
-                      };
-                    }
-                  ];
-                }
-              ];
-            }
-          ];
-        };
-      };
 
       # Provision popular community dashboards
       dashboards = {
