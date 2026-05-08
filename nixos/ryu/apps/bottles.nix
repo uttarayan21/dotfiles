@@ -40,6 +40,18 @@
     };
   };
 in {
+  # Bottles' i686 FHS pulls openldap-2.6.13. Hydra doesn't ship i686 openldap,
+  # so it builds locally and test017-syncreplication-refresh flakes on a loaded
+  # host. Skip the test suite for the 32-bit variant only — x86_64 still hits
+  # cache, and tako/tsuba never see this overlay.
+  nixpkgs.overlays = [
+    (_: prev: {
+      pkgsi686Linux = prev.pkgsi686Linux.extend (_: prev32: {
+        openldap = prev32.openldap.overrideAttrs (_: {doCheck = false;});
+      });
+    })
+  ];
+
   environment.systemPackages = [
     (pkgs.bottles.override {
       extraPkgs = _: [fvs2];
