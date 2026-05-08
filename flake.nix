@@ -333,6 +333,7 @@
         system = "aarch64-darwin";
         user = "servius";
         isServer = false;
+        tailscaleIp = "100.80.149.119";
       };
       deck = mkDevice {
         name = "SteamDeck";

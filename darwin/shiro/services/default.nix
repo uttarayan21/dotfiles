@@ -1,13 +1,13 @@
 {...}: {
   imports = [
-    # ../../../modules/darwin/caddy
+    ../../../modules/darwin/caddy
 
     # ./aerospace.nix
-    # ./caddy.nix
     # ./colima.nix
-    # ./lmstudio.nix
     # ./zerotier.nix
 
+    ./caddy.nix
+    ./lmstudio.nix
     ./autossh.nix
     ./caffeinate.nix
     ./gitea-runner.nix
