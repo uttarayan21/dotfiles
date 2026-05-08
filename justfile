@@ -15,12 +15,12 @@ boot cores='32':
 	sudo nixos-rebuild boot --flake . --builders '' --max-jobs 1 --cores {{cores}}
 
 [macos]
-build:
-    nix run nix-darwin -- build --flake . --show-trace
+build host=`hostname` cores='32':
+    nix run nix-darwin -- build --flake .#{{host}} --show-trace --max-jobs 1 --cores {{cores}}
 
 [linux]
-build:
-    nixos-rebuild build --flake . --show-trace
+build host=`hostname` cores='12':
+    nixos-rebuild build --flake .#{{host}} --show-trace --max-jobs 1 --cores {{cores}} --substituters ''
 
 nix args:
     nix --extra-experimental-features "nix-command flakes" {{args}}

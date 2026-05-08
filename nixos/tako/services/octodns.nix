@@ -34,10 +34,10 @@
   ]);
   syncCmd = mode: "${octodnsPkg}/bin/octodns-sync --config-file ${octodnsConfigFile} ${mode}";
 in {
-  sops.secrets."cloudflare/darksailor_dev_api_key" = {};
+  sops.secrets."cloudflare/cf_api_key" = {};
 
   sops.templates."octodns.env".content = ''
-    CLOUDFLARE_TOKEN=${config.sops.placeholder."cloudflare/darksailor_dev_api_key"}
+    CLOUDFLARE_TOKEN=${config.sops.placeholder."cloudflare/cf_api_key"}
   '';
 
   systemd.services.octodns-plan = {

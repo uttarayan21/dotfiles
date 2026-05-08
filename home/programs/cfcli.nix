@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  sops.secrets."cloudflare/darksailor_dev_api_key" = {};
+  sops.secrets."cloudflare/cf_api_key" = {};
   home.packages = [
     # (pkgs.stdenv.mkDerivation {
     #   pname = "cfcli";
@@ -13,14 +13,14 @@
     #   nativeBuildInputs = [pkgs.makeWrapper];
     #   installPhase = ''
     #     $out/bin/cfcli \
-    #       --run "export CF_API_KEY=\`cat -v ${config.sops.secrets."cloudflare/darksailor_dev_api_key".path}\`"
+    #       --run "export CF_API_KEY=\`cat -v ${config.sops.secrets."cloudflare/cf_api_key".path}\`"
     #   '';
     # })
     (pkgs.writeShellScriptBin
       "cfcli"
       ''
         #!/bin/sh
-        export CF_API_KEY="$(cat -v ${config.sops.secrets."cloudflare/darksailor_dev_api_key".path})"
+        export CF_API_KEY="$(cat -v ${config.sops.secrets."cloudflare/cf_api_key".path})"
         exec ${pkgs.cloudflare-cli}/bin/cfcli "$@"
       '')
   ];

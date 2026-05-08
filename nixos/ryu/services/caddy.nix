@@ -7,10 +7,10 @@
   networking.domains.subDomains."code.darksailor.dev".a.data = device.tailscaleIp;
 
   sops = {
-    secrets."cloudflare/api_key".owner = config.services.caddy.user;
+    secrets."cloudflare/cf_api_key".owner = config.services.caddy.user;
     templates = {
       "CLOUDFLARE_API_KEY.env".content = ''
-        CLOUDFLARE_API_KEY=${config.sops.placeholder."cloudflare/api_key"}
+        CLOUDFLARE_API_KEY=${config.sops.placeholder."cloudflare/cf_api_key"}
       '';
     };
   };

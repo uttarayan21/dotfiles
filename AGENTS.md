@@ -160,7 +160,7 @@ sessionVariables.BROWSER = if device.isDarwin then "open" else "xdg-open";
     openssl rand -hex 32 | tr -d '\n' | jq -sR | sops set --value-stdin secrets/secrets.yaml '["foo"]["bar"]'
   ```
   This will add a randomly generated secret to the sops file
-  NOTE: You MUST NEVER decrypt the secrets/secrets.yaml file
+  NOTE: You MUST NEVER decrypt the secrets/secrets.yaml file. This includes `sops -d`, `sops --decrypt`, `sops --extract`, `sops exec-env`, `sops exec-file`, or any other command that reads decrypted values. To confirm a key exists, grep the encrypted file for the key name (key paths are plaintext in SOPS) or read the `.nix` consumer. Decrypted values leak into transcripts and logs — once seen, the secret must be rotated.
   NOTE: You MUST NEVER generate secrets manually and then put them in the file later. It should ALWAYS be a single command
 - **NEVER use systemd shell scripts to generate secret files** — use `sops.templates` to render the file and `systemd.tmpfiles.rules` with `C+` to copy it into place
     ```nix

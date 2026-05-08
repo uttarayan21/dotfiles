@@ -29,10 +29,23 @@ in {
     "grafana.darksailor.dev".a.data = device.tailscaleIp;
   };
 
-  sops.secrets."grafana/secret_key" = {
-    owner = "grafana";
+  sops.secrets = let
+    autheliaUser = config.systemd.services.authelia-darksailor.serviceConfig.User;
+  in {
+    "grafana/secret_key".owner = "grafana";
+    "authelia/oidc/grafana/client_id".owner = autheliaUser;
+    "authelia/oidc/grafana/client_secret_digest".owner = autheliaUser;
+    "grafana/oidc/client_id" = {
+      key = "authelia/oidc/grafana/client_id";
+      owner = "grafana";
+    };
+    "grafana/oidc/client_secret" = {
+      key = "authelia/oidc/grafana/client_secret_plain";
+      owner = "grafana";
+    };
   };
-  # Grafana configuration with Authelia integration
+
+  # Grafana configuration with Authelia OIDC
   services.grafana = {
     enable = true;
     settings = {
@@ -43,15 +56,31 @@ in {
         root_url = "https://grafana.darksailor.dev";
       };
 
-      # Disable Grafana's own auth since we use Authelia
-      auth.disable_login_form = true;
+      auth = {
+        disable_login_form = true;
+        oauth_auto_login = true;
+      };
       "auth.basic".enabled = false;
       "auth.anonymous".enabled = false;
-      "auth.proxy" = {
+      "auth.generic_oauth" = {
         enabled = true;
-        header_name = "REMOTE-USER";
-        header_property = "username";
-        auto_sign_up = true;
+        name = "Authelia";
+        icon = "signin";
+        client_id = "$__file{${config.sops.secrets."grafana/oidc/client_id".path}}";
+        client_secret = "$__file{${config.sops.secrets."grafana/oidc/client_secret".path}}";
+        scopes = "openid profile email groups";
+        empty_scopes = false;
+        auth_url = "https://auth.darksailor.dev/api/oidc/authorization";
+        token_url = "https://auth.darksailor.dev/api/oidc/token";
+        api_url = "https://auth.darksailor.dev/api/oidc/userinfo";
+        login_attribute_path = "preferred_username";
+        groups_attribute_path = "groups";
+        name_attribute_path = "name";
+        use_pkce = true;
+        allow_sign_up = true;
+        auth_style = "InHeader";
+        role_attribute_path = "contains(groups[*], 'admins') && 'Admin' || contains(groups[*], 'editors') && 'Editor' || 'Viewer'";
+        role_attribute_strict = false;
       };
 
       users = {
@@ -77,6 +106,7 @@ in {
       datasources.settings.datasources = [
         {
           name = "Prometheus";
+          uid = "prometheus";
           type = "prometheus";
           access = "proxy";
           url = "http://localhost:${toString ports.prometheus}";
@@ -86,6 +116,138 @@ in {
           };
         }
       ];
+
+      alerting = {
+        rules.settings = {
+          apiVersion = 1;
+          groups = [
+            {
+              orgId = 1;
+              name = "gitea";
+              folder = "Alerts";
+              interval = "1m";
+              rules = [
+                {
+                  uid = "gitea_slow_scrape";
+                  title = "Gitea slow / stalled";
+                  condition = "C";
+                  for = "5m";
+                  noDataState = "NoData";
+                  execErrState = "Error";
+                  annotations = {
+                    summary = "Gitea /metrics scrape > 2s for 5m";
+                    description = "scrape_duration_seconds for tako gitea (localhost:3000) > 2s — web handler likely stalled (see common/maintenancemode.go). Restart: systemctl restart gitea.";
+                  };
+                  labels = {
+                    severity = "warning";
+                    service = "gitea";
+                  };
+                  data = [
+                    {
+                      refId = "A";
+                      relativeTimeRange = {
+                        from = 600;
+                        to = 0;
+                      };
+                      datasourceUid = "prometheus";
+                      model = {
+                        refId = "A";
+                        expr = ''scrape_duration_seconds{job="tako-applications",instance="localhost:3000"}'';
+                        instant = true;
+                        intervalMs = 60000;
+                        maxDataPoints = 43200;
+                      };
+                    }
+                    {
+                      refId = "C";
+                      relativeTimeRange = {
+                        from = 0;
+                        to = 0;
+                      };
+                      datasourceUid = "__expr__";
+                      model = {
+                        refId = "C";
+                        type = "threshold";
+                        expression = "A";
+                        conditions = [
+                          {
+                            type = "query";
+                            evaluator = {
+                              type = "gt";
+                              params = [2];
+                            };
+                            operator.type = "and";
+                            query.params = ["C"];
+                            reducer.type = "last";
+                          }
+                        ];
+                      };
+                    }
+                  ];
+                }
+                {
+                  uid = "gitea_down";
+                  title = "Gitea down";
+                  condition = "C";
+                  for = "2m";
+                  noDataState = "Alerting";
+                  execErrState = "Error";
+                  annotations = {
+                    summary = "Gitea scrape failing for 2m";
+                    description = "up{job=tako-applications,instance=localhost:3000} == 0 — gitea web port not responding to Prometheus.";
+                  };
+                  labels = {
+                    severity = "critical";
+                    service = "gitea";
+                  };
+                  data = [
+                    {
+                      refId = "A";
+                      relativeTimeRange = {
+                        from = 600;
+                        to = 0;
+                      };
+                      datasourceUid = "prometheus";
+                      model = {
+                        refId = "A";
+                        expr = ''up{job="tako-applications",instance="localhost:3000"}'';
+                        instant = true;
+                        intervalMs = 60000;
+                        maxDataPoints = 43200;
+                      };
+                    }
+                    {
+                      refId = "C";
+                      relativeTimeRange = {
+                        from = 0;
+                        to = 0;
+                      };
+                      datasourceUid = "__expr__";
+                      model = {
+                        refId = "C";
+                        type = "threshold";
+                        expression = "A";
+                        conditions = [
+                          {
+                            type = "query";
+                            evaluator = {
+                              type = "lt";
+                              params = [1];
+                            };
+                            operator.type = "and";
+                            query.params = ["C"];
+                            reducer.type = "last";
+                          }
+                        ];
+                      };
+                    }
+                  ];
+                }
+              ];
+            }
+          ];
+        };
+      };
 
       # Provision popular community dashboards
       dashboards = {
@@ -108,15 +270,41 @@ in {
     };
   };
 
-  # Caddy virtual host for Grafana with Authelia
+  # Caddy virtual host for Grafana — auth handled by Grafana via OIDC
   services.caddy.virtualHosts."grafana.darksailor.dev".extraConfig = ''
     @internal remote_ip 100.64.0.0/10 127.0.0.1/32 ::1/128
     handle @internal {
-      import auth
       reverse_proxy localhost:${toString ports.grafana}
     }
     respond "Access denied" 403
   '';
+
+  # Register Grafana as an OIDC client in Authelia
+  services.authelia.instances.darksailor.settings.identity_providers.oidc.clients = [
+    {
+      client_name = "Grafana";
+      client_id = ''{{ secret "${config.sops.secrets."authelia/oidc/grafana/client_id".path}" }}'';
+      client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/grafana/client_secret_digest".path}" }}'';
+      public = false;
+      authorization_policy = "one_factor";
+      require_pkce = true;
+      pkce_challenge_method = "S256";
+      redirect_uris = [
+        "https://grafana.darksailor.dev/login/generic_oauth"
+      ];
+      scopes = [
+        "openid"
+        "profile"
+        "email"
+        "groups"
+      ];
+      response_types = ["code"];
+      grant_types = ["authorization_code"];
+      access_token_signed_response_alg = "none";
+      userinfo_signed_response_alg = "none";
+      token_endpoint_auth_method = "client_secret_basic";
+    }
+  ];
 
   # Central Prometheus server
   services.prometheus = {
