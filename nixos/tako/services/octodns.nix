@@ -34,6 +34,8 @@
   ]);
   syncCmd = mode: "${octodnsPkg}/bin/octodns-sync --config-file ${octodnsConfigFile} ${mode}";
 in {
+  networking.domains.subDomains."lmstudio.shiro.darksailor.dev".a.data = inputs.self.devices.shiro.tailscaleIp;
+
   sops.secrets."cloudflare/cf_api_key" = {};
 
   sops.templates."octodns.env".content = ''
