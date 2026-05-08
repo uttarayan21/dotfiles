@@ -1,5 +1,6 @@
 {
   config,
+  device,
   pkgs,
   ...
 }: {
@@ -14,6 +15,8 @@
   services = {
     caddy = {
       enable = true;
+      user = device.user;
+      group = "staff";
       environmentFile = config.sops.templates."CLOUDFLARE_API_KEY.env".path;
       globalConfig = ''
         debug
