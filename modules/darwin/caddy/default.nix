@@ -361,7 +361,7 @@ in {
       }
     '';
 
-    launchd.user.agents.caddy = {
+    launchd.daemons.caddy = {
       path = [cfg.package];
 
       # Use script when environment file is provided, otherwise direct command
@@ -388,10 +388,7 @@ in {
           StandardOutPath = "${cfg.logDir}/caddy.log";
           StandardErrorPath = "${cfg.logDir}/caddy.error.log";
         }
-        // cfg.serviceConfig
-        // (optionalAttrs (cfg.user != "caddy") {
-          UserName = cfg.user;
-        });
+        // cfg.serviceConfig;
     };
 
     # Note: User management is handled differently in Darwin
