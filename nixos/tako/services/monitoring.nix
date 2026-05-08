@@ -270,8 +270,11 @@ in {
     };
   };
 
-  # Caddy virtual host for Grafana — auth handled by Grafana via OIDC
+  # Caddy virtual host for Grafana — auth handled by Grafana via OIDC.
+  # DNS-01 challenge needed because grafana.darksailor.dev resolves to a
+  # tailscale CGNAT IP, unreachable from Let's Encrypt validators.
   services.caddy.virtualHosts."grafana.darksailor.dev".extraConfig = ''
+    import cloudflare
     @internal remote_ip 100.64.0.0/10 127.0.0.1/32 ::1/128
     handle @internal {
       reverse_proxy localhost:${toString ports.grafana}

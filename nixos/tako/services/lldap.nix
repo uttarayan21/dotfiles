@@ -28,6 +28,7 @@
     };
   };
   services.caddy.virtualHosts."lldap.darksailor.dev".extraConfig = ''
+    import cloudflare
     @tailscale remote_ip 100.64.0.0/10
     handle @tailscale {
       reverse_proxy localhost:5090

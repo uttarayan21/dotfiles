@@ -7,18 +7,22 @@
   networking.hosts."127.0.0.1" = lib.unique (map
     (n: lib.removePrefix "https://" (lib.removePrefix "http://" n))
     (lib.attrNames config.services.caddy.virtualHosts));
+
   sops = {
     secrets."cloudflare/cf_api_key".owner = config.services.caddy.user;
-    templates."caddy.env" = {
+    templates."CLOUDFLARE_API_KEY.env" = {
       content = ''
-        CF_API_TOKEN=${config.sops.secrets."cloudflare/cf_api_key"}
+        CLOUDFLARE_API_KEY=${config.sops.placeholder."cloudflare/cf_api_key"}
       '';
       owner = config.services.caddy.user;
       restartUnits = ["caddy.service"];
     };
   };
 
-  systemd.services.caddy.serviceConfig.EnvironmentFile = config.sops.templates."caddy.env".path;
+  systemd.services.caddy = {
+    after = ["sops-install-secrets.service"];
+    serviceConfig.EnvironmentFile = config.sops.templates."CLOUDFLARE_API_KEY.env".path;
+  };
 
   services = {
     caddy = {
@@ -28,11 +32,16 @@
         servers {
           metrics
         }
-        # DNS-01 via Cloudflare — required for vhosts whose A record is
-        # a tailscale CGNAT IP (LE rejects 100.64.0.0/10 for HTTP-01/TLS-ALPN-01)
-        acme_dns cloudflare {env.CF_API_TOKEN}
       '';
       extraConfig = ''
+        (cloudflare) {
+            tls {
+                propagation_timeout -1
+                propagation_delay 120s
+                dns cloudflare {env.CLOUDFLARE_API_KEY}
+                resolvers 1.1.1.1
+            }
+        }
         (auth) {
            forward_auth localhost:5555 {
                uri /api/authz/forward-auth?authelia_url=https://auth.darksailor.dev
