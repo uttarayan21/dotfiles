@@ -18,7 +18,6 @@
     # ./neovide.nix
     # ./openscad.nix
     # ./pcsx2.nix
-    # ./prismlauncher.nix
     # ./rpcs3.nix
     # ./thunderbird.nix
     # ./tsukimi.nix
@@ -48,5 +47,6 @@
     ./vicinae.nix
     ./wezterm.nix
     ./zathura.nix
+    ./prismlauncher.nix
   ];
 }
