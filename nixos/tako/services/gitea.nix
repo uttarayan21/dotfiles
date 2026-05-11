@@ -41,6 +41,10 @@
       enable = true;
       lfs.enable = true;
       settings = {
+        database = {
+          SQLITE_JOURNAL_MODE = "WAL";
+          SQLITE_TIMEOUT = 5000;
+        };
         service = {
           DISABLE_REGISTRATION = false;
           ALLOW_ONLY_EXTERNAL_REGISTRATION = true;
