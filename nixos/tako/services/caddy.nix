@@ -32,6 +32,9 @@
         servers {
           metrics
         }
+        metrics {
+          per_host
+        }
       '';
       extraConfig = ''
         (cloudflare) {

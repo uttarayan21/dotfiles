@@ -112,7 +112,10 @@ in {
           -port ${toString ports.pihole} \
           -pihole_password $(cat ''${CREDENTIALS_DIRECTORY}/ppassword)'
       '';
-      Restart = "on-failure";
+      Restart = "always";
+      RestartSec = "5s";
+      # Exporter wedges occasionally against Pi-hole v6 FTL; recycle hourly.
+      RuntimeMaxSec = "1h";
     };
   };
 

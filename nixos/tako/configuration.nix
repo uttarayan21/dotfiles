@@ -55,7 +55,7 @@
     gc = {
       automatic = true;
       dates = "daily";
-      options = "--delete-older-than 5d";
+      options = "--delete-older-than 30d";
     };
     package = pkgs.nixVersions.latest; # deploy-rs doesn't work with nix >= 2.32
     distributedBuilds = true;

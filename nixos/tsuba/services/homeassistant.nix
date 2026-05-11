@@ -81,7 +81,9 @@
   services.caddy = {
     virtualHosts."home.darksailor.dev".extraConfig = ''
       import cloudflare
-      reverse_proxy localhost:8123
+      reverse_proxy localhost:8123 {
+        header_down -Server
+      }
     '';
     virtualHosts."puppet.home.darksailor.dev".extraConfig = ''
       import cloudflare

@@ -320,6 +320,21 @@ in {
         ];
       }
 
+      # Harmonia binary cache - tako
+      {
+        job_name = "tako-harmonia";
+        static_configs = [
+          {
+            targets = ["localhost:8052"];
+            labels = {
+              instance = "tako";
+              machine = "tako";
+              service = "harmonia";
+            };
+          }
+        ];
+      }
+
       # System metrics - tsuba (remote via Tailscale)
       {
         job_name = "tsuba-system";
@@ -515,14 +530,6 @@ in {
     dockerDashboard = pkgs.runCommand "docker-cadvisor-fixed.json" {} ''
       ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${dockerDashboardRaw} > $out
     '';
-    caddyDashboardRaw = pkgs.fetchurl {
-      url = "https://grafana.com/api/dashboards/14280/revisions/1/download";
-      sha256 = "0j3q68cq1nj8gcxkqz5h1kn1ds5kgq4jlkw73xp6yc88mbm5nyh4";
-    };
-    # Fix Caddy dashboard to use our Prometheus datasource
-    caddyDashboard = pkgs.runCommand "caddy-fixed.json" {} ''
-      ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${caddyDashboardRaw} > $out
-    '';
     piholeDashboardRaw = pkgs.fetchurl {
       url = "https://grafana.com/api/dashboards/10176/revisions/3/download";
       sha256 = "18f8w3l5k178agipfbimg29lkf2i32xynin1g1v5abiac3ahj7ih";
@@ -531,6 +538,11 @@ in {
     piholeDashboard = pkgs.runCommand "pihole-fixed.json" {} ''
       ${pkgs.gnused}/bin/sed 's/\''${DS_PROMETHEUS}/Prometheus/g' ${piholeDashboardRaw} > $out
     '';
+    harmoniaDashboard = pkgs.fetchurl {
+      url = "https://raw.githubusercontent.com/nix-community/harmonia/master/harmonia-cache/harmonia-grafana-dashboard.json";
+      sha256 = "0ibqj1zlznxp9vpj1jf6vkq8hj6rg63v7kih7s9bilq5zgqj4l3v";
+    };
+    caddyDashboard = ./caddy.json;
   in [
     "d /var/lib/grafana/dashboards 0755 grafana grafana -"
     "L+ /var/lib/grafana/dashboards/node-exporter-full.json - - - - ${nodeExporterFull}"
@@ -538,8 +550,9 @@ in {
     "L+ /var/lib/grafana/dashboards/postgresql.json - - - - ${postgresqlDashboard}"
     "L+ /var/lib/grafana/dashboards/redis.json - - - - ${redisDashboard}"
     "L+ /var/lib/grafana/dashboards/docker-cadvisor.json - - - - ${dockerDashboard}"
-    "L+ /var/lib/grafana/dashboards/caddy.json - - - - ${caddyDashboard}"
     "L+ /var/lib/grafana/dashboards/pihole.json - - - - ${piholeDashboard}"
+    "L+ /var/lib/grafana/dashboards/harmonia.json - - - - ${harmoniaDashboard}"
+    "L+ /var/lib/grafana/dashboards/caddy.json - - - - ${caddyDashboard}"
   ];
 
   # Open firewall ports for Prometheus to scrape exporters
