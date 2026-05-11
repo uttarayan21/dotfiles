@@ -37,8 +37,8 @@
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database.url = "github:Mic92/nix-index-database";

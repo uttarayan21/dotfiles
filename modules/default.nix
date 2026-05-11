@@ -8,7 +8,7 @@
     # ./hyprpaper.nix
     # ./aichat.nix
     # ./tuifeed.nix
-    #./ghostty.nix
+    # ./ghostty.nix
     # ./sketchybar.nix
   ];
 }

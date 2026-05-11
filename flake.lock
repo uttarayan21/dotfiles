@@ -1030,6 +1030,22 @@
     "flake-compat_13": {
       "flake": false,
       "locked": {
+        "lastModified": 1751685974,
+        "narHash": "sha256-NKw96t+BgHIYzHUjkTK95FqYRVKB8DHpVhefWSz/kTw=",
+        "ref": "refs/heads/main",
+        "rev": "549f2762aebeff29a2e5ece7a7dc0f955281a1d1",
+        "revCount": 92,
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.lix.systems/lix-project/flake-compat.git"
+      }
+    },
+    "flake-compat_14": {
+      "flake": false,
+      "locked": {
         "lastModified": 1767039857,
         "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
         "owner": "edolstra",
@@ -1043,7 +1059,7 @@
         "type": "github"
       }
     },
-    "flake-compat_14": {
+    "flake-compat_15": {
       "flake": false,
       "locked": {
         "lastModified": 1751685974,
@@ -1246,16 +1262,16 @@
     "flake-parts_4": {
       "inputs": {
         "nixpkgs-lib": [
-          "nixvim",
+          "nur",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1777932387,
-        "narHash": "sha256-nUYVPiqrzr36ThiQOAr5MKeGHDBSDM3OFWkz0uDjOvc=",
+        "lastModified": 1733312601,
+        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "71a3a77326609675e9f8b51084cf23d5d1945899",
+        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
         "type": "github"
       },
       "original": {
@@ -1267,16 +1283,16 @@
     "flake-parts_5": {
       "inputs": {
         "nixpkgs-lib": [
-          "nur",
+          "nvf",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1733312601,
-        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
+        "lastModified": 1769996383,
+        "narHash": "sha256-AnYjnFWgS49RlqX7LrC4uA+sCCDBj0Ry/WOJ5XWAsa0=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
+        "rev": "57928607ea566b5db3ad13af0e57e921e6b12381",
         "type": "github"
       },
       "original": {
@@ -1459,7 +1475,7 @@
     },
     "flake-utils_16": {
       "inputs": {
-        "systems": "systems_22"
+        "systems": "systems_21"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -2510,6 +2526,21 @@
         "url": "https://cdn.jsdelivr.net/npm/mermaid@11.12.3/dist/mermaid.min.js"
       }
     },
+    "mnw": {
+      "locked": {
+        "lastModified": 1777828893,
+        "narHash": "sha256-gVWVnmyNr74BVKfhMMZDWkhx2699dhmZ2g0W8TTHtkk=",
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "rev": "c1c0b544bfabe6669b5a6a0383ccb475fe60258b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Gerg-L",
+        "repo": "mnw",
+        "type": "github"
+      }
+    },
     "music-player": {
       "inputs": {
         "advisory-db": "advisory-db_4",
@@ -2573,6 +2604,28 @@
       "original": {
         "owner": "nix-community",
         "repo": "naersk",
+        "type": "github"
+      }
+    },
+    "ndg": {
+      "inputs": {
+        "nixpkgs": [
+          "nvf",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776882296,
+        "narHash": "sha256-DWZozXwMsgvUqfVlL1mQ8dOxW7GJ/8CdyaDN+1niZRg=",
+        "owner": "feel-co",
+        "repo": "ndg",
+        "rev": "ab7d78d4884b3a34968cf9fa3d16c0c1246d5c6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "feel-co",
+        "ref": "refs/tags/v2.6.0",
+        "repo": "ndg",
         "type": "github"
       }
     },
@@ -3135,28 +3188,6 @@
         "type": "github"
       }
     },
-    "nixvim": {
-      "inputs": {
-        "flake-parts": "flake-parts_4",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "systems": "systems_21"
-      },
-      "locked": {
-        "lastModified": 1777991353,
-        "narHash": "sha256-DFwjggMV+nzCZpwK6Obxj9F+P59rbLVowGqHETfctBk=",
-        "owner": "nix-community",
-        "repo": "nixvim",
-        "rev": "7986a276960b4dfaed9bb2c3c438b5ba71ae08f1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixvim",
-        "type": "github"
-      }
-    },
     "nno": {
       "inputs": {
         "flake-utils": "flake-utils_16",
@@ -3225,7 +3256,7 @@
     },
     "nur": {
       "inputs": {
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_4",
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
@@ -3264,6 +3295,31 @@
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "nvf": {
+      "inputs": {
+        "flake-compat": "flake-compat_13",
+        "flake-parts": "flake-parts_5",
+        "mnw": "mnw",
+        "ndg": "ndg",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_22"
+      },
+      "locked": {
+        "lastModified": 1778408907,
+        "narHash": "sha256-QXjdRz5fssxAWDrtfBYxvjMtTqJzQAbnAmX3u22xCck=",
+        "owner": "NotAShelf",
+        "repo": "nvf",
+        "rev": "e86a92e4b29b499e5f1285b737b7612115103da9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "nvf",
         "type": "github"
       }
     },
@@ -3457,9 +3513,9 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-xr": "nixpkgs-xr",
-        "nixvim": "nixvim",
         "nno": "nno",
         "nur": "nur",
+        "nvf": "nvf",
         "ollama-src": "ollama-src",
         "onepassword-shell-plugins": "onepassword-shell-plugins",
         "servius-website": "servius-website",
@@ -3961,7 +4017,7 @@
     },
     "system-manager": {
       "inputs": {
-        "flake-compat": "flake-compat_13",
+        "flake-compat": "flake-compat_14",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -4434,7 +4490,7 @@
       "inputs": {
         "actor-typeahead-src": "actor-typeahead-src",
         "fenix": "fenix_3",
-        "flake-compat": "flake-compat_14",
+        "flake-compat": "flake-compat_15",
         "gomod2nix": "gomod2nix",
         "htmx-src": "htmx-src",
         "htmx-ws-src": "htmx-ws-src",

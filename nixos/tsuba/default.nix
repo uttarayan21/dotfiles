@@ -45,7 +45,7 @@
                 cratesNix = inputs.crates-nix.mkLib {pkgs = nixpkgs.legacyPackages.${device.system};};
               };
               users.${device.user}.imports = [
-                inputs.nixvim.homeModules.nixvim
+                inputs.nvf.homeManagerModules.default
                 ../../home
               ];
             };

@@ -17,7 +17,7 @@
       masterPkgs = inputs.nixpkgs-master.legacyPackages.${device.system};
     };
     users.${device.user}.imports = [
-      inputs.nixvim.homeModules.nixvim
+      inputs.nvf.homeManagerModules.default
       ./.
     ];
   };

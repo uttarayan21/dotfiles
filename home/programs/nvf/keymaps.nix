@@ -1,33 +1,29 @@
-{pkgs}: let
-  inherit (import ./lib.nix) rawLua;
-  mkMappings = mappings:
-    []
-    ++ (pkgs.lib.optionals (builtins.hasAttr "normal" mappings) (mkMode mappings.normal "n"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "terminal" mappings) (mkMode mappings.terminal "t"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "insert" mappings) (mkMode mappings.insert "i"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "visual" mappings) (mkMode mappings.visual "v"))
-    ++ (pkgs.lib.optionals (builtins.hasAttr "global" mappings) (mkMode mappings.global ""));
-  mkMode = mappings: mode:
-    pkgs.lib.mapAttrsToList (key: value: {
-      key = key;
-      action = rawLua value;
-      mode = mode;
-    })
-    mappings;
+{lib, ...}: let
+  # Preserve the original nixvim authoring style: a per-mode attrset where
+  # values are raw Lua expressions. `[[…]]` Lua long-strings yield plain rhs
+  # strings (vim-cmd actions); bare expressions like `require'fzf-lua'.files`
+  # yield function references. Both work as vim.keymap.set rhs.
+  mkMaps = byMode:
+    lib.concatLists (lib.mapAttrsToList (
+        mode: maps:
+          lib.mapAttrsToList (key: action: {
+            inherit key action mode;
+            lua = true;
+          })
+          maps
+      )
+      byMode);
 in {
-  keymaps = mkMappings {
-    normal = {
+  programs.nvf.settings.vim.keymaps = mkMaps {
+    n = {
       "<C-l>" = "[[<cmd>Outline<cr>]]";
       "<C-w>\"" = "[[<cmd>split<cr>]]";
       "<C-w>%" = "[[<cmd>vsplit<cr>]]";
       "gh" = "[[<cmd>Octo actions<cr>]]";
       "<leader>\"" = ''[["+]]'';
-      "<C-c>" = "[[<cmd>ChatGPT<cr>]]";
       "<leader>dr" = "[[<cmd>RustLsp debuggables<cr>]]";
       "<leader>ee" = "[[<cmd>Rest run<cr>]]";
       "<leader>el" = "[[<cmd>Rest run last<cr>]]";
-      "<leader>hh" = "[[<cmd>DevdocsOpen<cr>]]";
-      "<leader>hl" = "[[<cmd>DevdocsToggle<cr>]]";
       "<leader><leader>" = "'<c-^>'";
       "<leader>n" = "[[<cmd>bnext<cr>]]";
       "<leader>o" = "[[<cmd>Trouble diagnostics<cr>]]";
@@ -39,7 +35,6 @@ in {
       "<leader>rr" = "vim.lsp.buf.rename";
       "<C-k>" = "vim.lsp.buf.definition";
       "<C-\\>" = "require('FTerm').toggle";
-      # "F" = "function() vim.lsp.buf.format({ async = true }) end";
       "F" = "require('conform').format";
       "gi" = "require'fzf-lua'.lsp_references";
       "<leader>a" = "vim.lsp.buf.code_action";
@@ -55,6 +50,7 @@ in {
       "<leader>fh" = "require'fzf-lua'.helptags";
       "zR" = "require'ufo'.openAllFolds";
       "zM" = "require'ufo'.closeAllFolds";
+      "<C-.>" = "require('opencode').toggle";
 
       # Emulate tmux bindings with prefix <C-q> and tabs
       "<C-q><C-q>" = "[[g<Tab>]]";
@@ -62,64 +58,18 @@ in {
       "<C-q>x" = "[[<cmd>tabclose<cr>]]";
       "<C-q>n" = "[[<cmd>tabnext<cr>]]";
       "<C-q>p" = "[[<cmd>tabprevious<cr>]]";
-      "<C-.>" = "require('opencode').toggle";
     };
-    terminal = {
+
+    t = {
       "<C-\\>" = "require('FTerm').toggle";
     };
-    insert = {
+
+    i = {
       "<C-\\>" = "require('FTerm').toggle";
     };
-    visual = {
+
+    v = {
       "L" = "[[:'<,'>!sort -u<cr>]]";
     };
   };
-
-  autoCmd = [
-    {
-      event = [
-        "BufEnter"
-        "BufWinEnter"
-      ];
-      pattern = "*.norg";
-      command = "set conceallevel=3";
-    }
-    {
-      event = [
-        "BufEnter"
-        "BufWinEnter"
-      ];
-      pattern = "*.pest";
-      command = "setlocal commentstring=//%s";
-    }
-    # {
-    #   event = ["BufEnter" "BufWinEnter"];
-    #   pattern = "*.sql";
-    #   command = "nnoremap <buffer> F :Sqlfmt<cr>";
-    # }
-    {
-      event = ["BufWinLeave"];
-      pattern = "?*";
-      command = "mkview!";
-    }
-    {
-      event = ["BufWinEnter"];
-      pattern = "?*";
-      command = "silent! loadview!";
-    }
-    {
-      event = ["FileType"];
-      pattern = "json";
-      callback =
-        rawLua
-        /*
-        lua
-        */
-        ''
-          function(ev)
-              vim.bo[ev.buf].formatprg = "${pkgs.jq}/bin/jq"
-          end
-        '';
-    }
-  ];
 }

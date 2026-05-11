@@ -42,7 +42,6 @@
       };
   };
 in [
-  inputs.nixvim.overlays.default
   inputs.nno.overlays.default
   tree-sitter-grammars
   vimPlugins
