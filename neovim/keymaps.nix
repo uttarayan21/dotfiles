@@ -41,15 +41,18 @@ in {
       "<C-\\>" = "require('FTerm').toggle";
       # "F" = "function() vim.lsp.buf.format({ async = true }) end";
       "F" = "require('conform').format";
-      "gi" = "require'telescope.builtin'.lsp_references";
+      "gi" = "require'fzf-lua'.lsp_references";
       "<leader>a" = "vim.lsp.buf.code_action";
       "<leader>bb" = "require'dap'.toggle_breakpoint";
       "<leader>du" = "require'dapui'.toggle";
       "<leader>fb" = "require'telescope'.extensions.file_browser.file_browser";
       "<leader>fg" = "require'yazi'.yazi";
-      "<leader>ff" = "require'telescope.builtin'.find_files";
-      "<leader>gg" = "require'telescope.builtin'.live_grep";
-      "<leader>;" = "require'telescope.builtin'.buffers";
+      "<leader>ff" = "require'fzf-lua'.files";
+      "<leader>gg" = "require'fzf-lua'.live_grep";
+      "<leader>;" = "require'fzf-lua'.buffers";
+      "<leader>gs" = "require'fzf-lua'.git_status";
+      "<leader>:" = "require'fzf-lua'.command_history";
+      "<leader>fh" = "require'fzf-lua'.helptags";
       "zR" = "require'ufo'.openAllFolds";
       "zM" = "require'ufo'.closeAllFolds";
 

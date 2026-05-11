@@ -16,6 +16,8 @@ in {
        catcher(require('crates').setup)
        catcher(require('outline').setup)
 
+       require('fzf-lua').register_ui_select()
+
        require('FTerm').setup({
            border     = 'single',
            dimensions = {

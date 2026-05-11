@@ -17,16 +17,16 @@
     };
     extensions = {
       undo.enable = true;
-      ui-select.enable = true;
-      fzf-native = {
-        enable = true;
-        settings = {
-          fuzzy = true;
-          override_generic_sorter = true;
-          override_file_sorter = true;
-        };
-      };
       file-browser.enable = true;
+    };
+  };
+
+  fzf-lua = {
+    enable = true;
+    settings = {
+      fzf_opts = {
+        "--layout" = "default";
+      };
     };
   };
 
