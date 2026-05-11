@@ -2,7 +2,7 @@
   imports = [
     ./atuin.nix
     ./authelia.nix
-    ./kobo.nix
+    # ./kobo.nix
     ./caddy.nix
     ./fail2ban.nix
     ./glance.nix

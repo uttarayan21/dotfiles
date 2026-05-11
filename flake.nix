@@ -189,10 +189,10 @@
       url = "github:uttarayan21/lichtfeld-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kobors = {
-      url = "git+ssh://gitea@git.darksailor.dev/servius/kobors";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # kobors = {
+    #   url = "git+ssh://gitea@git.darksailor.dev/servius/kobors";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     nixos-dns = {
       url = "github:Janik-Haag/nixos-dns";
       inputs.nixpkgs.follows = "nixpkgs";
