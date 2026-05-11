@@ -81,6 +81,8 @@
                   client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/paperless/client_secret".path}" }}'';
                   public = false;
                   authorization_policy = "one_factor";
+                  consent_mode = "pre-configured";
+                  pre_configured_consent_duration = "1y";
                   require_pkce = false;
                   redirect_uris = [
                     "https://paperless.darksailor.dev/auth/login"

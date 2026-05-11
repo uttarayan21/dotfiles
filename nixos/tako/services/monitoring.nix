@@ -168,6 +168,8 @@ in {
       client_secret = ''{{ secret "${config.sops.secrets."authelia/oidc/grafana/client_secret_digest".path}" }}'';
       public = false;
       authorization_policy = "one_factor";
+      consent_mode = "pre-configured";
+      pre_configured_consent_duration = "1y";
       require_pkce = true;
       pkce_challenge_method = "S256";
       redirect_uris = [

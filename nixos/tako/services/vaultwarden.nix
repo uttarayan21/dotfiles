@@ -68,6 +68,8 @@ in {
             client_secret = "{{ secret \"${config.sops.secrets."authelia/oidc/vaultwarden/client_secret".path}\" }}";
             public = false;
             authorization_policy = "one_factor";
+            consent_mode = "pre-configured";
+            pre_configured_consent_duration = "1y";
             require_pkce = true;
             pkce_challenge_method = "S256";
             redirect_uris = ["https://pass.darksailor.dev/identity/connect/oidc-signin"];
