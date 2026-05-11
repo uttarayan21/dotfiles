@@ -1,0 +1,40 @@
+{
+  "annotations": {"list": []},
+  "editable": false,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "type": "dashlist",
+      "title": "All dashboards",
+      "gridPos": {"h": 24, "w": 24, "x": 0, "y": 0},
+      "id": 1,
+      "options": {
+        "showStarred": false,
+        "showRecentlyViewed": false,
+        "showSearch": true,
+        "showHeadings": false,
+        "maxItems": 100,
+        "query": "",
+        "tags": [],
+        "folderId": null,
+        "includeVars": false,
+        "keepTime": false
+      }
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timepicker": {},
+  "timezone": "",
+  "title": "Home",
+  "uid": "home",
+  "version": 1,
+  "weekStart": ""
+}

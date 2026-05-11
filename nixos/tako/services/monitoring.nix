@@ -100,6 +100,8 @@ in {
         check_for_updates = false;
       };
 
+      dashboards.default_home_dashboard_path = "/var/lib/grafana/dashboards/home.json";
+
       # SCIM and the new repository "provisioning" (Git Sync) feature toggles
       # both route user storage through the apiserver/unified path, which
       # breaks OAuth auto-create with a misleading
@@ -543,6 +545,8 @@ in {
       sha256 = "0ibqj1zlznxp9vpj1jf6vkq8hj6rg63v7kih7s9bilq5zgqj4l3v";
     };
     caddyDashboard = ./caddy.json;
+    giteaDashboard = ./gitea.json;
+    homeDashboard = ./home.json;
   in [
     "d /var/lib/grafana/dashboards 0755 grafana grafana -"
     "L+ /var/lib/grafana/dashboards/node-exporter-full.json - - - - ${nodeExporterFull}"
@@ -553,6 +557,8 @@ in {
     "L+ /var/lib/grafana/dashboards/pihole.json - - - - ${piholeDashboard}"
     "L+ /var/lib/grafana/dashboards/harmonia.json - - - - ${harmoniaDashboard}"
     "L+ /var/lib/grafana/dashboards/caddy.json - - - - ${caddyDashboard}"
+    "L+ /var/lib/grafana/dashboards/gitea.json - - - - ${giteaDashboard}"
+    "L+ /var/lib/grafana/dashboards/home.json - - - - ${homeDashboard}"
   ];
 
   # Open firewall ports for Prometheus to scrape exporters

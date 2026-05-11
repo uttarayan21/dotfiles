@@ -1,0 +1,128 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Version",
+      "gridPos": {"h": 4, "w": 4, "x": 0, "y": 0},
+      "id": 1,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": "/^version$/", "values": false}, "textMode": "value", "colorMode": "none", "graphMode": "none"},
+      "targets": [{"expr": "gitea_build_info{instance=~\"$instance\"}", "format": "table", "instant": true, "refId": "A"}]
+    },
+    {"type": "stat", "title": "Users", "gridPos": {"h": 4, "w": 4, "x": 4, "y": 0}, "id": 2, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_users{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Repositories", "gridPos": {"h": 4, "w": 4, "x": 8, "y": 0}, "id": 3, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_repositories{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Organizations", "gridPos": {"h": 4, "w": 4, "x": 12, "y": 0}, "id": 4, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_organizations{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Issues (open)", "gridPos": {"h": 4, "w": 4, "x": 16, "y": 0}, "id": 5, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "fieldConfig": {"defaults": {"color": {"mode": "thresholds"}, "thresholds": {"mode": "absolute", "steps": [{"color": "green"}, {"color": "yellow", "value": 10}, {"color": "red", "value": 50}]}}}, "targets": [{"expr": "gitea_issues_open{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Issues (closed)", "gridPos": {"h": 4, "w": 4, "x": 20, "y": 0}, "id": 6, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_issues_closed{instance=~\"$instance\"}", "refId": "A"}]},
+
+    {"type": "stat", "title": "Stars", "gridPos": {"h": 4, "w": 3, "x": 0, "y": 4}, "id": 7, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_stars{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Watches", "gridPos": {"h": 4, "w": 3, "x": 3, "y": 4}, "id": 8, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_watches{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Releases", "gridPos": {"h": 4, "w": 3, "x": 6, "y": 4}, "id": 9, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_releases{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Mirrors", "gridPos": {"h": 4, "w": 3, "x": 9, "y": 4}, "id": 10, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_mirrors{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Webhooks", "gridPos": {"h": 4, "w": 3, "x": 12, "y": 4}, "id": 11, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_webhooks{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "SSH keys", "gridPos": {"h": 4, "w": 3, "x": 15, "y": 4}, "id": 12, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_publickeys{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "OAuth apps", "gridPos": {"h": 4, "w": 3, "x": 18, "y": 4}, "id": 13, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_oauths{instance=~\"$instance\"}", "refId": "A"}]},
+    {"type": "stat", "title": "Attachments", "gridPos": {"h": 4, "w": 3, "x": 21, "y": 4}, "id": 14, "datasource": {"type": "prometheus", "uid": "${datasource}"}, "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "textMode": "value", "colorMode": "value", "graphMode": "area"}, "targets": [{"expr": "gitea_attachments{instance=~\"$instance\"}", "refId": "A"}]},
+
+    {
+      "type": "timeseries",
+      "title": "Inventory growth",
+      "gridPos": {"h": 9, "w": 16, "x": 0, "y": 8},
+      "id": 15,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "line", "lineInterpolation": "stepAfter", "fillOpacity": 0, "showPoints": "never"}}, "overrides": []},
+      "options": {"legend": {"displayMode": "table", "placement": "right", "calcs": ["lastNotNull", "max"]}, "tooltip": {"mode": "multi"}},
+      "targets": [
+        {"expr": "gitea_users{instance=~\"$instance\"}", "legendFormat": "users", "refId": "A"},
+        {"expr": "gitea_repositories{instance=~\"$instance\"}", "legendFormat": "repos", "refId": "B"},
+        {"expr": "gitea_organizations{instance=~\"$instance\"}", "legendFormat": "orgs", "refId": "C"},
+        {"expr": "gitea_issues{instance=~\"$instance\"}", "legendFormat": "issues total", "refId": "D"},
+        {"expr": "gitea_comments{instance=~\"$instance\"}", "legendFormat": "comments", "refId": "E"},
+        {"expr": "gitea_releases{instance=~\"$instance\"}", "legendFormat": "releases", "refId": "F"}
+      ]
+    },
+    {
+      "type": "piechart",
+      "title": "Issues open vs closed",
+      "gridPos": {"h": 9, "w": 8, "x": 16, "y": 8},
+      "id": 16,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "options": {"reduceOptions": {"calcs": ["lastNotNull"]}, "pieType": "donut", "legend": {"displayMode": "list", "placement": "right", "values": ["value", "percent"]}},
+      "targets": [
+        {"expr": "gitea_issues_open{instance=~\"$instance\"}", "legendFormat": "open", "refId": "A"},
+        {"expr": "gitea_issues_closed{instance=~\"$instance\"}", "legendFormat": "closed", "refId": "B"}
+      ]
+    },
+
+    {
+      "type": "timeseries",
+      "title": "Process — memory (RSS)",
+      "gridPos": {"h": 8, "w": 8, "x": 0, "y": 17},
+      "id": 17,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "fieldConfig": {"defaults": {"unit": "bytes", "custom": {"drawStyle": "line", "fillOpacity": 10, "showPoints": "never"}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single"}},
+      "targets": [{"expr": "process_resident_memory_bytes{job=\"tako-applications\",instance=~\"$instance\"}", "legendFormat": "RSS", "refId": "A"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Go — goroutines",
+      "gridPos": {"h": 8, "w": 8, "x": 8, "y": 17},
+      "id": 18,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "fieldConfig": {"defaults": {"custom": {"drawStyle": "line", "fillOpacity": 10, "showPoints": "never"}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single"}},
+      "targets": [{"expr": "go_goroutines{job=\"tako-applications\",instance=~\"$instance\"}", "legendFormat": "goroutines", "refId": "A"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Go — GC pause (p99)",
+      "gridPos": {"h": 8, "w": 8, "x": 16, "y": 17},
+      "id": 19,
+      "datasource": {"type": "prometheus", "uid": "${datasource}"},
+      "fieldConfig": {"defaults": {"unit": "s", "custom": {"drawStyle": "line", "fillOpacity": 10, "showPoints": "never"}}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}, "tooltip": {"mode": "single"}},
+      "targets": [{"expr": "go_gc_duration_seconds{job=\"tako-applications\",quantile=\"1\",instance=~\"$instance\"}", "legendFormat": "max pause", "refId": "A"}]
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 39,
+  "tags": ["gitea"],
+  "templating": {
+    "list": [
+      {
+        "name": "datasource",
+        "type": "datasource",
+        "query": "prometheus",
+        "current": {"text": "Prometheus", "value": "Prometheus"},
+        "hide": 0,
+        "label": "Datasource"
+      },
+      {
+        "name": "instance",
+        "type": "query",
+        "datasource": {"type": "prometheus", "uid": "${datasource}"},
+        "query": "label_values(gitea_users, instance)",
+        "refresh": 2,
+        "multi": false,
+        "includeAll": false,
+        "current": {"text": "tako", "value": "tako"},
+        "label": "Instance"
+      }
+    ]
+  },
+  "time": {"from": "now-7d", "to": "now"},
+  "timepicker": {},
+  "timezone": "",
+  "title": "Gitea",
+  "uid": "gitea",
+  "version": 1,
+  "weekStart": ""
+}
