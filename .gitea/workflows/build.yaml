@@ -28,7 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.host }}
-        run: nix build .#${{ matrix.flake }} --no-link --print-out-paths --show-trace
+        run: |
+          ( while true; do printf '[heartbeat %s]\n' "$(date -u +%H:%M:%SZ)" >&2; sleep 60; done ) &
+          hb=$!
+          trap 'kill $hb 2>/dev/null || true' EXIT
+          nix build .#${{ matrix.flake }} --no-link --print-out-paths --print-build-logs --show-trace
 
   build-darwin:
     name: Build ${{ matrix.host }}
@@ -47,5 +51,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build ${{ matrix.host }}
         run: |
-          out=$(nix build .#${{ matrix.flake }} --no-link --print-out-paths --show-trace)
+          ( while true; do printf '[heartbeat %s]\n' "$(date -u +%H:%M:%SZ)" >&2; sleep 60; done ) &
+          hb=$!
+          trap 'kill $hb 2>/dev/null || true' EXIT
+          out=$(nix build .#${{ matrix.flake }} --no-link --print-out-paths --print-build-logs --show-trace)
           if [ "$GITHUB_REF" = "refs/heads/master" ]; then nix copy --to "$CACHE_HOST" "$out" -j 4; fi

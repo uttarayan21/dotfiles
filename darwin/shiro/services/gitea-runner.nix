@@ -20,7 +20,15 @@
   labelsSorted = builtins.concatStringsSep "\n" (builtins.sort builtins.lessThan labels);
 
   settingsFormat = pkgs.formats.yaml {};
-  configFile = settingsFormat.generate "runner-config.yaml" {};
+  configFile = settingsFormat.generate "runner-config.yaml" {
+    log.level = "info";
+    runner = {
+      timeout = "6h";
+      fetch_timeout = "30s";
+      fetch_interval = "2s";
+      report_interval = "1s";
+    };
+  };
 
   hostPackages = with pkgs; [
     bash
