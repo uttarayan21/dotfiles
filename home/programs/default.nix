@@ -60,6 +60,7 @@
     ./git.nix
     ./glow.nix
     ./gnupg.nix
+    ./hass-cli.nix
     ./himalaya.nix
     ./hyprshade.nix
     ./jq.nix
