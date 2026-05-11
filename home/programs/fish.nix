@@ -36,6 +36,19 @@
     # ${pkgs.spotify-player}/bin/spotify_player generate fish | source
     interactiveShellInit = ''
       if test -n "$TMUX"; ${lib.getExe pkgs.fastfetch} --logo-type kitty-icat; else ${lib.getExe pkgs.fastfetch}; end
+
+      function __tv_git_repos
+          printf "\n"
+          set -l result (${lib.getExe pkgs.television} git-repos --inline --no-status-bar)
+          if test -n "$result"
+              commandline -t -- (string escape -- "$result")' '
+          end
+          printf "\033[A"
+          commandline -f repaint
+      end
+      for mode in default insert
+          bind --mode $mode ctrl-g __tv_git_repos
+      end
       # ${pkgs.nb}/bin/nb todo undone
       ${lib.optionalString (device.isLinux && !device.isNix) "source /etc/profile.d/nix-daemon.fish"}
       ${lib.optionalString (device.is "ryu") ''
