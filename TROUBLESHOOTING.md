@@ -27,3 +27,9 @@ ipcs -m
 ipcrm -m 0
 ipcrm -m 1
 ```
+
+## shiro pulls GHC (Haskell) during system build
+
+`pkgs.writeShellApplication` runs shellcheck at build time as part of `nativeBuildInputs`. `shellcheck-*-bin` for `aarch64-darwin` is not in `cache.nixos.org`, so it builds from source — which pulls GHC (~2.5 GiB unpacked).
+
+**Fix in tree:** `darwin/shiro/services/gitea-runner.nix` uses `pkgs.writeShellScriptBin` instead and prepends `lib.makeBinPath` to `PATH` manually. `checkPhase = "true"` is not enough — shellcheck stays in `nativeBuildInputs` regardless.

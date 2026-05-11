@@ -43,43 +43,41 @@
     wget
   ];
 
-  runnerScript = pkgs.writeShellApplication {
-    name = "gitea-runner-${name}";
-    runtimeInputs = hostPackages ++ [pkgs.gitea-actions-runner];
-    text = ''
-      INSTANCE_DIR="${stateDir}"
-      mkdir -p "$INSTANCE_DIR"
-      cd "$INSTANCE_DIR"
+  runnerScript = pkgs.writeShellScriptBin "gitea-runner-${name}" ''
+    set -euo pipefail
+    export PATH=${lib.makeBinPath (hostPackages ++ [pkgs.gitea-actions-runner])}:$PATH
 
-      TOKEN_FILE="${config.sops.templates."GITEA_RUNNER_TOKEN.env".path}"
-      while [ ! -f "$TOKEN_FILE" ]; do
-        echo "Waiting for SOPS secrets..."
-        sleep 5
-      done
+    INSTANCE_DIR="${stateDir}"
+    mkdir -p "$INSTANCE_DIR"
+    cd "$INSTANCE_DIR"
 
-      # shellcheck disable=SC1090
-      source "$TOKEN_FILE"
+    TOKEN_FILE="${config.sops.templates."GITEA_RUNNER_TOKEN.env".path}"
+    while [ ! -f "$TOKEN_FILE" ]; do
+      echo "Waiting for SOPS secrets..."
+      sleep 5
+    done
 
-      LABELS_FILE="$INSTANCE_DIR/.labels"
-      LABELS_WANTED="${labelsSorted}"
-      LABELS_CURRENT="$(cat "$LABELS_FILE" 2>/dev/null || echo 0)"
+    source "$TOKEN_FILE"
 
-      if [ ! -e "$INSTANCE_DIR/.runner" ] || [ "$LABELS_WANTED" != "$LABELS_CURRENT" ]; then
-        rm -f "$INSTANCE_DIR/.runner"
+    LABELS_FILE="$INSTANCE_DIR/.labels"
+    LABELS_WANTED="${labelsSorted}"
+    LABELS_CURRENT="$(cat "$LABELS_FILE" 2>/dev/null || echo 0)"
 
-        act_runner register --no-interactive \
-          --instance ${lib.escapeShellArg url} \
-          --token "$TOKEN" \
-          --name ${lib.escapeShellArg name} \
-          --labels ${lib.escapeShellArg labelsStr} \
-          --config ${configFile}
+    if [ ! -e "$INSTANCE_DIR/.runner" ] || [ "$LABELS_WANTED" != "$LABELS_CURRENT" ]; then
+      rm -f "$INSTANCE_DIR/.runner"
 
-        echo "$LABELS_WANTED" > "$LABELS_FILE"
-      fi
+      act_runner register --no-interactive \
+        --instance ${lib.escapeShellArg url} \
+        --token "$TOKEN" \
+        --name ${lib.escapeShellArg name} \
+        --labels ${lib.escapeShellArg labelsStr} \
+        --config ${configFile}
 
-      exec act_runner daemon --config ${configFile}
-    '';
-  };
+      echo "$LABELS_WANTED" > "$LABELS_FILE"
+    fi
+
+    exec act_runner daemon --config ${configFile}
+  '';
 in {
   environment.etc."ssh/ssh_known_hosts".text = ''
     tako.darksailor.dev ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBt2bY4G9wfBf/6OsH+sLqA0GaQSTQUO2OCMhjQxwjJZ
