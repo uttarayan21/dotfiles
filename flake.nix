@@ -335,13 +335,6 @@
         isServer = false;
         tailscaleIp = "100.80.149.119";
       };
-      deck = mkDevice {
-        name = "SteamDeck";
-        system = "x86_64-linux";
-        user = "deck";
-        hasGui = false; # Don't wan't to run GUI apps on the SteamDeck
-        isServer = true;
-      };
       yuge = mkDevice {
         name = "yuge";
         system = "x86_64-linux";
@@ -437,25 +430,6 @@
           inherit devices inputs nixpkgs home-manager overlays nur nix-darwin;
           sops-nix = inputs.sops-nix;
         };
-
-      homeConfigurations = {
-        deck = let
-          pkgs = import inputs.nixpkgs {
-            inherit overlays;
-            system = "x86_64-linux";
-          };
-        in
-          home-manager.lib.homeManagerConfiguration {
-            inherit pkgs;
-            extraSpecialArgs = {
-              inherit inputs;
-            };
-            modules = [
-              {nixpkgs.config.allowUnfree = true;}
-              ./steamdeck
-            ];
-          };
-      };
 
       systemConfigs = import ./system-manager {
         inherit inputs system-manager;

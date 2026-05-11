@@ -47,14 +47,6 @@
         user = "root";
       };
     };
-    deck = {
-      hostname = "sdeck";
-      profiles.system = {
-        sshUser = "deck";
-        path = deploy-rs.lib.x86_64-linux.activate.home-manager self.homeConfigurations.deck;
-        user = "deck";
-      };
-    };
     yuge = {
       hostname = "sdeck";
       interactiveSudo = true;

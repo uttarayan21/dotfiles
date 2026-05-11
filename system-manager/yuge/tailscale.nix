@@ -1,10 +1,13 @@
 {pkgs, ...}: {
+  environment.systemPackages = [
+    pkgs.tailscale
+  ];
   systemd.services.tailscaled = {
     description = "Tailscale node agent";
     documentation = ["https://tailscale.com/docs/"];
     wants = ["network-pre.target"];
     after = ["network-pre.target" "NetworkManager.service" "systemd-resolved.service"];
-    wantedBy = ["system-manager.target"];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       Type = "notify";
