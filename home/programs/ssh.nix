@@ -38,7 +38,7 @@
       };
       deck = {
         user = "deck";
-        hostname = "steamdeck";
+        hostname = "yuge";
         forwardAgent = true;
       };
       "*" = {

@@ -48,7 +48,7 @@
       };
     };
     yuge = {
-      hostname = "sdeck";
+      hostname = "yuge";
       interactiveSudo = true;
       profiles.system = {
         sshUser = "deck";
