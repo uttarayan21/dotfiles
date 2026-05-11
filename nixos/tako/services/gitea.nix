@@ -86,6 +86,7 @@
         actions = {
           ENABLED = true;
           DEFAULT_ACTIONS_URL = "github";
+          WORKFLOW_DIRS = ".gitea/workflows";
         };
       };
     };
