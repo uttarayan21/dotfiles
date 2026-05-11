@@ -6,7 +6,6 @@
     ./sshd.nix
     ./sudo.nix
     ./tailscale.nix
-    ./fish.nix
   ];
 
   system-manager.allowAnyDistro = true;
