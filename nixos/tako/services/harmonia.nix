@@ -11,7 +11,7 @@ in {
       signKeyPaths = [config.sops.secrets."harmonia/sign_key".path];
       settings = {
         bind = address;
-        priority = 50;
+        priority = 100;
       };
     };
     caddy.virtualHosts."cache.darksailor.dev".extraConfig = ''
