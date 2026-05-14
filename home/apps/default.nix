@@ -47,6 +47,5 @@
     ./vicinae.nix
     ./wezterm.nix
     ./zathura.nix
-    ./prismlauncher.nix
   ];
 }
