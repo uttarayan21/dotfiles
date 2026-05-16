@@ -46,6 +46,7 @@
   systemd.services.lldap = {
     serviceConfig = {
       AmbientCapabilities = "CAP_NET_BIND_SERVICE";
+      CapabilityBoundingSet = lib.mkForce ["CAP_NET_BIND_SERVICE"];
       DynamicUser = lib.mkForce false;
       User = "lldap";
       Group = "lldap";

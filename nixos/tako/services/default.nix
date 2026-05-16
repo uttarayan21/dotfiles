@@ -18,13 +18,14 @@
     ./affine.nix
     ./harmonia.nix
     ./excalidraw.nix
+    ./flatpak.nix
     ./flaresolverr.nix
     # ./games
     # ./headscale.nix
     ./immich.nix
     ./kellnr.nix
     ./komga.nix
-    ./llms.nix
+    # ./llms.nix
     ./matrix
     ./monitoring.nix
     ./octodns.nix
