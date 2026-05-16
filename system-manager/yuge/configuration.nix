@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ./home.nix
     ./moonlight.nix
     ./recover.nix
     ./shadps4.nix

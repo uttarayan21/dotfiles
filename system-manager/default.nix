@@ -11,6 +11,7 @@
             nixpkgs.hostPlatform = device.system;
             _module.args = {inherit device inputs;};
           }
+          inputs.home-manager.nixosModules.home-manager
           ./${device.name}/configuration.nix
         ];
       }

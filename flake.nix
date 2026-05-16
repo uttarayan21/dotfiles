@@ -161,6 +161,7 @@
       url = "git+https://git.darksailor.dev/servius/servius.neocities.org";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    slo.url = "git+https://git.darksailor.dev/servius/slo";
     nixify = {
       url = "github:uttarayan21/nixify";
       inputs.nixpkgs.follows = "nixpkgs";
