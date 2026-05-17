@@ -112,6 +112,11 @@
             nix
             nodejs
             wget
+            flatpak
+            flatpak-builder
+            ostree
+            flat-manager
+            jq
           ];
           tokenFile = "${config.sops.templates."GITEA_REGISTRATION_TOKEN.env".path}";
         };
