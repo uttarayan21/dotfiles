@@ -31,6 +31,7 @@
   # };
   wayland.windowManager.hyprland = {
     enable = device.is "ryu";
+    configType = "hyprlang";
     systemd.enable = true;
     # package = pkgs.hyprland;
     # portalPackage = pkgs.xdph;

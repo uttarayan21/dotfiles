@@ -171,7 +171,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.54.3";
+      url = "github:hyprwm/Hyprland/v0.55.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     iamb = {
@@ -226,7 +226,7 @@
       flake = false;
     };
     ollama-src = {
-      url = "github:ollama/ollama/v0.23.1";
+      url = "github:ollama/ollama/v0.24.0";
       flake = false;
     };
     tmux-super-fingers-src = {

@@ -18,6 +18,7 @@
     };
     users.${device.user}.imports = [
       inputs.nvf.homeManagerModules.default
+      inputs.hyprland.homeManagerModules.default
       ./.
     ];
   };

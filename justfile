@@ -33,6 +33,17 @@ nvim:
 rollback:
     sudo nixos-rebuild switch --rollback --flake .
 
+copy-closure src dst:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    path=$(nix --extra-experimental-features "nix-command flakes" \
+        eval --raw .#nixosConfigurations.{{src}}.config.system.build.toplevel)
+    nix --extra-experimental-features "nix-command flakes" \
+        build .#nixosConfigurations.{{src}}.config.system.build.toplevel \
+        --builders '' --cores 32 --no-link
+    nix --extra-experimental-features "nix-command flakes" \
+        copy --to ssh://{{dst}} "$path"
+
 add path name:
     #!/usr/bin/env bash
     set -euo pipefail

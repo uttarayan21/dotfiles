@@ -18,6 +18,8 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -52,17 +54,39 @@ class Pin:
     original_rev: str | None
 
 
+def _resolve_token() -> str | None:
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if token:
+        return token
+    if shutil.which("gh"):
+        try:
+            out = subprocess.run(
+                ["gh", "auth", "token"],
+                check=True, capture_output=True, text=True, timeout=5,
+            )
+            return out.stdout.strip() or None
+        except (subprocess.SubprocessError, OSError):
+            return None
+    return None
+
+
+_TOKEN = _resolve_token()
+
+
 def gh_get(path: str) -> dict | list | None:
     url = f"https://api.github.com{path}"
     req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json"})
-    token = os.environ.get("GITHUB_TOKEN")
-    if token:
-        req.add_header("Authorization", f"Bearer {token}")
+    if _TOKEN:
+        req.add_header("Authorization", f"Bearer {_TOKEN}")
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
         if e.code == 404:
+            return None
+        if e.code in (401, 403):
+            hint = "" if _TOKEN else " (no token — set GITHUB_TOKEN or run `gh auth login`)"
+            print(f"  ! GitHub API {e.code} for {path}{hint}", file=sys.stderr)
             return None
         print(f"  ! GitHub API {e.code} for {path}", file=sys.stderr)
         return None
