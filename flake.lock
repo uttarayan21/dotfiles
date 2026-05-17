@@ -3950,11 +3950,11 @@
         "rust-overlay": "rust-overlay_10"
       },
       "locked": {
-        "lastModified": 1778964522,
-        "narHash": "sha256-jCCwD41xCs2oxFfzD5iiMmkSCxPJgZbZSgOXNQDpR3Y=",
+        "lastModified": 1779022599,
+        "narHash": "sha256-SJ9iYDUC2vGr0giyYDjBYP62eblNbHblWOleCWb4M1Y=",
         "ref": "refs/heads/master",
-        "rev": "aa1ba11a35d568e41c876dcb48786c1375a976bf",
-        "revCount": 39,
+        "rev": "9852b97f735de9f1b40da0dcaed8a8a7757fe0ee",
+        "revCount": 76,
         "type": "git",
         "url": "https://git.darksailor.dev/servius/slo"
       },

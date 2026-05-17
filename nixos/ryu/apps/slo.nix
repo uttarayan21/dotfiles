@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  home-manager.users.${device.user}.home.packages = [
+  environment.systemPackages = [
     inputs.slo.packages.${device.system}.default
   ];
 }
