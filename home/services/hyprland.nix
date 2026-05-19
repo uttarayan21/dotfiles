@@ -11,20 +11,6 @@
   # hl.dsp.dpms(state, monitor) ignores `state` in this Hyprland Lua
   # build — it always toggles. Wrap with a state check so we only fire
   # toggles on monitors whose dpms doesn't match the desired state.
-  hyprDpms = pkgs.writeShellApplication {
-    name = "hypr-dpms";
-    runtimeInputs = [pkgs.hyprland pkgs.jq];
-    text = ''
-      want="''${1:?usage: hypr-dpms on|off}"
-      case "$want" in on) target=true;; off) target=false;; *) exit 2;; esac
-      hyprctl monitors -j | jq -r '.[] | "\(.name) \(.dpmsStatus)"' \
-        | while read -r name on; do
-            if [ "$on" != "$target" ]; then
-              hyprctl dispatch "hl.dsp.dpms(\"$want\", \"$name\")"
-            fi
-          done
-    '';
-  };
 
   mkDirBinds = mods: dsp: dirs:
     lib.mapAttrs'
@@ -51,13 +37,13 @@ in {
     enable = device.is "ryu";
     settings = {
       general = {
-        after_sleep_cmd = "${lib.getExe hyprDpms} on";
+        after_sleep_cmd = ''hyprctl dispatch hl.dsp.dpms({ action = "disable"})'';
       };
       listener = [
         {
           timeout = 300;
-          on-timeout = "${lib.getExe hyprDpms} off";
-          on-resume = "${lib.getExe hyprDpms} on";
+          on-resume = ''hyprctl dispatch hl.dsp.dpms({ action = "enable"})'';
+          on-timeout = ''hyprctl dispatch hl.dsp.dpms({ action = "disable"})'';
         }
       ];
     };
