@@ -2183,11 +2183,11 @@
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1755360211,
-        "narHash": "sha256-ZdHdkhn8COBJxTLrbgIsxTJ7NT0hCegrOYeYZv9vUqg=",
+        "lastModified": 1779257760,
+        "narHash": "sha256-brasOBglL19s6F+Q1Z77Xz3qmgmtzQUm3oD4FIvJtLU=",
         "ref": "refs/heads/master",
-        "rev": "4714208a0b1c9e6702112518378fb4833cc092d9",
-        "revCount": 8,
+        "rev": "dd515e9885eebffe697549f991e60f7a5153d7ac",
+        "revCount": 9,
         "type": "git",
         "url": "https://git.darksailor.dev/servius/hyprmonitors"
       },
