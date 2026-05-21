@@ -10,6 +10,11 @@
       command = "set conceallevel=3";
     }
     {
+      event = ["FileType"];
+      pattern = ["markdown"];
+      command = "setlocal conceallevel=2";
+    }
+    {
       event = ["BufEnter" "BufWinEnter"];
       pattern = ["*.pest"];
       command = "setlocal commentstring=//%s";

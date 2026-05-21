@@ -3,6 +3,7 @@
     obsidian = {
       enable = true;
       setupOpts = {
+        legacy_commands = false;
         workspaces = [
           {
             name = "Obsidian";

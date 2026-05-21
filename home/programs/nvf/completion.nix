@@ -28,13 +28,24 @@ in {
       keymap = {
         preset = "none";
         "<CR>" = ["select_and_accept" "fallback"];
-        "<C-n>" = ["select_next" "fallback"];
-        "<C-p>" = ["select_prev" "fallback"];
+        "<C-n>" = ["show" "select_next"];
+        "<C-p>" = ["show" "select_prev"];
         "<C-u>" = ["scroll_documentation_up" "fallback"];
         "<C-d>" = ["scroll_documentation_down" "fallback"];
       };
 
-      cmdline.sources = [];
+      cmdline = {
+        keymap = {
+          preset = "cmdline";
+          "<Tab>" = ["show_and_insert" "select_next"];
+          "<S-Tab>" = ["show_and_insert" "select_prev"];
+          "<CR>" = ["accept_and_enter" "fallback"];
+        };
+        completion = {
+          list.selection.preselect = false;
+          menu.auto_show = true;
+        };
+      };
       sources = {
         default = [
           "git"
@@ -50,7 +61,12 @@ in {
         per_filetype = {
           nix = inline ''{ inherit_defaults = true, "nixpkgs-maintainers" }'';
           tex = inline ''{ inherit_defaults = true, "latex" }'';
-          markdown = inline ''{ inherit_defaults = true, "latex", "thesaurus" }'';
+          markdown = inline ''            function()
+                        return vim.list_extend(
+                          vim.deepcopy(require("blink.cmp.config").sources.default),
+                          { "latex", "thesaurus" }
+                        )
+                      end'';
           gitcommit = inline ''{ inherit_defaults = true, "thesaurus" }'';
         };
         providers = {
