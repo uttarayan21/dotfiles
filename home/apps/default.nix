@@ -7,7 +7,7 @@
     # ./audacity.nix
     # ./cinny.nix
     # ./cursor.nix
-    # ./discord.nix
+    ./discord.nix
     # ./gimp.nix
     # ./guitarix.nix
     # ./ida.nix
