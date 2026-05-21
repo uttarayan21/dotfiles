@@ -124,6 +124,11 @@
       # url = "path:/home/servius/Projects/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hdbctrl = {
+      url = "path:/home/servius/Projects/hdb630";
+      # url = "git+https://git.darksailor.dev/servius/hdbctrl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     # alvr = {
     #   url = "path:/home/servius/Projects/ALVR";

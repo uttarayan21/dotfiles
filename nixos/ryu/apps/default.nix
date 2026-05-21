@@ -7,6 +7,7 @@
     ./crosspipe.nix
     ./easyeffects.nix
     ./gparted.nix
+    ./hdbctrl.nix
     ./lmms.nix
     ./nvtop.nix
     ./qpwgraph.nix
