@@ -1923,14 +1923,17 @@
         "rust-overlay": "rust-overlay_4"
       },
       "locked": {
-        "lastModified": 1779403022,
-        "narHash": "sha256-uaXAPw8I5I3ctaMBCTJ73PdwBGnVjGcu0eITrR/gRaQ=",
-        "path": "/home/servius/Projects/hdb630",
-        "type": "path"
+        "lastModified": 1779454604,
+        "narHash": "sha256-jd8dJBkW1sUkk2b8/4cDOGJsn3bAry7ESJLu/MQLAe4=",
+        "ref": "refs/heads/master",
+        "rev": "4cfefe4b4804d117ae729293639b893fcebf74db",
+        "revCount": 19,
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/hdbctrl"
       },
       "original": {
-        "path": "/home/servius/Projects/hdb630",
-        "type": "path"
+        "type": "git",
+        "url": "https://git.darksailor.dev/servius/hdbctrl"
       }
     },
     "headplane": {

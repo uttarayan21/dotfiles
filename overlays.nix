@@ -19,6 +19,7 @@ in
     inputs.deploy-rs.overlays.default
     inputs.eilmeldung.overlays.default
     inputs.handoff.overlays.default
+    inputs.hdbctrl.overlays.default
     # inputs.headplane.overlays.default
     inputs.nix-minecraft.overlay
     inputs.nur.overlays.default

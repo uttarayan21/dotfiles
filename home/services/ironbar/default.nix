@@ -13,7 +13,6 @@
       "${device.monitors.secondary}" = {
         position = "bottom";
         start = [
-          {type = "tray";}
           # {
           #   type = "launcher";
           #   favourites = ["firefox" "discord"];
@@ -21,6 +20,10 @@
           #   show_icons = true;
           # }
           # {type = "focused";}
+          {
+            type = "music";
+            player_type = "mpris";
+          }
         ];
         end = [
           {
@@ -30,8 +33,7 @@
             truncate.mode = "end";
           }
           {
-            type = "music";
-            player_type = "mpris";
+            type = "tray";
           }
           {
             type = "clock";

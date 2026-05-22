@@ -2,6 +2,7 @@
   imports = [
     ./gtk.nix
     ./gui.nix
+    ./hdbctrl.nix
     ./hyprland.nix
     ./hyprmon.nix
     ./hyprpaper.nix
