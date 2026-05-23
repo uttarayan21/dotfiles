@@ -12,6 +12,7 @@
     # The artist https://www.bilibili.com/video/BV1s44y1S7MM/
     bocchiVertical = nextcloudWallpapers "bocchi-guitar.jpg";
     frieren = nextcloudWallpapers "frieren.png";
+    bloodBorne = nextcloudWallpapers "moon-presence.png";
   in {
     enable = device.is "ryu";
     settings = {
@@ -19,17 +20,18 @@
       wallpaper = [
         {
           monitor = device.monitors.primary;
-          path = wallpapers.moon;
-          fit_mode = "cover";
-        }
-        {
-          monitor = device.monitors.secondary;
           path = frieren;
           fit_mode = "cover";
         }
         {
+          monitor = device.monitors.secondary;
+          path = bloodBorne;
+          fit_mode = "cover";
+        }
+        {
           monitor = device.monitors.tertiary;
-          path = wallpapers.skull;
+          # path = wallpapers.skull;
+          path = wallpapers.moon;
           fit_mode = "cover";
         }
       ];
