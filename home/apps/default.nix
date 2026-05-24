@@ -42,6 +42,7 @@
     ./nextcloud.nix
     ./obs-studio.nix
     ./orcaslicer.nix
+    ./rustdesk.nix
     ./shadps4.nix
     ./slack.nix
     ./vicinae.nix
