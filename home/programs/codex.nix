@@ -1,10 +1,10 @@
 {
   device,
-  pkgs,
+  masterPkgs,
   ...
 }: {
   programs.codex = {
     enable = device.is "ryu" || device.is "kuro";
-    package = pkgs.codex;
+    package = masterPkgs.codex;
   };
 }
