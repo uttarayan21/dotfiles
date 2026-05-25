@@ -32,7 +32,7 @@ in {
       "<leader>mm" = "[[<cmd>Neorg<cr>]]";
       "vff" = "[[<cmd>vertical Gdiffsplit<cr>]]";
 
-      "<leader>rr" = "vim.lsp.buf.rename";
+      "<leader>rn" = "vim.lsp.buf.rename";
       "<C-k>" = "vim.lsp.buf.definition";
       "<C-\\>" = "require('FTerm').toggle";
       "F" = "require('conform').format";
