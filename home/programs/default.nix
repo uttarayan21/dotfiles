@@ -90,5 +90,6 @@
     ./yazi.nix
     ./yq.nix
     ./zoxide.nix
+    ./pi.dev.nix
   ];
 }
